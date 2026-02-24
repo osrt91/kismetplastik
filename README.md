@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kısmet Plastik B2B
 
-## Getting Started
+Next.js ile geliştirilmiş Kısmet Plastik kurumsal / B2B web uygulaması.
 
-First, run the development server:
+## Başlarken
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tarayıcıda [http://localhost:3000](http://localhost:3000) adresini açın.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## E-posta (İletişim & Teklif formları)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+İletişim ve Teklif Al formları **Resend** ile e-posta gönderir. Canlı ortamda çalışması için:
 
-## Learn More
+1. [Resend](https://resend.com) hesabı açın ve API anahtarı alın.
+2. Proje kökünde `.env.local` oluşturun (`.env.example` örnek alınabilir):
 
-To learn more about Next.js, take a look at the following resources:
+```env
+RESEND_API_KEY=re_xxxxxxxxxxxx
+EMAIL_FROM=noreply@yourdomain.com
+EMAIL_TO=info@kismetplastik.com
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. `EMAIL_FROM` için Resend’te doğrulanmış bir domain kullanın; test için `noreply@onboarding.resend.dev` kullanılabilir.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`RESEND_API_KEY` yoksa formlar yine **başarılı** yanıt döner; e-posta sadece konsola loglanır (geliştirme için).
 
-## Deploy on Vercel
+## Proje durumu
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Tüm sayfalar (ana sayfa, ürünler, katalog, teklif al, iletişim, hakkımızda, üretim, kalite, SSS, kariyer, bayi girişi, blog) tamamlandı.
+- İletişim ve teklif API’leri Resend ile e-posta gönderiyor; TODO’lar kaldırıldı.
+- Build: `npm run build`

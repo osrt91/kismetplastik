@@ -1,0 +1,143 @@
+"use client";
+
+import { useParams } from "next/navigation";
+import Link from "next/link";
+import {
+  ChevronRight,
+  Phone,
+  FileText,
+  ArrowLeft,
+  CheckCircle2,
+  Info,
+} from "lucide-react";
+import { getProductBySlug, getCategoryBySlug } from "@/data/products";
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
+import ProductViewer from "@/components/ui/ProductViewer";
+import { useLocale } from "@/contexts/LocaleContext";
+
+export default function ProductDetailPage() {
+  const { dict } = useLocale();
+  const p = dict.products;
+  const cm = dict.common;
+
+  const params = useParams();
+  const slug = params.slug as string;
+  const categorySlug = params.category as string;
+  const product = getProductBySlug(slug);
+  const category = getCategoryBySlug(categorySlug);
+
+  if (!product || !category) {
+    return (
+      <section className="flex min-h-[60vh] items-center justify-center bg-neutral-50">
+        <div className="text-center">
+          <h1 className="mb-2 text-2xl font-bold text-neutral-700">{p.productNotFound}</h1>
+          <Link href="/urunler" className="text-primary-700 hover:underline">
+            {p.backToAll}
+          </Link>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="bg-neutral-50 py-8 lg:py-16">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
+        <nav className="mb-6 flex flex-wrap items-center gap-1.5 text-sm text-neutral-400">
+          <Link href="/" className="hover:text-primary-700">{p.breadcrumbHome}</Link>
+          <ChevronRight size={14} />
+          <Link href="/urunler" className="hover:text-primary-700">{p.breadcrumbProducts}</Link>
+          <ChevronRight size={14} />
+          <Link href={`/urunler/${category.slug}`} className="hover:text-primary-700">
+            {category.name}
+          </Link>
+          <ChevronRight size={14} />
+          <span className="font-medium text-primary-900">{product.name}</span>
+        </nav>
+
+        <Link
+          href={`/urunler/${category.slug}`}
+          className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary-700 transition-colors hover:text-primary-900"
+        >
+          <ArrowLeft size={16} />
+          {category.name} {p.backToCategory}
+        </Link>
+
+        <div className="grid gap-10 lg:grid-cols-2">
+          {/* Left - Product Viewer */}
+          <AnimateOnScroll animation="fade-right">
+            <ProductViewer product={product} />
+          </AnimateOnScroll>
+
+          {/* Right - Details */}
+          <AnimateOnScroll animation="fade-left">
+            <div>
+              <h1 className="mb-3 text-2xl font-extrabold text-primary-900 sm:text-3xl">
+                {product.name}
+              </h1>
+              <p className="mb-6 text-base leading-relaxed text-neutral-500">
+                {product.description}
+              </p>
+
+              <div className="mb-6 flex flex-wrap gap-2">
+                <span className="rounded-lg bg-primary-50 px-3 py-1.5 text-sm font-semibold text-primary-700">
+                  {product.material}
+                </span>
+                {product.inStock ? (
+                  <span className="flex items-center gap-1 rounded-lg bg-green-50 px-3 py-1.5 text-sm font-semibold text-green-700">
+                    <CheckCircle2 size={14} />
+                    {cm.inStock}
+                  </span>
+                ) : (
+                  <span className="rounded-lg bg-red-50 px-3 py-1.5 text-sm font-semibold text-red-700">
+                    {cm.outOfStock}
+                  </span>
+                )}
+              </div>
+
+              <div className="mb-6 overflow-hidden rounded-xl border border-neutral-200">
+                <div className="bg-neutral-50 px-5 py-3">
+                  <h3 className="flex items-center gap-2 text-sm font-bold text-primary-900">
+                    <Info size={16} />
+                    {p.technicalSpecs}
+                  </h3>
+                </div>
+                <div className="divide-y divide-neutral-100">
+                  {product.specs.map((spec) => (
+                    <div key={spec.label} className="flex items-center justify-between px-5 py-3">
+                      <span className="text-sm text-neutral-500">{spec.label}</span>
+                      <span className="text-sm font-semibold text-neutral-900">{spec.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mb-8 rounded-xl border border-accent-200 bg-accent-100/50 p-4">
+                <p className="text-sm text-neutral-700">
+                  <span className="font-bold">{cm.minOrder}:</span>{" "}
+                  {product.minOrder.toLocaleString("tr-TR")} {cm.pieces}
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/teklif-al"
+                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-accent-500 px-6 py-3.5 text-base font-bold text-primary-900 shadow-lg shadow-accent-500/25 transition-all duration-300 hover:bg-accent-400 hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98]"
+                >
+                  <FileText size={18} />
+                  {p.requestQuoteFor}
+                </Link>
+                <a
+                  href="tel:+902121234567"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-primary-900 px-6 py-3.5 text-base font-semibold text-primary-900 transition-all duration-300 hover:bg-primary-900 hover:text-white"
+                >
+                  <Phone size={18} />
+                  {p.callNow}
+                </a>
+              </div>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </div>
+    </section>
+  );
+}
