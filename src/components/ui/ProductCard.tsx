@@ -1,6 +1,10 @@
-import Link from "next/link";
+"use client";
+
+import { memo } from "react";
+import Link from "@/components/ui/LocaleLink";
 import { ArrowRight, Package } from "lucide-react";
 import { Product, CategorySlug } from "@/types/product";
+import { useLocale } from "@/contexts/LocaleContext";
 
 const categoryConfig: Record<
   CategorySlug,
@@ -29,7 +33,8 @@ const colorHexMap: Record<string, string> = {
   Gümüş: "#9CA3AF",
 };
 
-export default function ProductCard({ product }: { product: Product }) {
+const ProductCard = memo(function ProductCard({ product }: { product: Product }) {
+  const { dict } = useLocale();
   const cat = categoryConfig[product.category];
 
   return (
@@ -72,12 +77,12 @@ export default function ProductCard({ product }: { product: Product }) {
 
         {product.featured && (
           <span className="absolute left-3 top-3 rounded-full bg-accent-500 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-900">
-            Öne Çıkan
+            {dict.components.featuredBadge}
           </span>
         )}
         {!product.inStock && (
           <span className="absolute right-3 top-3 rounded-full bg-red-500 px-2.5 py-1 text-[10px] font-bold text-white">
-            Stokta Yok
+            {dict.components.outOfStock}
           </span>
         )}
 
@@ -90,7 +95,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
         <div className="absolute inset-0 flex items-end justify-center translate-y-full bg-gradient-to-t from-black/50 via-black/15 to-transparent p-5 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
           <span className="rounded-full bg-white/90 px-4 py-2 text-xs font-bold text-primary-900 shadow-lg backdrop-blur-sm">
-            Detayları Gör
+            {dict.components.viewDetails}
           </span>
         </div>
       </div>
@@ -122,7 +127,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
 
         <div className="mb-4 flex items-center gap-2">
-          <span className="text-xs text-neutral-400">Renkler:</span>
+          <span className="text-xs text-neutral-400">{dict.components.colors}</span>
           <div className="flex items-center gap-1">
             {product.colors.slice(0, 5).map((color) => (
               <span
@@ -142,10 +147,10 @@ export default function ProductCard({ product }: { product: Product }) {
 
         <div className="flex items-center justify-between border-t border-neutral-50 pt-3">
           <span className="text-xs text-neutral-400">
-            Min. {product.minOrder.toLocaleString("tr-TR")} adet
+            {dict.components.minOrderText.replace("{count}", product.minOrder.toLocaleString("tr-TR"))}
           </span>
           <span className="flex items-center gap-1 text-sm font-semibold text-primary-700 transition-colors group-hover:text-accent-600">
-            Detay
+            {dict.components.detail}
             <ArrowRight
               size={14}
               className="transition-transform duration-300 group-hover:translate-x-1"
@@ -157,4 +162,6 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-primary-500 via-accent-400 to-primary-300 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
     </Link>
   );
-}
+});
+
+export default ProductCard;

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink";
 import Image from "next/image";
 import {
   Menu,
@@ -40,14 +40,14 @@ export default function Header() {
       children: categoryHrefs.map((href, i) => ({ name: categories[i]?.name ?? "", href })),
     },
     {
-      name: "Kurumsal",
+      name: dict.components.corporate,
       href: "/hakkimizda",
       children: [
         { name: nav.about, href: "/hakkimizda" },
         { name: nav.quality, href: "/kalite" },
         { name: nav.production, href: "/uretim" },
-        { name: "Sürdürülebilirlik", href: "/surdurulebilirlik" },
-        { name: "Galeri", href: "/galeri" },
+        { name: dict.components.sustainability, href: "/surdurulebilirlik" },
+        { name: dict.components.gallery, href: "/galeri" },
       ],
     },
     { name: nav.blog, href: "/blog" },
@@ -124,7 +124,7 @@ export default function Header() {
             <button
               onClick={toggleTheme}
               className="rounded-lg p-1.5 text-white/70 transition-all duration-200 hover:bg-white/10 hover:text-white"
-              aria-label={theme === "dark" ? "Açık temaya geç" : "Koyu temaya geç"}
+              aria-label={dict.components.themeToggle}
             >
               {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
             </button>
@@ -236,7 +236,7 @@ export default function Header() {
             <button
               onClick={() => setSearchOpen(true)}
               className="group flex items-center gap-2 rounded-lg px-2.5 py-2 text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-700"
-              aria-label="Ara"
+              aria-label={dict.components.searchLabel}
             >
               <Search size={18} />
               <kbd className="hidden rounded border border-neutral-200 bg-neutral-50 px-1.5 py-0.5 text-[10px] font-medium text-neutral-400 transition-opacity group-hover:inline-flex">
@@ -246,7 +246,7 @@ export default function Header() {
             <button
               onClick={toggleTheme}
               className="rounded-lg p-2 text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-700"
-              aria-label={theme === "dark" ? "Açık temaya geç" : "Koyu temaya geç"}
+              aria-label={dict.components.themeToggle}
             >
               {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
             </button>
@@ -268,7 +268,7 @@ export default function Header() {
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="rounded-lg p-2 text-neutral-700 transition-colors hover:bg-neutral-100 lg:hidden"
-            aria-label="Menü"
+            aria-label={dict.components.menuLabel}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

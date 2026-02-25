@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink";
 import { Clock, X, ArrowRight, Package } from "lucide-react";
 import { useRecentProducts } from "@/hooks/useRecentProducts";
 import { products, getCategoryBySlug } from "@/data/products";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { CategorySlug } from "@/types/product";
+import { useLocale } from "@/contexts/LocaleContext";
 
 const categoryBadgeStyles: Record<
   CategorySlug,
@@ -22,6 +23,7 @@ const categoryBadgeStyles: Record<
 };
 
 export default function RecentProducts() {
+  const { dict } = useLocale();
   const { recentIds, clearRecent } = useRecentProducts();
 
   const recentProducts = recentIds
@@ -50,17 +52,17 @@ export default function RecentProducts() {
                 <Clock size={18} />
               </div>
               <h2 className="text-xl font-bold text-primary-900">
-                Son Görüntülenen Ürünler
+                {dict.components.recentProducts}
               </h2>
             </div>
             <button
               onClick={clearRecent}
               className="flex items-center gap-1.5 text-sm text-neutral-500 transition-colors hover:text-neutral-700"
               type="button"
-              aria-label="Geçmişi temizle"
+              aria-label={dict.components.clearHistory}
             >
               <X size={14} />
-              Temizle
+              {dict.components.clear}
             </button>
           </div>
 
@@ -108,7 +110,7 @@ export default function RecentProducts() {
                           </p>
                         )}
                         <span className="mt-auto flex items-center gap-1 text-xs font-medium text-primary-600 transition-colors group-hover:text-accent-600">
-                          Detay
+                          {dict.components.detail}
                           <ArrowRight
                             size={12}
                             className="transition-transform duration-300 group-hover:translate-x-0.5"

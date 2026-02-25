@@ -2,39 +2,71 @@ import type { MetadataRoute } from "next";
 import { categories, products } from "@/data/products";
 
 const BASE_URL = "https://www.kismetplastik.com";
+const locales = ["tr", "en"] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = [
-    { url: BASE_URL, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 1.0 },
-    { url: `${BASE_URL}/urunler`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${BASE_URL}/hakkimizda`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.7 },
-    { url: `${BASE_URL}/kalite`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.7 },
-    { url: `${BASE_URL}/iletisim`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.7 },
-    { url: `${BASE_URL}/teklif-al`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.8 },
-    { url: `${BASE_URL}/uretim`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/sss`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.5 },
-    { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/kariyer`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.4 },
-    { url: `${BASE_URL}/katalog`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.5 },
-    { url: `${BASE_URL}/bayi-girisi`, lastModified: new Date(), changeFrequency: "yearly" as const, priority: 0.3 },
-    { url: `${BASE_URL}/surdurulebilirlik`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/galeri`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.5 },
-    { url: `${BASE_URL}/kvkk`, lastModified: new Date(), changeFrequency: "yearly" as const, priority: 0.3 },
+  const staticPaths = [
+    { path: "", changeFrequency: "weekly" as const, priority: 1.0 },
+    { path: "/urunler", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/hakkimizda", changeFrequency: "monthly" as const, priority: 0.7 },
+    { path: "/kalite", changeFrequency: "monthly" as const, priority: 0.7 },
+    { path: "/iletisim", changeFrequency: "monthly" as const, priority: 0.7 },
+    { path: "/teklif-al", changeFrequency: "monthly" as const, priority: 0.8 },
+    { path: "/uretim", changeFrequency: "monthly" as const, priority: 0.6 },
+    { path: "/sss", changeFrequency: "monthly" as const, priority: 0.5 },
+    { path: "/blog", changeFrequency: "weekly" as const, priority: 0.6 },
+    { path: "/kariyer", changeFrequency: "monthly" as const, priority: 0.4 },
+    { path: "/katalog", changeFrequency: "monthly" as const, priority: 0.5 },
+    { path: "/bayi-girisi", changeFrequency: "yearly" as const, priority: 0.3 },
+    { path: "/surdurulebilirlik", changeFrequency: "monthly" as const, priority: 0.6 },
+    { path: "/galeri", changeFrequency: "monthly" as const, priority: 0.5 },
+    { path: "/kvkk", changeFrequency: "yearly" as const, priority: 0.3 },
   ];
 
-  const categoryPages = categories.map((cat) => ({
-    url: `${BASE_URL}/urunler/${cat.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-  }));
+  const staticPages = staticPaths.flatMap(({ path, changeFrequency, priority }) =>
+    locales.map((locale) => ({
+      url: `${BASE_URL}/${locale}${path}`,
+      lastModified: new Date(),
+      changeFrequency,
+      priority,
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((l) => [l, `${BASE_URL}/${l}${path}`])
+        ),
+      },
+    }))
+  );
 
-  const productPages = products.map((product) => ({
-    url: `${BASE_URL}/urunler/${product.category}/${product.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
+  const categoryPages = categories.flatMap((cat) =>
+    locales.map((locale) => ({
+      url: `${BASE_URL}/${locale}/urunler/${cat.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((l) => [l, `${BASE_URL}/${l}/urunler/${cat.slug}`])
+        ),
+      },
+    }))
+  );
+
+  const productPages = products.flatMap((product) =>
+    locales.map((locale) => ({
+      url: `${BASE_URL}/${locale}/urunler/${product.category}/${product.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((l) => [
+            l,
+            `${BASE_URL}/${l}/urunler/${product.category}/${product.slug}`,
+          ])
+        ),
+      },
+    }))
+  );
 
   return [...staticPages, ...categoryPages, ...productPages];
 }

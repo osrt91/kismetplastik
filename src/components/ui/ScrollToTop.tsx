@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
+import { useLocale } from "@/contexts/LocaleContext";
 
 export default function ScrollToTop() {
+  const { dict } = useLocale();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -19,7 +21,7 @@ export default function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      aria-label="Yukarı çık"
+      aria-label={dict.components.scrollUp}
       className={`fixed bottom-6 left-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-lg transition-all duration-300 hover:bg-primary-900 hover:text-white hover:border-primary-900 hover:scale-110 active:scale-95 ${
         visible
           ? "translate-y-0 opacity-100"

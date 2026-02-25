@@ -1,8 +1,10 @@
 "use client";
 
+import { memo } from "react";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { categories } from "@/data/products";
 import { CategorySlug, SortOption } from "@/types/product";
+import { useLocale } from "@/contexts/LocaleContext";
 
 interface ProductFilterProps {
   search: string;
@@ -17,7 +19,7 @@ interface ProductFilterProps {
   resultCount: number;
 }
 
-export default function ProductFilter({
+const ProductFilter = memo(function ProductFilter({
   search,
   onSearchChange,
   selectedCategory,
@@ -29,6 +31,7 @@ export default function ProductFilter({
   materials,
   resultCount,
 }: ProductFilterProps) {
+  const { dict } = useLocale();
   const hasFilters =
     search !== "" || selectedCategory !== "all" || selectedMaterial !== "";
 
@@ -52,7 +55,7 @@ export default function ProductFilter({
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-50">
             <SlidersHorizontal size={16} className="text-primary-500" />
           </div>
-          <span className="text-sm font-bold text-primary-900">Filtreler</span>
+          <span className="text-sm font-bold text-primary-900">{dict.components.filters}</span>
           {activeFilterCount > 0 && (
             <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary-500 px-1.5 text-[10px] font-bold text-white">
               {activeFilterCount}
@@ -66,11 +69,11 @@ export default function ProductFilter({
               className="flex items-center gap-1 rounded-full bg-red-50 px-3 py-1.5 text-xs font-medium text-red-600 transition-colors hover:bg-red-100"
             >
               <X size={12} />
-              Temizle
+              {dict.components.clearFilters}
             </button>
           )}
           <span className="inline-flex items-center rounded-full bg-primary-50 px-3 py-1.5 text-xs font-semibold text-primary-700">
-            {resultCount} ürün
+            {dict.components.productCount.replace("{count}", String(resultCount))}
           </span>
         </div>
       </div>
@@ -86,7 +89,7 @@ export default function ProductFilter({
           />
           <input
             type="text"
-            placeholder="Ürün ara..."
+            placeholder={dict.components.searchProducts}
             value={search}
             onChange={(e) => onSearchChange(e.target.value)}
             className="w-full rounded-xl border border-neutral-200 bg-neutral-50/50 py-3 pl-11 pr-4 text-sm outline-none transition-all duration-300 focus:border-primary-500 focus:bg-white focus:shadow-md focus:shadow-primary-500/5 focus:ring-2 focus:ring-primary-100"
@@ -97,10 +100,10 @@ export default function ProductFilter({
           onChange={(e) => onSortChange(e.target.value as SortOption)}
           className="cursor-pointer rounded-xl border border-neutral-200 bg-neutral-50/50 px-4 py-3 text-sm outline-none transition-all focus:border-primary-500 focus:bg-white"
         >
-          <option value="name-asc">İsim (A-Z)</option>
-          <option value="name-desc">İsim (Z-A)</option>
-          <option value="volume-asc">Hacim (Küçükten büyüğe)</option>
-          <option value="volume-desc">Hacim (Büyükten küçüğe)</option>
+          <option value="name-asc">{dict.components.sortNameAsc}</option>
+          <option value="name-desc">{dict.components.sortNameDesc}</option>
+          <option value="volume-asc">{dict.components.sortVolumeAsc}</option>
+          <option value="volume-desc">{dict.components.sortVolumeDesc}</option>
         </select>
       </div>
 
@@ -109,7 +112,7 @@ export default function ProductFilter({
       {/* Category Pills */}
       <div className="mb-4">
         <span className="mb-2.5 block text-[11px] font-semibold uppercase tracking-widest text-neutral-400">
-          Kategori
+          {dict.components.category}
         </span>
         <div className="flex gap-2 overflow-x-auto pb-1">
           <button
@@ -120,7 +123,7 @@ export default function ProductFilter({
                 : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
             }`}
           >
-            Tümü
+            {dict.components.allCategories}
           </button>
           {categories.map((cat) => (
             <button
@@ -144,7 +147,7 @@ export default function ProductFilter({
           <div className="mb-4 h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
           <div>
             <span className="mb-2.5 block text-[11px] font-semibold uppercase tracking-widest text-neutral-400">
-              Malzeme
+              {dict.components.material}
             </span>
             <div className="flex flex-wrap gap-2">
               <button
@@ -155,7 +158,7 @@ export default function ProductFilter({
                     : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
                 }`}
               >
-                Tümü
+                {dict.components.allMaterials}
               </button>
               {materials.map((mat) => (
                 <button
@@ -176,4 +179,6 @@ export default function ProductFilter({
       )}
     </div>
   );
-}
+});
+
+export default ProductFilter;

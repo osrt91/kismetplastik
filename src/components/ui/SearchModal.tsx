@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef, useMemo } from "react";
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink";
 import { Search, X, Package, FileText, ArrowRight } from "lucide-react";
 import { products, categories } from "@/data/products";
+import { useLocale } from "@/contexts/LocaleContext";
 
 interface SearchResult {
   type: "product" | "category" | "page";
@@ -12,26 +13,13 @@ interface SearchResult {
   href: string;
 }
 
-const staticPages: SearchResult[] = [
-  { type: "page", title: "Ana Sayfa", description: "Kısmet Plastik ana sayfa", href: "/" },
-  { type: "page", title: "Hakkımızda", description: "Şirket bilgileri ve hikayemiz", href: "/hakkimizda" },
-  { type: "page", title: "Kalite & Sertifikalar", description: "ISO sertifikaları ve kalite kontrol", href: "/kalite" },
-  { type: "page", title: "Üretim Tesisi", description: "Fabrika ve makine parkuru", href: "/uretim" },
-  { type: "page", title: "İletişim", description: "İletişim formu ve bilgileri", href: "/iletisim" },
-  { type: "page", title: "Teklif Al", description: "Ücretsiz teklif talebi", href: "/teklif-al" },
-  { type: "page", title: "SSS", description: "Sıkça sorulan sorular", href: "/sss" },
-  { type: "page", title: "Blog", description: "Sektör haberleri ve bilgiler", href: "/blog" },
-  { type: "page", title: "Kariyer", description: "Açık pozisyonlar ve başvuru", href: "/kariyer" },
-  { type: "page", title: "Katalog", description: "Ürün kataloglarını indir", href: "/katalog" },
-  { type: "page", title: "Bayi Girişi", description: "Bayi paneli giriş", href: "/bayi-girisi" },
-];
-
 interface Props {
   open: boolean;
   onClose: () => void;
 }
 
 export default function SearchModal({ open, onClose }: Props) {
+  const { dict } = useLocale();
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -59,6 +47,20 @@ export default function SearchModal({ open, onClose }: Props) {
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
   }, [open, onClose]);
+
+  const staticPages: SearchResult[] = useMemo(() => [
+    { type: "page", title: dict.nav.home, description: dict.searchDescriptions.home, href: "/" },
+    { type: "page", title: dict.nav.about, description: dict.searchDescriptions.about, href: "/hakkimizda" },
+    { type: "page", title: dict.nav.quality, description: dict.searchDescriptions.quality, href: "/kalite" },
+    { type: "page", title: dict.nav.production, description: dict.searchDescriptions.production, href: "/uretim" },
+    { type: "page", title: dict.nav.contact, description: dict.searchDescriptions.contact, href: "/iletisim" },
+    { type: "page", title: dict.nav.quote, description: dict.searchDescriptions.quote, href: "/teklif-al" },
+    { type: "page", title: dict.nav.faq, description: dict.searchDescriptions.faq, href: "/sss" },
+    { type: "page", title: dict.nav.blog, description: dict.searchDescriptions.blog, href: "/blog" },
+    { type: "page", title: dict.nav.career, description: dict.searchDescriptions.career, href: "/kariyer" },
+    { type: "page", title: dict.nav.catalog, description: dict.searchDescriptions.catalog, href: "/katalog" },
+    { type: "page", title: dict.nav.dealer, description: dict.searchDescriptions.dealer, href: "/bayi-girisi" },
+  ], [dict]);
 
   const results = useMemo(() => {
     if (!query.trim()) return [];
@@ -98,7 +100,7 @@ export default function SearchModal({ open, onClose }: Props) {
     });
 
     return out.slice(0, 8);
-  }, [query]);
+  }, [query, staticPages]);
 
   if (!open) return null;
 
@@ -126,7 +128,7 @@ export default function SearchModal({ open, onClose }: Props) {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Ürün, sayfa veya bilgi ara..."
+              placeholder={dict.components.searchPlaceholder}
               className="w-full text-base outline-none placeholder:text-neutral-400"
             />
             <button
@@ -162,7 +164,7 @@ export default function SearchModal({ open, onClose }: Props) {
                 ))
               ) : (
                 <div className="px-5 py-8 text-center text-sm text-neutral-500">
-                  Sonuç bulunamadı
+                  {dict.components.noResults}
                 </div>
               )}
             </div>
@@ -170,7 +172,7 @@ export default function SearchModal({ open, onClose }: Props) {
 
           {!query.trim() && (
             <div className="px-5 py-6 text-center text-sm text-neutral-400">
-              Ürün adı, kategori veya sayfa ismi yazarak arayın
+              {dict.components.searchHint}
             </div>
           )}
         </div>

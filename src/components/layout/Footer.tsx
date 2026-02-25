@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink";
 import Image from "next/image";
 import {
   Phone,
@@ -20,13 +20,15 @@ export default function Footer() {
   const f = dict.footer;
   const nav = dict.nav;
 
-  const productLinks = [
-    { name: "PET Şişeler", href: "/urunler/pet-siseler" },
-    { name: "Plastik Şişeler", href: "/urunler/plastik-siseler" },
-    { name: "Kapaklar", href: "/urunler/kapaklar" },
-    { name: "Tıpalar", href: "/urunler/tipalar" },
-    { name: "Parmak Spreyler", href: "/urunler/parmak-spreyler" },
+  const categories = (dict.homeCategories as { name: string }[])?.slice(0, 5) ?? [];
+  const productHrefs = [
+    "/urunler/pet-siseler",
+    "/urunler/plastik-siseler",
+    "/urunler/kapaklar",
+    "/urunler/tipalar",
+    "/urunler/parmak-spreyler",
   ];
+  const productLinks = productHrefs.map((href, i) => ({ name: categories[i]?.name ?? "", href }));
 
   const companyLinks = [
     { name: nav.about, href: "/hakkimizda" },
@@ -34,8 +36,8 @@ export default function Footer() {
     { name: f.productionFacility, href: "/uretim" },
     { name: f.career, href: "/kariyer" },
     { name: f.blog, href: "/blog" },
-    { name: "Sürdürülebilirlik", href: "/surdurulebilirlik" },
-    { name: "Galeri", href: "/galeri" },
+    { name: dict.components.sustainability, href: "/surdurulebilirlik" },
+    { name: dict.components.gallery, href: "/galeri" },
   ];
 
   const supportLinks = [
@@ -146,7 +148,7 @@ export default function Footer() {
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-500/10 transition-colors group-hover:bg-accent-500/20">
                   <QrCode size={18} className="text-accent-400" />
                 </div>
-                QR Kodu İndir
+                {dict.components.qrDownload}
               </a>
             </div>
           </div>
@@ -250,7 +252,7 @@ export default function Footer() {
               className="flex items-center gap-1.5 text-xs text-white/40 transition-colors hover:text-accent-400"
             >
               <ArrowUp size={12} />
-              <span className="hidden sm:inline">Yukarı</span>
+              <span className="hidden sm:inline">{dict.components.scrollUp}</span>
             </button>
           </div>
         </div>

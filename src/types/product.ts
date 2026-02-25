@@ -12,7 +12,7 @@ export type ShapeType = "düz" | "oval" | "silindir" | "yuvarlak";
 
 export type SurfaceType = "düz" | "kare" | "özel";
 
-export type MaterialType = "PET" | "HDPE" | "PP" | "LDPE";
+export type MaterialType = "PET" | "HDPE" | "PP" | "LDPE" | "PE";
 
 export type NeckSize = "18mm" | "20mm" | "24mm Klasik" | "24mm Modern" | "28mm";
 

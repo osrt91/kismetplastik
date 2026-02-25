@@ -3,10 +3,9 @@
 import {
   createContext,
   useContext,
-  useState,
-  useCallback,
-  useEffect,
+  useMemo,
 } from "react";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n";
 import type { default as trType } from "@/locales/tr.json";
@@ -19,38 +18,20 @@ const LocaleContext = createContext<{
   dict: Dictionary;
 } | null>(null);
 
-const STORAGE_KEY = "kismetplastik-locale";
-
 export function LocaleProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("tr");
-  const [mounted, setMounted] = useState(false);
+  const params = useParams();
+  const router = useRouter();
+  const pathname = usePathname();
 
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY) as Locale | null;
-      if (stored === "tr" || stored === "en") setLocaleState(stored);
-    } catch (_) {}
-    setMounted(true);
-  }, []);
+  const locale: Locale =
+    params?.locale === "en" ? "en" : "tr";
 
-  const setLocale = useCallback((next: Locale) => {
-    setLocaleState(next);
-    try {
-      localStorage.setItem(STORAGE_KEY, next);
-    } catch (_) {}
-  }, []);
+  const dict = useMemo(() => getDictionary(locale), [locale]);
 
-  const dict = getDictionary(locale);
-
-  if (!mounted) {
-    return (
-      <LocaleContext.Provider
-        value={{ locale: "tr", setLocale, dict: getDictionary("tr") }}
-      >
-        {children}
-      </LocaleContext.Provider>
-    );
-  }
+  const setLocale = (next: Locale) => {
+    const pathWithoutLocale = pathname.replace(/^\/(tr|en)/, "") || "/";
+    router.push(`/${next}${pathWithoutLocale}`);
+  };
 
   return (
     <LocaleContext.Provider value={{ locale, setLocale, dict }}>

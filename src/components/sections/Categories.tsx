@@ -1,6 +1,6 @@
-"use client";
+﻿"use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink";
 import { ArrowRight } from "lucide-react";
 import {
   Drop,

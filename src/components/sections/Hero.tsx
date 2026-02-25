@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink";
 import Image from "next/image";
 import { ArrowRight, Play, Shield, Truck, Award } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -186,7 +186,7 @@ export default function Hero() {
               className="mt-8 border-t border-white/[0.06] pt-6 opacity-0 animate-[fade-in-up_1000ms_ease-out_700ms_forwards]"
             >
               <p className="mb-3 text-xs font-medium uppercase tracking-widest text-white/30">
-                500+ firma tarafından tercih ediliyor
+                {dict.components.trustedBy}
               </p>
               <div className="flex items-center gap-3">
                 {Array.from({ length: 6 }, (_, i) => (

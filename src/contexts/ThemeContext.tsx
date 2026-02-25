@@ -14,18 +14,26 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
-    const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    const initial = stored || preferred;
-    setTheme(initial);
-    document.documentElement.setAttribute("data-theme", initial);
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
+      const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      const initial = stored || preferred;
+      setTheme(initial);
+      document.documentElement.setAttribute("data-theme", initial);
+    } catch {
+      // SSR or localStorage unavailable
+    }
   }, []);
 
   const toggleTheme = useCallback(() => {
     setTheme(prev => {
       const next = prev === "light" ? "dark" : "light";
       document.documentElement.setAttribute("data-theme", next);
-      localStorage.setItem(STORAGE_KEY, next);
+      try {
+        localStorage.setItem(STORAGE_KEY, next);
+      } catch {
+        // localStorage unavailable
+      }
       return next;
     });
   }, []);

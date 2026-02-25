@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Palette, RotateCcw, ZoomIn, Check } from "lucide-react";
 import ProductSVG, { colorMap } from "@/components/ui/ProductSVG";
 import type { Product } from "@/types/product";
 import type { CategorySlug } from "@/types/product";
+import { useLocale } from "@/contexts/LocaleContext";
 
 interface Props {
   product: Product;
@@ -23,7 +24,8 @@ const categoryToSvgType: Record<CategorySlug, "bottle" | "cap"> = {
   "huniler": "cap",
 };
 
-export default function ProductViewer({ product, onColorChange }: Props) {
+const ProductViewer = memo(function ProductViewer({ product, onColorChange }: Props) {
+  const { dict } = useLocale();
   const [selectedColor, setSelectedColor] = useState(product.colors[0] || "Şeffaf");
   const [isZoomed, setIsZoomed] = useState(false);
 
@@ -53,7 +55,7 @@ export default function ProductViewer({ product, onColorChange }: Props) {
               animate={{ opacity: 1, x: 0 }}
               className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-amber-400/90 text-amber-950 shadow-sm backdrop-blur-sm"
             >
-              ★ Öne Çıkan
+              {dict.components.starFeatured}
             </motion.span>
           )}
           <motion.span
@@ -71,7 +73,7 @@ export default function ProductViewer({ product, onColorChange }: Props) {
                 product.inStock ? "bg-emerald-500" : "bg-red-500"
               }`}
             />
-            {product.inStock ? "Stokta" : "Stok Dışı"}
+            {product.inStock ? dict.components.inStock : dict.components.outOfStockShort}
           </motion.span>
         </div>
 
@@ -82,7 +84,7 @@ export default function ProductViewer({ product, onColorChange }: Props) {
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsZoomed((z) => !z)}
             className="p-2 rounded-xl bg-white/80 backdrop-blur-sm border border-slate-200/60 text-slate-600 hover:text-blue-600 hover:bg-white shadow-sm transition-colors"
-            aria-label="Yakınlaştır"
+            aria-label={dict.components.zoomIn}
           >
             <ZoomIn size={18} />
           </motion.button>
@@ -91,7 +93,7 @@ export default function ProductViewer({ product, onColorChange }: Props) {
             whileTap={{ scale: 0.95 }}
             onClick={handleReset}
             className="p-2 rounded-xl bg-white/80 backdrop-blur-sm border border-slate-200/60 text-slate-600 hover:text-blue-600 hover:bg-white shadow-sm transition-colors"
-            aria-label="Sıfırla"
+            aria-label={dict.components.reset}
           >
             <RotateCcw size={18} />
           </motion.button>
@@ -140,7 +142,7 @@ export default function ProductViewer({ product, onColorChange }: Props) {
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2 text-sm font-medium text-slate-700">
             <Palette size={16} className="text-blue-500" />
-            <span>Renk Seçimi</span>
+            <span>{dict.components.colorSelection}</span>
             <span className="ml-auto text-xs text-slate-400 font-normal">
               {selectedColor}
             </span>
@@ -193,4 +195,6 @@ export default function ProductViewer({ product, onColorChange }: Props) {
       )}
     </div>
   );
-}
+});
+
+export default ProductViewer;
