@@ -22,11 +22,9 @@ export default function Footer() {
   const productLinks = [
     { name: "PET Şişeler", href: "/urunler/pet-siseler" },
     { name: "Plastik Şişeler", href: "/urunler/plastik-siseler" },
-    { name: "Kolonya Grubu", href: "/urunler/kolonya" },
-    { name: "Sprey Grubu", href: "/urunler/sprey" },
-    { name: "Sıvı Sabun Grubu", href: "/urunler/sivi-sabun" },
-    { name: "Kapak Grubu", href: "/urunler/kapaklar" },
-    { name: "Özel Üretim", href: "/urunler/ozel-uretim" },
+    { name: "Kapaklar", href: "/urunler/kapaklar" },
+    { name: "Tıpalar", href: "/urunler/tipalar" },
+    { name: "Parmak Spreyler", href: "/urunler/parmak-spreyler" },
   ];
 
   const companyLinks = [

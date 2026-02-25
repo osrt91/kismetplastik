@@ -8,7 +8,9 @@ import {
   CircleDot,
   Cylinder,
   Sparkles,
-  Boxes,
+  Droplet,
+  Crosshair,
+  Triangle,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
@@ -16,29 +18,33 @@ import { useLocale } from "@/contexts/LocaleContext";
 const categorySlugs = [
   "pet-siseler",
   "plastik-siseler",
-  "kolonya",
-  "sprey",
-  "oda-parfumu",
-  "sivi-sabun",
   "kapaklar",
-  "ozel-uretim",
+  "tipalar",
+  "parmak-spreyler",
+  "pompalar",
+  "tetikli-pusturtuculer",
+  "huniler",
 ];
-const icons = [Droplets, Package, Cylinder, Sparkles, CircleDot, Boxes, CircleDot, Sparkles];
+const icons = [Droplets, Package, CircleDot, Cylinder, Sparkles, Droplet, Crosshair, Triangle];
 const colors = [
   "from-blue-500/10 to-blue-600/5",
   "from-amber-500/10 to-amber-600/5",
-  "from-emerald-500/10 to-emerald-600/5",
-  "from-violet-500/10 to-violet-600/5",
   "from-rose-500/10 to-rose-600/5",
+  "from-violet-500/10 to-violet-600/5",
+  "from-emerald-500/10 to-emerald-600/5",
   "from-teal-500/10 to-teal-600/5",
+  "from-orange-500/10 to-orange-600/5",
+  "from-cyan-500/10 to-cyan-600/5",
 ];
 const iconColors = [
   "text-blue-600",
   "text-amber-600",
-  "text-emerald-600",
-  "text-violet-600",
   "text-rose-600",
+  "text-violet-600",
+  "text-emerald-600",
   "text-teal-600",
+  "text-orange-600",
+  "text-cyan-600",
 ];
 
 export default function Categories() {

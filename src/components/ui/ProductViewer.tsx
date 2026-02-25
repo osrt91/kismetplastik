@@ -15,12 +15,12 @@ interface Props {
 const categoryToSvgType: Record<CategorySlug, "bottle" | "cap"> = {
   "pet-siseler": "bottle",
   "plastik-siseler": "bottle",
-  "kolonya": "bottle",
-  "sprey": "bottle",
-  "oda-parfumu": "bottle",
-  "sivi-sabun": "bottle",
   "kapaklar": "cap",
-  "ozel-uretim": "bottle",
+  "tipalar": "cap",
+  "parmak-spreyler": "cap",
+  "pompalar": "cap",
+  "tetikli-pusturtuculer": "cap",
+  "huniler": "cap",
 };
 
 export default function ProductViewer({ product, onColorChange }: Props) {

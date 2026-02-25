@@ -88,12 +88,12 @@
   "homeCategories": [
     { "name": "PET Bottles", "description": "PET bottles in various volumes and designs for cosmetics, cologne and personal care products.", "count": "15+" },
     { "name": "Plastic Bottles", "description": "Durable plastic bottle varieties made from HDPE, PP and LDPE materials.", "count": "10+" },
-    { "name": "Cologne Group", "description": "Custom-designed bottles and packaging solutions for cologne manufacturers.", "count": "8+" },
-    { "name": "Spray Group", "description": "Spray-mechanism cosmetic and cleaning product packaging.", "count": "6+" },
-    { "name": "Room Fragrance Group", "description": "Decorative bottle designs for room fragrances and perfumery products.", "count": "5+" },
-    { "name": "Liquid Soap Group", "description": "Pump bottle solutions for liquid soap, shower gel and shampoo.", "count": "7+" },
-    { "name": "Caps Group", "description": "Screw, flip-top, pump, spray and custom design cap varieties.", "count": "12+" },
-    { "name": "Custom Production & Private Label", "description": "Custom mold design, private label and special production solutions for your brand.", "count": "Unlimited" }
+    { "name": "Caps", "description": "Screw, flip-top and custom design cap varieties.", "count": "8+" },
+    { "name": "Stoppers", "description": "Inner stoppers, dropper stoppers and sealing plugs.", "count": "6+" },
+    { "name": "Finger Sprays", "description": "Finger spray mechanisms for cosmetics and cologne products.", "count": "5+" },
+    { "name": "Pumps", "description": "Lotion pumps, foam pumps and cream dispensing pumps.", "count": "7+" },
+    { "name": "Trigger Sprayers", "description": "Trigger spray systems for cleaning and care products.", "count": "4+" },
+    { "name": "Funnels", "description": "Plastic funnels used in filling processes.", "count": "3+" }
   ],
   "homeSectors": [
     { "name": "Cosmetics & Beauty", "description": "Aesthetically designed packaging for shampoo, lotion, cream, perfume and makeup products." },

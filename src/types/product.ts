@@ -1,12 +1,12 @@
 export type CategorySlug =
   | "pet-siseler"
   | "plastik-siseler"
-  | "kolonya"
-  | "sprey"
-  | "oda-parfumu"
-  | "sivi-sabun"
   | "kapaklar"
-  | "ozel-uretim";
+  | "tipalar"
+  | "parmak-spreyler"
+  | "pompalar"
+  | "tetikli-pusturtuculer"
+  | "huniler";
 
 export type ShapeType = "düz" | "oval" | "silindir" | "yuvarlak";
 

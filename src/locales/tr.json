@@ -88,12 +88,12 @@
   "homeCategories": [
     { "name": "PET Şişeler", "description": "Kozmetik, kolonya ve kişisel bakım ürünleri için farklı hacim ve tasarımlarda PET şişeler.", "count": "15+" },
     { "name": "Plastik Şişeler", "description": "HDPE, PP ve LDPE hammaddeli dayanıklı plastik şişe çeşitleri.", "count": "10+" },
-    { "name": "Kolonya Grubu", "description": "Kolonya üreticileri için özel tasarımlı şişe ve ambalaj çözümleri.", "count": "8+" },
-    { "name": "Sprey Grubu", "description": "Sprey mekanizmalı kozmetik ve temizlik ürün ambalajları.", "count": "6+" },
-    { "name": "Oda Parfümü Grubu", "description": "Oda kokusu ve parfümeri ürünleri için dekoratif şişe tasarımları.", "count": "5+" },
-    { "name": "Sıvı Sabun Grubu", "description": "Sıvı sabun, duş jeli ve şampuan için pompalı şişe çözümleri.", "count": "7+" },
-    { "name": "Kapak Grubu", "description": "Vidalı, flip-top, pompa, sprey ve özel tasarım kapak çeşitleri.", "count": "12+" },
-    { "name": "Özel Üretim & Private Label", "description": "Markanıza özel kalıp tasarımı, private label ve özel üretim çözümleri.", "count": "Sınırsız" }
+    { "name": "Kapaklar", "description": "Vidalı, flip-top ve özel tasarım kapak çeşitleri.", "count": "8+" },
+    { "name": "Tıpalar", "description": "İç tıpa, damlatıcı tıpa ve sızdırmazlık tıpaları.", "count": "6+" },
+    { "name": "Parmak Spreyler", "description": "Kozmetik ve kolonya ürünleri için parmak sprey mekanizmaları.", "count": "5+" },
+    { "name": "Pompalar", "description": "Losyon pompası, köpük pompası ve krem dozajlama pompaları.", "count": "7+" },
+    { "name": "Tetikli Püskürtücüler", "description": "Temizlik ve bakım ürünleri için tetikli püskürtme sistemleri.", "count": "4+" },
+    { "name": "Huniler", "description": "Dolum sürecinde kullanılan plastik huniler.", "count": "3+" }
   ],
   "homeSectors": [
     { "name": "Kozmetik & Güzellik", "description": "Şampuan, losyon, krem, parfüm ve makyaj ürünleri için estetik tasarımlı ambalajlar." },

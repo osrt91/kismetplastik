@@ -19,18 +19,15 @@ import SearchModal from "@/components/ui/SearchModal";
 const categoryHrefs = [
   "/urunler/pet-siseler",
   "/urunler/plastik-siseler",
-  "/urunler/kolonya",
-  "/urunler/sprey",
-  "/urunler/oda-parfumu",
-  "/urunler/sivi-sabun",
   "/urunler/kapaklar",
-  "/urunler/ozel-uretim",
+  "/urunler/tipalar",
+  "/urunler/parmak-spreyler",
 ];
 
 export default function Header() {
   const { locale, setLocale, dict } = useLocale();
   const nav = dict.nav;
-  const categories = (dict.homeCategories as { name: string }[])?.slice(0, 8) ?? [];
+  const categories = (dict.homeCategories as { name: string }[])?.slice(0, 5) ?? [];
   const navigation = [
     { name: nav.home, href: "/" },
     {

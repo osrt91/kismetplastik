@@ -13,12 +13,12 @@ const categoryBadgeStyles: Record<
 > = {
   "pet-siseler": { bg: "#D6E7F7", text: "#1F4A7E" },
   "plastik-siseler": { bg: "#FEF3D1", text: "#92610A" },
-  "kolonya": { bg: "#EDE9FE", text: "#5B21B6" },
-  "sprey": { bg: "#DCFCE7", text: "#166534" },
-  "oda-parfumu": { bg: "#CCFBF1", text: "#115E59" },
-  "sivi-sabun": { bg: "#DBEAFE", text: "#1E40AF" },
   "kapaklar": { bg: "#FEE2E2", text: "#991B1B" },
-  "ozel-uretim": { bg: "#FFE4E6", text: "#9F1239" },
+  "tipalar": { bg: "#EDE9FE", text: "#5B21B6" },
+  "parmak-spreyler": { bg: "#DCFCE7", text: "#166534" },
+  "pompalar": { bg: "#CCFBF1", text: "#115E59" },
+  "tetikli-pusturtuculer": { bg: "#FFEDD5", text: "#9A3412" },
+  "huniler": { bg: "#CFFAFE", text: "#155E75" },
 };
 
 export default function RecentProducts() {
