@@ -1,9 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, FileText, Phone } from "lucide-react";
+import { ArrowRight, FileText, Phone, Shield, Award, BadgeCheck, Sparkles } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
+
+const trustBadges = [
+  { label: "ISO 9001", icon: Shield },
+  { label: "ISO 14001", icon: Award },
+  { label: "CE", icon: BadgeCheck },
+];
 
 export default function CTA() {
   const { dict } = useLocale();
@@ -11,7 +17,16 @@ export default function CTA() {
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-r from-primary-900 via-primary-700 to-primary-900 py-20 lg:py-24">
-      {/* Background */}
+      {/* Animated gradient border — top */}
+      <div className="absolute inset-x-0 top-0 h-[2px] animate-[shimmer_3s_ease-in-out_infinite] bg-[length:200%_100%] bg-gradient-to-r from-transparent via-accent-500/70 to-transparent" />
+      {/* Animated gradient border — bottom */}
+      <div className="absolute inset-x-0 bottom-0 h-[2px] animate-[shimmer_3s_ease-in-out_infinite_0.5s] bg-[length:200%_100%] bg-gradient-to-r from-transparent via-accent-500/70 to-transparent" />
+      {/* Animated gradient border — left */}
+      <div className="absolute inset-y-0 left-0 w-[2px] animate-[shimmer-v_3s_ease-in-out_infinite_1s] bg-[length:100%_200%] bg-gradient-to-b from-transparent via-accent-500/40 to-transparent" />
+      {/* Animated gradient border — right */}
+      <div className="absolute inset-y-0 right-0 w-[2px] animate-[shimmer-v_3s_ease-in-out_infinite_1.5s] bg-[length:100%_200%] bg-gradient-to-b from-transparent via-accent-500/40 to-transparent" />
+
+      {/* Dot pattern background */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div
           className="h-full w-full"
@@ -21,8 +36,46 @@ export default function CTA() {
           }}
         />
       </div>
+
+      {/* Decorative blurs */}
       <div className="absolute -left-20 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-accent-500/10 blur-3xl animate-pulse" />
       <div className="absolute -right-20 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-primary-300/10 blur-3xl animate-pulse" />
+
+      {/* Rotating ring decoration */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div
+          className="h-[500px] w-[500px] rounded-full border border-dashed border-white/[0.06] lg:h-[700px] lg:w-[700px]"
+          style={{ animation: "spin 60s linear infinite" }}
+        />
+      </div>
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div
+          className="h-[400px] w-[400px] rounded-full border border-dashed border-accent-500/[0.06] lg:h-[550px] lg:w-[550px]"
+          style={{ animation: "spin 45s linear infinite reverse" }}
+        />
+      </div>
+
+      {/* Sparkle decorations */}
+      <Sparkles
+        size={14}
+        className="absolute left-[15%] top-[20%] text-accent-400/30 animate-pulse"
+        style={{ animationDelay: "0s", animationDuration: "3s" }}
+      />
+      <Sparkles
+        size={10}
+        className="absolute right-[20%] top-[15%] text-white/20 animate-pulse"
+        style={{ animationDelay: "1s", animationDuration: "4s" }}
+      />
+      <Sparkles
+        size={12}
+        className="absolute left-[25%] bottom-[18%] text-accent-300/25 animate-pulse"
+        style={{ animationDelay: "2s", animationDuration: "3.5s" }}
+      />
+      <Sparkles
+        size={16}
+        className="absolute right-[12%] bottom-[25%] text-white/15 animate-pulse"
+        style={{ animationDelay: "0.5s", animationDuration: "4.5s" }}
+      />
 
       <div className="relative mx-auto max-w-4xl px-4 text-center lg:px-6">
         <AnimateOnScroll animation="fade-up">
@@ -42,7 +95,7 @@ export default function CTA() {
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/teklif-al"
-              className="group inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-base font-bold text-primary-900 shadow-lg shadow-accent-500/25 transition-all duration-300 hover:bg-accent-400 hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98]"
+              className="group relative inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-base font-bold text-primary-900 shadow-lg shadow-accent-500/25 transition-all duration-300 hover:bg-accent-400 hover:shadow-[0_8px_40px_-8px] hover:shadow-accent-500/40 hover:-translate-y-0.5 active:scale-[0.98]"
             >
               <FileText size={18} />
               {h.ctaForm}
@@ -52,8 +105,8 @@ export default function CTA() {
               />
             </Link>
             <a
-              href="tel:+902121234567"
-              className="inline-flex items-center gap-2 rounded-xl border-2 border-white/20 px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:-translate-y-0.5"
+              href="tel:+902125498703"
+              className="group relative inline-flex items-center gap-2 rounded-xl border-2 border-white/20 px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:shadow-[0_8px_30px_-8px] hover:shadow-white/10 hover:-translate-y-0.5"
             >
               <Phone size={18} />
               {h.ctaCall}
@@ -65,6 +118,21 @@ export default function CTA() {
           <p className="mt-6 text-sm text-white/40">
             {h.ctaNote}
           </p>
+        </AnimateOnScroll>
+
+        {/* Trust badges */}
+        <AnimateOnScroll animation="fade-up" delay={500}>
+          <div className="mt-10 flex items-center justify-center gap-4 sm:gap-6">
+            {trustBadges.map(({ label, icon: Icon }) => (
+              <div
+                key={label}
+                className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-sm transition-colors duration-300 hover:border-white/20 hover:bg-white/[0.07]"
+              >
+                <Icon size={16} className="text-accent-400" />
+                <span className="text-xs font-semibold text-white/60">{label}</span>
+              </div>
+            ))}
+          </div>
         </AnimateOnScroll>
       </div>
     </section>

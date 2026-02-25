@@ -4,6 +4,7 @@ import WhyUs from "@/components/sections/WhyUs";
 import Stats from "@/components/sections/Stats";
 import About from "@/components/sections/About";
 import Sectors from "@/components/sections/Sectors";
+import Testimonials from "@/components/sections/Testimonials";
 import CTA from "@/components/sections/CTA";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Stats />
       <About />
       <Sectors />
+      <Testimonials />
       <CTA />
     </>
   );

@@ -11,11 +11,11 @@ import { LocalBusinessJsonLd, OrganizationJsonLd } from "@/components/seo/JsonLd
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.kismetplastik.com"),
   title: {
-    default: "Kismet Plastik | B2B Plastik Ambalaj Çözümleri",
-    template: "%s | Kismet Plastik",
+    default: "Kısmet Plastik | B2B Plastik Ambalaj Çözümleri",
+    template: "%s | Kısmet Plastik",
   },
   description:
-    "Kismet Plastik - Türkiye'nin lider plastik ambalaj üreticisi. PET şişe, kavanoz, kapak ve özel üretim plastik ambalaj çözümleri. Toptan satış ve B2B hizmetler.",
+    "Kısmet Plastik - Türkiye'nin lider plastik ambalaj üreticisi. PET şişe, kavanoz, kapak ve özel üretim plastik ambalaj çözümleri. Toptan satış ve B2B hizmetler.",
   keywords: [
     "plastik ambalaj",
     "PET şişe",
@@ -29,12 +29,12 @@ export const metadata: Metadata = {
     "özel üretim ambalaj",
   ],
   openGraph: {
-    title: "Kismet Plastik | B2B Plastik Ambalaj Çözümleri",
+    title: "Kısmet Plastik | B2B Plastik Ambalaj Çözümleri",
     description:
       "Türkiye'nin lider plastik ambalaj üreticisi. Toptan satış ve B2B hizmetler.",
     type: "website",
     locale: "tr_TR",
-    siteName: "Kismet Plastik",
+    siteName: "Kısmet Plastik",
   },
   robots: {
     index: true,
@@ -80,7 +80,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://wa.me" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#002060" />
-        <link rel="apple-touch-icon" href="/images/maskot.jpg" />
+        <link rel="apple-touch-icon" href="/images/logo.jpg" />
       </head>
       <body className="antialiased">
         <a

@@ -10,7 +10,6 @@ import {
   Mail,
   ChevronDown,
   Factory,
-  Globe,
   Search,
 } from "lucide-react";
 import clsx from "clsx";
@@ -73,36 +72,49 @@ export default function Header() {
   return (
     <>
       {/* Top Bar */}
-      <div className="hidden bg-primary-900 text-white lg:block">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-sm">
+      <div className="relative hidden overflow-hidden bg-primary-900 text-white lg:block">
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 40%, rgba(255,255,255,0.07) 50%, rgba(255,255,255,0.03) 60%, transparent 100%)",
+            backgroundSize: "200% 100%",
+            animation: "shimmer 8s ease-in-out infinite",
+          }}
+        />
+        <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-accent-400 to-transparent" />
+
+        <div className="relative mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-sm">
           <div className="flex items-center gap-6">
             <a
-              href="tel:+902121234567"
+              href="tel:+902125498703"
               className="flex items-center gap-2 transition-colors hover:text-accent-400"
             >
               <Phone size={14} />
-              <span>+90 (212) 123 45 67</span>
+              <span>0212 549 87 03</span>
             </a>
             <a
-              href="mailto:info@kismetplastik.com"
+              href="mailto:bilgi@kismetplastik.com"
               className="flex items-center gap-2 transition-colors hover:text-accent-400"
             >
               <Mail size={14} />
-              <span>info@kismetplastik.com</span>
+              <span>bilgi@kismetplastik.com</span>
             </a>
           </div>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-white/70">
               <Factory size={14} />
-              İstanbul, Türkiye
+              Başakşehir, İstanbul
             </span>
             <div className="h-4 w-px bg-white/20" />
             <div className="flex items-center gap-0.5 rounded-lg border border-white/20 p-0.5">
               <button
                 onClick={() => setLocale("tr")}
                 className={clsx(
-                  "rounded-md px-2.5 py-1 text-xs font-semibold transition-colors",
-                  locale === "tr" ? "bg-white text-primary-900" : "text-white/70 hover:text-white"
+                  "rounded-md px-2.5 py-1 text-xs font-semibold transition-all duration-300 ease-out",
+                  locale === "tr"
+                    ? "bg-white text-primary-900 shadow-sm shadow-black/10"
+                    : "text-white/70 hover:bg-white/10 hover:text-white"
                 )}
               >
                 TR
@@ -110,8 +122,10 @@ export default function Header() {
               <button
                 onClick={() => setLocale("en")}
                 className={clsx(
-                  "rounded-md px-2.5 py-1 text-xs font-semibold transition-colors",
-                  locale === "en" ? "bg-white text-primary-900" : "text-white/70 hover:text-white"
+                  "rounded-md px-2.5 py-1 text-xs font-semibold transition-all duration-300 ease-out",
+                  locale === "en"
+                    ? "bg-white text-primary-900 shadow-sm shadow-black/10"
+                    : "text-white/70 hover:bg-white/10 hover:text-white"
                 )}
               >
                 EN
@@ -134,11 +148,11 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="group flex items-center gap-2.5">
             <Image
-              src="/images/maskot.jpg"
-              alt="Kismet Plastik"
+              src="/images/logo.jpg"
+              alt="Kısmet Plastik"
               width={48}
               height={48}
-              className="h-10 w-10 rounded-lg object-contain transition-transform duration-300 group-hover:scale-105 lg:h-12 lg:w-12"
+              className="h-10 w-10 rounded-lg object-contain transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(0,32,96,0.25)] lg:h-12 lg:w-12"
               priority
             />
             <div className="flex flex-col">
@@ -164,7 +178,7 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className="flex items-center gap-1 rounded-lg px-4 py-2.5 text-sm font-semibold text-neutral-700 transition-all duration-200 hover:bg-primary-50 hover:text-primary-900"
+                  className="group relative flex items-center gap-1 rounded-lg px-4 py-2.5 text-sm font-semibold text-neutral-700 transition-all duration-200 hover:bg-primary-50 hover:text-primary-900"
                 >
                   {item.name}
                   {item.children && (
@@ -176,14 +190,15 @@ export default function Header() {
                       )}
                     />
                   )}
+                  <span className="absolute bottom-1 left-4 right-4 h-[2px] origin-center scale-x-0 rounded-full bg-accent-500 transition-transform duration-300 ease-out group-hover:scale-x-100" />
                 </Link>
                 {item.children && activeDropdown === item.name && (
-                  <div className="absolute left-0 top-full z-50 mt-1 w-56 overflow-hidden rounded-xl border border-neutral-100 bg-white py-2 shadow-xl animate-[fade-in_200ms_ease-out_forwards]">
+                  <div className="absolute left-0 top-full z-50 mt-1 w-56 overflow-hidden rounded-xl border border-neutral-100 bg-white py-2 shadow-xl animate-[scale-in_200ms_ease-out_forwards]">
                     {item.children.map((child) => (
                       <Link
                         key={child.name}
                         href={child.href}
-                        className="block px-4 py-2.5 text-sm text-neutral-700 transition-colors hover:bg-primary-50 hover:text-primary-900"
+                        className="block border-l-[3px] border-transparent px-4 py-2.5 text-sm text-neutral-700 transition-all duration-200 hover:border-accent-500 hover:bg-primary-50 hover:pl-5 hover:text-primary-900"
                       >
                         {child.name}
                       </Link>
@@ -198,10 +213,13 @@ export default function Header() {
           <div className="hidden items-center gap-3 lg:flex">
             <button
               onClick={() => setSearchOpen(true)}
-              className="rounded-lg p-2.5 text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-700"
+              className="group flex items-center gap-2 rounded-lg px-2.5 py-2 text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-700"
               aria-label="Ara"
             >
               <Search size={18} />
+              <kbd className="hidden rounded border border-neutral-200 bg-neutral-50 px-1.5 py-0.5 text-[10px] font-medium text-neutral-400 transition-opacity group-hover:inline-flex">
+                Ctrl+K
+              </kbd>
             </button>
             <Link
               href="/bayi-girisi"
@@ -247,8 +265,8 @@ export default function Header() {
                 onClick={() => setMobileOpen(false)}
               >
                 <Image
-                  src="/images/maskot.jpg"
-                  alt="Kismet Plastik"
+                  src="/images/logo.jpg"
+                  alt="Kısmet Plastik"
                   width={36}
                   height={36}
                   className="h-9 w-9 rounded-lg object-contain"
@@ -267,8 +285,14 @@ export default function Header() {
 
             {/* Mobile Nav Links */}
             <nav className="flex-1 overflow-y-auto px-5 py-4">
-              {navigation.map((item) => (
-                <div key={item.name}>
+              {navigation.map((item, i) => (
+                <div
+                  key={item.name}
+                  className="opacity-0"
+                  style={{
+                    animation: `fade-in-up 400ms ease-out ${i * 80}ms forwards`,
+                  }}
+                >
                   <Link
                     href={item.href}
                     className="block border-b border-neutral-50 py-3.5 text-base font-semibold text-neutral-800"
@@ -278,15 +302,22 @@ export default function Header() {
                   </Link>
                   {item.children && (
                     <div className="mb-2 ml-4 border-l-2 border-primary-100 pl-4">
-                      {item.children.map((child) => (
-                        <Link
+                      {item.children.map((child, j) => (
+                        <div
                           key={child.name}
-                          href={child.href}
-                          className="block py-2.5 text-sm text-neutral-600 hover:text-primary-700"
-                          onClick={() => setMobileOpen(false)}
+                          className="opacity-0"
+                          style={{
+                            animation: `fade-in-up 400ms ease-out ${(i * 80) + ((j + 1) * 60)}ms forwards`,
+                          }}
                         >
-                          {child.name}
-                        </Link>
+                          <Link
+                            href={child.href}
+                            className="block py-2.5 text-sm text-neutral-600 hover:text-primary-700"
+                            onClick={() => setMobileOpen(false)}
+                          >
+                            {child.name}
+                          </Link>
+                        </div>
                       ))}
                     </div>
                   )}
@@ -294,22 +325,29 @@ export default function Header() {
               ))}
             </nav>
 
+            {/* Gradient Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-primary-300/40 to-transparent" />
+
             {/* Mobile Contact */}
-            <div className="border-t border-neutral-100 p-5">
+            <div className="p-5">
               <a
-                href="tel:+902121234567"
+                href="tel:+902125498703"
                 className="mb-2 flex items-center gap-2 text-sm text-neutral-600"
               >
                 <Phone size={14} />
-                +90 (212) 123 45 67
+                0212 549 87 03
               </a>
               <a
-                href="mailto:info@kismetplastik.com"
+                href="mailto:bilgi@kismetplastik.com"
                 className="mb-4 flex items-center gap-2 text-sm text-neutral-600"
               >
                 <Mail size={14} />
-                info@kismetplastik.com
+                bilgi@kismetplastik.com
               </a>
+
+              {/* Gradient Divider */}
+              <div className="mb-4 h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
+
               <div className="flex gap-2">
                 <Link
                   href="/bayi-girisi"

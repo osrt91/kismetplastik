@@ -1,7 +1,7 @@
 {
-  "name": "Kismet Plastik - B2B Plastik Ambalaj",
-  "short_name": "Kismet Plastik",
-  "description": "Türkiye'nin lider plastik ambalaj üreticisi. PET şişe, kavanoz, kapak ve özel üretim çözümleri.",
+  "name": "Kısmet Plastik - B2B Kozmetik Ambalaj",
+  "short_name": "Kısmet Plastik",
+  "description": "1969'dan bu yana kozmetik sektörüne özel plastik ve PET ambalaj üretimi. Kozmetik şişeleri, krem kavanozları, private label, kapaklar ve spreyler.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -11,12 +11,12 @@
   "lang": "tr",
   "icons": [
     {
-      "src": "/images/maskot.jpg",
+      "src": "/images/logo.jpg",
       "sizes": "192x192",
       "type": "image/jpeg"
     },
     {
-      "src": "/images/maskot.jpg",
+      "src": "/images/logo.jpg",
       "sizes": "512x512",
       "type": "image/jpeg"
     }

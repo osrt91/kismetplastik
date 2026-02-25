@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import {
   ChevronRight,
@@ -8,6 +9,7 @@ import {
   ArrowRight,
   Tag,
   BookOpen,
+  Sparkles,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
@@ -90,9 +92,73 @@ function formatDate(dateStr: string) {
   });
 }
 
+const categoryStyles: Record<
+  string,
+  { gradient: string; stripe: string; badge: string; icon: string }
+> = {
+  Üretim: {
+    gradient: "from-blue-200 via-blue-100 to-blue-50",
+    stripe: "bg-blue-500",
+    badge: "bg-blue-100 text-blue-700",
+    icon: "text-blue-300",
+  },
+  Sektör: {
+    gradient: "from-purple-200 via-purple-100 to-purple-50",
+    stripe: "bg-purple-500",
+    badge: "bg-purple-100 text-purple-700",
+    icon: "text-purple-300",
+  },
+  Bilgi: {
+    gradient: "from-emerald-200 via-emerald-100 to-emerald-50",
+    stripe: "bg-emerald-500",
+    badge: "bg-emerald-100 text-emerald-700",
+    icon: "text-emerald-300",
+  },
+  Kalite: {
+    gradient: "from-amber-200 via-amber-100 to-amber-50",
+    stripe: "bg-amber-500",
+    badge: "bg-amber-100 text-amber-700",
+    icon: "text-amber-300",
+  },
+  Rehber: {
+    gradient: "from-teal-200 via-teal-100 to-teal-50",
+    stripe: "bg-teal-500",
+    badge: "bg-teal-100 text-teal-700",
+    icon: "text-teal-300",
+  },
+  Sürdürülebilirlik: {
+    gradient: "from-lime-200 via-lime-100 to-lime-50",
+    stripe: "bg-lime-600",
+    badge: "bg-lime-100 text-lime-700",
+    icon: "text-lime-400",
+  },
+};
+
+const defaultCatStyle = {
+  gradient: "from-primary-100 to-primary-50",
+  stripe: "bg-primary-500",
+  badge: "bg-accent-100 text-accent-600",
+  icon: "text-primary-300",
+};
+
+function getCatStyle(category: string) {
+  return categoryStyles[category] || defaultCatStyle;
+}
+
+function parseReadTime(rt: string): number {
+  return parseInt(rt) || 0;
+}
+
 export default function BlogPage() {
-  const featured = blogPosts.filter((p) => p.featured);
-  const rest = blogPosts.filter((p) => !p.featured);
+  const [activeCategory, setActiveCategory] = useState<string>("Tümü");
+
+  const filtered =
+    activeCategory === "Tümü"
+      ? blogPosts
+      : blogPosts.filter((p) => p.category === activeCategory);
+
+  const featured = filtered.filter((p) => p.featured);
+  const rest = filtered.filter((p) => !p.featured);
 
   return (
     <section className="bg-white">
@@ -101,15 +167,18 @@ export default function BlogPage() {
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <AnimateOnScroll animation="fade-up">
             <nav className="mb-6 flex items-center gap-1.5 text-sm text-white/60">
-              <Link href="/" className="hover:text-white">Ana Sayfa</Link>
+              <Link href="/" className="hover:text-white">
+                Ana Sayfa
+              </Link>
               <ChevronRight size={14} />
               <span className="text-white">Blog</span>
             </nav>
             <h1 className="mb-3 text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
-              Blog & Haberler
+              Blog &amp; Haberler
             </h1>
             <p className="max-w-2xl text-lg text-white/70">
-              Plastik ambalaj sektöründen haberler, rehberler ve bilgilendirici içerikler.
+              Plastik ambalaj sektöründen haberler, rehberler ve bilgilendirici
+              içerikler.
             </p>
           </AnimateOnScroll>
         </div>
@@ -119,16 +188,28 @@ export default function BlogPage() {
         {/* Kategori Filtreleri */}
         <AnimateOnScroll animation="fade-up">
           <div className="mb-10 flex flex-wrap gap-2">
-            <span className="rounded-xl bg-primary-900 px-5 py-2.5 text-sm font-semibold text-white">
+            <button
+              onClick={() => setActiveCategory("Tümü")}
+              className={`rounded-xl px-5 py-2.5 text-sm font-semibold transition-all ${
+                activeCategory === "Tümü"
+                  ? "bg-primary-900 text-white shadow-md"
+                  : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+              }`}
+            >
               Tümü
-            </span>
+            </button>
             {allCategories.map((cat) => (
-              <span
+              <button
                 key={cat}
-                className="cursor-pointer rounded-xl bg-neutral-100 px-5 py-2.5 text-sm font-semibold text-neutral-600 transition-all hover:bg-neutral-200"
+                onClick={() => setActiveCategory(cat)}
+                className={`rounded-xl px-5 py-2.5 text-sm font-semibold transition-all ${
+                  activeCategory === cat
+                    ? "bg-primary-900 text-white shadow-md"
+                    : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+                }`}
               >
                 {cat}
-              </span>
+              </button>
             ))}
           </div>
         </AnimateOnScroll>
@@ -136,65 +217,158 @@ export default function BlogPage() {
         {/* Öne Çıkan Yazılar */}
         {featured.length > 0 && (
           <div className="mb-12 grid gap-6 lg:grid-cols-2">
-            {featured.map((post, i) => (
-              <AnimateOnScroll key={post.slug} animation="fade-up" delay={i * 100}>
-                <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 bg-white transition-all hover:-translate-y-1 hover:shadow-xl">
-                  <div className="flex h-48 items-center justify-center bg-gradient-to-br from-primary-100 to-primary-50">
-                    <BookOpen size={40} className="text-primary-300" />
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <div className="mb-3 flex items-center gap-3 text-xs text-neutral-500">
-                      <span className="rounded-full bg-accent-100 px-2.5 py-1 font-semibold text-accent-600">
-                        {post.category}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Calendar size={12} />
-                        {formatDate(post.date)}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock size={12} />
-                        {post.readTime}
+            {featured.map((post, i) => {
+              const style = getCatStyle(post.category);
+              const readPercent = Math.min(
+                (parseReadTime(post.readTime) / 10) * 100,
+                100
+              );
+              return (
+                <AnimateOnScroll
+                  key={post.slug}
+                  animation="fade-up"
+                  delay={i * 100}
+                >
+                  <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 bg-white transition-all hover:-translate-y-1 hover:shadow-xl">
+                    <div className={`h-1 ${style.stripe}`} />
+
+                    <div className="absolute left-0 top-1 z-10">
+                      <div className="flex items-center gap-1 rounded-r-full bg-accent-500 px-3 py-1 text-xs font-bold text-white shadow-md">
+                        <Sparkles size={12} />
+                        Öne Çıkan
+                      </div>
+                    </div>
+
+                    <div
+                      className={`relative flex h-48 items-center justify-center bg-gradient-to-br ${style.gradient}`}
+                    >
+                      <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "radial-gradient(circle, currentColor 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
+                      <BookOpen size={40} className={style.icon} />
+                    </div>
+
+                    <div className="flex flex-1 flex-col p-6">
+                      <div className="mb-3 flex flex-wrap items-center gap-3 text-xs text-neutral-500">
+                        <span
+                          className={`rounded-full px-2.5 py-1 font-semibold ${style.badge}`}
+                        >
+                          {post.category}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Calendar size={12} />
+                          {formatDate(post.date)}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Clock size={12} />
+                          {post.readTime}
+                        </span>
+                      </div>
+                      <h2 className="mb-2 text-xl font-bold text-primary-900 transition-colors group-hover:text-primary-700">
+                        {post.title}
+                      </h2>
+                      <p className="mb-4 flex-1 text-sm leading-relaxed text-neutral-500">
+                        {post.excerpt}
+                      </p>
+
+                      <div className="mb-4">
+                        <div className="h-1 w-full rounded-full bg-neutral-100">
+                          <div
+                            className={`h-1 rounded-full ${style.stripe} opacity-60 transition-all duration-500`}
+                            style={{ width: `${readPercent}%` }}
+                          />
+                        </div>
+                        <span className="mt-1 block text-[10px] text-neutral-400">
+                          Okuma süresi tahmini
+                        </span>
+                      </div>
+
+                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary-700 transition-colors group-hover:text-accent-600">
+                        Devamını Oku
+                        <ArrowRight
+                          size={14}
+                          className="transition-transform group-hover:translate-x-1"
+                        />
                       </span>
                     </div>
-                    <h2 className="mb-2 text-xl font-bold text-primary-900 transition-colors group-hover:text-primary-700">
-                      {post.title}
-                    </h2>
-                    <p className="mb-4 flex-1 text-sm leading-relaxed text-neutral-500">
-                      {post.excerpt}
-                    </p>
-                    <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary-700 transition-colors group-hover:text-accent-600">
-                      Devamını Oku
-                      <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </div>
-                </article>
-              </AnimateOnScroll>
-            ))}
+                  </article>
+                </AnimateOnScroll>
+              );
+            })}
           </div>
         )}
 
         {/* Diğer Yazılar */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {rest.map((post, i) => (
-            <AnimateOnScroll key={post.slug} animation="fade-up" delay={i * 80}>
-              <article className="group flex h-full flex-col rounded-2xl border border-neutral-100 bg-white p-5 transition-all hover:-translate-y-1 hover:shadow-lg">
-                <div className="mb-3 flex items-center gap-2 text-xs text-neutral-500">
-                  <Tag size={12} className="text-accent-500" />
-                  <span className="font-semibold">{post.category}</span>
-                </div>
-                <h3 className="mb-2 font-bold text-primary-900 transition-colors group-hover:text-primary-700">
-                  {post.title}
-                </h3>
-                <p className="mb-4 flex-1 text-sm leading-relaxed text-neutral-500">
-                  {post.excerpt}
-                </p>
-                <div className="flex items-center justify-between text-xs text-neutral-400">
-                  <span>{formatDate(post.date)}</span>
-                  <span>{post.readTime}</span>
-                </div>
-              </article>
-            </AnimateOnScroll>
-          ))}
+          {rest.map((post, i) => {
+            const style = getCatStyle(post.category);
+            const readPercent = Math.min(
+              (parseReadTime(post.readTime) / 10) * 100,
+              100
+            );
+            return (
+              <AnimateOnScroll
+                key={post.slug}
+                animation="fade-up"
+                delay={i * 80}
+              >
+                <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 bg-white transition-all hover:-translate-y-1 hover:shadow-lg">
+                  <div className={`h-1 ${style.stripe}`} />
+
+                  <div
+                    className={`relative flex h-28 items-center justify-center bg-gradient-to-br ${style.gradient}`}
+                  >
+                    <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "radial-gradient(circle, currentColor 1px, transparent 1px)", backgroundSize: "16px 16px" }} />
+                    <BookOpen size={28} className={style.icon} />
+                  </div>
+
+                  <div className="flex flex-1 flex-col p-5">
+                    <div className="mb-3 flex items-center gap-2 text-xs text-neutral-500">
+                      <Tag size={12} className="text-accent-500" />
+                      <span
+                        className={`rounded-full px-2 py-0.5 font-semibold ${style.badge}`}
+                      >
+                        {post.category}
+                      </span>
+                    </div>
+                    <h3 className="mb-2 font-bold text-primary-900 transition-colors group-hover:text-primary-700">
+                      {post.title}
+                    </h3>
+                    <p className="mb-4 flex-1 text-sm leading-relaxed text-neutral-500">
+                      {post.excerpt}
+                    </p>
+
+                    <div className="mb-3">
+                      <div className="h-1 w-full rounded-full bg-neutral-100">
+                        <div
+                          className={`h-1 rounded-full ${style.stripe} opacity-60 transition-all duration-500`}
+                          style={{ width: `${readPercent}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between text-xs text-neutral-400">
+                      <span>{formatDate(post.date)}</span>
+                      <span>{post.readTime}</span>
+                    </div>
+                  </div>
+                </article>
+              </AnimateOnScroll>
+            );
+          })}
+
+          {/* Placeholder card */}
+          <AnimateOnScroll animation="fade-up" delay={rest.length * 80}>
+            <div className="flex h-full min-h-[260px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-neutral-200 bg-neutral-50/50 p-8 text-center transition-all hover:border-primary-300 hover:bg-primary-50/30">
+              <div className="mb-3 animate-pulse">
+                <Sparkles size={32} className="text-primary-300" />
+              </div>
+              <p className="text-sm font-semibold text-neutral-400">
+                Daha fazla yazı yakında...
+              </p>
+              <p className="mt-1 text-xs text-neutral-300">
+                Yeni içerikler hazırlanıyor
+              </p>
+            </div>
+          </AnimateOnScroll>
         </div>
       </div>
     </section>

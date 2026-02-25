@@ -2,15 +2,17 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useLocale } from "@/contexts/LocaleContext";
+import { Trophy, Package, Users, Factory } from "lucide-react";
 
-// Labels come from useLocale in component
 const statKeys = ["statsExperience", "statsProducts", "statsCustomers", "statsCapacity"] as const;
 const statValues = [
-  { value: 20, suffix: "+" },
+  { value: 55, suffix: "+" },
   { value: 500, suffix: "+" },
   { value: 1000, suffix: "+" },
   { value: 50, suffix: "M+" },
 ];
+
+const statIcons = [Trophy, Package, Users, Factory];
 
 function AnimatedNumber({
   target,
@@ -73,7 +75,12 @@ export default function Stats() {
 
   return (
     <section className="relative overflow-hidden bg-primary-900 py-16 lg:py-20">
-      {/* Background */}
+      {/* Top gradient line */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-500/60 to-transparent" />
+      {/* Bottom gradient line */}
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-accent-500/60 to-transparent" />
+
+      {/* Dot pattern background */}
       <div className="absolute inset-0 opacity-[0.04]">
         <div
           className="h-full w-full"
@@ -84,30 +91,55 @@ export default function Stats() {
         />
       </div>
 
-      {/* Decorative */}
+      {/* Decorative blurs */}
       <div className="absolute -left-20 top-0 h-40 w-40 rounded-full bg-accent-500/10 blur-3xl" />
       <div className="absolute -right-20 bottom-0 h-40 w-40 rounded-full bg-primary-300/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-4 lg:px-6" ref={ref}>
         <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
-          {stats.map((stat, i) => (
-            <div
-              key={stat.label}
-              className={`text-center transition-all duration-700 ${inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
-              style={{ transitionDelay: `${i * 150}ms` }}
-            >
-              <div className="mb-2 text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">
-                <AnimatedNumber
-                  target={stat.value}
-                  suffix={stat.suffix}
-                  inView={inView}
-                />
+          {stats.map((stat, i) => {
+            const Icon = statIcons[i];
+            return (
+              <div
+                key={stat.label}
+                className="relative flex"
+              >
+                {/* Vertical divider between cards (desktop only) */}
+                {i > 0 && (
+                  <div className="absolute -left-4 top-1/2 hidden h-16 w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-white/15 to-transparent lg:block" />
+                )}
+
+                <div
+                  className={`group flex w-full flex-col items-center rounded-2xl border border-transparent px-4 py-6 text-center transition-all duration-700 hover:border-white/10 hover:bg-white/[0.04] hover:shadow-lg hover:shadow-accent-500/5 hover:backdrop-blur-sm ${
+                    inView
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-8 opacity-0"
+                  }`}
+                  style={{ transitionDelay: `${i * 150}ms` }}
+                >
+                  {/* Icon */}
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500/10 text-accent-400 transition-colors duration-300 group-hover:bg-accent-500/20">
+                    <Icon size={24} strokeWidth={1.5} />
+                  </div>
+
+                  {/* Number */}
+                  <div className="mb-2 text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">
+                    <AnimatedNumber
+                      target={stat.value}
+                      suffix={stat.suffix}
+                      inView={inView}
+                    />
+                  </div>
+
+                  {/* Label with accent underline */}
+                  <div className="relative text-sm font-medium text-white/50 sm:text-base">
+                    {stat.label}
+                    <span className="mx-auto mt-2 block h-0.5 w-8 rounded-full bg-accent-500/40 transition-all duration-300 group-hover:w-12 group-hover:bg-accent-500/70" />
+                  </div>
+                </div>
               </div>
-              <div className="text-sm font-medium text-white/50 sm:text-base">
-                {stat.label}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

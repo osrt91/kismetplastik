@@ -6,6 +6,15 @@ import { ArrowRight, Play, Shield, Truck, Award } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocale } from "@/contexts/LocaleContext";
 
+const PARTICLES = Array.from({ length: 14 }, (_, i) => ({
+  left: `${(i * 17 + 7) % 95}%`,
+  top: `${(i * 23 + 12) % 90}%`,
+  size: i % 3 === 0 ? 4 : i % 3 === 1 ? 3 : 2,
+  delay: `${(i * 0.7) % 5}s`,
+  duration: `${3 + (i % 4)}s`,
+  isAccent: i % 2 === 0,
+}));
+
 export default function Hero() {
   const { dict } = useLocale();
   const h = dict.home;
@@ -17,19 +26,26 @@ export default function Hero() {
   const words = h.words as string[];
 
   const [wordIndex, setWordIndex] = useState(0);
-  const [mounted, setMounted] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    let timeoutId: NodeJS.Timeout;
     const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % words.length);
+      setIsExiting(true);
+      timeoutId = setTimeout(() => {
+        setWordIndex((prev) => (prev + 1) % words.length);
+        setIsExiting(false);
+      }, 400);
     }, 3000);
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeoutId);
+    };
   }, [words.length]);
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-700 to-primary-900">
-      {/* Background Pattern */}
+      {/* Dot Pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div
           className="h-full w-full"
@@ -40,16 +56,58 @@ export default function Hero() {
         />
       </div>
 
+      {/* Animated Gradient Mesh */}
+      <div
+        className="absolute inset-0 opacity-[0.07]"
+        style={{
+          background: `
+            radial-gradient(ellipse 60% 50% at 20% 30%, var(--accent-500), transparent 70%),
+            radial-gradient(ellipse 50% 60% at 80% 70%, var(--primary-300), transparent 70%),
+            radial-gradient(ellipse 40% 40% at 50% 50%, var(--accent-400), transparent 60%)
+          `,
+          animation: "gradient-mesh 12s ease-in-out infinite alternate",
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-[0.05]"
+        style={{
+          background: `
+            radial-gradient(ellipse 50% 50% at 70% 20%, var(--accent-300), transparent 60%),
+            radial-gradient(ellipse 60% 40% at 30% 80%, var(--primary-500), transparent 70%)
+          `,
+          animation: "gradient-mesh 15s ease-in-out infinite alternate-reverse",
+        }}
+      />
+
       {/* Gradient Orbs */}
       <div className="absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-accent-500/[0.08] blur-3xl animate-pulse" />
       <div className="absolute -bottom-32 -left-32 h-[500px] w-[500px] rounded-full bg-primary-300/[0.08] blur-3xl animate-pulse" />
       <div className="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-500/[0.05] blur-3xl" />
 
+      {/* Particle Dots */}
+      {PARTICLES.map((p, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full"
+          style={{
+            left: p.left,
+            top: p.top,
+            width: p.size,
+            height: p.size,
+            backgroundColor: p.isAccent
+              ? "var(--accent-500)"
+              : "var(--primary-300)",
+            opacity: 0.12 + (i % 3) * 0.06,
+            animation: `particle-float ${p.duration} ease-in-out ${p.delay} infinite`,
+          }}
+        />
+      ))}
+
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:py-20 lg:px-6 lg:py-28">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Left Content */}
           <div
-            className={`transition-all duration-1000 ${mounted ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}
+            className="opacity-0 animate-[fade-in-up_1000ms_ease-out_forwards]"
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80 backdrop-blur-sm">
               <span className="h-2 w-2 animate-pulse rounded-full bg-accent-500" />
@@ -58,26 +116,36 @@ export default function Hero() {
 
             <h1 className="mb-6 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
               {h.titleBefore}{" "}
-              <span className="relative inline-block">
-                <span
-                  key={wordIndex}
-                  className="bg-gradient-to-r from-accent-400 to-accent-500 bg-clip-text text-transparent animate-[fade-in-up_500ms_ease-out_forwards]"
-                >
-                  {words[wordIndex]}
+              <span className="relative inline-block align-bottom">
+                <span className="inline-block overflow-hidden">
+                  <span
+                    key={wordIndex}
+                    className={`inline-block bg-gradient-to-r from-accent-400 to-accent-500 bg-clip-text text-transparent ${
+                      isExiting
+                        ? "translate-y-[-100%] opacity-0 transition-all duration-[400ms] ease-in"
+                        : "animate-[word-enter_400ms_ease-out]"
+                    }`}
+                  >
+                    {words[wordIndex]}
+                  </span>
                 </span>
+                <span
+                  key={`line-${wordIndex}`}
+                  className="absolute -bottom-1 left-0 h-[3px] rounded-full bg-gradient-to-r from-accent-400/60 to-accent-500/60 animate-[typewriter-line_2.5s_ease-in-out_forwards]"
+                />
               </span>{" "}
               {h.titleAfter}
             </h1>
 
             <p
-              className={`mb-8 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg transition-all duration-1000 delay-200 ${mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+              className="mb-8 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg opacity-0 animate-[fade-in-up_1000ms_ease-out_200ms_forwards]"
             >
               {h.subtitle}
             </p>
 
             {/* CTA Buttons */}
             <div
-              className={`mb-10 flex flex-col gap-3 sm:flex-row sm:gap-4 transition-all duration-1000 delay-300 ${mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+              className="mb-10 flex flex-col gap-3 sm:flex-row sm:gap-4 opacity-0 animate-[fade-in-up_1000ms_ease-out_300ms_forwards]"
             >
               <Link
                 href="/urunler"
@@ -100,7 +168,7 @@ export default function Hero() {
 
             {/* Highlights */}
             <div
-              className={`flex flex-wrap gap-4 sm:gap-6 transition-all duration-1000 delay-500 ${mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+              className="flex flex-wrap gap-4 sm:gap-6 opacity-0 animate-[fade-in-up_1000ms_ease-out_500ms_forwards]"
             >
               {highlights.map((item) => (
                 <div
@@ -112,11 +180,31 @@ export default function Hero() {
                 </div>
               ))}
             </div>
+
+            {/* Trusted Strip */}
+            <div
+              className="mt-8 border-t border-white/[0.06] pt-6 opacity-0 animate-[fade-in-up_1000ms_ease-out_700ms_forwards]"
+            >
+              <p className="mb-3 text-xs font-medium uppercase tracking-widest text-white/30">
+                500+ firma tarafından tercih ediliyor
+              </p>
+              <div className="flex items-center gap-3">
+                {Array.from({ length: 6 }, (_, i) => (
+                  <div
+                    key={i}
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.04]"
+                  >
+                    <div className="h-4 w-4 rounded-full bg-white/[0.12]" />
+                  </div>
+                ))}
+                <span className="ml-1 text-xs text-white/25">+</span>
+              </div>
+            </div>
           </div>
 
           {/* Right - Mascot Visual */}
           <div
-            className={`relative hidden lg:block transition-all duration-1000 delay-300 ${mounted ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"}`}
+            className="relative hidden lg:block opacity-0 animate-[fade-in_1000ms_ease-out_300ms_forwards]"
           >
             <div className="relative mx-auto aspect-square max-w-md">
               {/* Rotating Rings */}
@@ -127,8 +215,8 @@ export default function Hero() {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative flex h-72 w-72 items-center justify-center rounded-3xl border border-white/10 bg-white/[0.07] shadow-2xl backdrop-blur-md transition-transform duration-500 hover:scale-105">
                   <Image
-                    src="/images/maskot.jpg"
-                    alt="Kismet Plastik Maskot"
+                    src="/images/logo.jpg"
+                    alt="Kısmet Plastik"
                     width={220}
                     height={220}
                     className="rounded-2xl object-contain drop-shadow-2xl"
@@ -137,20 +225,32 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Floating Cards */}
-              <div className="absolute -left-4 top-12 rounded-xl border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur-md animate-[float_4s_ease-in-out_infinite]">
-                <div className="text-2xl font-bold text-white">{h.cardProducts}</div>
-                <div className="text-xs text-white/60">{h.cardProductsLabel}</div>
+              {/* Glassmorphism Floating Cards */}
+              <div className="absolute -left-4 top-12 rounded-xl border border-white/[0.15] bg-gradient-to-br from-white/[0.10] to-white/[0.03] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-1 ring-inset ring-white/[0.05] backdrop-blur-xl backdrop-saturate-150 animate-[float_4s_ease-in-out_infinite]">
+                <div className="text-2xl font-bold text-white">
+                  {h.cardProducts}
+                </div>
+                <div className="text-xs text-white/60">
+                  {h.cardProductsLabel}
+                </div>
               </div>
 
-              <div className="absolute -right-4 bottom-20 rounded-xl border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur-md animate-[float_4s_ease-in-out_infinite_1s]">
-                <div className="text-2xl font-bold text-accent-400">{h.cardCustomers}</div>
-                <div className="text-xs text-white/60">{h.cardCustomersLabel}</div>
+              <div className="absolute -right-4 bottom-20 rounded-xl border border-white/[0.15] bg-gradient-to-br from-white/[0.10] to-white/[0.03] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-1 ring-inset ring-white/[0.05] backdrop-blur-xl backdrop-saturate-150 animate-[float_4s_ease-in-out_infinite_1s]">
+                <div className="text-2xl font-bold text-accent-400">
+                  {h.cardCustomers}
+                </div>
+                <div className="text-xs text-white/60">
+                  {h.cardCustomersLabel}
+                </div>
               </div>
 
-              <div className="absolute bottom-4 left-8 rounded-xl border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur-md animate-[float_4s_ease-in-out_infinite_2s]">
-                <div className="text-2xl font-bold text-white">{h.cardExperience}</div>
-                <div className="text-xs text-white/60">{h.cardExperienceLabel}</div>
+              <div className="absolute bottom-4 left-8 rounded-xl border border-white/[0.15] bg-gradient-to-br from-white/[0.10] to-white/[0.03] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-1 ring-inset ring-white/[0.05] backdrop-blur-xl backdrop-saturate-150 animate-[float_4s_ease-in-out_infinite_2s]">
+                <div className="text-2xl font-bold text-white">
+                  {h.cardExperience}
+                </div>
+                <div className="text-xs text-white/60">
+                  {h.cardExperienceLabel}
+                </div>
               </div>
             </div>
           </div>

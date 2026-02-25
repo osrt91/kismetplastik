@@ -5,7 +5,7 @@ const resend = process.env.RESEND_API_KEY
   : null;
 
 const FROM = process.env.EMAIL_FROM ?? "noreply@onboarding.resend.dev";
-const TO = process.env.EMAIL_TO ?? "info@kismetplastik.com";
+const TO = process.env.EMAIL_TO ?? "bilgi@kismetplastik.com";
 
 export interface ContactPayload {
   name: string;

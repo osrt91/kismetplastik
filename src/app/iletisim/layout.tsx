@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "İletişim",
   description:
-    "Kismet Plastik iletişim bilgileri. Teklif talebi, bilgi ve her türlü sorunuz için bizimle iletişime geçin. Tel: +90 (212) 123 45 67",
+    "Kismet Plastik iletişim bilgileri. Teklif talebi, bilgi ve her türlü sorunuz için bizimle iletişime geçin. Tel: 0212 549 87 03",
   openGraph: {
     title: "İletişim | Kismet Plastik",
     description: "Teklif talebi ve bilgi için bizimle iletişime geçin.",

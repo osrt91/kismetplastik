@@ -6,12 +6,13 @@ export function LocalBusinessJsonLd() {
     description:
       "Türkiye'nin lider plastik ambalaj üreticisi. PET şişe, kavanoz, kapak ve özel üretim plastik ambalaj çözümleri.",
     url: "https://www.kismetplastik.com",
-    telephone: "+902121234567",
-    email: "info@kismetplastik.com",
+    telephone: "+902125498703",
+    email: "bilgi@kismetplastik.com",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Organize Sanayi Bölgesi, 1. Cadde No: 15",
-      addressLocality: "İstanbul",
+      streetAddress: "İkitelli OSB Mahallesi İPKAS 4A Blok Sokak No:5",
+      addressLocality: "Başakşehir/İstanbul",
+      postalCode: "34490",
       addressCountry: "TR",
     },
     geo: {
@@ -27,7 +28,7 @@ export function LocalBusinessJsonLd() {
     },
     sameAs: [],
     priceRange: "$$",
-    image: "https://www.kismetplastik.com/images/maskot.jpg",
+    image: "https://www.kismetplastik.com/images/logo.jpg",
     "@id": "https://www.kismetplastik.com",
   };
 
@@ -45,10 +46,10 @@ export function OrganizationJsonLd() {
     "@type": "Organization",
     name: "Kismet Plastik",
     url: "https://www.kismetplastik.com",
-    logo: "https://www.kismetplastik.com/images/maskot.jpg",
+    logo: "https://www.kismetplastik.com/images/logo.jpg",
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+902121234567",
+      telephone: "+902125498703",
       contactType: "sales",
       availableLanguage: ["Turkish", "English"],
     },

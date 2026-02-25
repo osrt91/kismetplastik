@@ -12,6 +12,7 @@ import {
   Package,
   Truck,
   ArrowRight,
+  CalendarCheck,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
@@ -63,13 +64,16 @@ const productionStages = [
 ];
 
 const machines = [
-  { name: "PET Enjeksiyon Makineleri", count: "12 Adet", detail: "Husky, Netstal" },
-  { name: "Şişirme Makineleri", count: "18 Adet", detail: "Sidel, SMF" },
-  { name: "Lineer Şişirme Hatları", count: "8 Adet", detail: "Otomatik" },
-  { name: "Kalıp CNC İşleme", count: "4 Adet", detail: "5 eksenli" },
-  { name: "Kalite Kontrol Cihazları", count: "15+ Adet", detail: "AGR, CMC" },
-  { name: "Paketleme Hatları", count: "6 Adet", detail: "Tam otomatik" },
+  { name: "PET Enjeksiyon Makineleri", count: "12 Adet", detail: "Husky, Netstal", qty: 12 },
+  { name: "Şişirme Makineleri", count: "18 Adet", detail: "Sidel, SMF", qty: 18 },
+  { name: "Lineer Şişirme Hatları", count: "8 Adet", detail: "Otomatik", qty: 8 },
+  { name: "Kalıp CNC İşleme", count: "4 Adet", detail: "5 eksenli", qty: 4 },
+  { name: "Kalite Kontrol Cihazları", count: "15+ Adet", detail: "AGR, CMC", qty: 15 },
+  { name: "Paketleme Hatları", count: "6 Adet", detail: "Tam otomatik", qty: 6 },
 ];
+
+const machineIcons = [Thermometer, Zap, Zap, Cog, Gauge, Package];
+const maxQty = Math.max(...machines.map((m) => m.qty));
 
 export default function UretimPage() {
   const { dict } = useLocale();
@@ -89,6 +93,13 @@ export default function UretimPage() {
             }}
           />
         </div>
+        <div className="pointer-events-none absolute -right-20 -top-20 opacity-[0.04]">
+          <Factory size={500} className="text-white" strokeWidth={0.7} />
+        </div>
+        <div className="pointer-events-none absolute -bottom-10 -left-10 opacity-[0.03]">
+          <Cog size={300} className="animate-[spin_60s_linear_infinite] text-white" strokeWidth={0.7} />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-accent-500/5 via-transparent to-accent-500/5 animate-pulse" style={{ animationDuration: "6s" }} />
         <div className="relative mx-auto max-w-7xl px-4 lg:px-6">
           <AnimateOnScroll animation="fade-up">
             <nav className="mb-6 flex items-center gap-1.5 text-sm text-white/60">
@@ -111,9 +122,11 @@ export default function UretimPage() {
         <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           {facilityStats.map((stat, i) => (
             <AnimateOnScroll key={stat.label} animation="fade-up" delay={i * 80}>
-              <div className="rounded-2xl border border-neutral-100 bg-white p-5 text-center shadow-lg">
-                <p className="text-2xl font-black text-primary-900 sm:text-3xl">{stat.value}</p>
-                <p className="text-sm text-neutral-500">{stat.label}</p>
+              <div className="group rounded-2xl border border-neutral-100 bg-white p-5 text-center shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5 border-b-[3px] border-b-accent-500/60">
+                <p className="text-2xl font-black text-primary-900 sm:text-3xl animate-[pulse_3s_ease-in-out_infinite] group-hover:animate-none group-hover:text-accent-600 transition-colors">
+                  {stat.value}
+                </p>
+                <p className="text-sm text-neutral-500 mt-1">{stat.label}</p>
               </div>
             </AnimateOnScroll>
           ))}
@@ -158,7 +171,7 @@ export default function UretimPage() {
         </div>
       </div>
 
-      {/* Üretim Aşamaları */}
+      {/* Üretim Aşamaları — Pipeline */}
       <div className="bg-neutral-50 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <AnimateOnScroll animation="fade-up">
@@ -175,25 +188,64 @@ export default function UretimPage() {
             </div>
           </AnimateOnScroll>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {productionStages.map((stage, i) => (
-              <AnimateOnScroll key={stage.title} animation="fade-up" delay={i * 80}>
-                <div className="flex h-full flex-col rounded-2xl border border-neutral-100 bg-white p-6">
-                  <div className="mb-4 flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-50 text-primary-700">
-                      <stage.icon size={20} />
+          <div className="relative">
+            {/* Desktop: vertical connector line */}
+            <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-primary-200 via-accent-300 to-primary-200 lg:block" />
+
+            <div className="space-y-6 lg:space-y-0">
+              {productionStages.map((stage, i) => {
+                const isEven = i % 2 === 0;
+                return (
+                  <AnimateOnScroll
+                    key={stage.title}
+                    animation={isEven ? "fade-right" : "fade-left"}
+                    delay={i * 100}
+                  >
+                    <div className="relative lg:flex lg:items-center lg:min-h-[180px]">
+                      {/* Card — alternating sides on desktop */}
+                      <div
+                        className={`w-full lg:w-[calc(50%-40px)] ${
+                          isEven ? "lg:mr-auto" : "lg:ml-auto lg:order-2"
+                        }`}
+                      >
+                        <div className="group flex h-full flex-col rounded-2xl border border-neutral-100 bg-white p-6 shadow-sm transition-all hover:shadow-lg hover:border-accent-200">
+                          <div className="mb-4 flex items-center gap-3">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-50 text-primary-700 transition-colors group-hover:bg-accent-500 group-hover:text-primary-900">
+                              <stage.icon size={20} />
+                            </div>
+                            <h3 className="font-bold text-primary-900">{stage.title}</h3>
+                          </div>
+                          <p className="flex-1 text-sm leading-relaxed text-neutral-500">
+                            {stage.description}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Center circle step indicator — desktop only */}
+                      <div className="absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 lg:flex">
+                        <div className="flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-accent-500 bg-white shadow-md">
+                          <span className="text-sm font-extrabold text-primary-900">
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Mobile step badge */}
+                      <div className="absolute -left-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full border-2 border-accent-500 bg-white text-xs font-extrabold text-primary-900 shadow lg:hidden">
+                        {i + 1}
+                      </div>
+
+                      {/* Arrow connector — mobile only (except last item) */}
+                      {i < productionStages.length - 1 && (
+                        <div className="flex justify-center py-1 lg:hidden">
+                          <ArrowRight size={20} className="rotate-90 text-accent-400" />
+                        </div>
+                      )}
                     </div>
-                    <span className="text-sm font-bold text-primary-300">
-                      Aşama {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <h3 className="mb-2 font-bold text-primary-900">{stage.title}</h3>
-                  <p className="flex-1 text-sm leading-relaxed text-neutral-500">
-                    {stage.description}
-                  </p>
-                </div>
-              </AnimateOnScroll>
-            ))}
+                  </AnimateOnScroll>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
@@ -212,21 +264,77 @@ export default function UretimPage() {
         </AnimateOnScroll>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {machines.map((machine, i) => (
-            <AnimateOnScroll key={machine.name} animation="fade-up" delay={i * 60}>
-              <div className="flex items-center gap-4 rounded-xl border border-neutral-200 bg-white p-5 transition-all hover:border-primary-100 hover:shadow-md">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-50">
-                  <Cog size={22} className="text-primary-700" />
+          {machines.map((machine, i) => {
+            const Icon = machineIcons[i] ?? Cog;
+            const pct = Math.round((machine.qty / maxQty) * 100);
+            return (
+              <AnimateOnScroll key={machine.name} animation="fade-up" delay={i * 60}>
+                <div className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white p-6 transition-all hover:border-primary-200 hover:shadow-lg">
+                  <div className="pointer-events-none absolute -right-4 -top-4 opacity-[0.04] transition-opacity group-hover:opacity-[0.08]">
+                    <Icon size={90} strokeWidth={0.8} />
+                  </div>
+                  <div className="relative">
+                    <div className="mb-4 flex items-center gap-3">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-50 transition-colors group-hover:bg-accent-500/10">
+                        <Icon size={22} className="text-primary-700 transition-colors group-hover:text-accent-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-primary-900">{machine.name}</h3>
+                        <p className="text-xs text-neutral-400">{machine.detail}</p>
+                      </div>
+                    </div>
+                    <div className="mb-1.5 flex items-center justify-between text-sm">
+                      <span className="font-semibold text-primary-800">{machine.count}</span>
+                      <span className="text-xs text-neutral-400">{pct}%</span>
+                    </div>
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-neutral-100">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-primary-600 to-accent-500 transition-all duration-700"
+                        style={{ width: `${pct}%` }}
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-primary-900">{machine.name}</h3>
-                  <p className="text-sm text-neutral-500">
-                    {machine.count} &middot; {machine.detail}
-                  </p>
-                </div>
+              </AnimateOnScroll>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Fabrika Turu CTA */}
+      <div className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 py-16 lg:py-20">
+        <div className="relative mx-auto max-w-4xl px-4 text-center lg:px-6">
+          <div className="pointer-events-none absolute inset-0 opacity-[0.03]">
+            <div
+              className="h-full w-full"
+              style={{
+                backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+                backgroundSize: "32px 32px",
+              }}
+            />
+          </div>
+          <AnimateOnScroll animation="fade-up">
+            <div className="relative">
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent-500/20">
+                <CalendarCheck size={32} className="text-accent-400" />
               </div>
-            </AnimateOnScroll>
-          ))}
+              <h2 className="mb-4 text-2xl font-extrabold text-white sm:text-3xl">
+                Üretim Tesisimizi Yerinde Görün
+              </h2>
+              <p className="mx-auto mb-8 max-w-xl text-white/60">
+                Modern üretim hatlarımızı, kalite kontrol süreçlerimizi ve makine parkurumuzu
+                yerinde incelemek için fabrika turu randevusu alın.
+              </p>
+              <Link
+                href="/teklif-al"
+                className="inline-flex items-center gap-2.5 rounded-xl bg-accent-500 px-8 py-4 font-bold text-primary-900 shadow-lg shadow-accent-500/20 transition-all hover:bg-accent-400 hover:-translate-y-0.5 hover:shadow-xl"
+              >
+                <CalendarCheck size={18} />
+                Fabrika Turu Randevusu Al
+                <ArrowRight size={16} />
+              </Link>
+            </div>
+          </AnimateOnScroll>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import {
@@ -13,18 +14,26 @@ import {
 import { getProductBySlug, getCategoryBySlug } from "@/data/products";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import ProductViewer from "@/components/ui/ProductViewer";
+import StickyQuoteBar from "@/components/ui/StickyQuoteBar";
+import RecentProducts from "@/components/sections/RecentProducts";
+import { useRecentProducts } from "@/hooks/useRecentProducts";
 import { useLocale } from "@/contexts/LocaleContext";
 
 export default function ProductDetailPage() {
   const { dict } = useLocale();
   const p = dict.products;
   const cm = dict.common;
+  const { addRecent } = useRecentProducts();
 
   const params = useParams();
   const slug = params.slug as string;
   const categorySlug = params.category as string;
   const product = getProductBySlug(slug);
   const category = getCategoryBySlug(categorySlug);
+
+  useEffect(() => {
+    if (product) addRecent(product.id);
+  }, [product, addRecent]);
 
   if (!product || !category) {
     return (
@@ -127,7 +136,7 @@ export default function ProductDetailPage() {
                   {p.requestQuoteFor}
                 </Link>
                 <a
-                  href="tel:+902121234567"
+                  href="tel:+902125498703"
                   className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-primary-900 px-6 py-3.5 text-base font-semibold text-primary-900 transition-all duration-300 hover:bg-primary-900 hover:text-white"
                 >
                   <Phone size={18} />
@@ -137,7 +146,16 @@ export default function ProductDetailPage() {
             </div>
           </AnimateOnScroll>
         </div>
+
+        <RecentProducts />
       </div>
+
+      <StickyQuoteBar
+        productName={product.name}
+        volume={product.volume}
+        material={product.material}
+        category={category.name}
+      />
     </section>
   );
 }
