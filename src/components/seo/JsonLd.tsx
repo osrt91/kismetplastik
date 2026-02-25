@@ -2,9 +2,9 @@ export function LocalBusinessJsonLd() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "Kismet Plastik",
+    name: "Kısmet Plastik",
     description:
-      "Türkiye'nin lider plastik ambalaj üreticisi. PET şişe, kavanoz, kapak ve özel üretim plastik ambalaj çözümleri.",
+      "Türkiye'nin lider kozmetik ambalaj üreticisi. PET şişe, kavanoz, kapak ve özel üretim kozmetik ambalaj çözümleri.",
     url: "https://www.kismetplastik.com",
     telephone: "+902125498703",
     email: "bilgi@kismetplastik.com",
@@ -44,7 +44,7 @@ export function OrganizationJsonLd() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Kismet Plastik",
+    name: "Kısmet Plastik",
     url: "https://www.kismetplastik.com",
     logo: "https://www.kismetplastik.com/images/logo.jpg",
     contactPoint: {
@@ -86,11 +86,11 @@ export function ProductJsonLd({
     material,
     brand: {
       "@type": "Brand",
-      name: "Kismet Plastik",
+      name: "Kısmet Plastik",
     },
     manufacturer: {
       "@type": "Organization",
-      name: "Kismet Plastik",
+      name: "Kısmet Plastik",
     },
     offers: {
       "@type": "Offer",
@@ -100,7 +100,7 @@ export function ProductJsonLd({
       priceCurrency: "TRY",
       seller: {
         "@type": "Organization",
-        name: "Kismet Plastik",
+        name: "Kısmet Plastik",
       },
     },
   };

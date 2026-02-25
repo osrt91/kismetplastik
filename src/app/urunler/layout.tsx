@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Ürünler",
   description:
-    "Kismet Plastik ürün kataloğu. PET şişeler, kavanozlar, kapaklar, preformlar, özel üretim ve ambalaj setleri. Toptan satış ve B2B fiyatları.",
+    "Kısmet Plastik ürün kataloğu. PET şişeler, kavanozlar, kapaklar, preformlar, özel üretim ve ambalaj setleri. Toptan satış ve B2B fiyatları.",
   openGraph: {
-    title: "Ürünler | Kismet Plastik",
+    title: "Ürünler | Kısmet Plastik",
     description: "PET şişe, kavanoz, kapak ve preform ürün kataloğu.",
   },
 };

@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Blog & Haberler",
   description:
-    "Kismet Plastik blog. Plastik ambalaj sektöründen haberler, rehberler, PET şişe üretim süreçleri ve sektör trendleri.",
+    "Kısmet Plastik blog. Kozmetik ambalaj sektöründen haberler, rehberler, PET şişe üretim süreçleri ve sektör trendleri.",
   openGraph: {
-    title: "Blog & Haberler | Kismet Plastik",
-    description: "Plastik ambalaj sektöründen haberler ve bilgilendirici içerikler.",
+    title: "Blog & Haberler | Kısmet Plastik",
+    description: "Kozmetik ambalaj sektöründen haberler ve bilgilendirici içerikler.",
   },
 };
 

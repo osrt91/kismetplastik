@@ -9,7 +9,7 @@ const testimonials = [
     name: "Mehmet Yılmaz",
     company: "Atlas Gıda A.Ş.",
     role: "Satın Alma Müdürü",
-    text: "Kismet Plastik ile 5 yıldır çalışıyoruz. Ürün kalitesi ve teslimat süreleri her zaman beklentilerimizin üzerinde oldu.",
+    text: "Kısmet Plastik ile 5 yıldır çalışıyoruz. Ürün kalitesi ve teslimat süreleri her zaman beklentilerimizin üzerinde oldu.",
     rating: 5,
   },
   {
@@ -23,7 +23,7 @@ const testimonials = [
     name: "Can Özkan",
     company: "Özkan İlaç San.",
     role: "Üretim Direktörü",
-    text: "ISO sertifikalı üretim süreçleri ve gıdaya uygunluk testleri bizim için en önemli kriterdi. Kismet Plastik bu konuda çok başarılı.",
+    text: "ISO sertifikalı üretim süreçleri ve gıdaya uygunluk testleri bizim için en önemli kriterdi. Kısmet Plastik bu konuda çok başarılı.",
     rating: 5,
   },
 ];

@@ -13,7 +13,7 @@ interface SearchResult {
 }
 
 const staticPages: SearchResult[] = [
-  { type: "page", title: "Ana Sayfa", description: "Kismet Plastik ana sayfa", href: "/" },
+  { type: "page", title: "Ana Sayfa", description: "Kısmet Plastik ana sayfa", href: "/" },
   { type: "page", title: "Hakkımızda", description: "Şirket bilgileri ve hikayemiz", href: "/hakkimizda" },
   { type: "page", title: "Kalite & Sertifikalar", description: "ISO sertifikaları ve kalite kontrol", href: "/kalite" },
   { type: "page", title: "Üretim Tesisi", description: "Fabrika ve makine parkuru", href: "/uretim" },

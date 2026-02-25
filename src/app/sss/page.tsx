@@ -22,7 +22,7 @@ interface FAQItem {
 const faqData: FAQItem[] = [
   {
     category: "Genel",
-    question: "Kismet Plastik hangi ürünleri üretiyor?",
+    question: "Kısmet Plastik hangi ürünleri üretiyor?",
     answer:
       "PET şişeler, kavanozlar, kapaklar, preformlar ve özel tasarım ambalaj ürünleri üretmekteyiz. Gıda, kozmetik, kimya ve ilaç sektörlerine yönelik geniş bir ürün yelpazemiz bulunmaktadır.",
   },

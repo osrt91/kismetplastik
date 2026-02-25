@@ -55,7 +55,7 @@ const blogPosts: BlogPost[] = [
   },
   {
     slug: "iso-sertifika-onemi",
-    title: "Plastik Ambalajda ISO Sertifikalarının Önemi",
+    title: "Kozmetik Ambalajda ISO Sertifikalarının Önemi",
     excerpt:
       "ISO 9001, ISO 14001 ve FSSC 22000 sertifikalarının ambalaj sektöründeki önemi ve müşterilere sağladığı güvence.",
     category: "Kalite",
@@ -177,7 +177,7 @@ export default function BlogPage() {
               Blog &amp; Haberler
             </h1>
             <p className="max-w-2xl text-lg text-white/70">
-              Plastik ambalaj sektöründen haberler, rehberler ve bilgilendirici
+              Kozmetik ambalaj sektöründen haberler, rehberler ve bilgilendirici
               içerikler.
             </p>
           </AnimateOnScroll>

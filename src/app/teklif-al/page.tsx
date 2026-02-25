@@ -478,7 +478,7 @@ export default function TeklifAlPage() {
           <AnimateOnScroll animation="fade-left" className="hidden lg:block">
             <div className="sticky top-28 space-y-4">
               <h3 className="mb-2 text-sm font-bold uppercase tracking-wider text-primary-700">
-                Neden Kismet Plastik?
+                Neden Kısmet Plastik?
               </h3>
 
               {benefits.map((b, i) => (

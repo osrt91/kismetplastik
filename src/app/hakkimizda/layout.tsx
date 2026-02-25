@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Hakkımızda",
   description:
-    "Kismet Plastik hakkında bilgi. 2004'ten bu yana plastik ambalaj sektöründe kalite ve güvenin adresi. Misyonumuz, vizyonumuz ve değerlerimiz.",
+    "Kısmet Plastik hakkında bilgi. 1969'dan bu yana kozmetik ambalaj sektöründe kalite ve güvenin adresi. Misyonumuz, vizyonumuz ve değerlerimiz.",
   openGraph: {
-    title: "Hakkımızda | Kismet Plastik",
-    description: "2004'ten bu yana plastik ambalaj sektöründe kalite ve güvenin adresi.",
+    title: "Hakkımızda | Kısmet Plastik",
+    description: "1969'dan bu yana kozmetik ambalaj sektöründe kalite ve güvenin adresi.",
   },
 };
 

@@ -11,13 +11,13 @@ import { LocalBusinessJsonLd, OrganizationJsonLd } from "@/components/seo/JsonLd
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.kismetplastik.com"),
   title: {
-    default: "Kısmet Plastik | B2B Plastik Ambalaj Çözümleri",
+    default: "Kısmet Plastik | B2B Kozmetik Ambalaj Çözümleri",
     template: "%s | Kısmet Plastik",
   },
   description:
-    "Kısmet Plastik - Türkiye'nin lider plastik ambalaj üreticisi. PET şişe, kavanoz, kapak ve özel üretim plastik ambalaj çözümleri. Toptan satış ve B2B hizmetler.",
+    "Kısmet Plastik - Türkiye'nin lider kozmetik ambalaj üreticisi. PET şişe, kavanoz, kapak ve özel üretim kozmetik ambalaj çözümleri. Toptan satış ve B2B hizmetler.",
   keywords: [
-    "plastik ambalaj",
+    "kozmetik ambalaj",
     "PET şişe",
     "plastik kavanoz",
     "ambalaj üreticisi",
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
     "özel üretim ambalaj",
   ],
   openGraph: {
-    title: "Kısmet Plastik | B2B Plastik Ambalaj Çözümleri",
+    title: "Kısmet Plastik | B2B Kozmetik Ambalaj Çözümleri",
     description:
-      "Türkiye'nin lider plastik ambalaj üreticisi. Toptan satış ve B2B hizmetler.",
+      "Türkiye'nin lider kozmetik ambalaj üreticisi. Toptan satış ve B2B hizmetler.",
     type: "website",
     locale: "tr_TR",
     siteName: "Kısmet Plastik",

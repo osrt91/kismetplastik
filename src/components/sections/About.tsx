@@ -77,7 +77,7 @@ export default function About() {
               </h2>
               <p className="mb-6 leading-relaxed text-neutral-500">
                 Kısmet Plastik olarak, 1969&apos;dan bu yana kozmetik sektörüne özel
-                plastik ambalaj üretiminde kalite ve güveni bir arada sunuyoruz.
+                kozmetik ambalaj üretiminde kalite ve güveni bir arada sunuyoruz.
                 Geniş ürün yelpazemizle kozmetik sektörünün tüm ihtiyaçlarını
                 karşılayabiliyoruz.
               </p>

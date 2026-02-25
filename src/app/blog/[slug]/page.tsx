@@ -71,7 +71,7 @@ const blogPosts: BlogPost[] = [
   },
   {
     slug: "iso-sertifika-onemi",
-    title: "Plastik Ambalajda ISO Sertifikalarının Önemi",
+    title: "Kozmetik Ambalajda ISO Sertifikalarının Önemi",
     excerpt: "ISO 9001, ISO 14001 ve FSSC 22000 sertifikalarının ambalaj sektöründeki önemi.",
     content: [
       "ISO sertifikaları, bir firmanın üretim süreçlerinin uluslararası standartlara uygun olduğunu belgeler. Ambalaj sektöründe bu sertifikalar müşteri güveninin temelini oluşturur.",
@@ -106,7 +106,7 @@ const blogPosts: BlogPost[] = [
     content: [
       "Sürdürülebilir ambalaj, çevresel etkiyi minimize ederken ürün koruma fonksiyonunu sürdüren ambalaj yaklaşımıdır.",
       "PET, en yaygın geri dönüştürülen plastik türlerinden biridir. Bir PET şişe geri dönüştürüldüğünde yeni şişe, tekstil ürünü veya endüstriyel malzeme haline gelebilir.",
-      "Kismet Plastik olarak, üretim süreçlerimizde enerji verimliliğini artırmak, su tüketimini azaltmak ve atık minimizasyonu sağlamak için sürekli çalışıyoruz.",
+      "Kısmet Plastik olarak, üretim süreçlerimizde enerji verimliliğini artırmak, su tüketimini azaltmak ve atık minimizasyonu sağlamak için sürekli çalışıyoruz.",
       "rPET (geri dönüştürülmüş PET) kullanımını artırarak doğal kaynak tüketimini azaltıyoruz. rPET içerikli ürünlerimiz virgin PET ile aynı kalite standartlarını karşılar.",
       "Çevreye duyarlı üretim sadece bir tercih değil, gelecek nesillere karşı bir sorumluluktur. Bu bilinçle üretim süreçlerimizi sürekli geliştiriyoruz.",
     ],

@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Kariyer",
   description:
-    "Kismet Plastik kariyer fırsatları. Üretim mühendisi, kalite kontrol uzmanı, satış uzmanı ve daha fazla açık pozisyon.",
+    "Kısmet Plastik kariyer fırsatları. Üretim mühendisi, kalite kontrol uzmanı, satış uzmanı ve daha fazla açık pozisyon.",
   openGraph: {
-    title: "Kariyer | Kismet Plastik",
-    description: "Kismet Plastik ailesine katılın. Açık pozisyonları inceleyin.",
+    title: "Kariyer | Kısmet Plastik",
+    description: "Kısmet Plastik ailesine katılın. Açık pozisyonları inceleyin.",
   },
 };
 

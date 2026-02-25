@@ -28,8 +28,8 @@ export default function WhatsAppButton() {
 
   const message =
     locale === "tr"
-      ? "Merhaba, Kismet Plastik ürünleri hakkında bilgi almak istiyorum."
-      : "Hello, I would like to get information about Kismet Plastik products.";
+      ? "Merhaba, Kısmet Plastik ürünleri hakkında bilgi almak istiyorum."
+      : "Hello, I would like to get information about Kısmet Plastik products.";
 
   const tooltipText =
     locale === "tr"
