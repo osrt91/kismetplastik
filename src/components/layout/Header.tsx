@@ -35,8 +35,18 @@ export default function Header() {
       href: "/urunler",
       children: categoryHrefs.map((href, i) => ({ name: categories[i]?.name ?? "", href })),
     },
-    { name: nav.about, href: "/hakkimizda" },
-    { name: nav.quality, href: "/kalite" },
+    {
+      name: "Kurumsal",
+      href: "/hakkimizda",
+      children: [
+        { name: nav.about, href: "/hakkimizda" },
+        { name: nav.quality, href: "/kalite" },
+        { name: nav.production, href: "/uretim" },
+        { name: "Sürdürülebilirlik", href: "/surdurulebilirlik" },
+        { name: "Galeri", href: "/galeri" },
+      ],
+    },
+    { name: nav.blog, href: "/blog" },
     { name: nav.contact, href: "/iletisim" },
   ];
 

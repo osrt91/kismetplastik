@@ -33,6 +33,8 @@ export default function Footer() {
     { name: f.productionFacility, href: "/uretim" },
     { name: f.career, href: "/kariyer" },
     { name: f.blog, href: "/blog" },
+    { name: "Sürdürülebilirlik", href: "/surdurulebilirlik" },
+    { name: "Galeri", href: "/galeri" },
   ];
 
   const supportLinks = [
@@ -41,6 +43,7 @@ export default function Footer() {
     { name: f.dealerLogin, href: "/bayi-girisi" },
     { name: f.faq, href: "/sss" },
     { name: f.downloadCatalog, href: "/katalog", external: true },
+    { name: "KVKK", href: "/kvkk" },
   ];
 
   const socialLinks = [
