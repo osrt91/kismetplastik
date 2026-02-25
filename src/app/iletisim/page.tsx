@@ -323,7 +323,7 @@ export default function IletisimPage() {
         <AnimateOnScroll animation="fade-up" className="mt-12">
           <div className="relative overflow-hidden rounded-2xl border border-neutral-200 shadow-lg">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.0!2d28.7833!3d41.0695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa5e9a7b3b3b3%3A0x1234567890abcdef!2zxLBraXRlbGxpIE9TQg!5e0!3m2!1str!2str!4v1709000000000!5m2!1str!2str"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.5!2d28.7927!3d41.0681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa51f2e66f7c7%3A0x3a0a3e0a3c5a1b0d!2zxLBraXRlbGxpIE9TQg!5e0!3m2!1str!2str!4v1709000000000!5m2!1str!2str"
               className="aspect-[21/9] w-full border-0"
               allowFullScreen
               loading="lazy"
@@ -332,7 +332,7 @@ export default function IletisimPage() {
             />
             <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-lg bg-white/95 px-3 py-2 text-sm font-bold text-primary-900 shadow-md backdrop-blur-sm">
               <MapPin size={16} className="text-accent-500" />
-              Kısmet Plastik
+              Kısmet Plastik - İkitelli OSB
             </div>
           </div>
         </AnimateOnScroll>

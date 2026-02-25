@@ -48,8 +48,29 @@ export default function ProductDetailPage() {
     );
   }
 
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    brand: { "@type": "Brand", name: "Kısmet Plastik" },
+    manufacturer: { "@type": "Organization", name: "Kısmet Plastik Kozmetik Ambalaj ve Kalıp San. Tic. Ltd. Şti." },
+    material: product.material,
+    category: category.name,
+    offers: {
+      "@type": "Offer",
+      availability: product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      priceCurrency: "TRY",
+      seller: { "@type": "Organization", name: "Kısmet Plastik" },
+    },
+  };
+
   return (
     <section className="bg-neutral-50 py-8 lg:py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <nav className="mb-6 flex flex-wrap items-center gap-1.5 text-sm text-neutral-400">
           <Link href="/" className="hover:text-primary-700">{p.breadcrumbHome}</Link>
