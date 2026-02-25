@@ -18,7 +18,7 @@
     "titleBefore": "Kozmetik Ambalajda",
     "titleAfter": "Çözüm Ortağınız",
     "words": ["Güvenilir", "Kaliteli", "Yenilikçi"],
-    "subtitle": "1969'dan bu yana kozmetik sektörüne özel yüksek kaliteli PET şişe, plastik şişe, kolonya şişesi, sprey ambalaj ve kapak üretimi. Özel tasarım, private label ve toptan satış avantajlarıyla hizmetinizdeyiz.",
+    "subtitle": "1969'dan bu yana kozmetik sektörüne özel yüksek kaliteli PET şişe, plastik şişe, sprey ambalaj, pompa ve kapak üretimi. Özel tasarım ve toptan satış avantajlarıyla hizmetinizdeyiz.",
     "ctaProducts": "Ürünleri İncele",
     "ctaQuote": "Teklif Al",
     "highlight1": "ISO 9001 Sertifikalı",
@@ -101,7 +101,7 @@
     { "name": "Kişisel Bakım", "description": "Vücut bakımı, saç bakımı, cilt bakımı ve hijyen ürünleri için modern tasarımlar." },
     { "name": "Temizlik & Hijyen", "description": "Sıvı sabun, el dezenfektanı ve temizlik ürünleri için dayanıklı ambalaj çözümleri." },
     { "name": "Otelcilik & HoReCa", "description": "Otel, restoran ve kafe işletmeleri için mini boy ve özel ambalaj çözümleri." },
-    { "name": "Private Label", "description": "Markalar için özel etiketli, kişiselleştirilmiş kozmetik ambalaj üretimi." }
+    { "name": "Özel Kalıplama", "description": "Markanıza özel kalıp tasarımı ve kişiselleştirilmiş kozmetik ambalaj üretimi." }
   ],
   "common": {
     "readMore": "Devamını Oku",
