@@ -11,6 +11,7 @@ import {
   Linkedin,
   ArrowUpRight,
   ArrowUp,
+  QrCode,
 } from "lucide-react";
 import { useLocale } from "@/contexts/LocaleContext";
 
@@ -132,6 +133,21 @@ export default function Footer() {
                 </div>
                 İkitelli OSB Mah. İPKAS 4A Blok Sok. No:5 Başakşehir/İstanbul
               </div>
+            </div>
+
+            {/* QR Code */}
+            <div className="mt-6 flex items-center gap-3">
+              <a
+                href="/images/qr.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white/70 transition-all duration-200 hover:border-accent-400/40 hover:bg-white/10 hover:text-accent-400"
+              >
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-500/10 transition-colors group-hover:bg-accent-500/20">
+                  <QrCode size={18} className="text-accent-400" />
+                </div>
+                QR Kodu İndir
+              </a>
             </div>
           </div>
 
