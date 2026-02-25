@@ -18,7 +18,7 @@
     "titleBefore": "Kozmetik Ambalajda",
     "titleAfter": "Çözüm Ortağınız",
     "words": ["Güvenilir", "Kaliteli", "Yenilikçi"],
-    "subtitle": "1969'dan bu yana kozmetik sektörüne özel yüksek kaliteli PET şişe, kavanoz ve kapak üretimi. Özel tasarım, private label ve toptan satış avantajlarıyla hizmetinizdeyiz.",
+    "subtitle": "1969'dan bu yana kozmetik sektörüne özel yüksek kaliteli PET şişe, plastik şişe, kolonya şişesi, sprey ambalaj ve kapak üretimi. Özel tasarım, private label ve toptan satış avantajlarıyla hizmetinizdeyiz.",
     "ctaProducts": "Ürünleri İncele",
     "ctaQuote": "Teklif Al",
     "highlight1": "ISO 9001 Sertifikalı",
@@ -46,7 +46,7 @@
     "aboutTitle": "Kozmetik Ambalaj Sektöründe",
     "aboutTitleAccent": "Güvenin Adı",
     "aboutLead1": "Kısmet Plastik olarak, 1969'dan bu yana kozmetik ambalaj üretiminde kalite ve güveni bir arada sunuyoruz. Geniş ürün yelpazemizle kozmetik sektörünün tüm ihtiyaçlarını karşılayabiliyoruz.",
-    "aboutLead2": "Kozmetik şişeleri, krem kavanozları, private label ürünler, kapaklar ve spreyler dahil olmak üzere birçok kozmetik ambalaj çözümüyle B2B müşterilerimize hizmet veriyoruz.",
+    "aboutLead2": "PET şişeler, plastik şişeler, kolonya şişeleri, sprey ambalajlar, oda parfümü şişeleri, sıvı sabun şişeleri ve kapaklar dahil olmak üzere birçok kozmetik ambalaj çözümüyle B2B müşterilerimize hizmet veriyoruz.",
     "aboutFacility": "Üretim Tesisimiz",
     "aboutMore": "Daha Fazla Bilgi",
     "sectorsOverline": "Hizmet Verdiğimiz Sektörler",
@@ -86,20 +86,22 @@
     "Rekabetçi fiyat ve esnek ödeme seçenekleri"
   ],
   "homeCategories": [
-    { "name": "PET Şişeler", "description": "Gıda, içecek ve kozmetik sektörleri için farklı hacim ve tasarımlarda PET şişeler.", "count": "120+" },
-    { "name": "Kavanozlar", "description": "Bal, reçel, sos ve diğer gıda ürünleri için geniş ağızlı PET kavanozlar.", "count": "85+" },
-    { "name": "Kapaklar", "description": "Her türlü şişe ve kavanoz için standart ve özel tasarım kapak çeşitleri.", "count": "60+" },
-    { "name": "Preformlar", "description": "Kendi üretim hattınız için yüksek kaliteli PET preformlar.", "count": "40+" },
-    { "name": "Özel Üretim", "description": "Markanıza özel tasarım ve üretim çözümleri. Kalıp tasarımından üretime kadar.", "count": "Sınırsız" },
-    { "name": "Ambalaj Setleri", "description": "Şişe, kapak ve etiket dahil komple ambalaj çözüm paketleri.", "count": "30+" }
+    { "name": "PET Şişeler", "description": "Kozmetik, kolonya ve kişisel bakım ürünleri için farklı hacim ve tasarımlarda PET şişeler.", "count": "15+" },
+    { "name": "Plastik Şişeler", "description": "HDPE, PP ve LDPE hammaddeli dayanıklı plastik şişe çeşitleri.", "count": "10+" },
+    { "name": "Kolonya Grubu", "description": "Kolonya üreticileri için özel tasarımlı şişe ve ambalaj çözümleri.", "count": "8+" },
+    { "name": "Sprey Grubu", "description": "Sprey mekanizmalı kozmetik ve temizlik ürün ambalajları.", "count": "6+" },
+    { "name": "Oda Parfümü Grubu", "description": "Oda kokusu ve parfümeri ürünleri için dekoratif şişe tasarımları.", "count": "5+" },
+    { "name": "Sıvı Sabun Grubu", "description": "Sıvı sabun, duş jeli ve şampuan için pompalı şişe çözümleri.", "count": "7+" },
+    { "name": "Kapak Grubu", "description": "Vidalı, flip-top, pompa, sprey ve özel tasarım kapak çeşitleri.", "count": "12+" },
+    { "name": "Özel Üretim & Private Label", "description": "Markanıza özel kalıp tasarımı, private label ve özel üretim çözümleri.", "count": "Sınırsız" }
   ],
   "homeSectors": [
-    { "name": "Gıda & İçecek", "description": "Su, meyve suyu, sos, bal, reçel ve diğer gıda ürünleri için hijyenik ambalaj çözümleri." },
-    { "name": "Kozmetik", "description": "Şampuan, losyon, krem ve parfüm sektörüne yönelik estetik tasarımlı şişeler." },
-    { "name": "Kimya", "description": "Temizlik ürünleri, endüstriyel kimyasallar için dayanıklı ambalaj çözümleri." },
-    { "name": "İlaç & Eczacılık", "description": "Farmasötik standartlara uygun, güvenli ve hijyenik ambalaj ürünleri." },
-    { "name": "Kişisel Bakım", "description": "Vücut bakımı, saç bakımı ve cilt bakımı ürünleri için modern tasarımlar." },
-    { "name": "Endüstriyel", "description": "Yağ, yakıt, tarım ilacı ve endüstriyel sıvılar için özel üretim ambalajlar." }
+    { "name": "Kozmetik & Güzellik", "description": "Şampuan, losyon, krem, parfüm ve makyaj ürünleri için estetik tasarımlı ambalajlar." },
+    { "name": "Kolonya & Parfümeri", "description": "Kolonya, oda parfümü ve koku ürünleri için özel tasarımlı şişe çözümleri." },
+    { "name": "Kişisel Bakım", "description": "Vücut bakımı, saç bakımı, cilt bakımı ve hijyen ürünleri için modern tasarımlar." },
+    { "name": "Temizlik & Hijyen", "description": "Sıvı sabun, el dezenfektanı ve temizlik ürünleri için dayanıklı ambalaj çözümleri." },
+    { "name": "Otelcilik & HoReCa", "description": "Otel, restoran ve kafe işletmeleri için mini boy ve özel ambalaj çözümleri." },
+    { "name": "Private Label", "description": "Markalar için özel etiketli, kişiselleştirilmiş kozmetik ambalaj üretimi." }
   ],
   "common": {
     "readMore": "Devamını Oku",
@@ -130,7 +132,7 @@
     "breadcrumbProducts": "Ürünler",
     "overline": "Ürün Kataloğu",
     "title": "Tüm Ürünlerimiz",
-    "subtitle": "PET şişe, kavanoz, kapak ve preform ürünlerimizi inceleyin. Filtreleme ve arama ile ihtiyacınıza uygun ürünü kolayca bulun.",
+    "subtitle": "PET şişe, plastik şişe, kolonya şişesi, sprey ambalaj, oda parfümü şişesi, sıvı sabun şişesi ve kapak ürünlerimizi inceleyin. Filtreleme ve arama ile ihtiyacınıza uygun ürünü kolayca bulun.",
     "searchPlaceholder": "Ürün ara...",
     "categoryAll": "Tüm Kategoriler",
     "materialAll": "Tüm Malzemeler",
@@ -332,7 +334,7 @@
     "callUs": "Bizi Arayın"
   },
   "footer": {
-    "brandDesc": "Kısmet Plastik, 1969'dan bu yana kozmetik ambalaj üretiminde kaliteli ve yenilikçi çözümler sunmaktadır. Kozmetik şişeleri, krem kavanozları, private label ürünler, kapaklar ve spreyler ile hizmetinizdeyiz.",
+    "brandDesc": "Kısmet Plastik, 1969'dan bu yana kozmetik ambalaj üretiminde kaliteli ve yenilikçi çözümler sunmaktadır. PET şişeler, plastik şişeler, kolonya şişeleri, sprey ambalajlar, kapaklar ve özel üretim çözümleri ile hizmetinizdeyiz.",
     "productsTitle": "Ürünler",
     "companyTitle": "Kurumsal",
     "supportTitle": "Destek",

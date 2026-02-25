@@ -35,9 +35,9 @@ const catalogs = [
     accentColor: "bg-blue-500",
   },
   {
-    title: "Kavanoz & Kapak Kataloğu",
+    title: "Kapak & Aksesuar Kataloğu",
     description:
-      "Geniş ağızlı kavanozlar ve tüm kapak çeşitlerimizin detaylı tanıtımı.",
+      "Vidalı, flip-top, pompa, sprey ve özel tasarım kapak çeşitlerimizin detaylı tanıtımı.",
     pages: "16 sayfa",
     size: "6 MB",
     icon: Package,

@@ -82,9 +82,9 @@ export default function About() {
                 karşılayabiliyoruz.
               </p>
               <p className="mb-8 leading-relaxed text-neutral-500">
-                Kozmetik şişeleri, krem kavanozları, private label ürünler, kapaklar
-                ve spreyler dahil olmak üzere birçok kozmetik ambalaj çözümüyle
-                B2B müşterilerimize hizmet veriyoruz.
+                PET şişeler, plastik şişeler, kolonya şişeleri, sprey ambalajlar,
+                oda parfümü şişeleri, sıvı sabun şişeleri ve kapaklar dahil olmak üzere
+                birçok kozmetik ambalaj çözümüyle B2B müşterilerimize hizmet veriyoruz.
               </p>
 
               {/* Strengths */}

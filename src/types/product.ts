@@ -1,18 +1,20 @@
 export type CategorySlug =
   | "pet-siseler"
-  | "kavanozlar"
+  | "plastik-siseler"
+  | "kolonya"
+  | "sprey"
+  | "oda-parfumu"
+  | "sivi-sabun"
   | "kapaklar"
-  | "preformlar"
-  | "ozel-uretim"
-  | "ambalaj-setleri";
+  | "ozel-uretim";
 
 export type ShapeType = "düz" | "oval" | "silindir" | "yuvarlak";
 
 export type SurfaceType = "düz" | "kare" | "özel";
 
-export type MaterialType = "PET" | "HDPE" | "PP" | "LDPE" | "PP / Metal" | "PET / Cam" | "PET + PP" | "PET + Metal" | "PET / rPET";
+export type MaterialType = "PET" | "HDPE" | "PP" | "LDPE";
 
-export type NeckSize = "18mm" | "20mm" | "24mm" | "24mm-klasik" | "24mm-modern" | "28mm" | "38mm" | "48mm" | "53mm" | "63mm" | "89mm";
+export type NeckSize = "18mm" | "20mm" | "24mm Klasik" | "24mm Modern" | "28mm";
 
 export interface ProductSpec {
   label: string;

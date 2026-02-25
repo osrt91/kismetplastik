@@ -15,13 +15,15 @@ import { useLocale } from "@/contexts/LocaleContext";
 
 const categorySlugs = [
   "pet-siseler",
-  "kavanozlar",
+  "plastik-siseler",
+  "kolonya",
+  "sprey",
+  "oda-parfumu",
+  "sivi-sabun",
   "kapaklar",
-  "preformlar",
   "ozel-uretim",
-  "ambalaj-setleri",
 ];
-const icons = [Droplets, Package, CircleDot, Cylinder, Sparkles, Boxes];
+const icons = [Droplets, Package, Cylinder, Sparkles, CircleDot, Boxes, CircleDot, Sparkles];
 const colors = [
   "from-blue-500/10 to-blue-600/5",
   "from-amber-500/10 to-amber-600/5",

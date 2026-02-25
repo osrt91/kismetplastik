@@ -24,7 +24,7 @@ const faqData: FAQItem[] = [
     category: "Genel",
     question: "Kısmet Plastik hangi ürünleri üretiyor?",
     answer:
-      "PET şişeler, kavanozlar, kapaklar, preformlar ve özel tasarım ambalaj ürünleri üretmekteyiz. Gıda, kozmetik, kimya ve ilaç sektörlerine yönelik geniş bir ürün yelpazemiz bulunmaktadır.",
+      "PET şişeler, plastik şişeler, kolonya şişeleri, sprey ambalajlar, oda parfümü şişeleri, sıvı sabun şişeleri, kapaklar ve özel üretim kozmetik ambalaj ürünleri üretmekteyiz. Kozmetik, kişisel bakım ve parfümeri sektörlerine yönelik geniş bir ürün yelpazemiz bulunmaktadır.",
   },
   {
     category: "Genel",
@@ -36,7 +36,7 @@ const faqData: FAQItem[] = [
     category: "Sipariş",
     question: "Minimum sipariş miktarı nedir?",
     answer:
-      "Minimum sipariş miktarları ürüne göre değişmektedir. PET şişelerde genellikle 1.000-20.000 adet, kapaklarda 20.000-50.000 adet, preformlarda 50.000-100.000 adet minimum sipariş alıyoruz. Detaylı bilgi için teklif formumuzu doldurabilirsiniz.",
+      "Minimum sipariş miktarları ürüne göre değişmektedir. PET ve plastik şişelerde genellikle 5.000-20.000 adet, kapaklarda 20.000-50.000 adet minimum sipariş alıyoruz. Detaylı bilgi için teklif formumuzu doldurabilirsiniz.",
   },
   {
     category: "Sipariş",

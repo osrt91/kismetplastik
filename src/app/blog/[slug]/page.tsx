@@ -91,7 +91,7 @@ const blogPosts: BlogPost[] = [
     content: [
       "Doğru ambalaj seçimi, ürün kalitesini ve marka algısını doğrudan etkiler. Şişe seçiminde dikkat edilmesi gereken birçok kriter bulunmaktadır.",
       "Hacim, en temel seçim kriteridir. Ürün miktarı, hedef pazar ve tüketim alışkanlıkları hacim belirlemede etkili olan faktörlerdir.",
-      "Ağız çapı, kapak uyumluluğunu belirler. 28mm PCO standart su şişeleri için, 38mm yağ ve sos ürünleri için, 63mm+ geniş ağız kavanozlar için uygundur.",
+      "Ağız çapı, kapak uyumluluğunu belirler. 18mm serum ve esansiyel yağ şişeleri için, 20mm kolonya ve parfüm şişeleri için, 24mm kozmetik ve kişisel bakım ürünleri için, 28mm sıvı sabun ve şampuan şişeleri için uygundur.",
       "Malzeme seçimi ürün ile uyumlu olmalıdır. PET gıda ve içecek için ideal iken, HDPE temizlik ürünleri için daha uygundur.",
       "Tasarım, marka kimliğini yansıtmalıdır. Standart kalıplar maliyet avantajı sağlarken, özel kalıplar markanızı farklılaştırır.",
     ],

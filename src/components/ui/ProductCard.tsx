@@ -7,11 +7,13 @@ const categoryConfig: Record<
   { name: string; bg: string; pattern: string; badge: string; badgeText: string }
 > = {
   "pet-siseler": { name: "PET Şişeler", bg: "#EBF3FB", pattern: "#2E6AAF", badge: "#D6E7F7", badgeText: "#1F4A7E" },
-  "kavanozlar": { name: "Kavanozlar", bg: "#FEF9E7", pattern: "#D9A000", badge: "#FEF3D1", badgeText: "#92610A" },
-  "kapaklar": { name: "Kapaklar", bg: "#ECFDF5", pattern: "#22C55E", badge: "#DCFCE7", badgeText: "#166534" },
-  "preformlar": { name: "Preformlar", bg: "#F5F3FF", pattern: "#8B5CF6", badge: "#EDE9FE", badgeText: "#5B21B6" },
+  "plastik-siseler": { name: "Plastik Şişeler", bg: "#FEF9E7", pattern: "#D9A000", badge: "#FEF3D1", badgeText: "#92610A" },
+  "kolonya": { name: "Kolonya Grubu", bg: "#F5F3FF", pattern: "#8B5CF6", badge: "#EDE9FE", badgeText: "#5B21B6" },
+  "sprey": { name: "Sprey Grubu", bg: "#ECFDF5", pattern: "#22C55E", badge: "#DCFCE7", badgeText: "#166534" },
+  "oda-parfumu": { name: "Oda Parfümü Grubu", bg: "#F0FDFA", pattern: "#14B8A6", badge: "#CCFBF1", badgeText: "#115E59" },
+  "sivi-sabun": { name: "Sıvı Sabun Grubu", bg: "#EFF6FF", pattern: "#3B82F6", badge: "#DBEAFE", badgeText: "#1E40AF" },
+  "kapaklar": { name: "Kapak Grubu", bg: "#FEF2F2", pattern: "#EF4444", badge: "#FEE2E2", badgeText: "#991B1B" },
   "ozel-uretim": { name: "Özel Üretim", bg: "#FFF1F2", pattern: "#F43F5E", badge: "#FFE4E6", badgeText: "#9F1239" },
-  "ambalaj-setleri": { name: "Ambalaj Setleri", bg: "#F0FDFA", pattern: "#14B8A6", badge: "#CCFBF1", badgeText: "#115E59" },
 };
 
 const colorHexMap: Record<string, string> = {

@@ -12,12 +12,14 @@ interface Props {
   onColorChange?: (color: string) => void;
 }
 
-const categoryToSvgType: Record<CategorySlug, "bottle" | "jar" | "cap" | "preform" | "set"> = {
+const categoryToSvgType: Record<CategorySlug, "bottle" | "cap"> = {
   "pet-siseler": "bottle",
-  "kavanozlar": "jar",
+  "plastik-siseler": "bottle",
+  "kolonya": "bottle",
+  "sprey": "bottle",
+  "oda-parfumu": "bottle",
+  "sivi-sabun": "bottle",
   "kapaklar": "cap",
-  "preformlar": "preform",
-  "ambalaj-setleri": "set",
   "ozel-uretim": "bottle",
 };
 

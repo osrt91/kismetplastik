@@ -18,7 +18,7 @@
     "titleBefore": "Your Trusted Partner in",
     "titleAfter": "Cosmetic Packaging",
     "words": ["Reliable", "Quality", "Innovative"],
-    "subtitle": "Since 1969, high-quality PET bottles, jars, and caps specialized for the cosmetics sector. Custom design, private label, and wholesale solutions at your service.",
+    "subtitle": "Since 1969, high-quality PET bottles, plastic bottles, cologne bottles, spray packaging, caps and custom production solutions for the cosmetics sector. Custom design, private label, and wholesale solutions at your service.",
     "ctaProducts": "View Products",
     "ctaQuote": "Request Quote",
     "highlight1": "ISO 9001 Certified",
@@ -46,7 +46,7 @@
     "aboutTitle": "The Name You Trust in",
     "aboutTitleAccent": "Cosmetic Packaging",
     "aboutLead1": "Since 1969, Kısmet Plastik has been offering quality and trust in cosmetic packaging production. With our wide product range, we can meet all the needs of the cosmetics sector.",
-    "aboutLead2": "We serve our B2B customers with many cosmetic packaging solutions including cosmetic bottles, cream jars, private label products, caps, and sprays.",
+    "aboutLead2": "We serve our B2B customers with many cosmetic packaging solutions including PET bottles, plastic bottles, cologne bottles, spray packaging, room fragrance bottles, liquid soap bottles and caps.",
     "aboutFacility": "Our Production Facility",
     "aboutMore": "Learn More",
     "sectorsOverline": "Sectors We Serve",
@@ -86,20 +86,22 @@
     "Competitive pricing and flexible payment options"
   ],
   "homeCategories": [
-    { "name": "PET Bottles", "description": "PET bottles in various volumes and designs for food, beverage and cosmetics sectors.", "count": "120+" },
-    { "name": "Jars", "description": "Wide-mouth PET jars for honey, jam, sauce and other food products.", "count": "85+" },
-    { "name": "Caps", "description": "Standard and custom cap varieties for all types of bottles and jars.", "count": "60+" },
-    { "name": "Preforms", "description": "High-quality PET preforms for your own production line.", "count": "40+" },
-    { "name": "Custom Production", "description": "Custom design and production solutions for your brand, from mold design to production.", "count": "Unlimited" },
-    { "name": "Packaging Sets", "description": "Complete packaging solution packages including bottle, cap and label.", "count": "30+" }
+    { "name": "PET Bottles", "description": "PET bottles in various volumes and designs for cosmetics, cologne and personal care products.", "count": "15+" },
+    { "name": "Plastic Bottles", "description": "Durable plastic bottle varieties made from HDPE, PP and LDPE materials.", "count": "10+" },
+    { "name": "Cologne Group", "description": "Custom-designed bottles and packaging solutions for cologne manufacturers.", "count": "8+" },
+    { "name": "Spray Group", "description": "Spray-mechanism cosmetic and cleaning product packaging.", "count": "6+" },
+    { "name": "Room Fragrance Group", "description": "Decorative bottle designs for room fragrances and perfumery products.", "count": "5+" },
+    { "name": "Liquid Soap Group", "description": "Pump bottle solutions for liquid soap, shower gel and shampoo.", "count": "7+" },
+    { "name": "Caps Group", "description": "Screw, flip-top, pump, spray and custom design cap varieties.", "count": "12+" },
+    { "name": "Custom Production & Private Label", "description": "Custom mold design, private label and special production solutions for your brand.", "count": "Unlimited" }
   ],
   "homeSectors": [
-    { "name": "Food & Beverage", "description": "Hygienic packaging solutions for water, juice, sauce, honey, jam and other food products." },
-    { "name": "Cosmetics", "description": "Aesthetically designed bottles for shampoo, lotion, cream and perfume sector." },
-    { "name": "Chemical", "description": "Durable packaging solutions for cleaning products and industrial chemicals." },
-    { "name": "Pharmaceutical", "description": "Safe and hygienic packaging products compliant with pharmaceutical standards." },
-    { "name": "Personal Care", "description": "Modern designs for body care, hair care and skin care products." },
-    { "name": "Industrial", "description": "Custom production packaging for oil, fuel, agrochemicals and industrial liquids." }
+    { "name": "Cosmetics & Beauty", "description": "Aesthetically designed packaging for shampoo, lotion, cream, perfume and makeup products." },
+    { "name": "Cologne & Perfumery", "description": "Custom-designed bottle solutions for cologne, room fragrance and scent products." },
+    { "name": "Personal Care", "description": "Modern designs for body care, hair care, skin care and hygiene products." },
+    { "name": "Cleaning & Hygiene", "description": "Durable packaging solutions for liquid soap, hand sanitizer and cleaning products." },
+    { "name": "Hospitality & HoReCa", "description": "Mini-size and custom packaging solutions for hotels, restaurants and cafes." },
+    { "name": "Private Label", "description": "Custom-labeled, personalized cosmetic packaging production for brands." }
   ],
   "common": {
     "readMore": "Read More",
@@ -130,7 +132,7 @@
     "breadcrumbProducts": "Products",
     "overline": "Product Catalog",
     "title": "All Products",
-    "subtitle": "Browse our PET bottles, jars, caps and preform products. Use filters and search to easily find the product that suits your needs.",
+    "subtitle": "Browse our PET bottles, plastic bottles, cologne bottles, spray packaging, room fragrance bottles, liquid soap bottles and caps. Use filters and search to easily find the product that suits your needs.",
     "searchPlaceholder": "Search products...",
     "categoryAll": "All Categories",
     "materialAll": "All Materials",
@@ -332,7 +334,7 @@
     "callUs": "Call Us"
   },
   "footer": {
-    "brandDesc": "Kısmet Plastik has been providing quality and innovative solutions in cosmetic packaging since 1969. We serve you with cosmetic bottles, cream jars, private label products, caps, and sprays.",
+    "brandDesc": "Kısmet Plastik has been providing quality and innovative solutions in cosmetic packaging since 1969. We serve you with PET bottles, plastic bottles, cologne bottles, spray packaging, caps and custom production solutions.",
     "productsTitle": "Products",
     "companyTitle": "Company",
     "supportTitle": "Support",
