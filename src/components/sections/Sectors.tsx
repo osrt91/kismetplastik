@@ -1,10 +1,10 @@
 "use client";
 
-import { Utensils, Pipette, FlaskConical, Pill, Brush, Droplets } from "lucide-react";
+import { Drop, Eyedropper, Flask, Sparkle, PaintBrush, SprayBottle } from "@phosphor-icons/react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
 
-const sectorIcons = [Utensils, Pipette, FlaskConical, Pill, Brush, Droplets];
+const sectorIcons = [Drop, Eyedropper, Flask, Sparkle, PaintBrush, SprayBottle];
 
 export default function Sectors() {
   const { dict } = useLocale();
@@ -61,12 +61,12 @@ export default function Sectors() {
 
                   {/* Background decorative icon */}
                   <span className="pointer-events-none absolute -bottom-4 -right-4 text-primary-50 transition-transform duration-500 group-hover:scale-125">
-                    <Icon size={isHero ? 120 : 96} strokeWidth={0.6} />
+                    <Icon size={isHero ? 120 : 96} weight="thin" />
                   </span>
 
                   {/* Icon */}
                   <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent-100 text-accent-600 transition-all duration-300 group-hover:bg-accent-500 group-hover:text-primary-900 group-hover:scale-110 group-hover:rotate-6">
-                    <Icon size={22} />
+                    <Icon size={22} weight="duotone" />
                   </div>
 
                   {/* Content */}

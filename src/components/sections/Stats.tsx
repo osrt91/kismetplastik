@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useLocale } from "@/contexts/LocaleContext";
-import { Trophy, Package, Users, Factory } from "lucide-react";
+import { Trophy, Package, Users, Factory } from "@phosphor-icons/react";
 
 const statKeys = ["statsExperience", "statsProducts", "statsCustomers", "statsCapacity"] as const;
 const statValues = [
@@ -119,7 +119,7 @@ export default function Stats() {
                 >
                   {/* Icon */}
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500/10 text-accent-400 transition-colors duration-300 group-hover:bg-accent-500/20">
-                    <Icon size={24} strokeWidth={1.5} />
+                    <Icon size={24} weight="duotone" />
                   </div>
 
                   {/* Number */}

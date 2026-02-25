@@ -4,10 +4,10 @@ import {
   Factory,
   Recycle,
   Truck,
-  HeadphonesIcon,
+  Headphones,
   Gauge,
   ShieldCheck,
-} from "lucide-react";
+} from "@phosphor-icons/react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
 
@@ -37,7 +37,7 @@ export default function WhyUs() {
     { icon: Recycle, title: f.ecoFriendly, description: f.ecoFriendlyDesc },
     { icon: Truck, title: f.fastDelivery, description: f.fastDeliveryDesc },
     { icon: Gauge, title: f.highCapacity, description: f.highCapacityDesc },
-    { icon: HeadphonesIcon, title: f.support, description: f.supportDesc },
+    { icon: Headphones, title: f.support, description: f.supportDesc },
   ];
 
   return (
@@ -126,7 +126,7 @@ export default function WhyUs() {
                     <div
                       className={`mb-5 flex h-14 w-14 items-center justify-center rounded-xl ${scheme.iconBg} ${scheme.iconText} transition-all duration-300 ${scheme.iconHoverBg} group-hover:text-white group-hover:scale-110 group-hover:rotate-3`}
                     >
-                      <feature.icon size={26} />
+                      <feature.icon size={26} weight="duotone" />
                     </div>
                     <h3 className="mb-3 text-lg font-bold text-primary-900">
                       {feature.title}
