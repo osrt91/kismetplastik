@@ -35,10 +35,10 @@ const blogPosts: BlogPost[] = [
     featured: true,
   },
   {
-    slug: "gida-ambalaj-trendleri-2026",
-    title: "2026 Yılında Gıda Ambalaj Trendleri",
+    slug: "kozmetik-ambalaj-trendleri-2026",
+    title: "2026 Yılında Kozmetik Ambalaj Trendleri",
     excerpt:
-      "Sürdürülebilirlik, akıllı ambalaj ve minimalist tasarım gibi öne çıkan gıda ambalaj trendlerini keşfedin.",
+      "Sürdürülebilirlik, akıllı ambalaj ve minimalist tasarım gibi öne çıkan kozmetik ambalaj trendlerini keşfedin.",
     category: "Sektör",
     date: "2026-02-10",
     readTime: "6 dk",
@@ -48,7 +48,7 @@ const blogPosts: BlogPost[] = [
     slug: "pet-malzeme-avantajlari",
     title: "PET Malzemenin Avantajları Nelerdir?",
     excerpt:
-      "PET'in hafifliği, şeffaflığı, geri dönüşülebilirliği ve gıda güvenliği açısından sunduğu avantajlar.",
+      "PET'in hafifliği, şeffaflığı, geri dönüşülebilirliği ve kozmetik ambalaj açısından sunduğu avantajlar.",
     category: "Bilgi",
     date: "2026-02-05",
     readTime: "5 dk",

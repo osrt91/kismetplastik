@@ -30,7 +30,7 @@ const faqData: FAQItem[] = [
     category: "Genel",
     question: "Hangi sektörlere hizmet veriyorsunuz?",
     answer:
-      "Gıda & içecek, kozmetik, kimya, ilaç & eczacılık, kişisel bakım ve endüstriyel sektörlere hizmet vermekteyiz. Her sektörün standartlarına uygun ürünler sunuyoruz.",
+      "Kozmetik, parfümeri, kişisel bakım, temizlik, otelcilik sektörlerine hizmet vermekteyiz. Her sektörün standartlarına uygun ürünler sunuyoruz.",
   },
   {
     category: "Sipariş",
@@ -64,9 +64,9 @@ const faqData: FAQItem[] = [
   },
   {
     category: "Ürün",
-    question: "Ürünleriniz gıdaya uygun mu?",
+    question: "Ürünleriniz kozmetik sektörüne uygun mu?",
     answer:
-      "Evet, tüm gıda ambalajı ürünlerimiz Türk Gıda Kodeksi ve AB gıda temas malzemesi yönetmeliklerine uygun olarak üretilmektedir. İlgili test raporları ve sertifikalar mevcuttur.",
+      "Evet, tüm ürünlerimiz kozmetik sektörü standartlarına uygun olarak üretilmektedir. ISO 9001 kalite yönetim sistemi çerçevesinde üretilen ürünlerimiz için ilgili test raporları ve uygunluk sertifikaları mevcuttur.",
   },
   {
     category: "Ürün",
@@ -84,7 +84,7 @@ const faqData: FAQItem[] = [
     category: "Kalite",
     question: "Kalite kontrol süreciniz nasıldır?",
     answer:
-      "4 aşamalı kalite kontrol sürecimiz: Hammadde kontrolü, üretim süreç kontrolü, ürün testleri ve son kontrol & sevkiyat aşamalarından oluşur. Modern laboratuvarımızda boyutsal ölçüm, basınç dayanım, sızdırmazlık ve gıdaya uygunluk testleri yapılmaktadır.",
+      "4 aşamalı kalite kontrol sürecimiz: Hammadde kontrolü, üretim süreç kontrolü, ürün testleri ve son kontrol & sevkiyat aşamalarından oluşur. Modern laboratuvarımızda boyutsal ölçüm, basınç dayanım, sızdırmazlık ve kozmetik uygunluk testleri yapılmaktadır.",
   },
   {
     category: "Bayi",

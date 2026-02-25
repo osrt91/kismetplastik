@@ -91,8 +91,8 @@ const placeholders: Record<TabKey, PlaceholderCard[]> = {
       accent: "from-pink-500/10 to-pink-600/5",
     },
     {
-      title: "Kavanozlar",
-      description: "Krem ve maske kavanoz serileri",
+      title: "Kozmetik Ambalajlar",
+      description: "Kozmetik şişe ve ambalaj serileri",
       icon: Package,
       accent: "from-rose-500/10 to-rose-600/5",
     },

@@ -7,7 +7,7 @@ import { useLocale } from "@/contexts/LocaleContext";
 const testimonials = [
   {
     name: "Mehmet Yılmaz",
-    company: "Atlas Gıda A.Ş.",
+    company: "Atelier Kozmetik",
     role: "Satın Alma Müdürü",
     text: "Kısmet Plastik ile 5 yıldır çalışıyoruz. Ürün kalitesi ve teslimat süreleri her zaman beklentilerimizin üzerinde oldu.",
     rating: 5,
@@ -21,22 +21,22 @@ const testimonials = [
   },
   {
     name: "Can Özkan",
-    company: "Özkan İlaç San.",
-    role: "Üretim Direktörü",
-    text: "ISO sertifikalı üretim süreçleri ve gıdaya uygunluk testleri bizim için en önemli kriterdi. Kısmet Plastik bu konuda çok başarılı.",
+    company: "Orient Parfüm",
+    role: "Üretim Müdürü",
+    text: "ISO sertifikalı üretim süreçleri ve kozmetik uygunluk testleri bizim için en önemli kriterdi. Kısmet Plastik bu konuda çok başarılı.",
     rating: 5,
   },
 ];
 
 const referenceCompanies = [
-  "Atlas Gıda",
+  "Atelier Kozmetik",
   "Demir Kozmetik",
-  "Özkan İlaç",
-  "Yıldız Su",
-  "Akdeniz Gıda",
+  "Orient Parfüm",
+  "Royal Beauty",
+  "Derma Care",
   "Marmara Kimya",
-  "Ege Tarım",
-  "Trakya Süt",
+  "Elegance Parfümeri",
+  "Natura Kozmetik",
 ];
 
 export default function Testimonials() {

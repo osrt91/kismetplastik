@@ -1,7 +1,7 @@
 "use client";
 
 interface Props {
-  type: "bottle" | "jar" | "cap" | "preform" | "set";
+  type: "bottle" | "jar" | "cap" | "preform" | "spray" | "set";
   color?: string;
   size?: number;
   className?: string;
@@ -76,12 +76,14 @@ export default function ProductSVG({ type, color = "Şeffaf", size = 120, classN
     );
   }
 
-  if (type === "preform") {
+  if (type === "spray" || type === "preform") {
     return (
-      <svg width={size * 0.5} height={size * 1.5} viewBox="0 0 40 120" fill="none" className={`${animClass} ${className}`}>
-        <rect x="10" y="2" width="20" height="15" rx="2" fill={stroke} opacity="0.3" />
-        <path d="M12 17 C12 17 8 40 8 60 C8 90 14 110 20 115 C26 110 32 90 32 60 C32 40 28 17 28 17 Z" fill={fill} stroke={stroke} strokeWidth="1.5" opacity="0.9" />
-        <path d="M14 30 C14 30 17 28 20 28 C23 28 26 30 26 30" stroke="white" strokeWidth="0.6" opacity="0.3" />
+      <svg width={size * 0.7} height={size * 1.6} viewBox="0 0 56 128" fill="none" className={`${animClass} ${className}`}>
+        <rect x="18" y="2" width="20" height="10" rx="2" fill={stroke} opacity="0.2" />
+        <rect x="12" y="12" width="32" height="14" rx="3" fill={stroke} opacity="0.5" />
+        <rect x="4" y="16" width="10" height="6" rx="2" fill={stroke} opacity="0.4" />
+        <path d="M20 26 C20 26 16 38 16 48 L16 115 C16 120 22 124 28 124 C34 124 40 120 40 115 L40 48 C40 38 36 26 36 26 Z" fill={fill} stroke={stroke} strokeWidth="1.5" opacity="0.9" />
+        <path d="M22 50 C22 50 25 48 28 48 C31 48 34 50 34 50" stroke="white" strokeWidth="0.8" opacity="0.4" />
       </svg>
     );
   }

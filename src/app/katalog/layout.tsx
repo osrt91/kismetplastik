@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Katalog İndir",
   description:
-    "Kısmet Plastik ürün kataloglarını indirin. PET şişe, kavanoz, kapak ve preform katalogları. PDF formatında ücretsiz.",
+    "Kısmet Plastik ürün kataloglarını indirin. PET şişe, sprey, kapak ve pompa katalogları. PDF formatında ücretsiz.",
   openGraph: {
     title: "Katalog İndir | Kısmet Plastik",
-    description: "Ürün kataloglarımızı indirerek tüm ürünlerimizi inceleyin.",
+    description: "Kozmetik ambalaj ürün kataloglarımızı indirerek tüm ürünlerimizi inceleyin.",
   },
 };
 

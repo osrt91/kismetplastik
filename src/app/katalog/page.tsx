@@ -17,7 +17,7 @@ const catalogs = [
   {
     title: "Genel Ürün Kataloğu 2026",
     description:
-      "Tüm PET şişe, kavanoz, kapak ve preform ürünlerimizi içeren kapsamlı katalog.",
+      "Tüm PET şişe, sprey, kapak ve pompa ürünlerimizi içeren kapsamlı katalog.",
     pages: "48 sayfa",
     size: "12 MB",
     icon: BookOpen,

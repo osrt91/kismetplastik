@@ -112,7 +112,7 @@ const labTests = [
   { text: "Düşme dayanım testi", icon: ShieldCheck, progress: 92 },
   { text: "Renk ve şeffaflık ölçümü", icon: Palette, progress: 97 },
   { text: "Yüzey kalite kontrolü", icon: Scan, progress: 96 },
-  { text: "Gıdaya uygunluk (migrasyon) testleri", icon: Apple, progress: 100 },
+  { text: "Kozmetik uygunluk (migrasyon) testleri", icon: Apple, progress: 100 },
   { text: "UV dayanım testi", icon: Sun, progress: 94 },
 ];
 

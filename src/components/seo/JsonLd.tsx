@@ -4,7 +4,7 @@ export function LocalBusinessJsonLd() {
     "@type": "LocalBusiness",
     name: "Kısmet Plastik",
     description:
-      "Türkiye'nin lider kozmetik ambalaj üreticisi. PET şişe, kavanoz, kapak ve özel üretim kozmetik ambalaj çözümleri.",
+      "Türkiye'nin lider kozmetik ambalaj üreticisi. PET şişe, sprey, kapak ve özel üretim kozmetik ambalaj çözümleri.",
     url: "https://www.kismetplastik.com",
     telephone: "+902125498703",
     email: "bilgi@kismetplastik.com",

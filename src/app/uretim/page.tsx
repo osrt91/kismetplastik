@@ -152,7 +152,7 @@ export default function UretimPage() {
                 {p.facilityTitle}
               </h2>
               <p className="mb-4 leading-relaxed text-neutral-600">
-                İstanbul Organize Sanayi Bölgesi&apos;nde yer alan 15.000 m² kapalı alana sahip
+                İkitelli OSB Başakşehir&apos;de yer alan 15.000 m² kapalı alana sahip
                 üretim tesisimiz, Avrupa standartlarında donatılmış modern makinelerle hizmet vermektedir.
               </p>
               <p className="mb-6 leading-relaxed text-neutral-600">
