@@ -51,6 +51,33 @@
   --foreground: var(--neutral-900);
 }
 
+[data-theme="dark"] {
+  --primary-900: #4A90D9;
+  --primary-700: #6BA8E5;
+  --primary-500: #8BC0F0;
+  --primary-300: #B5D6F5;
+  --primary-100: #1A2A3D;
+  --primary-50: #0F1A28;
+
+  --accent-500: #f2b300;
+  --accent-600: #d9a000;
+  --accent-400: #f5c333;
+  --accent-300: #f8d366;
+  --accent-100: #2A2310;
+
+  --neutral-900: #E8E8E8;
+  --neutral-700: #CCCCCC;
+  --neutral-500: #999999;
+  --neutral-300: #555555;
+  --neutral-200: #3A3A3A;
+  --neutral-100: #2A2A2A;
+  --neutral-50: #1E1E1E;
+  --neutral-0: #121212;
+
+  --background: #121212;
+  --foreground: #E8E8E8;
+}
+
 @theme inline {
   --color-primary-900: var(--primary-900);
   --color-primary-700: var(--primary-700);
@@ -90,6 +117,7 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::selection {
@@ -350,4 +378,72 @@ button:hover .bounce-on-hover {
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-fade-in {
+    animation: scroll-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+  }
+
+  @keyframes scroll-reveal {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-scale {
+    animation: scroll-scale-up linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 40%;
+  }
+
+  @keyframes scroll-scale-up {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+}
+
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent-500);
+  transform-origin: left;
+  z-index: 100;
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-progress-bar {
+    animation: grow-progress linear;
+    animation-timeline: scroll();
+  }
+
+  @keyframes grow-progress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

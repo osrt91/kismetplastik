@@ -11,9 +11,12 @@ import {
   ChevronDown,
   Factory,
   Search,
+  Sun,
+  Moon,
 } from "lucide-react";
 import clsx from "clsx";
 import { useLocale } from "@/contexts/LocaleContext";
+import { useTheme } from "@/contexts/ThemeContext";
 import SearchModal from "@/components/ui/SearchModal";
 
 const categoryHrefs = [
@@ -26,6 +29,7 @@ const categoryHrefs = [
 
 export default function Header() {
   const { locale, setLocale, dict } = useLocale();
+  const { theme, toggleTheme } = useTheme();
   const nav = dict.nav;
   const categories = (dict.homeCategories as { name: string }[])?.slice(0, 5) ?? [];
   const navigation = [
@@ -116,6 +120,14 @@ export default function Header() {
               <Factory size={14} />
               Başakşehir, İstanbul
             </span>
+            <div className="h-4 w-px bg-white/20" />
+            <button
+              onClick={toggleTheme}
+              className="rounded-lg p-1.5 text-white/70 transition-all duration-200 hover:bg-white/10 hover:text-white"
+              aria-label={theme === "dark" ? "Açık temaya geç" : "Koyu temaya geç"}
+            >
+              {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
+            </button>
             <div className="h-4 w-px bg-white/20" />
             <div className="flex items-center gap-0.5 rounded-lg border border-white/20 p-0.5">
               <button
@@ -230,6 +242,13 @@ export default function Header() {
               <kbd className="hidden rounded border border-neutral-200 bg-neutral-50 px-1.5 py-0.5 text-[10px] font-medium text-neutral-400 transition-opacity group-hover:inline-flex">
                 Ctrl+K
               </kbd>
+            </button>
+            <button
+              onClick={toggleTheme}
+              className="rounded-lg p-2 text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-700"
+              aria-label={theme === "dark" ? "Açık temaya geç" : "Koyu temaya geç"}
+            >
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
             </button>
             <Link
               href="/bayi-girisi"

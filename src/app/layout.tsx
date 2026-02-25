@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LocaleProvider } from "@/contexts/LocaleContext";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
@@ -89,14 +90,17 @@ export default function RootLayout({
         >
           İçeriğe atla
         </a>
-        <LocaleProvider>
-          <Header />
-          <main id="main-content" tabIndex={-1}>{children}</main>
-          <Footer />
-          <WhatsAppButton />
-          <ScrollToTop />
-          <CookieBanner />
-        </LocaleProvider>
+        <div className="scroll-progress-bar" />
+        <ThemeProvider>
+          <LocaleProvider>
+            <Header />
+            <main id="main-content" tabIndex={-1}>{children}</main>
+            <Footer />
+            <WhatsAppButton />
+            <ScrollToTop />
+            <CookieBanner />
+          </LocaleProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
