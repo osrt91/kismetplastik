@@ -67,9 +67,31 @@ export default function BayiGirisiPage() {
     },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(d.notActiveYet);
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        window.location.href = `/${dict.nav.home === "Ana Sayfa" ? "tr" : "en"}/bayi-panel`;
+      } else {
+        setError(data.error || "Giriş başarısız.");
+      }
+    } catch {
+      setError("Bağlantı hatası. Lütfen tekrar deneyin.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -271,14 +293,19 @@ export default function BayiGirisiPage() {
 
                     <button
                       type="submit"
-                      className="group w-full rounded-xl bg-accent-500 py-3.5 font-bold text-primary-900 shadow-md transition-all duration-300 hover:scale-[1.02] hover:bg-accent-600 hover:shadow-lg active:scale-[0.98]"
+                      disabled={loading}
+                      className="group w-full rounded-xl bg-accent-500 py-3.5 font-bold text-primary-900 shadow-md transition-all duration-300 hover:scale-[1.02] hover:bg-accent-600 hover:shadow-lg active:scale-[0.98] disabled:opacity-60 disabled:hover:scale-100"
                     >
                       <span className="inline-flex items-center gap-2">
-                        {d.loginButton}
-                        <ArrowRight
-                          size={16}
-                          className="transition-transform duration-300 group-hover:translate-x-1"
-                        />
+                        {loading ? (
+                          <span className="h-5 w-5 animate-spin rounded-full border-2 border-primary-900 border-t-transparent" />
+                        ) : (
+                          <ArrowRight
+                            size={16}
+                            className="transition-transform duration-300 group-hover:translate-x-1"
+                          />
+                        )}
+                        {loading ? "Giriş yapılıyor..." : d.loginButton}
                       </span>
                     </button>
                   </form>
