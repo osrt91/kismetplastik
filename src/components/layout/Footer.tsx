@@ -84,9 +84,9 @@ export default function Footer() {
               <Image
                 src="/images/logo.jpg"
                 alt="Kısmet Plastik"
-                width={56}
-                height={56}
-                className="h-14 w-14 rounded-lg bg-white object-contain p-1"
+                width={160}
+                height={40}
+                className="h-10 w-auto rounded-lg bg-white object-contain px-2 py-1"
               />
             </Link>
 
@@ -115,15 +115,15 @@ export default function Footer() {
               </p>
             </div>
 
-            <a
-              href="/images/qr.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-flex items-center gap-2 rounded-md border border-white/10 px-3 py-2 text-xs font-medium text-white/60 transition-colors hover:border-white/20 hover:text-white/80"
-            >
-              <QrCode size={15} />
-              {dict.components.qrDownload}
-            </a>
+            <div className="mt-5 inline-block rounded-lg bg-white p-2">
+              <Image
+                src="/images/qr.jpg"
+                alt="QR Kod"
+                width={80}
+                height={80}
+                className="h-20 w-20 object-contain"
+              />
+            </div>
           </div>
 
           {/* Products */}

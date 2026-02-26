@@ -130,7 +130,7 @@ export default function Header() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 lg:px-6">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <Image src="/images/logo.jpg" alt="Kısmet Plastik" width={48} height={48} className="h-10 w-10 object-contain lg:h-12 lg:w-12" priority />
+            <Image src="/images/logo.jpg" alt="Kısmet Plastik" width={180} height={45} className="h-8 w-auto object-contain lg:h-10" priority />
           </Link>
 
           {/* Desktop Nav - Radix NavigationMenu */}
