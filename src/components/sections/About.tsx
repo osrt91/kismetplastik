@@ -30,12 +30,10 @@ export default function About() {
               <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-gradient-to-br from-primary-100 to-primary-50">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <Image
-                      src="/images/logo.jpg"
+                    <img
+                      src="/images/logo2.svg"
                       alt="Kısmet Plastik"
-                      width={180}
-                      height={180}
-                      className="mx-auto mb-4 rounded-3xl shadow-2xl transition-transform duration-500 hover:scale-110 hover:rotate-3"
+                      className="mx-auto mb-4 h-36 w-36 drop-shadow-2xl transition-transform duration-500 hover:scale-110 hover:rotate-3"
                     />
                     <p className="text-sm font-semibold text-primary-700">
                       {h.aboutFacility}

@@ -86,7 +86,7 @@ export default function BayiPanelLayout({ children }: { children: React.ReactNod
       >
         <div className="flex items-center justify-between border-b border-neutral-100 px-5 py-4">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/images/logo.jpg" alt="Kısmet Plastik" width={36} height={36} className="h-9 w-9 rounded-md object-contain" />
+            <img src="/images/logo2.svg" alt="Kısmet Plastik" className="h-9 w-9" />
             <div className="flex flex-col leading-none">
               <span className="text-sm font-black text-primary-900">KİSMET</span>
               <span className="text-[8px] font-semibold tracking-[0.15em] text-neutral-400">{t.panel}</span>
