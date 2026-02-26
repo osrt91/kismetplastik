@@ -7,7 +7,7 @@ import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import CookieBanner from "@/components/ui/CookieBanner";
-import AIChatbot from "@/components/ui/AIChatbot";
+// import AIChatbot from "@/components/ui/AIChatbot";
 import InstallPrompt from "@/components/ui/InstallPrompt";
 import { LocalBusinessJsonLd, OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { locales } from "@/middleware";
@@ -147,7 +147,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             </main>
             <Footer />
             <WhatsAppButton />
-            <AIChatbot />
+            {/* <AIChatbot /> */}
             <ScrollToTop />
             <InstallPrompt />
             <CookieBanner />
