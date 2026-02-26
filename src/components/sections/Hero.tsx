@@ -220,7 +220,7 @@ export default function Hero() {
                   <img
                     src="/images/logo2.svg"
                     alt="Kısmet Plastik"
-                    className="h-40 w-40 drop-shadow-2xl"
+                    className="h-40 w-40 brightness-0 invert drop-shadow-2xl"
                   />
                 </div>
               </div>

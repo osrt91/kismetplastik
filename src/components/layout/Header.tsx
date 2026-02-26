@@ -218,7 +218,7 @@ export default function Header() {
         <SheetContent side="right" className="w-[85%] max-w-sm p-0">
           <SheetHeader className="border-b border-border px-5 py-4">
             <SheetTitle className="flex items-center gap-2">
-              <img src="/images/logo2.svg" alt="Kısmet Plastik" className="h-9 w-9" />
+              <img src="/images/logo2.svg" alt="Kısmet Plastik" className="h-9 w-9 dark:brightness-0 dark:invert" />
               <span className="text-sm font-bold text-foreground">Kısmet Plastik</span>
             </SheetTitle>
           </SheetHeader>
