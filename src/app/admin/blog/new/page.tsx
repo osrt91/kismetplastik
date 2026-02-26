@@ -70,24 +70,24 @@ export default function NewBlogPage() {
       <div className="flex items-center gap-3">
         <Link
           href="/admin/blog"
-          className="rounded-lg p-2 text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-neutral-600"
+          className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
         >
           <ArrowLeft size={18} />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-neutral-900">Yeni Blog Yazısı</h1>
-          <p className="text-sm text-neutral-500">Yeni bir blog yazısı oluşturun</p>
+          <h1 className="text-2xl font-bold text-foreground">Yeni Blog Yazısı</h1>
+          <p className="text-sm text-muted-foreground">Yeni bir blog yazısı oluşturun</p>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-neutral-400">
+        <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
             Yazı Bilgileri
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="sm:col-span-2">
-              <label className="mb-1.5 block text-sm font-medium text-neutral-700">
+              <label className="mb-1.5 block text-sm font-medium text-foreground">
                 Başlık *
               </label>
               <input
@@ -96,27 +96,27 @@ export default function NewBlogPage() {
                 value={form.title}
                 onChange={handleTitleChange}
                 required
-                className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-purple-300 focus:ring-2 focus:ring-purple-100"
+                className="w-full rounded-lg border border-border px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
                 placeholder="Blog yazısı başlığı"
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-neutral-700">Slug</label>
+              <label className="mb-1.5 block text-sm font-medium text-foreground">Slug</label>
               <input
                 type="text"
                 name="slug"
                 value={form.slug}
                 onChange={handleChange}
-                className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm text-neutral-500 outline-none focus:border-purple-300 focus:ring-2 focus:ring-purple-100"
+                className="w-full rounded-lg border border-border px-3.5 py-2.5 text-sm text-muted-foreground outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-neutral-700">Kategori</label>
+              <label className="mb-1.5 block text-sm font-medium text-foreground">Kategori</label>
               <select
                 name="category"
                 value={form.category}
                 onChange={handleChange}
-                className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-purple-300 focus:ring-2 focus:ring-purple-100"
+                className="w-full rounded-lg border border-border px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               >
                 {CATEGORIES.map((cat) => (
                   <option key={cat} value={cat}>{cat}</option>
@@ -124,7 +124,7 @@ export default function NewBlogPage() {
               </select>
             </div>
             <div className="sm:col-span-2">
-              <label className="mb-1.5 block text-sm font-medium text-neutral-700">
+              <label className="mb-1.5 block text-sm font-medium text-foreground">
                 Özet *
               </label>
               <textarea
@@ -133,12 +133,12 @@ export default function NewBlogPage() {
                 onChange={handleChange}
                 rows={2}
                 required
-                className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-purple-300 focus:ring-2 focus:ring-purple-100"
+                className="w-full rounded-lg border border-border px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
                 placeholder="Yazının kısa özeti..."
               />
             </div>
             <div className="sm:col-span-2">
-              <label className="mb-1.5 block text-sm font-medium text-neutral-700">
+              <label className="mb-1.5 block text-sm font-medium text-foreground">
                 İçerik *
               </label>
               <textarea
@@ -147,36 +147,36 @@ export default function NewBlogPage() {
                 onChange={handleChange}
                 rows={12}
                 required
-                className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm leading-relaxed outline-none focus:border-purple-300 focus:ring-2 focus:ring-purple-100"
+                className="w-full rounded-lg border border-border px-3.5 py-2.5 text-sm leading-relaxed outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
                 placeholder="Yazı içeriğini buraya yazın. Her paragraf arasında boş satır bırakın."
               />
             </div>
           </div>
         </div>
 
-        <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-neutral-400">
+        <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
             Ayarlar
           </h2>
           <div className="flex flex-wrap gap-6">
-            <label className="flex items-center gap-2 text-sm text-neutral-700">
+            <label className="flex items-center gap-2 text-sm text-foreground">
               <input
                 type="checkbox"
                 name="featured"
                 checked={form.featured}
                 onChange={handleChange}
-                className="h-4 w-4 rounded border-neutral-300 text-purple-600"
+                className="h-4 w-4 rounded border-border text-primary"
               />
               Öne Çıkan
             </label>
             <div className="flex items-center gap-2">
-              <label className="text-sm text-neutral-700">Okuma Süresi:</label>
+              <label className="text-sm text-foreground">Okuma Süresi:</label>
               <input
                 type="text"
                 name="readTime"
                 value={form.readTime}
                 onChange={handleChange}
-                className="w-20 rounded-lg border border-neutral-200 px-3 py-1.5 text-sm outline-none focus:border-purple-300"
+                className="w-20 rounded-lg border border-border px-3 py-1.5 text-sm outline-none focus:border-primary"
               />
             </div>
           </div>
@@ -185,14 +185,14 @@ export default function NewBlogPage() {
         <div className="flex items-center justify-end gap-3">
           <Link
             href="/admin/blog"
-            className="rounded-lg border border-neutral-200 px-5 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-50"
+            className="rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted"
           >
             İptal
           </Link>
           <button
             type="submit"
             disabled={saving || !form.title || !form.excerpt}
-            className="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-purple-700 disabled:opacity-50"
+            className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90 disabled:opacity-50"
           >
             <Save size={16} />
             {saving ? "Yayınlanıyor..." : "Yayınla"}

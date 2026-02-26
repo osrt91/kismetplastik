@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendQuoteEmail } from "@/lib/email";
+import { rateLimit } from "@/lib/rate-limit";
 
 interface QuoteFormData {
   name: string;
@@ -26,6 +27,15 @@ function validate(data: QuoteFormData): string | null {
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const { ok: allowed } = rateLimit(`quote:${ip}`, { limit: 3, windowMs: 60_000 });
+    if (!allowed) {
+      return NextResponse.json(
+        { success: false, error: "Çok fazla istek gönderdiniz. Lütfen biraz bekleyip tekrar deneyin." },
+        { status: 429 }
+      );
+    }
+
     const body = (await request.json()) as QuoteFormData;
     const error = validate(body);
 

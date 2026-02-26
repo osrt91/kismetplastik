@@ -35,12 +35,14 @@ export default function StickyQuoteBar({
     try {
       const dismissed = sessionStorage.getItem(DISMISS_STORAGE_KEY);
       if (dismissed) return;
-    } catch {}
+    } catch (e) {
+      if (process.env.NODE_ENV === "development") console.warn("sessionStorage unavailable", e);
+    }
 
     const onScroll = () => {
       try {
         if (sessionStorage.getItem(DISMISS_STORAGE_KEY)) return;
-      } catch {}
+      } catch { /* sessionStorage unavailable */ }
       const pastThreshold = window.scrollY > SCROLL_THRESHOLD;
       setVisible(pastThreshold);
     };
@@ -53,7 +55,7 @@ export default function StickyQuoteBar({
   const handleDismiss = () => {
     try {
       sessionStorage.setItem(DISMISS_STORAGE_KEY, "true");
-    } catch {}
+    } catch { /* sessionStorage unavailable */ }
     setVisible(false);
   };
 

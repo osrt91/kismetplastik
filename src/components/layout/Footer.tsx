@@ -76,94 +76,73 @@ export default function Footer() {
         </svg>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-16 lg:px-6">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
+      <div className="mx-auto max-w-7xl px-4 py-14 lg:px-6">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-12">
           {/* Brand */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="mb-4 inline-flex items-center gap-3">
+          <div className="lg:col-span-4">
+            <Link href="/" className="mb-5 inline-flex items-center gap-2">
               <Image
                 src="/images/logo.jpg"
                 alt="Kısmet Plastik"
-                width={48}
-                height={48}
-                className="h-12 w-12 rounded-lg bg-white object-contain p-1"
+                width={40}
+                height={40}
+                className="h-10 w-10 rounded-md bg-white object-contain p-0.5"
               />
-              <div className="flex flex-col">
-                <span className="text-xl font-bold tracking-tight">KİSMET</span>
-                <span className="-mt-1 text-[10px] font-semibold tracking-[0.25em] text-white/60">
+              <div className="flex flex-col leading-none">
+                <span className="text-lg font-black tracking-tight">KİSMET</span>
+                <span className="-mt-0.5 text-[9px] font-semibold tracking-[0.2em] text-white/50">
                   PLASTİK
                 </span>
               </div>
             </Link>
 
-            {/* Animated accent underline */}
-            <div className="mb-6 h-[2px] w-24 overflow-hidden rounded-full bg-white/10">
-              <div
-                className="h-full w-full rounded-full bg-gradient-to-r from-accent-400 via-accent-500 to-accent-400"
-                style={{
-                  backgroundSize: "200% 100%",
-                  animation: "shimmer 4s ease-in-out infinite",
-                }}
-              />
-            </div>
-
-            <p className="mb-6 max-w-sm text-sm leading-relaxed text-white/70">
+            <p className="mb-5 max-w-xs text-[13px] leading-relaxed text-white/60">
               {f.brandDesc}
             </p>
-            <div className="space-y-3">
+            <div className="space-y-2.5">
               <a
                 href="tel:+902125498703"
-                className="flex items-center gap-3 text-sm text-white/70 transition-colors hover:text-accent-400"
+                className="inline-flex items-center gap-2 text-[13px] text-white/70 transition-colors hover:text-white"
               >
-                <div className="flex h-8 w-8 items-center justify-center rounded-md bg-white/10">
-                  <Phone size={14} />
-                </div>
+                <Phone size={14} strokeWidth={1.8} />
                 0212 549 87 03
               </a>
+              <br />
               <a
                 href="mailto:bilgi@kismetplastik.com"
-                className="flex items-center gap-3 text-sm text-white/70 transition-colors hover:text-accent-400"
+                className="inline-flex items-center gap-2 text-[13px] text-white/70 transition-colors hover:text-white"
               >
-                <div className="flex h-8 w-8 items-center justify-center rounded-md bg-white/10">
-                  <Mail size={14} />
-                </div>
+                <Mail size={14} strokeWidth={1.8} />
                 bilgi@kismetplastik.com
               </a>
-              <div className="flex items-center gap-3 text-sm text-white/70">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-white/10">
-                  <MapPin size={14} />
-                </div>
+              <p className="flex items-start gap-2 text-[13px] text-white/50">
+                <MapPin size={14} strokeWidth={1.8} className="mt-0.5 shrink-0" />
                 İkitelli OSB Mah. İPKAS 4A Blok Sok. No:5 Başakşehir/İstanbul
-              </div>
+              </p>
             </div>
 
-            {/* QR Code */}
-            <div className="mt-6 flex items-center gap-3">
-              <a
-                href="/images/qr.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white/70 transition-all duration-200 hover:border-accent-400/40 hover:bg-white/10 hover:text-accent-400"
-              >
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-500/10 transition-colors group-hover:bg-accent-500/20">
-                  <QrCode size={18} className="text-accent-400" />
-                </div>
-                {dict.components.qrDownload}
-              </a>
-            </div>
+            <a
+              href="/images/qr.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 rounded-md border border-white/10 px-3 py-2 text-xs font-medium text-white/60 transition-colors hover:border-white/20 hover:text-white/80"
+            >
+              <QrCode size={15} />
+              {dict.components.qrDownload}
+            </a>
           </div>
 
           {/* Products */}
-          <div>
-            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-white/40">
+          <div className="lg:col-span-2 lg:col-start-6">
+            <h3 className="mb-3 text-[11px] font-bold uppercase tracking-widest text-white/35">
               {f.productsTitle}
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {productLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="inline-block text-sm text-white/70 transition-all duration-200 hover:translate-x-1.5 hover:text-accent-400"
+                    className="text-[13px] text-white/60 transition-colors hover:text-white"
                   >
                     {link.name}
                   </Link>
@@ -173,16 +152,16 @@ export default function Footer() {
           </div>
 
           {/* Company */}
-          <div>
-            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-white/40">
+          <div className="lg:col-span-3">
+            <h3 className="mb-3 text-[11px] font-bold uppercase tracking-widest text-white/35">
               {f.companyTitle}
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {companyLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="inline-block text-sm text-white/70 transition-all duration-200 hover:translate-x-1.5 hover:text-accent-400"
+                    className="text-[13px] text-white/60 transition-colors hover:text-white"
                   >
                     {link.name}
                   </Link>
@@ -192,21 +171,21 @@ export default function Footer() {
           </div>
 
           {/* Support */}
-          <div>
-            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-white/40">
+          <div className="lg:col-span-3">
+            <h3 className="mb-3 text-[11px] font-bold uppercase tracking-widest text-white/35">
               {f.supportTitle}
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {supportLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="group inline-flex items-center gap-1 text-sm text-white/70 transition-all duration-200 hover:translate-x-1.5 hover:text-accent-400"
+                    className="group inline-flex items-center gap-1 text-[13px] text-white/60 transition-colors hover:text-white"
                   >
                     {link.name}
                     {"external" in link && link.external && (
                       <ArrowUpRight
-                        size={12}
+                        size={11}
                         className="opacity-0 transition-opacity group-hover:opacity-100"
                       />
                     )}
@@ -218,40 +197,29 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Gradient Divider */}
-      <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-      </div>
-
       {/* Bottom Bar */}
-      <div>
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row lg:px-6">
-          <p className="text-xs text-white/40">
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 sm:flex-row lg:px-6">
+          <p className="text-[12px] text-white/35">
             &copy; {new Date().getFullYear()} {f.copyright}
           </p>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-3">
-              {socialLinks.map((social) => (
-                <div key={social.name} className="group relative">
-                  <a
-                    href={social.href}
-                    className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/60 transition-all duration-200 hover:scale-110 hover:bg-accent-500 hover:text-primary-900"
-                    aria-label={social.name}
-                  >
-                    <social.icon size={16} />
-                  </a>
-                  <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-white px-2 py-1 text-[10px] font-semibold text-primary-900 opacity-0 shadow-lg transition-all duration-200 group-hover:-top-9 group-hover:opacity-100">
-                    {social.name}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <div className="h-4 w-px bg-white/10" />
+          <div className="flex items-center gap-3">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/8 text-white/50 transition-colors hover:bg-white/15 hover:text-white"
+                aria-label={social.name}
+              >
+                <social.icon size={15} strokeWidth={1.8} />
+              </a>
+            ))}
+            <span className="h-3.5 w-px bg-white/10" />
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-1.5 text-xs text-white/40 transition-colors hover:text-accent-400"
+              className="flex items-center gap-1 text-[12px] text-white/35 transition-colors hover:text-white/60"
             >
-              <ArrowUp size={12} />
+              <ArrowUp size={12} strokeWidth={1.8} />
               <span className="hidden sm:inline">{dict.components.scrollUp}</span>
             </button>
           </div>

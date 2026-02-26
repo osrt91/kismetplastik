@@ -50,7 +50,7 @@ export default function AdminLayout({
       <head>
         <meta name="robots" content="noindex, nofollow" />
       </head>
-      <body className="antialiased bg-neutral-50">
+      <body className="antialiased bg-muted">
         <div className="flex h-screen">
           {/* Mobile overlay */}
           {sidebarOpen && (
@@ -67,7 +67,7 @@ export default function AdminLayout({
             }`}
           >
             <div className="flex h-16 items-center gap-3 border-b border-white/10 px-5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-400 font-black text-sm text-[#0f172a]">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent font-black text-sm text-accent-foreground">
                 KP
               </div>
               <div>
@@ -112,7 +112,7 @@ export default function AdminLayout({
             <div className="border-t border-white/10 p-3">
               <button
                 onClick={handleLogout}
-                className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-red-400/70 transition-colors hover:bg-red-500/10 hover:text-red-400"
+                className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-destructive/70 transition-colors hover:bg-destructive/10 hover:text-destructive"
               >
                 <LogOut size={18} />
                 Çıkış Yap
@@ -122,17 +122,17 @@ export default function AdminLayout({
 
           {/* Main content */}
           <div className="flex flex-1 flex-col overflow-hidden">
-            <header className="flex h-16 shrink-0 items-center gap-3 border-b border-neutral-200 bg-white px-4 lg:px-6">
+            <header className="flex h-16 shrink-0 items-center gap-3 border-b border-border bg-card px-4 lg:px-6">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="rounded-lg p-2 text-neutral-500 hover:bg-neutral-100 lg:hidden"
+                className="rounded-lg p-2 text-muted-foreground hover:bg-muted lg:hidden"
               >
                 <Menu size={20} />
               </button>
-              <div className="flex items-center gap-2 text-sm text-neutral-400">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <span>Admin</span>
                 <ChevronRight size={14} />
-                <span className="font-medium text-neutral-700">
+                <span className="font-medium text-foreground">
                   {navItems.find(
                     (n) =>
                       n.href === "/admin"

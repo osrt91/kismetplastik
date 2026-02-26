@@ -66,7 +66,7 @@ const ProductFilter = memo(function ProductFilter({
           {hasFilters && (
             <button
               onClick={clearFilters}
-              className="flex items-center gap-1 rounded-full bg-red-50 px-3 py-1.5 text-xs font-medium text-red-600 transition-colors hover:bg-red-100"
+              className="flex items-center gap-1 rounded-full bg-destructive/10 px-3 py-1.5 text-xs font-medium text-destructive transition-colors hover:bg-destructive/20"
             >
               <X size={12} />
               {dict.components.clearFilters}

@@ -31,8 +31,8 @@ const catalogs = [
     pages: "24 sayfa",
     size: "8 MB",
     icon: Package,
-    color: "bg-blue-50 text-blue-600",
-    accentColor: "bg-blue-500",
+    color: "bg-primary-50 text-primary-700",
+    accentColor: "bg-primary-500",
   },
   {
     title: "Kapak & Aksesuar Kataloğu",
@@ -41,8 +41,8 @@ const catalogs = [
     pages: "16 sayfa",
     size: "6 MB",
     icon: Package,
-    color: "bg-amber-50 text-amber-600",
-    accentColor: "bg-amber-500",
+    color: "bg-accent-100 text-accent-600",
+    accentColor: "bg-accent-500",
   },
   {
     title: "Teknik Şartname Dokümanı",
@@ -51,8 +51,8 @@ const catalogs = [
     pages: "32 sayfa",
     size: "4 MB",
     icon: FileText,
-    color: "bg-green-50 text-green-600",
-    accentColor: "bg-green-500",
+    color: "bg-success/10 text-success",
+    accentColor: "bg-success",
   },
 ];
 
@@ -108,7 +108,7 @@ export default function KatalogPage() {
                         >
                           <c.icon size={18} />
                         </div>
-                        <span className="rounded-md bg-red-500 px-2 py-0.5 text-[10px] font-bold tracking-wider text-white shadow-sm">
+                        <span className="rounded-md bg-destructive px-2 py-0.5 text-[10px] font-bold tracking-wider text-white shadow-sm">
                           PDF
                         </span>
                       </div>

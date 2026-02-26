@@ -1,14 +1,19 @@
 {
   "name": "Kısmet Plastik - B2B Kozmetik Ambalaj",
   "short_name": "Kısmet Plastik",
-  "description": "1969'dan bu yana kozmetik sektörüne özel plastik ve PET ambalaj üretimi.",
-  "start_url": "/",
+  "description": "1969'dan bu yana kozmetik sektörüne özel plastik ve PET ambalaj üretimi. PET şişe, sprey, kapak ve özel üretim kozmetik ambalaj çözümleri.",
+  "start_url": "/tr",
+  "scope": "/",
+  "id": "/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
   "background_color": "#ffffff",
   "theme_color": "#002060",
   "orientation": "portrait-primary",
-  "categories": ["business", "shopping"],
+  "categories": ["business", "shopping", "productivity"],
   "lang": "tr",
+  "dir": "ltr",
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/images/logo.jpg",
@@ -21,6 +26,35 @@
       "sizes": "512x512",
       "type": "image/jpeg",
       "purpose": "any"
+    },
+    {
+      "src": "/images/logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "maskable"
     }
-  ]
+  ],
+  "shortcuts": [
+    {
+      "name": "Ürünler",
+      "short_name": "Ürünler",
+      "url": "/tr/urunler",
+      "icons": [{ "src": "/images/logo.jpg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Teklif Al",
+      "short_name": "Teklif",
+      "url": "/tr/teklif-al",
+      "icons": [{ "src": "/images/logo.jpg", "sizes": "192x192" }]
+    },
+    {
+      "name": "İletişim",
+      "short_name": "İletişim",
+      "url": "/tr/iletisim",
+      "icons": [{ "src": "/images/logo.jpg", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [],
+  "related_applications": [],
+  "handle_links": "preferred"
 }

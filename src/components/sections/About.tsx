@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "@/components/ui/LocaleLink";
 import Image from "next/image";
@@ -69,22 +69,17 @@ export default function About() {
                 {h.aboutOverline}
               </span>
               <h2 className="mb-5 text-3xl font-extrabold text-primary-900 sm:text-4xl">
-                Kozmetik Ambalaj Sektöründe{" "}
+                {h.aboutTitle}{" "}
                 <span className="relative text-accent-500">
-                  Güvenin Adı
+                  {h.aboutTitleAccent}
                   <span className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-accent-400/50" />
                 </span>
               </h2>
               <p className="mb-6 leading-relaxed text-neutral-500">
-                Kısmet Plastik olarak, 1969&apos;dan bu yana kozmetik sektörüne özel
-                kozmetik ambalaj üretiminde kalite ve güveni bir arada sunuyoruz.
-                Geniş ürün yelpazemizle kozmetik sektörünün tüm ihtiyaçlarını
-                karşılayabiliyoruz.
+                {h.aboutLead1}
               </p>
               <p className="mb-8 leading-relaxed text-neutral-500">
-                PET şişeler, plastik şişeler, kolonya şişeleri, sprey ambalajlar,
-                oda parfümü şişeleri, sıvı sabun şişeleri ve kapaklar dahil olmak üzere
-                birçok kozmetik ambalaj çözümüyle B2B müşterilerimize hizmet veriyoruz.
+                {h.aboutLead2}
               </p>
 
               {/* Strengths */}

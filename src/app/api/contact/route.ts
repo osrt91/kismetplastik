@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendContactEmail } from "@/lib/email";
+import { rateLimit } from "@/lib/rate-limit";
 
 interface ContactFormData {
   name: string;
@@ -22,6 +23,15 @@ function validate(data: ContactFormData): string | null {
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const { ok: allowed } = rateLimit(`contact:${ip}`, { limit: 5, windowMs: 60_000 });
+    if (!allowed) {
+      return NextResponse.json(
+        { success: false, error: "Çok fazla istek gönderdiniz. Lütfen biraz bekleyip tekrar deneyin." },
+        { status: 429 }
+      );
+    }
+
     const body = (await request.json()) as ContactFormData;
     const error = validate(body);
 

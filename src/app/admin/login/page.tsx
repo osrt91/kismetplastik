@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Lock, Eye, EyeOff, AlertCircle, Loader2 } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -51,15 +54,15 @@ export default function AdminLoginPage() {
           onSubmit={handleSubmit}
           className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
         >
-          <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-white/50">
+          <Label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-white/50">
             Şifre
-          </label>
+          </Label>
           <div className="relative mb-4">
             <Lock
               size={16}
               className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30"
             />
-            <input
+            <Input
               type={showPw ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -77,13 +80,13 @@ export default function AdminLoginPage() {
           </div>
 
           {error && (
-            <div className="mb-4 flex items-center gap-2 rounded-lg bg-red-500/10 px-3 py-2 text-sm text-red-400">
+            <div className="mb-4 flex items-center gap-2 rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">
               <AlertCircle size={14} />
               {error}
             </div>
           )}
 
-          <button
+          <Button
             type="submit"
             disabled={loading || !password}
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-amber-400 py-3 text-sm font-bold text-slate-900 transition-all hover:bg-amber-300 disabled:opacity-50"
@@ -93,7 +96,7 @@ export default function AdminLoginPage() {
             ) : (
               "Giriş Yap"
             )}
-          </button>
+          </Button>
         </form>
 
         <p className="mt-6 text-center text-xs text-white/20">

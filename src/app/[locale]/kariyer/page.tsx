@@ -29,9 +29,9 @@ interface JobPosition {
 }
 
 const departmentColors: Record<string, { bg: string; border: string; text: string }> = {
-  Üretim: { bg: "bg-blue-50", border: "border-blue-400", text: "text-blue-700" },
-  Kalite: { bg: "bg-emerald-50", border: "border-emerald-400", text: "text-emerald-700" },
-  Satış: { bg: "bg-amber-50", border: "border-amber-400", text: "text-amber-700" },
+  Üretim: { bg: "bg-primary-50", border: "border-blue-400", text: "text-primary-700" },
+  Kalite: { bg: "bg-success/10", border: "border-emerald-400", text: "text-success" },
+  Satış: { bg: "bg-accent-100", border: "border-amber-400", text: "text-accent-600" },
 };
 
 const positions: JobPosition[] = [
@@ -98,10 +98,10 @@ const positions: JobPosition[] = [
 ];
 
 const perkAccentColors = [
-  "from-rose-400 to-rose-500",
-  "from-amber-400 to-amber-500",
-  "from-sky-400 to-sky-500",
-  "from-violet-400 to-violet-500",
+  "from-destructive to-destructive",
+  "from-accent-400 to-accent-500",
+  "from-primary-300 to-primary-500",
+  "from-primary-300 to-primary-500",
 ];
 
 const perks = [

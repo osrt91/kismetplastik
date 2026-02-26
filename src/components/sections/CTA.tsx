@@ -1,6 +1,7 @@
-﻿"use client";
+"use client";
 
 import Link from "@/components/ui/LocaleLink";
+import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, Phone, Shield, Award, BadgeCheck, Sparkles } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
@@ -93,24 +94,31 @@ export default function CTA() {
 
         <AnimateOnScroll animation="zoom-in" delay={200}>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
-              href="/teklif-al"
-              className="group relative inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-base font-bold text-primary-900 shadow-lg shadow-accent-500/25 transition-all duration-300 hover:bg-accent-400 hover:shadow-[0_8px_40px_-8px] hover:shadow-accent-500/40 hover:-translate-y-0.5 active:scale-[0.98]"
+            <Button
+              size="lg"
+              className="group rounded-xl bg-accent text-accent-foreground px-8 py-4 hover:bg-accent/90"
+              asChild
             >
-              <FileText size={18} />
-              {h.ctaForm}
-              <ArrowRight
-                size={16}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </Link>
-            <a
-              href="tel:+902125498703"
-              className="group relative inline-flex items-center gap-2 rounded-xl border-2 border-white/20 px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:shadow-[0_8px_30px_-8px] hover:shadow-white/10 hover:-translate-y-0.5"
+              <Link href="/teklif-al">
+                <FileText size={18} />
+                {h.ctaForm}
+                <ArrowRight
+                  size={16}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </Link>
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="rounded-xl border-2 border-white/20 px-8 py-4 text-white hover:border-white/40 hover:bg-white/10"
+              asChild
             >
-              <Phone size={18} />
-              {h.ctaCall}
-            </a>
+              <a href="tel:+902125498703">
+                <Phone size={18} />
+                {h.ctaCall}
+              </a>
+            </Button>
           </div>
         </AnimateOnScroll>
 

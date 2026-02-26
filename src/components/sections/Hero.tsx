@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "@/components/ui/LocaleLink";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { ArrowRight, Play, Shield, Truck, Award } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -147,23 +148,25 @@ export default function Hero() {
             <div
               className="mb-10 flex flex-col gap-3 sm:flex-row sm:gap-4 opacity-0 animate-[fade-in-up_1000ms_ease-out_300ms_forwards]"
             >
-              <Link
-                href="/urunler"
-                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-accent-500 px-6 py-3.5 text-base font-bold text-primary-900 shadow-lg shadow-accent-500/25 transition-all duration-300 hover:bg-accent-400 hover:shadow-xl hover:shadow-accent-500/30 hover:-translate-y-0.5 active:scale-[0.98] sm:px-8 sm:py-4"
+              <Button
+                size="lg"
+                className="group rounded-xl bg-accent text-accent-foreground px-6 py-3.5 sm:px-8 sm:py-4 hover:bg-accent/90"
+                asChild
               >
-                {h.ctaProducts}
-                <ArrowRight
-                  size={18}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                />
-              </Link>
-              <Link
-                href="/teklif-al"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/20 px-6 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:-translate-y-0.5 sm:px-8 sm:py-4"
-              >
-                <Play size={16} className="fill-current" />
-                {h.ctaQuote}
-              </Link>
+                <Link href="/urunler">
+                  {h.ctaProducts}
+                  <ArrowRight
+                    size={18}
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  />
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" className="rounded-xl border-2 border-white/20 px-6 py-3.5 text-white backdrop-blur-sm sm:px-8 sm:py-4 hover:border-white/40 hover:bg-white/10" asChild>
+                <Link href="/teklif-al">
+                  <Play size={16} className="fill-current" />
+                  {h.ctaQuote}
+                </Link>
+              </Button>
             </div>
 
             {/* Highlights */}

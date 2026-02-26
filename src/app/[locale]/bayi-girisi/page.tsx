@@ -178,7 +178,7 @@ export default function BayiGirisiPage() {
                   {/* Error / info – animated slide-down entrance */}
                   {error && (
                     <div
-                      className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800"
+                      className="mb-6 rounded-xl border border-accent-300 bg-accent-100 p-4 text-sm text-accent-600"
                       style={{
                         animation:
                           "slide-down-fade 0.4s cubic-bezier(0.16,1,0.3,1) forwards",

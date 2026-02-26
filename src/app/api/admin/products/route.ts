@@ -1,14 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
+import { checkAuth, sanitizeSearchInput } from "@/lib/auth";
 import { products, categories } from "@/data/products";
-
-function checkAuth(request: NextRequest) {
-  const token = request.cookies.get("admin-token")?.value;
-  if (!token || token !== process.env.ADMIN_SECRET) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-  return null;
-}
 
 export async function GET(request: NextRequest) {
   const authError = checkAuth(request);
@@ -39,7 +32,10 @@ export async function GET(request: NextRequest) {
   const supabase = getSupabase();
   let query = supabase.from("products").select("*").order("created_at", { ascending: false });
   if (category && category !== "all") query = query.eq("category_slug", category);
-  if (search) query = query.or(`name.ilike.%${search}%,slug.ilike.%${search}%`);
+  if (search) {
+    const safe = sanitizeSearchInput(search);
+    query = query.or(`name.ilike.%${safe}%,slug.ilike.%${safe}%`);
+  }
 
   const { data, error } = await query;
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });

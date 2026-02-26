@@ -23,12 +23,12 @@ function getThreeColor(colorName: string): string {
   return colorMap[colorName] || "#e8f4fd";
 }
 
-function BottleModel({ color, roughness = 0.15 }: { color: string; roughness?: number }) {
+function BottleModel({ color, roughness = 0.12 }: { color: string; roughness?: number }) {
   const groupRef = useRef<THREE.Group>(null);
 
   useFrame((_, delta) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.3;
+      groupRef.current.rotation.y += delta * 0.25;
     }
   });
 
@@ -38,47 +38,58 @@ function BottleModel({ color, roughness = 0.15 }: { color: string; roughness?: n
   return (
     <group ref={groupRef} position={[0, -0.5, 0]}>
       <mesh position={[0, 2.3, 0]}>
-        <cylinderGeometry args={[0.25, 0.25, 0.4, 32]} />
-        <meshStandardMaterial color="#1a237e" metalness={0.6} roughness={0.3} />
+        <cylinderGeometry args={[0.25, 0.25, 0.4, 48]} />
+        <meshPhysicalMaterial color="#1a237e" metalness={0.7} roughness={0.2} clearcoat={0.5} clearcoatRoughness={0.3} />
       </mesh>
 
       <mesh position={[0, 2.0, 0]}>
-        <cylinderGeometry args={[0.3, 0.45, 0.4, 32]} />
-        <meshStandardMaterial
+        <cylinderGeometry args={[0.3, 0.45, 0.4, 48]} />
+        <meshPhysicalMaterial
           color={bodyColor}
           transparent={isTransparent}
-          opacity={isTransparent ? 0.6 : 0.95}
+          opacity={isTransparent ? 0.55 : 0.95}
           roughness={roughness}
-          metalness={0.1}
+          metalness={0.05}
+          clearcoat={isTransparent ? 1 : 0.3}
+          clearcoatRoughness={0.1}
+          ior={1.5}
+          thickness={isTransparent ? 0.5 : 0}
+          envMapIntensity={1.5}
         />
       </mesh>
 
       <mesh position={[0, 0.8, 0]}>
-        <cylinderGeometry args={[0.55, 0.55, 2.0, 32]} />
-        <meshStandardMaterial
+        <cylinderGeometry args={[0.55, 0.55, 2.0, 48]} />
+        <meshPhysicalMaterial
           color={bodyColor}
           transparent={isTransparent}
-          opacity={isTransparent ? 0.6 : 0.95}
+          opacity={isTransparent ? 0.55 : 0.95}
           roughness={roughness}
-          metalness={0.1}
-          envMapIntensity={1.2}
+          metalness={0.05}
+          clearcoat={isTransparent ? 1 : 0.3}
+          clearcoatRoughness={0.1}
+          ior={1.5}
+          thickness={isTransparent ? 1 : 0}
+          envMapIntensity={1.5}
         />
       </mesh>
 
       <mesh position={[0, -0.4, 0]}>
-        <cylinderGeometry args={[0.55, 0.50, 0.5, 32]} />
-        <meshStandardMaterial
+        <cylinderGeometry args={[0.55, 0.50, 0.5, 48]} />
+        <meshPhysicalMaterial
           color={bodyColor}
           transparent={isTransparent}
-          opacity={isTransparent ? 0.6 : 0.95}
+          opacity={isTransparent ? 0.55 : 0.95}
           roughness={roughness}
-          metalness={0.1}
+          metalness={0.05}
+          clearcoat={isTransparent ? 1 : 0.3}
+          clearcoatRoughness={0.1}
         />
       </mesh>
 
       <mesh position={[0, 1.1, 0.56]}>
         <boxGeometry args={[0.6, 0.9, 0.01]} />
-        <meshStandardMaterial color="white" transparent opacity={0.15} />
+        <meshStandardMaterial color="white" transparent opacity={0.12} />
       </mesh>
     </group>
   );
@@ -311,33 +322,35 @@ function Scene({ product, selectedColor }: Props) {
 
   return (
     <>
-      <ambientLight intensity={0.4} />
-      <directionalLight position={[5, 8, 5]} intensity={1} castShadow />
-      <directionalLight position={[-3, 4, -5]} intensity={0.5} />
-      <pointLight position={[0, 5, 0]} intensity={0.3} />
+      <ambientLight intensity={0.3} />
+      <directionalLight position={[5, 8, 5]} intensity={1.2} castShadow shadow-mapSize={[1024, 1024]} />
+      <directionalLight position={[-4, 3, -4]} intensity={0.4} />
+      <pointLight position={[0, 6, 3]} intensity={0.2} color="#e0e8ff" />
 
-      <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.3}>
+      <Float speed={1.2} rotationIntensity={0.15} floatIntensity={0.2}>
         <ProductModel category={product.category} color={color} />
       </Float>
 
       <ContactShadows
         position={[0, -1, 0]}
-        opacity={0.4}
-        scale={5}
-        blur={2.5}
-        far={4}
+        opacity={0.35}
+        scale={4}
+        blur={2}
+        far={3}
       />
 
-      <Environment preset="studio" />
+      <Environment preset="city" />
 
       <OrbitControls
         enablePan={false}
-        minPolarAngle={Math.PI / 6}
-        maxPolarAngle={Math.PI / 1.5}
-        minDistance={3}
-        maxDistance={8}
+        minPolarAngle={Math.PI / 5}
+        maxPolarAngle={Math.PI / 1.6}
+        minDistance={3.5}
+        maxDistance={7}
         autoRotate
-        autoRotateSpeed={1}
+        autoRotateSpeed={0.8}
+        enableDamping
+        dampingFactor={0.05}
       />
     </>
   );

@@ -23,43 +23,15 @@ import {
   Search,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { categories } from "@/data/products";
 import { useLocale } from "@/contexts/LocaleContext";
-
-const inputBase =
-  "w-full rounded-xl border border-neutral-200 bg-white py-3 pl-11 pr-4 text-sm outline-none transition-all duration-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 focus:shadow-[0_0_0_6px_rgba(46,106,175,0.08)]";
 
 const iconWrap =
   "pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400 transition-colors duration-200 peer-focus:text-primary-500";
 
-const steps = [
-  { num: 1, label: "Bilgi Doldurun" },
-  { num: 2, label: "Teklif Alın" },
-  { num: 3, label: "Sipariş Verin" },
-];
-
-const benefits = [
-  {
-    icon: Clock,
-    title: "24 Saat İçinde Dönüş",
-    desc: "Teklif taleplerinize hızla yanıt veriyoruz.",
-  },
-  {
-    icon: Headphones,
-    title: "Ücretsiz Teknik Danışmanlık",
-    desc: "Uzman ekibimizle teknik destek alın.",
-  },
-  {
-    icon: Shield,
-    title: "Kalite Garantisi",
-    desc: "ISO sertifikalı üretim standartları.",
-  },
-  {
-    icon: Truck,
-    title: "Hızlı Teslimat",
-    desc: "Türkiye geneli lojistik ağı ile hızlı sevkiyat.",
-  },
-];
+const benefitIcons = [Clock, Headphones, Shield, Truck];
 
 export default function TeklifAlPage() {
   const { dict } = useLocale();
@@ -148,8 +120,8 @@ export default function TeklifAlPage() {
 
             {/* Steps Pipeline */}
             <div className="mt-8 flex flex-wrap items-center gap-2 sm:gap-3">
-              {steps.map((step, i) => (
-                <div key={step.num} className="flex items-center gap-2 sm:gap-3">
+              {[q.step1, q.step2, q.step3].map((label, i) => (
+                <div key={i} className="flex items-center gap-2 sm:gap-3">
                   <div
                     className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all ${
                       i === 0
@@ -164,11 +136,11 @@ export default function TeklifAlPage() {
                           : "bg-white/20 text-white"
                       }`}
                     >
-                      {step.num}
+                      {i + 1}
                     </span>
-                    <span className="hidden sm:inline">{step.label}</span>
+                    <span className="hidden sm:inline">{label}</span>
                   </div>
-                  {i < steps.length - 1 && (
+                  {i < 2 && (
                     <ChevronRight size={16} className="text-white/30" />
                   )}
                 </div>
@@ -201,7 +173,7 @@ export default function TeklifAlPage() {
 
               {submitted ? (
                 <div
-                  className="relative overflow-hidden rounded-xl bg-green-50 p-10 text-center"
+                  className="relative overflow-hidden rounded-xl bg-success/10 p-10 text-center"
                   style={{ animation: "scale-in 0.4s ease-out" }}
                 >
                   {/* Celebration particles */}
@@ -218,7 +190,7 @@ export default function TeklifAlPage() {
                           "var(--accent-500)",
                           "var(--primary-500)",
                           "var(--primary-300)",
-                          "#22c55e",
+                          "hsl(var(--success))",
                         ][i % 4],
                         animation: `particle-float ${2 + (i % 3)}s ease-in-out infinite`,
                         animationDelay: `${i * 0.12}s`,
@@ -228,19 +200,19 @@ export default function TeklifAlPage() {
                   ))}
                   <div className="relative z-10">
                     <div
-                      className="mx-auto mb-5 flex h-24 w-24 items-center justify-center rounded-full bg-green-100 shadow-lg shadow-green-200/50"
+                      className="mx-auto mb-5 flex h-24 w-24 items-center justify-center rounded-full bg-success/10 shadow-lg shadow-success/20"
                       style={{ animation: "scale-in 0.5s ease-out 0.1s both" }}
                     >
                       <CheckCircle
                         size={48}
-                        className="text-green-600"
+                        className="text-success"
                         style={{ animation: "scale-in 0.4s ease-out 0.3s both" }}
                       />
                     </div>
-                    <p className="mb-2 text-lg font-semibold text-green-800">
+                    <p className="mb-2 text-lg font-semibold text-success">
                       {q.successTitle}
                     </p>
-                    <p className="text-sm text-green-700">{q.successMessage}</p>
+                    <p className="text-sm text-success">{q.successMessage}</p>
                   </div>
                 </div>
               ) : (
@@ -260,13 +232,13 @@ export default function TeklifAlPage() {
                             {q.fieldName} *
                           </label>
                           <div className="relative">
-                            <input
+                            <Input
                               type="text"
                               name="name"
                               value={formState.name}
                               onChange={handleChange}
                               required
-                              className={`peer ${inputBase}`}
+                              className="peer"
                             />
                             <User size={16} className={iconWrap} />
                           </div>
@@ -276,13 +248,13 @@ export default function TeklifAlPage() {
                             {q.fieldCompany} *
                           </label>
                           <div className="relative">
-                            <input
+                            <Input
                               type="text"
                               name="company"
                               value={formState.company}
                               onChange={handleChange}
                               required
-                              className={`peer ${inputBase}`}
+                              className="peer"
                             />
                             <Building2 size={16} className={iconWrap} />
                           </div>
@@ -294,13 +266,13 @@ export default function TeklifAlPage() {
                             {q.fieldEmail} *
                           </label>
                           <div className="relative">
-                            <input
+                            <Input
                               type="email"
                               name="email"
                               value={formState.email}
                               onChange={handleChange}
                               required
-                              className={`peer ${inputBase}`}
+                              className="peer"
                             />
                             <Mail size={16} className={iconWrap} />
                           </div>
@@ -310,13 +282,13 @@ export default function TeklifAlPage() {
                             {q.fieldPhone} *
                           </label>
                           <div className="relative">
-                            <input
+                            <Input
                               type="tel"
                               name="phone"
                               value={formState.phone}
                               onChange={handleChange}
                               required
-                              className={`peer ${inputBase}`}
+                              className="peer"
                             />
                             <Phone size={16} className={iconWrap} />
                           </div>
@@ -327,12 +299,12 @@ export default function TeklifAlPage() {
                           {q.fieldAddress}
                         </label>
                         <div className="relative">
-                          <input
+                          <Input
                             type="text"
                             name="address"
                             value={formState.address}
                             onChange={handleChange}
-                            className={`peer ${inputBase}`}
+                            className="peer"
                           />
                           <MapPin size={16} className={iconWrap} />
                         </div>
@@ -385,12 +357,12 @@ export default function TeklifAlPage() {
                           {q.fieldProductInterest}
                         </label>
                         <div className="relative">
-                          <input
+                          <Input
                             type="text"
                             name="productInterest"
                             value={formState.productInterest}
                             onChange={handleChange}
-                            className={`peer ${inputBase}`}
+                            className="peer"
                           />
                           <Search size={16} className={iconWrap} />
                         </div>
@@ -401,12 +373,12 @@ export default function TeklifAlPage() {
                             {q.fieldQuantity}
                           </label>
                           <div className="relative">
-                            <input
+                            <Input
                               type="text"
                               name="quantity"
                               value={formState.quantity}
                               onChange={handleChange}
-                              className={`peer ${inputBase}`}
+                              className="peer"
                             />
                             <Hash size={16} className={iconWrap} />
                           </div>
@@ -416,12 +388,12 @@ export default function TeklifAlPage() {
                             {q.fieldDeliveryDate}
                           </label>
                           <div className="relative">
-                            <input
+                            <Input
                               type="date"
                               name="deliveryDate"
                               value={formState.deliveryDate}
                               onChange={handleChange}
-                              className={`peer ${inputBase}`}
+                              className="peer"
                             />
                             <Calendar size={16} className={iconWrap} />
                           </div>
@@ -448,27 +420,10 @@ export default function TeklifAlPage() {
                     </div>
                   </div>
 
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="group relative w-full overflow-hidden rounded-xl py-4 font-bold text-primary-900 shadow-md transition-all duration-300 hover:shadow-lg active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:px-12"
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(90deg, var(--accent-500), var(--accent-400), var(--accent-600), var(--accent-500))",
-                      backgroundSize: "300% 100%",
-                      animation: "shimmer 4s ease infinite",
-                    }}
-                  >
-                    <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
-                    <span className="relative flex items-center justify-center gap-2">
-                      {loading ? (
-                        <span className="h-5 w-5 animate-spin rounded-full border-2 border-primary-900 border-t-transparent" />
-                      ) : (
-                        <Send size={20} />
-                      )}
-                      {loading ? q.submitting : q.submitButton}
-                    </span>
-                  </button>
+                  <Button type="submit" disabled={loading} size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90 sm:w-auto">
+                    {loading ? <span className="h-5 w-5 animate-spin rounded-full border-2 border-current border-t-transparent" /> : <Send size={20} />}
+                    {loading ? q.submitting : q.submitButton}
+                  </Button>
                 </form>
               )}
             </div>
@@ -478,30 +433,38 @@ export default function TeklifAlPage() {
           <AnimateOnScroll animation="fade-left" className="hidden lg:block">
             <div className="sticky top-28 space-y-4">
               <h3 className="mb-2 text-sm font-bold uppercase tracking-wider text-primary-700">
-                Neden Kısmet Plastik?
+                {q.whyKismet}
               </h3>
 
-              {benefits.map((b, i) => (
-                <div
-                  key={b.title}
-                  className="group flex gap-3 rounded-xl border border-neutral-100 bg-neutral-50 p-4 transition-all duration-300 hover:border-primary-100 hover:bg-primary-50/50 hover:shadow-sm"
-                  style={{
-                    animation: `fade-in-up 0.5s ease-out ${0.1 + i * 0.1}s both`,
-                  }}
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-100 text-primary-700 transition-colors duration-300 group-hover:bg-primary-500 group-hover:text-white">
-                    <b.icon size={20} />
+              {[
+                { title: q.benefitFastTitle, desc: q.benefitFastDesc },
+                { title: q.benefitConsultTitle, desc: q.benefitConsultDesc },
+                { title: q.benefitQualityTitle, desc: q.benefitQualityDesc },
+                { title: q.benefitDeliveryTitle, desc: q.benefitDeliveryDesc },
+              ].map((b, i) => {
+                const Icon = benefitIcons[i];
+                return (
+                  <div
+                    key={i}
+                    className="group flex gap-3 rounded-xl border border-neutral-100 bg-neutral-50 p-4 transition-all duration-300 hover:border-primary-100 hover:bg-primary-50/50 hover:shadow-sm"
+                    style={{
+                      animation: `fade-in-up 0.5s ease-out ${0.1 + i * 0.1}s both`,
+                    }}
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-100 text-primary-700 transition-colors duration-300 group-hover:bg-primary-500 group-hover:text-white">
+                      <Icon size={20} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-primary-900">{b.title}</p>
+                      <p className="text-xs leading-relaxed text-neutral-500">{b.desc}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm font-bold text-primary-900">{b.title}</p>
-                    <p className="text-xs leading-relaxed text-neutral-500">{b.desc}</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
 
               <div className="mt-6 rounded-xl border border-accent-200 bg-accent-100/50 p-4 text-center">
                 <p className="text-sm font-semibold text-primary-900">
-                  Sorularınız mı var?
+                  {q.haveQuestions}
                 </p>
                 <a
                   href="tel:+902125498703"

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
+import { rateLimit } from "@/lib/rate-limit";
 
 const SYSTEM_PROMPT = `Sen Kısmet Plastik'in AI asistanısın. Kısmet Plastik, 1969'dan beri kozmetik ambalaj sektöründe faaliyet gösteren, Türkiye'nin önde gelen üreticilerinden biridir.
 
@@ -36,6 +37,9 @@ const SYSTEM_PROMPT = `Sen Kısmet Plastik'in AI asistanısın. Kısmet Plastik,
 - Her zaman profesyonel ve dostça ol
 - Bilmediğin konularda "Bu konuda detaylı bilgi için müşteri temsilcimizle iletişime geçmenizi öneririm" de`;
 
+const VALID_ROLES = new Set(["user", "assistant"]);
+const VALID_LOCALES = new Set(["tr", "en"]);
+
 export async function POST(request: NextRequest) {
   const apiKey = process.env.OPENAI_API_KEY;
 
@@ -50,20 +54,44 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { messages, locale } = await request.json();
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const { ok: allowed } = rateLimit(`chat:${ip}`, { limit: 20, windowMs: 60_000 });
+    if (!allowed) {
+      return NextResponse.json(
+        { reply: "Çok fazla mesaj gönderdiniz. Lütfen biraz bekleyip tekrar deneyin." },
+        { status: 429 }
+      );
+    }
+
+    const body = await request.json();
+    const { messages, locale } = body;
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return NextResponse.json({ error: "Mesaj gerekli" }, { status: 400 });
     }
 
-    if (messages.length > 20) {
-      messages.splice(0, messages.length - 20);
+    const safeLocale = VALID_LOCALES.has(locale) ? locale : "tr";
+
+    const validMessages = messages
+      .filter(
+        (m: unknown) =>
+          typeof m === "object" &&
+          m !== null &&
+          typeof (m as Record<string, unknown>).role === "string" &&
+          VALID_ROLES.has((m as Record<string, unknown>).role as string) &&
+          typeof (m as Record<string, unknown>).content === "string" &&
+          ((m as Record<string, unknown>).content as string).length <= 2000
+      )
+      .slice(-10);
+
+    if (validMessages.length === 0) {
+      return NextResponse.json({ error: "Geçerli mesaj bulunamadı" }, { status: 400 });
     }
 
     const openai = new OpenAI({ apiKey });
 
     const localeHint =
-      locale === "en"
+      safeLocale === "en"
         ? "\n\nThe user is browsing in English. Reply in English."
         : "\n\nKullanıcı Türkçe sayfada. Türkçe yanıt ver.";
 
@@ -71,7 +99,7 @@ export async function POST(request: NextRequest) {
       model: "gpt-4o-mini",
       messages: [
         { role: "system", content: SYSTEM_PROMPT + localeHint },
-        ...messages.slice(-10).map((m: { role: string; content: string }) => ({
+        ...validMessages.map((m: { role: string; content: string }) => ({
           role: m.role as "user" | "assistant",
           content: m.content,
         })),
@@ -90,7 +118,7 @@ export async function POST(request: NextRequest) {
         reply:
           "Bir hata oluştu. Lütfen tekrar deneyin veya bize 0212 549 87 03 numarasından ulaşın.",
       },
-      { status: 200 }
+      { status: 500 }
     );
   }
 }

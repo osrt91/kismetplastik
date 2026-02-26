@@ -3,34 +3,35 @@
 import { Package, Newspaper, Eye, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { products, categories } from "@/data/products";
+import { blogPosts } from "@/data/blog";
 
 const stats = [
   {
     label: "Toplam Ürün",
     value: products.length,
     icon: Package,
-    color: "bg-blue-500/10 text-blue-600",
+    color: "bg-primary/10 text-primary",
     href: "/admin/products",
   },
   {
     label: "Kategoriler",
     value: categories.length,
     icon: TrendingUp,
-    color: "bg-emerald-500/10 text-emerald-600",
+    color: "bg-success/10 text-success",
     href: "/admin/products",
   },
   {
     label: "Öne Çıkan",
     value: products.filter((p) => p.featured).length,
     icon: Eye,
-    color: "bg-amber-500/10 text-amber-600",
+    color: "bg-accent/10 text-accent",
     href: "/admin/products",
   },
   {
     label: "Blog Yazıları",
-    value: 8,
+    value: blogPosts.length,
     icon: Newspaper,
-    color: "bg-purple-500/10 text-purple-600",
+    color: "bg-primary/10 text-primary",
     href: "/admin/blog",
   },
 ];
@@ -39,8 +40,8 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-neutral-900">Dashboard</h1>
-        <p className="mt-1 text-sm text-neutral-500">
+        <h1 className="text-2xl font-bold text-foreground">Dashboard</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
           Kısmet Plastik yönetim paneline hoş geldiniz.
         </p>
       </div>
@@ -51,7 +52,7 @@ export default function AdminDashboard() {
           <Link
             key={stat.label}
             href={stat.href}
-            className="group rounded-xl border border-neutral-200 bg-white p-5 shadow-sm transition-all hover:border-neutral-300 hover:shadow-md"
+            className="group rounded-xl border border-border bg-card p-5 shadow-sm transition-all hover:border-border hover:shadow-md"
           >
             <div className="flex items-center justify-between">
               <div
@@ -59,11 +60,11 @@ export default function AdminDashboard() {
               >
                 <stat.icon size={20} />
               </div>
-              <span className="text-3xl font-bold text-neutral-900">
+              <span className="text-3xl font-bold text-foreground">
                 {stat.value}
               </span>
             </div>
-            <p className="mt-3 text-sm font-medium text-neutral-500">
+            <p className="mt-3 text-sm font-medium text-muted-foreground">
               {stat.label}
             </p>
           </Link>
@@ -72,20 +73,20 @@ export default function AdminDashboard() {
 
       {/* Quick Actions */}
       <div>
-        <h2 className="mb-4 text-lg font-semibold text-neutral-900">
+        <h2 className="mb-4 text-lg font-semibold text-foreground">
           Hızlı İşlemler
         </h2>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <Link
             href="/admin/products/new"
-            className="flex items-center gap-3 rounded-xl border border-dashed border-neutral-300 bg-white p-4 text-sm font-medium text-neutral-600 transition-all hover:border-blue-400 hover:bg-blue-50 hover:text-blue-700"
+            className="flex items-center gap-3 rounded-xl border border-dashed border-border bg-card p-4 text-sm font-medium text-muted-foreground transition-all hover:border-primary hover:bg-primary/10 hover:text-primary"
           >
             <Package size={18} />
             Yeni Ürün Ekle
           </Link>
           <Link
             href="/admin/blog/new"
-            className="flex items-center gap-3 rounded-xl border border-dashed border-neutral-300 bg-white p-4 text-sm font-medium text-neutral-600 transition-all hover:border-purple-400 hover:bg-purple-50 hover:text-purple-700"
+            className="flex items-center gap-3 rounded-xl border border-dashed border-border bg-card p-4 text-sm font-medium text-muted-foreground transition-all hover:border-primary hover:bg-primary/10 hover:text-primary"
           >
             <Newspaper size={18} />
             Yeni Blog Yazısı
@@ -93,7 +94,7 @@ export default function AdminDashboard() {
           <Link
             href="/"
             target="_blank"
-            className="flex items-center gap-3 rounded-xl border border-dashed border-neutral-300 bg-white p-4 text-sm font-medium text-neutral-600 transition-all hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-700"
+            className="flex items-center gap-3 rounded-xl border border-dashed border-border bg-card p-4 text-sm font-medium text-muted-foreground transition-all hover:border-success hover:bg-success/10 hover:text-success"
           >
             <Eye size={18} />
             Siteyi Görüntüle
@@ -103,23 +104,23 @@ export default function AdminDashboard() {
 
       {/* Recent Products */}
       <div>
-        <h2 className="mb-4 text-lg font-semibold text-neutral-900">
+        <h2 className="mb-4 text-lg font-semibold text-foreground">
           Son Eklenen Ürünler
         </h2>
-        <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
+        <div className="overflow-hidden rounded-xl border border-border bg-card">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-neutral-100 bg-neutral-50">
-                <th className="px-4 py-3 text-left font-semibold text-neutral-500">
+              <tr className="border-b border-border bg-muted">
+                <th className="px-4 py-3 text-left font-semibold text-muted-foreground">
                   Ürün
                 </th>
-                <th className="hidden px-4 py-3 text-left font-semibold text-neutral-500 sm:table-cell">
+                <th className="hidden px-4 py-3 text-left font-semibold text-muted-foreground sm:table-cell">
                   Kategori
                 </th>
-                <th className="hidden px-4 py-3 text-left font-semibold text-neutral-500 md:table-cell">
+                <th className="hidden px-4 py-3 text-left font-semibold text-muted-foreground md:table-cell">
                   Malzeme
                 </th>
-                <th className="px-4 py-3 text-left font-semibold text-neutral-500">
+                <th className="px-4 py-3 text-left font-semibold text-muted-foreground">
                   Durum
                 </th>
               </tr>
@@ -128,23 +129,23 @@ export default function AdminDashboard() {
               {products.slice(0, 8).map((product) => (
                 <tr
                   key={product.id}
-                  className="border-b border-neutral-50 last:border-0"
+                  className="border-b border-border last:border-0"
                 >
-                  <td className="px-4 py-3 font-medium text-neutral-800">
+                  <td className="px-4 py-3 font-medium text-foreground">
                     {product.name}
                   </td>
-                  <td className="hidden px-4 py-3 text-neutral-500 sm:table-cell">
+                  <td className="hidden px-4 py-3 text-muted-foreground sm:table-cell">
                     {categories.find((c) => c.slug === product.category)?.name}
                   </td>
-                  <td className="hidden px-4 py-3 text-neutral-500 md:table-cell">
+                  <td className="hidden px-4 py-3 text-muted-foreground md:table-cell">
                     {product.material}
                   </td>
                   <td className="px-4 py-3">
                     <span
                       className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
                         product.inStock
-                          ? "bg-emerald-50 text-emerald-700"
-                          : "bg-red-50 text-red-700"
+                          ? "bg-success/10 text-success"
+                          : "bg-destructive/10 text-destructive"
                       }`}
                     >
                       {product.inStock ? "Stokta" : "Tükendi"}

@@ -63,8 +63,9 @@ export default function ProductSVG({ type, color = "Şeffaf", size = 120, classN
   }
 
   if (type === "cap") {
+    const capSize = size * 1.3;
     return (
-      <svg width={size} height={size * 0.8} viewBox="0 0 80 64" fill="none" className={`${animClass} ${className}`}>
+      <svg width={capSize} height={capSize * 0.8} viewBox="0 0 80 64" fill="none" className={`${animClass} ${className}`}>
         <ellipse cx="40" cy="10" rx="28" ry="8" fill={fill} stroke={stroke} strokeWidth="1.5" opacity="0.9" />
         <path d="M12 10 L12 48 C12 56 24 60 40 60 C56 60 68 56 68 48 L68 10" fill={fill} stroke={stroke} strokeWidth="1.5" opacity="0.85" />
         <path d="M12 10 C12 18 24 22 40 22 C56 22 68 18 68 10" fill="white" opacity="0.15" />

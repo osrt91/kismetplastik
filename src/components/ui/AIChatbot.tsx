@@ -8,7 +8,6 @@ import {
   Send,
   Sparkles,
   Loader2,
-  MessageSquare,
   Trash2,
 } from "lucide-react";
 import { useLocale } from "@/contexts/LocaleContext";
@@ -148,7 +147,7 @@ export default function AIChatbot() {
             style={{ maxHeight: "min(600px, calc(100dvh - 120px))" }}
           >
             {/* Header */}
-            <div className="relative flex items-center gap-3 bg-gradient-to-r from-indigo-600 to-violet-600 px-4 py-3">
+            <div className="relative flex items-center gap-3 bg-gradient-to-r from-primary to-primary/80 px-4 py-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/20">
                 <Bot size={20} className="text-white" />
               </div>
@@ -192,7 +191,7 @@ export default function AIChatbot() {
                   <div
                     className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
                       msg.role === "user"
-                        ? "rounded-br-md bg-indigo-600 text-white"
+                        ? "rounded-br-md bg-primary text-primary-foreground"
                         : "rounded-bl-md bg-neutral-100 text-neutral-800"
                     }`}
                   >
@@ -205,7 +204,7 @@ export default function AIChatbot() {
                   <div className="flex items-center gap-2 rounded-2xl rounded-bl-md bg-neutral-100 px-4 py-3">
                     <Loader2
                       size={14}
-                      className="animate-spin text-indigo-500"
+                      className="animate-spin text-primary"
                     />
                     <span className="text-xs text-neutral-400">
                       {locale === "tr" ? "Yazıyor..." : "Typing..."}
@@ -222,7 +221,7 @@ export default function AIChatbot() {
                   <button
                     key={i}
                     onClick={() => sendMessage(s)}
-                    className="rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-xs font-medium text-indigo-700 transition-all hover:bg-indigo-100 active:scale-95"
+                    className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary transition-all hover:bg-primary/10 active:scale-95"
                   >
                     {s}
                   </button>
@@ -232,7 +231,7 @@ export default function AIChatbot() {
 
             {/* Input */}
             <div className="border-t border-neutral-100 bg-neutral-50 px-3 py-3">
-              <div className="flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2 focus-within:border-indigo-300 focus-within:ring-2 focus-within:ring-indigo-100">
+              <div className="flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10">
                 <input
                   ref={inputRef}
                   type="text"
@@ -246,7 +245,7 @@ export default function AIChatbot() {
                 <button
                   onClick={() => sendMessage(input)}
                   disabled={!input.trim() || loading}
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-600 text-white transition-all hover:bg-indigo-700 disabled:opacity-40"
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground transition-all hover:bg-primary/90 disabled:opacity-40"
                 >
                   <Send size={14} />
                 </button>
@@ -265,7 +264,7 @@ export default function AIChatbot() {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: "spring", stiffness: 400, damping: 20, delay: 0.3 }}
         onClick={() => setOpen((prev) => !prev)}
-        className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-indigo-600 to-violet-600 text-white shadow-lg shadow-indigo-500/30 transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-indigo-500/40 active:scale-95"
+        className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-primary/40 active:scale-95"
         aria-label="AI Chatbot"
       >
         <AnimatePresence mode="wait">
@@ -293,7 +292,7 @@ export default function AIChatbot() {
         </AnimatePresence>
 
         {!open && (
-          <span className="absolute inset-0 animate-ping rounded-full bg-indigo-500/20" />
+          <span className="absolute inset-0 animate-ping rounded-full bg-primary/20" />
         )}
       </motion.button>
     </div>

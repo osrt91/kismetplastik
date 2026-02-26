@@ -8,6 +8,7 @@ import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import CookieBanner from "@/components/ui/CookieBanner";
 import AIChatbot from "@/components/ui/AIChatbot";
+import InstallPrompt from "@/components/ui/InstallPrompt";
 import { LocalBusinessJsonLd, OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { locales } from "@/middleware";
 
@@ -98,6 +99,11 @@ export default async function LocaleLayout({ children, params }: Props) {
       <head>
         <LocalBusinessJsonLd />
         <OrganizationJsonLd />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{})})}`,
+          }}
+        />
         <link
           rel="preload"
           href="/fonts/MyriadPro-Regular.otf"
@@ -143,6 +149,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             <WhatsAppButton />
             <AIChatbot />
             <ScrollToTop />
+            <InstallPrompt />
             <CookieBanner />
           </LocaleProvider>
         </ThemeProvider>

@@ -22,24 +22,24 @@ const pillars = [
     title: "Geri Dönüştürülebilir Malzeme Kullanımı",
     description:
       "Üretimimizin temelini oluşturan PET, %100 geri dönüştürülebilir bir hammaddedir. Kısmet Plastik olarak kozmetik ambalajlarımızda yalnızca geri dönüşüme uygun malzemeler kullanarak doğal kaynakların korunmasına katkı sağlıyoruz.",
-    color: "bg-green-50 text-green-600",
-    accent: "from-green-400 to-emerald-500",
+    color: "bg-success/10 text-success",
+    accent: "from-success to-success",
   },
   {
     icon: Zap,
     title: "Enerji Verimliliği",
     description:
       "Tesisimizde LED aydınlatma sistemleri, yüksek verimli servo motorlu enjeksiyon makineleri ve ısı geri kazanım üniteleri ile enerji tüketimimizi sürekli optimize ediyoruz.",
-    color: "bg-amber-50 text-amber-600",
-    accent: "from-amber-400 to-yellow-500",
+    color: "bg-accent-100 text-accent-600",
+    accent: "from-accent-400 to-accent-500",
   },
   {
     icon: Droplets,
     title: "Atık Azaltma ve Yönetimi",
     description:
       "Üretim sürecinde oluşan PET artıklarını tesisimizde yeniden granüle ederek üretime kazandırıyoruz. Sıfır atık hedefiyle çalışan entegre atık yönetim sistemimiz sürekli geliştirilmektedir.",
-    color: "bg-blue-50 text-blue-600",
-    accent: "from-blue-400 to-cyan-500",
+    color: "bg-primary-50 text-primary-700",
+    accent: "from-primary-400 to-primary-500",
   },
   {
     icon: Factory,
@@ -89,7 +89,7 @@ export default function SurdurulebilirlikPage() {
   return (
     <section className="bg-white">
       {/* Hero */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-800 to-emerald-900 py-20 lg:py-28">
+      <div className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 py-20 lg:py-28">
         <div className="absolute inset-0 opacity-[0.03]">
           <div
             className="h-full w-full"
@@ -107,9 +107,9 @@ export default function SurdurulebilirlikPage() {
           <TreePine size={300} strokeWidth={0.5} className="text-white" />
         </div>
 
-        <div className="absolute -left-20 -top-20 h-72 w-72 animate-pulse rounded-full bg-emerald-500/10 blur-3xl" />
+        <div className="absolute -left-20 -top-20 h-72 w-72 animate-pulse rounded-full bg-success/10 blur-3xl" />
         <div
-          className="absolute -bottom-16 right-10 h-64 w-64 rounded-full bg-green-400/10 blur-3xl"
+          className="absolute -bottom-16 right-10 h-64 w-64 rounded-full bg-success/10 blur-3xl"
           style={{ animation: "pulse 4s ease-in-out infinite 1s" }}
         />
 
@@ -121,8 +121,8 @@ export default function SurdurulebilirlikPage() {
               <span className="text-white">Sürdürülebilirlik</span>
             </nav>
             <div className="mb-4 flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/20">
-                <Leaf size={26} className="text-emerald-400" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-success/20">
+                <Leaf size={26} className="text-success" />
               </div>
               <h1 className="text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
                 Sürdürülebilirlik
@@ -136,14 +136,14 @@ export default function SurdurulebilirlikPage() {
         </div>
       </div>
 
-      <div className="h-1 bg-gradient-to-r from-transparent via-emerald-300 to-transparent" />
+      <div className="h-1 bg-gradient-to-r from-transparent via-success to-transparent" />
 
       {/* Approach */}
       <div className="mx-auto max-w-7xl px-4 py-16 lg:px-6 lg:py-24">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <AnimateOnScroll animation="fade-right">
             <div>
-              <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-emerald-600">
+              <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-success">
                 Yaklaşımımız
               </span>
               <h2 className="mb-6 text-2xl font-extrabold text-primary-900 sm:text-3xl">
@@ -166,7 +166,7 @@ export default function SurdurulebilirlikPage() {
                   "Sonsuz kez geri dönüştürülebilir bir termoplastik malzemedir",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-600">
-                    <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-500" />
+                    <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-success" />
                     {item}
                   </li>
                 ))}
@@ -174,12 +174,12 @@ export default function SurdurulebilirlikPage() {
             </div>
           </AnimateOnScroll>
           <AnimateOnScroll animation="fade-left">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-100 to-green-50">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-gradient-to-br from-success/20 to-success/10">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative">
-                  <Recycle size={100} className="text-emerald-300" />
+                  <Recycle size={100} className="text-success/50" />
                   <div className="absolute -right-4 -top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg">
-                    <Leaf size={22} className="text-emerald-500" />
+                    <Leaf size={22} className="text-success" />
                   </div>
                 </div>
               </div>
@@ -202,7 +202,7 @@ export default function SurdurulebilirlikPage() {
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <AnimateOnScroll animation="fade-up">
             <div className="mb-14 text-center">
-              <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-emerald-600">
+              <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-success">
                 Temel İlkelerimiz
               </span>
               <h2 className="mb-4 text-3xl font-extrabold text-primary-900 sm:text-4xl">
@@ -257,7 +257,7 @@ export default function SurdurulebilirlikPage() {
         <div className="relative mx-auto max-w-7xl px-4 lg:px-6">
           <AnimateOnScroll animation="fade-up">
             <div className="mb-14 text-center">
-              <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-emerald-400">
+              <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-success">
                 Çevresel Performansımız
               </span>
               <h2 className="mb-4 text-3xl font-extrabold text-white sm:text-4xl">
@@ -272,8 +272,8 @@ export default function SurdurulebilirlikPage() {
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
             {stats.map((stat, i) => (
               <AnimateOnScroll key={stat.label} animation="fade-up" delay={i * 100}>
-                <div className="group rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-emerald-400/30 hover:bg-white/10">
-                  <p className="mb-1 text-3xl font-black text-emerald-400 transition-transform duration-300 group-hover:scale-110 sm:text-4xl">
+                <div className="group rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10">
+                  <p className="mb-1 text-3xl font-black text-success transition-transform duration-300 group-hover:scale-110 sm:text-4xl">
                     {stat.value}
                   </p>
                   <p className="mb-2 font-semibold text-white">{stat.label}</p>
@@ -289,7 +289,7 @@ export default function SurdurulebilirlikPage() {
       <div className="mx-auto max-w-7xl px-4 py-16 lg:px-6 lg:py-24">
         <AnimateOnScroll animation="fade-up">
           <div className="mb-14 text-center">
-            <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-emerald-600">
+              <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-success">
               Döngüsel Ekonomi
             </span>
             <h2 className="mb-4 text-3xl font-extrabold text-primary-900 sm:text-4xl">
@@ -304,7 +304,7 @@ export default function SurdurulebilirlikPage() {
 
         <div className="relative">
           {/* Desktop circular connector */}
-          <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-emerald-200 via-green-300 to-emerald-200 lg:block" />
+          <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-success/30 via-success to-success/30 lg:block" />
 
           <div className="space-y-6 lg:space-y-0">
             {circularSteps.map((item, i) => {
@@ -323,7 +323,7 @@ export default function SurdurulebilirlikPage() {
                     >
                       <div className="group flex h-full flex-col rounded-2xl border border-neutral-100 bg-white p-6 shadow-sm transition-all hover:border-emerald-200 hover:shadow-lg">
                         <div className="mb-3 flex items-center gap-3">
-                          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-500 group-hover:text-white">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-success/10 text-success transition-colors group-hover:bg-success group-hover:text-white">
                             <RefreshCcw size={20} />
                           </div>
                           <h3 className="font-bold text-primary-900">{item.title}</h3>
@@ -334,19 +334,19 @@ export default function SurdurulebilirlikPage() {
 
                     {/* Center circle */}
                     <div className="absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 lg:flex">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-emerald-500 bg-white shadow-md">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-success bg-white shadow-md">
                         <span className="text-sm font-extrabold text-primary-900">{item.step}</span>
                       </div>
                     </div>
 
                     {/* Mobile step badge */}
-                    <div className="absolute -left-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full border-2 border-emerald-500 bg-white text-xs font-extrabold text-primary-900 shadow lg:hidden">
+                    <div className="absolute -left-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full border-2 border-success bg-white text-xs font-extrabold text-primary-900 shadow lg:hidden">
                       {i + 1}
                     </div>
 
                     {i < circularSteps.length - 1 && (
                       <div className="flex justify-center py-1 lg:hidden">
-                        <ArrowRight size={20} className="rotate-90 text-emerald-400" />
+                        <ArrowRight size={20} className="rotate-90 text-success" />
                       </div>
                     )}
                   </div>
@@ -358,9 +358,9 @@ export default function SurdurulebilirlikPage() {
           {/* Circular loop indicator */}
           <AnimateOnScroll animation="fade-up" delay={600}>
             <div className="mt-8 flex justify-center">
-              <div className="flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-5 py-2.5">
-                <RefreshCcw size={16} className="text-emerald-600" />
-                <span className="text-sm font-semibold text-emerald-700">
+              <div className="flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-5 py-2.5">
+                <RefreshCcw size={16} className="text-success" />
+                <span className="text-sm font-semibold text-success">
                   Döngü yeniden başlar — PET sonsuz kez geri dönüştürülebilir
                 </span>
               </div>
@@ -370,7 +370,7 @@ export default function SurdurulebilirlikPage() {
       </div>
 
       {/* CTA */}
-      <div className="bg-gradient-to-br from-emerald-900 via-primary-900 to-primary-900 py-16 lg:py-20">
+      <div className="bg-gradient-to-br from-primary-900 via-primary-900 to-primary-900 py-16 lg:py-20">
         <div className="relative mx-auto max-w-4xl px-4 text-center lg:px-6">
           <div className="pointer-events-none absolute inset-0 opacity-[0.03]">
             <div
@@ -383,8 +383,8 @@ export default function SurdurulebilirlikPage() {
           </div>
           <AnimateOnScroll animation="fade-up">
             <div className="relative">
-              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500/20">
-                <Leaf size={32} className="text-emerald-400" />
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-success/20">
+                <Leaf size={32} className="text-success" />
               </div>
               <h2 className="mb-4 text-2xl font-extrabold text-white sm:text-3xl">
                 Sürdürülebilir Ambalaj Çözümleri İçin
@@ -395,7 +395,7 @@ export default function SurdurulebilirlikPage() {
               </p>
               <Link
                 href="/teklif-al"
-                className="inline-flex items-center gap-2.5 rounded-xl bg-emerald-500 px-8 py-4 font-bold text-white shadow-lg shadow-emerald-500/20 transition-all hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-xl"
+                className="inline-flex items-center gap-2.5 rounded-xl bg-success px-8 py-4 font-bold text-white shadow-lg shadow-success/20 transition-all hover:-translate-y-0.5 hover:bg-success/90 hover:shadow-xl"
               >
                 <Leaf size={18} />
                 Teklif Al

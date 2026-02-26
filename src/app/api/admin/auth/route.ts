@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { timingSafeCompare } from "@/lib/auth";
 
 export async function POST(request: NextRequest) {
   const { password } = await request.json();
@@ -11,7 +12,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  if (password !== secret) {
+  if (!password || typeof password !== "string" || !timingSafeCompare(password, secret)) {
     return NextResponse.json({ error: "Geçersiz şifre" }, { status: 401 });
   }
 

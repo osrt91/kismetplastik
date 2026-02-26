@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import Link from "@/components/ui/LocaleLink";
@@ -18,20 +18,22 @@ export default function CookieBanner() {
         const timer = setTimeout(() => setVisible(true), 1500);
         return () => clearTimeout(timer);
       }
-    } catch {}
+    } catch (e) {
+      if (process.env.NODE_ENV === "development") console.warn("localStorage unavailable", e);
+    }
   }, []);
 
   const accept = () => {
     try {
       localStorage.setItem(STORAGE_KEY, "accepted");
-    } catch {}
+    } catch { /* localStorage unavailable */ }
     setVisible(false);
   };
 
   const decline = () => {
     try {
       localStorage.setItem(STORAGE_KEY, "declined");
-    } catch {}
+    } catch { /* localStorage unavailable */ }
     setVisible(false);
   };
 

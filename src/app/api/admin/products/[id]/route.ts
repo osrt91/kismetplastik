@@ -1,14 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
+import { checkAuth } from "@/lib/auth";
 import { products } from "@/data/products";
-
-function checkAuth(request: NextRequest) {
-  const token = request.cookies.get("admin-token")?.value;
-  if (!token || token !== process.env.ADMIN_SECRET) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-  return null;
-}
 
 export async function GET(
   request: NextRequest,

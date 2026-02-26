@@ -32,7 +32,7 @@ const certificates = [
     description:
       "Ürün ve hizmetlerin müşteri beklentilerini karşılamasını sağlayan uluslararası kalite yönetim standardı.",
     icon: Shield,
-    color: "bg-blue-50 text-blue-600",
+    color: "bg-primary-50 text-primary-700",
     file: "/sertifikalar/ISO-9001.pdf",
   },
   {
@@ -41,7 +41,7 @@ const certificates = [
     description:
       "Çevresel performansın sürekli iyileştirilmesini sağlayan yönetim sistemi standardı.",
     icon: Leaf,
-    color: "bg-green-50 text-green-600",
+    color: "bg-success/10 text-success",
     file: "/sertifikalar/ISO-14001.pdf",
   },
   {
@@ -50,7 +50,7 @@ const certificates = [
     description:
       "Çalışanların sağlık ve güvenliğini korumaya yönelik sistematik yaklaşım standardı.",
     icon: BadgeCheck,
-    color: "bg-amber-50 text-amber-600",
+    color: "bg-accent-100 text-accent-600",
     file: "/sertifikalar/ISO-45001.pdf",
   },
   {
@@ -68,7 +68,7 @@ const certificates = [
     description:
       "Bilgi varlıklarının korunması ve bilgi güvenliği risklerinin yönetilmesi standardı.",
     icon: Microscope,
-    color: "bg-indigo-50 text-indigo-600",
+    color: "bg-primary-50 text-primary-700",
     file: "/sertifikalar/ISO-IEC-27001.pdf",
   },
   {
@@ -77,7 +77,7 @@ const certificates = [
     description:
       "Ürünlerin Avrupa Birliği sağlık, güvenlik ve çevre standartlarına uygunluğunu gösteren belge.",
     icon: Award,
-    color: "bg-red-50 text-red-600",
+    color: "bg-destructive/10 text-destructive",
     file: "/sertifikalar/CE.pdf",
   },
 ];
@@ -197,8 +197,8 @@ export default function KalitePage() {
 
                 {/* Checkmark overlay on hover */}
                 <div className="absolute right-4 top-4 scale-0 transition-transform duration-300 group-hover:scale-100">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-50">
-                    <CheckCircle2 size={18} className="text-green-500" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-success/10">
+                    <CheckCircle2 size={18} className="text-success" />
                   </div>
                 </div>
 

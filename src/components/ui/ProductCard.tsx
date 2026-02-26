@@ -31,6 +31,12 @@ const colorHexMap: Record<string, string> = {
   Sarı: "#EAB308",
   Altın: "#D97706",
   Gümüş: "#9CA3AF",
+  Füme: "#616161",
+  Pembe: "#EC407A",
+  Mor: "#7B1FA2",
+  Turuncu: "#FF9800",
+  Lacivert: "#1A237E",
+  Gri: "#9E9E9E",
 };
 
 const ProductCard = memo(function ProductCard({ product }: { product: Product }) {

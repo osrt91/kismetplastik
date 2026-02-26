@@ -110,13 +110,13 @@ export default function NewProductPage() {
       <div className="flex items-center gap-3">
         <Link
           href="/admin/products"
-          className="rounded-lg p-2 text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-neutral-600"
+          className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
         >
           <ArrowLeft size={18} />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-neutral-900">Yeni Ürün</h1>
-          <p className="text-sm text-neutral-500">
+          <h1 className="text-2xl font-bold text-foreground">Yeni Ürün</h1>
+          <p className="text-sm text-muted-foreground">
             Yeni bir ürün kaydı oluşturun
           </p>
         </div>
@@ -124,13 +124,13 @@ export default function NewProductPage() {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Basic Info */}
-        <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-neutral-400">
+        <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
             Temel Bilgiler
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="sm:col-span-2">
-              <label className="mb-1.5 block text-sm font-medium text-neutral-700">
+              <label className="mb-1.5 block text-sm font-medium text-foreground">
                 Ürün Adı *
               </label>
               <input
@@ -139,12 +139,12 @@ export default function NewProductPage() {
                 value={form.name}
                 onChange={handleNameChange}
                 required
-                className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
+                className="w-full rounded-lg border border-border px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
                 placeholder="PET Şişe 100ml Silindir"
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-neutral-700">
+              <label className="mb-1.5 block text-sm font-medium text-foreground">
                 Slug
               </label>
               <input
@@ -152,18 +152,18 @@ export default function NewProductPage() {
                 name="slug"
                 value={form.slug}
                 onChange={handleChange}
-                className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm text-neutral-500 outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
+                className="w-full rounded-lg border border-border px-3.5 py-2.5 text-sm text-muted-foreground outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-neutral-700">
+              <label className="mb-1.5 block text-sm font-medium text-foreground">
                 Kategori *
               </label>
               <select
                 name="category"
                 value={form.category}
                 onChange={handleChange}
-                className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
+                className="w-full rounded-lg border border-border px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               >
                 {categories.map((cat) => (
                   <option key={cat.slug} value={cat.slug}>
@@ -173,7 +173,7 @@ export default function NewProductPage() {
               </select>
             </div>
             <div className="sm:col-span-2">
-              <label className="mb-1.5 block text-sm font-medium text-neutral-700">
+              <label className="mb-1.5 block text-sm font-medium text-foreground">
                 Kısa Açıklama
               </label>
               <input
@@ -181,12 +181,12 @@ export default function NewProductPage() {
                 name="shortDescription"
                 value={form.shortDescription}
                 onChange={handleChange}
-                className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
+                className="w-full rounded-lg border border-border px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
                 placeholder="Kısa açıklama"
               />
             </div>
             <div className="sm:col-span-2">
-              <label className="mb-1.5 block text-sm font-medium text-neutral-700">
+              <label className="mb-1.5 block text-sm font-medium text-foreground">
                 Detaylı Açıklama
               </label>
               <textarea
@@ -194,7 +194,7 @@ export default function NewProductPage() {
                 value={form.description}
                 onChange={handleChange}
                 rows={3}
-                className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
+                className="w-full rounded-lg border border-border px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
                 placeholder="Ürün hakkında detaylı bilgi..."
               />
             </div>
@@ -202,13 +202,13 @@ export default function NewProductPage() {
         </div>
 
         {/* Technical Specs */}
-        <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-neutral-400">
+        <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
             Teknik Özellikler
           </h2>
           <div className="grid gap-4 sm:grid-cols-3">
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-neutral-700">
+              <label className="mb-1.5 block text-sm font-medium text-foreground">
                 Hacim
               </label>
               <input
@@ -217,11 +217,11 @@ export default function NewProductPage() {
                 value={form.volume}
                 onChange={handleChange}
                 placeholder="100ml"
-                className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
+                className="w-full rounded-lg border border-border px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-neutral-700">
+              <label className="mb-1.5 block text-sm font-medium text-foreground">
                 Ağırlık
               </label>
               <input
@@ -230,11 +230,11 @@ export default function NewProductPage() {
                 value={form.weight}
                 onChange={handleChange}
                 placeholder="15g"
-                className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
+                className="w-full rounded-lg border border-border px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-neutral-700">
+              <label className="mb-1.5 block text-sm font-medium text-foreground">
                 Ağız Çapı
               </label>
               <input
@@ -243,11 +243,11 @@ export default function NewProductPage() {
                 value={form.neckDiameter}
                 onChange={handleChange}
                 placeholder="24mm"
-                className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
+                className="w-full rounded-lg border border-border px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-neutral-700">
+              <label className="mb-1.5 block text-sm font-medium text-foreground">
                 Yükseklik
               </label>
               <input
@@ -256,11 +256,11 @@ export default function NewProductPage() {
                 value={form.height}
                 onChange={handleChange}
                 placeholder="130mm"
-                className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
+                className="w-full rounded-lg border border-border px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-neutral-700">
+              <label className="mb-1.5 block text-sm font-medium text-foreground">
                 Çap
               </label>
               <input
@@ -269,18 +269,18 @@ export default function NewProductPage() {
                 value={form.diameter}
                 onChange={handleChange}
                 placeholder="42mm"
-                className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
+                className="w-full rounded-lg border border-border px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-neutral-700">
+              <label className="mb-1.5 block text-sm font-medium text-foreground">
                 Malzeme
               </label>
               <select
                 name="material"
                 value={form.material}
                 onChange={handleChange}
-                className="w-full rounded-lg border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
+                className="w-full rounded-lg border border-border px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               >
                 <option value="PET">PET</option>
                 <option value="HDPE">HDPE</option>
@@ -292,21 +292,21 @@ export default function NewProductPage() {
         </div>
 
         {/* Colors */}
-        <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-neutral-400">
+        <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
             Renkler
           </h2>
           <div className="mb-3 flex flex-wrap gap-2">
             {form.colors.map((color) => (
               <span
                 key={color}
-                className="inline-flex items-center gap-1 rounded-full bg-neutral-100 px-3 py-1 text-sm text-neutral-700"
+                className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-sm text-foreground"
               >
                 {color}
                 <button
                   type="button"
                   onClick={() => removeColor(color)}
-                  className="ml-1 text-neutral-400 hover:text-red-500"
+                  className="ml-1 text-muted-foreground hover:text-destructive"
                 >
                   <X size={12} />
                 </button>
@@ -320,12 +320,12 @@ export default function NewProductPage() {
               onChange={(e) => setNewColor(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addColor())}
               placeholder="Renk adı (ör: Şeffaf, Amber)"
-              className="flex-1 rounded-lg border border-neutral-200 px-3.5 py-2 text-sm outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
+              className="flex-1 rounded-lg border border-border px-3.5 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
             />
             <button
               type="button"
               onClick={addColor}
-              className="rounded-lg border border-neutral-200 px-3 py-2 text-neutral-500 hover:bg-neutral-50"
+              className="rounded-lg border border-border px-3 py-2 text-muted-foreground hover:bg-muted"
             >
               <Plus size={16} />
             </button>
@@ -333,39 +333,39 @@ export default function NewProductPage() {
         </div>
 
         {/* Status */}
-        <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-neutral-400">
+        <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
             Durum
           </h2>
           <div className="flex flex-wrap gap-6">
-            <label className="flex items-center gap-2 text-sm text-neutral-700">
+            <label className="flex items-center gap-2 text-sm text-foreground">
               <input
                 type="checkbox"
                 name="inStock"
                 checked={form.inStock}
                 onChange={handleChange}
-                className="h-4 w-4 rounded border-neutral-300 text-blue-600"
+                className="h-4 w-4 rounded border-border text-primary"
               />
               Stokta
             </label>
-            <label className="flex items-center gap-2 text-sm text-neutral-700">
+            <label className="flex items-center gap-2 text-sm text-foreground">
               <input
                 type="checkbox"
                 name="featured"
                 checked={form.featured}
                 onChange={handleChange}
-                className="h-4 w-4 rounded border-neutral-300 text-blue-600"
+                className="h-4 w-4 rounded border-border text-primary"
               />
               Öne Çıkan
             </label>
             <div className="flex items-center gap-2">
-              <label className="text-sm text-neutral-700">Min. Sipariş:</label>
+              <label className="text-sm text-foreground">Min. Sipariş:</label>
               <input
                 type="number"
                 name="minOrder"
                 value={form.minOrder}
                 onChange={handleChange}
-                className="w-28 rounded-lg border border-neutral-200 px-3 py-1.5 text-sm outline-none focus:border-blue-300"
+                className="w-28 rounded-lg border border-border px-3 py-1.5 text-sm outline-none focus:border-primary"
               />
             </div>
           </div>
@@ -375,14 +375,14 @@ export default function NewProductPage() {
         <div className="flex items-center justify-end gap-3">
           <Link
             href="/admin/products"
-            className="rounded-lg border border-neutral-200 px-5 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-50"
+            className="rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted"
           >
             İptal
           </Link>
           <button
             type="submit"
             disabled={saving || !form.name}
-            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 disabled:opacity-50"
+            className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90 disabled:opacity-50"
           >
             <Save size={16} />
             {saving ? "Kaydediliyor..." : "Kaydet"}

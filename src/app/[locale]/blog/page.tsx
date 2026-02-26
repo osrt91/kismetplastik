@@ -97,10 +97,10 @@ const categoryStyles: Record<
   { gradient: string; stripe: string; badge: string; icon: string }
 > = {
   Üretim: {
-    gradient: "from-blue-200 via-blue-100 to-blue-50",
-    stripe: "bg-blue-500",
-    badge: "bg-blue-100 text-blue-700",
-    icon: "text-blue-300",
+    gradient: "from-primary-200 via-primary-100 to-primary-50",
+    stripe: "bg-primary-500",
+    badge: "bg-primary-100 text-primary-700",
+    icon: "text-primary-300",
   },
   Sektör: {
     gradient: "from-purple-200 via-purple-100 to-purple-50",
@@ -109,22 +109,22 @@ const categoryStyles: Record<
     icon: "text-purple-300",
   },
   Bilgi: {
-    gradient: "from-emerald-200 via-emerald-100 to-emerald-50",
-    stripe: "bg-emerald-500",
-    badge: "bg-emerald-100 text-emerald-700",
-    icon: "text-emerald-300",
+    gradient: "from-success/30 via-success/20 to-success/10",
+    stripe: "bg-success",
+    badge: "bg-success/20 text-success",
+    icon: "text-success",
   },
   Kalite: {
-    gradient: "from-amber-200 via-amber-100 to-amber-50",
-    stripe: "bg-amber-500",
-    badge: "bg-amber-100 text-amber-700",
-    icon: "text-amber-300",
+    gradient: "from-accent-300 via-accent-100 to-accent-100",
+    stripe: "bg-accent-500",
+    badge: "bg-accent-100 text-accent-600",
+    icon: "text-accent-400",
   },
   Rehber: {
-    gradient: "from-teal-200 via-teal-100 to-teal-50",
-    stripe: "bg-teal-500",
-    badge: "bg-teal-100 text-teal-700",
-    icon: "text-teal-300",
+    gradient: "from-primary-200 via-primary-100 to-primary-50",
+    stripe: "bg-primary-500",
+    badge: "bg-primary-100 text-primary-700",
+    icon: "text-primary-300",
   },
   Sürdürülebilirlik: {
     gradient: "from-lime-200 via-lime-100 to-lime-50",

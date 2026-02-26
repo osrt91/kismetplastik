@@ -161,12 +161,12 @@ export default function ProductDetailClient() {
                   {product.material}
                 </span>
                 {product.inStock ? (
-                  <span className="flex items-center gap-1 rounded-lg bg-green-50 px-3 py-1.5 text-sm font-semibold text-green-700">
+                  <span className="flex items-center gap-1 rounded-lg bg-success/10 px-3 py-1.5 text-sm font-semibold text-success">
                     <CheckCircle2 size={14} />
                     {cm.inStock}
                   </span>
                 ) : (
-                  <span className="rounded-lg bg-red-50 px-3 py-1.5 text-sm font-semibold text-red-700">
+                  <span className="rounded-lg bg-destructive/10 px-3 py-1.5 text-sm font-semibold text-destructive">
                     {cm.outOfStock}
                   </span>
                 )}

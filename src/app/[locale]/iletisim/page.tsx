@@ -13,15 +13,14 @@ import {
   ChevronRight,
   CheckCircle,
   User,
+  Loader2,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
-
-const inputBase =
-  "peer w-full rounded-xl border border-neutral-200 bg-white px-4 pb-2.5 pt-5 text-sm outline-none transition-all duration-300 placeholder-transparent focus:border-primary-500 focus:ring-2 focus:ring-primary-100 focus:shadow-[0_0_0_6px_rgba(46,106,175,0.08)]";
-
-const floatingLabel =
-  "pointer-events-none absolute left-4 top-3.5 text-sm text-neutral-400 transition-all duration-200 peer-focus:top-1 peer-focus:text-[11px] peer-focus:font-medium peer-focus:text-primary-600 peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:font-medium peer-[:not(:placeholder-shown)]:text-primary-600";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
 export default function IletisimPage() {
   const { dict } = useLocale();
@@ -170,111 +169,39 @@ export default function IletisimPage() {
               )}
 
               {submitted ? (
-                <div
-                  className="rounded-xl bg-green-50 p-8 text-center"
-                  style={{ animation: "scale-in 0.4s ease-out" }}
-                >
-                  <div
-                    className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-green-100"
-                    style={{ animation: "scale-in 0.5s ease-out 0.1s both" }}
-                  >
-                    <CheckCircle
-                      size={40}
-                      className="text-green-600"
-                      style={{ animation: "scale-in 0.4s ease-out 0.3s both" }}
-                    />
+                <div className="rounded-lg bg-success/10 p-8 text-center">
+                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-success/20">
+                    <CheckCircle size={32} className="text-success" />
                   </div>
-                  <p className="text-lg font-semibold text-green-800">{c.formSuccess}</p>
+                  <p className="text-lg font-semibold text-foreground">{c.formSuccess}</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid gap-5 sm:grid-cols-2">
-                    <div className="relative">
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formState.name}
-                        onChange={handleChange}
-                        required
-                        placeholder=" "
-                        className={inputBase}
-                      />
-                      <label htmlFor="name" className={floatingLabel}>
-                        <span className="flex items-center gap-1.5">
-                          <User size={13} className="opacity-60" />
-                          {c.formName} *
-                        </span>
-                      </label>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="name">{c.formName} *</Label>
+                      <Input id="name" name="name" value={formState.name} onChange={handleChange} required />
                     </div>
-                    <div className="relative">
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formState.email}
-                        onChange={handleChange}
-                        required
-                        placeholder=" "
-                        className={inputBase}
-                      />
-                      <label htmlFor="email" className={floatingLabel}>
-                        <span className="flex items-center gap-1.5">
-                          <Mail size={13} className="opacity-60" />
-                          {c.formEmail} *
-                        </span>
-                      </label>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email">{c.formEmail} *</Label>
+                      <Input id="email" name="email" type="email" value={formState.email} onChange={handleChange} required />
                     </div>
                   </div>
 
                   <div className="grid gap-5 sm:grid-cols-2">
-                    <div className="relative">
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formState.phone}
-                        onChange={handleChange}
-                        placeholder=" "
-                        className={inputBase}
-                      />
-                      <label htmlFor="phone" className={floatingLabel}>
-                        <span className="flex items-center gap-1.5">
-                          <Phone size={13} className="opacity-60" />
-                          {c.formPhone}
-                        </span>
-                      </label>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="phone">{c.formPhone}</Label>
+                      <Input id="phone" name="phone" type="tel" value={formState.phone} onChange={handleChange} />
                     </div>
-                    <div className="relative">
-                      <input
-                        type="text"
-                        id="company"
-                        name="company"
-                        value={formState.company}
-                        onChange={handleChange}
-                        placeholder=" "
-                        className={inputBase}
-                      />
-                      <label htmlFor="company" className={floatingLabel}>
-                        <span className="flex items-center gap-1.5">
-                          <Building2 size={13} className="opacity-60" />
-                          {c.formCompany}
-                        </span>
-                      </label>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="company">{c.formCompany}</Label>
+                      <Input id="company" name="company" value={formState.company} onChange={handleChange} />
                     </div>
                   </div>
 
-                  <div>
-                    <label className="mb-1.5 block text-sm font-medium text-neutral-700">
-                      {c.formSubject} *
-                    </label>
-                    <select
-                      name="subject"
-                      value={formState.subject}
-                      onChange={handleChange}
-                      required
-                      className="w-full cursor-pointer appearance-none rounded-xl border border-neutral-200 bg-white bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23999%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-[length:16px] bg-[right_12px_center] bg-no-repeat px-4 py-3 pr-10 text-sm outline-none transition-all duration-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 focus:shadow-[0_0_0_6px_rgba(46,106,175,0.08)]"
-                    >
+                  <div className="space-y-1.5">
+                    <Label>{c.formSubject} *</Label>
+                    <select name="subject" value={formState.subject} onChange={handleChange} required className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs transition-colors focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:outline-1">
                       <option value="">{c.formSubjectPlaceholder}</option>
                       <option value="teklif">{c.formSubjectQuote}</option>
                       <option value="bilgi">{c.formSubjectInfo}</option>
@@ -283,36 +210,15 @@ export default function IletisimPage() {
                     </select>
                   </div>
 
-                  <div>
-                    <label className="mb-1.5 block text-sm font-medium text-neutral-700">
-                      {c.formMessage} *
-                    </label>
-                    <textarea
-                      name="message"
-                      value={formState.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      placeholder={c.heroSubtitle ? " " : " "}
-                      className="w-full resize-none rounded-xl border border-neutral-200 px-4 py-3 text-sm outline-none transition-all duration-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 focus:shadow-[0_0_0_6px_rgba(46,106,175,0.08)]"
-                    />
+                  <div className="space-y-1.5">
+                    <Label>{c.formMessage} *</Label>
+                    <Textarea name="message" value={formState.message} onChange={handleChange} required rows={5} />
                   </div>
 
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-accent-500 px-7 py-3.5 font-bold text-primary-900 shadow-md transition-all duration-300 hover:bg-accent-600 hover:shadow-lg active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
-                  >
-                    <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
-                    <span className="relative flex items-center gap-2">
-                      {loading ? (
-                        <span className="h-5 w-5 animate-spin rounded-full border-2 border-primary-900 border-t-transparent" />
-                      ) : (
-                        <Send size={18} />
-                      )}
-                      {loading ? c.submitting : c.formSubmit}
-                    </span>
-                  </button>
+                  <Button type="submit" disabled={loading} className="bg-accent text-accent-foreground hover:bg-accent/90">
+                    {loading ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
+                    {loading ? c.submitting : c.formSubmit}
+                  </Button>
                 </form>
               )}
             </div>
