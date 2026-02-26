@@ -129,12 +129,8 @@ export default function Header() {
       <header className={clsx("sticky top-0 z-50 w-full border-b transition-all duration-200", scrolled ? "border-border bg-background/95 shadow-sm backdrop-blur-md" : "border-transparent bg-background")}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 lg:px-6">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <Image src="/images/logo.jpg" alt="Kısmet Plastik" width={44} height={44} className="h-9 w-9 rounded-md object-contain lg:h-11 lg:w-11" priority />
-            <div className="flex flex-col leading-none">
-              <span className="text-[17px] font-black tracking-tight text-foreground lg:text-[19px]">KİSMET</span>
-              <span className="-mt-0.5 text-[9px] font-semibold tracking-[0.2em] text-muted-foreground lg:text-[10px]">PLASTİK</span>
-            </div>
+          <Link href="/" className="flex items-center">
+            <Image src="/images/logo.jpg" alt="Kısmet Plastik" width={48} height={48} className="h-10 w-10 object-contain lg:h-12 lg:w-12" priority />
           </Link>
 
           {/* Desktop Nav - Radix NavigationMenu */}
@@ -222,8 +218,8 @@ export default function Header() {
         <SheetContent side="right" className="w-[85%] max-w-sm p-0">
           <SheetHeader className="border-b border-border px-5 py-4">
             <SheetTitle className="flex items-center gap-2">
-              <Image src="/images/logo.jpg" alt="Kısmet Plastik" width={36} height={36} className="h-9 w-9 rounded-md object-contain" />
-              <span className="text-lg font-black text-foreground">KİSMET</span>
+              <Image src="/images/logo.jpg" alt="Kısmet Plastik" width={40} height={40} className="h-10 w-10 object-contain" />
+              <span className="text-sm font-bold text-foreground">Kısmet Plastik</span>
             </SheetTitle>
           </SheetHeader>
 

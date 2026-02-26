@@ -107,8 +107,8 @@ export default function ProductDetailClient() {
                   onClick={() => setViewMode("2d")}
                   className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors ${
                     viewMode === "2d"
-                      ? "bg-primary-600 text-white shadow-sm"
-                      : "bg-neutral-100 text-neutral-500 hover:bg-neutral-200"
+                      ? "bg-primary-900 text-white shadow-sm"
+                      : "border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50"
                   }`}
                 >
                   <Layers size={14} />
@@ -118,8 +118,8 @@ export default function ProductDetailClient() {
                   onClick={() => setViewMode("3d")}
                   className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors ${
                     viewMode === "3d"
-                      ? "bg-primary-600 text-white shadow-sm"
-                      : "bg-neutral-100 text-neutral-500 hover:bg-neutral-200"
+                      ? "bg-primary-900 text-white shadow-sm"
+                      : "border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50"
                   }`}
                 >
                   <Box size={14} />

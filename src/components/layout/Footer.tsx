@@ -80,20 +80,14 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-12">
           {/* Brand */}
           <div className="lg:col-span-4">
-            <Link href="/" className="mb-5 inline-flex items-center gap-2">
+            <Link href="/" className="mb-5 inline-block">
               <Image
                 src="/images/logo.jpg"
                 alt="Kısmet Plastik"
-                width={40}
-                height={40}
-                className="h-10 w-10 rounded-md bg-white object-contain p-0.5"
+                width={56}
+                height={56}
+                className="h-14 w-14 rounded-lg bg-white object-contain p-1"
               />
-              <div className="flex flex-col leading-none">
-                <span className="text-lg font-black tracking-tight">KİSMET</span>
-                <span className="-mt-0.5 text-[9px] font-semibold tracking-[0.2em] text-white/50">
-                  PLASTİK
-                </span>
-              </div>
             </Link>
 
             <p className="mb-5 max-w-xs text-[13px] leading-relaxed text-white/60">
