@@ -114,12 +114,10 @@ export default function Footer() {
             </div>
 
             <div className="mt-5 inline-block rounded-lg bg-white p-2">
-              <Image
-                src="/images/qr.jpg"
+              <img
+                src="/images/qr.svg"
                 alt="QR Kod"
-                width={80}
-                height={80}
-                className="h-20 w-20 object-contain"
+                className="h-20 w-20"
               />
             </div>
           </div>
