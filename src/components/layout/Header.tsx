@@ -130,7 +130,7 @@ export default function Header() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 lg:px-6">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <Image src="/images/logo.jpg" alt="Kısmet Plastik" width={180} height={45} className="h-8 w-auto object-contain lg:h-10" priority />
+            <img src="/images/logo1.svg" alt="Kısmet Plastik" className="h-8 w-auto lg:h-10" />
           </Link>
 
           {/* Desktop Nav - Radix NavigationMenu */}
@@ -218,8 +218,7 @@ export default function Header() {
         <SheetContent side="right" className="w-[85%] max-w-sm p-0">
           <SheetHeader className="border-b border-border px-5 py-4">
             <SheetTitle className="flex items-center gap-2">
-              <Image src="/images/logo.jpg" alt="Kısmet Plastik" width={40} height={40} className="h-10 w-10 object-contain" />
-              <span className="text-sm font-bold text-foreground">Kısmet Plastik</span>
+              <img src="/images/logo1.svg" alt="Kısmet Plastik" className="h-8 w-auto" />
             </SheetTitle>
           </SheetHeader>
 

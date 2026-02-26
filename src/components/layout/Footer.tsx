@@ -81,12 +81,10 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-4">
             <Link href="/" className="mb-5 inline-block">
-              <Image
-                src="/images/logo.jpg"
+              <img
+                src="/images/logo2.svg"
                 alt="Kısmet Plastik"
-                width={160}
-                height={40}
-                className="h-10 w-auto rounded-lg bg-white object-contain px-2 py-1"
+                className="h-12 w-12 rounded-lg bg-white/10 p-1.5"
               />
             </Link>
 
