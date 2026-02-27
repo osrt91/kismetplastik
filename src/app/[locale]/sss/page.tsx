@@ -129,7 +129,7 @@ export default function SSSPage() {
     searchFiltered.filter((faq) => faq.category === cat).length;
 
   return (
-    <section className="bg-white">
+    <section className="bg-white dark:bg-neutral-900">
       {/* Hero */}
       <div className="bg-gradient-to-br from-primary-900 via-primary-700 to-primary-900 py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
@@ -165,7 +165,7 @@ export default function SSSPage() {
                 setOpenIndex(0);
               }}
               placeholder="Soru veya cevaplarda ara..."
-              className="w-full rounded-xl border border-neutral-200 bg-neutral-50 py-3.5 pl-11 pr-4 text-sm text-neutral-700 outline-none transition-all placeholder:text-neutral-400 focus:border-primary-300 focus:bg-white focus:ring-2 focus:ring-primary-100"
+              className="w-full rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 py-3.5 pl-11 pr-4 text-sm text-neutral-700 dark:text-neutral-300 outline-none transition-all placeholder:text-neutral-400 focus:border-primary-300 focus:bg-white dark:focus:bg-neutral-800 focus:ring-2 focus:ring-primary-100"
             />
             {searchQuery && (
               <button
@@ -197,7 +197,7 @@ export default function SSSPage() {
                   className={`relative rounded-xl px-5 py-2.5 text-sm font-semibold transition-all ${
                     isActive
                       ? "bg-primary-900 text-white shadow-md"
-                      : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+                      : "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700"
                   }`}
                 >
                   <span className="flex items-center gap-2">
@@ -206,7 +206,7 @@ export default function SSSPage() {
                       className={`inline-flex h-5 min-w-[20px] items-center justify-center rounded-full px-1.5 text-[10px] font-bold ${
                         isActive
                           ? "bg-white/20 text-white"
-                          : "bg-neutral-200 text-neutral-500"
+                          : "bg-neutral-200 dark:bg-neutral-700 text-neutral-500 dark:text-neutral-400"
                       }`}
                     >
                       {count}
@@ -225,12 +225,12 @@ export default function SSSPage() {
         <div className="space-y-3">
           {filteredFAQ.length === 0 && (
             <AnimateOnScroll animation="fade-up">
-              <div className="flex flex-col items-center justify-center rounded-xl border border-neutral-200 bg-neutral-50 px-6 py-12 text-center">
-                <Search size={32} className="mb-3 text-neutral-300" />
-                <p className="font-semibold text-neutral-500">
+              <div className="flex flex-col items-center justify-center rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 px-6 py-12 text-center">
+                <Search size={32} className="mb-3 text-neutral-300 dark:text-neutral-500" />
+                <p className="font-semibold text-neutral-500 dark:text-neutral-400">
                   Sonuç bulunamadı
                 </p>
-                <p className="mt-1 text-sm text-neutral-400">
+                <p className="mt-1 text-sm text-neutral-400 dark:text-neutral-500">
                   Arama kriterlerinizi değiştirmeyi veya başka bir kategori
                   seçmeyi deneyin.
                 </p>
@@ -249,10 +249,10 @@ export default function SSSPage() {
                 delay={i * 60}
               >
                 <div
-                  className={`overflow-hidden rounded-xl border bg-white transition-all duration-300 ${
+                  className={`overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 transition-all duration-300 ${
                     isOpen
-                      ? "border-primary-200 shadow-md"
-                      : "border-neutral-200 hover:shadow-md"
+                      ? "border-primary-200 dark:border-primary-600 shadow-md"
+                      : "hover:shadow-md"
                   }`}
                 >
                   <button
@@ -270,7 +270,7 @@ export default function SSSPage() {
                             : "text-neutral-400"
                         }`}
                       />
-                      <span className="font-semibold text-primary-900">
+                      <span className="font-semibold text-primary-900 dark:text-white">
                         {faq.question}
                       </span>
                     </div>
@@ -291,9 +291,9 @@ export default function SSSPage() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <div className="border-t border-neutral-100 px-6 py-5">
+                      <div className="border-t border-neutral-100 dark:border-neutral-700 px-6 py-5">
                         <div className={`border-l-4 ${borderColor} pl-4`}>
-                          <p className="leading-relaxed text-neutral-600">
+                          <p className="leading-relaxed text-neutral-600 dark:text-neutral-300">
                             {faq.answer}
                           </p>
                         </div>
@@ -317,10 +317,10 @@ export default function SSSPage() {
 
             <div className="relative z-10">
               <HelpCircle size={40} className="mx-auto mb-4 text-primary-700" />
-              <h3 className="mb-3 text-xl font-bold text-primary-900">
+              <h3 className="mb-3 text-xl font-bold text-primary-900 dark:text-white">
                 {f.notFound}
               </h3>
-              <p className="mb-6 text-neutral-600">{f.notFoundDesc}</p>
+              <p className="mb-6 text-neutral-600 dark:text-neutral-300">{f.notFoundDesc}</p>
               <div className="flex flex-col justify-center gap-3 sm:flex-row">
                 <Link
                   href="/iletisim"

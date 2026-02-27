@@ -161,7 +161,7 @@ export default function BlogPage() {
   const rest = filtered.filter((p) => !p.featured);
 
   return (
-    <section className="bg-white">
+    <section className="bg-white dark:bg-neutral-0">
       {/* Hero */}
       <div className="bg-gradient-to-br from-primary-900 via-primary-700 to-primary-900 py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
@@ -193,7 +193,7 @@ export default function BlogPage() {
               className={`rounded-xl px-5 py-2.5 text-sm font-semibold transition-all ${
                 activeCategory === "Tümü"
                   ? "bg-primary-900 text-white shadow-md"
-                  : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+                  : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300"
               }`}
             >
               Tümü
@@ -205,7 +205,7 @@ export default function BlogPage() {
                 className={`rounded-xl px-5 py-2.5 text-sm font-semibold transition-all ${
                   activeCategory === cat
                     ? "bg-primary-900 text-white shadow-md"
-                    : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+                    : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300"
                 }`}
               >
                 {cat}
@@ -229,7 +229,7 @@ export default function BlogPage() {
                   animation="fade-up"
                   delay={i * 100}
                 >
-                  <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 bg-white transition-all hover:-translate-y-1 hover:shadow-xl">
+                  <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 bg-white transition-all hover:-translate-y-1 hover:shadow-xl dark:border-neutral-700 dark:bg-neutral-800">
                     <div className={`h-1 ${style.stripe}`} />
 
                     <div className="absolute left-0 top-1 z-10">
@@ -262,7 +262,7 @@ export default function BlogPage() {
                           {post.readTime}
                         </span>
                       </div>
-                      <h2 className="mb-2 text-xl font-bold text-primary-900 transition-colors group-hover:text-primary-700">
+                      <h2 className="mb-2 text-xl font-bold text-primary-900 transition-colors group-hover:text-primary-700 dark:text-white">
                         {post.title}
                       </h2>
                       <p className="mb-4 flex-1 text-sm leading-relaxed text-neutral-500">
@@ -310,7 +310,7 @@ export default function BlogPage() {
                 animation="fade-up"
                 delay={i * 80}
               >
-                <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 bg-white transition-all hover:-translate-y-1 hover:shadow-lg">
+                <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 bg-white transition-all hover:-translate-y-1 hover:shadow-lg dark:border-neutral-700 dark:bg-neutral-800">
                   <div className={`h-1 ${style.stripe}`} />
 
                   <div
@@ -329,7 +329,7 @@ export default function BlogPage() {
                         {post.category}
                       </span>
                     </div>
-                    <h3 className="mb-2 font-bold text-primary-900 transition-colors group-hover:text-primary-700">
+                    <h3 className="mb-2 font-bold text-primary-900 transition-colors group-hover:text-primary-700 dark:text-white">
                       {post.title}
                     </h3>
                     <p className="mb-4 flex-1 text-sm leading-relaxed text-neutral-500">
@@ -357,7 +357,7 @@ export default function BlogPage() {
 
           {/* Placeholder card */}
           <AnimateOnScroll animation="fade-up" delay={rest.length * 80}>
-            <div className="flex h-full min-h-[260px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-neutral-200 bg-neutral-50/50 p-8 text-center transition-all hover:border-primary-300 hover:bg-primary-50/30">
+            <div className="flex h-full min-h-[260px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-neutral-200 bg-neutral-50/50 p-8 text-center transition-all hover:border-primary-300 hover:bg-primary-50/30 dark:border-neutral-600 dark:bg-neutral-800/50">
               <div className="mb-3 animate-pulse">
                 <Sparkles size={32} className="text-primary-300" />
               </div>

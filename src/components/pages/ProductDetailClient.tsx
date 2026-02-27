@@ -43,9 +43,9 @@ export default function ProductDetailClient() {
 
   if (!product || !category) {
     return (
-      <section className="flex min-h-[60vh] items-center justify-center bg-neutral-50">
+      <section className="flex min-h-[60vh] items-center justify-center bg-neutral-50 dark:bg-neutral-900">
         <div className="text-center">
-          <h1 className="mb-2 text-2xl font-bold text-neutral-700">{p.productNotFound}</h1>
+          <h1 className="mb-2 text-2xl font-bold text-neutral-700 dark:text-neutral-200">{p.productNotFound}</h1>
           <Link href="/urunler" className="text-primary-700 hover:underline">
             {p.backToAll}
           </Link>
@@ -72,7 +72,7 @@ export default function ProductDetailClient() {
   };
 
   return (
-    <section className="bg-neutral-50 py-8 lg:py-16">
+      <section className="bg-neutral-50 py-8 dark:bg-neutral-900 lg:py-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
@@ -108,7 +108,7 @@ export default function ProductDetailClient() {
                   className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors ${
                     viewMode === "2d"
                       ? "bg-primary-900 text-white shadow-sm"
-                      : "border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50"
+                      : "border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50 dark:border-neutral-600 dark:bg-neutral-800 dark:text-neutral-300"
                   }`}
                 >
                   <Layers size={14} />
@@ -119,7 +119,7 @@ export default function ProductDetailClient() {
                   className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors ${
                     viewMode === "3d"
                       ? "bg-primary-900 text-white shadow-sm"
-                      : "border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50"
+                      : "border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50 dark:border-neutral-600 dark:bg-neutral-800 dark:text-neutral-300"
                   }`}
                 >
                   <Box size={14} />
@@ -149,10 +149,10 @@ export default function ProductDetailClient() {
           {/* Right - Details */}
           <AnimateOnScroll animation="fade-left">
             <div>
-              <h1 className="mb-3 text-2xl font-extrabold text-primary-900 sm:text-3xl">
+              <h1 className="mb-3 text-2xl font-extrabold text-primary-900 dark:text-white sm:text-3xl">
                 {product.name}
               </h1>
-              <p className="mb-6 text-base leading-relaxed text-neutral-500">
+              <p className="mb-6 text-base leading-relaxed text-neutral-500 dark:text-neutral-400">
                 {product.description}
               </p>
 
@@ -172,25 +172,25 @@ export default function ProductDetailClient() {
                 )}
               </div>
 
-              <div className="mb-6 overflow-hidden rounded-xl border border-neutral-200">
-                <div className="bg-neutral-50 px-5 py-3">
-                  <h3 className="flex items-center gap-2 text-sm font-bold text-primary-900">
+              <div className="mb-6 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+                <div className="bg-neutral-50 px-5 py-3 dark:bg-neutral-800">
+                  <h3 className="flex items-center gap-2 text-sm font-bold text-primary-900 dark:text-white">
                     <Info size={16} />
                     {p.technicalSpecs}
                   </h3>
                 </div>
-                <div className="divide-y divide-neutral-100">
+                <div className="divide-y divide-neutral-100 dark:divide-neutral-700">
                   {product.specs.map((spec) => (
                     <div key={spec.label} className="flex items-center justify-between px-5 py-3">
-                      <span className="text-sm text-neutral-500">{spec.label}</span>
-                      <span className="text-sm font-semibold text-neutral-900">{spec.value}</span>
+                      <span className="text-sm text-neutral-500 dark:text-neutral-400">{spec.label}</span>
+                      <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">{spec.value}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="mb-8 rounded-xl border border-accent-200 bg-accent-100/50 p-4">
-                <p className="text-sm text-neutral-700">
+              <div className="mb-8 rounded-xl border border-accent-200 bg-accent-100/50 p-4 dark:border-accent-500/30 dark:bg-accent-100/10">
+                <p className="text-sm text-neutral-700 dark:text-neutral-300">
                   <span className="font-bold">{cm.minOrder}:</span>{" "}
                   {product.minOrder.toLocaleString("tr-TR")} {cm.pieces}
                 </p>

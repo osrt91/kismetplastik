@@ -122,7 +122,7 @@ export default function KalitePage() {
   const nav = dict.nav;
 
   return (
-    <section className="bg-white">
+    <section className="bg-white dark:bg-neutral-0">
       {/* Hero */}
       <div className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 py-20 lg:py-28">
         <div className="absolute inset-0 opacity-[0.03]">
@@ -177,10 +177,10 @@ export default function KalitePage() {
             <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
               {q.certsOverline}
             </span>
-            <h2 className="mb-4 text-3xl font-extrabold text-primary-900 sm:text-4xl">
+            <h2 className="mb-4 text-3xl font-extrabold text-primary-900 dark:text-white sm:text-4xl">
               {q.certsTitle}
             </h2>
-            <p className="mx-auto max-w-2xl text-neutral-500">
+            <p className="mx-auto max-w-2xl text-neutral-500 dark:text-neutral-400">
               {q.certsSubtitle}
             </p>
           </div>
@@ -189,7 +189,7 @@ export default function KalitePage() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {certificates.map((cert, i) => (
             <AnimateOnScroll key={cert.name} animation="fade-up" delay={i * 80}>
-              <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-xl">
+              <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-xl dark:border-neutral-700 dark:bg-neutral-800">
                 {/* Ribbon/seal visual */}
                 <div className="absolute -right-4 -top-4 h-20 w-20 rotate-12 opacity-[0.06]">
                   <Award size={80} className="text-primary-900" />
@@ -206,10 +206,10 @@ export default function KalitePage() {
                   <cert.icon size={26} />
                 </div>
                 <div className="mb-2 flex items-center gap-2">
-                  <h3 className="text-lg font-bold text-primary-900">{cert.name}</h3>
+                  <h3 className="text-lg font-bold text-primary-900 dark:text-white">{cert.name}</h3>
                 </div>
-                <p className="mb-1 text-sm font-semibold text-neutral-700">{cert.title}</p>
-                <p className="mb-5 flex-1 text-sm leading-relaxed text-neutral-500">
+                <p className="mb-1 text-sm font-semibold text-neutral-700 dark:text-neutral-300">{cert.title}</p>
+                <p className="mb-5 flex-1 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
                   {cert.description}
                 </p>
                 <a
@@ -236,17 +236,17 @@ export default function KalitePage() {
       </div>
 
       {/* Kalite Kontrol Süreci - Visual timeline */}
-      <div className="bg-neutral-50 py-16 lg:py-24">
+      <div className="bg-neutral-50 py-16 dark:bg-neutral-900 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <AnimateOnScroll animation="fade-up">
             <div className="mb-14 text-center">
               <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
                 {q.processOverline}
               </span>
-              <h2 className="mb-4 text-3xl font-extrabold text-primary-900 sm:text-4xl">
+              <h2 className="mb-4 text-3xl font-extrabold text-primary-900 dark:text-white sm:text-4xl">
                 {q.processTitle}
               </h2>
-              <p className="mx-auto max-w-2xl text-neutral-500">
+              <p className="mx-auto max-w-2xl text-neutral-500 dark:text-neutral-400">
                 {q.processSubtitle}
               </p>
             </div>
@@ -323,10 +323,10 @@ export default function KalitePage() {
               <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
                 {q.labOverline}
               </span>
-              <h2 className="mb-6 text-2xl font-extrabold text-primary-900 sm:text-3xl">
+              <h2 className="mb-6 text-2xl font-extrabold text-primary-900 dark:text-white sm:text-3xl">
                 {q.labTitle}
               </h2>
-              <p className="mb-8 leading-relaxed text-neutral-600">
+              <p className="mb-8 leading-relaxed text-neutral-600 dark:text-neutral-400">
                 {q.labDesc}
               </p>
               <Link
@@ -339,8 +339,8 @@ export default function KalitePage() {
             </div>
           </AnimateOnScroll>
           <AnimateOnScroll animation="fade-left">
-            <div className="rounded-2xl border border-neutral-100 bg-white p-6 shadow-sm">
-              <h3 className="mb-5 font-bold text-primary-900">{q.labTestsTitle}</h3>
+            <div className="rounded-2xl border border-neutral-100 bg-white p-6 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
+              <h3 className="mb-5 font-bold text-primary-900 dark:text-white">{q.labTestsTitle}</h3>
               <ul className="space-y-4">
                 {labTests.map((test) => (
                   <li key={test.text} className="group">

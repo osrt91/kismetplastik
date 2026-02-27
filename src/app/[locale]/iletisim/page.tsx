@@ -79,7 +79,7 @@ export default function IletisimPage() {
   ];
 
   return (
-    <section className="bg-white">
+    <section className="bg-white dark:bg-neutral-0">
       {/* Hero */}
       <div className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-700 to-primary-900 py-16 lg:py-20">
         <Mail
@@ -116,12 +116,12 @@ export default function IletisimPage() {
           {/* Contact Info Sidebar */}
           <AnimateOnScroll animation="fade-right">
             <div className="space-y-4">
-              <h2 className="mb-2 text-xl font-bold text-primary-900">{c.infoTitle}</h2>
+              <h2 className="mb-2 text-xl font-bold text-primary-900 dark:text-white">{c.infoTitle}</h2>
 
               {contactItems.map((item) => (
                 <div
                   key={item.label}
-                  className={`group flex items-start gap-4 rounded-xl border border-neutral-200 border-l-4 ${item.accent} bg-white p-4 shadow-sm transition-all duration-300 hover:scale-[1.03] hover:shadow-md`}
+                  className={`group flex items-start gap-4 rounded-xl border border-neutral-200 border-l-4 ${item.accent} bg-white p-4 shadow-sm transition-all duration-300 hover:scale-[1.03] hover:shadow-md dark:border-neutral-700 dark:bg-neutral-800`}
                 >
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-700 transition-colors duration-300 group-hover:bg-primary-100">
                     <item.icon size={20} />
@@ -135,29 +135,29 @@ export default function IletisimPage() {
                         href={item.href}
                         target={item.href.startsWith("http") ? "_blank" : undefined}
                         rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="text-sm font-medium text-primary-900 transition-colors hover:text-primary-700 hover:underline"
+                        className="text-sm font-medium text-primary-900 transition-colors hover:text-primary-700 hover:underline dark:text-white"
                       >
                         {item.value}
                       </a>
                     ) : (
-                      <p className="text-sm font-medium text-primary-900">{item.value}</p>
+                      <p className="text-sm font-medium text-primary-900 dark:text-white">{item.value}</p>
                     )}
                   </div>
                 </div>
               ))}
 
-              <div className="rounded-xl border border-neutral-200 border-l-4 border-l-primary-700 bg-neutral-50 p-5 transition-all duration-300 hover:scale-[1.03] hover:shadow-md">
+              <div className="rounded-xl border border-neutral-200 border-l-4 border-l-primary-700 bg-neutral-50 p-5 transition-all duration-300 hover:scale-[1.03] hover:shadow-md dark:border-neutral-700 dark:bg-neutral-800">
                 <Building2 size={24} className="mb-2 text-primary-700" />
-                <p className="text-sm font-semibold text-primary-900">{c.companyName}</p>
-                <p className="text-sm text-neutral-500">{c.taxNo}</p>
+                <p className="text-sm font-semibold text-primary-900 dark:text-white">{c.companyName}</p>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400">{c.taxNo}</p>
               </div>
             </div>
           </AnimateOnScroll>
 
           {/* Form */}
           <AnimateOnScroll animation="fade-left" className="lg:col-span-2">
-            <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm lg:p-8">
-              <h2 className="mb-6 flex items-center gap-2 text-xl font-bold text-primary-900">
+            <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-700 dark:bg-neutral-800 lg:p-8">
+              <h2 className="mb-6 flex items-center gap-2 text-xl font-bold text-primary-900 dark:text-white">
                 <MessageSquare size={24} className="text-accent-500" />
                 {c.formTitle}
               </h2>
@@ -227,7 +227,7 @@ export default function IletisimPage() {
 
         {/* Google Maps */}
         <AnimateOnScroll animation="fade-up" className="mt-12">
-          <div className="relative overflow-hidden rounded-2xl border border-neutral-200 shadow-lg">
+          <div className="relative overflow-hidden rounded-2xl border border-neutral-200 shadow-lg dark:border-neutral-700">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.5!2d28.7927!3d41.0681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa51f2e66f7c7%3A0x3a0a3e0a3c5a1b0d!2zxLBraXRlbGxpIE9TQg!5e0!3m2!1str!2str!4v1709000000000!5m2!1str!2str"
               className="aspect-[21/9] w-full border-0"

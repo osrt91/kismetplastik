@@ -11,7 +11,17 @@
     "production": "Üretim Tesisi",
     "career": "Kariyer",
     "blog": "Blog",
-    "catalog": "Katalog"
+    "catalog": "Katalog",
+    "sectors": "Sektörler",
+    "media": "Medya",
+    "references": "Referanslar",
+    "fairs": "Fuarlar",
+    "rAndD": "Ar-Ge",
+    "visionMission": "Vizyon & Misyon",
+    "sampleRequest": "Numune Talep",
+    "allProducts": "Tüm Ürünleri Gör",
+    "glossary": "Ambalaj Sözlüğü",
+    "customMolding": "Özel Kalıplama"
   },
   "home": {
     "badge": "B2B Kozmetik Ambalaj Çözümleri",
@@ -363,7 +373,13 @@
     "requestQuote": "Teklif Al",
     "dealerLogin": "Bayi Girişi",
     "faq": "SSS",
-    "downloadCatalog": "Katalog İndir"
+    "downloadCatalog": "Katalog İndir",
+    "newsletterTitle": "Bülten Aboneliği",
+    "newsletterDesc": "Yenilikler ve kampanyalardan haberdar olun.",
+    "newsletterPlaceholder": "E-posta adresiniz",
+    "newsletterButton": "Abone Ol",
+    "newsletterSuccess": "Aboneliğiniz alındı!",
+    "madeWith": "Türkiye'de üretildi"
   },
   "components": {
     "searchPlaceholder": "Ürün, sayfa veya bilgi ara...",
@@ -407,6 +423,12 @@
     "searchLabel": "Ara",
     "menuLabel": "Menü",
     "themeToggle": "Tema değiştir",
+    "megaProductsDesc": "PET şişe, kapak, sprey ve daha fazlası",
+    "megaCorporateDesc": "Şirket bilgileri ve kalite belgeleri",
+    "megaSectorsDesc": "Hizmet verdiğimiz sektörler",
+    "megaMediaDesc": "Blog, fuarlar ve haberler",
+    "megaCatalogCta": "Katalog İndir",
+    "megaCatalogDesc": "Tüm ürünleri PDF olarak inceleyin",
     "trustedBy": "500+ firma tarafından tercih ediliyor",
     "qrDownload": "QR Kodu İndir",
     "view2D": "2D Görünüm",

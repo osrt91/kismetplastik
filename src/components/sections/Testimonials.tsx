@@ -25,7 +25,7 @@ export default function Testimonials() {
   const testimonials = (dict.testimonials as { name: string; company: string; role: string; text: string }[]) ?? [];
 
   return (
-    <section className="relative bg-white py-20 lg:py-28 overflow-hidden">
+    <section className="relative bg-white py-20 dark:bg-neutral-0 lg:py-28 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         {/* Section Header */}
         <AnimateOnScroll animation="fade-up">
@@ -33,7 +33,7 @@ export default function Testimonials() {
             <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
               {overline}
             </span>
-            <h2 className="mb-4 text-3xl font-extrabold text-primary-900 sm:text-4xl">
+            <h2 className="mb-4 text-3xl font-extrabold text-primary-900 dark:text-white sm:text-4xl">
               {title}
             </h2>
           </div>
@@ -43,7 +43,7 @@ export default function Testimonials() {
         <div className="mb-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((t, i) => (
             <AnimateOnScroll key={t.company} animation="fade-up" delay={i * 100}>
-              <article className="group relative h-full overflow-hidden rounded-2xl border border-neutral-100 bg-white p-8 transition-all duration-300 hover:-translate-y-2 hover:border-primary-100 hover:shadow-xl hover:shadow-primary-900/10">
+              <article className="group relative h-full overflow-hidden rounded-2xl border border-neutral-100 bg-white p-8 transition-all duration-300 hover:-translate-y-2 hover:border-primary-100 hover:shadow-xl hover:shadow-primary-900/10 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-primary-500/30">
                 <div className="absolute left-0 right-0 top-0 h-1 bg-gradient-to-r from-accent-400 via-accent-500 to-accent-400 opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="relative z-10">
                   <Quote
@@ -60,7 +60,7 @@ export default function Testimonials() {
                       />
                     ))}
                   </div>
-                  <p className="mb-6 text-neutral-700 leading-relaxed">
+                  <p className="mb-6 text-neutral-700 leading-relaxed dark:text-neutral-300">
                     &ldquo;{t.text}&rdquo;
                   </p>
                   <div className="flex items-center gap-3">
@@ -68,7 +68,7 @@ export default function Testimonials() {
                       <Building2 size={22} />
                     </div>
                     <div>
-                      <p className="font-semibold text-primary-900">{t.name}</p>
+                      <p className="font-semibold text-primary-900 dark:text-white">{t.name}</p>
                       <p className="text-sm text-primary-700">{t.company}</p>
                       <p className="text-xs text-neutral-500">{t.role}</p>
                     </div>
@@ -92,7 +92,7 @@ export default function Testimonials() {
                 {[...referenceCompanies, ...referenceCompanies].map((name, idx) => (
                   <span
                     key={`${name}-${idx}`}
-                    className="shrink-0 rounded-full border border-neutral-200 bg-neutral-50 px-5 py-2.5 text-sm font-medium text-neutral-700 transition-colors hover:border-primary-200 hover:bg-primary-50 hover:text-primary-700"
+                    className="shrink-0 rounded-full border border-neutral-200 bg-neutral-50 px-5 py-2.5 text-sm font-medium text-neutral-700 transition-colors hover:border-primary-200 hover:bg-primary-50 hover:text-primary-700 dark:border-neutral-600 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:border-primary-500/30 dark:hover:bg-primary-900/30"
                   >
                     {name}
                   </span>

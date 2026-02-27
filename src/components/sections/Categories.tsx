@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "@/components/ui/LocaleLink";
 import { ArrowRight } from "lucide-react";
@@ -61,7 +61,7 @@ export default function Categories() {
   );
 
   return (
-    <section className="relative bg-white py-20 lg:py-28">
+    <section className="relative bg-white py-20 dark:bg-neutral-0 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         {/* Section Header with dot pattern background */}
         <AnimateOnScroll animation="fade-up">
@@ -79,10 +79,10 @@ export default function Categories() {
               <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
                 {h.categoriesOverline}
               </span>
-              <h2 className="mb-4 text-3xl font-extrabold text-primary-900 sm:text-4xl">
+              <h2 className="mb-4 text-3xl font-extrabold text-primary-900 dark:text-white sm:text-4xl">
                 {h.categoriesTitle}
               </h2>
-              <p className="mx-auto max-w-2xl text-neutral-500">
+              <p className="mx-auto max-w-2xl text-neutral-500 dark:text-neutral-400">
                 {h.categoriesSubtitle}
               </p>
             </div>
@@ -99,7 +99,7 @@ export default function Categories() {
             >
               <Link
                 href={cat.href}
-                className="group relative block h-full overflow-hidden rounded-2xl border border-neutral-100 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-xl hover:shadow-primary-900/5"
+                className="group relative block h-full overflow-hidden rounded-2xl border border-neutral-100 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-xl hover:shadow-primary-900/5 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-primary-500/30"
               >
                 {/* Background gradient overlay */}
                 <div
@@ -121,15 +121,15 @@ export default function Categories() {
                     >
                       <cat.icon size={26} weight="duotone" />
                     </div>
-                    <span className="rounded-full bg-neutral-50 px-3 py-1 text-xs font-bold text-neutral-500 transition-colors group-hover:bg-white">
+                    <span className="rounded-full bg-neutral-50 px-3 py-1 text-xs font-bold text-neutral-500 transition-colors group-hover:bg-white dark:bg-neutral-700 dark:text-neutral-400">
                       {cat.count} {h.productsCount}
                     </span>
                   </div>
 
-                  <h3 className="mb-2 text-lg font-bold text-primary-900">
+                  <h3 className="mb-2 text-lg font-bold text-primary-900 dark:text-white">
                     {cat.name}
                   </h3>
-                  <p className="mb-5 text-sm leading-relaxed text-neutral-500">
+                  <p className="mb-5 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
                     {cat.description}
                   </p>
 

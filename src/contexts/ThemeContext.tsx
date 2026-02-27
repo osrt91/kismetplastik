@@ -10,6 +10,16 @@ const ThemeContext = createContext<{
 
 const STORAGE_KEY = "kismetplastik-theme";
 
+function applyTheme(t: Theme) {
+  const html = document.documentElement;
+  html.setAttribute("data-theme", t);
+  if (t === "dark") {
+    html.classList.add("dark");
+  } else {
+    html.classList.remove("dark");
+  }
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("light");
 
@@ -19,7 +29,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       const initial = stored || preferred;
       setTheme(initial);
-      document.documentElement.setAttribute("data-theme", initial);
+      applyTheme(initial);
     } catch {
       // SSR or localStorage unavailable
     }
@@ -28,7 +38,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const toggleTheme = useCallback(() => {
     setTheme(prev => {
       const next = prev === "light" ? "dark" : "light";
-      document.documentElement.setAttribute("data-theme", next);
+      applyTheme(next);
       try {
         localStorage.setItem(STORAGE_KEY, next);
       } catch {

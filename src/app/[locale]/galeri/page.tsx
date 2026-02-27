@@ -76,7 +76,7 @@ export default function GaleriPage() {
   const currentCards = placeholderKeys[activeTab];
 
   return (
-    <section className="bg-white">
+    <section className="bg-white dark:bg-neutral-900">
       {/* Hero */}
       <div className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 py-20 lg:py-28">
         <div className="absolute inset-0 opacity-[0.03]">
@@ -137,7 +137,7 @@ export default function GaleriPage() {
                   className={`relative flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all ${
                     isActive
                       ? "bg-primary-900 text-white shadow-lg shadow-primary-900/20"
-                      : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+                      : "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700"
                   }`}
                 >
                   <tab.icon size={18} />
@@ -158,7 +158,7 @@ export default function GaleriPage() {
             const desc = (g as Record<string, string>)[card.descKey];
             return (
               <AnimateOnScroll key={`${activeTab}-${i}`} animation="fade-up" delay={i * 70}>
-                <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-xl">
+                <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 dark:border-neutral-700 bg-white dark:bg-neutral-800 transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-xl">
                   <div
                     className={`relative flex h-48 items-center justify-center bg-gradient-to-br ${card.accent}`}
                   >
@@ -175,8 +175,8 @@ export default function GaleriPage() {
                     </div>
                   </div>
                   <div className="flex flex-1 flex-col p-5">
-                    <h3 className="mb-1.5 font-bold text-primary-900">{title}</h3>
-                    <p className="text-sm leading-relaxed text-neutral-500">{desc}</p>
+                    <h3 className="mb-1.5 font-bold text-primary-900 dark:text-white">{title}</h3>
+                    <p className="text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">{desc}</p>
                   </div>
                   <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-primary-500 to-accent-500 transition-all duration-500 group-hover:w-full" />
                 </div>
@@ -187,13 +187,13 @@ export default function GaleriPage() {
 
         {/* Info banner */}
         <AnimateOnScroll animation="fade-up">
-          <div className="mt-14 flex items-center gap-4 rounded-2xl border border-primary-100 bg-primary-50/50 p-6 sm:p-8">
+          <div className="mt-14 flex items-center gap-4 rounded-2xl border border-primary-100 dark:border-neutral-700 bg-primary-50/50 dark:bg-neutral-800/50 p-6 sm:p-8">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-100 text-primary-700">
               <Camera size={24} />
             </div>
             <div>
-              <h3 className="mb-1 font-bold text-primary-900">{g.updatingTitle}</h3>
-              <p className="text-sm leading-relaxed text-neutral-600">
+              <h3 className="mb-1 font-bold text-primary-900 dark:text-white">{g.updatingTitle}</h3>
+              <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
                 {g.updatingDesc}{" "}
                 <Link
                   href="/iletisim"

@@ -118,7 +118,7 @@ export default function KariyerPage() {
   const [openPosition, setOpenPosition] = useState<string | null>(positions[0].id);
 
   return (
-    <section className="bg-white">
+    <section className="bg-white dark:bg-neutral-0">
       {/* Hero */}
       <div className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-700 to-primary-900 py-20 lg:py-28">
         <div className="absolute inset-0 opacity-[0.03]">
@@ -171,13 +171,13 @@ export default function KariyerPage() {
         <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           {perks.map((perk, i) => (
             <AnimateOnScroll key={perk.title} animation="fade-up" delay={i * 80}>
-              <div className="group relative flex flex-col items-center overflow-hidden rounded-2xl border border-neutral-100 bg-white p-5 text-center shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-accent-200">
+              <div className="group relative flex flex-col items-center overflow-hidden rounded-2xl border border-neutral-100 bg-white p-5 text-center shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-accent-200 dark:border-neutral-700 dark:bg-neutral-800">
                 <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${perkAccentColors[i]}`} />
                 <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-50 transition-all duration-300 group-hover:bg-accent-500/10 group-hover:scale-110">
                   <perk.icon size={24} className="text-accent-500 transition-colors group-hover:text-accent-600" />
                 </div>
-                <p className="font-bold text-primary-900">{perk.title}</p>
-                <p className="text-xs text-neutral-500">{perk.description}</p>
+                <p className="font-bold text-primary-900 dark:text-white">{perk.title}</p>
+                <p className="text-xs text-neutral-500 dark:text-neutral-400">{perk.description}</p>
               </div>
             </AnimateOnScroll>
           ))}
@@ -191,7 +191,7 @@ export default function KariyerPage() {
             <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
               {c.positionsOverline}
             </span>
-            <h2 className="mb-4 text-3xl font-extrabold text-primary-900 sm:text-4xl">
+            <h2 className="mb-4 text-3xl font-extrabold text-primary-900 dark:text-white sm:text-4xl">
               {c.positionsTitle}
             </h2>
           </div>
@@ -208,10 +208,10 @@ export default function KariyerPage() {
             return (
               <AnimateOnScroll key={pos.id} animation="fade-up" delay={i * 60}>
                 <div
-                  className={`overflow-hidden rounded-xl border bg-white transition-all duration-300 hover:shadow-md ${
+                  className={`overflow-hidden rounded-xl border bg-white transition-all duration-300 hover:shadow-md dark:bg-neutral-800 ${
                     isOpen
                       ? `border-l-[3px] ${colors.border} shadow-md`
-                      : "border-neutral-200"
+                      : "border-neutral-200 dark:border-neutral-700"
                   }`}
                 >
                   <button
@@ -225,7 +225,7 @@ export default function KariyerPage() {
                         <Briefcase size={18} className={colors.text} />
                       </div>
                       <div>
-                        <h3 className="font-bold text-primary-900">{pos.title}</h3>
+                        <h3 className="font-bold text-primary-900 dark:text-white">{pos.title}</h3>
                         <div className="mt-1 flex flex-wrap items-center gap-3 text-xs text-neutral-500">
                           <span
                             className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold ${colors.bg} ${colors.text}`}
@@ -257,8 +257,8 @@ export default function KariyerPage() {
                   >
                     <div className="overflow-hidden">
                       <div className="border-t border-neutral-100 px-6 py-5">
-                        <p className="mb-4 text-neutral-600">{pos.description}</p>
-                        <h4 className="mb-3 text-sm font-bold text-primary-900">{c.requirements}</h4>
+                        <p className="mb-4 text-neutral-600 dark:text-neutral-400">{pos.description}</p>
+                        <h4 className="mb-3 text-sm font-bold text-primary-900 dark:text-white">{c.requirements}</h4>
                         <ul className="mb-5 space-y-2">
                           {pos.requirements.map((req, ri) => (
                             <li
@@ -296,7 +296,7 @@ export default function KariyerPage() {
 
         {/* Spontane Başvuru */}
         <AnimateOnScroll animation="fade-up">
-          <div className="group relative mt-12 overflow-hidden rounded-2xl bg-primary-50 p-8 text-center transition-all hover:shadow-lg">
+          <div className="group relative mt-12 overflow-hidden rounded-2xl bg-primary-50 p-8 text-center transition-all hover:shadow-lg dark:bg-primary-900/20">
             {/* Decorative corner shapes */}
             <div className="pointer-events-none absolute -left-6 -top-6 h-24 w-24 rounded-full bg-accent-500/10" />
             <div className="pointer-events-none absolute -bottom-4 -right-4 h-20 w-20 rounded-2xl bg-primary-200/40 rotate-12" />
@@ -320,10 +320,10 @@ export default function KariyerPage() {
               <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-100">
                 <Send size={24} className="text-primary-700" />
               </div>
-              <h3 className="mb-3 text-xl font-bold text-primary-900">
+              <h3 className="mb-3 text-xl font-bold text-primary-900 dark:text-white">
                 {c.spontaneTitle}
               </h3>
-              <p className="mb-5 text-neutral-600">
+              <p className="mb-5 text-neutral-600 dark:text-neutral-400">
                 {c.spontaneDesc}
               </p>
               <a

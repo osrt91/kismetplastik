@@ -36,7 +36,7 @@ export default function HakkimizdaPage() {
   ];
 
   return (
-    <section className="bg-white">
+    <section className="bg-white dark:bg-neutral-900">
       {/* Hero */}
       <div className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-700 to-primary-900 py-20 lg:py-28">
         <div className="absolute inset-0 opacity-[0.03]">
@@ -97,11 +97,11 @@ export default function HakkimizdaPage() {
               <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
                 {a.storyOverline}
               </span>
-              <h2 className="mb-6 text-2xl font-extrabold text-primary-900 sm:text-3xl">
+              <h2 className="mb-6 text-2xl font-extrabold text-primary-900 dark:text-white sm:text-3xl">
                 {a.storyTitle}
               </h2>
-              <p className="mb-4 leading-relaxed text-neutral-600">{a.storyP1}</p>
-              <p className="mb-8 leading-relaxed text-neutral-600">{a.storyP2}</p>
+              <p className="mb-4 leading-relaxed text-neutral-600 dark:text-neutral-300">{a.storyP1}</p>
+              <p className="mb-8 leading-relaxed text-neutral-600 dark:text-neutral-300">{a.storyP2}</p>
 
               {/* Horizontal timeline */}
               <div className="relative">
@@ -117,10 +117,10 @@ export default function HakkimizdaPage() {
                           <div className="h-2.5 w-2.5 rounded-full bg-primary-500 transition-colors group-hover:bg-accent-500" />
                         </div>
                         <div className="sm:text-center">
-                          <span className="block text-lg font-bold text-primary-900">
+                          <span className="block text-lg font-bold text-primary-900 dark:text-white">
                             {m.year}
                           </span>
-                          <span className="text-sm text-neutral-600">{m.text}</span>
+                          <span className="text-sm text-neutral-600 dark:text-neutral-300">{m.text}</span>
                         </div>
                       </div>
                     </AnimateOnScroll>
@@ -133,11 +133,11 @@ export default function HakkimizdaPage() {
       </div>
 
       {/* Misyon & Vizyon */}
-      <div className="bg-neutral-50 py-16 lg:py-24">
+      <div className="bg-neutral-50 dark:bg-neutral-900 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <div className="grid gap-8 md:grid-cols-2">
             <AnimateOnScroll animation="fade-up">
-              <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 bg-white p-8 pt-10 shadow-sm">
+              <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 dark:border-neutral-700 bg-white dark:bg-neutral-800 p-8 pt-10 shadow-sm">
                 {/* Accent top border */}
                 <div className="absolute left-0 right-0 top-0 h-1 bg-gradient-to-r from-primary-500 to-primary-700" />
                 {/* Background number */}
@@ -148,13 +148,13 @@ export default function HakkimizdaPage() {
                   <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary-100 text-primary-700">
                     <Target size={26} />
                   </div>
-                  <h3 className="mb-3 text-xl font-bold text-primary-900">{a.missionTitle}</h3>
-                  <p className="flex-1 leading-relaxed text-neutral-600">{a.missionText}</p>
+                  <h3 className="mb-3 text-xl font-bold text-primary-900 dark:text-white">{a.missionTitle}</h3>
+                  <p className="flex-1 leading-relaxed text-neutral-600 dark:text-neutral-300">{a.missionText}</p>
                 </div>
               </div>
             </AnimateOnScroll>
             <AnimateOnScroll animation="fade-up" delay={100}>
-              <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 bg-white p-8 pt-10 shadow-sm">
+              <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 dark:border-neutral-700 bg-white dark:bg-neutral-800 p-8 pt-10 shadow-sm">
                 {/* Accent top border */}
                 <div className="absolute left-0 right-0 top-0 h-1 bg-gradient-to-r from-accent-400 to-accent-600" />
                 {/* Background number */}
@@ -165,8 +165,8 @@ export default function HakkimizdaPage() {
                   <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-accent-100 text-accent-600">
                     <Eye size={26} />
                   </div>
-                  <h3 className="mb-3 text-xl font-bold text-primary-900">{a.visionTitle}</h3>
-                  <p className="flex-1 leading-relaxed text-neutral-600">{a.visionText}</p>
+                  <h3 className="mb-3 text-xl font-bold text-primary-900 dark:text-white">{a.visionTitle}</h3>
+                  <p className="flex-1 leading-relaxed text-neutral-600 dark:text-neutral-300">{a.visionText}</p>
                 </div>
               </div>
             </AnimateOnScroll>
@@ -181,7 +181,7 @@ export default function HakkimizdaPage() {
             <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
               {a.valuesOverline}
             </span>
-            <h2 className="text-2xl font-extrabold text-primary-900 sm:text-3xl">
+            <h2 className="text-2xl font-extrabold text-primary-900 dark:text-white sm:text-3xl">
               {a.valuesTitle}
             </h2>
           </div>
@@ -193,8 +193,8 @@ export default function HakkimizdaPage() {
           {values.map((v, i) => (
             <AnimateOnScroll key={v.title} animation="fade-up" delay={i * 80}>
               <div
-                className={`relative rounded-2xl border border-neutral-100 p-6 transition-all hover:border-primary-200 hover:shadow-lg ${
-                  i % 2 === 0 ? "bg-white" : "bg-primary-50/40"
+                className={`relative rounded-2xl border border-neutral-100 dark:border-neutral-700 p-6 transition-all hover:border-primary-200 hover:shadow-lg ${
+                  i % 2 === 0 ? "bg-white dark:bg-neutral-800" : "bg-primary-50/40 dark:bg-neutral-800/50"
                 }`}
               >
                 {/* Connecting dot (desktop) */}
@@ -208,8 +208,8 @@ export default function HakkimizdaPage() {
                 >
                   <v.icon size={24} />
                 </div>
-                <h3 className="mb-2 font-bold text-primary-900">{v.title}</h3>
-                <p className="text-sm leading-relaxed text-neutral-500">{v.description}</p>
+                <h3 className="mb-2 font-bold text-primary-900 dark:text-white">{v.title}</h3>
+                <p className="text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">{v.description}</p>
               </div>
             </AnimateOnScroll>
           ))}

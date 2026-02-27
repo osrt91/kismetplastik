@@ -11,7 +11,17 @@
     "production": "Production Facility",
     "career": "Career",
     "blog": "Blog",
-    "catalog": "Catalog"
+    "catalog": "Catalog",
+    "sectors": "Sectors",
+    "media": "Media",
+    "references": "References",
+    "fairs": "Fairs",
+    "rAndD": "R&D",
+    "visionMission": "Vision & Mission",
+    "sampleRequest": "Sample Request",
+    "allProducts": "View All Products",
+    "glossary": "Packaging Glossary",
+    "customMolding": "Custom Molding"
   },
   "home": {
     "badge": "B2B Cosmetic Packaging Solutions",
@@ -363,7 +373,13 @@
     "requestQuote": "Request Quote",
     "dealerLogin": "Dealer Login",
     "faq": "FAQ",
-    "downloadCatalog": "Download Catalog"
+    "downloadCatalog": "Download Catalog",
+    "newsletterTitle": "Newsletter",
+    "newsletterDesc": "Stay updated with innovations and campaigns.",
+    "newsletterPlaceholder": "Your email address",
+    "newsletterButton": "Subscribe",
+    "newsletterSuccess": "Subscription received!",
+    "madeWith": "Made in Turkey"
   },
   "components": {
     "searchPlaceholder": "Search products, pages or info...",
@@ -407,6 +423,12 @@
     "searchLabel": "Search",
     "menuLabel": "Menu",
     "themeToggle": "Toggle theme",
+    "megaProductsDesc": "PET bottles, caps, sprays and more",
+    "megaCorporateDesc": "Company info and quality certificates",
+    "megaSectorsDesc": "Industries we serve",
+    "megaMediaDesc": "Blog, fairs and news",
+    "megaCatalogCta": "Download Catalog",
+    "megaCatalogDesc": "Browse all products as PDF",
     "trustedBy": "Trusted by 500+ companies",
     "qrDownload": "Download QR Code",
     "view2D": "2D View",

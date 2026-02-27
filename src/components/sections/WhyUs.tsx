@@ -41,7 +41,7 @@ export default function WhyUs() {
   ];
 
   return (
-    <section className="relative bg-neutral-50 py-20 lg:py-28 overflow-hidden">
+    <section className="relative bg-neutral-50 py-20 dark:bg-neutral-900 lg:py-28 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         {/* Section Header */}
         <AnimateOnScroll animation="fade-up">
@@ -49,10 +49,10 @@ export default function WhyUs() {
             <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
               {h.whyUsOverline}
             </span>
-            <h2 className="mb-4 text-3xl font-extrabold text-primary-900 sm:text-4xl">
+            <h2 className="mb-4 text-3xl font-extrabold text-primary-900 dark:text-white sm:text-4xl">
               {h.whyUsTitle}
             </h2>
-            <p className="mx-auto max-w-2xl text-neutral-500">
+            <p className="mx-auto max-w-2xl text-neutral-500 dark:text-neutral-400">
               {h.whyUsSubtitle}
             </p>
           </div>
@@ -109,7 +109,7 @@ export default function WhyUs() {
                 animation="fade-up"
                 delay={i * 100}
               >
-                <div className="group relative h-full overflow-hidden rounded-2xl border border-neutral-100 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-xl hover:shadow-primary-900/5">
+                <div className="group relative h-full overflow-hidden rounded-2xl border border-neutral-100 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-xl hover:shadow-primary-900/5 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-primary-500/30">
                   {/* Left border gradient reveal on hover */}
                   <div
                     className={`absolute left-0 top-0 h-full w-[3px] bg-gradient-to-b ${scheme.borderGradient} opacity-0 transition-all duration-500 group-hover:opacity-100`}
@@ -128,10 +128,10 @@ export default function WhyUs() {
                     >
                       <feature.icon size={26} weight="duotone" />
                     </div>
-                    <h3 className="mb-3 text-lg font-bold text-primary-900">
+                    <h3 className="mb-3 text-lg font-bold text-primary-900 dark:text-white">
                       {feature.title}
                     </h3>
-                    <p className="text-sm leading-relaxed text-neutral-500">
+                    <p className="text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
                       {feature.description}
                     </p>
                   </div>

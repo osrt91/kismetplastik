@@ -7,6 +7,7 @@ import ProductCard from "@/components/ui/ProductCard";
 import ProductFilter from "@/components/ui/ProductFilter";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
+import { SlidersHorizontal, X } from "lucide-react";
 
 export default function ProductsPage() {
   const { dict } = useLocale();
@@ -16,6 +17,7 @@ export default function ProductsPage() {
   const [category, setCategory] = useState<CategorySlug | "all">("all");
   const [material, setMaterial] = useState("");
   const [sort, setSort] = useState<SortOption>("name-asc");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const materials = useMemo(() => getAllMaterials(), []);
 
@@ -58,51 +60,74 @@ export default function ProductsPage() {
   }, [search, category, material, sort]);
 
   return (
-    <section className="bg-neutral-50 py-12 lg:py-20">
+    <section className="bg-neutral-50 py-12 dark:bg-neutral-900 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <AnimateOnScroll animation="fade-up">
           <div className="mb-10">
             <span className="mb-2 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
               {p.overline}
             </span>
-            <h1 className="mb-3 text-3xl font-extrabold text-primary-900 sm:text-4xl">
+            <h1 className="mb-3 text-3xl font-extrabold text-primary-900 dark:text-white sm:text-4xl">
               {p.title}
             </h1>
-            <p className="max-w-2xl text-neutral-500">{p.subtitle}</p>
+            <p className="max-w-2xl text-neutral-500 dark:text-neutral-400">{p.subtitle}</p>
           </div>
         </AnimateOnScroll>
 
-        <ProductFilter
-          search={search}
-          onSearchChange={setSearch}
-          selectedCategory={category}
-          onCategoryChange={setCategory}
-          selectedMaterial={material}
-          onMaterialChange={setMaterial}
-          sort={sort}
-          onSortChange={setSort}
-          materials={materials}
-          resultCount={filtered.length}
-        />
+        {/* Mobile filter toggle */}
+        <button
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="mb-4 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-sm font-medium text-neutral-700 shadow-sm transition-colors hover:bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 lg:hidden"
+        >
+          <SlidersHorizontal size={16} />
+          {dict.components.filters}
+          {(search || category !== "all" || material) && (
+            <span className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary-500 text-[10px] font-bold text-white">
+              {[search !== "", category !== "all", material !== ""].filter(Boolean).length}
+            </span>
+          )}
+        </button>
 
-        {filtered.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filtered.map((product, i) => (
-              <AnimateOnScroll
-                key={product.id}
-                animation="fade-up"
-                delay={Math.min(i * 60, 300)}
-              >
-                <ProductCard product={product} />
-              </AnimateOnScroll>
-            ))}
+        <div className="flex gap-8">
+          {/* Sidebar — desktop always visible, mobile toggleable */}
+          <div className={`${sidebarOpen ? "block" : "hidden"} lg:block`}>
+            <ProductFilter
+              search={search}
+              onSearchChange={setSearch}
+              selectedCategory={category}
+              onCategoryChange={setCategory}
+              selectedMaterial={material}
+              onMaterialChange={setMaterial}
+              sort={sort}
+              onSortChange={setSort}
+              materials={materials}
+              resultCount={filtered.length}
+              layout="sidebar"
+            />
           </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center rounded-2xl border border-neutral-200 bg-white py-20 text-center">
-            <p className="mb-2 text-lg font-semibold text-neutral-700">{p.noResults}</p>
-            <p className="text-sm text-neutral-400">{p.noResultsHint}</p>
+
+          {/* Product Grid */}
+          <div className="flex-1">
+            {filtered.length > 0 ? (
+              <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                {filtered.map((product, i) => (
+                  <AnimateOnScroll
+                    key={product.id}
+                    animation="fade-up"
+                    delay={Math.min(i * 60, 300)}
+                  >
+                    <ProductCard product={product} />
+                  </AnimateOnScroll>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center rounded-2xl border border-neutral-200 bg-white py-20 text-center dark:border-neutral-700 dark:bg-neutral-800">
+                <p className="mb-2 text-lg font-semibold text-neutral-700 dark:text-neutral-200">{p.noResults}</p>
+                <p className="text-sm text-neutral-400">{p.noResultsHint}</p>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </section>
   );

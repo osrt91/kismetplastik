@@ -12,7 +12,7 @@ export default function About() {
   const strengths = dict.homeStrengths as string[];
 
   return (
-    <section className="bg-white py-20 lg:py-28">
+    <section className="bg-white py-20 dark:bg-neutral-0 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="relative grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Vertical accent divider – desktop only */}
@@ -66,17 +66,17 @@ export default function About() {
               <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
                 {h.aboutOverline}
               </span>
-              <h2 className="mb-5 text-3xl font-extrabold text-primary-900 sm:text-4xl">
+              <h2 className="mb-5 text-3xl font-extrabold text-primary-900 dark:text-white sm:text-4xl">
                 {h.aboutTitle}{" "}
                 <span className="relative text-accent-500">
                   {h.aboutTitleAccent}
                   <span className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-accent-400/50" />
                 </span>
               </h2>
-              <p className="mb-6 leading-relaxed text-neutral-500">
+              <p className="mb-6 leading-relaxed text-neutral-500 dark:text-neutral-400">
                 {h.aboutLead1}
               </p>
-              <p className="mb-8 leading-relaxed text-neutral-500">
+              <p className="mb-8 leading-relaxed text-neutral-500 dark:text-neutral-400">
                 {h.aboutLead2}
               </p>
 
@@ -85,12 +85,12 @@ export default function About() {
                 {strengths.map((item) => (
                   <li
                     key={item}
-                    className="flex items-start gap-3 rounded-xl border border-neutral-100 bg-neutral-50/60 px-4 py-3 transition-colors duration-200 hover:border-accent-200 hover:bg-accent-50/40"
+                    className="flex items-start gap-3 rounded-xl border border-neutral-100 bg-neutral-50/60 px-4 py-3 transition-colors duration-200 hover:border-accent-200 hover:bg-accent-50/40 dark:border-neutral-700 dark:bg-neutral-800/60 dark:hover:border-accent-500/30"
                   >
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-500 text-primary-900">
                       <Check size={12} strokeWidth={3} />
                     </span>
-                    <span className="text-sm font-medium text-neutral-700">
+                    <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
                       {item}
                     </span>
                   </li>
