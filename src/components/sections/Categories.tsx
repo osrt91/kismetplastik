@@ -2,16 +2,7 @@
 
 import Link from "@/components/ui/LocaleLink";
 import { ArrowRight } from "lucide-react";
-import {
-  Drop,
-  Package,
-  CircleDashed,
-  Cylinder,
-  SprayBottle,
-  ArrowCircleDown,
-  Crosshair,
-  Funnel,
-} from "@phosphor-icons/react";
+import { categoryIconList } from "@/components/ui/CategoryIcons";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
 
@@ -25,7 +16,7 @@ const categorySlugs = [
   "tetikli-pusturtuculer",
   "huniler",
 ];
-const icons = [Drop, Package, CircleDashed, Cylinder, SprayBottle, ArrowCircleDown, Crosshair, Funnel];
+const icons = categoryIconList;
 const colors = [
   "from-blue-500/10 to-blue-600/5",
   "from-amber-500/10 to-amber-600/5",
@@ -119,7 +110,7 @@ export default function Categories() {
                     <div
                       className={`flex h-14 w-14 items-center justify-center rounded-xl bg-neutral-50 ${cat.iconColor} transition-all duration-300 group-hover:bg-white group-hover:scale-110 group-hover:animate-[iconBounce_0.5s_ease]`}
                     >
-                      <cat.icon size={26} weight="duotone" />
+                      <cat.icon size={26} />
                     </div>
                     <span className="rounded-full bg-neutral-50 px-3 py-1 text-xs font-bold text-neutral-500 transition-colors group-hover:bg-white dark:bg-neutral-700 dark:text-neutral-400">
                       {cat.count} {h.productsCount}

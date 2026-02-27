@@ -22,12 +22,6 @@ import {
   Image as ImageIcon,
   Eye,
   Sparkles,
-  Droplets,
-  SprayCan,
-  ShowerHead,
-  Pipette,
-  CircleDot,
-  Cone,
 } from "lucide-react";
 import clsx from "clsx";
 import { useLocale } from "@/contexts/LocaleContext";
@@ -50,8 +44,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-
-const categoryIcons = [Package, Droplets, CircleDot, Pipette, SprayCan, ShowerHead, SprayCan, Cone];
+import { categoryIconList } from "@/components/ui/CategoryIcons";
 
 const categoryHrefs = [
   "/urunler/pet-siseler",
@@ -73,7 +66,7 @@ export default function Header() {
     name: categories[i]?.name ?? "",
     desc: categories[i]?.description ?? "",
     href,
-    icon: categoryIcons[i] || Package,
+    icon: categoryIconList[i] || Package,
   }));
 
   const corporateChildren = [
