@@ -129,7 +129,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <link rel="dns-prefetch" href="https://wa.me" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#002060" />
-        <link rel="apple-touch-icon" href="/images/logo.jpg" />
+        <link rel="apple-touch-icon" sizes="192x192" href="/images/icon-192.png" />
       </head>
       <body className="antialiased">
         <a
