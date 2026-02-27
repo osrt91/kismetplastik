@@ -521,7 +521,12 @@
     "dealerMeetings": "Bayi Toplantıları",
     "dealerMeetingsDesc": "Yıllık bayi buluşma ve değerlendirme",
     "trainingSeminars": "Eğitim Seminerleri",
-    "trainingSeminarsDesc": "Sektörel bilgi paylaşım etkinlikleri"
+    "trainingSeminarsDesc": "Sektörel bilgi paylaşım etkinlikleri",
+    "imageCount": "fotoğraf",
+    "noImagesYet": "Bu kategoride henüz fotoğraf bulunmuyor.",
+    "loadingGallery": "Galeri yükleniyor...",
+    "allPhotos": "Tüm Fotoğraflar",
+    "close": "Kapat"
   },
   "notFound": {
     "title": "Sayfa Bulunamadı",

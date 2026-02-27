@@ -1,0 +1,66 @@
+{
+  "packageId": "com.kismetplastik.app",
+  "host": "kismetplastik.vercel.app",
+  "name": "Kısmet Plastik",
+  "launcherName": "Kısmet Plastik",
+  "display": "standalone",
+  "themeColor": "#002060",
+  "themeColorDark": "#002060",
+  "navigationColor": "#002060",
+  "navigationColorDark": "#002060",
+  "navigationDividerColor": "#002060",
+  "navigationDividerColorDark": "#002060",
+  "backgroundColor": "#ffffff",
+  "enableNotifications": false,
+  "startUrl": "/tr",
+  "iconUrl": "https://kismetplastik.vercel.app/images/icon-512.png",
+  "maskableIconUrl": "https://kismetplastik.vercel.app/images/icon-maskable-512.png",
+  "shortcuts": [
+    {
+      "name": "Ürünler",
+      "short_name": "Ürünler",
+      "url": "/tr/urunler",
+      "chosenIconUrl": "https://kismetplastik.vercel.app/images/icon-192.png"
+    },
+    {
+      "name": "Teklif Al",
+      "short_name": "Teklif",
+      "url": "/tr/teklif-al",
+      "chosenIconUrl": "https://kismetplastik.vercel.app/images/icon-192.png"
+    },
+    {
+      "name": "İletişim",
+      "short_name": "İletişim",
+      "url": "/tr/iletisim",
+      "chosenIconUrl": "https://kismetplastik.vercel.app/images/icon-192.png"
+    }
+  ],
+  "signing": {
+    "keyPath": "./android.keystore",
+    "alias": "kismetplastik"
+  },
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://kismetplastik.vercel.app/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {
+    "locationDelegation": {
+      "enabled": false
+    },
+    "playBilling": {
+      "enabled": false
+    }
+  },
+  "alphaDependency": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://kismetplastik.vercel.app/",
+  "minSdkVersion": 23,
+  "appVersionCode": 1,
+  "appVersionName": "1.0.0",
+  "splashScreenFadeOutDuration": 300,
+  "signingMode": "new",
+  "orientation": "portrait"
+}

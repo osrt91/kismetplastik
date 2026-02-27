@@ -75,7 +75,7 @@ export default function IletisimPage() {
     { icon: Phone, label: c.phoneLabel, value: "0212 549 87 03", href: "tel:+902125498703", accent: "border-l-primary-500" },
     { icon: Mail, label: c.emailLabel, value: "bilgi@kismetplastik.com", href: "mailto:bilgi@kismetplastik.com", accent: "border-l-accent-500" },
     { icon: MapPin, label: c.addressLabel, value: c.addressValue, href: "https://maps.google.com", accent: "border-l-green-500" },
-    { icon: Clock, label: c.hoursLabel, value: c.hoursValue, accent: "border-l-orange-400" },
+    { icon: Clock, label: c.hoursLabel, value: c.hoursValue, accent: "border-l-amber-400" },
   ];
 
   return (

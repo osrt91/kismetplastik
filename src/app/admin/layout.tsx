@@ -6,6 +6,7 @@ import {
   LayoutDashboard,
   Package,
   Newspaper,
+  Image as ImageIcon,
   LogOut,
   Menu,
   X,
@@ -17,6 +18,7 @@ const navItems = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { name: "Ürünler", href: "/admin/products", icon: Package },
   { name: "Blog", href: "/admin/blog", icon: Newspaper },
+  { name: "Galeri", href: "/admin/gallery", icon: ImageIcon },
 ];
 
 export default function AdminLayout({

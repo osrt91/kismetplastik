@@ -1,6 +1,6 @@
 "use client";
 
-import { Package, Newspaper, Eye, TrendingUp } from "lucide-react";
+import { Package, Newspaper, Eye, TrendingUp, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import { products, categories } from "@/data/products";
 import { blogPosts } from "@/data/blog";
@@ -90,6 +90,13 @@ export default function AdminDashboard() {
           >
             <Newspaper size={18} />
             Yeni Blog Yazısı
+          </Link>
+          <Link
+            href="/admin/gallery"
+            className="flex items-center gap-3 rounded-xl border border-dashed border-border bg-card p-4 text-sm font-medium text-muted-foreground transition-all hover:border-primary hover:bg-primary/10 hover:text-primary"
+          >
+            <ImageIcon size={18} />
+            Galeri Yönetimi
           </Link>
           <Link
             href="/"

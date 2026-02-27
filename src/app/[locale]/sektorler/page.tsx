@@ -14,7 +14,7 @@ const sectorColors = [
   "from-blue-500/10 to-blue-600/5",
   "from-emerald-500/10 to-emerald-600/5",
   "from-purple-500/10 to-purple-600/5",
-  "from-orange-500/10 to-orange-600/5",
+  "from-amber-500/10 to-amber-600/5",
 ];
 
 const labels: Record<string, Record<string, string>> = {

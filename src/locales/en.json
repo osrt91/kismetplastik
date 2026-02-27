@@ -521,7 +521,12 @@
     "dealerMeetings": "Dealer Meetings",
     "dealerMeetingsDesc": "Annual dealer meetings and evaluations",
     "trainingSeminars": "Training Seminars",
-    "trainingSeminarsDesc": "Industry knowledge sharing events"
+    "trainingSeminarsDesc": "Industry knowledge sharing events",
+    "imageCount": "photos",
+    "noImagesYet": "No photos in this category yet.",
+    "loadingGallery": "Loading gallery...",
+    "allPhotos": "All Photos",
+    "close": "Close"
   },
   "notFound": {
     "title": "Page Not Found",
