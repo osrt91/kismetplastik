@@ -4,7 +4,7 @@ import { timingSafeCompare } from "@/lib/auth";
 export const locales = ["tr", "en"] as const;
 export const defaultLocale = "tr";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (pathname.startsWith("/admin")) {

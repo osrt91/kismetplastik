@@ -11,7 +11,7 @@ const ScrollToTop = dynamic(() => import("@/components/ui/ScrollToTop"));
 const CookieBanner = dynamic(() => import("@/components/ui/CookieBanner"));
 const InstallPrompt = dynamic(() => import("@/components/ui/InstallPrompt"));
 import { LocalBusinessJsonLd, OrganizationJsonLd } from "@/components/seo/JsonLd";
-import { locales } from "@/middleware";
+import { locales } from "@/proxy";
 
 type Props = {
   children: React.ReactNode;
