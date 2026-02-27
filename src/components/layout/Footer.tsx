@@ -11,8 +11,8 @@ import {
   Linkedin,
   ArrowUp,
   Send,
-  Heart,
   CheckCircle2,
+  ExternalLink,
 } from "lucide-react";
 import { useLocale } from "@/contexts/LocaleContext";
 
@@ -47,7 +47,6 @@ export default function Footer() {
     { name: f.dealerLogin, href: "/bayi-girisi" },
     { name: f.faq, href: "/sss" },
     { name: f.downloadCatalog, href: "/katalog" },
-    { name: "KVKK", href: "/kvkk" },
   ];
 
   const socialLinks = [
@@ -56,9 +55,7 @@ export default function Footer() {
     { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/company/kismetplastik" },
   ];
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   const handleNewsletter = (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,183 +66,198 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-primary-900 text-white">
-      {/* Wave */}
-      <div className="pointer-events-none absolute left-0 right-0 top-0 -translate-y-[calc(100%-1px)] overflow-hidden">
-        <svg
-          className="block h-10 w-full md:h-14 lg:h-16"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0,120 L0,60 C200,10 400,100 600,50 C800,0 1000,90 1200,40 L1200,120 Z"
-            fill="var(--primary-900)"
-          />
-        </svg>
-      </div>
-
-      <div className="mx-auto max-w-7xl px-4 py-14 lg:px-6">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-12">
-          {/* Brand + Newsletter */}
+    <footer className="bg-[#0a1628] text-white">
+      {/* Main Footer */}
+      <div className="mx-auto max-w-7xl px-4 pb-10 pt-14 lg:px-6">
+        <div className="grid gap-10 lg:grid-cols-12">
+          {/* Brand */}
           <div className="lg:col-span-4">
-            <Link href="/" className="mb-4 inline-block">
+            <Link href="/" className="mb-5 inline-flex items-center gap-2.5">
               <img
                 src="/images/logo2.svg"
                 alt="Kısmet Plastik"
-                className="h-12 w-12 rounded-lg bg-white/10 p-1.5"
+                className="h-10 w-10 rounded-lg bg-white/10 p-1 brightness-0 invert"
               />
+              <span className="text-lg font-bold tracking-tight">
+                Kısmet Plastik
+              </span>
             </Link>
 
-            <p className="mb-5 max-w-xs text-[13px] leading-relaxed text-white/55">
+            <p className="mb-6 max-w-xs text-[13px] leading-relaxed text-white/50">
               {f.brandDesc}
             </p>
 
-            {/* Contact Info */}
-            <div className="mb-6 space-y-2">
+            {/* Contact */}
+            <div className="space-y-2.5">
               <a
                 href="tel:+902125498703"
-                className="flex items-center gap-2 text-[13px] text-white/70 transition-colors hover:text-white"
+                className="group flex items-center gap-2.5 text-[13px] text-white/60 transition-colors hover:text-white"
               >
-                <Phone size={13} strokeWidth={1.8} />
+                <span className="flex h-7 w-7 items-center justify-center rounded-md bg-white/[0.06] transition-colors group-hover:bg-accent/20">
+                  <Phone size={12} strokeWidth={1.8} />
+                </span>
                 0212 549 87 03
               </a>
               <a
                 href="mailto:bilgi@kismetplastik.com"
-                className="flex items-center gap-2 text-[13px] text-white/70 transition-colors hover:text-white"
+                className="group flex items-center gap-2.5 text-[13px] text-white/60 transition-colors hover:text-white"
               >
-                <Mail size={13} strokeWidth={1.8} />
+                <span className="flex h-7 w-7 items-center justify-center rounded-md bg-white/[0.06] transition-colors group-hover:bg-accent/20">
+                  <Mail size={12} strokeWidth={1.8} />
+                </span>
                 bilgi@kismetplastik.com
               </a>
-              <p className="flex items-start gap-2 text-[13px] text-white/45">
-                <MapPin size={13} strokeWidth={1.8} className="mt-0.5 shrink-0" />
-                İkitelli OSB, Başakşehir/İstanbul
-              </p>
-            </div>
-
-            {/* Newsletter */}
-            <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-              <h4 className="mb-1 text-[13px] font-bold text-white/90">{f.newsletterTitle}</h4>
-              <p className="mb-3 text-[11px] text-white/45">{f.newsletterDesc}</p>
-              {subscribed ? (
-                <div className="flex items-center gap-2 text-sm text-emerald-400">
-                  <CheckCircle2 size={16} />
-                  {f.newsletterSuccess}
-                </div>
-              ) : (
-                <form onSubmit={handleNewsletter} className="flex gap-2">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder={f.newsletterPlaceholder}
-                    className="flex-1 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs text-white placeholder-white/30 outline-none transition-colors focus:border-white/25 focus:bg-white/10"
-                    required
-                  />
-                  <button
-                    type="submit"
-                    className="flex items-center gap-1.5 rounded-lg bg-accent px-3 py-2 text-xs font-semibold text-accent-foreground transition-colors hover:bg-accent/90"
-                  >
-                    <Send size={12} />
-                    {f.newsletterButton}
-                  </button>
-                </form>
-              )}
+              <div className="flex items-center gap-2.5 text-[13px] text-white/40">
+                <span className="flex h-7 w-7 items-center justify-center rounded-md bg-white/[0.06]">
+                  <MapPin size={12} strokeWidth={1.8} />
+                </span>
+                İkitelli OSB, Başakşehir / İstanbul
+              </div>
             </div>
           </div>
 
-          {/* Products */}
-          <div className="lg:col-span-2 lg:col-start-6">
-            <h3 className="mb-3 text-[11px] font-bold uppercase tracking-widest text-white/30">
-              {f.productsTitle}
-            </h3>
-            <ul className="space-y-2">
-              {productLinks.map((link) => (
-                <li key={link.name}>
+          {/* Navigation Columns */}
+          <div className="grid gap-8 sm:grid-cols-3 lg:col-span-5 lg:col-start-6">
+            {/* Products */}
+            <div>
+              <h3 className="mb-4 text-[11px] font-bold uppercase tracking-[0.15em] text-accent">
+                {f.productsTitle}
+              </h3>
+              <ul className="space-y-2">
+                {productLinks.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="text-[13px] text-white/50 transition-colors hover:text-white"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+                <li>
                   <Link
-                    href={link.href}
-                    className="text-[13px] text-white/55 transition-colors hover:text-white"
+                    href="/urunler"
+                    className="inline-flex items-center gap-1 text-[12px] font-medium text-accent/70 transition-colors hover:text-accent"
                   >
-                    {link.name}
+                    {nav.allProducts}
+                    <ExternalLink size={10} />
                   </Link>
                 </li>
-              ))}
-            </ul>
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div>
+              <h3 className="mb-4 text-[11px] font-bold uppercase tracking-[0.15em] text-accent">
+                {f.companyTitle}
+              </h3>
+              <ul className="space-y-2">
+                {companyLinks.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="text-[13px] text-white/50 transition-colors hover:text-white"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Support */}
+            <div>
+              <h3 className="mb-4 text-[11px] font-bold uppercase tracking-[0.15em] text-accent">
+                {f.supportTitle}
+              </h3>
+              <ul className="space-y-2">
+                {supportLinks.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="text-[13px] text-white/50 transition-colors hover:text-white"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <Link
+                    href="/kvkk"
+                    className="text-[12px] text-white/30 transition-colors hover:text-white/60"
+                  >
+                    KVKK
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
 
-          {/* Company */}
+          {/* Newsletter */}
           <div className="lg:col-span-3">
-            <h3 className="mb-3 text-[11px] font-bold uppercase tracking-widest text-white/30">
-              {f.companyTitle}
+            <h3 className="mb-4 text-[11px] font-bold uppercase tracking-[0.15em] text-accent">
+              {f.newsletterTitle}
             </h3>
-            <ul className="space-y-2">
-              {companyLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-[13px] text-white/55 transition-colors hover:text-white"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+            <p className="mb-4 text-[12px] leading-relaxed text-white/40">
+              {f.newsletterDesc}
+            </p>
+            {subscribed ? (
+              <div className="flex items-center gap-2 rounded-lg border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-400">
+                <CheckCircle2 size={16} />
+                {f.newsletterSuccess}
+              </div>
+            ) : (
+              <form onSubmit={handleNewsletter} className="space-y-2.5">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={f.newsletterPlaceholder}
+                  className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-xs text-white placeholder-white/25 outline-none transition-colors focus:border-accent/40 focus:bg-white/[0.06]"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-xs font-bold text-accent-foreground transition-colors hover:bg-accent/90"
+                >
+                  <Send size={12} />
+                  {f.newsletterButton}
+                </button>
+              </form>
+            )}
 
-          {/* Support */}
-          <div className="lg:col-span-3">
-            <h3 className="mb-3 text-[11px] font-bold uppercase tracking-widest text-white/30">
-              {f.supportTitle}
-            </h3>
-            <ul className="space-y-2">
-              {supportLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-[13px] text-white/55 transition-colors hover:text-white"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
+            {/* Social */}
+            <div className="mt-6 flex items-center gap-2">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.05] text-white/40 transition-all hover:bg-accent/20 hover:text-accent"
+                  aria-label={social.name}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <social.icon size={16} strokeWidth={1.6} />
+                </a>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/8">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 sm:flex-row lg:px-6">
-          <div className="flex items-center gap-2 text-[12px] text-white/30">
-            <span>&copy; {new Date().getFullYear()} {f.copyright}</span>
-            <span className="hidden sm:inline">·</span>
-            <span className="hidden items-center gap-1 sm:inline-flex">
-              <Heart size={10} className="text-red-400" />
-              {f.madeWith}
-            </span>
-          </div>
-          <div className="flex items-center gap-3">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.href}
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/6 text-white/40 transition-colors hover:bg-white/12 hover:text-white"
-                aria-label={social.name}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <social.icon size={15} strokeWidth={1.8} />
-              </a>
-            ))}
-            <span className="h-3.5 w-px bg-white/10" />
-            <button
-              onClick={scrollToTop}
-              className="flex items-center gap-1 text-[12px] text-white/30 transition-colors hover:text-white/60"
-            >
-              <ArrowUp size={12} strokeWidth={1.8} />
-              <span className="hidden sm:inline">{dict.components.scrollUp}</span>
-            </button>
-          </div>
+      <div className="border-t border-white/[0.06]">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-4 sm:flex-row lg:px-6">
+          <span className="text-[11px] text-white/25">
+            &copy; {new Date().getFullYear()} {f.copyright}
+          </span>
+          <button
+            onClick={scrollToTop}
+            className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[11px] text-white/25 transition-colors hover:bg-white/5 hover:text-white/50"
+          >
+            <ArrowUp size={12} strokeWidth={1.8} />
+            {dict.components.scrollUp}
+          </button>
         </div>
       </div>
     </footer>
