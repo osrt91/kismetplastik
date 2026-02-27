@@ -6,7 +6,8 @@
 
 @font-face {
   font-family: "Myriad Pro";
-  src: url("/fonts/MyriadPro-Regular.otf") format("opentype");
+  src: url("/fonts/MyriadPro-Regular.woff2") format("woff2"),
+       url("/fonts/MyriadPro-Regular.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -14,7 +15,8 @@
 
 @font-face {
   font-family: "Myriad Pro";
-  src: url("/fonts/MyriadPro-Semibold.ttf") format("truetype");
+  src: url("/fonts/MyriadPro-Semibold.woff2") format("woff2"),
+       url("/fonts/MyriadPro-Semibold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -22,7 +24,8 @@
 
 @font-face {
   font-family: "Myriad Pro";
-  src: url("/fonts/MyriadPro-Black.otf") format("opentype");
+  src: url("/fonts/MyriadPro-Black.woff2") format("woff2"),
+       url("/fonts/MyriadPro-Black.otf") format("opentype");
   font-weight: 900;
   font-style: normal;
   font-display: swap;

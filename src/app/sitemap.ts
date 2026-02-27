@@ -21,6 +21,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/surdurulebilirlik", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/galeri", changeFrequency: "monthly" as const, priority: 0.5 },
     { path: "/kvkk", changeFrequency: "yearly" as const, priority: 0.3 },
+    { path: "/sektorler", changeFrequency: "monthly" as const, priority: 0.6 },
+    { path: "/fuarlar", changeFrequency: "monthly" as const, priority: 0.5 },
+    { path: "/arge", changeFrequency: "monthly" as const, priority: 0.5 },
+    { path: "/vizyon-misyon", changeFrequency: "yearly" as const, priority: 0.5 },
+    { path: "/referanslar", changeFrequency: "monthly" as const, priority: 0.5 },
+    { path: "/numune-talep", changeFrequency: "monthly" as const, priority: 0.6 },
+    { path: "/ambalaj-sozlugu", changeFrequency: "monthly" as const, priority: 0.4 },
   ];
 
   const staticPages = staticPaths.flatMap(({ path, changeFrequency, priority }) =>

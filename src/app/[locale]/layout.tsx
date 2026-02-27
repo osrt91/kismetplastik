@@ -76,6 +76,21 @@ export async function generateMetadata({
       type: "website",
       locale: isTr ? "tr_TR" : "en_US",
       siteName: "Kısmet Plastik",
+      images: [
+        {
+          url: "/images/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: "Kısmet Plastik",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: isTr
+        ? "Kısmet Plastik | B2B Kozmetik Ambalaj"
+        : "Kısmet Plastik | B2B Cosmetic Packaging",
+      images: ["/images/og-image.png"],
     },
     robots: { index: true, follow: true },
     alternates: {
@@ -107,25 +122,24 @@ export default async function LocaleLayout({ children, params }: Props) {
         />
         <link
           rel="preload"
-          href="/fonts/MyriadPro-Regular.otf"
+          href="/fonts/MyriadPro-Regular.woff2"
           as="font"
-          type="font/otf"
+          type="font/woff2"
           crossOrigin="anonymous"
         />
         <link
           rel="preload"
-          href="/fonts/MyriadPro-Semibold.ttf"
+          href="/fonts/MyriadPro-Semibold.woff2"
           as="font"
-          type="font/truetype"
+          type="font/woff2"
           crossOrigin="anonymous"
         />
-        <link
-          rel="preload"
-          href="/fonts/MyriadPro-Black.otf"
-          as="font"
-          type="font/otf"
-          crossOrigin="anonymous"
-        />
+        {process.env.NEXT_PUBLIC_SUPABASE_URL && (
+          <>
+            <link rel="preconnect" href={process.env.NEXT_PUBLIC_SUPABASE_URL} crossOrigin="anonymous" />
+            <link rel="dns-prefetch" href={process.env.NEXT_PUBLIC_SUPABASE_URL} />
+          </>
+        )}
         <link rel="preconnect" href="https://www.google.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.google.com" />
         <link rel="preconnect" href="https://wa.me" />
