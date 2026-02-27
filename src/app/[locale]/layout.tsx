@@ -4,11 +4,12 @@ import { LocaleProvider } from "@/contexts/LocaleContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import WhatsAppButton from "@/components/ui/WhatsAppButton";
-import ScrollToTop from "@/components/ui/ScrollToTop";
-import CookieBanner from "@/components/ui/CookieBanner";
-// import AIChatbot from "@/components/ui/AIChatbot";
-import InstallPrompt from "@/components/ui/InstallPrompt";
+import dynamic from "next/dynamic";
+
+const WhatsAppButton = dynamic(() => import("@/components/ui/WhatsAppButton"));
+const ScrollToTop = dynamic(() => import("@/components/ui/ScrollToTop"));
+const CookieBanner = dynamic(() => import("@/components/ui/CookieBanner"));
+const InstallPrompt = dynamic(() => import("@/components/ui/InstallPrompt"));
 import { LocalBusinessJsonLd, OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { locales } from "@/middleware";
 
@@ -125,8 +126,12 @@ export default async function LocaleLayout({ children, params }: Props) {
           type="font/otf"
           crossOrigin="anonymous"
         />
+        <link rel="preconnect" href="https://www.google.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.google.com" />
+        <link rel="preconnect" href="https://wa.me" />
         <link rel="dns-prefetch" href="https://wa.me" />
+        <link rel="preconnect" href="https://maps.googleapis.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://maps.googleapis.com" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#002060" />
         <link rel="apple-touch-icon" sizes="192x192" href="/images/icon-192.png" />

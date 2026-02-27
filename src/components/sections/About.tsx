@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "@/components/ui/LocaleLink";
-import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";

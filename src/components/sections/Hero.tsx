@@ -2,7 +2,6 @@
 
 import Link from "@/components/ui/LocaleLink";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { ArrowRight, Play, Shield, Truck, Award } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocale } from "@/contexts/LocaleContext";
