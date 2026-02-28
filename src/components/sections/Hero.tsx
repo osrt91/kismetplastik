@@ -161,7 +161,7 @@ export default function Hero() {
                   />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" className="rounded-xl border-2 border-white/20 px-6 py-3.5 text-white backdrop-blur-sm sm:px-8 sm:py-4 hover:border-white/40 hover:bg-white/10" asChild>
+              <Button variant="outline" size="lg" className="rounded-xl border-2 border-white/30 bg-white/[0.06] px-6 py-3.5 text-white backdrop-blur-sm sm:px-8 sm:py-4 hover:border-white/50 hover:bg-white/15" asChild>
                 <Link href="/teklif-al">
                   <Play size={16} className="fill-current" />
                   {h.ctaQuote}

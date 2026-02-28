@@ -75,13 +75,13 @@ export function FingerSprayIcon({ size, ...props }: IconProps) {
 export function PumpIcon({ size, ...props }: IconProps) {
   return (
     <svg {...defaults(size)} {...props}>
-      <path d="M9 12h6v1H9z" />
-      <path d="M10 13v1c0 1-1 2-1 3v3a2 2 0 002 2h2a2 2 0 002-2v-3c0-1-1-2-1-3v-1" />
-      <path d="M12 12V6" />
-      <path d="M12 6h3v-1a1 1 0 00-1-1h-1" />
-      <path d="M15 5h2" />
-      <path d="M12 6H9" />
-      <path d="M9 3v3" />
+      <path d="M15 4h2" />
+      <path d="M14 4V2h-2v4" />
+      <path d="M12 6h3a1 1 0 001-1V4" />
+      <path d="M12 6v3" />
+      <rect x="8" y="9" width="8" height="2" rx="0.5" />
+      <path d="M9 11v2c0 1.5-1 2.5-1 4v3a2 2 0 002 2h4a2 2 0 002-2v-3c0-1.5-1-2.5-1-4v-2" />
+      <path d="M9 16h6" />
     </svg>
   );
 }

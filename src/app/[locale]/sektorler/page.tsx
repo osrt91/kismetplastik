@@ -7,7 +7,14 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
 
 const sectorIcons = [FaFlask, FaSprayCan, FaHandSparkles, FaPumpSoap, FaHotel, FaGears];
-const sectorSlugs = ["kozmetik-guzellik", "kolonya-parfumeri", "kisisel-bakim", "temizlik-hijyen", "otelcilik-horeca", "ozel-kaliplama"];
+const sectorProductLinks = [
+  "/urunler/pet-siseler",
+  "/urunler/plastik-siseler",
+  "/urunler/pet-siseler",
+  "/urunler/plastik-siseler",
+  "/urunler/plastik-siseler",
+  "/urunler/tetikli-pusturtuculer",
+];
 const sectorColors = [
   "from-pink-500/10 to-pink-600/5",
   "from-amber-500/10 to-amber-600/5",
@@ -62,7 +69,7 @@ export default function SektorlerPage() {
             return (
               <AnimateOnScroll key={sector.name} animation="fade-up" delay={i * 80}>
                 <Link
-                  href={`/sektorler/${sectorSlugs[i]}`}
+                  href={sectorProductLinks[i]}
                   className="group relative block overflow-hidden rounded-2xl border border-neutral-100 bg-white transition-all hover:-translate-y-1 hover:border-primary-200 hover:shadow-xl"
                 >
                   <div className={`flex h-48 items-center justify-center bg-gradient-to-br ${sectorColors[i]}`}>

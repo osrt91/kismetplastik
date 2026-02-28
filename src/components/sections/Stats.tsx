@@ -106,7 +106,7 @@ export default function Stats() {
               >
                 {/* Vertical divider between cards (desktop only) */}
                 {i > 0 && (
-                  <div className="absolute -left-4 top-1/2 hidden h-16 w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-white/15 to-transparent lg:block" />
+                  <div className="absolute -left-4 top-1/2 hidden h-12 w-[2px] rounded-full -translate-y-1/2 bg-gradient-to-b from-transparent via-white/20 to-transparent lg:block" />
                 )}
 
                 <div

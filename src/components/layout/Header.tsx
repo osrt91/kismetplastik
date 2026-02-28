@@ -81,10 +81,19 @@ export default function Header() {
     { name: nav.references, href: "/referanslar", icon: Sparkles },
   ];
 
-  const sectorChildren = sectors.slice(0, 6).map((s) => ({
+  const sectorHrefs = [
+    "/urunler/pet-siseler",
+    "/urunler/plastik-siseler",
+    "/urunler/pet-siseler",
+    "/urunler/plastik-siseler",
+    "/urunler/plastik-siseler",
+    "/urunler/tetikli-pusturtuculer",
+  ];
+
+  const sectorChildren = sectors.slice(0, 6).map((s, i) => ({
     name: s.name,
     desc: s.description,
-    href: "/sektorler",
+    href: sectorHrefs[i] || "/urunler",
   }));
 
   const mediaChildren = [
@@ -181,7 +190,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav — Mega Menu */}
-          <NavigationMenu className="hidden lg:flex">
+          <NavigationMenu className="hidden lg:flex" viewport={false}>
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
@@ -283,7 +292,7 @@ export default function Header() {
                           <NavigationMenuLink asChild>
                             <Link
                               href={sector.href}
-                              className="group block rounded-lg px-3 py-2.5 transition-colors hover:bg-secondary"
+                              className="group block rounded-lg px-3 py-3 transition-colors hover:bg-secondary"
                             >
                               <div className="text-sm font-semibold text-foreground">{sector.name}</div>
                               <div className="mt-0.5 line-clamp-1 text-[11px] text-muted-foreground">{sector.desc}</div>
@@ -299,9 +308,9 @@ export default function Header() {
               {/* MEDYA Mega */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger>{nav.media}</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="w-[280px] p-3">
-                    <ul className="grid gap-0.5">
+                <NavigationMenuContent className="right-0 left-auto">
+                  <div className="min-w-[320px] p-4">
+                    <ul className="grid gap-1">
                       {mediaChildren.map((child) => {
                         const Icon = child.icon;
                         return (
@@ -309,9 +318,9 @@ export default function Header() {
                             <NavigationMenuLink asChild>
                               <Link
                                 href={child.href}
-                                className="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                                className="group flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                               >
-                                <Icon size={16} strokeWidth={1.8} className="shrink-0 text-primary-500 opacity-60 transition-opacity group-hover:opacity-100" />
+                                <Icon size={18} strokeWidth={1.8} className="shrink-0 text-primary-500 opacity-60 transition-opacity group-hover:opacity-100" />
                                 {child.name}
                               </Link>
                             </NavigationMenuLink>
@@ -336,10 +345,10 @@ export default function Header() {
             <Button variant="ghost" size="icon" onClick={() => setSearchOpen(true)} aria-label={comp.searchLabel}>
               <Search size={18} strokeWidth={1.8} />
             </Button>
-            <Button variant="outline" size="sm" asChild>
+            <Button variant="outline" size="sm" className="text-center justify-center" asChild>
               <Link href="/bayi-girisi">{nav.dealer}</Link>
             </Button>
-            <Button size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+            <Button size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90 text-center justify-center" asChild>
               <Link href="/teklif-al">{nav.quote}</Link>
             </Button>
           </div>

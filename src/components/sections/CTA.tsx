@@ -78,32 +78,32 @@ export default function CTA() {
         style={{ animationDelay: "0.5s", animationDuration: "4.5s" }}
       />
 
-      <div className="relative mx-auto max-w-4xl px-4 text-center lg:px-6">
+      <div className="relative mx-auto max-w-5xl px-4 text-center lg:px-8">
         <AnimateOnScroll animation="fade-up">
-          <h2 className="mb-5 text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
+          <h2 className="mb-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
             {h.ctaTitle}{" "}
             <span className="text-accent-400">{h.ctaTitleAccent}</span> {h.ctaTitleSuffix}
           </h2>
         </AnimateOnScroll>
 
         <AnimateOnScroll animation="fade-up" delay={100}>
-          <p className="mx-auto mb-10 max-w-2xl text-lg text-white/70">
+          <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-white/70 sm:text-xl">
             {h.ctaSubtitle}
           </p>
         </AnimateOnScroll>
 
         <AnimateOnScroll animation="zoom-in" delay={200}>
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
             <Button
               size="lg"
-              className="group rounded-xl bg-accent text-accent-foreground px-8 py-4 hover:bg-accent/90"
+              className="group rounded-xl bg-accent text-accent-foreground px-10 py-5 text-base font-semibold shadow-lg shadow-accent/20 hover:bg-accent/90 hover:shadow-xl hover:shadow-accent/30"
               asChild
             >
               <Link href="/teklif-al">
-                <FileText size={18} />
+                <FileText size={20} />
                 {h.ctaForm}
                 <ArrowRight
-                  size={16}
+                  size={18}
                   className="transition-transform duration-300 group-hover:translate-x-1"
                 />
               </Link>
@@ -111,11 +111,11 @@ export default function CTA() {
             <Button
               variant="outline"
               size="lg"
-              className="rounded-xl border-2 border-white/20 px-8 py-4 text-white hover:border-white/40 hover:bg-white/10"
+              className="rounded-xl border-2 border-white/25 bg-white/[0.05] px-10 py-5 text-base font-semibold text-white hover:border-white/40 hover:bg-white/10"
               asChild
             >
               <a href="tel:+902125498703">
-                <Phone size={18} />
+                <Phone size={20} />
                 {h.ctaCall}
               </a>
             </Button>
@@ -123,7 +123,7 @@ export default function CTA() {
         </AnimateOnScroll>
 
         <AnimateOnScroll animation="fade" delay={400}>
-          <p className="mt-6 text-sm text-white/40">
+          <p className="mt-8 text-sm text-white/40">
             {h.ctaNote}
           </p>
         </AnimateOnScroll>
