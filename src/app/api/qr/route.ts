@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import QRCode from "qrcode";
 
-const DEFAULT_URL = "https://kismetplastik.vercel.app";
+const DEFAULT_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://kismetplastik.vercel.app";
 
 export async function GET(request: NextRequest) {
   const url = request.nextUrl.searchParams.get("url") || DEFAULT_URL;

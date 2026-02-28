@@ -257,7 +257,7 @@ export default function IletisimPage() {
               {c.qrDescription}
             </p>
             <QRCodeComponent
-              url="https://kismetplastik.vercel.app"
+              url={process.env.NEXT_PUBLIC_SITE_URL || "https://kismetplastik.vercel.app"}
               size={200}
               color="#002060"
               downloadLabel={c.qrDownload}

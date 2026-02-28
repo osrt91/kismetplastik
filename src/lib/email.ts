@@ -31,7 +31,6 @@ export interface QuotePayload {
 
 export async function sendContactEmail(data: ContactPayload): Promise<{ ok: boolean; error?: string }> {
   if (!resend) {
-    console.log("[Contact Form - no RESEND_API_KEY]", data);
     return { ok: true };
   }
   try {
@@ -61,7 +60,6 @@ export async function sendContactEmail(data: ContactPayload): Promise<{ ok: bool
 
 export async function sendQuoteEmail(data: QuotePayload): Promise<{ ok: boolean; error?: string }> {
   if (!resend) {
-    console.log("[Quote Request - no RESEND_API_KEY]", data);
     return { ok: true };
   }
   try {
@@ -139,7 +137,6 @@ export async function sendOrderStatusEmail(
   payload: OrderStatusEmailPayload
 ): Promise<{ ok: boolean; error?: string }> {
   if (!resend) {
-    console.log("[Order Status Email - no RESEND_API_KEY]", payload);
     return { ok: true };
   }
 
