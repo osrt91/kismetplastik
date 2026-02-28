@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
-  'https://voriklragpbijiaoapgc.supabase.co',
-  'sb_publishable_KoycTvPn-pAaPg2J4DnOyw_hofGyldW'
+  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://pozfqykxolflxnzwpkzb.supabase.co',
+  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 
 const categories = [

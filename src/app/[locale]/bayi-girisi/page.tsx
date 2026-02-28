@@ -314,7 +314,7 @@ export default function BayiGirisiPage() {
                     <p className="text-sm text-neutral-500">
                       {d.notDealer}{" "}
                       <Link
-                        href="/iletisim"
+                        href="/bayi-kayit"
                         className="font-semibold text-primary-700 transition-colors hover:text-primary-900"
                       >
                         {d.applyDealer}

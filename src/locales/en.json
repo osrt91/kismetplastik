@@ -221,7 +221,10 @@
     "submitting": "Submitting...",
     "errorGeneral": "An error occurred.",
     "errorConnection": "Connection error. Please try again.",
-    "mapPlaceholder": "Map integration"
+    "mapPlaceholder": "Map integration",
+    "qrTitle": "Visit via QR Code",
+    "qrDescription": "Visit our website via QR code",
+    "qrDownload": "Download PNG"
   },
   "quality": {
     "heroTitle": "Quality & Certifications",

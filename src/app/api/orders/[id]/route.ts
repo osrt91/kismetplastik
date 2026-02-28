@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
 import { checkAuth } from "@/lib/auth";
+import { sendOrderStatusEmail } from "@/lib/email";
 
 export async function GET(
   _request: NextRequest,
@@ -42,7 +43,7 @@ export async function PATCH(
 
     const { data: currentOrder } = await supabase
       .from("orders")
-      .select("status")
+      .select("status, order_number, tracking_number, profiles(full_name, email)")
       .eq("id", id)
       .single();
 
@@ -70,6 +71,18 @@ export async function PATCH(
         new_status: status,
         note: admin_notes || null,
       });
+
+      const profileArr = currentOrder?.profiles;
+      const profile = Array.isArray(profileArr) ? profileArr[0] : profileArr;
+      if (profile?.email) {
+        sendOrderStatusEmail({
+          recipientEmail: profile.email,
+          recipientName: profile.full_name || "",
+          orderNumber: String(currentOrder?.order_number ?? id),
+          newStatus: status,
+          trackingNumber: tracking_number ?? currentOrder?.tracking_number,
+        }).catch(console.error);
+      }
     }
 
     return NextResponse.json({ success: true, data });

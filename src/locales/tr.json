@@ -221,7 +221,10 @@
     "submitting": "Gönderiliyor...",
     "errorGeneral": "Bir hata oluştu.",
     "errorConnection": "Bağlantı hatası. Lütfen tekrar deneyin.",
-    "mapPlaceholder": "Harita entegrasyonu"
+    "mapPlaceholder": "Harita entegrasyonu",
+    "qrTitle": "QR Kod ile Ziyaret Edin",
+    "qrDescription": "Web sitemizi QR kod ile ziyaret edin",
+    "qrDownload": "PNG İndir"
   },
   "quality": {
     "heroTitle": "Kalite & Sertifikalar",

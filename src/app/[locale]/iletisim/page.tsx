@@ -20,6 +20,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import dynamic from "next/dynamic";
+
+const QRCodeComponent = dynamic(() => import("@/components/ui/QRCode"), {
+  ssr: false,
+});
 
 export default function IletisimPage() {
   const { dict } = useLocale();
@@ -239,6 +244,24 @@ export default function IletisimPage() {
               <MapPin size={16} className="text-accent-500" />
               Kısmet Plastik - İkitelli OSB
             </div>
+          </div>
+        </AnimateOnScroll>
+
+        {/* QR Code */}
+        <AnimateOnScroll animation="fade-up" className="mt-12">
+          <div className="flex flex-col items-center rounded-2xl border border-neutral-200 bg-neutral-50 p-8 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
+            <h3 className="mb-2 text-lg font-bold text-primary-900 dark:text-white">
+              {c.qrTitle}
+            </h3>
+            <p className="mb-6 text-sm text-neutral-500 dark:text-neutral-400">
+              {c.qrDescription}
+            </p>
+            <QRCodeComponent
+              url="https://kismetplastik.vercel.app"
+              size={200}
+              color="#002060"
+              downloadLabel={c.qrDownload}
+            />
           </div>
         </AnimateOnScroll>
       </div>

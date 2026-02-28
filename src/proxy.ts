@@ -4,6 +4,12 @@ import { timingSafeCompare } from "@/lib/auth";
 export const locales = ["tr", "en"] as const;
 export const defaultLocale = "tr";
 
+function hasSupabaseSession(request: NextRequest): boolean {
+  return request.cookies
+    .getAll()
+    .some((c) => /^sb-.*-auth-token/.test(c.name));
+}
+
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -23,7 +29,21 @@ export function proxy(request: NextRequest) {
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
-  if (pathnameHasLocale) return;
+  if (pathnameHasLocale) {
+    const locale = pathname.split("/")[1];
+    const pathWithoutLocale = pathname.slice(1 + locale.length) || "/";
+
+    if (
+      pathWithoutLocale.startsWith("/bayi-panel") &&
+      !hasSupabaseSession(request)
+    ) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/${locale}/bayi-girisi`;
+      return NextResponse.redirect(url);
+    }
+
+    return;
+  }
 
   const url = request.nextUrl.clone();
   url.pathname = `/${defaultLocale}${pathname}`;
