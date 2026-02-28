@@ -14,7 +14,7 @@ export default function About() {
   return (
     <section className="bg-white py-20 dark:bg-neutral-0 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <div className="relative grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+        <div className="relative grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Vertical accent divider – desktop only */}
           <div className="pointer-events-none absolute inset-y-4 left-1/2 hidden w-px bg-gradient-to-b from-transparent via-primary-200 to-transparent lg:block" />
 
@@ -24,7 +24,7 @@ export default function About() {
               <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-gradient-to-br from-primary-100 via-primary-50 to-accent-50/30 shadow-lg ring-1 ring-primary-100">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="mx-auto mb-5 flex h-36 w-36 items-center justify-center rounded-2xl bg-white/80 shadow-xl ring-1 ring-primary-100/50 backdrop-blur-sm">
+                    <div className="mx-auto mb-5 flex h-36 w-36 items-center justify-center rounded-2xl bg-white/80 shadow-xl ring-1 ring-primary-100/50 backdrop-blur-sm dark:bg-neutral-50/80 dark:ring-neutral-200">
                       <Image
                         src="/images/logo2.svg"
                         alt="Kısmet Plastik"
@@ -33,7 +33,7 @@ export default function About() {
                         className="h-28 w-28 drop-shadow-2xl transition-transform duration-500 hover:scale-110"
                       />
                     </div>
-                    <p className="text-sm font-semibold text-primary-700">
+                    <p className="text-sm font-semibold text-primary-700 dark:text-primary-300">
                       {h.aboutFacility}
                     </p>
                   </div>
@@ -85,7 +85,7 @@ export default function About() {
                     key={item}
                     className="flex items-start gap-3 rounded-xl border border-neutral-100 bg-neutral-50/60 px-4 py-3 transition-colors duration-200 hover:border-accent-200 hover:bg-accent-50/40 dark:border-neutral-700 dark:bg-neutral-800/60 dark:hover:border-accent-500/30"
                   >
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-500 text-primary-900">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-500 text-primary-900 dark:text-[#002060]">
                       <Check size={12} strokeWidth={3} />
                     </span>
                     <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
@@ -97,7 +97,7 @@ export default function About() {
 
               <Link
                 href="/hakkimizda"
-                className="group inline-flex items-center gap-2 rounded-xl bg-primary-900 px-7 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:bg-primary-700 hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
+                className="group inline-flex w-full sm:w-auto items-center gap-2 rounded-xl bg-[#002060] px-7 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:bg-[#1F4A7E] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
               >
                 {h.aboutMore}
                 <ArrowRight

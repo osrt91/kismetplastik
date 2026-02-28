@@ -81,7 +81,7 @@ export default function Categories() {
         </AnimateOnScroll>
 
         {/* Category Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {cats.map((cat, i) => (
             <AnimateOnScroll
               key={cat.name}
@@ -101,14 +101,14 @@ export default function Categories() {
                 <div className="absolute inset-x-0 bottom-0 h-[3px] bg-gradient-to-r from-accent-400 via-accent-500 to-primary-500 opacity-0 transition-all duration-500 group-hover:opacity-100" />
 
                 {/* Number indicator */}
-                <span className="absolute right-5 top-4 font-mono text-[11px] font-medium tracking-wider text-neutral-300 transition-colors duration-300 group-hover:text-primary-300">
+                <span className="absolute right-5 top-4 font-mono text-[11px] font-medium tracking-wider text-neutral-300 transition-colors duration-300 group-hover:text-primary-300 dark:text-neutral-300">
                   {String(i + 1).padStart(2, "0")}
                 </span>
 
                 <div className="relative">
                   <div className="mb-5 flex items-start justify-between">
                     <div
-                      className={`flex h-14 w-14 items-center justify-center rounded-xl bg-neutral-50 ${cat.iconColor} transition-all duration-300 group-hover:bg-white group-hover:scale-110 group-hover:animate-[iconBounce_0.5s_ease]`}
+                      className={`flex h-14 w-14 items-center justify-center rounded-xl bg-neutral-50 ${cat.iconColor} transition-all duration-300 group-hover:bg-white group-hover:scale-110 group-hover:animate-[iconBounce_0.5s_ease] dark:group-hover:bg-neutral-200`}
                     >
                       <cat.icon size={26} />
                     </div>
@@ -138,26 +138,6 @@ export default function Categories() {
         </div>
       </div>
 
-      {/* Keyframes for icon bounce */}
-      <style jsx>{`
-        @keyframes iconBounce {
-          0% {
-            transform: scale(1.1) rotate(0deg);
-          }
-          25% {
-            transform: scale(1.15) rotate(-6deg);
-          }
-          50% {
-            transform: scale(1.1) rotate(4deg);
-          }
-          75% {
-            transform: scale(1.12) rotate(-2deg);
-          }
-          100% {
-            transform: scale(1.1) rotate(0deg);
-          }
-        }
-      `}</style>
     </section>
   );
 }

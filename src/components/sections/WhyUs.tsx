@@ -59,7 +59,7 @@ export default function WhyUs() {
         </AnimateOnScroll>
 
         {/* Features Grid with connecting lines */}
-        <div className="relative grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="relative grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {/* Horizontal connecting dots (visible on lg) */}
           <div className="pointer-events-none absolute top-1/2 left-0 right-0 -translate-y-1/2 hidden lg:block" aria-hidden>
             <svg width="100%" height="4" className="overflow-visible">
@@ -68,7 +68,7 @@ export default function WhyUs() {
                 y1="2"
                 x2="82%"
                 y2="2"
-                stroke="var(--primary-100)"
+                className="stroke-primary-100 dark:stroke-neutral-600"
                 strokeWidth="2"
                 strokeDasharray="6 10"
               />
@@ -93,9 +93,9 @@ export default function WhyUs() {
                   y1="0"
                   x2="2"
                   y2="100%"
-                  stroke="var(--primary-100)"
-                  strokeWidth="2"
-                  strokeDasharray="4 8"
+                className="stroke-primary-100 dark:stroke-neutral-600"
+                strokeWidth="2"
+                strokeDasharray="4 8"
                 />
               </svg>
             </div>
@@ -117,7 +117,7 @@ export default function WhyUs() {
 
                   {/* Large faded step number */}
                   <span
-                    className={`absolute -top-2 right-4 select-none font-mono text-[4.5rem] font-black leading-none ${scheme.numberColor} transition-colors duration-300 group-hover:text-primary-50`}
+                    className={`absolute -top-2 right-4 select-none font-mono text-[4.5rem] font-black leading-none ${scheme.numberColor} transition-colors duration-300 group-hover:text-primary-50 dark:text-neutral-200 dark:group-hover:text-neutral-300`}
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>

@@ -59,6 +59,8 @@
     "aboutLead2": "We serve our B2B customers with many cosmetic packaging solutions including PET bottles, plastic bottles, cologne bottles, spray packaging, room fragrance bottles, liquid soap bottles and caps.",
     "aboutFacility": "Our Production Facility",
     "aboutMore": "Learn More",
+    "sectorsBadge": "Sectors we serve",
+    "sectorLabel": "Sectors",
     "sectorsOverline": "Sectors We Serve",
     "sectorsTitle": "Solutions for Every Sector",
     "sectorsSubtitle": "We offer standards-compliant cosmetic packaging solutions tailored to different sector needs.",
@@ -421,9 +423,9 @@
     "material": "Material",
     "allMaterials": "All",
     "color": "Color",
-    "volume": "Volume",
-    "neckDiameter": "Neck Diameter",
-    "weight": "Weight",
+    "volume": "Volume (ml)",
+    "neckDiameter": "Neck Diameter (mm)",
+    "weight": "Weight (g)",
     "clearAllFilters": "Clear All Filters",
     "starFeatured": "★ Featured",
     "inStock": "In Stock",
@@ -452,7 +454,10 @@
     "errorPageMessage": "There was a problem loading this page.",
     "errorGlobalMessage": "An unexpected error occurred. Please try again.",
     "tryAgain": "Try Again",
-    "homePage": "Home Page"
+    "homePage": "Home Page",
+    "testimonialOverline": "CUSTOMER REFERENCES",
+    "testimonialTitle": "What Our Customers Say?",
+    "testimonialBadge": "50+ Happy Customers"
   },
   "searchDescriptions": {
     "home": "Kısmet Plastik home page",

@@ -74,7 +74,7 @@ export default function Stats() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-primary-900 py-16 lg:py-20">
+    <section className="relative overflow-hidden bg-[#002060] py-16 lg:py-20">
       {/* Top gradient line */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-500/60 to-transparent" />
       {/* Bottom gradient line */}
@@ -96,7 +96,7 @@ export default function Stats() {
       <div className="absolute -right-20 bottom-0 h-40 w-40 rounded-full bg-primary-300/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-4 lg:px-6" ref={ref}>
-        <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4 lg:gap-8">
           {stats.map((stat, i) => {
             const Icon = statIcons[i];
             return (
@@ -132,7 +132,7 @@ export default function Stats() {
                   </div>
 
                   {/* Label with accent underline */}
-                  <div className="relative text-sm font-medium text-white/50 sm:text-base">
+                  <div className="relative text-sm font-medium text-white/70 sm:text-base">
                     {stat.label}
                     <span className="mx-auto mt-2 block h-0.5 w-8 rounded-full bg-accent-500/40 transition-all duration-300 group-hover:w-12 group-hover:bg-accent-500/70" />
                   </div>

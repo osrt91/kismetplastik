@@ -32,8 +32,8 @@ export default function Sectors() {
             {/* Counter badge */}
             <div className="mx-auto mt-5 inline-flex items-center gap-2 rounded-full border border-primary-100 bg-white px-4 py-1.5 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
               <span className="h-2 w-2 rounded-full bg-accent-500" />
-              <span className="text-xs font-bold tracking-wide text-primary-700">
-                Hizmet verdiğimiz sektörler &middot; {sectors.length} Sektör
+              <span className="text-xs font-bold tracking-wide text-primary-700 dark:text-primary-300">
+                {h.sectorsBadge} &middot; {sectors.length} {h.sectorLabel}
               </span>
             </div>
           </div>
@@ -54,7 +54,7 @@ export default function Sectors() {
 
                   <span className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary-50/0 via-accent-100/0 to-primary-100/0 opacity-0 transition-opacity duration-300 group-hover:from-primary-50/40 group-hover:via-accent-100/20 group-hover:to-primary-100/30 group-hover:opacity-100" />
 
-                  <span className="pointer-events-none absolute -bottom-4 -right-4 text-primary-50 opacity-20 transition-transform duration-500 group-hover:scale-125">
+                  <span className="pointer-events-none absolute -bottom-4 -right-4 text-primary-50 opacity-20 transition-transform duration-500 group-hover:scale-125 dark:text-primary-300">
                     <Icon size={80} />
                   </span>
 

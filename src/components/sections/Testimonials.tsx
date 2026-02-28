@@ -43,11 +43,11 @@ export default function Testimonials() {
         <div className="mb-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((t, i) => (
             <AnimateOnScroll key={t.company} animation="fade-up" delay={i * 100}>
-              <article className="group relative h-full overflow-hidden rounded-2xl border border-neutral-100 bg-white p-8 transition-all duration-300 hover:-translate-y-2 hover:border-primary-100 hover:shadow-xl hover:shadow-primary-900/10 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-primary-500/30">
+              <article className="group relative h-full overflow-hidden rounded-2xl border border-neutral-100 bg-white p-8 transition-all duration-300 hover:-translate-y-2 hover:border-primary-100 hover:shadow-xl hover:shadow-primary-900/10 dark:border-neutral-200 dark:bg-neutral-50 dark:hover:border-primary-500/30">
                 <div className="absolute left-0 right-0 top-0 h-1 bg-gradient-to-r from-accent-400 via-accent-500 to-accent-400 opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="relative z-10">
                   <Quote
-                    className="mb-4 text-primary-100"
+                    className="mb-4 text-primary-100 dark:text-neutral-300"
                     size={40}
                     strokeWidth={1.5}
                   />
@@ -64,13 +64,13 @@ export default function Testimonials() {
                     &ldquo;{t.text}&rdquo;
                   </p>
                   <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-50 text-primary-700">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-50 text-primary-700 dark:bg-primary-100/20 dark:text-primary-300">
                       <Building2 size={22} />
                     </div>
                     <div>
                       <p className="font-semibold text-primary-900 dark:text-white">{t.name}</p>
-                      <p className="text-sm text-primary-700">{t.company}</p>
-                      <p className="text-xs text-neutral-500">{t.role}</p>
+                      <p className="text-sm text-primary-700 dark:text-primary-300">{t.company}</p>
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400">{t.role}</p>
                     </div>
                   </div>
                 </div>
@@ -83,7 +83,7 @@ export default function Testimonials() {
         <AnimateOnScroll animation="fade-up">
           <div className="relative">
             <div className="mb-8 flex justify-center">
-              <span className="inline-flex items-center gap-2 rounded-full border border-accent-300 bg-accent-50 px-5 py-2 text-sm font-semibold text-accent-700">
+              <span className="inline-flex items-center gap-2 rounded-full border border-accent-300 bg-accent-50 px-5 py-2 text-sm font-semibold text-accent-700 dark:border-accent-500/30 dark:bg-accent-500/10 dark:text-accent-400">
                 {badge}
               </span>
             </div>

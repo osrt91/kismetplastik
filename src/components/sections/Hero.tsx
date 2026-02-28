@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "@/components/ui/LocaleLink";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Shield, Truck, Award, Building2, Globe } from "lucide-react";
+import { ArrowRight, FileText, Shield, Truck, Award, Building2, Globe } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocale } from "@/contexts/LocaleContext";
 
@@ -45,7 +45,7 @@ export default function Hero() {
   }, [words.length]);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-700 to-primary-900">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#002060] via-[#1F4A7E] to-[#002060]">
       {/* Dot Pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div
@@ -110,7 +110,7 @@ export default function Hero() {
           <div
             className="opacity-0 animate-[fade-in-up_1000ms_ease-out_forwards]"
           >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80 backdrop-blur-sm">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm text-white/90 backdrop-blur-sm">
               <span className="h-2 w-2 animate-pulse rounded-full bg-accent-500" />
               {h.badge}
             </div>
@@ -139,7 +139,7 @@ export default function Hero() {
             </h1>
 
             <p
-              className="mb-8 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg opacity-0 animate-[fade-in-up_1000ms_ease-out_200ms_forwards]"
+              className="mb-8 max-w-lg text-base leading-relaxed text-white/80 sm:text-lg opacity-0 animate-[fade-in-up_1000ms_ease-out_200ms_forwards]"
             >
               {h.subtitle}
             </p>
@@ -150,7 +150,7 @@ export default function Hero() {
             >
               <Button
                 size="lg"
-                className="group rounded-xl bg-accent text-accent-foreground px-6 py-3.5 sm:px-8 sm:py-4 hover:bg-accent/90"
+                className="group w-full sm:w-auto rounded-xl bg-accent text-accent-foreground px-8 py-4 hover:bg-accent/90 shadow-md hover:shadow-lg"
                 asChild
               >
                 <Link href="/urunler">
@@ -161,9 +161,9 @@ export default function Hero() {
                   />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" className="rounded-xl border-2 border-white/30 bg-white/[0.06] px-6 py-3.5 text-white backdrop-blur-sm sm:px-8 sm:py-4 hover:border-white/50 hover:bg-white/15" asChild>
+              <Button variant="outline" size="lg" className="w-full sm:w-auto rounded-xl border-2 border-white/25 bg-white/[0.06] px-8 py-4 text-white hover:border-white/40 hover:bg-white/10" asChild>
                 <Link href="/teklif-al">
-                  <Play size={16} className="fill-current" />
+                  <FileText size={16} />
                   {h.ctaQuote}
                 </Link>
               </Button>

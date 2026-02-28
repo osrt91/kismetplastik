@@ -34,21 +34,28 @@
 :root {
   --primary-900: #002060;
   --primary-700: #1F4A7E;
+  --primary-600: #2666a0;
   --primary-500: #2E6AAF;
   --primary-300: #5A9AD5;
+  --primary-200: #a8cceb;
   --primary-100: #D6E7F7;
   --primary-50: #EBF3FB;
 
-  --accent-500: #f2b300;
+  --accent-700: #b38600;
   --accent-600: #d9a000;
+  --accent-500: #f2b300;
   --accent-400: #f5c333;
   --accent-300: #f8d366;
+  --accent-200: #fbe699;
   --accent-100: #FEF3D1;
   --accent-50: #FFF9E6;
 
   --neutral-900: #404040;
+  --neutral-800: #333333;
   --neutral-700: #666666;
+  --neutral-600: #808080;
   --neutral-500: #999999;
+  --neutral-400: #a6a6a6;
   --neutral-300: #bfbfbf;
   --neutral-200: #d9d9d9;
   --neutral-100: #f2f2f2;
@@ -91,21 +98,28 @@
 .dark {
   --primary-900: #5BA3E8;
   --primary-700: #7BB8F0;
+  --primary-600: #4a8cd4;
   --primary-500: #8BC0F0;
   --primary-300: #B5D6F5;
+  --primary-200: #243854;
   --primary-100: #1A2A3D;
   --primary-50: #0F1A28;
 
-  --accent-500: #f2b300;
+  --accent-700: #c4a000;
   --accent-600: #d9a000;
+  --accent-500: #f2b300;
   --accent-400: #f5c333;
   --accent-300: #f8d366;
+  --accent-200: #3a3015;
   --accent-100: #2A2310;
   --accent-50: #1F1C0D;
 
   --neutral-900: #E8E8E8;
+  --neutral-800: #cccccc;
   --neutral-700: #CCCCCC;
+  --neutral-600: #9ca3af;
   --neutral-500: #999999;
+  --neutral-400: #7a8a9e;
   --neutral-300: #555555;
   --neutral-200: #3A3A3A;
   --neutral-100: #1c2d42;
@@ -146,21 +160,28 @@
 @theme inline {
   --color-primary-900: var(--primary-900);
   --color-primary-700: var(--primary-700);
+  --color-primary-600: var(--primary-600);
   --color-primary-500: var(--primary-500);
   --color-primary-300: var(--primary-300);
+  --color-primary-200: var(--primary-200);
   --color-primary-100: var(--primary-100);
   --color-primary-50: var(--primary-50);
 
-  --color-accent-500: var(--accent-500);
+  --color-accent-700: var(--accent-700);
   --color-accent-600: var(--accent-600);
+  --color-accent-500: var(--accent-500);
   --color-accent-400: var(--accent-400);
   --color-accent-300: var(--accent-300);
+  --color-accent-200: var(--accent-200);
   --color-accent-100: var(--accent-100);
   --color-accent-50: var(--accent-50);
 
   --color-neutral-900: var(--neutral-900);
+  --color-neutral-800: var(--neutral-800);
   --color-neutral-700: var(--neutral-700);
+  --color-neutral-600: var(--neutral-600);
   --color-neutral-500: var(--neutral-500);
+  --color-neutral-400: var(--neutral-400);
   --color-neutral-300: var(--neutral-300);
   --color-neutral-200: var(--neutral-200);
   --color-neutral-100: var(--neutral-100);
@@ -395,6 +416,14 @@ body {
   25% { transform: translateY(-8px) translateX(4px); }
   50% { transform: translateY(-2px) translateX(-3px); }
   75% { transform: translateY(-10px) translateX(5px); }
+}
+
+@keyframes iconBounce {
+  0% { transform: scale(1.1) rotate(0deg); }
+  25% { transform: scale(1.15) rotate(-6deg); }
+  50% { transform: scale(1.1) rotate(4deg); }
+  75% { transform: scale(1.12) rotate(-2deg); }
+  100% { transform: scale(1.1) rotate(0deg); }
 }
 
 @keyframes slide-down-fade {

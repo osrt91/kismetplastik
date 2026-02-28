@@ -59,6 +59,8 @@
     "aboutLead2": "PET şişeler, plastik şişeler, kolonya şişeleri, sprey ambalajlar, oda parfümü şişeleri, sıvı sabun şişeleri ve kapaklar dahil olmak üzere birçok kozmetik ambalaj çözümüyle B2B müşterilerimize hizmet veriyoruz.",
     "aboutFacility": "Üretim Tesisimiz",
     "aboutMore": "Daha Fazla Bilgi",
+    "sectorsBadge": "Hizmet verdiğimiz sektörler",
+    "sectorLabel": "Sektör",
     "sectorsOverline": "Hizmet Verdiğimiz Sektörler",
     "sectorsTitle": "Her Sektöre Uygun Çözümler",
     "sectorsSubtitle": "Farklı sektör ihtiyaçlarına özel, standartlara uygun kozmetik ambalaj çözümleri sunuyoruz.",
@@ -421,9 +423,9 @@
     "material": "Malzeme",
     "allMaterials": "Tümü",
     "color": "Renk",
-    "volume": "Hacim",
-    "neckDiameter": "Ağız Çapı",
-    "weight": "Ağırlık",
+    "volume": "Hacim (ml)",
+    "neckDiameter": "Ağız Çapı (mm)",
+    "weight": "Ağırlık (g)",
     "clearAllFilters": "Tüm Filtreleri Temizle",
     "starFeatured": "★ Öne Çıkan",
     "inStock": "Stokta",
@@ -452,7 +454,10 @@
     "errorPageMessage": "Bu sayfa yüklenirken bir sorun oluştu.",
     "errorGlobalMessage": "Beklenmeyen bir hata meydana geldi. Lütfen tekrar deneyin.",
     "tryAgain": "Tekrar Dene",
-    "homePage": "Ana Sayfa"
+    "homePage": "Ana Sayfa",
+    "testimonialOverline": "MÜŞTERİ REFERANSLARI",
+    "testimonialTitle": "Müşterilerimiz Ne Diyor?",
+    "testimonialBadge": "50+ Mutlu Müşteri"
   },
   "searchDescriptions": {
     "home": "Kısmet Plastik ana sayfa",

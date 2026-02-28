@@ -17,7 +17,7 @@ export default function CTA() {
   const h = dict.home;
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-primary-900 via-primary-700 to-primary-900 py-20 lg:py-24">
+    <section className="relative overflow-hidden bg-gradient-to-r from-[#002060] via-[#1F4A7E] to-[#002060] py-20 lg:py-24">
       {/* Animated gradient border — top */}
       <div className="absolute inset-x-0 top-0 h-[2px] animate-[shimmer_3s_ease-in-out_infinite] bg-[length:200%_100%] bg-gradient-to-r from-transparent via-accent-500/70 to-transparent" />
       {/* Animated gradient border — bottom */}
@@ -96,7 +96,7 @@ export default function CTA() {
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
             <Button
               size="lg"
-              className="group rounded-xl bg-accent text-accent-foreground px-10 py-5 text-base font-semibold shadow-lg shadow-accent/20 hover:bg-accent/90 hover:shadow-xl hover:shadow-accent/30"
+              className="group w-full sm:w-auto rounded-xl bg-accent text-accent-foreground px-8 py-4 shadow-md hover:shadow-lg hover:bg-accent/90"
               asChild
             >
               <Link href="/teklif-al">
@@ -111,7 +111,7 @@ export default function CTA() {
             <Button
               variant="outline"
               size="lg"
-              className="rounded-xl border-2 border-white bg-white px-10 py-5 text-base font-semibold text-primary-900 shadow-lg hover:bg-white/90 hover:shadow-xl"
+              className="w-full sm:w-auto rounded-xl border-2 border-white/25 bg-white/[0.06] px-8 py-4 text-white hover:border-white/40 hover:bg-white/10"
               asChild
             >
               <a href="tel:+902125498703">
@@ -123,7 +123,7 @@ export default function CTA() {
         </AnimateOnScroll>
 
         <AnimateOnScroll animation="fade" delay={400}>
-          <p className="mt-8 text-sm text-white/40">
+          <p className="mt-8 text-sm text-white/55">
             {h.ctaNote}
           </p>
         </AnimateOnScroll>

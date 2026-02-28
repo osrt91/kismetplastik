@@ -43,21 +43,21 @@ export default function RecentProducts() {
 
   return (
     <AnimateOnScroll animation="fade-up">
-      <section className="border-t border-neutral-100 bg-white py-10 lg:py-14">
+      <section className="border-t border-neutral-100 bg-white py-10 lg:py-14 dark:border-neutral-200 dark:bg-neutral-0">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           {/* Section header */}
           <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-50 text-primary-600">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-50 text-primary-600 dark:bg-primary-100/20 dark:text-primary-300">
                 <Clock size={18} />
               </div>
-              <h2 className="text-xl font-bold text-primary-900">
+              <h2 className="text-xl font-bold text-primary-900 dark:text-white">
                 {dict.components.recentProducts}
               </h2>
             </div>
             <button
               onClick={clearRecent}
-              className="flex items-center gap-1.5 text-sm text-neutral-500 transition-colors hover:text-neutral-700"
+              className="flex items-center gap-1.5 text-sm text-neutral-500 transition-colors hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300"
               type="button"
               aria-label={dict.components.clearHistory}
             >
@@ -79,12 +79,12 @@ export default function RecentProducts() {
                     href={`/urunler/${product.category}/${product.slug}`}
                     className="group flex min-w-[200px] max-w-[200px] shrink-0 snap-start"
                   >
-                    <div className="flex h-full w-full flex-col overflow-hidden rounded-xl border border-neutral-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-lg hover:shadow-primary-900/5">
+                    <div className="flex h-full w-full flex-col overflow-hidden rounded-xl border border-neutral-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-lg hover:shadow-primary-900/5 dark:border-neutral-200 dark:bg-neutral-50 dark:hover:border-primary-300">
                       {/* Placeholder icon area */}
-                      <div className="flex h-20 items-center justify-center bg-neutral-50 transition-colors group-hover:bg-primary-50/50">
+                      <div className="flex h-20 items-center justify-center bg-neutral-50 transition-colors group-hover:bg-primary-50/50 dark:bg-neutral-100 dark:group-hover:bg-primary-100/30">
                         <Package
                           size={32}
-                          className="text-neutral-300 transition-colors group-hover:text-primary-400"
+                          className="text-neutral-300 transition-colors group-hover:text-primary-400 dark:text-neutral-400 dark:group-hover:text-primary-300"
                         />
                       </div>
 
@@ -98,10 +98,10 @@ export default function RecentProducts() {
                         >
                           {category?.name ?? product.category}
                         </span>
-                        <h3 className="mb-1 line-clamp-2 text-sm font-semibold text-primary-900 transition-colors group-hover:text-primary-700">
+                        <h3 className="mb-1 line-clamp-2 text-sm font-semibold text-primary-900 transition-colors group-hover:text-primary-700 dark:text-white dark:group-hover:text-primary-300">
                           {product.name}
                         </h3>
-                        <p className="mb-2 line-clamp-2 text-xs text-neutral-500">
+                        <p className="mb-2 line-clamp-2 text-xs text-neutral-500 dark:text-neutral-400">
                           {product.shortDescription}
                         </p>
                         {volumeWeightInfo(product) && (
@@ -109,7 +109,7 @@ export default function RecentProducts() {
                             {volumeWeightInfo(product)}
                           </p>
                         )}
-                        <span className="mt-auto flex items-center gap-1 text-xs font-medium text-primary-600 transition-colors group-hover:text-accent-600">
+                        <span className="mt-auto flex items-center gap-1 text-xs font-medium text-primary-600 transition-colors group-hover:text-accent-600 dark:text-primary-400 dark:group-hover:text-accent-400">
                           {dict.components.detail}
                           <ArrowRight
                             size={12}

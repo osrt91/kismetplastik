@@ -91,7 +91,7 @@ export default function Footer() {
               </span>
             </Link>
 
-            <p className="mb-4 max-w-[220px] text-[11px] leading-relaxed text-white/45">
+            <p className="mb-4 max-w-[220px] text-[11px] leading-relaxed text-white/60">
               {f.brandDesc}
             </p>
 
@@ -265,7 +265,7 @@ export default function Footer() {
 
       <div className="border-t border-white/[0.06]">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-6">
-          <span className="text-[10px] text-white/25">
+          <span className="text-[10px] text-white/40">
             &copy; {new Date().getFullYear()} {f.copyright}
           </span>
           <button
