@@ -1,0 +1,107 @@
+"use client";
+
+import { Star, Quote, Building2 } from "lucide-react";
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
+import { useLocale } from "@/contexts/LocaleContext";
+
+const referenceCompanies = [
+  "Atelier Kozmetik",
+  "Demir Kozmetik",
+  "Orient Parfüm",
+  "Royal Beauty",
+  "Derma Care",
+  "Marmara Kimya",
+  "Elegance Parfümeri",
+  "Natura Kozmetik",
+];
+
+export default function Testimonials() {
+  const { dict } = useLocale();
+  const h = dict.home as Record<string, unknown>;
+  const overline = (h.testimonialsOverline as string) ?? "MÜŞTERİ REFERANSLARI";
+  const title = (h.testimonialsTitle as string) ?? "Müşterilerimiz Ne Diyor?";
+  const badge = (h.testimonialsBadge as string) ?? "50+ Mutlu Müşteri";
+
+  const testimonials = (dict.testimonials as { name: string; company: string; role: string; text: string }[]) ?? [];
+
+  return (
+    <section className="relative bg-white py-20 dark:bg-neutral-0 lg:py-28 overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
+        {/* Section Header */}
+        <AnimateOnScroll animation="fade-up">
+          <div className="mb-14 text-center">
+            <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
+              {overline}
+            </span>
+            <h2 className="mb-4 text-3xl font-extrabold text-primary-900 dark:text-white sm:text-4xl">
+              {title}
+            </h2>
+          </div>
+        </AnimateOnScroll>
+
+        {/* Testimonial Cards */}
+        <div className="mb-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {testimonials.map((t, i) => (
+            <AnimateOnScroll key={t.company} animation="fade-up" delay={i * 100}>
+              <article className="group relative h-full overflow-hidden rounded-2xl border border-neutral-100 bg-white p-8 transition-all duration-300 hover:-translate-y-2 hover:border-primary-100 hover:shadow-xl hover:shadow-primary-900/10 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-primary-500/30">
+                <div className="absolute left-0 right-0 top-0 h-1 bg-gradient-to-r from-accent-400 via-accent-500 to-accent-400 opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="relative z-10">
+                  <Quote
+                    className="mb-4 text-primary-100"
+                    size={40}
+                    strokeWidth={1.5}
+                  />
+                  <div className="mb-4 flex gap-1">
+                    {Array.from({ length: 5 }).map((_, j) => (
+                      <Star
+                        key={j}
+                        className="text-accent-500 fill-accent-500"
+                        size={18}
+                      />
+                    ))}
+                  </div>
+                  <p className="mb-6 text-neutral-700 leading-relaxed dark:text-neutral-300">
+                    &ldquo;{t.text}&rdquo;
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-50 text-primary-700">
+                      <Building2 size={22} />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-primary-900 dark:text-white">{t.name}</p>
+                      <p className="text-sm text-primary-700">{t.company}</p>
+                      <p className="text-xs text-neutral-500">{t.role}</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </AnimateOnScroll>
+          ))}
+        </div>
+
+        {/* Reference Companies Marquee */}
+        <AnimateOnScroll animation="fade-up">
+          <div className="relative">
+            <div className="mb-8 flex justify-center">
+              <span className="inline-flex items-center gap-2 rounded-full border border-accent-300 bg-accent-50 px-5 py-2 text-sm font-semibold text-accent-700">
+                {badge}
+              </span>
+            </div>
+            <div className="overflow-hidden">
+              <div className="flex w-max animate-marquee gap-4">
+                {[...referenceCompanies, ...referenceCompanies].map((name, idx) => (
+                  <span
+                    key={`${name}-${idx}`}
+                    className="shrink-0 rounded-full border border-neutral-200 bg-neutral-50 px-5 py-2.5 text-sm font-medium text-neutral-700 transition-colors hover:border-primary-200 hover:bg-primary-50 hover:text-primary-700 dark:border-neutral-600 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:border-primary-500/30 dark:hover:bg-primary-900/30"
+                  >
+                    {name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </AnimateOnScroll>
+      </div>
+    </section>
+  );
+}

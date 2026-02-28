@@ -1,0 +1,4 @@
+PET
+HDPE
+PP
+LDPE
