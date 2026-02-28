@@ -8,6 +8,7 @@ import {
   Newspaper,
   Image as ImageIcon,
   Users,
+  FileText,
   LogOut,
   Menu,
   X,
@@ -21,6 +22,7 @@ const navItems = [
   { name: "Blog", href: "/admin/blog", icon: Newspaper },
   { name: "Galeri", href: "/admin/gallery", icon: ImageIcon },
   { name: "Bayiler", href: "/admin/dealers", icon: Users },
+  { name: "İçerik", href: "/admin/content", icon: FileText },
 ];
 
 export default function AdminLayout({
