@@ -18,6 +18,10 @@ export default function ProductsPage() {
   const [material, setMaterial] = useState("");
   const [sort, setSort] = useState<SortOption>("name-asc");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [selectedColors, setSelectedColors] = useState<string[]>([]);
+  const [selectedVolumes, setSelectedVolumes] = useState<string[]>([]);
+  const [selectedNeckDiameters, setSelectedNeckDiameters] = useState<string[]>([]);
+  const [selectedWeights, setSelectedWeights] = useState<string[]>([]);
 
   const materials = useMemo(() => getAllMaterials(), []);
 
@@ -41,6 +45,30 @@ export default function ProductsPage() {
       result = result.filter((pr) => pr.material === material);
     }
 
+    if (selectedColors.length > 0) {
+      result = result.filter((pr) =>
+        pr.colors.some((c) => selectedColors.includes(c))
+      );
+    }
+
+    if (selectedVolumes.length > 0) {
+      result = result.filter(
+        (pr) => pr.volume && selectedVolumes.includes(pr.volume)
+      );
+    }
+
+    if (selectedNeckDiameters.length > 0) {
+      result = result.filter(
+        (pr) => pr.neckDiameter && selectedNeckDiameters.includes(pr.neckDiameter)
+      );
+    }
+
+    if (selectedWeights.length > 0) {
+      result = result.filter(
+        (pr) => pr.weight && selectedWeights.includes(pr.weight)
+      );
+    }
+
     result.sort((a, b) => {
       switch (sort) {
         case "name-asc":
@@ -57,7 +85,17 @@ export default function ProductsPage() {
     });
 
     return result;
-  }, [search, category, material, sort]);
+  }, [search, category, material, sort, selectedColors, selectedVolumes, selectedNeckDiameters, selectedWeights]);
+
+  const activeFilterCount = [
+    search !== "",
+    category !== "all",
+    material !== "",
+    selectedColors.length > 0,
+    selectedVolumes.length > 0,
+    selectedNeckDiameters.length > 0,
+    selectedWeights.length > 0,
+  ].filter(Boolean).length;
 
   return (
     <section className="bg-neutral-50 py-12 dark:bg-neutral-900 lg:py-20">
@@ -74,22 +112,20 @@ export default function ProductsPage() {
           </div>
         </AnimateOnScroll>
 
-        {/* Mobile filter toggle */}
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
           className="mb-4 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-sm font-medium text-neutral-700 shadow-sm transition-colors hover:bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 lg:hidden"
         >
           <SlidersHorizontal size={16} />
           {dict.components.filters}
-          {(search || category !== "all" || material) && (
-            <span className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary-500 text-[10px] font-bold text-white">
-              {[search !== "", category !== "all", material !== ""].filter(Boolean).length}
+          {activeFilterCount > 0 && (
+            <span className="ml-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-primary-500 px-1 text-[10px] font-bold text-white">
+              {activeFilterCount}
             </span>
           )}
         </button>
 
         <div className="flex gap-8">
-          {/* Sidebar — desktop always visible, mobile toggleable */}
           <div className={`${sidebarOpen ? "block" : "hidden"} lg:block`}>
             <ProductFilter
               search={search}
@@ -103,10 +139,17 @@ export default function ProductsPage() {
               materials={materials}
               resultCount={filtered.length}
               layout="sidebar"
+              selectedColors={selectedColors}
+              onColorsChange={setSelectedColors}
+              selectedVolumes={selectedVolumes}
+              onVolumesChange={setSelectedVolumes}
+              selectedNeckDiameters={selectedNeckDiameters}
+              onNeckDiametersChange={setSelectedNeckDiameters}
+              selectedWeights={selectedWeights}
+              onWeightsChange={setSelectedWeights}
             />
           </div>
 
-          {/* Product Grid */}
           <div className="flex-1">
             {filtered.length > 0 ? (
               <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">

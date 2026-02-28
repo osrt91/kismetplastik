@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "@/components/ui/LocaleLink";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Shield, Truck, Award } from "lucide-react";
+import { ArrowRight, Play, Shield, Truck, Award, Building2, Globe } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocale } from "@/contexts/LocaleContext";
 
@@ -191,16 +191,21 @@ export default function Hero() {
               <p className="mb-3 text-xs font-medium uppercase tracking-widest text-white/30">
                 {dict.components.trustedBy}
               </p>
-              <div className="flex items-center gap-3">
-                {Array.from({ length: 6 }, (_, i) => (
+              <div className="flex flex-wrap items-center gap-3">
+                {[
+                  { icon: Building2, value: h.trustedStat1, label: h.trustedStat1Label },
+                  { icon: Globe, value: h.trustedStat2, label: h.trustedStat2Label },
+                  { icon: Shield, value: h.trustedStat3, label: h.trustedStat3Label },
+                ].map((stat) => (
                   <div
-                    key={i}
-                    className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.04]"
+                    key={stat.label}
+                    className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 backdrop-blur-sm"
                   >
-                    <div className="h-4 w-4 rounded-full bg-white/[0.12]" />
+                    <stat.icon size={14} className="text-accent-400" />
+                    <span className="text-sm font-bold text-white">{stat.value}</span>
+                    <span className="text-xs text-white/50">{stat.label}</span>
                   </div>
                 ))}
-                <span className="ml-1 text-xs text-white/25">+</span>
               </div>
             </div>
           </div>

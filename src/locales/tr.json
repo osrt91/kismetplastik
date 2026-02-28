@@ -71,7 +71,13 @@
     "ctaSubtitle": "İhtiyacınıza uygun kozmetik ambalaj çözümleri için hemen bizimle iletişime geçin. Uzman ekibimiz size en uygun çözümü sunacaktır.",
     "ctaForm": "Teklif Formu",
     "ctaCall": "Hemen Arayın",
-    "ctaNote": "Ücretsiz teklif ve danışmanlık hizmeti"
+    "ctaNote": "Ücretsiz teklif ve danışmanlık hizmeti",
+    "trustedStat1": "500+",
+    "trustedStat1Label": "Firma",
+    "trustedStat2": "50+",
+    "trustedStat2Label": "Ülke",
+    "trustedStat3": "ISO 9001",
+    "trustedStat3Label": "Sertifikalı"
   },
   "homeFeatures": {
     "modernFactory": "Modern Üretim Tesisi",
@@ -414,6 +420,11 @@
     "allCategories": "Tümü",
     "material": "Malzeme",
     "allMaterials": "Tümü",
+    "color": "Renk",
+    "volume": "Hacim",
+    "neckDiameter": "Ağız Çapı",
+    "weight": "Ağırlık",
+    "clearAllFilters": "Tüm Filtreleri Temizle",
     "starFeatured": "★ Öne Çıkan",
     "inStock": "Stokta",
     "outOfStockShort": "Stok Dışı",

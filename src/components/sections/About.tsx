@@ -21,42 +21,38 @@ export default function About() {
           {/* Left – Visual */}
           <AnimateOnScroll animation="fade-right">
             <div className="relative">
-              {/* Decorative geometric shapes */}
-              <div className="absolute -left-4 -top-4 h-16 w-16 rounded-full border-2 border-primary-100 opacity-60" />
-              <div className="absolute -right-3 top-8 h-10 w-10 rotate-12 rounded-lg border-2 border-accent-300 opacity-50" />
-              <div className="absolute -bottom-3 left-12 h-8 w-8 rounded-full bg-accent-100 opacity-40" />
-              <div className="absolute -right-6 bottom-16 h-6 w-6 rotate-45 bg-primary-100 opacity-50" />
-
-              <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-gradient-to-br from-primary-100 to-primary-50">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-gradient-to-br from-primary-100 via-primary-50 to-accent-50/30 shadow-lg ring-1 ring-primary-100">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <Image
-                      src="/images/logo2.svg"
-                      alt="Kısmet Plastik"
-                      width={144}
-                      height={144}
-                      className="mx-auto mb-4 h-36 w-36 drop-shadow-2xl transition-transform duration-500 hover:scale-110 hover:rotate-3"
-                    />
+                    <div className="mx-auto mb-5 flex h-36 w-36 items-center justify-center rounded-2xl bg-white/80 shadow-xl ring-1 ring-primary-100/50 backdrop-blur-sm">
+                      <Image
+                        src="/images/logo2.svg"
+                        alt="Kısmet Plastik"
+                        width={120}
+                        height={120}
+                        className="h-28 w-28 drop-shadow-2xl transition-transform duration-500 hover:scale-110"
+                      />
+                    </div>
                     <p className="text-sm font-semibold text-primary-700">
                       {h.aboutFacility}
                     </p>
                   </div>
                 </div>
-
-                {/* Accent Decoration */}
-                <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-accent-500 via-primary-500 to-primary-900" />
+                <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r from-accent-500 via-primary-500 to-primary-900" />
               </div>
 
-              {/* Floating Badge with pulse-glow */}
-              <div
-                className="absolute -bottom-6 -right-4 rounded-2xl bg-accent-500 px-6 py-4 shadow-xl transition-transform duration-300 hover:scale-105 sm:right-4"
-                style={{ animation: "pulse-glow 2.5s ease-in-out infinite" }}
-              >
-                <div className="text-3xl font-extrabold text-primary-900">
-                  55+
+              <div className="mt-4 grid grid-cols-3 gap-3">
+                <div className="rounded-xl border border-primary-100 bg-white px-3 py-3 text-center shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
+                  <div className="text-xl font-extrabold text-primary-900 dark:text-white">{h.cardExperience}</div>
+                  <div className="text-[11px] font-medium text-primary-600 dark:text-neutral-400">{h.cardExperienceLabel}</div>
                 </div>
-                <div className="text-sm font-semibold text-primary-900/70">
-                  {h.cardExperienceLabel}
+                <div className="rounded-xl border border-accent-200 bg-accent-50 px-3 py-3 text-center shadow-sm dark:border-accent-500/30 dark:bg-accent-500/10">
+                  <div className="text-xl font-extrabold text-accent-600">{h.cardProducts}</div>
+                  <div className="text-[11px] font-medium text-accent-700 dark:text-accent-400">{h.cardProductsLabel}</div>
+                </div>
+                <div className="rounded-xl border border-primary-100 bg-white px-3 py-3 text-center shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
+                  <div className="text-xl font-extrabold text-primary-900 dark:text-white">{h.cardCustomers}</div>
+                  <div className="text-[11px] font-medium text-primary-600 dark:text-neutral-400">{h.cardCustomersLabel}</div>
                 </div>
               </div>
             </div>

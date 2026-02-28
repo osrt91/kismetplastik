@@ -2,11 +2,11 @@
 
 import Link from "@/components/ui/LocaleLink";
 import { ChevronRight, ArrowRight } from "lucide-react";
-import { FaFlask, FaSprayCan, FaHandSparkles, FaPumpSoap, FaHotel, FaGears } from "react-icons/fa6";
+import { FaFlask, FaSprayCan, FaHandSparkles, FaPumpSoap, FaHotel, FaWandMagicSparkles } from "react-icons/fa6";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
 
-const sectorIcons = [FaFlask, FaSprayCan, FaHandSparkles, FaPumpSoap, FaHotel, FaGears];
+const sectorIcons = [FaFlask, FaSprayCan, FaHandSparkles, FaPumpSoap, FaHotel, FaWandMagicSparkles];
 const sectorProductLinks = [
   "/urunler/pet-siseler",
   "/urunler/plastik-siseler",

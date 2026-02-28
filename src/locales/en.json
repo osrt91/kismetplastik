@@ -71,7 +71,13 @@
     "ctaSubtitle": "Contact us for cosmetic packaging solutions that meet your needs. Our expert team will offer you the best solution.",
     "ctaForm": "Quote Form",
     "ctaCall": "Call Now",
-    "ctaNote": "Free quote and consultancy"
+    "ctaNote": "Free quote and consultancy",
+    "trustedStat1": "500+",
+    "trustedStat1Label": "Companies",
+    "trustedStat2": "50+",
+    "trustedStat2Label": "Countries",
+    "trustedStat3": "ISO 9001",
+    "trustedStat3Label": "Certified"
   },
   "homeFeatures": {
     "modernFactory": "Modern Production Facility",
@@ -414,6 +420,11 @@
     "allCategories": "All",
     "material": "Material",
     "allMaterials": "All",
+    "color": "Color",
+    "volume": "Volume",
+    "neckDiameter": "Neck Diameter",
+    "weight": "Weight",
+    "clearAllFilters": "Clear All Filters",
     "starFeatured": "★ Featured",
     "inStock": "In Stock",
     "outOfStockShort": "Out of Stock",

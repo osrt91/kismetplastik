@@ -111,7 +111,7 @@ export default function CTA() {
             <Button
               variant="outline"
               size="lg"
-              className="rounded-xl border-2 border-white/25 bg-white/[0.05] px-10 py-5 text-base font-semibold text-white hover:border-white/40 hover:bg-white/10"
+              className="rounded-xl border-2 border-white bg-white px-10 py-5 text-base font-semibold text-primary-900 shadow-lg hover:bg-white/90 hover:shadow-xl"
               asChild
             >
               <a href="tel:+902125498703">

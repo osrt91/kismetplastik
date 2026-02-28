@@ -1,8 +1,8 @@
 "use client";
 
-import { memo, useState } from "react";
-import { Search, SlidersHorizontal, X, ChevronDown } from "lucide-react";
-import { categories } from "@/data/products";
+import { memo, useState, useMemo } from "react";
+import { Search, SlidersHorizontal, X, ChevronDown, Check } from "lucide-react";
+import { categories, products } from "@/data/products";
 import { CategorySlug, SortOption } from "@/types/product";
 import { useLocale } from "@/contexts/LocaleContext";
 
@@ -18,6 +18,86 @@ interface ProductFilterProps {
   materials: string[];
   resultCount: number;
   layout?: "sidebar" | "top";
+  selectedColors: string[];
+  onColorsChange: (colors: string[]) => void;
+  selectedVolumes: string[];
+  onVolumesChange: (volumes: string[]) => void;
+  selectedNeckDiameters: string[];
+  onNeckDiametersChange: (diameters: string[]) => void;
+  selectedWeights: string[];
+  onWeightsChange: (weights: string[]) => void;
+}
+
+function CheckboxFilterSection({
+  title,
+  isOpen,
+  onToggle,
+  options,
+  selectedValues,
+  onToggleValue,
+}: {
+  title: string;
+  isOpen: boolean;
+  onToggle: () => void;
+  options: [string, number][];
+  selectedValues: string[];
+  onToggleValue: (value: string) => void;
+}) {
+  if (options.length === 0) return null;
+
+  return (
+    <div className="rounded-2xl border border-neutral-200/80 bg-white shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
+      <button
+        onClick={onToggle}
+        className="flex w-full items-center justify-between px-4 py-3"
+      >
+        <div className="flex items-center gap-2">
+          <span className="text-[11px] font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
+            {title}
+          </span>
+          {selectedValues.length > 0 && (
+            <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-primary-500 px-1 text-[9px] font-bold text-white">
+              {selectedValues.length}
+            </span>
+          )}
+        </div>
+        <ChevronDown
+          size={14}
+          className={`text-neutral-400 transition-transform ${isOpen ? "rotate-180" : ""}`}
+        />
+      </button>
+      {isOpen && (
+        <div className="max-h-52 space-y-0.5 overflow-y-auto px-3 pb-3">
+          {options.map(([value, count]) => (
+            <button
+              key={value}
+              type="button"
+              onClick={() => onToggleValue(value)}
+              className="flex w-full items-center gap-2.5 rounded-lg px-2 py-1.5 text-left text-sm transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-700"
+            >
+              <div
+                className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border transition-colors ${
+                  selectedValues.includes(value)
+                    ? "border-primary-500 bg-primary-500"
+                    : "border-neutral-300 dark:border-neutral-600"
+                }`}
+              >
+                {selectedValues.includes(value) && (
+                  <Check size={10} className="text-white" strokeWidth={3} />
+                )}
+              </div>
+              <span className="flex-1 truncate text-neutral-600 dark:text-neutral-300">
+                {value}
+              </span>
+              <span className="text-[10px] tabular-nums text-neutral-400">
+                ({count})
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 const ProductFilter = memo(function ProductFilter({
@@ -32,24 +112,99 @@ const ProductFilter = memo(function ProductFilter({
   materials,
   resultCount,
   layout = "sidebar",
+  selectedColors,
+  onColorsChange,
+  selectedVolumes,
+  onVolumesChange,
+  selectedNeckDiameters,
+  onNeckDiametersChange,
+  selectedWeights,
+  onWeightsChange,
 }: ProductFilterProps) {
   const { dict } = useLocale();
   const [catOpen, setCatOpen] = useState(true);
   const [matOpen, setMatOpen] = useState(true);
+  const [colorOpen, setColorOpen] = useState(false);
+  const [volumeOpen, setVolumeOpen] = useState(false);
+  const [neckOpen, setNeckOpen] = useState(false);
+  const [weightOpen, setWeightOpen] = useState(false);
+
+  const colorOptions = useMemo(() => {
+    const counts = new Map<string, number>();
+    products.forEach((p) =>
+      p.colors.forEach((c) => counts.set(c, (counts.get(c) || 0) + 1))
+    );
+    return [...counts.entries()].sort(([a], [b]) => a.localeCompare(b, "tr"));
+  }, []);
+
+  const volumeOptions = useMemo(() => {
+    const counts = new Map<string, number>();
+    products.forEach((p) => {
+      if (p.volume) counts.set(p.volume, (counts.get(p.volume) || 0) + 1);
+    });
+    return [...counts.entries()].sort(
+      ([a], [b]) => (parseInt(a) || 0) - (parseInt(b) || 0)
+    );
+  }, []);
+
+  const neckDiameterOptions = useMemo(() => {
+    const counts = new Map<string, number>();
+    products.forEach((p) => {
+      if (p.neckDiameter)
+        counts.set(p.neckDiameter, (counts.get(p.neckDiameter) || 0) + 1);
+    });
+    return [...counts.entries()].sort(
+      ([a], [b]) => (parseInt(a) || 0) - (parseInt(b) || 0)
+    );
+  }, []);
+
+  const weightOptions = useMemo(() => {
+    const counts = new Map<string, number>();
+    products.forEach((p) => {
+      if (p.weight) counts.set(p.weight, (counts.get(p.weight) || 0) + 1);
+    });
+    return [...counts.entries()].sort(
+      ([a], [b]) => (parseFloat(a) || 0) - (parseFloat(b) || 0)
+    );
+  }, []);
+
+  const toggleArrayValue = (
+    arr: string[],
+    value: string,
+    setter: (v: string[]) => void
+  ) => {
+    setter(
+      arr.includes(value) ? arr.filter((v) => v !== value) : [...arr, value]
+    );
+  };
 
   const hasFilters =
-    search !== "" || selectedCategory !== "all" || selectedMaterial !== "";
+    search !== "" ||
+    selectedCategory !== "all" ||
+    selectedMaterial !== "" ||
+    selectedColors.length > 0 ||
+    selectedVolumes.length > 0 ||
+    selectedNeckDiameters.length > 0 ||
+    selectedWeights.length > 0;
 
   const activeFilterCount = [
     search !== "",
     selectedCategory !== "all",
     selectedMaterial !== "",
+    selectedColors.length > 0,
+    selectedVolumes.length > 0,
+    selectedNeckDiameters.length > 0,
+    selectedWeights.length > 0,
   ].filter(Boolean).length;
 
   const clearFilters = () => {
     onSearchChange("");
     onCategoryChange("all");
     onMaterialChange("");
+    onColorsChange([]);
+    onVolumesChange([]);
+    onNeckDiametersChange([]);
+    onWeightsChange([]);
   };
 
   if (layout === "top") {
@@ -74,7 +229,7 @@ const ProductFilter = memo(function ProductFilter({
                 className="flex items-center gap-1 rounded-full bg-destructive/10 px-3 py-1.5 text-xs font-medium text-destructive transition-colors hover:bg-destructive/20"
               >
                 <X size={12} />
-                {dict.components.clearFilters}
+                {dict.components.clearAllFilters}
               </button>
             )}
             <span className="inline-flex items-center rounded-full bg-primary-50 px-3 py-1.5 text-xs font-semibold text-primary-700 dark:bg-primary-900/30 dark:text-primary-300">
@@ -112,7 +267,6 @@ const ProductFilter = memo(function ProductFilter({
   return (
     <aside className="w-full shrink-0 lg:w-72">
       <div className="sticky top-20 space-y-4">
-        {/* Search */}
         <div className="rounded-2xl border border-neutral-200/80 bg-white p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
           <div className="relative">
             <Search size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
@@ -126,7 +280,6 @@ const ProductFilter = memo(function ProductFilter({
           </div>
         </div>
 
-        {/* Sort + Count */}
         <div className="rounded-2xl border border-neutral-200/80 bg-white p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
           <div className="mb-3 flex items-center justify-between">
             <span className="inline-flex items-center rounded-full bg-primary-50 px-2.5 py-1 text-[11px] font-semibold text-primary-700 dark:bg-primary-900/30 dark:text-primary-300">
@@ -154,7 +307,6 @@ const ProductFilter = memo(function ProductFilter({
           </select>
         </div>
 
-        {/* Categories */}
         <div className="rounded-2xl border border-neutral-200/80 bg-white shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
           <button
             onClick={() => setCatOpen(!catOpen)}
@@ -194,7 +346,6 @@ const ProductFilter = memo(function ProductFilter({
           )}
         </div>
 
-        {/* Materials */}
         {materials.length > 0 && (
           <div className="rounded-2xl border border-neutral-200/80 bg-white shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
             <button
@@ -234,6 +385,52 @@ const ProductFilter = memo(function ProductFilter({
               </div>
             )}
           </div>
+        )}
+
+        <CheckboxFilterSection
+          title={dict.components.color}
+          isOpen={colorOpen}
+          onToggle={() => setColorOpen(!colorOpen)}
+          options={colorOptions}
+          selectedValues={selectedColors}
+          onToggleValue={(v) => toggleArrayValue(selectedColors, v, onColorsChange)}
+        />
+
+        <CheckboxFilterSection
+          title={dict.components.volume}
+          isOpen={volumeOpen}
+          onToggle={() => setVolumeOpen(!volumeOpen)}
+          options={volumeOptions}
+          selectedValues={selectedVolumes}
+          onToggleValue={(v) => toggleArrayValue(selectedVolumes, v, onVolumesChange)}
+        />
+
+        <CheckboxFilterSection
+          title={dict.components.neckDiameter}
+          isOpen={neckOpen}
+          onToggle={() => setNeckOpen(!neckOpen)}
+          options={neckDiameterOptions}
+          selectedValues={selectedNeckDiameters}
+          onToggleValue={(v) => toggleArrayValue(selectedNeckDiameters, v, onNeckDiametersChange)}
+        />
+
+        <CheckboxFilterSection
+          title={dict.components.weight}
+          isOpen={weightOpen}
+          onToggle={() => setWeightOpen(!weightOpen)}
+          options={weightOptions}
+          selectedValues={selectedWeights}
+          onToggleValue={(v) => toggleArrayValue(selectedWeights, v, onWeightsChange)}
+        />
+
+        {hasFilters && (
+          <button
+            onClick={clearFilters}
+            className="flex w-full items-center justify-center gap-2 rounded-2xl border border-destructive/20 bg-destructive/5 px-4 py-3 text-sm font-medium text-destructive transition-colors hover:bg-destructive/10 dark:border-destructive/30 dark:bg-destructive/10 dark:hover:bg-destructive/20"
+          >
+            <X size={14} />
+            {dict.components.clearAllFilters}
+          </button>
         )}
       </div>
     </aside>

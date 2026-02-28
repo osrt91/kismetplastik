@@ -606,5 +606,23 @@ export function getAllMaterials(): string[] {
 }
 
 export function getAllColors(): string[] {
-  return [...new Set(products.flatMap((p) => p.colors))];
+  return [...new Set(products.flatMap((p) => p.colors))].sort((a, b) => a.localeCompare(b, "tr"));
+}
+
+export function getAllVolumes(): string[] {
+  return [...new Set(products.filter((p) => p.volume).map((p) => p.volume!))].sort(
+    (a, b) => (parseInt(a) || 0) - (parseInt(b) || 0)
+  );
+}
+
+export function getAllWeights(): string[] {
+  return [...new Set(products.filter((p) => p.weight).map((p) => p.weight!))].sort(
+    (a, b) => (parseFloat(a) || 0) - (parseFloat(b) || 0)
+  );
+}
+
+export function getAllNeckDiameters(): string[] {
+  return [...new Set(products.filter((p) => p.neckDiameter).map((p) => p.neckDiameter!))].sort(
+    (a, b) => (parseInt(a) || 0) - (parseInt(b) || 0)
+  );
 }
