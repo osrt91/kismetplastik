@@ -24,7 +24,7 @@
     "customMolding": "Custom Molding"
   },
   "home": {
-    "badge": "B2B Cosmetic Packaging Solutions",
+    "badge": "Trusted Partner Since 1969",
     "titleBefore": "Your Trusted Partner in",
     "titleAfter": "Cosmetic Packaging",
     "words": ["Reliable", "Quality", "Innovative"],
@@ -79,7 +79,11 @@
     "trustedStat2": "50+",
     "trustedStat2Label": "Countries",
     "trustedStat3": "ISO 9001",
-    "trustedStat3Label": "Certified"
+    "trustedStat3Label": "Certified",
+    "trustIso": "ISO 9001 Certified",
+    "trustProducts": "500+ Product Varieties",
+    "trustExport": "Export to 50+ Countries",
+    "trustExperience": "55+ Years Experience"
   },
   "homeFeatures": {
     "modernFactory": "Modern Production Facility",

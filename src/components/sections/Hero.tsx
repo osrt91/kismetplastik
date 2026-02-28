@@ -3,15 +3,22 @@
 import Image from "next/image";
 import Link from "@/components/ui/LocaleLink";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, FileText, Shield, Truck, Award, Building2, Globe } from "lucide-react";
+import {
+  ArrowRight,
+  FileText,
+  Shield,
+  Package,
+  Globe,
+  Factory,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocale } from "@/contexts/LocaleContext";
 
-const PARTICLES = Array.from({ length: 14 }, (_, i) => ({
-  left: `${(i * 17 + 7) % 95}%`,
-  top: `${(i * 23 + 12) % 90}%`,
+const PARTICLES = Array.from({ length: 8 }, (_, i) => ({
+  left: `${(i * 23 + 5) % 95}%`,
+  top: `${(i * 29 + 10) % 90}%`,
   size: i % 3 === 0 ? 4 : i % 3 === 1 ? 3 : 2,
-  delay: `${(i * 0.7) % 5}s`,
+  delay: `${(i * 0.9) % 5}s`,
   duration: `${3 + (i % 4)}s`,
   isAccent: i % 2 === 0,
 }));
@@ -19,11 +26,6 @@ const PARTICLES = Array.from({ length: 14 }, (_, i) => ({
 export default function Hero() {
   const { dict } = useLocale();
   const h = dict.home;
-  const highlights = [
-    { icon: Shield, text: h.highlight1 },
-    { icon: Truck, text: h.highlight2 },
-    { icon: Award, text: h.highlight3 },
-  ];
   const words = h.words as string[];
 
   const [wordIndex, setWordIndex] = useState(0);
@@ -44,48 +46,29 @@ export default function Hero() {
     };
   }, [words.length]);
 
+  const trustItems = [
+    { icon: Shield, text: h.trustIso },
+    { icon: Package, text: h.trustProducts },
+    { icon: Globe, text: h.trustExport },
+    { icon: Factory, text: h.trustExperience },
+  ];
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#002060] via-[#1F4A7E] to-[#002060]">
-      {/* Dot Pattern */}
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#0A1628] via-[#1B2A4A] to-[#0A1628]">
       <div className="absolute inset-0 opacity-[0.03]">
         <div
           className="h-full w-full"
           style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
             backgroundSize: "40px 40px",
           }}
         />
       </div>
 
-      {/* Animated Gradient Mesh */}
-      <div
-        className="absolute inset-0 opacity-[0.07]"
-        style={{
-          background: `
-            radial-gradient(ellipse 60% 50% at 20% 30%, var(--accent-500), transparent 70%),
-            radial-gradient(ellipse 50% 60% at 80% 70%, var(--primary-300), transparent 70%),
-            radial-gradient(ellipse 40% 40% at 50% 50%, var(--accent-400), transparent 60%)
-          `,
-          animation: "gradient-mesh 12s ease-in-out infinite alternate",
-        }}
-      />
-      <div
-        className="absolute inset-0 opacity-[0.05]"
-        style={{
-          background: `
-            radial-gradient(ellipse 50% 50% at 70% 20%, var(--accent-300), transparent 60%),
-            radial-gradient(ellipse 60% 40% at 30% 80%, var(--primary-500), transparent 70%)
-          `,
-          animation: "gradient-mesh 15s ease-in-out infinite alternate-reverse",
-        }}
-      />
-
-      {/* Gradient Orbs */}
       <div className="absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-accent-500/[0.08] blur-3xl animate-pulse" />
       <div className="absolute -bottom-32 -left-32 h-[500px] w-[500px] rounded-full bg-primary-300/[0.08] blur-3xl animate-pulse" />
-      <div className="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-500/[0.05] blur-3xl" />
 
-      {/* Particle Dots */}
       {PARTICLES.map((p, i) => (
         <div
           key={i}
@@ -104,12 +87,9 @@ export default function Hero() {
         />
       ))}
 
-      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:py-20 lg:px-6 lg:py-28">
+      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:py-24 lg:px-6 lg:py-32">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          {/* Left Content */}
-          <div
-            className="opacity-0 animate-[fade-in-up_1000ms_ease-out_forwards]"
-          >
+          <div className="opacity-0 animate-[fade-in-up_1000ms_ease-out_forwards]">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm text-white/90 backdrop-blur-sm">
               <span className="h-2 w-2 animate-pulse rounded-full bg-accent-500" />
               {h.badge}
@@ -138,19 +118,14 @@ export default function Hero() {
               {h.titleAfter}
             </h1>
 
-            <p
-              className="mb-8 max-w-lg text-base leading-relaxed text-white/80 sm:text-lg opacity-0 animate-[fade-in-up_1000ms_ease-out_200ms_forwards]"
-            >
+            <p className="mb-8 max-w-lg text-base leading-relaxed text-white/80 sm:text-lg opacity-0 animate-[fade-in-up_1000ms_ease-out_200ms_forwards]">
               {h.subtitle}
             </p>
 
-            {/* CTA Buttons */}
-            <div
-              className="mb-10 flex flex-col gap-3 sm:flex-row sm:gap-4 opacity-0 animate-[fade-in-up_1000ms_ease-out_300ms_forwards]"
-            >
+            <div className="mb-10 flex flex-col gap-3 sm:flex-row sm:gap-4 opacity-0 animate-[fade-in-up_1000ms_ease-out_300ms_forwards]">
               <Button
                 size="lg"
-                className="group w-full sm:w-auto rounded-xl bg-accent text-accent-foreground px-8 py-4 hover:bg-accent/90 shadow-md hover:shadow-lg"
+                className="group w-full rounded-xl bg-accent px-8 py-4 text-accent-foreground shadow-md hover:bg-accent/90 hover:shadow-lg sm:w-auto"
                 asChild
               >
                 <Link href="/urunler">
@@ -161,7 +136,12 @@ export default function Hero() {
                   />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" className="w-full sm:w-auto rounded-xl border-2 border-white/25 bg-white/[0.06] px-8 py-4 text-white hover:border-white/40 hover:bg-white/10" asChild>
+              <Button
+                variant="outline"
+                size="lg"
+                className="w-full rounded-xl border-2 border-white/25 bg-white/[0.06] px-8 py-4 text-white hover:border-white/40 hover:bg-white/10 sm:w-auto"
+                asChild
+              >
                 <Link href="/teklif-al">
                   <FileText size={16} />
                   {h.ctaQuote}
@@ -169,93 +149,67 @@ export default function Hero() {
               </Button>
             </div>
 
-            {/* Highlights */}
-            <div
-              className="flex flex-wrap gap-4 sm:gap-6 opacity-0 animate-[fade-in-up_1000ms_ease-out_500ms_forwards]"
-            >
-              {highlights.map((item) => (
-                <div
-                  key={item.text}
-                  className="flex items-center gap-2 text-sm text-white/60"
-                >
-                  <item.icon size={16} className="text-accent-500" />
-                  {item.text}
-                </div>
-              ))}
-            </div>
-
-            {/* Trusted Strip */}
-            <div
-              className="mt-8 border-t border-white/[0.06] pt-6 opacity-0 animate-[fade-in-up_1000ms_ease-out_700ms_forwards]"
-            >
-              <p className="mb-3 text-xs font-medium uppercase tracking-widest text-white/30">
-                {dict.components.trustedBy}
-              </p>
-              <div className="flex flex-wrap items-center gap-3">
-                {[
-                  { icon: Building2, value: h.trustedStat1, label: h.trustedStat1Label },
-                  { icon: Globe, value: h.trustedStat2, label: h.trustedStat2Label },
-                  { icon: Shield, value: h.trustedStat3, label: h.trustedStat3Label },
-                ].map((stat) => (
+            <div className="opacity-0 animate-[fade-in-up_1000ms_ease-out_500ms_forwards]">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-3 sm:flex-nowrap sm:divide-x sm:divide-white/10">
+                {trustItems.map((item, idx) => (
                   <div
-                    key={stat.label}
-                    className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 backdrop-blur-sm"
+                    key={idx}
+                    className={`flex items-center gap-2 text-sm text-white/80 ${
+                      idx > 0 ? "sm:pl-4" : ""
+                    }`}
                   >
-                    <stat.icon size={14} className="text-accent-400" />
-                    <span className="text-sm font-bold text-white">{stat.value}</span>
-                    <span className="text-xs text-white/50">{stat.label}</span>
+                    <item.icon
+                      size={16}
+                      className="shrink-0 text-accent-400"
+                    />
+                    <span>{item.text}</span>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Right - Mascot Visual */}
-          <div
-            className="relative hidden lg:block opacity-0 animate-[fade-in_1000ms_ease-out_300ms_forwards]"
-          >
-            <div className="relative mx-auto aspect-square max-w-md">
-              {/* Rotating Rings */}
-              <div className="absolute inset-4 rounded-full border border-dashed border-white/10 animate-[spin_30s_linear_infinite]" />
-              <div className="absolute inset-12 rounded-full border border-dashed border-white/[0.05] animate-[spin_20s_linear_infinite_reverse]" />
+          <div className="relative hidden opacity-0 animate-[fade-in_1000ms_ease-out_300ms_forwards] lg:block">
+            <div className="relative mx-auto aspect-square max-w-lg">
+              <div className="absolute inset-2 rounded-full border border-white/[0.06] animate-[spin_40s_linear_infinite]" />
+              <div className="absolute inset-10 rounded-full border border-dashed border-white/[0.04] animate-[spin_25s_linear_infinite_reverse]" />
+              <div className="absolute inset-20 rounded-full border border-white/[0.03] animate-[spin_35s_linear_infinite]" />
 
-              {/* Mascot */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative flex h-72 w-72 items-center justify-center rounded-3xl border border-white/10 bg-white/[0.07] shadow-2xl backdrop-blur-md transition-transform duration-500 hover:scale-105">
+                <div className="relative flex h-80 w-80 items-center justify-center rounded-3xl border border-white/10 bg-white/[0.07] shadow-2xl backdrop-blur-md transition-transform duration-500 hover:scale-105">
                   <Image
                     src="/images/logo2.svg"
                     alt="Kısmet Plastik"
-                    width={160}
-                    height={160}
-                    className="h-40 w-40 brightness-0 invert drop-shadow-2xl"
+                    width={180}
+                    height={180}
+                    className="h-44 w-44 brightness-0 invert drop-shadow-2xl"
                   />
                 </div>
               </div>
 
-              {/* Glassmorphism Floating Cards */}
-              <div className="absolute -left-4 top-12 rounded-xl border border-white/[0.15] bg-gradient-to-br from-white/[0.10] to-white/[0.03] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-1 ring-inset ring-white/[0.05] backdrop-blur-xl backdrop-saturate-150 animate-[float_4s_ease-in-out_infinite]">
+              <div className="absolute -left-6 top-10 rounded-xl border border-white/[0.15] bg-gradient-to-br from-white/[0.10] to-white/[0.03] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-1 ring-inset ring-white/[0.05] backdrop-blur-xl backdrop-saturate-150 animate-[float_4s_ease-in-out_infinite]">
                 <div className="text-2xl font-bold text-white">
                   {h.cardProducts}
                 </div>
-                <div className="text-xs text-white/60">
+                <div className="text-xs text-white/80">
                   {h.cardProductsLabel}
                 </div>
               </div>
 
-              <div className="absolute -right-4 bottom-20 rounded-xl border border-white/[0.15] bg-gradient-to-br from-white/[0.10] to-white/[0.03] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-1 ring-inset ring-white/[0.05] backdrop-blur-xl backdrop-saturate-150 animate-[float_4s_ease-in-out_infinite_1s]">
+              <div className="absolute -right-6 top-1/3 rounded-xl border border-white/[0.15] bg-gradient-to-br from-white/[0.10] to-white/[0.03] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-1 ring-inset ring-white/[0.05] backdrop-blur-xl backdrop-saturate-150 animate-[float_4s_ease-in-out_infinite_1s]">
                 <div className="text-2xl font-bold text-accent-400">
                   {h.cardCustomers}
                 </div>
-                <div className="text-xs text-white/60">
+                <div className="text-xs text-white/80">
                   {h.cardCustomersLabel}
                 </div>
               </div>
 
-              <div className="absolute bottom-4 left-8 rounded-xl border border-white/[0.15] bg-gradient-to-br from-white/[0.10] to-white/[0.03] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-1 ring-inset ring-white/[0.05] backdrop-blur-xl backdrop-saturate-150 animate-[float_4s_ease-in-out_infinite_2s]">
+              <div className="absolute -left-2 bottom-16 rounded-xl border border-white/[0.15] bg-gradient-to-br from-white/[0.10] to-white/[0.03] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-1 ring-inset ring-white/[0.05] backdrop-blur-xl backdrop-saturate-150 animate-[float_4s_ease-in-out_infinite_2s]">
                 <div className="text-2xl font-bold text-white">
                   {h.cardExperience}
                 </div>
-                <div className="text-xs text-white/60">
+                <div className="text-xs text-white/80">
                   {h.cardExperienceLabel}
                 </div>
               </div>
@@ -264,7 +218,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom Wave */}
       <div className="absolute bottom-0 left-0 right-0">
         <svg
           viewBox="0 0 1440 60"

@@ -24,7 +24,7 @@
     "customMolding": "Özel Kalıplama"
   },
   "home": {
-    "badge": "B2B Kozmetik Ambalaj Çözümleri",
+    "badge": "1969'dan Beri Güvenilir Partner",
     "titleBefore": "Kozmetik Ambalajda",
     "titleAfter": "Çözüm Ortağınız",
     "words": ["Güvenilir", "Kaliteli", "Yenilikçi"],
@@ -79,7 +79,11 @@
     "trustedStat2": "50+",
     "trustedStat2Label": "Ülke",
     "trustedStat3": "ISO 9001",
-    "trustedStat3Label": "Sertifikalı"
+    "trustedStat3Label": "Sertifikalı",
+    "trustIso": "ISO 9001 Sertifikalı",
+    "trustProducts": "500+ Ürün Çeşidi",
+    "trustExport": "50+ Ülkeye İhracat",
+    "trustExperience": "55+ Yıl Tecrübe"
   },
   "homeFeatures": {
     "modernFactory": "Modern Üretim Tesisi",
