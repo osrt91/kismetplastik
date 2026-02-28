@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -22,6 +20,8 @@
 
 # misc
 .DS_Store
+Thumbs.db
+desktop.ini
 *.pem
 
 # debug
@@ -30,20 +30,29 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files
+# env files (keep .env.example)
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
+# editor
 .cursor/
 .vscode/
 
-
+# vercel
 .vercel
+
+# reference materials (local only)
+/kaynak/
+
+# old submodule
+/kismetplastik/
+
+# development prompt guides
+docs/CURSOR-PROMPT-REHBER.md
+docs/RAKIP-ANALIZ-PROMPT-REHBER.md
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-.vercel
