@@ -11,6 +11,7 @@ const ScrollToTop = dynamic(() => import("@/components/ui/ScrollToTop"));
 const CookieBanner = dynamic(() => import("@/components/ui/CookieBanner"));
 const InstallPrompt = dynamic(() => import("@/components/ui/InstallPrompt"));
 import { LocalBusinessJsonLd, OrganizationJsonLd } from "@/components/seo/JsonLd";
+import GoogleAnalytics from "@/components/seo/GoogleAnalytics";
 import { locales } from "@/proxy";
 
 type Props = {
@@ -113,6 +114,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale}>
       <head>
+        <GoogleAnalytics />
         <LocalBusinessJsonLd />
         <OrganizationJsonLd />
         <script

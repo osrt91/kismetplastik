@@ -1,13 +1,14 @@
-const CACHE_NAME = "kismet-v2";
+const CACHE_NAME = "kismet-v3";
 const STATIC_ASSETS = [
   "/",
   "/tr",
   "/en",
   "/manifest.json",
   "/images/logo.jpg",
-  "/fonts/MyriadPro-Regular.otf",
-  "/fonts/MyriadPro-Semibold.ttf",
-  "/fonts/MyriadPro-Black.otf",
+  "/images/logo2.svg",
+  "/fonts/MyriadPro-Regular.woff2",
+  "/fonts/MyriadPro-Semibold.woff2",
+  "/fonts/MyriadPro-Black.woff2",
 ];
 
 const CACHE_STRATEGIES = {
