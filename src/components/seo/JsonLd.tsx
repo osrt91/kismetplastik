@@ -26,7 +26,12 @@ export function LocalBusinessJsonLd() {
       opens: "08:00",
       closes: "18:00",
     },
-    sameAs: [],
+    sameAs: [
+      "https://www.facebook.com/kismetplastik",
+      "https://www.instagram.com/kismetplastik",
+      "https://www.linkedin.com/company/kismetplastik",
+      "https://www.youtube.com/@kismetplastik",
+    ],
     priceRange: "$$",
     image: "https://www.kismetplastik.com/images/logo.jpg",
     "@id": "https://www.kismetplastik.com",
@@ -53,7 +58,12 @@ export function OrganizationJsonLd() {
       contactType: "sales",
       availableLanguage: ["Turkish", "English"],
     },
-    sameAs: [],
+    sameAs: [
+      "https://www.facebook.com/kismetplastik",
+      "https://www.instagram.com/kismetplastik",
+      "https://www.linkedin.com/company/kismetplastik",
+      "https://www.youtube.com/@kismetplastik",
+    ],
   };
 
   return (
@@ -70,12 +80,16 @@ export function ProductJsonLd({
   category,
   material,
   inStock,
+  slug,
+  categorySlug,
 }: {
   name: string;
   description: string;
   category: string;
   material: string;
   inStock: boolean;
+  slug?: string;
+  categorySlug?: string;
 }) {
   const schema = {
     "@context": "https://schema.org",
@@ -92,8 +106,11 @@ export function ProductJsonLd({
       "@type": "Organization",
       name: "Kısmet Plastik",
     },
+    ...(slug && categorySlug
+      ? { url: `https://www.kismetplastik.com/tr/urunler/${categorySlug}/${slug}` }
+      : {}),
     offers: {
-      "@type": "Offer",
+      "@type": "AggregateOffer",
       availability: inStock
         ? "https://schema.org/InStock"
         : "https://schema.org/OutOfStock",
@@ -101,6 +118,15 @@ export function ProductJsonLd({
       seller: {
         "@type": "Organization",
         name: "Kısmet Plastik",
+      },
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceCurrency: "TRY",
+        eligibleTransactionVolume: {
+          "@type": "QuantitativeValue",
+          unitCode: "C62",
+          value: 5000,
+        },
       },
     },
   };
@@ -129,6 +155,54 @@ export function FAQJsonLd({
         text: item.answer,
       },
     })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+export function BlogPostingJsonLd({
+  title,
+  description,
+  datePublished,
+  slug,
+  locale,
+}: {
+  title: string;
+  description: string;
+  datePublished: string;
+  slug: string;
+  locale: string;
+}) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    datePublished,
+    dateModified: datePublished,
+    author: {
+      "@type": "Organization",
+      name: "Kısmet Plastik",
+      url: "https://www.kismetplastik.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Kısmet Plastik",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.kismetplastik.com/images/logo.jpg",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://www.kismetplastik.com/${locale}/blog/${slug}`,
+    },
+    inLanguage: locale === "en" ? "en-US" : "tr-TR",
   };
 
   return (

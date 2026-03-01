@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { categories, products } from "@/data/products";
+import { blogPosts } from "@/data/blog";
 
 const BASE_URL = "https://www.kismetplastik.com";
 const locales = ["tr", "en"] as const;
@@ -75,5 +76,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...staticPages, ...categoryPages, ...productPages];
+  const blogPages = blogPosts.flatMap((post) =>
+    locales.map((locale) => ({
+      url: `${BASE_URL}/${locale}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((l) => [l, `${BASE_URL}/${l}/blog/${post.slug}`])
+        ),
+      },
+    }))
+  );
+
+  return [...staticPages, ...categoryPages, ...productPages, ...blogPages];
 }

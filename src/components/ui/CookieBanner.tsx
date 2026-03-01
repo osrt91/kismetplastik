@@ -7,7 +7,8 @@ import { useLocale } from "@/contexts/LocaleContext";
 const STORAGE_KEY = "kismetplastik-cookie-consent";
 
 export default function CookieBanner() {
-  const { locale } = useLocale();
+  const { dict } = useLocale();
+  const comp = dict.components;
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -38,37 +39,33 @@ export default function CookieBanner() {
 
   if (!visible) return null;
 
-  const isTr = locale === "tr";
-
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 p-4 animate-[fade-in-up_500ms_ease-out_forwards]">
-      <div className="mx-auto max-w-4xl rounded-2xl border border-neutral-200 bg-white p-5 shadow-2xl sm:p-6">
+      <div className="mx-auto max-w-4xl rounded-2xl border border-neutral-200 bg-white p-5 shadow-2xl dark:border-neutral-700 dark:bg-neutral-800 sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-start gap-3">
             <Cookie size={24} className="mt-0.5 shrink-0 text-accent-500" />
             <div>
-              <p className="text-sm font-semibold text-primary-900">
-                {isTr ? "Çerez Kullanımı" : "Cookie Usage"}
+              <p className="text-sm font-semibold text-primary-900 dark:text-white">
+                {comp.cookieTitle}
               </p>
-              <p className="mt-1 text-sm text-neutral-500">
-                {isTr
-                  ? "Bu web sitesi, deneyiminizi geliştirmek için çerezler kullanmaktadır. 6698 sayılı KVKK kapsamında kişisel verileriniz işlenmektedir."
-                  : "This website uses cookies to improve your experience. Your personal data is processed in accordance with data protection regulations."}
+              <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
+                {comp.cookieDescription}
               </p>
             </div>
           </div>
           <div className="flex items-center gap-2 sm:shrink-0">
             <button
               onClick={decline}
-              className="rounded-lg border border-neutral-200 px-4 py-2 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-50"
+              className="rounded-lg border border-neutral-200 px-4 py-2 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-50 dark:border-neutral-600 dark:text-neutral-300 dark:hover:bg-neutral-700"
             >
-              {isTr ? "Reddet" : "Decline"}
+              {comp.cookieDecline}
             </button>
             <button
               onClick={accept}
-              className="rounded-lg bg-primary-900 px-4 py-2 text-sm font-bold text-white transition-all hover:bg-primary-700"
+              className="rounded-lg bg-primary-900 px-4 py-2 text-sm font-bold text-white transition-all hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600"
             >
-              {isTr ? "Kabul Et" : "Accept"}
+              {comp.cookieAccept}
             </button>
           </div>
         </div>

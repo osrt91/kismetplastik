@@ -56,3 +56,5 @@ docs/RAKIP-ANALIZ-PROMPT-REHBER.md
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel

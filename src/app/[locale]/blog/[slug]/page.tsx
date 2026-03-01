@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { blogPosts } from "@/data/blog";
 import BlogDetailClient from "@/components/pages/BlogDetailClient";
+import { BlogPostingJsonLd } from "@/components/seo/JsonLd";
 
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -38,6 +39,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default function BlogDetailPage() {
-  return <BlogDetailClient />;
+export default async function BlogDetailPage({ params }: PageProps) {
+  const { locale, slug } = await params;
+  const post = blogPosts.find((p) => p.slug === slug);
+
+  return (
+    <>
+      {post && (
+        <BlogPostingJsonLd
+          title={post.title}
+          description={post.excerpt}
+          datePublished={post.date}
+          slug={slug}
+          locale={locale}
+        />
+      )}
+      <BlogDetailClient />
+    </>
+  );
 }

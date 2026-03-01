@@ -82,12 +82,28 @@ export default function Footer() {
   const scrollToTop = () =>
     window.scrollTo({ top: 0, behavior: "smooth" });
 
-  const handleNewsletter = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
-    setSubscribed(true);
-    setEmail("");
-    setTimeout(() => setSubscribed(false), 4000);
+    if (!email.trim() || submitting) return;
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+      if (res.ok) {
+        setSubscribed(true);
+        setEmail("");
+        setTimeout(() => setSubscribed(false), 4000);
+      }
+    } catch {
+      /* network error - silent fail */
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -239,9 +255,10 @@ export default function Footer() {
                 />
                 <button
                   type="submit"
-                  className="flex items-center justify-center rounded-lg bg-gradient-to-r from-[#F2994A] to-[#D98A35] px-3.5 py-2 text-[11px] font-bold text-white transition-all hover:shadow-md hover:shadow-[#F2994A]/20 hover:brightness-110 active:scale-95"
+                  disabled={submitting}
+                  className="flex items-center justify-center rounded-lg bg-gradient-to-r from-[#F2994A] to-[#D98A35] px-3.5 py-2 text-[11px] font-bold text-white transition-all hover:shadow-md hover:shadow-[#F2994A]/20 hover:brightness-110 active:scale-95 disabled:opacity-50"
                 >
-                  <Send size={12} />
+                  <Send size={12} className={submitting ? "animate-pulse" : ""} />
                 </button>
               </form>
             )}

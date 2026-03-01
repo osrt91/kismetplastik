@@ -97,10 +97,12 @@ export default function Hero() {
     <section className="relative overflow-hidden bg-[#0A1628] min-h-[92vh] flex items-center">
       <video
         src={VIDEO_SRC}
+        poster="/images/hero-poster.jpg"
         autoPlay
         loop
         muted
         playsInline
+        preload="metadata"
         onCanPlay={() => setVideoLoaded(true)}
         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${videoLoaded ? "opacity-15" : "opacity-0"}`}
       />

@@ -213,7 +213,12 @@
     "productNotFound": "Ürün bulunamadı",
     "categoryNotFound": "Kategori bulunamadı",
     "backToAll": "Tüm ürünlere dön",
-    "searchInCategory": "Bu kategoride ara..."
+    "searchInCategory": "Bu kategoride ara...",
+    "relatedProducts": "İlgili Ürünler",
+    "addToQuoteCart": "Teklif Sepetine Ekle",
+    "addedToQuoteCart": "Sepete Eklendi!",
+    "inQuoteCart": "Sepette",
+    "quoteCartCount": "Sepetinizde {count} ürün var"
   },
   "about": {
     "heroTitle": "Hakkımızda",
@@ -337,7 +342,9 @@
     "benefitDeliveryTitle": "Hızlı Teslimat",
     "benefitDeliveryDesc": "Türkiye geneli lojistik ağı ile hızlı sevkiyat.",
     "whyKismet": "Neden Kısmet Plastik?",
-    "haveQuestions": "Sorularınız mı var?"
+    "haveQuestions": "Sorularınız mı var?",
+    "cartTitle": "Teklif Sepetinizdeki Ürünler",
+    "clearCart": "Temizle"
   },
   "dealer": {
     "heroTitle": "Bayi Paneli",
@@ -501,7 +508,11 @@
     "homePage": "Ana Sayfa",
     "testimonialOverline": "MÜŞTERİ REFERANSLARI",
     "testimonialTitle": "Müşterilerimiz Ne Diyor?",
-    "testimonialBadge": "50+ Mutlu Müşteri"
+    "testimonialBadge": "50+ Mutlu Müşteri",
+    "cookieTitle": "Çerez Kullanımı",
+    "cookieDescription": "Bu web sitesi, deneyiminizi geliştirmek için çerezler kullanmaktadır. 6698 sayılı KVKK kapsamında kişisel verileriniz işlenmektedir.",
+    "cookieDecline": "Reddet",
+    "cookieAccept": "Kabul Et"
   },
   "searchDescriptions": {
     "home": "Kısmet Plastik ana sayfa",

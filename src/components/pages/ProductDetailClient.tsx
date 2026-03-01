@@ -13,12 +13,14 @@ import {
   Box,
   Layers,
 } from "lucide-react";
-import { getProductBySlug, getCategoryBySlug } from "@/data/products";
+import { getProductBySlug, getCategoryBySlug, getProductsByCategory } from "@/data/products";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import ProductViewer from "@/components/ui/ProductViewer";
+import ProductCard from "@/components/ui/ProductCard";
 import StickyQuoteBar from "@/components/ui/StickyQuoteBar";
 import RecentProducts from "@/components/sections/RecentProducts";
 import { useRecentProducts } from "@/hooks/useRecentProducts";
+import { useQuoteCart } from "@/hooks/useQuoteCart";
 import { useLocale } from "@/contexts/LocaleContext";
 
 const Product3DViewer = lazy(() => import("@/components/ui/Product3DViewer"));
@@ -28,8 +30,10 @@ export default function ProductDetailClient() {
   const p = dict.products;
   const cm = dict.common;
   const { addRecent } = useRecentProducts();
+  const { addItem, items } = useQuoteCart();
   const [viewMode, setViewMode] = useState<"2d" | "3d">("2d");
   const [selectedColor, setSelectedColor] = useState<string | undefined>();
+  const [addedToCart, setAddedToCart] = useState(false);
 
   const params = useParams();
   const slug = params.slug as string;
@@ -196,7 +200,7 @@ export default function ProductDetailClient() {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row">
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link
                   href="/teklif-al"
                   className="group inline-flex items-center justify-center gap-2 rounded-xl bg-accent-500 px-6 py-3.5 text-base font-bold text-primary-900 shadow-lg shadow-accent-500/25 transition-all duration-300 hover:bg-accent-400 hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98]"
@@ -204,17 +208,79 @@ export default function ProductDetailClient() {
                   <FileText size={18} />
                   {p.requestQuoteFor}
                 </Link>
+                <button
+                  onClick={() => {
+                    addItem({
+                      productId: product.id,
+                      slug: product.slug,
+                      name: product.name,
+                      category: category.name,
+                      material: product.material,
+                      volume: product.volume,
+                    });
+                    setAddedToCart(true);
+                    setTimeout(() => setAddedToCart(false), 2000);
+                  }}
+                  className={`inline-flex items-center justify-center gap-2 rounded-xl border-2 px-6 py-3.5 text-base font-semibold transition-all duration-300 active:scale-[0.98] ${
+                    addedToCart
+                      ? "border-success bg-success/10 text-success"
+                      : items.some((i) => i.productId === product.id)
+                        ? "border-primary-500 bg-primary-500/5 text-primary-700 dark:text-primary-300"
+                        : "border-primary-900 text-primary-900 hover:bg-primary-900 hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-primary-900"
+                  }`}
+                >
+                  {addedToCart ? (
+                    <><CheckCircle2 size={18} /> {p.addedToQuoteCart || "Eklendi!"}</>
+                  ) : items.some((i) => i.productId === product.id) ? (
+                    <><CheckCircle2 size={18} /> {p.inQuoteCart || "Sepette"}</>
+                  ) : (
+                    <><Layers size={18} /> {p.addToQuoteCart || "Teklif Sepetine Ekle"}</>
+                  )}
+                </button>
                 <a
                   href="tel:+902125498703"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-primary-900 px-6 py-3.5 text-base font-semibold text-primary-900 transition-all duration-300 hover:bg-primary-900 hover:text-white"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-neutral-300 px-6 py-3.5 text-base font-semibold text-neutral-700 transition-all duration-300 hover:bg-neutral-100 dark:border-neutral-600 dark:text-neutral-300 dark:hover:bg-neutral-800"
                 >
                   <Phone size={18} />
                   {p.callNow}
                 </a>
               </div>
+              {items.length > 0 && (
+                <div className="mt-3 text-sm text-primary-600 dark:text-primary-400">
+                  <Link href="/teklif-al" className="inline-flex items-center gap-1 font-medium hover:underline">
+                    <Layers size={14} />
+                    {p.quoteCartCount?.replace("{count}", String(items.length)) || `Sepetinizde ${items.length} ürün var`}
+                    <ChevronRight size={14} />
+                  </Link>
+                </div>
+              )}
             </div>
           </AnimateOnScroll>
         </div>
+
+        {/* Related Products */}
+        {(() => {
+          const related = getProductsByCategory(product.category)
+            .filter((rp) => rp.id !== product.id)
+            .slice(0, 3);
+          if (related.length === 0) return null;
+          return (
+            <div className="mt-16">
+              <AnimateOnScroll animation="fade-up">
+                <h2 className="mb-6 text-xl font-extrabold text-primary-900 dark:text-white sm:text-2xl">
+                  {p.relatedProducts || "İlgili Ürünler"}
+                </h2>
+              </AnimateOnScroll>
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {related.map((rp, i) => (
+                  <AnimateOnScroll key={rp.id} animation="fade-up" delay={i * 80}>
+                    <ProductCard product={rp} />
+                  </AnimateOnScroll>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
 
         <RecentProducts />
       </div>

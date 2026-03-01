@@ -213,7 +213,12 @@
     "productNotFound": "Product not found",
     "categoryNotFound": "Category not found",
     "backToAll": "Back to all products",
-    "searchInCategory": "Search in this category..."
+    "searchInCategory": "Search in this category...",
+    "relatedProducts": "Related Products",
+    "addToQuoteCart": "Add to Quote Cart",
+    "addedToQuoteCart": "Added!",
+    "inQuoteCart": "In Cart",
+    "quoteCartCount": "You have {count} products in your cart"
   },
   "about": {
     "heroTitle": "About Us",
@@ -337,7 +342,9 @@
     "benefitDeliveryTitle": "Fast Delivery",
     "benefitDeliveryDesc": "Fast shipping with nationwide logistics network.",
     "whyKismet": "Why Kısmet Plastik?",
-    "haveQuestions": "Have questions?"
+    "haveQuestions": "Have questions?",
+    "cartTitle": "Products in Your Quote Cart",
+    "clearCart": "Clear"
   },
   "dealer": {
     "heroTitle": "Dealer Panel",
@@ -501,7 +508,11 @@
     "homePage": "Home Page",
     "testimonialOverline": "CUSTOMER REFERENCES",
     "testimonialTitle": "What Our Customers Say?",
-    "testimonialBadge": "50+ Happy Customers"
+    "testimonialBadge": "50+ Happy Customers",
+    "cookieTitle": "Cookie Usage",
+    "cookieDescription": "This website uses cookies to improve your experience. Your personal data is processed in accordance with data protection regulations.",
+    "cookieDecline": "Decline",
+    "cookieAccept": "Accept"
   },
   "searchDescriptions": {
     "home": "Kısmet Plastik home page",

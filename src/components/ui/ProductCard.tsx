@@ -1,10 +1,11 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useState } from "react";
 import Link from "@/components/ui/LocaleLink";
-import { ArrowRight, Package } from "lucide-react";
+import { ArrowRight, Package, Plus, Check } from "lucide-react";
 import { Product, CategorySlug } from "@/types/product";
 import { useLocale } from "@/contexts/LocaleContext";
+import { useQuoteCart } from "@/hooks/useQuoteCart";
 
 const categoryConfig: Record<
   CategorySlug,
@@ -41,7 +42,10 @@ const colorHexMap: Record<string, string> = {
 
 const ProductCard = memo(function ProductCard({ product }: { product: Product }) {
   const { dict } = useLocale();
+  const { addItem, items } = useQuoteCart();
+  const [justAdded, setJustAdded] = useState(false);
   const cat = categoryConfig[product.category];
+  const isInCart = items.some((i) => i.productId === product.id);
 
   return (
     <Link
@@ -98,6 +102,31 @@ const ProductCard = memo(function ProductCard({ product }: { product: Product })
         >
           {cat.name}
         </span>
+
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            addItem({
+              productId: product.id,
+              slug: product.slug,
+              name: product.name,
+              category: cat.name,
+              material: product.material,
+              volume: product.volume,
+            });
+            setJustAdded(true);
+            setTimeout(() => setJustAdded(false), 1500);
+          }}
+          className={`absolute right-3 bottom-3 z-10 flex h-8 w-8 items-center justify-center rounded-full shadow-md transition-all duration-300 ${
+            justAdded || isInCart
+              ? "bg-success text-white scale-110"
+              : "bg-white text-primary-900 opacity-0 group-hover:opacity-100 hover:scale-110 hover:bg-accent-500 hover:text-white"
+          }`}
+          title={dict.products.addToQuoteCart || "Teklif Sepetine Ekle"}
+        >
+          {justAdded || isInCart ? <Check size={14} strokeWidth={3} /> : <Plus size={16} strokeWidth={2.5} />}
+        </button>
 
         <div className="absolute inset-0 flex items-end justify-center translate-y-full bg-gradient-to-t from-black/50 via-black/15 to-transparent p-5 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
           <span className="rounded-full bg-white/90 px-4 py-2 text-xs font-bold text-primary-900 shadow-lg backdrop-blur-sm">

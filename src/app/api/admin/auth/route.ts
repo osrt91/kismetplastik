@@ -1,7 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
-import { timingSafeCompare } from "@/lib/auth";
+import { timingSafeCompare, generateAdminToken } from "@/lib/auth";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(request: NextRequest) {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  const { ok: allowed } = rateLimit(`admin-auth:${ip}`, { limit: 5, windowMs: 300_000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: "Çok fazla giriş denemesi. 5 dakika bekleyip tekrar deneyin." },
+      { status: 429 }
+    );
+  }
+
   const { password } = await request.json();
   const secret = process.env.ADMIN_SECRET;
 
@@ -16,8 +26,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Geçersiz şifre" }, { status: 401 });
   }
 
+  const token = generateAdminToken(secret);
   const response = NextResponse.json({ success: true });
-  response.cookies.set("admin-token", secret, {
+  response.cookies.set("admin-token", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",

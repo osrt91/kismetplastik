@@ -43,11 +43,6 @@ const categoryColors: Record<Category, string> = {
   etkinlikler: "bg-purple-100 text-purple-700",
 };
 
-function getAdminToken(): string {
-  const match = document.cookie.match(/(?:^|;\s*)admin-token=([^;]*)/);
-  return match ? decodeURIComponent(match[1]) : "";
-}
-
 export default function AdminGalleryPage() {
   const [images, setImages] = useState<GalleryImage[]>([]);
   const [loading, setLoading] = useState(true);
@@ -111,7 +106,6 @@ export default function AdminGalleryPage() {
 
       const res = await fetch("/api/gallery", {
         method: "POST",
-        headers: { "x-admin-secret": getAdminToken() },
         body: fd,
       });
 
@@ -135,7 +129,6 @@ export default function AdminGalleryPage() {
     try {
       const res = await fetch(`/api/gallery/${id}`, {
         method: "DELETE",
-        headers: { "x-admin-secret": getAdminToken() },
       });
       const json = await res.json();
       if (json.success) {
@@ -150,10 +143,7 @@ export default function AdminGalleryPage() {
     try {
       const res = await fetch(`/api/gallery/${id}`, {
         method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          "x-admin-secret": getAdminToken(),
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ is_active: !currentActive }),
       });
       const json = await res.json();

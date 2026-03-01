@@ -27,6 +27,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { categories } from "@/data/products";
 import { useLocale } from "@/contexts/LocaleContext";
+import { useQuoteCart } from "@/hooks/useQuoteCart";
 
 const iconWrap =
   "pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400 transition-colors duration-200 peer-focus:text-primary-500";
@@ -37,6 +38,11 @@ export default function TeklifAlPage() {
   const { dict } = useLocale();
   const q = dict.quote;
   const nav = dict.nav;
+  const { items: cartItems, removeItem: removeCartItem, clearCart, mounted: cartMounted } = useQuoteCart();
+
+  const cartSummary = cartItems.length > 0
+    ? cartItems.map((i) => `${i.name}${i.volume ? ` (${i.volume})` : ""} x${i.quantity}`).join(", ")
+    : "";
 
   const [formState, setFormState] = useState({
     name: "",
@@ -45,7 +51,7 @@ export default function TeklifAlPage() {
     company: "",
     address: "",
     category: "",
-    productInterest: "",
+    productInterest: cartSummary,
     quantity: "",
     deliveryDate: "",
     message: "",
@@ -164,6 +170,51 @@ export default function TeklifAlPage() {
                   <p className="text-sm text-neutral-500">{q.formHint}</p>
                 </div>
               </div>
+
+              {cartMounted && cartItems.length > 0 && (
+                <div className="mb-6 rounded-xl border border-primary-200 bg-primary-50/50 p-4">
+                  <div className="mb-3 flex items-center justify-between">
+                    <h3 className="flex items-center gap-2 text-sm font-bold text-primary-900">
+                      <Package size={16} />
+                      {q.cartTitle || "Teklif Sepetinizdeki Ürünler"}
+                    </h3>
+                    <button
+                      onClick={() => {
+                        clearCart();
+                        setFormState((prev) => ({ ...prev, productInterest: "" }));
+                      }}
+                      className="text-xs font-medium text-neutral-500 hover:text-red-500"
+                    >
+                      {q.clearCart || "Temizle"}
+                    </button>
+                  </div>
+                  <div className="space-y-2">
+                    {cartItems.map((item) => (
+                      <div key={item.productId} className="flex items-center justify-between rounded-lg bg-white px-3 py-2 text-sm">
+                        <div>
+                          <span className="font-medium text-primary-900">{item.name}</span>
+                          <span className="ml-2 text-xs text-neutral-400">
+                            {item.material}{item.volume ? ` · ${item.volume}` : ""} · x{item.quantity}
+                          </span>
+                        </div>
+                        <button
+                          onClick={() => {
+                            removeCartItem(item.productId);
+                            const remaining = cartItems
+                              .filter((i) => i.productId !== item.productId)
+                              .map((i) => `${i.name}${i.volume ? ` (${i.volume})` : ""} x${i.quantity}`)
+                              .join(", ");
+                            setFormState((prev) => ({ ...prev, productInterest: remaining }));
+                          }}
+                          className="ml-2 text-neutral-400 hover:text-red-500"
+                        >
+                          ×
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {error && (
                 <div className="mb-4 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
