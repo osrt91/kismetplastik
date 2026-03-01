@@ -109,13 +109,11 @@ export default function WhyUs() {
                 animation="fade-up"
                 delay={i * 100}
               >
-                <div className="group relative h-full overflow-hidden rounded-2xl border border-neutral-100 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-xl hover:shadow-primary-900/5 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-primary-500/30">
-                  {/* Left border gradient reveal on hover */}
+                <div className="card-border-gradient group relative h-full overflow-hidden rounded-2xl border border-neutral-100 bg-white p-8 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary-100 hover:shadow-2xl hover:shadow-primary-900/8 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-primary-500/30">
                   <div
                     className={`absolute left-0 top-0 h-full w-[3px] bg-gradient-to-b ${scheme.borderGradient} opacity-0 transition-all duration-500 group-hover:opacity-100`}
                   />
 
-                  {/* Large faded step number */}
                   <span
                     className={`absolute -top-2 right-4 select-none font-mono text-[4.5rem] font-black leading-none ${scheme.numberColor} transition-colors duration-300 group-hover:text-primary-50 dark:text-neutral-200 dark:group-hover:text-neutral-300`}
                   >
@@ -124,7 +122,7 @@ export default function WhyUs() {
 
                   <div className="relative z-10">
                     <div
-                      className={`mb-5 flex h-14 w-14 items-center justify-center rounded-xl ${scheme.iconBg} ${scheme.iconText} transition-all duration-300 ${scheme.iconHoverBg} group-hover:text-white group-hover:scale-110 group-hover:rotate-3`}
+                      className={`mb-5 flex h-14 w-14 items-center justify-center rounded-2xl ${scheme.iconBg} ${scheme.iconText} ring-1 ring-neutral-100 transition-all duration-300 ${scheme.iconHoverBg} group-hover:text-white group-hover:scale-110 group-hover:rotate-3 group-hover:ring-0 group-hover:shadow-lg dark:ring-neutral-600`}
                     >
                       <feature.icon size={26} weight="duotone" />
                     </div>

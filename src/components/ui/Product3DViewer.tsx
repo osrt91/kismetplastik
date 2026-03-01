@@ -148,9 +148,7 @@ const categoryTo3DModel: Record<CategorySlug, "bottle" | "cap" | "spray" | "pump
   "kapaklar": "cap",
   "tipalar": "cap",
   "parmak-spreyler": "spray",
-  "pompalar": "pump",
-  "tetikli-pusturtuculer": "spray",
-  "huniler": "funnel",
+  "diger-urunler": "cap",
 };
 
 function ProductModel({ category, color }: { category: CategorySlug; color: string }) {

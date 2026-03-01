@@ -26,13 +26,14 @@ export default function Footer() {
   const [subscribed, setSubscribed] = useState(false);
 
   const categories =
-    (dict.homeCategories as { name: string }[])?.slice(0, 5) ?? [];
+    (dict.homeCategories as { name: string }[])?.slice(0, 6) ?? [];
   const productHrefs = [
     "/urunler/pet-siseler",
     "/urunler/plastik-siseler",
     "/urunler/kapaklar",
     "/urunler/tipalar",
     "/urunler/parmak-spreyler",
+    "/urunler/diger-urunler",
   ];
   const productLinks = productHrefs.map((href, i) => ({
     name: categories[i]?.name ?? "",
@@ -76,7 +77,10 @@ export default function Footer() {
   const certBadges = [
     { label: "ISO 9001", title: "ISO 9001:2015" },
     { label: "ISO 14001", title: "ISO 14001:2015" },
-    { label: "FSSC 22000", title: "FSSC 22000" },
+    { label: "ISO 45001", title: "ISO 45001:2018" },
+    { label: "ISO 10002", title: "ISO 10002:2018" },
+    { label: "ISO/IEC 27001", title: "ISO/IEC 27001" },
+    { label: "CE", title: "CE Marking" },
   ];
 
   const scrollToTop = () =>
@@ -162,12 +166,17 @@ export default function Footer() {
                 </span>
                 bilgi@kismetplastik.com
               </a>
-              <div className="flex items-center gap-2 text-[12px] text-white/35">
-                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-white/[0.06]">
+              <a
+                href="https://maps.google.com/?q=%C4%B0kitelli+OSB+Mah.+%C4%B0PKAS+4A+Blok+Sok.+No:5+Ba%C5%9Fak%C5%9Fehir+%C4%B0stanbul"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2 text-[12px] text-white/55 transition-colors hover:text-white"
+              >
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-white/[0.06] transition-all group-hover:bg-[#2D9CDB]/20 group-hover:scale-110">
                   <MapPin size={10} strokeWidth={1.8} />
                 </span>
-                İkitelli OSB, Başakşehir / İstanbul
-              </div>
+                İkitelli OSB, Başakşehir / İstanbul — Konuma Git
+              </a>
             </div>
 
             <div className="mt-3 flex flex-wrap items-center gap-1.5">
@@ -290,19 +299,19 @@ export default function Footer() {
           <span className="text-[10px] text-white/35">
             &copy; 2026 {f.copyright}
           </span>
-          <div className="flex items-center gap-3 text-[10px]">
+          <div className="flex items-center gap-4 text-[12px]">
             <Link
               href="/kvkk"
-              className="text-white/30 transition-colors hover:text-white/60"
+              className="text-white/40 font-medium transition-colors hover:text-white/70"
             >
               KVKK
             </Link>
-            <span className="h-2.5 w-px bg-white/10" />
+            <span className="h-3 w-px bg-white/15" />
             <Link
               href="/gizlilik"
-              className="text-white/30 transition-colors hover:text-white/60"
+              className="text-white/40 font-medium transition-colors hover:text-white/70"
             >
-              Gizlilik
+              Gizlilik Politikası
             </Link>
           </div>
         </div>

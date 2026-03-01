@@ -56,6 +56,7 @@ const categoryHrefs = [
   "/urunler/kapaklar",
   "/urunler/tipalar",
   "/urunler/parmak-spreyler",
+  "/urunler/diger-urunler",
 ];
 
 const sectorHrefs = [
@@ -64,7 +65,7 @@ const sectorHrefs = [
   "/urunler/pet-siseler",
   "/urunler/plastik-siseler",
   "/urunler/plastik-siseler",
-  "/urunler/tetikli-pusturtuculer",
+  "/urunler/diger-urunler",
 ];
 
 export default function Header() {
@@ -75,7 +76,7 @@ export default function Header() {
   const categories =
     (dict.homeCategories as { name: string; description: string }[])?.slice(
       0,
-      5
+      6
     ) ?? [];
   const sectors =
     (dict.homeSectors as { name: string; description: string }[]) ?? [];
@@ -198,10 +199,15 @@ export default function Header() {
               <span>bilgi@kismetplastik.com</span>
             </a>
             <span className="h-3.5 w-px bg-white/15" />
-            <span className="inline-flex items-center gap-1.5 text-[12px] text-white/50">
-              <MapPin size={12} strokeWidth={1.8} />
-              İkitelli OSB, Başakşehir
-            </span>
+            <a
+              href="https://maps.google.com/?q=%C4%B0kitelli+OSB+Mah.+%C4%B0PKAS+4A+Blok+Sok.+No:5+Ba%C5%9Fak%C5%9Fehir+%C4%B0stanbul"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-1.5 text-[12px] text-white/50 transition-colors hover:text-white"
+            >
+              <MapPin size={12} strokeWidth={1.8} className="transition-transform group-hover:scale-110" />
+              İkitelli OSB, Başakşehir — Konuma Git
+            </a>
             <span className="h-3.5 w-px bg-white/15" />
             <span className="inline-flex items-center gap-1.5 text-[12px] text-white/50">
               <Clock size={12} strokeWidth={1.8} />
@@ -269,10 +275,10 @@ export default function Header() {
             <Image
               src="/images/logo1.svg"
               alt="Kısmet Plastik"
-              width={160}
-              height={36}
+              width={240}
+              height={52}
               priority
-              className="h-8 w-auto lg:h-9 dark:brightness-0 dark:invert"
+              className="h-12 w-auto lg:h-14 dark:brightness-0 dark:invert"
             />
           </Link>
 

@@ -17,9 +17,7 @@ const categoryBadgeStyles: Record<
   "kapaklar": { bg: "#FEE2E2", text: "#991B1B" },
   "tipalar": { bg: "#EDE9FE", text: "#5B21B6" },
   "parmak-spreyler": { bg: "#DCFCE7", text: "#166534" },
-  "pompalar": { bg: "#CCFBF1", text: "#115E59" },
-  "tetikli-pusturtuculer": { bg: "#FFEDD5", text: "#9A3412" },
-  "huniler": { bg: "#CFFAFE", text: "#155E75" },
+  "diger-urunler": { bg: "#CCFBF1", text: "#115E59" },
 };
 
 export default function RecentProducts() {

@@ -12,9 +12,7 @@ const categorySlugs = [
   "kapaklar",
   "tipalar",
   "parmak-spreyler",
-  "pompalar",
-  "tetikli-pusturtuculer",
-  "huniler",
+  "diger-urunler",
 ];
 const icons = categoryIconList;
 const colors = [
@@ -80,51 +78,48 @@ export default function Categories() {
           </div>
         </AnimateOnScroll>
 
-        {/* Category Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Category Grid — 3 columns for 6 categories */}
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {cats.map((cat, i) => (
             <AnimateOnScroll
               key={cat.name}
               animation="fade-up"
-              delay={i * 100}
+              delay={i * 80}
             >
               <Link
                 href={cat.href}
-                className="group relative block h-full overflow-hidden rounded-2xl border border-neutral-100 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-xl hover:shadow-primary-900/5 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-primary-500/30"
+                className="card-border-gradient group relative flex h-full items-start gap-5 overflow-hidden rounded-2xl border border-neutral-100 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-xl hover:shadow-primary-900/5 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-primary-500/30"
               >
-                {/* Background gradient overlay */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${cat.color} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
                 />
 
-                {/* Gradient bottom border on hover */}
                 <div className="absolute inset-x-0 bottom-0 h-[3px] bg-gradient-to-r from-accent-400 via-accent-500 to-primary-500 opacity-0 transition-all duration-500 group-hover:opacity-100" />
 
-                {/* Number indicator */}
-                <span className="absolute right-5 top-4 font-mono text-[11px] font-medium tracking-wider text-neutral-300 transition-colors duration-300 group-hover:text-primary-300 dark:text-neutral-300">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+                <div className="relative shrink-0">
+                  <div
+                    className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${cat.color} ${cat.iconColor} ring-1 ring-neutral-100 transition-all duration-300 group-hover:scale-110 group-hover:ring-primary-200 group-hover:shadow-lg group-hover:shadow-primary-500/10 dark:ring-neutral-600`}
+                  >
+                    <cat.icon size={28} />
+                  </div>
+                  <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent-500/90 text-[9px] font-bold text-white shadow-sm">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
 
-                <div className="relative">
-                  <div className="mb-5 flex items-start justify-between">
-                    <div
-                      className={`flex h-14 w-14 items-center justify-center rounded-xl bg-neutral-50 ${cat.iconColor} transition-all duration-300 group-hover:bg-white group-hover:scale-110 group-hover:animate-[iconBounce_0.5s_ease] dark:group-hover:bg-neutral-200`}
-                    >
-                      <cat.icon size={26} />
-                    </div>
-                    <span className="rounded-full bg-neutral-50 px-3 py-1 text-xs font-bold text-neutral-500 transition-colors group-hover:bg-white dark:bg-neutral-700 dark:text-neutral-400">
-                      {cat.count} {h.productsCount}
+                <div className="relative min-w-0 flex-1">
+                  <div className="mb-1 flex items-center justify-between gap-2">
+                    <h3 className="text-lg font-bold text-primary-900 dark:text-white">
+                      {cat.name}
+                    </h3>
+                    <span className="shrink-0 rounded-full bg-neutral-50 px-2.5 py-0.5 text-[10px] font-bold text-neutral-500 transition-colors group-hover:bg-accent-50 group-hover:text-accent-700 dark:bg-neutral-700 dark:text-neutral-400">
+                      {cat.count}
                     </span>
                   </div>
-
-                  <h3 className="mb-2 text-lg font-bold text-primary-900 dark:text-white">
-                    {cat.name}
-                  </h3>
-                  <p className="mb-5 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
+                  <p className="mb-3 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400 line-clamp-2">
                     {cat.description}
                   </p>
-
-                  <div className="flex items-center gap-1 text-sm font-semibold text-primary-700 transition-colors group-hover:text-accent-600">
+                  <div className="flex items-center gap-1 text-sm font-semibold text-primary-600 transition-colors group-hover:text-accent-600 dark:text-primary-400">
                     {h.viewProducts}
                     <ArrowRight
                       size={14}

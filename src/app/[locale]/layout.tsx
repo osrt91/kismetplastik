@@ -47,18 +47,42 @@ export async function generateMetadata({
           "kozmetik ambalaj",
           "PET şişe",
           "plastik şişe",
+          "plastik pet şişe üretimi",
+          "plastik şişe üretimi",
+          "kapak üretimi",
+          "tıpa üretimi",
+          "sprey üretimi",
+          "kolonya şişesi",
+          "oda parfümü şişesi",
+          "sıvı sabun şişesi",
           "ambalaj üreticisi",
           "toptan plastik",
           "B2B plastik",
           "kismet plastik",
+          "kısmet plastik",
           "sprey ambalaj",
           "plastik kapak",
           "özel üretim ambalaj",
+          "özel kalıplama",
+          "kozmetik şişe",
+          "pet preform",
+          "flip-top kapak",
+          "parmak sprey",
+          "losyon pompası",
+          "tetikli püskürtücü",
         ]
       : [
           "cosmetic packaging",
           "PET bottle",
           "plastic bottle",
+          "PET bottle manufacturer",
+          "plastic bottle production",
+          "cap production",
+          "stopper production",
+          "spray production",
+          "cologne bottle",
+          "room fragrance bottle",
+          "liquid soap bottle",
           "packaging manufacturer",
           "wholesale plastic",
           "B2B plastic",
@@ -66,6 +90,13 @@ export async function generateMetadata({
           "spray packaging",
           "plastic cap",
           "custom packaging",
+          "custom molding",
+          "cosmetic bottle",
+          "PET preform",
+          "flip-top cap",
+          "finger spray",
+          "lotion pump",
+          "trigger sprayer",
         ],
     openGraph: {
       title: isTr
@@ -149,7 +180,8 @@ export default async function LocaleLayout({ children, params }: Props) {
         <link rel="preconnect" href="https://maps.googleapis.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://maps.googleapis.com" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#0A1628" />
+        <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#0A1628" media="(prefers-color-scheme: dark)" />
         <link rel="apple-touch-icon" sizes="192x192" href="/images/icon-192.png" />
       </head>
       <body className="antialiased">

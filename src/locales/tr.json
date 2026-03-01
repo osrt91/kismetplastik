@@ -24,11 +24,11 @@
     "customMolding": "Özel Kalıplama"
   },
   "home": {
-    "badge": "1969'dan Beri Güvenilir Partner",
+    "badge": "1969'dan Beri Kozmetik Ambalajda Güvenin Adresi",
     "titleBefore": "Kozmetik Ambalajda",
     "titleAfter": "Çözüm Ortağınız",
-    "words": ["Güvenilir", "Kaliteli", "Yenilikçi"],
-    "subtitle": "1969'dan bu yana kozmetik sektörüne özel yüksek kaliteli PET şişe, plastik şişe, sprey ambalaj, pompa ve kapak üretimi. Özel tasarım ve toptan satış avantajlarıyla hizmetinizdeyiz.",
+    "words": ["Güvenilir", "Kaliteli", "Sürdürülebilir"],
+    "subtitle": "55 yılı aşkın tecrübemizle kozmetik, kolonya ve kişisel bakım sektörlerine özel PET şişe, plastik şişe, sprey, kapak ve tıpa üretimi yapıyoruz. ISO sertifikalı üretim süreçleri, çevre dostu hammadde kullanımı ve özel kalıplama hizmetiyle markanıza değer katıyoruz.",
     "ctaProducts": "Ürünleri İncele",
     "ctaQuote": "Teklif Al",
     "highlight1": "ISO 9001 Sertifikalı",
@@ -36,7 +36,7 @@
     "highlight3": "55+ Yıllık Tecrübe",
     "cardProducts": "500+",
     "cardProductsLabel": "Ürün Çeşidi",
-    "cardCustomers": "1000+",
+    "cardCustomers": "200+",
     "cardCustomersLabel": "Mutlu Müşteri",
     "cardExperience": "55+",
     "cardExperienceLabel": "Yıllık Tecrübe",
@@ -55,8 +55,8 @@
     "aboutOverline": "Hakkımızda",
     "aboutTitle": "Kozmetik Ambalaj Sektöründe",
     "aboutTitleAccent": "Güvenin Adı",
-    "aboutLead1": "Kısmet Plastik olarak, 1969'dan bu yana kozmetik ambalaj üretiminde kalite ve güveni bir arada sunuyoruz. Geniş ürün yelpazemizle kozmetik sektörünün tüm ihtiyaçlarını karşılayabiliyoruz.",
-    "aboutLead2": "PET şişeler, plastik şişeler, kolonya şişeleri, sprey ambalajlar, oda parfümü şişeleri, sıvı sabun şişeleri ve kapaklar dahil olmak üzere birçok kozmetik ambalaj çözümüyle B2B müşterilerimize hizmet veriyoruz.",
+    "aboutLead1": "Kısmet Plastik olarak, 1969 yılında İstanbul Fatih'te başlayan üretim yolculuğumuz bugün İkitelli OSB'deki modern tesisimizde devam etmektedir. 55 yılı aşkın tecrübemizle kozmetik ambalaj sektörünün güvenilir çözüm ortağıyız.",
+    "aboutLead2": "PET şişeler, plastik şişeler, kolonya ve parfüm şişeleri, sprey ambalajlar, oda kokusu şişeleri, sıvı sabun şişeleri, kapaklar ve tıpalar başta olmak üzere geniş ürün yelpazemizle B2B müşterilerimize kalite garantili hizmet sunuyoruz. ISO sertifikalı üretim süreçlerimiz ve çevre dostu hammadde kullanımıyla sürdürülebilir üretim anlayışını benimsiyoruz.",
     "aboutFacility": "Üretim Tesisimiz",
     "aboutMore": "Daha Fazla Bilgi",
     "sectorsBadge": "Hizmet verdiğimiz sektörler",
@@ -81,10 +81,10 @@
     "trustedStat2Label": "Ülke",
     "trustedStat3": "ISO 9001",
     "trustedStat3Label": "Sertifikalı",
-    "trustIso": "ISO 9001 Sertifikalı",
+    "trustIso": "6 Uluslararası Sertifika",
     "trustProducts": "500+ Ürün Çeşidi",
-    "trustExport": "50+ Ülkeye İhracat",
-    "trustExperience": "55+ Yıl Tecrübe",
+    "trustExport": "Çevre Dostu Üretim",
+    "trustExperience": "55+ Yıl Uzmanlık",
     "processOverlineHome": "ÇALIŞMA SÜRECİMİZ",
     "processTitleHome": "4 Adımda Projeniz Hayata Geçsin",
     "processSubtitleHome": "Fikrinizden teslimatına kadar her adımda yanınızdayız.",
@@ -126,26 +126,26 @@
     "finderVolLarge": "500ml+"
   },
   "homeFeatures": {
-    "modernFactory": "Modern Üretim Tesisi",
-    "modernFactoryDesc": "Son teknoloji makinelerle donatılmış üretim tesisimizde yüksek kapasiteli üretim yapıyoruz.",
+    "modernFactory": "55+ Yıllık Uzmanlık",
+    "modernFactoryDesc": "1969'dan bu yana kozmetik ambalaj sektöründe biriken bilgi birikimi ve tecrübeyle üretim yapıyoruz.",
     "qualityAssurance": "Kalite Garantisi",
-    "qualityAssuranceDesc": "ISO 9001, ISO 22000 ve FSSC 22000 sertifikaları ile uluslararası kalite standartlarında üretim.",
+    "qualityAssuranceDesc": "ISO 9001, ISO 14001, ISO 45001 ve ISO 10002 sertifikalarıyla uluslararası kalite standartlarında üretim.",
     "ecoFriendly": "Çevre Dostu Üretim",
-    "ecoFriendlyDesc": "Geri dönüştürülebilir malzemeler ve sürdürülebilir üretim süreçleriyle çevreye duyarlı yaklaşım.",
-    "fastDelivery": "Hızlı Teslimat",
-    "fastDeliveryDesc": "Türkiye genelinde hızlı ve güvenli lojistik ağ ile siparişlerinizi zamanında teslim ediyoruz.",
-    "highCapacity": "Yüksek Kapasite",
-    "highCapacityDesc": "Aylık milyonlarca adet üretim kapasitesiyle büyük ölçekli siparişleri karşılıyoruz.",
-    "support": "7/24 Müşteri Desteği",
-    "supportDesc": "Uzman ekibimiz satış öncesi ve sonrası her aşamada yanınızdadır."
+    "ecoFriendlyDesc": "Geri dönüştürülebilir PET ve PP hammaddeler, sürdürülebilir üretim süreçleri ve çevre bilinci.",
+    "fastDelivery": "Güvenilir Teslimat",
+    "fastDeliveryDesc": "Türkiye genelinde güvenli lojistik ağı ile siparişlerinizi zamanında ve eksiksiz teslim ediyoruz.",
+    "highCapacity": "Özel Kalıplama",
+    "highCapacityDesc": "Markanıza özel kalıp tasarımı ve kişiselleştirilmiş ambalaj üretimi ile fark yaratın.",
+    "support": "Teknik Danışmanlık",
+    "supportDesc": "Deneyimli ekibimiz tasarımdan üretime, numuneden sevkiyata kadar her aşamada yanınızda."
   },
   "homeStrengths": [
-    "Türkiye'nin önde gelen kozmetik ambalaj üreticisi",
-    "ISO 9001, ISO 22000, FSSC 22000 sertifikaları",
-    "1969'dan bu yana kozmetik sektöründe 55+ yıllık uzmanlık",
-    "Kalıp tasarımı ve özel üretim imkânı",
-    "Çevreci ve sürdürülebilir üretim anlayışı",
-    "Rekabetçi fiyat ve esnek ödeme seçenekleri"
+    "1969'dan bu yana kozmetik ambalaj sektöründe 55+ yıllık güven",
+    "ISO 9001, ISO 14001, ISO 45001, ISO 10002, CE sertifikaları",
+    "Kozmetik, kolonya, kişisel bakım ve temizlik sektörlerine özel çözümler",
+    "Kalıp tasarımı, özel üretim ve kişiselleştirilmiş ambalaj imkânı",
+    "Çevre dostu, geri dönüştürülebilir hammadde kullanımı",
+    "Rekabetçi fiyat, esnek sipariş miktarları ve hızlı teslimat"
   ],
   "homeCategories": [
     { "name": "PET Şişeler", "description": "Kozmetik, kolonya ve kişisel bakım ürünleri için farklı hacim ve tasarımlarda PET şişeler.", "count": "15+" },
@@ -153,9 +153,7 @@
     { "name": "Kapaklar", "description": "Vidalı, flip-top ve özel tasarım kapak çeşitleri.", "count": "8+" },
     { "name": "Tıpalar", "description": "İç tıpa, damlatıcı tıpa ve sızdırmazlık tıpaları.", "count": "6+" },
     { "name": "Parmak Spreyler", "description": "Kozmetik ve kolonya ürünleri için parmak sprey mekanizmaları.", "count": "5+" },
-    { "name": "Pompalar", "description": "Losyon pompası, köpük pompası ve krem dozajlama pompaları.", "count": "7+" },
-    { "name": "Tetikli Püskürtücüler", "description": "Temizlik ve bakım ürünleri için tetikli püskürtme sistemleri.", "count": "4+" },
-    { "name": "Huniler", "description": "Dolum sürecinde kullanılan plastik huniler.", "count": "3+" }
+    { "name": "Diğer Ürünler", "description": "Pompalar, tetikli püskürtücüler, huniler ve diğer ambalaj aksesuarları.", "count": "10+" }
   ],
   "homeSectors": [
     { "name": "Kozmetik & Güzellik", "description": "Şampuan, losyon, krem, parfüm ve makyaj ürünleri için estetik tasarımlı ambalajlar." },
@@ -245,8 +243,8 @@
     "certsSubtitle": "Uluslararası kalite ve kozmetik güvenliği standartlarına uygun üretim yapıyoruz.",
     "milestone1969": "Kuruluş",
     "milestone1985": "İlk Fabrika",
-    "milestone2000": "ISO 9001 Sertifikası",
-    "milestone2015": "Yeni Üretim Tesisi",
+    "milestone2000": "İkitelli OSB'ye Taşınma",
+    "milestone2020": "ISO Sertifikaları",
     "milestone2024": "500+ Ürün Çeşidi"
   },
   "contact": {

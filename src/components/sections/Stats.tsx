@@ -8,8 +8,8 @@ const statKeys = ["statsExperience", "statsProducts", "statsCustomers", "statsCa
 const statValues = [
   { value: 55, suffix: "+" },
   { value: 500, suffix: "+" },
-  { value: 1000, suffix: "+" },
-  { value: 50, suffix: "M+" },
+  { value: 200, suffix: "+" },
+  { value: 5, suffix: "M+" },
 ];
 
 const statIcons = [Trophy, Package, Users, Factory];

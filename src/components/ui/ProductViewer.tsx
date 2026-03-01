@@ -19,9 +19,7 @@ const categoryToSvgType: Record<CategorySlug, "bottle" | "cap"> = {
   "kapaklar": "cap",
   "tipalar": "cap",
   "parmak-spreyler": "cap",
-  "pompalar": "cap",
-  "tetikli-pusturtuculer": "cap",
-  "huniler": "cap",
+  "diger-urunler": "cap",
 };
 
 const ProductViewer = memo(function ProductViewer({ product, onColorChange }: Props) {

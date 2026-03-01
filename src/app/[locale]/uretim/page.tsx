@@ -18,10 +18,10 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
 
 const facilityStats = [
-  { value: "15.000 m²", label: "Kapalı Üretim Alanı" },
-  { value: "24/7", label: "Kesintisiz Üretim" },
-  { value: "50+", label: "Üretim Makinesi" },
-  { value: "200+", label: "Uzman Personel" },
+  { value: "1.000 m²", label: "Kapalı Üretim Alanı" },
+  { value: "Pzt-Cmt", label: "Aktif Üretim" },
+  { value: "10+", label: "Üretim Makinesi" },
+  { value: "15+", label: "Deneyimli Ekip" },
 ];
 
 const productionStages = [
@@ -64,12 +64,12 @@ const productionStages = [
 ];
 
 const machines = [
-  { name: "PET Enjeksiyon Makineleri", count: "12 Adet", detail: "Husky, Netstal", qty: 12 },
-  { name: "Şişirme Makineleri", count: "18 Adet", detail: "Sidel, SMF", qty: 18 },
-  { name: "Lineer Şişirme Hatları", count: "8 Adet", detail: "Otomatik", qty: 8 },
-  { name: "Kalıp CNC İşleme", count: "4 Adet", detail: "5 eksenli", qty: 4 },
-  { name: "Kalite Kontrol Cihazları", count: "15+ Adet", detail: "AGR, CMC", qty: 15 },
-  { name: "Paketleme Hatları", count: "6 Adet", detail: "Tam otomatik", qty: 6 },
+  { name: "PET Enjeksiyon Makineleri", count: "3 Adet", detail: "Yüksek hassasiyetli", qty: 3 },
+  { name: "Şişirme Makineleri", count: "4 Adet", detail: "Otomatik", qty: 4 },
+  { name: "Kalıp CNC İşleme", count: "2 Adet", detail: "Hassas işleme", qty: 2 },
+  { name: "Kalite Kontrol Cihazları", count: "3 Adet", detail: "Test & Ölçüm", qty: 3 },
+  { name: "Paketleme Alanı", count: "1 Adet", detail: "Düzenli sevkiyat", qty: 1 },
+  { name: "Hammadde Depolama", count: "1 Adet", detail: "Kontrollü ortam", qty: 1 },
 ];
 
 const machineIcons = [Thermometer, Zap, Zap, Cog, Gauge, Package];
@@ -81,7 +81,7 @@ export default function UretimPage() {
   const nav = dict.nav;
 
   return (
-    <section className="bg-white">
+    <section className="bg-white dark:bg-neutral-0">
       {/* Hero */}
       <div className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-700 to-primary-900 py-20 lg:py-28">
         <div className="absolute inset-0 opacity-[0.03]">
@@ -122,7 +122,7 @@ export default function UretimPage() {
         <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           {facilityStats.map((stat, i) => (
             <AnimateOnScroll key={stat.label} animation="fade-up" delay={i * 80}>
-              <div className="group rounded-2xl border border-neutral-100 bg-white p-5 text-center shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5 border-b-[3px] border-b-accent-500/60">
+              <div className="group rounded-2xl border border-neutral-100 bg-white dark:bg-neutral-800 dark:border-neutral-700 p-5 text-center shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5 border-b-[3px] border-b-accent-500/60">
                 <p className="text-2xl font-black text-primary-900 sm:text-3xl animate-[pulse_3s_ease-in-out_infinite] group-hover:animate-none group-hover:text-accent-600 transition-colors">
                   {stat.value}
                 </p>
@@ -152,8 +152,8 @@ export default function UretimPage() {
                 {p.facilityTitle}
               </h2>
               <p className="mb-4 leading-relaxed text-neutral-600">
-                İkitelli OSB Başakşehir&apos;de yer alan 15.000 m² kapalı alana sahip
-                üretim tesisimiz, Avrupa standartlarında donatılmış modern makinelerle hizmet vermektedir.
+                İkitelli OSB Başakşehir&apos;de yer alan 1.000 m² kapalı alana sahip
+                üretim atölyemiz, modern makinelerle donatılmış olup kaliteli üretim yapmaktadır.
               </p>
               <p className="mb-6 leading-relaxed text-neutral-600">
                 Enjeksiyondan şişirmeye, kalıp üretiminden paketlemeye kadar tüm süreçler
@@ -208,7 +208,7 @@ export default function UretimPage() {
                           isEven ? "lg:mr-auto" : "lg:ml-auto lg:order-2"
                         }`}
                       >
-                        <div className="group flex h-full flex-col rounded-2xl border border-neutral-100 bg-white p-6 shadow-sm transition-all hover:shadow-lg hover:border-accent-200">
+                        <div className="group flex h-full flex-col rounded-2xl border border-neutral-100 bg-white dark:bg-neutral-800 dark:border-neutral-700 p-6 shadow-sm transition-all hover:shadow-lg hover:border-accent-200">
                           <div className="mb-4 flex items-center gap-3">
                             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-50 text-primary-700 transition-colors group-hover:bg-accent-500 group-hover:text-primary-900">
                               <stage.icon size={20} />
@@ -269,7 +269,7 @@ export default function UretimPage() {
             const pct = Math.round((machine.qty / maxQty) * 100);
             return (
               <AnimateOnScroll key={machine.name} animation="fade-up" delay={i * 60}>
-                <div className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white p-6 transition-all hover:border-primary-200 hover:shadow-lg">
+                <div className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:bg-neutral-800 dark:border-neutral-700 p-6 transition-all hover:border-primary-200 hover:shadow-lg">
                   <div className="pointer-events-none absolute -right-4 -top-4 opacity-[0.04] transition-opacity group-hover:opacity-[0.08]">
                     <Icon size={90} strokeWidth={0.8} />
                   </div>

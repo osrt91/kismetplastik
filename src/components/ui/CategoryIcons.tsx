@@ -119,9 +119,7 @@ export const categoryIconMap: Record<string, (props: IconProps) => React.JSX.Ele
   "kapaklar": CapIcon,
   "tipalar": PlugIcon,
   "parmak-spreyler": FingerSprayIcon,
-  "pompalar": PumpIcon,
-  "tetikli-pusturtuculer": TriggerSprayIcon,
-  "huniler": FunnelIcon,
+  "diger-urunler": PumpIcon,
 };
 
 export const categoryIconList = [
@@ -131,6 +129,4 @@ export const categoryIconList = [
   PlugIcon,
   FingerSprayIcon,
   PumpIcon,
-  TriggerSprayIcon,
-  FunnelIcon,
 ];

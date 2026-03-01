@@ -105,4 +105,52 @@ export const blogPosts: BlogPost[] = [
     date: "2026-01-12",
     readTime: "5 dk",
   },
+  {
+    slug: "kolonya-sisesi-secim-rehberi",
+    title: "Kolonya Şişesi Seçim Rehberi: Hacim, Malzeme ve Tasarım",
+    excerpt:
+      "Kolonya üreticileri için şişe seçiminde dikkat edilmesi gereken kriterler: PET vs cam, ağız çapı ve sprey uyumu.",
+    content: [
+      "Kolonya sektörü Türkiye'de köklü bir geçmişe sahiptir. Pandemi sonrası artan hijyen bilinci ile kolonya tüketimi hızla artmıştır. Bu durum, kolonya ambalajlarına olan talebi de önemli ölçüde yükseltmiştir.",
+      "Kolonya şişesi seçiminde ilk karar malzeme tercihidir. PET şişeler, cam şişelere kıyasla %90 daha hafif, kırılmaz ve lojistik maliyetleri düşüktür. Özellikle e-ticaret kanalında PET şişeler büyük avantaj sağlar.",
+      "Hacim seçimi hedef pazara göre belirlenir. 50ml cep kolonyası için kompakt tasarımlar, 100-200ml standart kullanım için silindirik formlar, 400-1000ml aile boyu için geniş ağızlı şişeler tercih edilir.",
+      "Ağız çapı, sprey mekanizması uyumunu belirler. 18mm ağız çapı küçük hacimli parfüm tipi kolonyalar için, 20mm ağız çapı standart kolonya spreyleri için idealdir. Parmak sprey mekanizması ince sis sağlayarak kullanıcı deneyimini artırır.",
+      "Kısmet Plastik olarak, kolonya ve parfümeri sektörüne özel PET şişe çözümleri sunuyoruz. 55 yılı aşkın tecrübemizle markanıza en uygun şişe tasarımını birlikte belirleyelim.",
+    ],
+    category: "Rehber",
+    date: "2026-02-20",
+    readTime: "6 dk",
+  },
+  {
+    slug: "plastik-kapak-cesitleri",
+    title: "Plastik Kapak Çeşitleri: Vidalı, Flip-Top ve Disc-Top Karşılaştırması",
+    excerpt:
+      "Kozmetik ambalajda kullanılan kapak türleri, avantajları ve hangi ürün için hangi kapağın uygun olduğu.",
+    content: [
+      "Kozmetik ambalajda kapak seçimi, ürün kullanılabilirliğini ve tüketici deneyimini doğrudan etkileyen kritik bir karardır. Doğru kapak, ürünün raf ömrünü uzatır, kullanım kolaylığı sağlar ve marka algısını güçlendirir.",
+      "Vidalı kapaklar, en klasik ve güvenilir kapak türüdür. Sıkı sızdırmazlık sağlar ve taşıma sırasında dökülme riskini minimize eder. Özellikle serum, esansiyel yağ ve parfüm şişelerinde tercih edilir.",
+      "Flip-top kapaklar, tek elle açılabilen pratik tasarımıyla şampuan, losyon ve duş jeli ürünlerinde yaygın olarak kullanılır. 24mm ağız çapına uyumlu modeller en popüler seçenektir.",
+      "Disc-top kapaklar, basarak açma mekanizmasıyla modern bir kullanım sunar. Losyon, saç kremi ve vücut bakım ürünlerinde estetik görünümüyle öne çıkar.",
+      "Kısmet Plastik, vidalı kapaktan flip-top'a, disc-top'tan pompa kapaklara kadar geniş bir kapak yelpazesi sunmaktadır. ISO sertifikalı üretim süreçlerimizle her kapak en yüksek kalite standartlarında üretilmektedir.",
+    ],
+    category: "Bilgi",
+    date: "2026-02-25",
+    readTime: "7 dk",
+  },
+  {
+    slug: "ozel-kaliplama-sureci",
+    title: "Özel Kalıplama: Markanıza Özel Ambalaj Nasıl Üretilir?",
+    excerpt:
+      "Özel kalıp tasarımından seri üretime kadar kişiselleştirilmiş kozmetik ambalaj üretim süreci.",
+    content: [
+      "Özel kalıplama, markaların rakiplerinden farklılaşmasını sağlayan en etkili yöntemlerden biridir. Standart şişe kalıpları maliyet avantajı sunsa da, özel tasarım ambalajlar marka bilinirliğini ve raf etkisini katbekat artırır.",
+      "Özel kalıplama süreci, marka ile üretici arasındaki yakın iş birliği ile başlar. İlk adım, ürün gereksinimleri ve tasarım vizyonunun belirlenmesidir. Hacim, malzeme, ağız çapı ve genel form gibi teknik parametreler bu aşamada kararlaştırılır.",
+      "Tasarım onayı sonrası CNC ile kalıp üretimi gerçekleştirilir. Kalıp üretimi hassas bir süreçtir ve 2-4 hafta sürebilir. Kısmet Plastik bünyesindeki kalıp atölyemizde bu süreç tek çatı altında yönetilmektedir.",
+      "Numune üretimi, seri üretime geçmeden önce kritik bir aşamadır. Müşteri onayı alınan numuneler üzerinde boyut, kalite ve estetik kontrolleri yapılır.",
+      "Kısmet Plastik'in 55 yılı aşkın tecrübesiyle, özel kalıplama süreciniz profesyonel ellerde yürütülür. Fikrinizden ürüne kadar her adımda yanınızdayız.",
+    ],
+    category: "Üretim",
+    date: "2026-01-05",
+    readTime: "8 dk",
+  },
 ];

@@ -13,7 +13,7 @@ const sectorProductLinks = [
   "/urunler/pet-siseler",
   "/urunler/plastik-siseler",
   "/urunler/plastik-siseler",
-  "/urunler/tetikli-pusturtuculer",
+  "/urunler/diger-urunler",
 ];
 const sectorColors = [
   "from-pink-500/10 to-pink-600/5",
@@ -44,7 +44,7 @@ export default function SektorlerPage() {
   const sectors = dict.homeSectors as { name: string; description: string }[];
 
   return (
-    <section className="bg-white">
+    <section className="bg-white dark:bg-neutral-0">
       <div className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-700 to-primary-900 py-20 lg:py-28">
         <div className="absolute inset-0 opacity-[0.03]">
           <div className="h-full w-full" style={{ backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`, backgroundSize: "40px 40px" }} />

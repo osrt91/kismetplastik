@@ -4,9 +4,7 @@ export type CategorySlug =
   | "kapaklar"
   | "tipalar"
   | "parmak-spreyler"
-  | "pompalar"
-  | "tetikli-pusturtuculer"
-  | "huniler";
+  | "diger-urunler";
 
 export type ShapeType = "düz" | "oval" | "silindir" | "yuvarlak";
 

@@ -86,7 +86,7 @@ export default function Hero() {
 
   const stats = [
     { value: "500", suffix: "+", label: h.cardProductsLabel, color: "text-white" },
-    { value: "1000", suffix: "+", label: h.cardCustomersLabel, color: "text-accent-400" },
+    { value: "200", suffix: "+", label: h.cardCustomersLabel, color: "text-accent-400" },
     { value: "55", suffix: "+", label: h.cardExperienceLabel, color: "text-primary-300" },
   ];
 

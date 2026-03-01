@@ -31,7 +31,7 @@ export default function HakkimizdaPage() {
     { year: "1969", text: a.milestone1969 },
     { year: "1985", text: a.milestone1985 },
     { year: "2000", text: a.milestone2000 },
-    { year: "2015", text: a.milestone2015 },
+    { year: "2020", text: a.milestone2020 },
     { year: "2024", text: a.milestone2024 },
   ];
 
@@ -189,8 +189,6 @@ export default function HakkimizdaPage() {
           </div>
         </AnimateOnScroll>
         <div className="relative grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Dotted connecting line (desktop) */}
-          <div className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-1/2 hidden h-px border-t-2 border-dashed border-primary-100 lg:block" />
 
           {values.map((v, i) => (
             <AnimateOnScroll key={v.title} animation="fade-up" delay={i * 80}>
@@ -199,8 +197,7 @@ export default function HakkimizdaPage() {
                   i % 2 === 0 ? "bg-white dark:bg-neutral-800" : "bg-primary-50/40 dark:bg-neutral-800/50"
                 }`}
               >
-                {/* Connecting dot (desktop) */}
-                <div className="absolute -top-1.5 left-1/2 hidden h-3 w-3 -translate-x-1/2 rounded-full border-2 border-primary-200 bg-white lg:block" />
+                {/* hidden connecting dot */}
                 <div
                   className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${
                     i % 2 === 0
@@ -227,7 +224,7 @@ export default function HakkimizdaPage() {
               <h2 className="mb-4 text-2xl font-extrabold text-white">{a.certsTitle}</h2>
               <p className="mb-8 max-w-xl text-white/70">{a.certsSubtitle}</p>
               <div className="flex flex-wrap justify-center gap-4">
-                {["ISO 9001", "ISO 22000", "FSSC 22000"].map((cert) => (
+                {["ISO 9001", "ISO 14001", "ISO 45001", "ISO 10002", "ISO-IEC 2700", "CE"].map((cert) => (
                   <span
                     key={cert}
                     className="rounded-xl bg-white/10 px-6 py-3 font-bold text-white shadow-[0_0_20px_rgba(255,255,255,0.05)] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/15 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]"

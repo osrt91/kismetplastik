@@ -24,11 +24,11 @@
     "customMolding": "Custom Molding"
   },
   "home": {
-    "badge": "Trusted Partner Since 1969",
+    "badge": "Your Trusted Partner in Cosmetic Packaging Since 1969",
     "titleBefore": "Your Trusted Partner in",
     "titleAfter": "Cosmetic Packaging",
-    "words": ["Reliable", "Quality", "Innovative"],
-    "subtitle": "Since 1969, high-quality PET bottles, plastic bottles, spray packaging, pumps, and caps for the cosmetics sector. Custom design and wholesale solutions at your service.",
+    "words": ["Reliable", "Quality", "Sustainable"],
+    "subtitle": "With over 55 years of expertise, we manufacture PET bottles, plastic bottles, sprays, caps and stoppers for cosmetics, cologne and personal care industries. ISO certified production, eco-friendly materials and custom molding services to elevate your brand.",
     "ctaProducts": "View Products",
     "ctaQuote": "Request Quote",
     "highlight1": "ISO 9001 Certified",
@@ -36,7 +36,7 @@
     "highlight3": "55+ Years of Experience",
     "cardProducts": "500+",
     "cardProductsLabel": "Product Varieties",
-    "cardCustomers": "1000+",
+    "cardCustomers": "200+",
     "cardCustomersLabel": "Happy Customers",
     "cardExperience": "55+",
     "cardExperienceLabel": "Years of Experience",
@@ -81,10 +81,10 @@
     "trustedStat2Label": "Countries",
     "trustedStat3": "ISO 9001",
     "trustedStat3Label": "Certified",
-    "trustIso": "ISO 9001 Certified",
+    "trustIso": "6 International Certificates",
     "trustProducts": "500+ Product Varieties",
-    "trustExport": "Export to 50+ Countries",
-    "trustExperience": "55+ Years Experience",
+    "trustExport": "Eco-Friendly Production",
+    "trustExperience": "55+ Years Expertise",
     "processOverlineHome": "OUR PROCESS",
     "processTitleHome": "Your Project in 4 Steps",
     "processSubtitleHome": "We are with you every step of the way, from concept to delivery.",
@@ -153,9 +153,7 @@
     { "name": "Caps", "description": "Screw, flip-top and custom design cap varieties.", "count": "8+" },
     { "name": "Stoppers", "description": "Inner stoppers, dropper stoppers and sealing plugs.", "count": "6+" },
     { "name": "Finger Sprays", "description": "Finger spray mechanisms for cosmetics and cologne products.", "count": "5+" },
-    { "name": "Pumps", "description": "Lotion pumps, foam pumps and cream dispensing pumps.", "count": "7+" },
-    { "name": "Trigger Sprayers", "description": "Trigger spray systems for cleaning and care products.", "count": "4+" },
-    { "name": "Funnels", "description": "Plastic funnels used in filling processes.", "count": "3+" }
+    { "name": "Other Products", "description": "Pumps, trigger sprayers, funnels and other packaging accessories.", "count": "10+" }
   ],
   "homeSectors": [
     { "name": "Cosmetics & Beauty", "description": "Aesthetically designed packaging for shampoo, lotion, cream, perfume and makeup products." },
@@ -245,8 +243,8 @@
     "certsSubtitle": "We produce in compliance with international quality and cosmetic safety standards.",
     "milestone1969": "Founded",
     "milestone1985": "First Factory",
-    "milestone2000": "ISO 9001 Certification",
-    "milestone2015": "New Production Facility",
+    "milestone2000": "Relocated to İkitelli OSB",
+    "milestone2020": "ISO Certifications",
     "milestone2024": "500+ Product Varieties"
   },
   "contact": {

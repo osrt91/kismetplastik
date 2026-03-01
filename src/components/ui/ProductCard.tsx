@@ -16,9 +16,7 @@ const categoryConfig: Record<
   "kapaklar": { name: "Kapaklar", bg: "#FEF2F2", pattern: "#EF4444", badge: "#FEE2E2", badgeText: "#991B1B" },
   "tipalar": { name: "Tıpalar", bg: "#F5F3FF", pattern: "#8B5CF6", badge: "#EDE9FE", badgeText: "#5B21B6" },
   "parmak-spreyler": { name: "Parmak Spreyler", bg: "#ECFDF5", pattern: "#22C55E", badge: "#DCFCE7", badgeText: "#166534" },
-  "pompalar": { name: "Pompalar", bg: "#F0FDFA", pattern: "#14B8A6", badge: "#CCFBF1", badgeText: "#115E59" },
-  "tetikli-pusturtuculer": { name: "Tetikli Püskürtücüler", bg: "#FFF7ED", pattern: "#EA580C", badge: "#FFEDD5", badgeText: "#9A3412" },
-  "huniler": { name: "Huniler", bg: "#ECFEFF", pattern: "#0891B2", badge: "#CFFAFE", badgeText: "#155E75" },
+  "diger-urunler": { name: "Diğer Ürünler", bg: "#F0FDFA", pattern: "#14B8A6", badge: "#CCFBF1", badgeText: "#115E59" },
 };
 
 const colorHexMap: Record<string, string> = {
