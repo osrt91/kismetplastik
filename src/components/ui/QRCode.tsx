@@ -13,7 +13,7 @@ interface QRCodeProps {
 export default function QRCodeComponent({
   url,
   size = 200,
-  color = "#002060",
+  color = "#0A1628",
   downloadLabel = "PNG İndir",
 }: QRCodeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);

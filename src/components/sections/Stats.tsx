@@ -74,7 +74,7 @@ export default function Stats() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-[#002060] py-16 lg:py-20">
+    <section className="relative overflow-hidden bg-[#0A1628] py-16 lg:py-20">
       {/* Top gradient line */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-500/60 to-transparent" />
       {/* Bottom gradient line */}

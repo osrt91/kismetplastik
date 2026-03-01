@@ -91,8 +91,13 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#0A1628] text-white">
-      <div className="mx-auto max-w-7xl px-4 pb-4 pt-10 lg:px-6">
+    <footer className="relative bg-[#0A1628] text-white">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#2D9CDB]/40 to-transparent" />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at 20% 50%, rgba(45,156,219,0.04), transparent 60%)" }}
+      />
+      <div className="relative mx-auto max-w-7xl px-4 pb-4 pt-12 lg:px-6">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link href="/" className="mb-3 inline-flex items-center gap-2">
@@ -144,7 +149,7 @@ export default function Footer() {
                 <span
                   key={cert.label}
                   title={cert.title}
-                  className="inline-flex items-center gap-1 rounded border border-white/10 bg-white/[0.03] px-1.5 py-0.5 text-[10px] font-medium text-white/40"
+                  className="inline-flex items-center gap-1 rounded border-l-2 border-[#2D9CDB]/40 border-r-0 border-t-0 border-b-0 bg-white/[0.03] px-2 py-0.5 text-[10px] font-medium text-white/50"
                 >
                   <ShieldCheck
                     size={10}
@@ -158,7 +163,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-2 text-[10px] font-bold uppercase tracking-widest text-accent">
+            <h3 className="mb-2 text-[10px] font-bold uppercase tracking-widest bg-gradient-to-r from-[#2D9CDB] to-[#F2994A] bg-clip-text text-transparent">
               {f.productsTitle}
             </h3>
             <ul className="space-y-1">
@@ -175,7 +180,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/urunler"
-                  className="inline-flex items-center gap-1 text-[12px] font-medium text-accent/70 transition-colors hover:text-accent"
+                  className="inline-flex items-center gap-1 text-[12px] font-medium text-[#2D9CDB]/70 transition-colors hover:text-[#2D9CDB]"
                 >
                   {nav.allProducts} &rarr;
                 </Link>
@@ -184,7 +189,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-2 text-[10px] font-bold uppercase tracking-widest text-accent">
+            <h3 className="mb-2 text-[10px] font-bold uppercase tracking-widest bg-gradient-to-r from-[#2D9CDB] to-[#F2994A] bg-clip-text text-transparent">
               {f.companyTitle}
             </h3>
             <ul className="space-y-1">
@@ -202,7 +207,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-2 text-[10px] font-bold uppercase tracking-widest text-accent">
+            <h3 className="mb-2 text-[10px] font-bold uppercase tracking-widest bg-gradient-to-r from-[#2D9CDB] to-[#F2994A] bg-clip-text text-transparent">
               {f.newsletterTitle}
             </h3>
             {subscribed ? (
@@ -222,14 +227,14 @@ export default function Footer() {
                 />
                 <button
                   type="submit"
-                  className="flex items-center justify-center rounded-md bg-accent px-3 py-1.5 text-[11px] font-bold text-accent-foreground transition-colors hover:bg-accent/90"
+                  className="flex items-center justify-center rounded-md bg-gradient-to-r from-[#F2994A] to-[#2D9CDB] px-3 py-1.5 text-[11px] font-bold text-white transition-all hover:brightness-110"
                 >
                   <Send size={11} />
                 </button>
               </form>
             )}
 
-            <h3 className="mb-2 mt-5 text-[10px] font-bold uppercase tracking-widest text-accent">
+            <h3 className="mb-2 mt-5 text-[10px] font-bold uppercase tracking-widest bg-gradient-to-r from-[#2D9CDB] to-[#F2994A] bg-clip-text text-transparent">
               {f.socialTitle ?? "Sosyal Medya"}
             </h3>
             <div className="flex items-center gap-1.5">
@@ -237,7 +242,7 @@ export default function Footer() {
                 <a
                   key={social.name}
                   href={social.href}
-                  className="flex h-8 w-8 items-center justify-center rounded-md bg-white/[0.05] text-white/40 transition-all hover:bg-accent/20 hover:text-accent"
+                  className="flex h-8 w-8 items-center justify-center rounded-md bg-white/[0.05] text-white/40 transition-all hover:bg-[#2D9CDB]/15 hover:text-[#2D9CDB] hover:ring-2 hover:ring-[#2D9CDB]/25"
                   aria-label={social.name}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -250,7 +255,8 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/5">
+      <div className="relative">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#2D9CDB]/20 to-transparent" />
         <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 lg:px-6">
           <span className="text-[10px] text-white/40">
             &copy; 2026 {f.copyright}

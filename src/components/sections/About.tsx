@@ -85,7 +85,7 @@ export default function About() {
                     key={item}
                     className="flex items-start gap-3 rounded-xl border border-neutral-100 bg-neutral-50/60 px-4 py-3 transition-colors duration-200 hover:border-accent-200 hover:bg-accent-50/40 dark:border-neutral-700 dark:bg-neutral-800/60 dark:hover:border-accent-500/30"
                   >
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-500 text-primary-900 dark:text-[#002060]">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-500 text-primary-900 dark:text-[#0A1628]">
                       <Check size={12} strokeWidth={3} />
                     </span>
                     <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
@@ -97,7 +97,7 @@ export default function About() {
 
               <Link
                 href="/hakkimizda"
-                className="group inline-flex w-full sm:w-auto items-center gap-2 rounded-xl bg-[#002060] px-7 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:bg-[#1F4A7E] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
+                className="group inline-flex w-full sm:w-auto items-center gap-2 rounded-xl bg-[#0A1628] px-7 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:bg-[#132844] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
               >
                 {h.aboutMore}
                 <ArrowRight

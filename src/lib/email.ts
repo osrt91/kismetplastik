@@ -156,8 +156,8 @@ export async function sendOrderStatusEmail(
 
   const html = `
 <div style="max-width:600px;margin:0 auto;font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;">
-  <div style="background:#002060;padding:28px 24px;text-align:center;">
-    <h1 style="color:#f2b300;margin:0;font-size:26px;font-weight:700;letter-spacing:0.5px;">Kısmet Plastik</h1>
+  <div style="background:#0A1628;padding:28px 24px;text-align:center;">
+    <h1 style="color:#F2994A;margin:0;font-size:26px;font-weight:700;letter-spacing:0.5px;">Kısmet Plastik</h1>
   </div>
   <div style="padding:32px 28px;background:#ffffff;">
     <p style="font-size:16px;color:#1a1a1a;margin:0 0 8px;">Sayın <strong>${escapeHtml(payload.recipientName)}</strong>,</p>
@@ -178,10 +178,10 @@ export async function sendOrderStatusEmail(
       </table>
     </div>
     <div style="text-align:center;margin:0 0 8px;">
-      <a href="${ordersUrl}" style="display:inline-block;background:#002060;color:#ffffff;text-decoration:none;padding:14px 36px;border-radius:6px;font-size:15px;font-weight:600;">Siparişlerinizi Görüntüleyin</a>
+      <a href="${ordersUrl}" style="display:inline-block;background:#0A1628;color:#ffffff;text-decoration:none;padding:14px 36px;border-radius:6px;font-size:15px;font-weight:600;">Siparişlerinizi Görüntüleyin</a>
     </div>
   </div>
-  <div style="background:#002060;padding:20px 24px;text-align:center;">
+  <div style="background:#0A1628;padding:20px 24px;text-align:center;">
     <p style="color:rgba(255,255,255,0.6);margin:0;font-size:12px;">&copy; ${new Date().getFullYear()} Kısmet Plastik. Tüm hakları saklıdır.</p>
   </div>
 </div>`;

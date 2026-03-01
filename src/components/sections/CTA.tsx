@@ -17,7 +17,7 @@ export default function CTA() {
   const h = dict.home;
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-[#002060] via-[#1F4A7E] to-[#002060] py-20 lg:py-24">
+    <section className="relative overflow-hidden bg-gradient-to-r from-[#0A1628] via-[#132844] to-[#0A1628] py-20 lg:py-24">
       {/* Animated gradient border — top */}
       <div className="absolute inset-x-0 top-0 h-[2px] animate-[shimmer_3s_ease-in-out_infinite] bg-[length:200%_100%] bg-gradient-to-r from-transparent via-accent-500/70 to-transparent" />
       {/* Animated gradient border — bottom */}
@@ -96,7 +96,7 @@ export default function CTA() {
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
             <Button
               size="lg"
-              className="group w-full sm:w-auto rounded-xl bg-accent text-accent-foreground px-8 py-4 shadow-md hover:shadow-lg hover:bg-accent/90"
+              className="group w-full sm:w-auto rounded-xl bg-gradient-to-r from-accent-500 to-accent-400 text-white font-semibold px-8 py-4 shadow-md shadow-accent-500/20 hover:shadow-lg hover:shadow-accent-500/30 hover:brightness-110"
               asChild
             >
               <Link href="/teklif-al">

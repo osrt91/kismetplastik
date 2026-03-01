@@ -47,7 +47,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { categoryIconList } from "@/components/ui/CategoryIcons";
 
-const UTILITY_BG = "#0A1628";
+const UTILITY_BG = "var(--primary-900, #0A1628)";
 
 const categoryHrefs = [
   "/urunler/pet-siseler",
@@ -167,10 +167,11 @@ export default function Header() {
     <>
       {/* ── Utility Bar ── */}
       <div
-        className="hidden lg:block"
+        className="relative hidden lg:block overflow-hidden"
         style={{ backgroundColor: UTILITY_BG }}
       >
-        <div className="mx-auto flex h-9 max-w-7xl items-center justify-between px-6">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#2D9CDB]/30 to-transparent" />
+        <div className="mx-auto flex h-8 max-w-7xl items-center justify-between px-6">
           <div className="flex items-center gap-4">
             <a
               href="tel:+902125498703"
@@ -240,7 +241,7 @@ export default function Header() {
         className={clsx(
           "sticky top-0 z-50 w-full transition-all duration-300",
           scrolled
-            ? "border-b border-border bg-background/95 shadow-sm backdrop-blur-md dark:bg-card/95"
+            ? "border-b border-border/50 bg-background/95 shadow-[0_2px_24px_rgba(45,156,219,0.06)] backdrop-blur-xl dark:bg-card/95 dark:shadow-[0_2px_24px_rgba(45,156,219,0.1)]"
             : "border-b border-transparent bg-background dark:bg-background"
         )}
       >
@@ -272,57 +273,68 @@ export default function Header() {
               <NavigationMenuItem>
                 <NavigationMenuTrigger>{nav.products}</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="grid w-[600px] grid-cols-[1fr_180px]">
-                    <ul className="grid gap-0.5 p-3">
-                      {productChildren.map((child) => {
-                        const Icon = child.icon;
-                        return (
-                          <li key={child.href}>
-                            <NavigationMenuLink asChild>
-                              <Link
-                                href={child.href}
-                                className="group flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-accent/50 dark:hover:bg-accent/30"
-                              >
-                                <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary transition-colors group-hover:bg-primary/15 dark:bg-primary/20 dark:group-hover:bg-primary/30">
-                                  <Icon size={16} strokeWidth={1.8} />
-                                </div>
-                                <div className="min-w-0">
-                                  <div className="text-sm font-semibold text-foreground">
-                                    {child.name}
+                  <div className="w-[720px] border-t-2" style={{ borderImage: "linear-gradient(to right, #2D9CDB, #F2994A) 1" }}>
+                    <div className="grid grid-cols-[1fr_200px]">
+                      <ul className="grid grid-cols-2 gap-0.5 p-3">
+                        {productChildren.map((child) => {
+                          const Icon = child.icon;
+                          return (
+                            <li key={child.href}>
+                              <NavigationMenuLink asChild>
+                                <Link
+                                  href={child.href}
+                                  className="group flex items-start gap-3 rounded-lg px-3 py-3 transition-all hover:bg-accent/10 dark:hover:bg-accent/20"
+                                >
+                                  <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/10 to-accent/5 text-primary transition-all group-hover:from-primary/15 group-hover:to-accent/10 group-hover:shadow-md group-hover:shadow-primary/5 dark:from-primary/20 dark:to-accent/10">
+                                    <Icon size={18} strokeWidth={1.8} />
                                   </div>
-                                  <div className="mt-0.5 line-clamp-1 text-xs text-muted-foreground">
-                                    {child.desc}
+                                  <div className="min-w-0">
+                                    <div className="text-sm font-bold text-foreground group-hover:text-primary">
+                                      {child.name}
+                                    </div>
+                                    <div className="mt-0.5 line-clamp-2 text-[11px] leading-relaxed text-muted-foreground">
+                                      {child.desc}
+                                    </div>
                                   </div>
-                                </div>
-                              </Link>
-                            </NavigationMenuLink>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                    <div className="flex flex-col justify-between border-l border-border/50 bg-muted/40 p-4 dark:bg-muted/20">
-                      <div>
-                        <Link
-                          href="/urunler"
-                          className="group mb-3 flex items-center gap-1 text-sm font-bold text-primary transition-colors hover:text-primary/80"
-                        >
-                          {nav.allProducts}
-                          <ChevronRight
-                            size={14}
-                            className="transition-transform group-hover:translate-x-0.5"
-                          />
-                        </Link>
-                        <p className="text-[11px] leading-relaxed text-muted-foreground">
-                          {comp.megaProductsDesc}
-                        </p>
+                                </Link>
+                              </NavigationMenuLink>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                      <div className="flex flex-col justify-between border-l border-border/50 bg-gradient-to-b from-muted/40 to-muted/20 p-4 dark:from-muted/20 dark:to-muted/10">
+                        <div>
+                          <Link
+                            href="/urunler"
+                            className="group mb-3 flex items-center gap-1 text-sm font-bold text-primary transition-colors hover:text-primary/80"
+                          >
+                            {nav.allProducts}
+                            <ChevronRight
+                              size={14}
+                              className="transition-transform group-hover:translate-x-0.5"
+                            />
+                          </Link>
+                          <p className="text-[11px] leading-relaxed text-muted-foreground">
+                            {comp.megaProductsDesc}
+                          </p>
+                        </div>
+                        <div className="space-y-2">
+                          <Link
+                            href="/urun-olustur"
+                            className="flex items-center gap-2 rounded-lg bg-accent/10 px-3 py-2 text-xs font-semibold text-accent-700 transition-colors hover:bg-accent/20 dark:text-accent-400"
+                          >
+                            <Package size={13} />
+                            {nav.customMolding}
+                          </Link>
+                          <Link
+                            href="/katalog"
+                            className="flex items-center gap-2 rounded-lg bg-primary/10 px-3 py-2 text-xs font-semibold text-primary transition-colors hover:bg-primary/15 dark:bg-primary/20 dark:hover:bg-primary/30"
+                          >
+                            <Download size={13} />
+                            {comp.megaCatalogCta}
+                          </Link>
+                        </div>
                       </div>
-                      <Link
-                        href="/katalog"
-                        className="mt-4 flex items-center gap-2 rounded-lg bg-primary/10 px-3 py-2 text-xs font-semibold text-primary transition-colors hover:bg-primary/15 dark:bg-primary/20 dark:hover:bg-primary/30"
-                      >
-                        <Download size={14} />
-                        {comp.megaCatalogCta}
-                      </Link>
                     </div>
                   </div>
                 </NavigationMenuContent>
@@ -332,7 +344,7 @@ export default function Header() {
               <NavigationMenuItem>
                 <NavigationMenuTrigger>{comp.corporate}</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[420px] p-3">
+                  <div className="w-[420px] p-3 border-t-2" style={{ borderImage: "linear-gradient(to right, #2D9CDB, #F2994A) 1" }}>
                     <div className="mb-2 px-3">
                       <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">
                         {comp.megaCorporateDesc}
@@ -368,7 +380,7 @@ export default function Header() {
               <NavigationMenuItem>
                 <NavigationMenuTrigger>{nav.sectors}</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[480px] p-3">
+                  <div className="w-[480px] p-3 border-t-2" style={{ borderImage: "linear-gradient(to right, #2D9CDB, #F2994A) 1" }}>
                     <div className="mb-2 px-3">
                       <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">
                         {comp.megaSectorsDesc}
@@ -401,7 +413,7 @@ export default function Header() {
               <NavigationMenuItem>
                 <NavigationMenuTrigger>{nav.media}</NavigationMenuTrigger>
                 <NavigationMenuContent className="right-0 left-auto">
-                  <div className="w-[350px] p-3">
+                  <div className="w-[350px] p-3 border-t-2" style={{ borderImage: "linear-gradient(to right, #2D9CDB, #F2994A) 1" }}>
                     <div className="mb-2 px-3">
                       <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">
                         {comp.megaMediaDesc}
@@ -458,7 +470,7 @@ export default function Header() {
             </Button>
             <Button
               size="sm"
-              className="bg-accent text-accent-foreground hover:bg-accent/90"
+              className="bg-gradient-to-r from-accent-500 to-accent-400 text-white font-semibold shadow-md shadow-accent-500/20 transition-all hover:shadow-lg hover:shadow-accent-500/30 hover:brightness-110"
               asChild
             >
               <Link href="/teklif-al">{nav.quote}</Link>
@@ -600,7 +612,8 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="mt-auto border-t border-border p-5">
+          <div className="mt-auto p-5">
+            <div className="mb-4 h-px bg-gradient-to-r from-transparent via-[#2D9CDB]/40 to-transparent" />
             <a
               href="tel:+902125498703"
               className="mb-2 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -620,7 +633,7 @@ export default function Header() {
                 </Link>
               </Button>
               <Button
-                className="flex-1 bg-accent text-accent-foreground hover:bg-accent/90"
+                className="flex-1 bg-gradient-to-r from-accent-500 to-accent-400 text-white font-semibold hover:brightness-110"
                 asChild
               >
                 <Link href="/teklif-al" onClick={() => setMobileOpen(false)}>

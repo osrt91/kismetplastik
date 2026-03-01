@@ -11,17 +11,47 @@ import {
   Globe,
   Factory,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useLocale } from "@/contexts/LocaleContext";
 
-const PARTICLES = Array.from({ length: 8 }, (_, i) => ({
-  left: `${(i * 23 + 5) % 95}%`,
-  top: `${(i * 29 + 10) % 90}%`,
-  size: i % 3 === 0 ? 4 : i % 3 === 1 ? 3 : 2,
-  delay: `${(i * 0.9) % 5}s`,
-  duration: `${3 + (i % 4)}s`,
-  isAccent: i % 2 === 0,
-}));
+function AnimatedCounter({ target, suffix = "" }: { target: string; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [displayed, setDisplayed] = useState("0");
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    if (!ref.current || hasAnimated) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasAnimated(true);
+          const num = parseInt(target.replace(/\D/g, ""), 10);
+          const duration = 2000;
+          const steps = 40;
+          const increment = num / steps;
+          let current = 0;
+          let step = 0;
+          const timer = setInterval(() => {
+            step++;
+            current = Math.min(Math.round(increment * step), num);
+            setDisplayed(current.toLocaleString("tr-TR"));
+            if (step >= steps) clearInterval(timer);
+          }, duration / steps);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [target, hasAnimated]);
+
+  return (
+    <span ref={ref}>
+      {displayed}{suffix}
+    </span>
+  );
+}
 
 export default function Hero() {
   const { dict } = useLocale();
@@ -53,55 +83,68 @@ export default function Hero() {
     { icon: Factory, text: h.trustExperience },
   ];
 
+  const stats = [
+    { value: "500", suffix: "+", label: h.cardProductsLabel, color: "text-white" },
+    { value: "1000", suffix: "+", label: h.cardCustomersLabel, color: "text-accent-400" },
+    { value: "55", suffix: "+", label: h.cardExperienceLabel, color: "text-primary-300" },
+  ];
+
+  const VIDEO_SRC = "/videos/hero-bg.mp4";
+  const [videoLoaded, setVideoLoaded] = useState(false);
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#0A1628] via-[#1B2A4A] to-[#0A1628]">
-      <div className="absolute inset-0 opacity-[0.03]">
+    <section className="relative overflow-hidden bg-[#0A1628] min-h-[90vh] flex items-center">
+      <video
+        src={VIDEO_SRC}
+        autoPlay
+        loop
+        muted
+        playsInline
+        onCanPlay={() => setVideoLoaded(true)}
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${videoLoaded ? "opacity-20" : "opacity-0"}`}
+      />
+
+      <div className="absolute inset-0">
         <div
-          className="h-full w-full"
+          className="absolute inset-0 opacity-[0.015]"
           style={{
             backgroundImage:
-              "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-            backgroundSize: "40px 40px",
+              "radial-gradient(circle at 1px 1px, white 0.5px, transparent 0)",
+            backgroundSize: "48px 48px",
           }}
         />
+        <div className="absolute top-0 right-0 w-[60%] h-[60%] rounded-full bg-[#2D9CDB]/[0.06] blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[50%] h-[50%] rounded-full bg-[#F2994A]/[0.04] blur-[100px]" />
+        <div className="absolute top-1/2 left-1/3 w-[30%] h-[30%] rounded-full bg-[#2D9CDB]/[0.03] blur-[80px] animate-pulse" />
       </div>
 
-      <div className="absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-accent-500/[0.08] blur-3xl animate-pulse" />
-      <div className="absolute -bottom-32 -left-32 h-[500px] w-[500px] rounded-full bg-primary-300/[0.08] blur-3xl animate-pulse" />
+      <div className="absolute inset-y-0 right-0 w-1/2 hidden lg:block">
+        <div className="absolute inset-0 bg-gradient-to-l from-[#2D9CDB]/[0.03] to-transparent" />
+        <svg className="absolute inset-0 w-full h-full opacity-[0.02]" viewBox="0 0 800 800">
+          <circle cx="400" cy="400" r="350" stroke="white" strokeWidth="0.5" fill="none" />
+          <circle cx="400" cy="400" r="280" stroke="white" strokeWidth="0.3" fill="none" strokeDasharray="8 8" />
+          <circle cx="400" cy="400" r="200" stroke="white" strokeWidth="0.3" fill="none" />
+        </svg>
+      </div>
 
-      {PARTICLES.map((p, i) => (
-        <div
-          key={i}
-          className="absolute rounded-full"
-          style={{
-            left: p.left,
-            top: p.top,
-            width: p.size,
-            height: p.size,
-            backgroundColor: p.isAccent
-              ? "var(--accent-500)"
-              : "var(--primary-300)",
-            opacity: 0.12 + (i % 3) * 0.06,
-            animation: `particle-float ${p.duration} ease-in-out ${p.delay} infinite`,
-          }}
-        />
-      ))}
-
-      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:py-24 lg:px-6 lg:py-32">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          <div className="opacity-0 animate-[fade-in-up_1000ms_ease-out_forwards]">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm text-white/90 backdrop-blur-sm">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-accent-500" />
-              {h.badge}
+      <div className="relative z-10 mx-auto max-w-7xl w-full px-4 py-24 sm:py-28 lg:px-6 lg:py-36">
+        <div className="grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
+          <div>
+            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-5 py-2.5 backdrop-blur-sm opacity-0 animate-[fade-in-up_800ms_ease-out_forwards]">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#2D9CDB] opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#2D9CDB]" />
+              </span>
+              <span className="text-sm font-medium text-white/80">{h.badge}</span>
             </div>
 
-            <h1 className="mb-6 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+            <h1 className="mb-8 text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-[4.25rem] opacity-0 animate-[fade-in-up_800ms_ease-out_100ms_forwards]">
               {h.titleBefore}{" "}
               <span className="relative inline-block align-bottom">
                 <span className="inline-block overflow-hidden">
                   <span
                     key={wordIndex}
-                    className={`inline-block bg-gradient-to-r from-accent-400 to-accent-500 bg-clip-text text-transparent ${
+                    className={`inline-block bg-gradient-to-r from-[#F2994A] to-[#F5AD6E] bg-clip-text text-transparent ${
                       isExiting
                         ? "translate-y-[-100%] opacity-0 transition-all duration-[400ms] ease-in"
                         : "animate-[word-enter_400ms_ease-out]"
@@ -112,20 +155,20 @@ export default function Hero() {
                 </span>
                 <span
                   key={`line-${wordIndex}`}
-                  className="absolute -bottom-1 left-0 h-[3px] rounded-full bg-gradient-to-r from-accent-400/60 to-accent-500/60 animate-[typewriter-line_2.5s_ease-in-out_forwards]"
+                  className="absolute -bottom-1.5 left-0 h-[3px] rounded-full bg-gradient-to-r from-[#F2994A]/70 to-[#2D9CDB]/50 animate-[typewriter-line_2.5s_ease-in-out_forwards]"
                 />
               </span>{" "}
               {h.titleAfter}
             </h1>
 
-            <p className="mb-8 max-w-lg text-base leading-relaxed text-white/80 sm:text-lg opacity-0 animate-[fade-in-up_1000ms_ease-out_200ms_forwards]">
+            <p className="mb-10 max-w-xl text-lg leading-relaxed text-white/60 sm:text-xl opacity-0 animate-[fade-in-up_800ms_ease-out_200ms_forwards]">
               {h.subtitle}
             </p>
 
-            <div className="mb-10 flex flex-col gap-3 sm:flex-row sm:gap-4 opacity-0 animate-[fade-in-up_1000ms_ease-out_300ms_forwards]">
+            <div className="mb-12 flex flex-col gap-4 sm:flex-row opacity-0 animate-[fade-in-up_800ms_ease-out_300ms_forwards]">
               <Button
                 size="lg"
-                className="group w-full rounded-xl bg-accent px-8 py-4 text-accent-foreground shadow-md hover:bg-accent/90 hover:shadow-lg sm:w-auto"
+                className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-[#F2994A] to-[#D98A35] px-8 py-5 text-base font-bold text-white shadow-lg shadow-[#F2994A]/20 transition-all hover:shadow-xl hover:shadow-[#F2994A]/30 sm:w-auto"
                 asChild
               >
                 <Link href="/urunler">
@@ -139,7 +182,7 @@ export default function Hero() {
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full rounded-xl border-2 border-white/25 bg-white/[0.06] px-8 py-4 text-white hover:border-white/40 hover:bg-white/10 sm:w-auto"
+                className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-8 py-5 text-base font-semibold text-white backdrop-blur-sm transition-all hover:border-[#2D9CDB]/40 hover:bg-[#2D9CDB]/10 sm:w-auto"
                 asChild
               >
                 <Link href="/teklif-al">
@@ -149,18 +192,18 @@ export default function Hero() {
               </Button>
             </div>
 
-            <div className="opacity-0 animate-[fade-in-up_1000ms_ease-out_500ms_forwards]">
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-3 sm:flex-nowrap sm:divide-x sm:divide-white/10">
+            <div className="opacity-0 animate-[fade-in-up_800ms_ease-out_500ms_forwards]">
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-3 sm:flex-nowrap sm:divide-x sm:divide-white/[0.08]">
                 {trustItems.map((item, idx) => (
                   <div
                     key={idx}
-                    className={`flex items-center gap-2 text-sm text-white/80 ${
-                      idx > 0 ? "sm:pl-4" : ""
+                    className={`flex items-center gap-2 text-[13px] text-white/60 ${
+                      idx > 0 ? "sm:pl-5" : ""
                     }`}
                   >
                     <item.icon
-                      size={16}
-                      className="shrink-0 text-accent-400"
+                      size={15}
+                      className="shrink-0 text-[#2D9CDB]"
                     />
                     <span>{item.text}</span>
                   </div>
@@ -169,69 +212,43 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="relative hidden opacity-0 animate-[fade-in_1000ms_ease-out_300ms_forwards] lg:block">
-            <div className="relative mx-auto aspect-square max-w-lg">
-              <div className="absolute inset-2 rounded-full border border-white/[0.06] animate-[spin_40s_linear_infinite]" />
-              <div className="absolute inset-10 rounded-full border border-dashed border-white/[0.04] animate-[spin_25s_linear_infinite_reverse]" />
-              <div className="absolute inset-20 rounded-full border border-white/[0.03] animate-[spin_35s_linear_infinite]" />
-
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative flex h-80 w-80 items-center justify-center rounded-3xl border border-white/10 bg-white/[0.07] shadow-2xl backdrop-blur-md transition-transform duration-500 hover:scale-105">
-                  <Image
-                    src="/images/logo2.svg"
-                    alt="Kısmet Plastik"
-                    width={180}
-                    height={180}
-                    className="h-44 w-44 brightness-0 invert drop-shadow-2xl"
-                  />
-                </div>
+          <div className="relative hidden lg:flex flex-col items-center justify-center opacity-0 animate-[fade-in_1000ms_ease-out_400ms_forwards]">
+            <div className="relative flex h-72 w-72 items-center justify-center">
+              <div className="absolute inset-0 rounded-[2rem] border border-white/[0.06] rotate-6 animate-[spin_60s_linear_infinite]" />
+              <div className="absolute inset-4 rounded-[2rem] border border-dashed border-white/[0.04] -rotate-3" />
+              <div className="relative flex h-56 w-56 items-center justify-center rounded-[1.5rem] border border-white/[0.08] bg-gradient-to-br from-white/[0.06] to-white/[0.02] shadow-2xl shadow-black/20 backdrop-blur-xl">
+                <Image
+                  src="/images/logo2.svg"
+                  alt="Kısmet Plastik"
+                  width={140}
+                  height={140}
+                  className="h-32 w-32 brightness-0 invert drop-shadow-2xl"
+                />
               </div>
+            </div>
 
-              <div className="absolute -left-6 top-10 rounded-xl border border-white/[0.15] bg-gradient-to-br from-white/[0.10] to-white/[0.03] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-1 ring-inset ring-white/[0.05] backdrop-blur-xl backdrop-saturate-150 animate-[float_4s_ease-in-out_infinite]">
-                <div className="text-2xl font-bold text-white">
-                  {h.cardProducts}
+            <div className="mt-12 grid w-full max-w-sm grid-cols-3 gap-4">
+              {stats.map((stat, i) => (
+                <div
+                  key={i}
+                  className="rounded-xl border border-white/[0.06] bg-white/[0.03] px-3 py-4 text-center backdrop-blur-sm opacity-0 animate-[fade-in-up_600ms_ease-out_forwards]"
+                  style={{ animationDelay: `${600 + i * 150}ms` }}
+                >
+                  <div className={`text-2xl font-extrabold ${stat.color}`}>
+                    <AnimatedCounter target={stat.value} suffix={stat.suffix} />
+                  </div>
+                  <div className="mt-1 text-[11px] leading-tight text-white/50">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="text-xs text-white/80">
-                  {h.cardProductsLabel}
-                </div>
-              </div>
-
-              <div className="absolute -right-6 top-1/3 rounded-xl border border-white/[0.15] bg-gradient-to-br from-white/[0.10] to-white/[0.03] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-1 ring-inset ring-white/[0.05] backdrop-blur-xl backdrop-saturate-150 animate-[float_4s_ease-in-out_infinite_1s]">
-                <div className="text-2xl font-bold text-accent-400">
-                  {h.cardCustomers}
-                </div>
-                <div className="text-xs text-white/80">
-                  {h.cardCustomersLabel}
-                </div>
-              </div>
-
-              <div className="absolute -left-2 bottom-16 rounded-xl border border-white/[0.15] bg-gradient-to-br from-white/[0.10] to-white/[0.03] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-1 ring-inset ring-white/[0.05] backdrop-blur-xl backdrop-saturate-150 animate-[float_4s_ease-in-out_infinite_2s]">
-                <div className="text-2xl font-bold text-white">
-                  {h.cardExperience}
-                </div>
-                <div className="text-xs text-white/80">
-                  {h.cardExperienceLabel}
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg
-          viewBox="0 0 1440 60"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0 60L48 55C96 50 192 40 288 35C384 30 480 30 576 33.3C672 36.7 768 43.3 864 45C960 46.7 1056 43.3 1152 38.3C1248 33.3 1344 26.7 1392 23.3L1440 20V60H1392C1344 60 1248 60 1152 60C1056 60 960 60 864 60C768 60 672 60 576 60C480 60 384 60 288 60C192 60 96 60 48 60H0Z"
-            fill="var(--background)"
-          />
-        </svg>
-      </div>
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2D9CDB]/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[var(--background)] to-transparent" />
     </section>
   );
 }

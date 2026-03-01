@@ -147,7 +147,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <link rel="preconnect" href="https://maps.googleapis.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://maps.googleapis.com" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#002060" />
+        <meta name="theme-color" content="#0A1628" />
         <link rel="apple-touch-icon" sizes="192x192" href="/images/icon-192.png" />
       </head>
       <body className="antialiased">
