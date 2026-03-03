@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { timingSafeCompare } from "@/lib/auth";
 
+/**
+ * POST /api/admin/auth
+ *
+ * Authenticates admin login by comparing the provided password against
+ * ADMIN_SECRET using timing-safe comparison. Sets an httpOnly cookie on success.
+ *
+ * @body {{ password: string }}
+ * @returns {{ success: boolean, error?: string }}
+ */
 export async function POST(request: NextRequest) {
   const { password } = await request.json();
   const secret = process.env.ADMIN_SECRET;
@@ -27,6 +36,13 @@ export async function POST(request: NextRequest) {
   return response;
 }
 
+/**
+ * DELETE /api/admin/auth
+ *
+ * Logs out the admin by deleting the admin-token cookie.
+ *
+ * @returns {{ success: boolean }}
+ */
 export async function DELETE() {
   const response = NextResponse.json({ success: true });
   response.cookies.delete("admin-token");

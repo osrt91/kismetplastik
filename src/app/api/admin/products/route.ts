@@ -3,6 +3,16 @@ import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
 import { checkAuth, sanitizeSearchInput } from "@/lib/auth";
 import { products, categories } from "@/data/products";
 
+/**
+ * GET /api/admin/products
+ *
+ * Lists all products, optionally filtered by category or search query.
+ * Falls back to static data when Supabase is not configured.
+ *
+ * @query {{ category?: string, search?: string }}
+ * @returns {{ products: Product[], categories: Category[], source: "static" | "supabase" }}
+ * @auth Admin cookie required
+ */
 export async function GET(request: NextRequest) {
   const authError = checkAuth(request);
   if (authError) return authError;
@@ -45,6 +55,15 @@ export async function GET(request: NextRequest) {
   return NextResponse.json({ products: data, categories: cats, source: "supabase" });
 }
 
+/**
+ * POST /api/admin/products
+ *
+ * Creates a new product in the database. Requires Supabase to be configured.
+ *
+ * @body {{ slug: string, name: string, category: string, description?: string, shortDescription?: string, volume?: string, weight?: string, neckDiameter?: string, height?: string, diameter?: string, material?: string, colors?: string[], model?: string, shape?: string, minOrder?: number, inStock?: boolean, featured?: boolean, specs?: object[] }}
+ * @returns {{ product: Product }}
+ * @auth Admin cookie required
+ */
 export async function POST(request: NextRequest) {
   const authError = checkAuth(request);
   if (authError) return authError;

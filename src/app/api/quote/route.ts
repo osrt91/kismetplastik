@@ -25,6 +25,16 @@ function validate(data: QuoteFormData): string | null {
   return null;
 }
 
+/**
+ * POST /api/quote
+ *
+ * Handles the public quote request form submission. Validates input fields,
+ * sends a notification email via Resend, and returns a confirmation.
+ *
+ * @body {{ name: string, email: string, phone: string, company: string, address?: string, category: string, productInterest?: string, quantity?: string, deliveryDate?: string, message?: string }}
+ * @returns {{ success: boolean, message?: string, error?: string }}
+ * @rateLimit 3 requests per 1 minute per IP
+ */
 export async function POST(request: NextRequest) {
   try {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";

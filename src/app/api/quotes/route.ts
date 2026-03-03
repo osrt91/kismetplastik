@@ -33,6 +33,16 @@ function validate(data: QuoteInput): string | null {
   return null;
 }
 
+/**
+ * POST /api/quotes
+ *
+ * Creates a new quote request with line items. Validates contact details
+ * and product items, then saves to Supabase.
+ *
+ * @body {{ company_name: string, contact_name: string, email: string, phone: string, message?: string, items: { product_id?: string, product_name: string, quantity: number, notes?: string }[] }}
+ * @returns {{ success: boolean, data?: { id: string }, message?: string, error?: string }}
+ * @rateLimit 3 requests per 1 minute per IP
+ */
 export async function POST(request: NextRequest) {
   try {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
@@ -100,6 +110,15 @@ export async function POST(request: NextRequest) {
   }
 }
 
+/**
+ * GET /api/quotes
+ *
+ * Lists quote requests with pagination. Requires admin authentication.
+ * Includes related quote items.
+ *
+ * @query {{ status?: string, page?: number, limit?: number }}
+ * @returns {{ success: boolean, data: QuoteRequest[], pagination: { page: number, limit: number, total: number, totalPages: number } }}
+ */
 export async function GET(request: NextRequest) {
   const authError = checkAuth(request);
   if (authError) return authError;

@@ -1,3 +1,8 @@
+/**
+ * Email service module using Resend.
+ * Falls back to console logging when RESEND_API_KEY is not configured.
+ * @module
+ */
 import { Resend } from "resend";
 
 const resend = process.env.RESEND_API_KEY
@@ -7,6 +12,7 @@ const resend = process.env.RESEND_API_KEY
 const FROM = process.env.EMAIL_FROM ?? "noreply@onboarding.resend.dev";
 const TO = process.env.EMAIL_TO ?? "bilgi@kismetplastik.com";
 
+/** Payload for the contact form submission. */
 export interface ContactPayload {
   name: string;
   email: string;
@@ -16,6 +22,7 @@ export interface ContactPayload {
   message: string;
 }
 
+/** Payload for the quote request form submission. */
 export interface QuotePayload {
   name: string;
   email: string;
@@ -29,6 +36,14 @@ export interface QuotePayload {
   message?: string;
 }
 
+/**
+ * Sends a contact form email via Resend.
+ * Falls back to console.log when RESEND_API_KEY is not set.
+ * All user input is HTML-escaped before inclusion in the email body.
+ *
+ * @param data - Contact form fields
+ * @returns Object with `ok` status and optional `error` message
+ */
 export async function sendContactEmail(data: ContactPayload): Promise<{ ok: boolean; error?: string }> {
   if (!resend) {
     console.log("[Contact Form - no RESEND_API_KEY]", data);
@@ -59,6 +74,14 @@ export async function sendContactEmail(data: ContactPayload): Promise<{ ok: bool
   }
 }
 
+/**
+ * Sends a quote request email via Resend.
+ * Falls back to console.log when RESEND_API_KEY is not set.
+ * All user input is HTML-escaped before inclusion in the email body.
+ *
+ * @param data - Quote request form fields
+ * @returns Object with `ok` status and optional `error` message
+ */
 export async function sendQuoteEmail(data: QuotePayload): Promise<{ ok: boolean; error?: string }> {
   if (!resend) {
     console.log("[Quote Request - no RESEND_API_KEY]", data);
@@ -92,6 +115,13 @@ export async function sendQuoteEmail(data: QuotePayload): Promise<{ ok: boolean;
   }
 }
 
+/**
+ * Escapes HTML special characters to prevent XSS in email content.
+ * Replaces: & < > " '
+ *
+ * @param s - Raw string to escape
+ * @returns HTML-safe string
+ */
 function escapeHtml(s: string): string {
   return s
     .replace(/&/g, "&amp;")

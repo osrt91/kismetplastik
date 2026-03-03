@@ -2,6 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { rateLimit } from "@/lib/rate-limit";
 
+/**
+ * POST /api/auth/register
+ *
+ * Registers a new dealer account via Supabase Auth signUp, then updates
+ * the profile row with company information. New dealers are unapproved by default.
+ *
+ * @body {{ email: string, password: string, full_name: string, company_name: string, phone?: string, tax_number?: string, tax_office?: string, company_address?: string, city?: string, district?: string }}
+ * @returns {{ success: boolean, message?: string, error?: string }}
+ * @rateLimit 3 requests per 5 minutes per IP
+ */
 export async function POST(request: NextRequest) {
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
   const { ok: allowed } = rateLimit(`register:${ip}`, { limit: 3, windowMs: 300_000 });

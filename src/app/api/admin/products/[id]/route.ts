@@ -3,6 +3,14 @@ import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
 import { checkAuth } from "@/lib/auth";
 import { products } from "@/data/products";
 
+/**
+ * GET /api/admin/products/[id]
+ *
+ * Retrieves a single product by its ID. Falls back to static data when Supabase is not configured.
+ *
+ * @returns {{ product: Product, source: "static" | "supabase" }}
+ * @auth Admin cookie required
+ */
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -28,6 +36,15 @@ export async function GET(
   return NextResponse.json({ product: data, source: "supabase" });
 }
 
+/**
+ * PUT /api/admin/products/[id]
+ *
+ * Updates an existing product by its ID. Requires Supabase to be configured.
+ *
+ * @body {{ slug: string, name: string, category: string, description: string, shortDescription: string, volume?: string, weight?: string, neckDiameter?: string, height?: string, diameter?: string, material: string, colors: string[], model?: string, shape?: string, minOrder: number, inStock: boolean, featured: boolean, specs?: object[] }}
+ * @returns {{ product: Product }}
+ * @auth Admin cookie required
+ */
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -75,6 +92,14 @@ export async function PUT(
   return NextResponse.json({ product: data });
 }
 
+/**
+ * DELETE /api/admin/products/[id]
+ *
+ * Deletes a product by its ID. Requires Supabase to be configured.
+ *
+ * @returns {{ success: boolean }}
+ * @auth Admin cookie required
+ */
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }

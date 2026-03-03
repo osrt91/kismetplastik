@@ -2,6 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
 import { checkAuth } from "@/lib/auth";
 
+/**
+ * GET /api/admin/blog/[slug]
+ *
+ * Retrieves a single blog post by its slug. Requires Supabase to be configured.
+ *
+ * @returns {{ post: BlogPost }}
+ * @auth Admin cookie required
+ */
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ slug: string }> }
@@ -24,6 +32,16 @@ export async function GET(
   return NextResponse.json({ post: data });
 }
 
+/**
+ * PUT /api/admin/blog/[slug]
+ *
+ * Updates an existing blog post by its slug. Content can be a string or an array.
+ * Requires Supabase to be configured.
+ *
+ * @body {{ title: string, excerpt: string, content: string | string[], category: string, readTime: string, featured: boolean }}
+ * @returns {{ post: BlogPost }}
+ * @auth Admin cookie required
+ */
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ slug: string }> }
@@ -60,6 +78,14 @@ export async function PUT(
   return NextResponse.json({ post: data });
 }
 
+/**
+ * DELETE /api/admin/blog/[slug]
+ *
+ * Deletes a blog post by its slug. Requires Supabase to be configured.
+ *
+ * @returns {{ success: boolean }}
+ * @auth Admin cookie required
+ */
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ slug: string }> }

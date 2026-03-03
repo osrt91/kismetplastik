@@ -2,6 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase-server";
 import { checkAuth } from "@/lib/auth";
 
+/**
+ * DELETE /api/gallery/[id]
+ *
+ * Deletes a gallery image by its ID. Removes both the file from Supabase Storage
+ * and the corresponding database record.
+ *
+ * @returns {{ success: boolean }}
+ * @auth Admin cookie required
+ */
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -41,6 +50,15 @@ export async function DELETE(
   }
 }
 
+/**
+ * PATCH /api/gallery/[id]
+ *
+ * Partially updates a gallery image's metadata by its ID. Only provided fields are updated.
+ *
+ * @body {{ title_tr?: string, title_en?: string, description_tr?: string, description_en?: string, category?: string, display_order?: number, is_active?: boolean }}
+ * @returns {{ success: boolean, data: GalleryImage }}
+ * @auth Admin cookie required
+ */
 export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }

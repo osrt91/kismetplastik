@@ -40,6 +40,17 @@ const SYSTEM_PROMPT = `Sen Kısmet Plastik'in AI asistanısın. Kısmet Plastik,
 const VALID_ROLES = new Set(["user", "assistant"]);
 const VALID_LOCALES = new Set(["tr", "en"]);
 
+/**
+ * POST /api/chat
+ *
+ * AI chatbot endpoint powered by OpenAI (gpt-4o-mini). Accepts a conversation
+ * history and locale, returns a contextual reply about Kismet Plastik products
+ * and services. Gracefully degrades when the OPENAI_API_KEY is not configured.
+ *
+ * @body {{ messages: Array<{ role: "user" | "assistant", content: string }>, locale?: "tr" | "en" }}
+ * @returns {{ reply: string, error?: string }}
+ * @rateLimit 20 requests per 1 minute per IP
+ */
 export async function POST(request: NextRequest) {
   const apiKey = process.env.OPENAI_API_KEY;
 

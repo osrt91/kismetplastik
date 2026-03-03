@@ -3,6 +3,15 @@ import { createSupabaseServerClient } from "@/lib/supabase-server";
 import { checkAuth } from "@/lib/auth";
 import { rateLimit } from "@/lib/rate-limit";
 
+/**
+ * GET /api/gallery
+ *
+ * Lists all active gallery images, optionally filtered by category.
+ * Ordered by display_order ascending, then created_at descending.
+ *
+ * @query {{ category?: "uretim" | "urunler" | "etkinlikler" }}
+ * @returns {{ success: boolean, data: GalleryImage[] }}
+ */
 export async function GET(request: NextRequest) {
   try {
     const supabase = await createSupabaseServerClient();
@@ -33,6 +42,17 @@ export async function GET(request: NextRequest) {
   }
 }
 
+/**
+ * POST /api/gallery
+ *
+ * Uploads a new gallery image. Accepts multipart form data with the image file
+ * and metadata. Stores the file in Supabase Storage and creates a database record.
+ * Rate-limited to 20 requests per minute per IP.
+ *
+ * @body {{ file: File, category: "uretim" | "urunler" | "etkinlikler", title_tr: string, title_en?: string, description_tr?: string, description_en?: string, display_order?: number }} (multipart/form-data)
+ * @returns {{ success: boolean, data: GalleryImage }}
+ * @auth Admin cookie required
+ */
 export async function POST(request: NextRequest) {
   try {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
