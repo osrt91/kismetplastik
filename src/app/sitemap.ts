@@ -28,6 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/referanslar", changeFrequency: "monthly" as const, priority: 0.5 },
     { path: "/numune-talep", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/ambalaj-sozlugu", changeFrequency: "monthly" as const, priority: 0.4 },
+    { path: "/visualizer", changeFrequency: "monthly" as const, priority: 0.7 },
   ];
 
   const staticPages = staticPaths.flatMap(({ path, changeFrequency, priority }) =>
