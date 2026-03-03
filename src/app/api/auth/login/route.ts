@@ -2,6 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { rateLimit } from "@/lib/rate-limit";
 
+/**
+ * POST /api/auth/login
+ *
+ * Authenticates a dealer/customer via Supabase Auth signInWithPassword.
+ * Returns user profile data on success. Rejects unapproved dealer accounts.
+ *
+ * @body {{ email: string, password: string }}
+ * @returns {{ success: boolean, data?: { user: { id: string, email: string, role: string, company_name?: string, full_name?: string } }, error?: string }}
+ * @rateLimit 5 requests per 5 minutes per IP
+ */
 export async function POST(request: NextRequest) {
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
   const { ok: allowed } = rateLimit(`auth:${ip}`, { limit: 5, windowMs: 300_000 });

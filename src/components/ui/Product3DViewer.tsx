@@ -14,15 +14,20 @@ import { colorMap } from "@/components/ui/ProductSVG";
 import type { Product, CategorySlug } from "@/types/product";
 import { useLocale } from "@/contexts/LocaleContext";
 
+/** Props for the Product3DViewer component. */
 interface Props {
+  /** Product data including category (determines 3D model) and colors array. */
   product: Product;
+  /** Currently selected color name (e.g., "Mavi"). Defaults to first product color. */
   selectedColor?: string;
 }
 
+/** Converts a color name to its hex code using the shared colorMap. Falls back to transparent (#e8f4fd). */
 function getThreeColor(colorName: string): string {
   return colorMap[colorName] || "#e8f4fd";
 }
 
+/** Procedural PET/plastic bottle model with neck, body, footer, and label area. Auto-rotates on Y axis. */
 function BottleModel({ color, roughness = 0.12 }: { color: string; roughness?: number }) {
   const groupRef = useRef<THREE.Group>(null);
 
@@ -61,6 +66,7 @@ function BottleModel({ color, roughness = 0.12 }: { color: string; roughness?: n
   );
 }
 
+/** Procedural cap model with crown, threaded body (24 ridges), and base ring. Auto-rotates. */
 function CapModel({ color }: { color: string }) {
   const groupRef = useRef<THREE.Group>(null);
   useFrame((_, delta) => { if (groupRef.current) groupRef.current.rotation.y += delta * 0.3; });
@@ -93,6 +99,7 @@ function CapModel({ color }: { color: string }) {
   );
 }
 
+/** Procedural finger spray model with nozzle, trigger, and cylindrical body. Auto-rotates. */
 function SprayModel({ color }: { color: string }) {
   const groupRef = useRef<THREE.Group>(null);
   useFrame((_, delta) => { if (groupRef.current) groupRef.current.rotation.y += delta * 0.3; });
@@ -111,6 +118,7 @@ function SprayModel({ color }: { color: string }) {
   );
 }
 
+/** Procedural pump dispenser model with pump head, outlet tube, neck collar, and body. Auto-rotates. */
 function PumpModel({ color }: { color: string }) {
   const groupRef = useRef<THREE.Group>(null);
   useFrame((_, delta) => { if (groupRef.current) groupRef.current.rotation.y += delta * 0.3; });
@@ -129,6 +137,7 @@ function PumpModel({ color }: { color: string }) {
   );
 }
 
+/** Procedural funnel model with conical body (DoubleSide material) and output tube. Auto-rotates. */
 function FunnelModel({ color }: { color: string }) {
   const groupRef = useRef<THREE.Group>(null);
   useFrame((_, delta) => { if (groupRef.current) groupRef.current.rotation.y += delta * 0.3; });
@@ -142,6 +151,7 @@ function FunnelModel({ color }: { color: string }) {
   );
 }
 
+/** Maps product category slugs to their corresponding 3D model type. */
 const categoryTo3DModel: Record<CategorySlug, "bottle" | "cap" | "spray" | "pump" | "funnel"> = {
   "pet-siseler": "bottle",
   "plastik-siseler": "bottle",
@@ -197,6 +207,12 @@ function LoadingFallback() {
   );
 }
 
+/**
+ * Interactive 3D product viewer using React Three Fiber.
+ * Renders a procedural 3D model based on product category with real-time color changes.
+ * Features: OrbitControls, auto-rotation, fullscreen toggle, environment lighting.
+ * Should be loaded via dynamic import with `ssr: false` (requires WebGL).
+ */
 export default function Product3DViewer({ product, selectedColor }: Props) {
   const { dict } = useLocale();
   const [isFullscreen, setIsFullscreen] = useState(false);

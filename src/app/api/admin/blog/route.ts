@@ -2,6 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
 import { checkAuth } from "@/lib/auth";
 
+/**
+ * GET /api/admin/blog
+ *
+ * Lists all blog posts ordered by date descending.
+ * Returns an empty array when Supabase is not configured.
+ *
+ * @returns {{ posts: BlogPost[], source: "static" | "supabase" }}
+ * @auth Admin cookie required
+ */
 export async function GET(request: NextRequest) {
   const authError = checkAuth(request);
   if (authError) return authError;
@@ -19,6 +28,16 @@ export async function GET(request: NextRequest) {
   return NextResponse.json({ posts: data, source: "supabase" });
 }
 
+/**
+ * POST /api/admin/blog
+ *
+ * Creates a new blog post. Content can be a string (split by double newlines) or an array.
+ * Requires Supabase to be configured.
+ *
+ * @body {{ slug: string, title: string, excerpt?: string, content: string | string[], category?: string, date?: string, readTime?: string, featured?: boolean }}
+ * @returns {{ post: BlogPost }}
+ * @auth Admin cookie required
+ */
 export async function POST(request: NextRequest) {
   const authError = checkAuth(request);
   if (authError) return authError;

@@ -3,6 +3,15 @@ import { getSupabase } from "@/lib/supabase";
 import { checkAuth } from "@/lib/auth";
 import { rateLimit } from "@/lib/rate-limit";
 
+/**
+ * GET /api/orders
+ *
+ * Lists orders with pagination. Requires admin authentication.
+ * Includes related order items and profile information.
+ *
+ * @query {{ status?: string, profile_id?: string, page?: number, limit?: number }}
+ * @returns {{ success: boolean, data: Order[], pagination: { page: number, limit: number, total: number, totalPages: number } }}
+ */
 export async function GET(request: NextRequest) {
   const authError = checkAuth(request);
   if (authError) return authError;
@@ -50,6 +59,16 @@ export async function GET(request: NextRequest) {
   }
 }
 
+/**
+ * POST /api/orders
+ *
+ * Creates a new order with line items. Calculates subtotal, tax (20%), and total.
+ * Records initial status in order history.
+ *
+ * @body {{ profile_id: string, items: { product_id?: string, product_name: string, quantity: number, unit_price: number, notes?: string }[], shipping_address?: string, billing_address?: string, payment_method?: string, notes?: string }}
+ * @returns {{ success: boolean, data?: { id: string, order_number: string }, message?: string, error?: string }}
+ * @rateLimit 5 requests per 1 minute per IP
+ */
 export async function POST(request: NextRequest) {
   try {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";

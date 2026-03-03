@@ -2,6 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
 import { checkAuth } from "@/lib/auth";
 
+/**
+ * GET /api/orders/[id]
+ *
+ * Retrieves a single order by ID with its items, status history, and profile details.
+ * Requires admin authentication.
+ *
+ * @returns {{ success: boolean, data?: Order, error?: string }}
+ */
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -29,6 +37,16 @@ export async function GET(
   }
 }
 
+/**
+ * PATCH /api/orders/[id]
+ *
+ * Updates an existing order's status, tracking number, admin notes, or payment status.
+ * Records a status history entry when the order status changes.
+ * Requires admin authentication.
+ *
+ * @body {{ status?: string, tracking_number?: string, admin_notes?: string, payment_status?: string }}
+ * @returns {{ success: boolean, data?: Order, error?: string }}
+ */
 export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }

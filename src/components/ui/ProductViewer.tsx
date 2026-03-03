@@ -8,11 +8,15 @@ import type { Product } from "@/types/product";
 import type { CategorySlug } from "@/types/product";
 import { useLocale } from "@/contexts/LocaleContext";
 
+/** Props for the ProductViewer (2D SVG) component. */
 interface Props {
+  /** Product data including category, colors, inStock, and featured flags. */
   product: Product;
+  /** Callback fired when user selects a different color. */
   onColorChange?: (color: string) => void;
 }
 
+/** Maps product category slugs to SVG silhouette types (bottle or cap). */
 const categoryToSvgType: Record<CategorySlug, "bottle" | "cap"> = {
   "pet-siseler": "bottle",
   "plastik-siseler": "bottle",
@@ -24,6 +28,11 @@ const categoryToSvgType: Record<CategorySlug, "bottle" | "cap"> = {
   "huniler": "cap",
 };
 
+/**
+ * Lightweight 2D product viewer using SVG rendering with Framer Motion animations.
+ * Features: color picker with live preview, zoom toggle, reset controls.
+ * Memoized to prevent unnecessary re-renders.
+ */
 const ProductViewer = memo(function ProductViewer({ product, onColorChange }: Props) {
   const { dict } = useLocale();
   const [selectedColor, setSelectedColor] = useState(product.colors[0] || "Şeffaf");
