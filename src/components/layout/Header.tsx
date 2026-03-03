@@ -26,6 +26,8 @@ import {
 import clsx from "clsx";
 import { useLocale } from "@/contexts/LocaleContext";
 import { useTheme } from "@/contexts/ThemeContext";
+import { allLocales, localeNames } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
 import SearchModal from "@/components/ui/SearchModal";
 import {
   NavigationMenu,
@@ -153,22 +155,38 @@ export default function Header() {
               {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
             </Button>
             <span className="h-3 w-px bg-primary-foreground/20" />
-            <div className="flex items-center gap-px rounded-md border border-primary-foreground/15 p-px">
-              <button
-                onClick={() => setLocale("tr")}
-                className={clsx("rounded px-2 py-0.5 text-xs font-semibold transition-all duration-200", locale === "tr" ? "bg-primary-foreground text-primary" : "text-primary-foreground/60 hover:text-primary-foreground")}
-              >
-                TR
-              </button>
-              <button
-                onClick={() => setLocale("en")}
-                className={clsx("rounded px-2 py-0.5 text-xs font-semibold transition-all duration-200", locale === "en" ? "bg-primary-foreground text-primary" : "text-primary-foreground/60 hover:text-primary-foreground")}
-              >
-                EN
-              </button>
-            </div>
+            <select
+              value={locale}
+              onChange={(e) => setLocale(e.target.value as Locale)}
+              className="rounded-md border border-primary-foreground/15 bg-transparent px-2 py-0.5 text-xs font-semibold text-primary-foreground/80 outline-none transition-colors hover:text-primary-foreground [&>option]:bg-primary [&>option]:text-primary-foreground"
+            >
+              {allLocales.map((l) => (
+                <option key={l} value={l}>
+                  {localeNames[l]}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
+      </div>
+
+      {/* Mobile sticky phone bar */}
+      <div className="flex items-center justify-between border-b border-border/50 bg-primary px-4 py-1.5 text-[12px] text-primary-foreground lg:hidden">
+        <a href="tel:+902125498703" className="inline-flex items-center gap-1.5 font-medium">
+          <Phone size={12} />
+          0212 549 87 03
+        </a>
+        <select
+          value={locale}
+          onChange={(e) => setLocale(e.target.value as Locale)}
+          className="rounded border border-primary-foreground/20 bg-transparent px-1.5 py-0.5 text-[11px] font-semibold text-primary-foreground/80 outline-none [&>option]:bg-primary [&>option]:text-primary-foreground"
+        >
+          {allLocales.map((l) => (
+            <option key={l} value={l}>
+              {l.toUpperCase()}
+            </option>
+          ))}
+        </select>
       </div>
 
       {/* Main Header */}
@@ -366,20 +384,17 @@ export default function Header() {
                 <button onClick={toggleTheme} className="rounded-md p-1.5 text-muted-foreground hover:bg-secondary">
                   {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
                 </button>
-                <div className="flex items-center gap-px rounded-md border border-border p-px">
-                  <button
-                    onClick={() => setLocale("tr")}
-                    className={clsx("rounded px-2 py-0.5 text-[11px] font-semibold transition-all", locale === "tr" ? "bg-primary text-primary-foreground" : "text-muted-foreground")}
-                  >
-                    TR
-                  </button>
-                  <button
-                    onClick={() => setLocale("en")}
-                    className={clsx("rounded px-2 py-0.5 text-[11px] font-semibold transition-all", locale === "en" ? "bg-primary text-primary-foreground" : "text-muted-foreground")}
-                  >
-                    EN
-                  </button>
-                </div>
+                <select
+                  value={locale}
+                  onChange={(e) => setLocale(e.target.value as Locale)}
+                  className="rounded-md border border-border bg-background px-2 py-0.5 text-[11px] font-semibold text-foreground outline-none"
+                >
+                  {allLocales.map((l) => (
+                    <option key={l} value={l}>
+                      {localeNames[l]}
+                    </option>
+                  ))}
+                </select>
               </div>
             </SheetTitle>
           </SheetHeader>

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { timingSafeCompare } from "@/lib/auth";
 
-export const locales = ["tr", "en"] as const;
+export const locales = ["tr", "en", "ar", "ru", "fr", "de", "es", "zh", "ja", "ko", "pt"] as const;
 export const defaultLocale = "tr";
 
 export function proxy(request: NextRequest) {

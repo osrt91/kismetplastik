@@ -1,0 +1,11 @@
+{
+  "name": "Kismet Plastik - Lead Notification",
+  "nodes": [],
+  "connections": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "description": "Triggered when a new sales lead is captured. Notifies the sales team and adds the lead to the CRM pipeline."
+  }
+}

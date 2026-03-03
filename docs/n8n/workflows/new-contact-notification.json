@@ -1,0 +1,11 @@
+{
+  "name": "Kismet Plastik - New Contact Notification",
+  "nodes": [],
+  "connections": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "description": "Triggered when a new contact form submission is received. Sends a notification email and logs the inquiry."
+  }
+}

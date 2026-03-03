@@ -581,5 +581,6 @@ button:hover .bounce-on-hover {
   }
   body {
     @apply bg-background text-foreground;
+    overflow-wrap: break-word;
   }
 }

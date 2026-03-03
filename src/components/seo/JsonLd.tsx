@@ -26,6 +26,8 @@ export function LocalBusinessJsonLd() {
       opens: "08:00",
       closes: "18:00",
     },
+    foundingDate: "1969",
+    numberOfEmployees: { "@type": "QuantitativeValue", minValue: 200 },
     sameAs: [],
     priceRange: "$$",
     image: "https://www.kismetplastik.com/images/logo.jpg",
@@ -51,7 +53,7 @@ export function OrganizationJsonLd() {
       "@type": "ContactPoint",
       telephone: "+902125498703",
       contactType: "sales",
-      availableLanguage: ["Turkish", "English"],
+      availableLanguage: ["Turkish", "English", "Arabic", "Russian", "French", "German", "Spanish", "Chinese", "Japanese", "Korean", "Portuguese"],
     },
     sameAs: [],
   };

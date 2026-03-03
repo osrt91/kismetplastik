@@ -2,9 +2,11 @@
 
 import { memo } from "react";
 import Link from "@/components/ui/LocaleLink";
-import { ArrowRight, Package } from "lucide-react";
+import { ArrowRight, Package, GitCompareArrows } from "lucide-react";
 import { Product, CategorySlug } from "@/types/product";
 import { useLocale } from "@/contexts/LocaleContext";
+import StockBadge from "@/components/ui/StockBadge";
+import { useCompareStore } from "@/store/useCompareStore";
 
 const categoryConfig: Record<
   CategorySlug,
@@ -40,8 +42,29 @@ const colorHexMap: Record<string, string> = {
 };
 
 const ProductCard = memo(function ProductCard({ product }: { product: Product }) {
-  const { dict } = useLocale();
+  const { locale, dict } = useLocale();
   const cat = categoryConfig[product.category];
+  const { addItem, removeItem, isInCompare } = useCompareStore();
+  const inCompare = isInCompare(product.slug);
+
+  const handleCompareToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (inCompare) {
+      removeItem(product.slug);
+    } else {
+      addItem({
+        slug: product.slug,
+        name: product.name,
+        category: product.category,
+        volume: product.volume,
+        weight: product.weight,
+        neckDiameter: product.neckDiameter,
+        material: product.material,
+        colors: product.colors,
+      });
+    }
+  };
 
   return (
     <Link
@@ -86,11 +109,13 @@ const ProductCard = memo(function ProductCard({ product }: { product: Product })
             {dict.components.featuredBadge}
           </span>
         )}
-        {!product.inStock && (
-          <span className="absolute right-3 top-3 rounded-full bg-red-500 px-2.5 py-1 text-[10px] font-bold text-white">
-            {dict.components.outOfStock}
-          </span>
-        )}
+        <div className="absolute right-3 top-3">
+          <StockBadge
+            status={product.inStock ? "in_stock" : "out_of_stock"}
+            size="sm"
+            locale={locale}
+          />
+        </div>
 
         <span
           className="absolute bottom-3 left-3 rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-wide transition-transform duration-300 group-hover:scale-110"
@@ -155,13 +180,26 @@ const ProductCard = memo(function ProductCard({ product }: { product: Product })
           <span className="text-xs text-neutral-400">
             {dict.components.minOrderText.replace("{count}", product.minOrder.toLocaleString("tr-TR"))}
           </span>
-          <span className="flex items-center gap-1 text-sm font-semibold text-primary-700 transition-colors group-hover:text-accent-600">
-            {dict.components.detail}
-            <ArrowRight
-              size={14}
-              className="transition-transform duration-300 group-hover:translate-x-1"
-            />
-          </span>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleCompareToggle}
+              className={`flex items-center gap-1 rounded-md px-2 py-1 text-[10px] font-semibold transition-all ${
+                inCompare
+                  ? "bg-amber-100 text-amber-700"
+                  : "bg-neutral-100 text-neutral-500 hover:bg-primary-50 hover:text-primary-700"
+              }`}
+              title={locale === "tr" ? "Karşılaştır" : "Compare"}
+            >
+              <GitCompareArrows size={12} />
+            </button>
+            <span className="flex items-center gap-1 text-sm font-semibold text-primary-700 transition-colors group-hover:text-accent-600">
+              {dict.components.detail}
+              <ArrowRight
+                size={14}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </span>
+          </div>
         </div>
       </div>
 

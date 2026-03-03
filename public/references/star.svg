@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="200" height="80">
+  <rect width="200" height="80" rx="8" fill="#f8f8f8" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="100" y="36" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#002060">Star</text>
+  <text x="100" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">Otel Grubu</text>
+</svg>

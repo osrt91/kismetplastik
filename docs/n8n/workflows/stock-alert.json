@@ -1,0 +1,11 @@
+{
+  "name": "Kismet Plastik - Stock Alert",
+  "nodes": [],
+  "connections": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "description": "Triggered when product stock falls below the configured threshold. Alerts the warehouse and procurement teams."
+  }
+}

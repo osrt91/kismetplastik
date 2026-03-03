@@ -1,1 +1,5 @@
-export default function Page() { return <div>Sayfa</div>; } 
+import SampleRequestClient from "@/components/pages/SampleRequestClient";
+
+export default function Page() {
+  return <SampleRequestClient />;
+}

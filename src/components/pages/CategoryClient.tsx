@@ -11,6 +11,7 @@ import {
 import { CategorySlug, SortOption } from "@/types/product";
 import ProductCard from "@/components/ui/ProductCard";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
+import CompareBar from "@/components/ui/CompareBar";
 import { useLocale } from "@/contexts/LocaleContext";
 
 export default function CategoryClient() {
@@ -132,6 +133,7 @@ export default function CategoryClient() {
           </div>
         )}
       </div>
+      <CompareBar />
     </section>
   );
 }

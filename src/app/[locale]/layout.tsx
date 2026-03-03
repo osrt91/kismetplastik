@@ -25,6 +25,7 @@ const WhatsAppButton = dynamic(() => import("@/components/ui/WhatsAppButton"));
 const ScrollToTop = dynamic(() => import("@/components/ui/ScrollToTop"));
 const CookieBanner = dynamic(() => import("@/components/ui/CookieBanner"));
 const InstallPrompt = dynamic(() => import("@/components/ui/InstallPrompt"));
+const GoogleAnalytics = dynamic(() => import("@/components/analytics/GoogleAnalytics"));
 import { LocalBusinessJsonLd, OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { locales } from "@/proxy";
 
@@ -113,6 +114,15 @@ export async function generateMetadata({
       languages: {
         tr: "https://www.kismetplastik.com/tr",
         en: "https://www.kismetplastik.com/en",
+        ar: "https://www.kismetplastik.com/ar",
+        ru: "https://www.kismetplastik.com/ru",
+        fr: "https://www.kismetplastik.com/fr",
+        de: "https://www.kismetplastik.com/de",
+        es: "https://www.kismetplastik.com/es",
+        zh: "https://www.kismetplastik.com/zh",
+        ja: "https://www.kismetplastik.com/ja",
+        ko: "https://www.kismetplastik.com/ko",
+        pt: "https://www.kismetplastik.com/pt",
       },
     },
   };
@@ -121,7 +131,7 @@ export async function generateMetadata({
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
 
-  if (!locales.includes(locale as "tr" | "en")) {
+  if (!locales.includes(locale as (typeof locales)[number])) {
     notFound();
   }
 
@@ -165,7 +175,8 @@ export default async function LocaleLayout({ children, params }: Props) {
         <meta name="theme-color" content="#002060" />
         <link rel="apple-touch-icon" sizes="192x192" href="/images/icon-192.png" />
       </head>
-      <body className="antialiased">
+      <body className="antialiased" dir={locale === "ar" ? "rtl" : "ltr"}>
+        <GoogleAnalytics />
         <a
           href="#main-content"
           className="fixed left-4 top-4 z-[100] -translate-y-20 rounded-lg bg-primary-900 px-4 py-2 text-sm font-bold text-white shadow-lg transition-transform focus:translate-y-0"

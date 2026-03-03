@@ -20,11 +20,12 @@ import StickyQuoteBar from "@/components/ui/StickyQuoteBar";
 import RecentProducts from "@/components/sections/RecentProducts";
 import { useRecentProducts } from "@/hooks/useRecentProducts";
 import { useLocale } from "@/contexts/LocaleContext";
+import StockBadge from "@/components/ui/StockBadge";
 
 const Product3DViewer = lazy(() => import("@/components/ui/Product3DViewer"));
 
 export default function ProductDetailClient() {
-  const { dict } = useLocale();
+  const { locale, dict } = useLocale();
   const p = dict.products;
   const cm = dict.common;
   const { addRecent } = useRecentProducts();
@@ -160,16 +161,11 @@ export default function ProductDetailClient() {
                 <span className="rounded-lg bg-primary-50 px-3 py-1.5 text-sm font-semibold text-primary-700">
                   {product.material}
                 </span>
-                {product.inStock ? (
-                  <span className="flex items-center gap-1 rounded-lg bg-success/10 px-3 py-1.5 text-sm font-semibold text-success">
-                    <CheckCircle2 size={14} />
-                    {cm.inStock}
-                  </span>
-                ) : (
-                  <span className="rounded-lg bg-destructive/10 px-3 py-1.5 text-sm font-semibold text-destructive">
-                    {cm.outOfStock}
-                  </span>
-                )}
+                <StockBadge
+                  status={product.inStock ? "in_stock" : "out_of_stock"}
+                  size="md"
+                  locale={locale}
+                />
               </div>
 
               <div className="mb-6 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
@@ -196,7 +192,7 @@ export default function ProductDetailClient() {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row">
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link
                   href="/teklif-al"
                   className="group inline-flex items-center justify-center gap-2 rounded-xl bg-accent-500 px-6 py-3.5 text-base font-bold text-primary-900 shadow-lg shadow-accent-500/25 transition-all duration-300 hover:bg-accent-400 hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98]"
@@ -204,6 +200,14 @@ export default function ProductDetailClient() {
                   <FileText size={18} />
                   {p.requestQuoteFor}
                 </Link>
+                {!product.inStock && (
+                  <Link
+                    href="/on-siparis"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-base font-bold text-white shadow-lg transition-all duration-300 hover:bg-blue-500 hover:-translate-y-0.5 active:scale-[0.98]"
+                  >
+                    {locale === "tr" ? "Ön Sipariş Ver" : "Pre-Order"}
+                  </Link>
+                )}
                 <a
                   href="tel:+902125498703"
                   className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-primary-900 px-6 py-3.5 text-base font-semibold text-primary-900 transition-all duration-300 hover:bg-primary-900 hover:text-white"

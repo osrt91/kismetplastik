@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { categories, products } from "@/data/products";
 
 const BASE_URL = "https://www.kismetplastik.com";
-const locales = ["tr", "en"] as const;
+const locales = ["tr", "en", "ar", "ru", "fr", "de", "es", "zh", "ja", "ko", "pt"] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
@@ -28,6 +28,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/referanslar", changeFrequency: "monthly" as const, priority: 0.5 },
     { path: "/numune-talep", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/ambalaj-sozlugu", changeFrequency: "monthly" as const, priority: 0.4 },
+    { path: "/tarihce", changeFrequency: "yearly" as const, priority: 0.5 },
+    { path: "/sertifikalar", changeFrequency: "monthly" as const, priority: 0.6 },
+    { path: "/kaynaklar", changeFrequency: "monthly" as const, priority: 0.6 },
+    { path: "/fabrika", changeFrequency: "monthly" as const, priority: 0.5 },
+    { path: "/on-siparis", changeFrequency: "monthly" as const, priority: 0.5 },
+    { path: "/karsilastir", changeFrequency: "monthly" as const, priority: 0.3 },
   ];
 
   const staticPages = staticPaths.flatMap(({ path, changeFrequency, priority }) =>
