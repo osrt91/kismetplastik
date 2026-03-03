@@ -84,10 +84,13 @@ export default function HakkimizdaPage() {
           <AnimateOnScroll animation="fade-right">
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-gradient-to-br from-primary-100 to-primary-50">
               <div className="absolute inset-0 flex items-center justify-center">
-                <img
+                <Image
                   src="/images/logo2.svg"
                   alt="Kısmet Plastik"
+                  width={160}
+                  height={160}
                   className="h-40 w-40 drop-shadow-2xl"
+                  unoptimized
                 />
               </div>
             </div>

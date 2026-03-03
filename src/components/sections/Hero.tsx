@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "@/components/ui/LocaleLink";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Shield, Truck, Award } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -216,10 +217,14 @@ export default function Hero() {
               {/* Mascot */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative flex h-72 w-72 items-center justify-center rounded-3xl border border-white/10 bg-white/[0.07] shadow-2xl backdrop-blur-md transition-transform duration-500 hover:scale-105">
-                  <img
+                  <Image
                     src="/images/logo2.svg"
                     alt="Kısmet Plastik"
+                    width={160}
+                    height={160}
                     className="h-40 w-40 brightness-0 invert drop-shadow-2xl"
+                    priority
+                    unoptimized
                   />
                 </div>
               </div>

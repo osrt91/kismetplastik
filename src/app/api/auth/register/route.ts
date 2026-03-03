@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { rateLimit } from "@/lib/rate-limit";
+import { registerSchema, getZodErrorMessage } from "@/lib/validations";
 
 export async function POST(request: NextRequest) {
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
@@ -13,23 +14,17 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const body = await request.json();
-    const { email, password, full_name, phone, company_name, tax_number, tax_office, company_address, city, district } = body;
+    const raw = await request.json();
+    const parsed = registerSchema.safeParse(raw);
 
-    if (!email || !password || !full_name || !company_name) {
+    if (!parsed.success) {
       return NextResponse.json(
-        { success: false, error: "E-posta, şifre, ad soyad ve firma adı zorunludur." },
+        { success: false, error: getZodErrorMessage(parsed.error) },
         { status: 400 }
       );
     }
 
-    if (password.length < 8) {
-      return NextResponse.json(
-        { success: false, error: "Şifre en az 8 karakter olmalıdır." },
-        { status: 400 }
-      );
-    }
-
+    const body = parsed.data;
     const response = NextResponse.json({ success: true });
 
     const supabase = createServerClient(
@@ -50,10 +45,10 @@ export async function POST(request: NextRequest) {
     );
 
     const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
+      email: body.email,
+      password: body.password,
       options: {
-        data: { full_name },
+        data: { full_name: body.full_name },
       },
     });
 
@@ -72,14 +67,14 @@ export async function POST(request: NextRequest) {
 
     if (data.user) {
       await supabase.from("profiles").update({
-        full_name,
-        phone: phone || null,
-        company_name,
-        tax_number: tax_number || null,
-        tax_office: tax_office || null,
-        company_address: company_address || null,
-        city: city || null,
-        district: district || null,
+        full_name: body.full_name,
+        phone: body.phone || null,
+        company_name: body.company_name,
+        tax_number: body.tax_number || null,
+        tax_office: body.tax_office || null,
+        company_address: body.company_address || null,
+        city: body.city || null,
+        district: body.district || null,
         role: "dealer",
         is_approved: false,
       }).eq("id", data.user.id);

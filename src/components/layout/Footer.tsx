@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "@/components/ui/LocaleLink";
+import Image from "next/image";
 import {
   Phone,
   Mail,
@@ -73,10 +74,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-4">
             <Link href="/" className="mb-5 inline-flex items-center gap-2.5">
-              <img
+              <Image
                 src="/images/logo2.svg"
                 alt="Kısmet Plastik"
+                width={40}
+                height={40}
                 className="h-10 w-10 rounded-lg bg-white/10 p-1 brightness-0 invert"
+                unoptimized
               />
               <span className="text-lg font-bold tracking-tight">
                 Kısmet Plastik

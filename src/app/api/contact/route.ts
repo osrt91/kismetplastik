@@ -1,25 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendContactEmail } from "@/lib/email";
 import { rateLimit } from "@/lib/rate-limit";
-
-interface ContactFormData {
-  name: string;
-  email: string;
-  phone?: string;
-  company?: string;
-  subject: string;
-  message: string;
-}
-
-function validate(data: ContactFormData): string | null {
-  if (!data.name?.trim()) return "Ad Soyad alanı zorunludur.";
-  if (!data.email?.trim()) return "E-posta alanı zorunludur.";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return "Geçerli bir e-posta adresi giriniz.";
-  if (!data.subject?.trim()) return "Konu seçimi zorunludur.";
-  if (!data.message?.trim()) return "Mesaj alanı zorunludur.";
-  if (data.message.trim().length < 10) return "Mesaj en az 10 karakter olmalıdır.";
-  return null;
-}
+import { contactSchema, getZodErrorMessage } from "@/lib/validations";
 
 export async function POST(request: NextRequest) {
   try {
@@ -32,12 +14,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const body = (await request.json()) as ContactFormData;
-    const error = validate(body);
+    const raw = await request.json();
+    const parsed = contactSchema.safeParse(raw);
 
-    if (error) {
-      return NextResponse.json({ success: false, error }, { status: 400 });
+    if (!parsed.success) {
+      return NextResponse.json({ success: false, error: getZodErrorMessage(parsed.error) }, { status: 400 });
     }
+
+    const body = parsed.data;
 
     const result = await sendContactEmail(body);
     if (!result.ok) {

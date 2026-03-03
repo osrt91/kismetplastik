@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 import { rateLimit } from "@/lib/rate-limit";
+import { chatSchema, getZodErrorMessage } from "@/lib/validations";
 
 const SYSTEM_PROMPT = `Sen Kısmet Plastik'in AI asistanısın. Kısmet Plastik, 1969'dan beri kozmetik ambalaj sektöründe faaliyet gösteren, Türkiye'nin önde gelen üreticilerinden biridir.
 
@@ -37,9 +38,6 @@ const SYSTEM_PROMPT = `Sen Kısmet Plastik'in AI asistanısın. Kısmet Plastik,
 - Her zaman profesyonel ve dostça ol
 - Bilmediğin konularda "Bu konuda detaylı bilgi için müşteri temsilcimizle iletişime geçmenizi öneririm" de`;
 
-const VALID_ROLES = new Set(["user", "assistant"]);
-const VALID_LOCALES = new Set(["tr", "en"]);
-
 export async function POST(request: NextRequest) {
   const apiKey = process.env.OPENAI_API_KEY;
 
@@ -63,30 +61,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const body = await request.json();
-    const { messages, locale } = body;
+    const raw = await request.json();
+    const parsed = chatSchema.safeParse(raw);
 
-    if (!messages || !Array.isArray(messages) || messages.length === 0) {
-      return NextResponse.json({ error: "Mesaj gerekli" }, { status: 400 });
+    if (!parsed.success) {
+      return NextResponse.json({ error: getZodErrorMessage(parsed.error) }, { status: 400 });
     }
 
-    const safeLocale = VALID_LOCALES.has(locale) ? locale : "tr";
-
-    const validMessages = messages
-      .filter(
-        (m: unknown) =>
-          typeof m === "object" &&
-          m !== null &&
-          typeof (m as Record<string, unknown>).role === "string" &&
-          VALID_ROLES.has((m as Record<string, unknown>).role as string) &&
-          typeof (m as Record<string, unknown>).content === "string" &&
-          ((m as Record<string, unknown>).content as string).length <= 2000
-      )
-      .slice(-10);
-
-    if (validMessages.length === 0) {
-      return NextResponse.json({ error: "Geçerli mesaj bulunamadı" }, { status: 400 });
-    }
+    const { messages, locale } = parsed.data;
+    const safeLocale = locale || "tr";
+    const validMessages = messages;
 
     const openai = new OpenAI({ apiKey });
 

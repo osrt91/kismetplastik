@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase-server";
 import { checkAuth } from "@/lib/auth";
+import { rateLimit } from "@/lib/rate-limit";
+import { galleryUpdateSchema, getZodErrorMessage } from "@/lib/validations";
 
 export async function DELETE(
   request: NextRequest,
@@ -9,6 +11,12 @@ export async function DELETE(
   try {
     const authError = checkAuth(request);
     if (authError) return authError;
+
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const { ok: allowed } = rateLimit(`gallery-delete:${ip}`, { limit: 20, windowMs: 60_000 });
+    if (!allowed) {
+      return NextResponse.json({ success: false, error: "Çok fazla istek." }, { status: 429 });
+    }
 
     const { id } = await params;
     const supabase = await createSupabaseServerClient();
@@ -49,8 +57,21 @@ export async function PATCH(
     const authError = checkAuth(request);
     if (authError) return authError;
 
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const { ok: allowed } = rateLimit(`gallery-update:${ip}`, { limit: 20, windowMs: 60_000 });
+    if (!allowed) {
+      return NextResponse.json({ success: false, error: "Çok fazla istek." }, { status: 429 });
+    }
+
     const { id } = await params;
-    const body = await request.json();
+    const raw = await request.json();
+    const parsed = galleryUpdateSchema.safeParse(raw);
+
+    if (!parsed.success) {
+      return NextResponse.json({ success: false, error: getZodErrorMessage(parsed.error) }, { status: 400 });
+    }
+
+    const body = parsed.data;
     const supabase = await createSupabaseServerClient();
 
     const updates: Record<string, unknown> = {};

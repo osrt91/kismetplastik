@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "@/components/ui/LocaleLink";
+import Image from "next/image";
 import {
   Phone,
   Mail,
@@ -176,7 +177,7 @@ export default function Header() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 lg:px-6">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <img src="/images/logo1.svg" alt="Kısmet Plastik" className="h-8 w-auto lg:h-10 dark:brightness-0 dark:invert" />
+            <Image src="/images/logo1.svg" alt="Kısmet Plastik" width={120} height={40} className="h-8 w-auto lg:h-10 dark:brightness-0 dark:invert" unoptimized />
           </Link>
 
           {/* Desktop Nav — Mega Menu */}
@@ -359,7 +360,7 @@ export default function Header() {
           <SheetHeader className="border-b border-border px-5 py-4">
             <SheetTitle className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <img src="/images/logo2.svg" alt="Kısmet Plastik" className="h-9 w-9 dark:brightness-0 dark:invert" />
+                <Image src="/images/logo2.svg" alt="Kısmet Plastik" width={36} height={36} className="h-9 w-9 dark:brightness-0 dark:invert" unoptimized />
                 <span className="text-sm font-bold text-foreground">Kısmet Plastik</span>
               </div>
               <div className="flex items-center gap-2">

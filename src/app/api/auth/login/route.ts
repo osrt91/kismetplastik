@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { rateLimit } from "@/lib/rate-limit";
+import { loginSchema, getZodErrorMessage } from "@/lib/validations";
 
 export async function POST(request: NextRequest) {
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
@@ -13,14 +14,17 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { email, password } = await request.json();
+    const raw = await request.json();
+    const parsed = loginSchema.safeParse(raw);
 
-    if (!email || !password) {
+    if (!parsed.success) {
       return NextResponse.json(
-        { success: false, error: "E-posta ve şifre gereklidir." },
+        { success: false, error: getZodErrorMessage(parsed.error) },
         { status: 400 }
       );
     }
+
+    const { email, password } = parsed.data;
 
     const response = NextResponse.json({ success: true });
 

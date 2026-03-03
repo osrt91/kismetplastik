@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase-server";
 import { checkAuth } from "@/lib/auth";
 import { rateLimit } from "@/lib/rate-limit";
+import { galleryUploadSchema, getZodErrorMessage, validateFileType, validateFileSize, validateFileMagicBytes } from "@/lib/validations";
 
 export async function GET(request: NextRequest) {
   try {
@@ -46,39 +47,47 @@ export async function POST(request: NextRequest) {
 
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
-    const category = formData.get("category") as string;
-    const titleTr = formData.get("title_tr") as string;
-    const titleEn = formData.get("title_en") as string;
-    const descTr = (formData.get("description_tr") as string) || null;
-    const descEn = (formData.get("description_en") as string) || null;
-    const displayOrder = parseInt(formData.get("display_order") as string) || 0;
 
     if (!file) {
       return NextResponse.json({ success: false, error: "Dosya gerekli." }, { status: 400 });
     }
 
-    if (!["uretim", "urunler", "etkinlikler"].includes(category)) {
-      return NextResponse.json({ success: false, error: "Geçersiz kategori." }, { status: 400 });
+    // Validate metadata with Zod
+    const metadataResult = galleryUploadSchema.safeParse({
+      category: formData.get("category"),
+      title_tr: formData.get("title_tr"),
+      title_en: formData.get("title_en") || undefined,
+      description_tr: formData.get("description_tr") || undefined,
+      description_en: formData.get("description_en") || undefined,
+      display_order: formData.get("display_order") ? parseInt(formData.get("display_order") as string) : 0,
+    });
+
+    if (!metadataResult.success) {
+      return NextResponse.json({ success: false, error: getZodErrorMessage(metadataResult.error) }, { status: 400 });
     }
 
-    if (!titleTr?.trim()) {
-      return NextResponse.json({ success: false, error: "Başlık (TR) gerekli." }, { status: 400 });
+    const metadata = metadataResult.data;
+
+    // Validate file type (MIME)
+    if (!validateFileType(file.type)) {
+      return NextResponse.json({ success: false, error: "Desteklenmeyen dosya formatı. JPEG, PNG, WebP, SVG veya GLTF kullanın." }, { status: 400 });
     }
 
-    const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
-    if (!allowedTypes.includes(file.type)) {
-      return NextResponse.json({ success: false, error: "Sadece JPEG, PNG, WebP desteklenir." }, { status: 400 });
-    }
-
-    if (file.size > 10 * 1024 * 1024) {
+    // Validate file size
+    if (!validateFileSize(file.size)) {
       return NextResponse.json({ success: false, error: "Dosya boyutu 10MB'ı aşamaz." }, { status: 400 });
+    }
+
+    const buffer = Buffer.from(await file.arrayBuffer());
+
+    // Validate magic bytes to prevent MIME spoofing
+    if (!validateFileMagicBytes(buffer, file.type)) {
+      return NextResponse.json({ success: false, error: "Dosya içeriği belirtilen formatla uyuşmuyor." }, { status: 400 });
     }
 
     const supabase = await createSupabaseServerClient();
     const ext = file.name.split(".").pop() || "jpg";
-    const storagePath = `${category}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-
-    const buffer = Buffer.from(await file.arrayBuffer());
+    const storagePath = `${metadata.category}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
     const { error: uploadError } = await supabase.storage
       .from("gallery")
       .upload(storagePath, buffer, {
@@ -97,14 +106,14 @@ export async function POST(request: NextRequest) {
     const { data, error: insertError } = await supabase
       .from("gallery_images")
       .insert({
-        category,
-        title_tr: titleTr.trim(),
-        title_en: (titleEn?.trim() || titleTr.trim()),
-        description_tr: descTr?.trim() || null,
-        description_en: descEn?.trim() || null,
+        category: metadata.category,
+        title_tr: metadata.title_tr.trim(),
+        title_en: (metadata.title_en?.trim() || metadata.title_tr.trim()),
+        description_tr: metadata.description_tr?.trim() || null,
+        description_en: metadata.description_en?.trim() || null,
         image_url: imageUrl,
         storage_path: storagePath,
-        display_order: displayOrder,
+        display_order: metadata.display_order,
       })
       .select()
       .single();

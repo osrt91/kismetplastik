@@ -1,8 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 import { timingSafeCompare } from "@/lib/auth";
+import { rateLimit } from "@/lib/rate-limit";
+import { adminAuthSchema, getZodErrorMessage } from "@/lib/validations";
 
 export async function POST(request: NextRequest) {
-  const { password } = await request.json();
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  const { ok: allowed } = rateLimit(`admin-auth:${ip}`, { limit: 5, windowMs: 300_000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: "Çok fazla giriş denemesi. 5 dakika bekleyip tekrar deneyin." },
+      { status: 429 }
+    );
+  }
+
+  const raw = await request.json();
+  const parsed = adminAuthSchema.safeParse(raw);
+
+  if (!parsed.success) {
+    return NextResponse.json({ error: getZodErrorMessage(parsed.error) }, { status: 400 });
+  }
+
+  const { password } = parsed.data;
   const secret = process.env.ADMIN_SECRET;
 
   if (!secret) {
@@ -12,7 +30,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  if (!password || typeof password !== "string" || !timingSafeCompare(password, secret)) {
+  if (!timingSafeCompare(password, secret)) {
     return NextResponse.json({ error: "Geçersiz şifre" }, { status: 401 });
   }
 
