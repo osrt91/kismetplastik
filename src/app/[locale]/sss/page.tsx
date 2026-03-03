@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
+import { FAQJsonLd } from "@/components/seo/JsonLd";
 
 interface FAQItem {
   question: string;
@@ -130,6 +131,12 @@ export default function SSSPage() {
 
   return (
     <section className="bg-white dark:bg-neutral-900">
+      <FAQJsonLd
+        items={faqData.map((faq) => ({
+          question: faq.question,
+          answer: faq.answer,
+        }))}
+      />
       {/* Hero */}
       <div className="bg-gradient-to-br from-primary-900 via-primary-700 to-primary-900 py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">

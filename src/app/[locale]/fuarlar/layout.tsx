@@ -8,11 +8,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata({
-    path: "/kvkk",
-    titleTr: "KVKK Aydınlatma Metni",
-    titleEn: "Privacy Policy",
-    descTr: "Kısmet Plastik Kozmetik Ambalaj KVKK Aydınlatma Metni. 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında veri işleme politikamız.",
-    descEn: "Kısmet Plastik Cosmetic Packaging privacy policy. Data processing policy under Turkish Personal Data Protection Law No. 6698.",
+    path: "/fuarlar",
+    titleTr: "Fuarlar & Etkinlikler",
+    titleEn: "Trade Fairs & Events",
+    descTr: "Kısmet Plastik'in katıldığı kozmetik ambalaj fuarları ve sektör etkinlikleri. Cosmoprof, BeautyWorld ve daha fazlası.",
+    descEn: "Cosmetic packaging trade fairs and industry events attended by Kısmet Plastik. Cosmoprof, BeautyWorld and more.",
     locale,
   });
 }
