@@ -250,3 +250,34 @@ Copy `.env.example` to `.env.local`:
 8. **Styling**: Use Tailwind utility classes. Reference brand CSS variables (e.g., `text-primary-900`, `bg-accent-500`). Use `cn()` for conditional class merging.
 9. **No test suite**: There are no tests currently. Do not add test files unless explicitly requested.
 10. **ESLint**: Uses `eslint-config-next` with core-web-vitals and TypeScript rules. Run `npm run lint` to verify.
+
+## B2B DÖNÜŞÜM HEDEFİ
+
+Mevcut B2C bilgi sitesi tam entegre B2B platforma dönüşecek:
+
+- B2B müşteri portalı (auth zorunlu)
+- Sipariş ve teklif yönetim sistemi
+- 2D/3D ürün görselleştirici (Three.js)
+- Hacim bazlı fiyatlandırma
+
+## YENİ ROUTE YAPISI (Planlanan)
+
+- `app/(public)/` — herkese açık sayfalar
+- `app/(portal)/` — B2B portal (auth zorunlu)
+- `app/(admin)/` — admin panel (role: admin)
+- `app/auth/` — login, register, callback
+
+## TASARIM SİSTEMİ (Hedef)
+
+- Renk: Navy (`#0A1628`) + Amber (`#F59E0B`) + Cream (`#FAFAF7`)
+- Font: Fraunces (display), Instrument Sans (body), JetBrains Mono (mono)
+- Koyu tema visualizer için: `#0D0D0D` background
+
+## YAPMA LİSTESİ
+
+- Inter, Roboto, system-ui font kullanma
+- Purple gradient kullanma
+- Generic `bg-white` + `text-gray` palette kullanma
+- Hassas key'leri `NEXT_PUBLIC_` ile expose etme
+- Gereksiz `"use client"` ekleme
+- Server Component yapılabilecek şeyi Client Component yapma
