@@ -33,6 +33,7 @@ export function useRecentProducts(): {
 
   // Hydration: load from localStorage after mount
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Hydration from localStorage
     setRecentIds(getStoredIds());
   }, []);
 

@@ -73,6 +73,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-4">
             <Link href="/" className="mb-5 inline-flex items-center gap-2.5">
+              {/* eslint-disable-next-line @next/next/no-img-element -- SVG logo */}
               <img
                 src="/images/logo2.svg"
                 alt="Kısmet Plastik"

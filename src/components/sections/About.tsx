@@ -29,6 +29,7 @@ export default function About() {
               <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-gradient-to-br from-primary-100 to-primary-50">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
+                    {/* eslint-disable-next-line @next/next/no-img-element -- SVG logo */}
                     <img
                       src="/images/logo2.svg"
                       alt="Kısmet Plastik"

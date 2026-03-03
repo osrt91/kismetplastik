@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "@/components/ui/LocaleLink";
-import { Cookie, X } from "lucide-react";
+import { Cookie } from "lucide-react";
 import { useLocale } from "@/contexts/LocaleContext";
 
 const STORAGE_KEY = "kismetplastik-cookie-consent";

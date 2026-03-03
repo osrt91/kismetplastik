@@ -80,7 +80,7 @@ export default function Header() {
     { name: nav.references, href: "/referanslar", icon: Sparkles },
   ];
 
-  const sectorChildren = sectors.slice(0, 6).map((s, i) => ({
+  const sectorChildren = sectors.slice(0, 6).map((s) => ({
     name: s.name,
     desc: s.description,
     href: "/sektorler",
@@ -176,6 +176,7 @@ export default function Header() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 lg:px-6">
           {/* Logo */}
           <Link href="/" className="flex items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element -- SVG logo */}
             <img src="/images/logo1.svg" alt="Kısmet Plastik" className="h-8 w-auto lg:h-10 dark:brightness-0 dark:invert" />
           </Link>
 
@@ -359,6 +360,7 @@ export default function Header() {
           <SheetHeader className="border-b border-border px-5 py-4">
             <SheetTitle className="flex items-center justify-between">
               <div className="flex items-center gap-2">
+                {/* eslint-disable-next-line @next/next/no-img-element -- SVG logo */}
                 <img src="/images/logo2.svg" alt="Kısmet Plastik" className="h-9 w-9 dark:brightness-0 dark:invert" />
                 <span className="text-sm font-bold text-foreground">Kısmet Plastik</span>
               </div>

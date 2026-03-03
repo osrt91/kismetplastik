@@ -12,7 +12,6 @@ import {
   Building2,
   ChevronRight,
   CheckCircle,
-  User,
   Loader2,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";

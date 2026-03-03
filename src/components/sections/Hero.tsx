@@ -216,6 +216,7 @@ export default function Hero() {
               {/* Mascot */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative flex h-72 w-72 items-center justify-center rounded-3xl border border-white/10 bg-white/[0.07] shadow-2xl backdrop-blur-md transition-transform duration-500 hover:scale-105">
+                  {/* eslint-disable-next-line @next/next/no-img-element -- SVG logo */}
                   <img
                     src="/images/logo2.svg"
                     alt="Kısmet Plastik"

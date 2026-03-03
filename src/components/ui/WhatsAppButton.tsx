@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { X, Send, Phone, MessageCircle, Clock, User } from "lucide-react";
+import { X, Send, Phone, MessageCircle, Clock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale } from "@/contexts/LocaleContext";
 
@@ -173,6 +173,7 @@ export default function WhatsAppButton() {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Sync with browser time API
     setOnline(isBusinessHours());
     const interval = setInterval(() => setOnline(isBusinessHours()), 60_000);
     return () => clearInterval(interval);

@@ -8,7 +8,6 @@ import {
   Calendar,
   Clock,
   ArrowLeft,
-  Share2,
   BookOpen,
   Tag,
 } from "lucide-react";

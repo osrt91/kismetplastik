@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useMemo } from "react";
 import Link from "@/components/ui/LocaleLink";
-import { Search, X, Package, FileText, ArrowRight } from "lucide-react";
+import { Search, Package, FileText, ArrowRight } from "lucide-react";
 import { products, categories } from "@/data/products";
 import { useLocale } from "@/contexts/LocaleContext";
 
@@ -29,6 +29,7 @@ export default function SearchModal({ open, onClose }: Props) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- Reset query when modal closes
       setQuery("");
     }
     return () => {
