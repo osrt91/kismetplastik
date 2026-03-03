@@ -7,7 +7,7 @@ import ProductCard from "@/components/ui/ProductCard";
 import ProductFilter from "@/components/ui/ProductFilter";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
-import { SlidersHorizontal, X } from "lucide-react";
+import { SlidersHorizontal } from "lucide-react";
 
 export default function ProductsPage() {
   const { dict } = useLocale();

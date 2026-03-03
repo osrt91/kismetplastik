@@ -12,20 +12,20 @@ interface StickyQuoteBarProps {
   productName: string;
   volume?: string;
   material: string;
-  category: string;
+  category?: string;
 }
 
 export default function StickyQuoteBar({
   productName,
   volume,
   material,
-  category,
 }: StickyQuoteBarProps) {
   const { dict } = useLocale();
   const [visible, setVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Hydration gate
     setMounted(true);
   }, []);
 

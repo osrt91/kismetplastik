@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "@/components/ui/LocaleLink";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
@@ -54,6 +53,7 @@ export default function BayiPanelLayout({ children }: { children: React.ReactNod
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Close sidebar on route change
     setSidebarOpen(false);
   }, [pathname]);
 
@@ -86,6 +86,7 @@ export default function BayiPanelLayout({ children }: { children: React.ReactNod
       >
         <div className="flex items-center justify-between border-b border-neutral-100 px-5 py-4">
           <Link href="/" className="flex items-center gap-2">
+            {/* eslint-disable-next-line @next/next/no-img-element -- SVG logo */}
             <img src="/images/logo2.svg" alt="Kısmet Plastik" className="h-9 w-9" />
             <div className="flex flex-col leading-none">
               <span className="text-sm font-black text-primary-900">KİSMET</span>

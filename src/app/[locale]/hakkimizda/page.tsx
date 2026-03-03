@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "@/components/ui/LocaleLink";
 import {
   Target,
@@ -84,6 +83,7 @@ export default function HakkimizdaPage() {
           <AnimateOnScroll animation="fade-right">
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-gradient-to-br from-primary-100 to-primary-50">
               <div className="absolute inset-0 flex items-center justify-center">
+                {/* eslint-disable-next-line @next/next/no-img-element -- SVG logo */}
                 <img
                   src="/images/logo2.svg"
                   alt="Kısmet Plastik"

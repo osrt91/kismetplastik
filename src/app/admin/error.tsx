@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function AdminError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
@@ -15,9 +16,9 @@ export default function AdminError({ error, reset }: { error: Error & { digest?:
           <button onClick={reset} className="px-5 py-2.5 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
             Tekrar Dene
           </button>
-          <a href="/admin" className="px-5 py-2.5 border border-border rounded-lg hover:bg-muted transition-colors">
+          <Link href="/admin" className="px-5 py-2.5 border border-border rounded-lg hover:bg-muted transition-colors">
             Dashboard
-          </a>
+          </Link>
         </div>
       </div>
     </div>
