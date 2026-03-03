@@ -1,10 +1,11 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import Link from "@/components/ui/LocaleLink";
-import { ArrowRight, Package } from "lucide-react";
+import { ArrowRight, Package, Plus, Check } from "lucide-react";
 import { Product, CategorySlug } from "@/types/product";
 import { useLocale } from "@/contexts/LocaleContext";
+import { useQuoteCart } from "@/store/useQuoteCart";
 
 const categoryConfig: Record<
   CategorySlug,
@@ -42,6 +43,21 @@ const colorHexMap: Record<string, string> = {
 const ProductCard = memo(function ProductCard({ product }: { product: Product }) {
   const { dict } = useLocale();
   const cat = categoryConfig[product.category];
+  const { addItem, removeItem, isInCart } = useQuoteCart();
+  const inCart = isInCart(product.id);
+
+  const handleQuoteToggle = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (inCart) {
+        removeItem(product.id);
+      } else {
+        addItem(product.id, product.name, product.category);
+      }
+    },
+    [inCart, product.id, product.name, product.category, addItem, removeItem]
+  );
 
   return (
     <Link
@@ -163,6 +179,28 @@ const ProductCard = memo(function ProductCard({ product }: { product: Product })
             />
           </span>
         </div>
+
+        {/* Teklife Ekle Button */}
+        <button
+          onClick={handleQuoteToggle}
+          className={`mt-3 flex w-full items-center justify-center gap-2 rounded-xl border-2 px-4 py-2.5 text-sm font-bold transition-all duration-200 ${
+            inCart
+              ? "border-emerald-500 bg-emerald-50 text-emerald-700 hover:border-emerald-600 hover:bg-emerald-100"
+              : "border-amber-400 bg-transparent text-amber-700 hover:border-amber-500 hover:bg-amber-50"
+          }`}
+        >
+          {inCart ? (
+            <>
+              <Check size={16} />
+              {dict.components.addedToQuote}
+            </>
+          ) : (
+            <>
+              <Plus size={16} />
+              {dict.components.addToQuote}
+            </>
+          )}
+        </button>
       </div>
 
       <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-primary-500 via-accent-400 to-primary-300 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />

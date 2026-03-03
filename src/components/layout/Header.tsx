@@ -22,10 +22,12 @@ import {
   Image as ImageIcon,
   Eye,
   Sparkles,
+  ShoppingCart,
 } from "lucide-react";
 import clsx from "clsx";
 import { useLocale } from "@/contexts/LocaleContext";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useQuoteCart } from "@/store/useQuoteCart";
 import SearchModal from "@/components/ui/SearchModal";
 import {
   NavigationMenu,
@@ -91,6 +93,8 @@ export default function Header() {
     { name: nav.fairs, href: "/fuarlar", icon: Globe2 },
     { name: nav.glossary, href: "/ambalaj-sozlugu", icon: Package },
   ];
+
+  const cartItemCount = useQuoteCart((s) => s.items.length);
 
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -335,6 +339,16 @@ export default function Header() {
             <Button variant="ghost" size="icon" onClick={() => setSearchOpen(true)} aria-label={comp.searchLabel}>
               <Search size={18} strokeWidth={1.8} />
             </Button>
+            <Button variant="ghost" size="icon" className="relative" asChild>
+              <Link href="/teklif-al" aria-label={comp.quoteCart}>
+                <ShoppingCart size={18} strokeWidth={1.8} />
+                {cartItemCount > 0 && (
+                  <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-accent-500 px-1 text-[10px] font-bold text-primary-900 shadow-sm">
+                    {cartItemCount}
+                  </span>
+                )}
+              </Link>
+            </Button>
             <Button variant="outline" size="sm" asChild>
               <Link href="/bayi-girisi">{nav.dealer}</Link>
             </Button>
@@ -434,6 +448,14 @@ export default function Header() {
             <a href="mailto:bilgi@kismetplastik.com" className="mb-4 flex items-center gap-2 text-sm text-muted-foreground">
               <Mail size={14} /> bilgi@kismetplastik.com
             </a>
+            {cartItemCount > 0 && (
+              <Button variant="outline" className="mb-2 w-full border-accent-400 text-accent-700" asChild>
+                <Link href="/teklif-al" onClick={() => setMobileOpen(false)}>
+                  <ShoppingCart size={16} className="mr-1.5" />
+                  {comp.quoteCartItemsSelected.replace("{count}", String(cartItemCount))}
+                </Link>
+              </Button>
+            )}
             <div className="flex gap-2">
               <Button variant="outline" className="flex-1" asChild>
                 <Link href="/bayi-girisi" onClick={() => setMobileOpen(false)}>{nav.dealer}</Link>

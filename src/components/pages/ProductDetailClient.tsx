@@ -12,14 +12,18 @@ import {
   Info,
   Box,
   Layers,
+  Plus,
+  Check,
 } from "lucide-react";
 import { getProductBySlug, getCategoryBySlug } from "@/data/products";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import ProductViewer from "@/components/ui/ProductViewer";
 import StickyQuoteBar from "@/components/ui/StickyQuoteBar";
+import QuoteCartBar from "@/components/ui/QuoteCartBar";
 import RecentProducts from "@/components/sections/RecentProducts";
 import { useRecentProducts } from "@/hooks/useRecentProducts";
 import { useLocale } from "@/contexts/LocaleContext";
+import { useQuoteCart } from "@/store/useQuoteCart";
 
 const Product3DViewer = lazy(() => import("@/components/ui/Product3DViewer"));
 
@@ -27,7 +31,9 @@ export default function ProductDetailClient() {
   const { dict } = useLocale();
   const p = dict.products;
   const cm = dict.common;
+  const comp = dict.components;
   const { addRecent } = useRecentProducts();
+  const { addItem, removeItem, isInCart } = useQuoteCart();
   const [viewMode, setViewMode] = useState<"2d" | "3d">("2d");
   const [selectedColor, setSelectedColor] = useState<string | undefined>();
 
@@ -172,45 +178,179 @@ export default function ProductDetailClient() {
                 )}
               </div>
 
+              {/* Technical Specification Table — 13B */}
               <div className="mb-6 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <div className="bg-neutral-50 px-5 py-3 dark:bg-neutral-800">
-                  <h3 className="flex items-center gap-2 text-sm font-bold text-primary-900 dark:text-white">
+                <div className="bg-[#0A1628] px-5 py-3">
+                  <h3 className="flex items-center gap-2 text-sm font-bold text-white">
                     <Info size={16} />
-                    {p.technicalSpecs}
+                    {comp.techSpecTitle}
                   </h3>
                 </div>
-                <div className="divide-y divide-neutral-100 dark:divide-neutral-700">
-                  {product.specs.map((spec) => (
-                    <div key={spec.label} className="flex items-center justify-between px-5 py-3">
-                      <span className="text-sm text-neutral-500 dark:text-neutral-400">{spec.label}</span>
-                      <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">{spec.value}</span>
-                    </div>
-                  ))}
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <tbody>
+                      {product.volume && (
+                        <tr className="border-b border-neutral-100 bg-[#FAFAF7] dark:border-neutral-700 dark:bg-neutral-800/50">
+                          <td className="whitespace-nowrap px-5 py-3 font-medium text-neutral-600 dark:text-neutral-400">
+                            {comp.techSpecVolume}
+                          </td>
+                          <td className="px-5 py-3 font-semibold text-primary-900 dark:text-neutral-100">
+                            {product.volume}
+                          </td>
+                        </tr>
+                      )}
+                      <tr className="border-b border-neutral-100 bg-white dark:border-neutral-700 dark:bg-neutral-900">
+                        <td className="whitespace-nowrap px-5 py-3 font-medium text-neutral-600 dark:text-neutral-400">
+                          {comp.techSpecMaterial}
+                        </td>
+                        <td className="px-5 py-3 font-semibold text-primary-900 dark:text-neutral-100">
+                          {product.material}
+                        </td>
+                      </tr>
+                      {product.neckDiameter && (
+                        <tr className="border-b border-neutral-100 bg-[#FAFAF7] dark:border-neutral-700 dark:bg-neutral-800/50">
+                          <td className="whitespace-nowrap px-5 py-3 font-medium text-neutral-600 dark:text-neutral-400">
+                            {comp.techSpecNeckSize}
+                          </td>
+                          <td className="px-5 py-3 font-semibold text-primary-900 dark:text-neutral-100">
+                            {product.neckDiameter}
+                          </td>
+                        </tr>
+                      )}
+                      {product.height && (
+                        <tr className="border-b border-neutral-100 bg-white dark:border-neutral-700 dark:bg-neutral-900">
+                          <td className="whitespace-nowrap px-5 py-3 font-medium text-neutral-600 dark:text-neutral-400">
+                            {comp.techSpecHeight}
+                          </td>
+                          <td className="px-5 py-3 font-semibold text-primary-900 dark:text-neutral-100">
+                            {product.height}
+                          </td>
+                        </tr>
+                      )}
+                      {product.diameter && (
+                        <tr className="border-b border-neutral-100 bg-[#FAFAF7] dark:border-neutral-700 dark:bg-neutral-800/50">
+                          <td className="whitespace-nowrap px-5 py-3 font-medium text-neutral-600 dark:text-neutral-400">
+                            {comp.techSpecDiameter}
+                          </td>
+                          <td className="px-5 py-3 font-semibold text-primary-900 dark:text-neutral-100">
+                            {product.diameter}
+                          </td>
+                        </tr>
+                      )}
+                      {product.weight && (
+                        <tr className="border-b border-neutral-100 bg-white dark:border-neutral-700 dark:bg-neutral-900">
+                          <td className="whitespace-nowrap px-5 py-3 font-medium text-neutral-600 dark:text-neutral-400">
+                            {comp.techSpecWeight}
+                          </td>
+                          <td className="px-5 py-3 font-semibold text-primary-900 dark:text-neutral-100">
+                            {product.weight}
+                          </td>
+                        </tr>
+                      )}
+                      <tr className="border-b border-neutral-100 bg-[#FAFAF7] dark:border-neutral-700 dark:bg-neutral-800/50">
+                        <td className="whitespace-nowrap px-5 py-3 font-medium text-neutral-600 dark:text-neutral-400">
+                          {comp.techSpecColors}
+                        </td>
+                        <td className="px-5 py-3 font-semibold text-primary-900 dark:text-neutral-100">
+                          {product.colors.join(", ")}
+                        </td>
+                      </tr>
+                      {product.compatibleCaps && product.compatibleCaps.length > 0 && (
+                        <tr className="border-b border-neutral-100 bg-white dark:border-neutral-700 dark:bg-neutral-900">
+                          <td className="whitespace-nowrap px-5 py-3 font-medium text-neutral-600 dark:text-neutral-400">
+                            {comp.techSpecCompatibleCaps}
+                          </td>
+                          <td className="px-5 py-3 font-semibold text-primary-900 dark:text-neutral-100">
+                            {product.compatibleCaps.join(", ")}
+                          </td>
+                        </tr>
+                      )}
+                      <tr className="bg-[#FAFAF7] dark:bg-neutral-800/50">
+                        <td className="whitespace-nowrap px-5 py-3 font-medium text-neutral-600 dark:text-neutral-400">
+                          {comp.techSpecMOQ}
+                        </td>
+                        <td className="px-5 py-3 font-semibold text-primary-900 dark:text-neutral-100">
+                          {product.minOrder.toLocaleString("tr-TR")} {cm.pieces}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
 
-              <div className="mb-8 rounded-xl border border-accent-200 bg-accent-100/50 p-4 dark:border-accent-500/30 dark:bg-accent-100/10">
+              {/* Additional specs from product.specs that aren't in the table */}
+              {product.specs.filter(s => !["Hacim", "Ağırlık", "Ağız", "Yükseklik", "Çap", "Hammadde"].includes(s.label)).length > 0 && (
+                <div className="mb-6 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+                  <div className="bg-neutral-50 px-5 py-3 dark:bg-neutral-800">
+                    <h3 className="flex items-center gap-2 text-sm font-bold text-primary-900 dark:text-white">
+                      <Info size={16} />
+                      {p.technicalSpecs}
+                    </h3>
+                  </div>
+                  <div className="divide-y divide-neutral-100 dark:divide-neutral-700">
+                    {product.specs
+                      .filter(s => !["Hacim", "Ağırlık", "Ağız", "Yükseklik", "Çap", "Hammadde"].includes(s.label))
+                      .map((spec) => (
+                        <div key={spec.label} className="flex items-center justify-between px-5 py-3">
+                          <span className="text-sm text-neutral-500 dark:text-neutral-400">{spec.label}</span>
+                          <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">{spec.value}</span>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="mb-4 rounded-xl border border-accent-200 bg-accent-100/50 p-4 dark:border-accent-500/30 dark:bg-accent-100/10">
                 <p className="text-sm text-neutral-700 dark:text-neutral-300">
                   <span className="font-bold">{cm.minOrder}:</span>{" "}
                   {product.minOrder.toLocaleString("tr-TR")} {cm.pieces}
                 </p>
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href="/teklif-al"
-                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-accent-500 px-6 py-3.5 text-base font-bold text-primary-900 shadow-lg shadow-accent-500/25 transition-all duration-300 hover:bg-accent-400 hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98]"
+              {/* CTA Buttons + Teklife Ekle */}
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={() => {
+                    if (isInCart(product.id)) {
+                      removeItem(product.id);
+                    } else {
+                      addItem(product.id, product.name, product.category);
+                    }
+                  }}
+                  className={`inline-flex items-center justify-center gap-2 rounded-xl border-2 px-6 py-3.5 text-base font-bold transition-all duration-200 ${
+                    isInCart(product.id)
+                      ? "border-emerald-500 bg-emerald-50 text-emerald-700 hover:border-emerald-600 hover:bg-emerald-100"
+                      : "border-amber-400 bg-transparent text-amber-700 hover:border-amber-500 hover:bg-amber-50"
+                  }`}
                 >
-                  <FileText size={18} />
-                  {p.requestQuoteFor}
-                </Link>
-                <a
-                  href="tel:+902125498703"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-primary-900 px-6 py-3.5 text-base font-semibold text-primary-900 transition-all duration-300 hover:bg-primary-900 hover:text-white"
-                >
-                  <Phone size={18} />
-                  {p.callNow}
-                </a>
+                  {isInCart(product.id) ? (
+                    <>
+                      <Check size={18} />
+                      {comp.addedToQuote}
+                    </>
+                  ) : (
+                    <>
+                      <Plus size={18} />
+                      {comp.addToQuote}
+                    </>
+                  )}
+                </button>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <Link
+                    href="/teklif-al"
+                    className="group inline-flex items-center justify-center gap-2 rounded-xl bg-accent-500 px-6 py-3.5 text-base font-bold text-primary-900 shadow-lg shadow-accent-500/25 transition-all duration-300 hover:bg-accent-400 hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98]"
+                  >
+                    <FileText size={18} />
+                    {p.requestQuoteFor}
+                  </Link>
+                  <a
+                    href="tel:+902125498703"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-primary-900 px-6 py-3.5 text-base font-semibold text-primary-900 transition-all duration-300 hover:bg-primary-900 hover:text-white"
+                  >
+                    <Phone size={18} />
+                    {p.callNow}
+                  </a>
+                </div>
               </div>
             </div>
           </AnimateOnScroll>
@@ -225,6 +365,7 @@ export default function ProductDetailClient() {
         material={product.material}
         category={category.name}
       />
+      <QuoteCartBar />
     </section>
   );
 }

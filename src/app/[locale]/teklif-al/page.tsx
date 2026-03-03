@@ -21,12 +21,17 @@ import {
   Truck,
   MessageSquare,
   Search,
+  Trash2,
+  ShoppingCart,
+  Minus,
+  Plus,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { categories } from "@/data/products";
 import { useLocale } from "@/contexts/LocaleContext";
+import { useQuoteCart } from "@/store/useQuoteCart";
 
 const iconWrap =
   "pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400 transition-colors duration-200 peer-focus:text-primary-500";
@@ -37,6 +42,9 @@ export default function TeklifAlPage() {
   const { dict } = useLocale();
   const q = dict.quote;
   const nav = dict.nav;
+  const comp = dict.components;
+  const { items: cartItems, removeItem, updateQuantity, updateNotes, clearCart } = useQuoteCart();
+  const hasBulk = cartItems.length > 0;
 
   const [formState, setFormState] = useState({
     name: "",
@@ -60,21 +68,42 @@ export default function TeklifAlPage() {
     setError("");
 
     try {
-      const res = await fetch("/api/quote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formState),
-      });
-      const data = await res.json();
-
-      if (data.success) {
-        setSubmitted(true);
-        setFormState({
-          name: "", email: "", phone: "", company: "", address: "",
-          category: "", productInterest: "", quantity: "", deliveryDate: "", message: "",
+      if (hasBulk) {
+        const res = await fetch("/api/quote/bulk", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: formState.name,
+            email: formState.email,
+            phone: formState.phone,
+            company: formState.company,
+            message: formState.message,
+            products: cartItems,
+          }),
         });
+        const data = await res.json();
+        if (data.success) {
+          setSubmitted(true);
+          clearCart();
+        } else {
+          setError(data.error || q.errorGeneral);
+        }
       } else {
-        setError(data.error || q.errorGeneral);
+        const res = await fetch("/api/quote", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formState),
+        });
+        const data = await res.json();
+        if (data.success) {
+          setSubmitted(true);
+          setFormState({
+            name: "", email: "", phone: "", company: "", address: "",
+            category: "", productInterest: "", quantity: "", deliveryDate: "", message: "",
+          });
+        } else {
+          setError(data.error || q.errorGeneral);
+        }
       }
     } catch {
       setError(q.errorConnection);
@@ -212,7 +241,9 @@ export default function TeklifAlPage() {
                     <p className="mb-2 text-lg font-semibold text-success">
                       {q.successTitle}
                     </p>
-                    <p className="text-sm text-success">{q.successMessage}</p>
+                    <p className="text-sm text-success">
+                      {q.successMessage}
+                    </p>
                   </div>
                 </div>
               ) : (
@@ -314,8 +345,80 @@ export default function TeklifAlPage() {
 
                   <hr className="border-neutral-100" />
 
-                  {/* Section 2: Product Request */}
-                  <div>
+                  {/* Bulk Cart Items */}
+                  {hasBulk && (
+                    <div>
+                      <h3 className="mb-5 flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-primary-700">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent-500 text-xs font-bold text-primary-900">
+                          <ShoppingCart size={14} />
+                        </span>
+                        {comp.quoteCartSelectedProducts} ({cartItems.length})
+                      </h3>
+                      <div className="space-y-3">
+                        {cartItems.map((item) => (
+                          <div
+                            key={item.productId}
+                            className="flex flex-col gap-3 rounded-xl border border-amber-200 bg-amber-50/50 p-4 sm:flex-row sm:items-center sm:gap-4"
+                          >
+                            <div className="min-w-0 flex-1">
+                              <p className="text-sm font-bold text-primary-900">{item.productName}</p>
+                              <p className="text-xs text-neutral-500">{item.category}</p>
+                            </div>
+                            <div className="flex items-center gap-3">
+                              <div className="flex items-center gap-1.5">
+                                <span className="text-xs text-neutral-500">{comp.quoteCartQuantity}:</span>
+                                <div className="flex items-center rounded-lg border border-neutral-200 bg-white">
+                                  <button
+                                    type="button"
+                                    onClick={() => updateQuantity(item.productId, item.quantity - 1)}
+                                    className="px-2 py-1.5 text-neutral-400 hover:text-primary-700"
+                                  >
+                                    <Minus size={14} />
+                                  </button>
+                                  <span className="min-w-8 text-center text-sm font-semibold text-primary-900">
+                                    {item.quantity}
+                                  </span>
+                                  <button
+                                    type="button"
+                                    onClick={() => updateQuantity(item.productId, item.quantity + 1)}
+                                    className="px-2 py-1.5 text-neutral-400 hover:text-primary-700"
+                                  >
+                                    <Plus size={14} />
+                                  </button>
+                                </div>
+                              </div>
+                              <input
+                                type="text"
+                                placeholder={comp.quoteCartNotes}
+                                value={item.notes}
+                                onChange={(e) => updateNotes(item.productId, e.target.value)}
+                                className="w-32 rounded-lg border border-neutral-200 bg-white px-2.5 py-1.5 text-xs outline-none focus:border-primary-500 sm:w-40"
+                              />
+                              <button
+                                type="button"
+                                onClick={() => removeItem(item.productId)}
+                                className="rounded-lg p-1.5 text-red-400 transition-colors hover:bg-red-50 hover:text-red-600"
+                              >
+                                <Trash2 size={16} />
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={clearCart}
+                        className="mt-3 text-xs font-medium text-red-500 transition-colors hover:text-red-700"
+                      >
+                        {comp.quoteCartClear}
+                      </button>
+                    </div>
+                  )}
+
+                  {!hasBulk && <hr className="border-neutral-100" />}
+
+                  {/* Section 2: Product Request (only when no bulk) */}
+                  {!hasBulk && <div>
                     <h3 className="mb-5 flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-primary-700">
                       <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary-900 text-xs font-bold text-white">
                         2
@@ -418,11 +521,33 @@ export default function TeklifAlPage() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div>}
+
+                  {/* Message field for bulk mode */}
+                  {hasBulk && (
+                    <div>
+                      <label className="mb-1.5 block text-sm font-medium text-neutral-700">
+                        {q.fieldNotes}
+                      </label>
+                      <div className="relative">
+                        <textarea
+                          name="message"
+                          value={formState.message}
+                          onChange={handleChange}
+                          rows={3}
+                          className="peer w-full resize-none rounded-xl border border-neutral-200 bg-white py-3 pl-11 pr-4 text-sm outline-none transition-all duration-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 focus:shadow-[0_0_0_6px_rgba(46,106,175,0.08)]"
+                        />
+                        <MessageSquare
+                          size={16}
+                          className="pointer-events-none absolute left-3.5 top-3.5 text-neutral-400 transition-colors duration-200 peer-focus:text-primary-500"
+                        />
+                      </div>
+                    </div>
+                  )}
 
                   <Button type="submit" disabled={loading} size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90 sm:w-auto">
                     {loading ? <span className="h-5 w-5 animate-spin rounded-full border-2 border-current border-t-transparent" /> : <Send size={20} />}
-                    {loading ? q.submitting : q.submitButton}
+                    {loading ? q.submitting : (hasBulk ? comp.quoteCartSendRequest : q.submitButton)}
                   </Button>
                 </form>
               )}

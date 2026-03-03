@@ -7,7 +7,8 @@ import ProductCard from "@/components/ui/ProductCard";
 import ProductFilter from "@/components/ui/ProductFilter";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
-import { SlidersHorizontal, X } from "lucide-react";
+import { SlidersHorizontal } from "lucide-react";
+import QuoteCartBar from "@/components/ui/QuoteCartBar";
 
 export default function ProductsPage() {
   const { dict } = useLocale();
@@ -108,6 +109,15 @@ export default function ProductsPage() {
 
           {/* Product Grid */}
           <div className="flex-1">
+            {/* Product Count Display — 13D */}
+            <div className="mb-5 flex items-center justify-between">
+              <p className="text-sm font-semibold text-neutral-600 dark:text-neutral-300">
+                {(search || category !== "all" || material)
+                  ? dict.components.productResultCount.replace("{count}", String(filtered.length))
+                  : dict.components.productListedCount.replace("{count}", String(products.length))}
+              </p>
+            </div>
+
             {filtered.length > 0 ? (
               <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
                 {filtered.map((product, i) => (
@@ -129,6 +139,8 @@ export default function ProductsPage() {
           </div>
         </div>
       </div>
+
+      <QuoteCartBar />
     </section>
   );
 }

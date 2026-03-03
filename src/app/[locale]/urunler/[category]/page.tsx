@@ -40,6 +40,46 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default function CategoryPage() {
-  return <CategoryClient />;
+export default async function CategoryPage({ params }: PageProps) {
+  const { locale, category } = await params;
+  const cat = getCategoryBySlug(category);
+
+  const breadcrumbSchema = cat
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: locale === "en" ? "Home" : "Ana Sayfa",
+            item: `https://www.kismetplastik.com/${locale}`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: locale === "en" ? "Products" : "Ürünler",
+            item: `https://www.kismetplastik.com/${locale}/urunler`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: cat.name,
+            item: `https://www.kismetplastik.com/${locale}/urunler/${category}`,
+          },
+        ],
+      }
+    : null;
+
+  return (
+    <>
+      {breadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+      )}
+      <CategoryClient />
+    </>
+  );
 }
