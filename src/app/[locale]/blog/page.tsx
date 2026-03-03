@@ -103,10 +103,10 @@ const categoryStyles: Record<
     icon: "text-primary-300",
   },
   Sektör: {
-    gradient: "from-purple-200 via-purple-100 to-purple-50",
-    stripe: "bg-purple-500",
-    badge: "bg-purple-100 text-purple-700",
-    icon: "text-purple-300",
+    gradient: "from-navy-700/20 via-navy-700/10 to-navy-700/5",
+    stripe: "bg-navy-700",
+    badge: "bg-navy-700/10 text-navy-700",
+    icon: "text-navy-700/40",
   },
   Bilgi: {
     gradient: "from-success/30 via-success/20 to-success/10",

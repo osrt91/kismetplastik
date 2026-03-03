@@ -25,11 +25,11 @@ const statusConfig: Record<OrderStatus, { label: string; className: string }> = 
   },
   shipped: {
     label: "Kargoda",
-    className: "bg-violet-500/15 text-violet-600 border-violet-500/25",
+    className: "bg-navy-700/15 text-navy-700 border-navy-700/25",
   },
   delivered: {
     label: "Teslim Edildi",
-    className: "bg-emerald-500/15 text-emerald-600 border-emerald-500/25",
+    className: "bg-amber-500/15 text-amber-700 border-amber-500/25",
   },
   cancelled: {
     label: "İptal Edildi",

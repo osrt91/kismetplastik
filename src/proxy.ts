@@ -23,7 +23,27 @@ export function proxy(request: NextRequest) {
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
-  if (pathnameHasLocale) return;
+  if (pathnameHasLocale) {
+    // Protect /[locale]/bayi-panel routes — require Supabase auth cookie
+    const isBayiPanel = locales.some(
+      (locale) => pathname.startsWith(`/${locale}/bayi-panel`)
+    );
+    if (isBayiPanel) {
+      const hasAuthCookie =
+        request.cookies.has("sb-access-token") ||
+        request.cookies.has("sb-refresh-token") ||
+        Array.from(request.cookies.getAll()).some((c) => c.name.startsWith("sb-") && c.name.endsWith("-auth-token"));
+      if (!hasAuthCookie) {
+        const locale = locales.find(
+          (l) => pathname.startsWith(`/${l}/`) || pathname === `/${l}`
+        ) || defaultLocale;
+        const url = request.nextUrl.clone();
+        url.pathname = `/${locale}/bayi-girisi`;
+        return NextResponse.redirect(url);
+      }
+    }
+    return;
+  }
 
   const url = request.nextUrl.clone();
   url.pathname = `/${defaultLocale}${pathname}`;

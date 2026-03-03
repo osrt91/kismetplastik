@@ -3,9 +3,12 @@ import { getSupabase } from "@/lib/supabase";
 import { checkAuth } from "@/lib/auth";
 
 export async function GET(
-  _request: NextRequest,
+  request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const authError = checkAuth(request);
+  if (authError) return authError;
+
   try {
     const { id } = await params;
     const supabase = getSupabase();

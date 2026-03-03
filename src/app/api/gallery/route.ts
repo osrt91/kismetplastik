@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase-server";
+import { checkAuth } from "@/lib/auth";
 import { rateLimit } from "@/lib/rate-limit";
 
 export async function GET(request: NextRequest) {
@@ -40,10 +41,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: "Çok fazla istek." }, { status: 429 });
     }
 
-    const adminSecret = request.headers.get("x-admin-secret");
-    if (!adminSecret || adminSecret !== process.env.ADMIN_SECRET) {
-      return NextResponse.json({ success: false, error: "Yetkisiz erişim." }, { status: 401 });
-    }
+    const authError = checkAuth(request);
+    if (authError) return authError;
 
     const formData = await request.formData();
     const file = formData.get("file") as File | null;

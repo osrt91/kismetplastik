@@ -64,13 +64,13 @@ const ProductViewer = memo(function ProductViewer({ product, onColorChange }: Pr
             transition={{ delay: 0.1 }}
             className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold shadow-sm backdrop-blur-sm ${
               product.inStock
-                ? "bg-emerald-100/90 text-emerald-800"
+                ? "bg-amber-100/90 text-amber-800"
                 : "bg-red-100/90 text-red-800"
             }`}
           >
             <span
               className={`w-1.5 h-1.5 rounded-full ${
-                product.inStock ? "bg-emerald-500" : "bg-red-500"
+                product.inStock ? "bg-amber-500" : "bg-red-500"
               }`}
             />
             {product.inStock ? dict.components.inStock : dict.components.outOfStockShort}

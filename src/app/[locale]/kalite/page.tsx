@@ -59,7 +59,7 @@ const certificates = [
     description:
       "Müşteri şikayetlerinin etkin yönetimi ve memnuniyetin sürekli artırılması standardı.",
     icon: FileCheck,
-    color: "bg-purple-50 text-purple-600",
+    color: "bg-navy-700/10 text-navy-700",
     file: "/sertifikalar/ISO-10002.pdf",
   },
   {

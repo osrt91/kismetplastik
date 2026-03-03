@@ -97,11 +97,11 @@ const faqData: FAQItem[] = [
 const categories = [...new Set(faqData.map((f) => f.category))];
 
 const categoryAccentColors: Record<string, string> = {
-  Genel: "border-l-blue-400",
-  Sipariş: "border-l-purple-400",
-  Ürün: "border-l-emerald-400",
-  Kalite: "border-l-amber-400",
-  Bayi: "border-l-teal-400",
+  Genel: "border-l-navy-400",
+  Sipariş: "border-l-navy-700",
+  Ürün: "border-l-amber-400",
+  Kalite: "border-l-amber-600",
+  Bayi: "border-l-navy-800",
 };
 
 export default function SSSPage() {

@@ -1,15 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase-server";
+import { checkAuth } from "@/lib/auth";
 
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const adminSecret = request.headers.get("x-admin-secret");
-    if (!adminSecret || adminSecret !== process.env.ADMIN_SECRET) {
-      return NextResponse.json({ success: false, error: "Yetkisiz erişim." }, { status: 401 });
-    }
+    const authError = checkAuth(request);
+    if (authError) return authError;
 
     const { id } = await params;
     const supabase = await createSupabaseServerClient();
@@ -47,10 +46,8 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const adminSecret = request.headers.get("x-admin-secret");
-    if (!adminSecret || adminSecret !== process.env.ADMIN_SECRET) {
-      return NextResponse.json({ success: false, error: "Yetkisiz erişim." }, { status: 401 });
-    }
+    const authError = checkAuth(request);
+    if (authError) return authError;
 
     const { id } = await params;
     const body = await request.json();

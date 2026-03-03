@@ -13,11 +13,11 @@ const categoryConfig: Record<
   "pet-siseler": { name: "PET Şişeler", bg: "#EBF3FB", pattern: "#2E6AAF", badge: "#D6E7F7", badgeText: "#1F4A7E" },
   "plastik-siseler": { name: "Plastik Şişeler", bg: "#FEF9E7", pattern: "#D9A000", badge: "#FEF3D1", badgeText: "#92610A" },
   "kapaklar": { name: "Kapaklar", bg: "#FEF2F2", pattern: "#EF4444", badge: "#FEE2E2", badgeText: "#991B1B" },
-  "tipalar": { name: "Tıpalar", bg: "#F5F3FF", pattern: "#8B5CF6", badge: "#EDE9FE", badgeText: "#5B21B6" },
-  "parmak-spreyler": { name: "Parmak Spreyler", bg: "#ECFDF5", pattern: "#22C55E", badge: "#DCFCE7", badgeText: "#166534" },
-  "pompalar": { name: "Pompalar", bg: "#F0FDFA", pattern: "#14B8A6", badge: "#CCFBF1", badgeText: "#115E59" },
-  "tetikli-pusturtuculer": { name: "Tetikli Püskürtücüler", bg: "#FFF7ED", pattern: "#EA580C", badge: "#FFEDD5", badgeText: "#9A3412" },
-  "huniler": { name: "Huniler", bg: "#ECFEFF", pattern: "#0891B2", badge: "#CFFAFE", badgeText: "#155E75" },
+  "tipalar": { name: "Tıpalar", bg: "#EBF0F7", pattern: "#152B55", badge: "#E0E8F5", badgeText: "#0A1628" },
+  "parmak-spreyler": { name: "Parmak Spreyler", bg: "#EBF0F7", pattern: "#152B55", badge: "#E0E8F5", badgeText: "#152B55" },
+  "pompalar": { name: "Pompalar", bg: "#E8EDF5", pattern: "#0F2040", badge: "#E0E8F5", badgeText: "#0F2040" },
+  "tetikli-pusturtuculer": { name: "Tetikli Püskürtücüler", bg: "#FEF9E7", pattern: "#D97706", badge: "#FEF3D1", badgeText: "#92610A" },
+  "huniler": { name: "Huniler", bg: "#EBF3FB", pattern: "#0A1628", badge: "#E0E8F5", badgeText: "#0A1628" },
 };
 
 const colorHexMap: Record<string, string> = {

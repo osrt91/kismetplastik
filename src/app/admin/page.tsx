@@ -1,5 +1,3 @@
-"use client";
-
 import { Package, Newspaper, Eye, TrendingUp, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import { products, categories } from "@/data/products";

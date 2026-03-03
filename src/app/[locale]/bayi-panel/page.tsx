@@ -118,10 +118,10 @@ export default function BayiPanelDashboard() {
   }, []);
 
   const statCards = [
-    { label: t.activeOrders, value: stats.activeOrders, icon: ShoppingCart, color: "bg-blue-50 text-blue-700" },
-    { label: t.pendingQuotes, value: stats.pendingQuotes, icon: FileText, color: "bg-amber-50 text-amber-700" },
-    { label: t.totalOrders, value: stats.totalOrders, icon: TrendingUp, color: "bg-emerald-50 text-emerald-700" },
-    { label: t.totalProducts, value: stats.totalProducts, icon: Package, color: "bg-purple-50 text-purple-700" },
+    { label: t.activeOrders, value: stats.activeOrders, icon: ShoppingCart, color: "bg-navy-700/10 text-navy-700" },
+    { label: t.pendingQuotes, value: stats.pendingQuotes, icon: FileText, color: "bg-amber-500/10 text-amber-700" },
+    { label: t.totalOrders, value: stats.totalOrders, icon: TrendingUp, color: "bg-navy-900/10 text-navy-900" },
+    { label: t.totalProducts, value: stats.totalProducts, icon: Package, color: "bg-amber-600/10 text-amber-600" },
   ];
 
   const quickActions = [

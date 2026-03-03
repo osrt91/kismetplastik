@@ -29,9 +29,9 @@ interface JobPosition {
 }
 
 const departmentColors: Record<string, { bg: string; border: string; text: string }> = {
-  Üretim: { bg: "bg-primary-50", border: "border-blue-400", text: "text-primary-700" },
-  Kalite: { bg: "bg-success/10", border: "border-emerald-400", text: "text-success" },
-  Satış: { bg: "bg-accent-100", border: "border-amber-400", text: "text-accent-600" },
+  Üretim: { bg: "bg-primary-50", border: "border-navy-400", text: "text-primary-700" },
+  Kalite: { bg: "bg-amber-500/10", border: "border-amber-400", text: "text-amber-700" },
+  Satış: { bg: "bg-accent-100", border: "border-amber-500", text: "text-accent-600" },
 };
 
 const positions: JobPosition[] = [

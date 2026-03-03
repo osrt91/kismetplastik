@@ -18,24 +18,24 @@ const categorySlugs = [
 ];
 const icons = categoryIconList;
 const colors = [
-  "from-blue-500/10 to-blue-600/5",
+  "from-navy-500/10 to-navy-600/5",
   "from-amber-500/10 to-amber-600/5",
-  "from-rose-500/10 to-rose-600/5",
-  "from-violet-500/10 to-violet-600/5",
-  "from-emerald-500/10 to-emerald-600/5",
-  "from-teal-500/10 to-teal-600/5",
-  "from-amber-500/10 to-amber-600/5",
-  "from-cyan-500/10 to-cyan-600/5",
+  "from-navy-400/10 to-navy-500/5",
+  "from-navy-600/10 to-navy-700/5",
+  "from-navy-300/10 to-navy-400/5",
+  "from-navy-700/10 to-navy-800/5",
+  "from-amber-400/10 to-amber-500/5",
+  "from-navy-800/10 to-navy-900/5",
 ];
 const iconColors = [
-  "text-blue-600",
+  "text-navy-600",
   "text-amber-600",
-  "text-rose-600",
-  "text-violet-600",
-  "text-emerald-600",
-  "text-teal-600",
-  "text-amber-700",
-  "text-cyan-600",
+  "text-navy-500",
+  "text-navy-700",
+  "text-navy-400",
+  "text-navy-800",
+  "text-amber-500",
+  "text-navy-900",
 ];
 
 export default function Categories() {

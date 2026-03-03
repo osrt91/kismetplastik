@@ -15,11 +15,11 @@ const categoryBadgeStyles: Record<
   "pet-siseler": { bg: "#D6E7F7", text: "#1F4A7E" },
   "plastik-siseler": { bg: "#FEF3D1", text: "#92610A" },
   "kapaklar": { bg: "#FEE2E2", text: "#991B1B" },
-  "tipalar": { bg: "#EDE9FE", text: "#5B21B6" },
-  "parmak-spreyler": { bg: "#DCFCE7", text: "#166534" },
-  "pompalar": { bg: "#CCFBF1", text: "#115E59" },
-  "tetikli-pusturtuculer": { bg: "#FFEDD5", text: "#9A3412" },
-  "huniler": { bg: "#CFFAFE", text: "#155E75" },
+  "tipalar": { bg: "#E0E8F5", text: "#0A1628" },
+  "parmak-spreyler": { bg: "#E0E8F5", text: "#152B55" },
+  "pompalar": { bg: "#E8EDF5", text: "#0F2040" },
+  "tetikli-pusturtuculer": { bg: "#FEF3D1", text: "#92610A" },
+  "huniler": { bg: "#EBF0F7", text: "#0A1628" },
 };
 
 export default function RecentProducts() {
