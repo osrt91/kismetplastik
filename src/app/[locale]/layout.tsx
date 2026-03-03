@@ -1,24 +1,31 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Fraunces, Instrument_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import { LocaleProvider } from "@/contexts/LocaleContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import dynamic from "next/dynamic";
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
+const fraunces = localFont({
+  src: [
+    { path: "../../../public/fonts/fraunces-latin-400-normal.woff2", weight: "400" },
+    { path: "../../../public/fonts/fraunces-latin-500-normal.woff2", weight: "500" },
+    { path: "../../../public/fonts/fraunces-latin-600-normal.woff2", weight: "600" },
+    { path: "../../../public/fonts/fraunces-latin-700-normal.woff2", weight: "700" },
+    { path: "../../../public/fonts/fraunces-latin-800-normal.woff2", weight: "800" },
+    { path: "../../../public/fonts/fraunces-latin-900-normal.woff2", weight: "900" },
+  ],
   variable: "--font-fraunces",
   display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const instrumentSans = Instrument_Sans({
-  subsets: ["latin"],
+const instrumentSans = localFont({
+  src: [
+    { path: "../../../public/fonts/instrument-sans-latin-wght-normal.woff2", weight: "400 700" },
+  ],
   variable: "--font-instrument-sans",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
 });
 
 const WhatsAppButton = dynamic(() => import("@/components/ui/WhatsAppButton"));
