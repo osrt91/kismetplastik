@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "@/components/ui/LocaleLink";
+import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
@@ -29,10 +30,13 @@ export default function About() {
               <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-gradient-to-br from-primary-100 to-primary-50">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <img
+                    <Image
                       src="/images/logo2.svg"
                       alt="Kısmet Plastik"
+                      width={144}
+                      height={144}
                       className="mx-auto mb-4 h-36 w-36 drop-shadow-2xl transition-transform duration-500 hover:scale-110 hover:rotate-3"
+                      unoptimized
                     />
                     <p className="text-sm font-semibold text-primary-700">
                       {h.aboutFacility}

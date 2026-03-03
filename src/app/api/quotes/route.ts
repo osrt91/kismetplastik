@@ -2,36 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
 import { checkAuth } from "@/lib/auth";
 import { rateLimit } from "@/lib/rate-limit";
-
-interface QuoteItemInput {
-  product_id?: string;
-  product_name: string;
-  quantity: number;
-  notes?: string;
-}
-
-interface QuoteInput {
-  company_name: string;
-  contact_name: string;
-  email: string;
-  phone: string;
-  message?: string;
-  items: QuoteItemInput[];
-}
-
-function validate(data: QuoteInput): string | null {
-  if (!data.contact_name?.trim()) return "Ad Soyad zorunludur.";
-  if (!data.company_name?.trim()) return "Firma adı zorunludur.";
-  if (!data.email?.trim()) return "E-posta zorunludur.";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return "Geçerli bir e-posta giriniz.";
-  if (!data.phone?.trim()) return "Telefon zorunludur.";
-  if (!data.items?.length) return "En az bir ürün seçilmelidir.";
-  for (const item of data.items) {
-    if (!item.product_name?.trim()) return "Ürün adı zorunludur.";
-    if (!item.quantity || item.quantity < 1) return "Miktar en az 1 olmalıdır.";
-  }
-  return null;
-}
+import { quoteRequestSchema, getZodErrorMessage } from "@/lib/validations";
 
 export async function POST(request: NextRequest) {
   try {
@@ -44,11 +15,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const body = (await request.json()) as QuoteInput;
-    const error = validate(body);
-    if (error) {
-      return NextResponse.json({ success: false, error }, { status: 400 });
+    const raw = await request.json();
+    const parsed = quoteRequestSchema.safeParse(raw);
+    if (!parsed.success) {
+      return NextResponse.json({ success: false, error: getZodErrorMessage(parsed.error) }, { status: 400 });
     }
+
+    const body = parsed.data;
 
     const supabase = getSupabase();
 

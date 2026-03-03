@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
 import { checkAuth } from "@/lib/auth";
+import { rateLimit } from "@/lib/rate-limit";
+import { orderUpdateSchema, getZodErrorMessage } from "@/lib/validations";
 
 export async function GET(
   request: NextRequest,
@@ -36,10 +38,22 @@ export async function PATCH(
   const authError = checkAuth(request);
   if (authError) return authError;
 
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  const { ok: allowed } = rateLimit(`orders-update:${ip}`, { limit: 30, windowMs: 60_000 });
+  if (!allowed) {
+    return NextResponse.json({ success: false, error: "Çok fazla istek." }, { status: 429 });
+  }
+
   try {
     const { id } = await params;
-    const body = await request.json();
-    const { status, tracking_number, admin_notes, payment_status } = body;
+    const raw = await request.json();
+    const parsed = orderUpdateSchema.safeParse(raw);
+
+    if (!parsed.success) {
+      return NextResponse.json({ success: false, error: getZodErrorMessage(parsed.error) }, { status: 400 });
+    }
+
+    const { status, tracking_number, admin_notes, payment_status } = parsed.data;
 
     const supabase = getSupabase();
 

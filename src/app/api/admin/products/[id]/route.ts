@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
 import { checkAuth } from "@/lib/auth";
+import { rateLimit } from "@/lib/rate-limit";
 import { products } from "@/data/products";
+import { productSchema, getZodErrorMessage } from "@/lib/validations";
 
 export async function GET(
   request: NextRequest,
@@ -35,6 +37,12 @@ export async function PUT(
   const authError = checkAuth(request);
   if (authError) return authError;
 
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  const { ok: allowed } = rateLimit(`admin-products:${ip}`, { limit: 30, windowMs: 60_000 });
+  if (!allowed) {
+    return NextResponse.json({ error: "Çok fazla istek." }, { status: 429 });
+  }
+
   if (!isSupabaseConfigured()) {
     return NextResponse.json(
       { error: "Supabase yapılandırılmamış" },
@@ -43,7 +51,14 @@ export async function PUT(
   }
 
   const { id } = await params;
-  const body = await request.json();
+  const raw = await request.json();
+  const parsed = productSchema.partial().safeParse(raw);
+
+  if (!parsed.success) {
+    return NextResponse.json({ error: getZodErrorMessage(parsed.error) }, { status: 400 });
+  }
+
+  const body = parsed.data;
 
   const { data, error } = await getSupabase()
     .from("products")
@@ -81,6 +96,12 @@ export async function DELETE(
 ) {
   const authError = checkAuth(request);
   if (authError) return authError;
+
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  const { ok: allowed } = rateLimit(`admin-products:${ip}`, { limit: 30, windowMs: 60_000 });
+  if (!allowed) {
+    return NextResponse.json({ error: "Çok fazla istek." }, { status: 429 });
+  }
 
   if (!isSupabaseConfigured()) {
     return NextResponse.json(

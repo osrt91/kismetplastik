@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
 import { checkAuth, sanitizeSearchInput } from "@/lib/auth";
+import { rateLimit } from "@/lib/rate-limit";
 import { products, categories } from "@/data/products";
+import { productSchema, getZodErrorMessage } from "@/lib/validations";
 
 export async function GET(request: NextRequest) {
   const authError = checkAuth(request);
@@ -49,6 +51,12 @@ export async function POST(request: NextRequest) {
   const authError = checkAuth(request);
   if (authError) return authError;
 
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  const { ok: allowed } = rateLimit(`admin-products:${ip}`, { limit: 30, windowMs: 60_000 });
+  if (!allowed) {
+    return NextResponse.json({ error: "Çok fazla istek." }, { status: 429 });
+  }
+
   if (!isSupabaseConfigured()) {
     return NextResponse.json(
       { error: "Supabase yapılandırılmamış. .env.local dosyasına NEXT_PUBLIC_SUPABASE_URL ve NEXT_PUBLIC_SUPABASE_ANON_KEY ekleyin." },
@@ -56,7 +64,14 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const body = await request.json();
+  const raw = await request.json();
+  const parsed = productSchema.safeParse(raw);
+
+  if (!parsed.success) {
+    return NextResponse.json({ error: getZodErrorMessage(parsed.error) }, { status: 400 });
+  }
+
+  const body = parsed.data;
 
   const { data, error } = await getSupabase()
     .from("products")
@@ -64,21 +79,21 @@ export async function POST(request: NextRequest) {
       slug: body.slug,
       name: body.name,
       category_slug: body.category,
-      description: body.description || "",
-      short_description: body.shortDescription || "",
+      description: body.description,
+      short_description: body.shortDescription,
       volume: body.volume || null,
       weight: body.weight || null,
       neck_diameter: body.neckDiameter || null,
       height: body.height || null,
       diameter: body.diameter || null,
-      material: body.material || "PET",
-      colors: body.colors || [],
+      material: body.material,
+      colors: body.colors,
       model: body.model || null,
       shape: body.shape || null,
-      min_order: body.minOrder || 10000,
-      in_stock: body.inStock ?? true,
-      featured: body.featured ?? false,
-      specs: body.specs || [],
+      min_order: body.minOrder,
+      in_stock: body.inStock,
+      featured: body.featured,
+      specs: body.specs,
     })
     .select()
     .single();

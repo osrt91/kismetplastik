@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
 import { checkAuth } from "@/lib/auth";
 import { rateLimit } from "@/lib/rate-limit";
+import { orderCreateSchema, getZodErrorMessage } from "@/lib/validations";
 
 export async function GET(request: NextRequest) {
   const authError = checkAuth(request);
@@ -61,20 +62,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const body = await request.json();
-    const { profile_id, items, shipping_address, billing_address, payment_method, notes } = body;
+    const raw = await request.json();
+    const parsed = orderCreateSchema.safeParse(raw);
 
-    if (!profile_id) {
-      return NextResponse.json({ success: false, error: "Giriş yapmanız gerekiyor." }, { status: 401 });
-    }
-    if (!items?.length) {
-      return NextResponse.json({ success: false, error: "En az bir ürün gerekli." }, { status: 400 });
+    if (!parsed.success) {
+      return NextResponse.json({ success: false, error: getZodErrorMessage(parsed.error) }, { status: 400 });
     }
 
+    const body = parsed.data;
     const supabase = getSupabase();
 
     let subtotal = 0;
-    const orderItems = items.map((item: { product_name: string; quantity: number; unit_price: number; notes?: string; product_id?: string }) => {
+    const orderItems = body.items.map((item) => {
       const total = item.quantity * item.unit_price;
       subtotal += total;
       return {
@@ -93,18 +92,18 @@ export async function POST(request: NextRequest) {
     const { data: order, error: orderError } = await supabase
       .from("orders")
       .insert({
-        profile_id,
+        profile_id: body.profile_id,
         order_number: "",
         status: "pending",
-        shipping_address: shipping_address || null,
-        billing_address: billing_address || null,
+        shipping_address: body.shipping_address || null,
+        billing_address: body.billing_address || null,
         subtotal,
         tax_amount: taxAmount,
         shipping_cost: 0,
         total_amount: totalAmount,
-        payment_method: payment_method || "havale",
+        payment_method: body.payment_method || "havale",
         payment_status: "pending",
-        notes: notes || null,
+        notes: body.notes || null,
       })
       .select("id, order_number")
       .single();

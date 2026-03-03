@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
 import { checkAuth } from "@/lib/auth";
+import { rateLimit } from "@/lib/rate-limit";
+import { blogPostSchema, getZodErrorMessage } from "@/lib/validations";
 
 export async function GET(request: NextRequest) {
   const authError = checkAuth(request);
@@ -23,6 +25,12 @@ export async function POST(request: NextRequest) {
   const authError = checkAuth(request);
   if (authError) return authError;
 
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  const { ok: allowed } = rateLimit(`admin-blog:${ip}`, { limit: 30, windowMs: 60_000 });
+  if (!allowed) {
+    return NextResponse.json({ error: "Çok fazla istek." }, { status: 429 });
+  }
+
   if (!isSupabaseConfigured()) {
     return NextResponse.json(
       { error: "Supabase yapılandırılmamış" },
@@ -30,7 +38,14 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const body = await request.json();
+  const raw = await request.json();
+  const parsed = blogPostSchema.safeParse(raw);
+
+  if (!parsed.success) {
+    return NextResponse.json({ error: getZodErrorMessage(parsed.error) }, { status: 400 });
+  }
+
+  const body = parsed.data;
 
   const contentArray = typeof body.content === "string"
     ? body.content.split("\n\n").filter(Boolean)
@@ -41,12 +56,12 @@ export async function POST(request: NextRequest) {
     .insert({
       slug: body.slug,
       title: body.title,
-      excerpt: body.excerpt || "",
+      excerpt: body.excerpt,
       content: contentArray,
-      category: body.category || "Bilgi",
+      category: body.category,
       date: body.date || new Date().toISOString().split("T")[0],
-      read_time: body.readTime || "5 dk",
-      featured: body.featured ?? false,
+      read_time: body.readTime,
+      featured: body.featured,
     })
     .select()
     .single();
