@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { categories, products } from "@/data/products";
+import { blogPosts } from "@/data/blog";
 
 const BASE_URL = "https://www.kismetplastik.com";
 const locales = ["tr", "en"] as const;
@@ -18,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/kariyer", changeFrequency: "monthly" as const, priority: 0.4 },
     { path: "/katalog", changeFrequency: "monthly" as const, priority: 0.5 },
     { path: "/bayi-girisi", changeFrequency: "yearly" as const, priority: 0.3 },
+    { path: "/bayi-kayit", changeFrequency: "yearly" as const, priority: 0.3 },
     { path: "/surdurulebilirlik", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/galeri", changeFrequency: "monthly" as const, priority: 0.5 },
     { path: "/kvkk", changeFrequency: "yearly" as const, priority: 0.3 },
@@ -28,6 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/referanslar", changeFrequency: "monthly" as const, priority: 0.5 },
     { path: "/numune-talep", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/ambalaj-sozlugu", changeFrequency: "monthly" as const, priority: 0.4 },
+    { path: "/urun-olustur", changeFrequency: "monthly" as const, priority: 0.6 },
   ];
 
   const staticPages = staticPaths.flatMap(({ path, changeFrequency, priority }) =>
@@ -75,5 +78,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...staticPages, ...categoryPages, ...productPages];
+  const blogPages = blogPosts.flatMap((post) =>
+    locales.map((locale) => ({
+      url: `${BASE_URL}/${locale}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((l) => [l, `${BASE_URL}/${l}/blog/${post.slug}`])
+        ),
+      },
+    }))
+  );
+
+  return [...staticPages, ...categoryPages, ...productPages, ...blogPages];
 }

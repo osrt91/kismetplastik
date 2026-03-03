@@ -1,15 +1,25 @@
 import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Sürdürülebilirlik",
-  description:
-    "Kısmet Plastik sürdürülebilirlik yaklaşımı: 1969'dan bu yana %100 geri dönüştürülebilir PET kozmetik ambalaj üretimi, ISO 14001 sertifikalı çevre yönetimi, enerji verimliliği ve sıfır atık hedefi.",
-  openGraph: {
-    title: "Sürdürülebilirlik | Kısmet Plastik",
-    description:
-      "Çevreye duyarlı kozmetik ambalaj üretimi. Geri dönüştürülebilir PET, enerji tasarrufu ve döngüsel ekonomi yaklaşımı.",
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata({
+    locale,
+    path: "/surdurulebilirlik",
+    title: {
+      tr: "Sürdürülebilirlik",
+      en: "Sustainability",
+    },
+    description: {
+      tr: "Kısmet Plastik sürdürülebilirlik yaklaşımı: %100 geri dönüştürülebilir PET kozmetik ambalaj üretimi, ISO 14001 sertifikalı çevre yönetimi, enerji verimliliği ve sıfır atık hedefi.",
+      en: "Kısmet Plastik sustainability approach: 100% recyclable PET cosmetic packaging production, ISO 14001 certified environmental management, energy efficiency and zero waste target.",
+    },
+  });
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;

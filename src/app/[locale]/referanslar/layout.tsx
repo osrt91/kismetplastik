@@ -9,14 +9,14 @@ export async function generateMetadata({
   const { locale } = await params;
   return generatePageMetadata({
     locale,
-    path: "/kvkk",
+    path: "/referanslar",
     title: {
-      tr: "KVKK Aydınlatma Metni",
-      en: "Privacy Policy (KVKK)",
+      tr: "Referanslar",
+      en: "References",
     },
     description: {
-      tr: "Kısmet Plastik Kozmetik Ambalaj KVKK Aydınlatma Metni. 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında veri işleme politikamız.",
-      en: "Kısmet Plastik Cosmetic Packaging Privacy Policy. Our data processing policy under the Personal Data Protection Law No. 6698.",
+      tr: "Kısmet Plastik referansları. 1000+ mutlu müşteri ile kozmetik ambalaj alanında güvenilir iş ortağınız.",
+      en: "Kısmet Plastik references. Your trusted partner in cosmetic packaging with 1000+ satisfied customers.",
     },
   });
 }
