@@ -1,14 +1,25 @@
 import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Blog & Haberler",
-  description:
-    "Kısmet Plastik blog. Kozmetik ambalaj sektöründen haberler, rehberler, PET şişe üretim süreçleri ve sektör trendleri.",
-  openGraph: {
-    title: "Blog & Haberler | Kısmet Plastik",
-    description: "Kozmetik ambalaj sektöründen haberler ve bilgilendirici içerikler.",
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata({
+    locale,
+    path: "/blog",
+    title: {
+      tr: "Blog & Haberler",
+      en: "Blog & News",
+    },
+    description: {
+      tr: "Kısmet Plastik blog. Kozmetik ambalaj sektöründen haberler, rehberler, PET şişe üretim süreçleri ve sektör trendleri.",
+      en: "Kısmet Plastik blog. News, guides, PET bottle production processes and industry trends in cosmetic packaging.",
+    },
+  });
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;

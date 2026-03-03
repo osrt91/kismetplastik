@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getCategoryBySlug } from "@/data/products";
 import CategoryClient from "@/components/pages/CategoryClient";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 interface PageProps {
   params: Promise<{ locale: string; category: string }>;
@@ -14,11 +15,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Kategori bulunamadı | Kısmet Plastik" };
   }
 
-  const title = locale === "en"
-    ? `${cat.name} Products | Kısmet Plastik`
-    : `${cat.name} Ürünleri | Kısmet Plastik`;
-
+  const isTr = locale !== "en";
+  const title = isTr
+    ? `${cat.name} Ürünleri | Kısmet Plastik`
+    : `${cat.name} Products | Kısmet Plastik`;
   const description = cat.description;
+  const url = `https://www.kismetplastik.com/${locale}/urunler/${category}`;
 
   return {
     title,
@@ -27,11 +29,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description,
       type: "website",
-      url: `https://www.kismetplastik.com/${locale}/urunler/${category}`,
+      url,
       siteName: "Kısmet Plastik",
+      locale: isTr ? "tr_TR" : "en_US",
+      images: [
+        {
+          url: "/images/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: `${cat.name} - Kısmet Plastik`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/images/og-image.png"],
     },
     alternates: {
-      canonical: `https://www.kismetplastik.com/${locale}/urunler/${category}`,
+      canonical: url,
       languages: {
         tr: `https://www.kismetplastik.com/tr/urunler/${category}`,
         en: `https://www.kismetplastik.com/en/urunler/${category}`,
@@ -40,6 +57,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default function CategoryPage() {
-  return <CategoryClient />;
+export default async function CategoryPage({ params }: PageProps) {
+  const { locale, category } = await params;
+  const cat = getCategoryBySlug(category);
+  const isTr = locale === "tr";
+
+  return (
+    <>
+      {cat && (
+        <BreadcrumbJsonLd
+          items={[
+            { name: isTr ? "Ana Sayfa" : "Home", url: `https://www.kismetplastik.com/${locale}` },
+            { name: isTr ? "Ürünler" : "Products", url: `https://www.kismetplastik.com/${locale}/urunler` },
+            { name: cat.name, url: `https://www.kismetplastik.com/${locale}/urunler/${category}` },
+          ]}
+        />
+      )}
+      <CategoryClient />
+    </>
+  );
 }

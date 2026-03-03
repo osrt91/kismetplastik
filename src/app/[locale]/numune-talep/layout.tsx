@@ -9,14 +9,14 @@ export async function generateMetadata({
   const { locale } = await params;
   return generatePageMetadata({
     locale,
-    path: "/kvkk",
+    path: "/numune-talep",
     title: {
-      tr: "KVKK Aydınlatma Metni",
-      en: "Privacy Policy (KVKK)",
+      tr: "Numune Talep",
+      en: "Sample Request",
     },
     description: {
-      tr: "Kısmet Plastik Kozmetik Ambalaj KVKK Aydınlatma Metni. 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında veri işleme politikamız.",
-      en: "Kısmet Plastik Cosmetic Packaging Privacy Policy. Our data processing policy under the Personal Data Protection Law No. 6698.",
+      tr: "Kısmet Plastik kozmetik ambalaj numune talebi. PET şişe, sprey, kapak ve pompa numunelerini ücretsiz talep edin.",
+      en: "Request cosmetic packaging samples from Kısmet Plastik. Request free PET bottle, spray, cap and pump samples.",
     },
   });
 }

@@ -9,14 +9,14 @@ export async function generateMetadata({
   const { locale } = await params;
   return generatePageMetadata({
     locale,
-    path: "/kvkk",
+    path: "/ambalaj-sozlugu",
     title: {
-      tr: "KVKK Aydınlatma Metni",
-      en: "Privacy Policy (KVKK)",
+      tr: "Ambalaj Sözlüğü",
+      en: "Packaging Glossary",
     },
     description: {
-      tr: "Kısmet Plastik Kozmetik Ambalaj KVKK Aydınlatma Metni. 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında veri işleme politikamız.",
-      en: "Kısmet Plastik Cosmetic Packaging Privacy Policy. Our data processing policy under the Personal Data Protection Law No. 6698.",
+      tr: "Kozmetik ambalaj sektörü terimleri sözlüğü. PET, HDPE, PP, boyun çapı, şişirme kalıplama ve daha fazlası hakkında teknik terimler.",
+      en: "Cosmetic packaging industry terminology glossary. Technical terms about PET, HDPE, PP, neck size, blow molding and more.",
     },
   });
 }

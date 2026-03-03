@@ -9,14 +9,14 @@ export async function generateMetadata({
   const { locale } = await params;
   return generatePageMetadata({
     locale,
-    path: "/kvkk",
+    path: "/bayi-kayit",
     title: {
-      tr: "KVKK Aydınlatma Metni",
-      en: "Privacy Policy (KVKK)",
+      tr: "Bayi Kayıt",
+      en: "Dealer Registration",
     },
     description: {
-      tr: "Kısmet Plastik Kozmetik Ambalaj KVKK Aydınlatma Metni. 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında veri işleme politikamız.",
-      en: "Kısmet Plastik Cosmetic Packaging Privacy Policy. Our data processing policy under the Personal Data Protection Law No. 6698.",
+      tr: "Kısmet Plastik bayi kayıt formu. B2B kozmetik ambalaj bayiliği için başvurun ve özel fiyatlandırma avantajlarından yararlanın.",
+      en: "Kısmet Plastik dealer registration form. Apply for B2B cosmetic packaging dealership and benefit from exclusive pricing.",
     },
   });
 }

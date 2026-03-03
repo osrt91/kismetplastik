@@ -9,14 +9,14 @@ export async function generateMetadata({
   const { locale } = await params;
   return generatePageMetadata({
     locale,
-    path: "/kvkk",
+    path: "/vizyon-misyon",
     title: {
-      tr: "KVKK Aydınlatma Metni",
-      en: "Privacy Policy (KVKK)",
+      tr: "Vizyon & Misyon",
+      en: "Vision & Mission",
     },
     description: {
-      tr: "Kısmet Plastik Kozmetik Ambalaj KVKK Aydınlatma Metni. 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında veri işleme politikamız.",
-      en: "Kısmet Plastik Cosmetic Packaging Privacy Policy. Our data processing policy under the Personal Data Protection Law No. 6698.",
+      tr: "Kısmet Plastik vizyon ve misyonu. Kozmetik ambalaj sektöründe liderlik hedefimiz, değerlerimiz ve geleceğe bakışımız.",
+      en: "Kısmet Plastik vision and mission. Our leadership goals in cosmetic packaging, our values and our outlook for the future.",
     },
   });
 }
