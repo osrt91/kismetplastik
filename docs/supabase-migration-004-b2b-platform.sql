@@ -1,0 +1,43 @@
+-- ============================================
+-- Kısmet Plastik B2B Platform — Migration 004
+-- ============================================
+-- Bu dosya docs/ klasöründeki referans kopyasıdır.
+-- Asıl migration: supabase/migrations/002_b2b_platform.sql
+--
+-- Tablolar:
+--   1. companies          — B2B firma profilleri
+--   2. b2b_profiles       — Kullanıcı profilleri (auth.users bağlı)
+--   3. products (ALTER)   — Mevcut ürünlere B2B alanları eklendi
+--   4. price_tiers        — Hacim bazlı fiyatlandırma
+--   5. b2b_orders         — B2B siparişler
+--   6. b2b_order_items    — Sipariş kalemleri
+--   7. b2b_quote_requests — Teklif istekleri
+--   8. saved_designs      — 2D/3D tasarımlar
+--
+-- Enum Types:
+--   - payment_terms_enum: prepaid, net15, net30, net60
+--   - company_status_enum: pending, active, suspended
+--   - user_role_b2b: admin, company_admin, buyer
+--   - product_category_enum: pet_sise, plastik_sise, kapak, tipa, sprey, pompa, tetik, huni, diger
+--   - order_status_b2b: draft, pending, confirmed, production, shipped, delivered, cancelled
+--   - payment_status_enum: pending, partial, paid, refunded
+--   - quote_status_b2b: new, reviewing, sent, accepted, rejected
+--
+-- Helper Functions:
+--   - calculate_tier_price(product_id, quantity, company_id)
+--   - generate_b2b_order_number() — auto KP-YYMM-NNNN
+--   - calc_order_item_subtotal() — auto quantity * unit_price
+--   - handle_new_b2b_user() — auto-create profile on signup
+--
+-- Storage:
+--   - designs bucket (authenticated, 10MB, image+svg+pdf)
+--
+-- RLS Policies Summary:
+--   - admin: full access to all B2B tables
+--   - company_admin: read/write own company data
+--   - buyer: read own company data, insert own orders/quotes
+--   - anon: insert quote_requests (public form)
+--
+-- Uygulama:
+--   Supabase Dashboard > SQL Editor > supabase/migrations/002_b2b_platform.sql içeriğini yapıştırın.
+-- ============================================
