@@ -8,11 +8,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata({
-    path: "/kvkk",
-    titleTr: "KVKK Aydınlatma Metni",
-    titleEn: "Privacy Policy",
-    descTr: "Kısmet Plastik Kozmetik Ambalaj KVKK Aydınlatma Metni. 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında veri işleme politikamız.",
-    descEn: "Kısmet Plastik Cosmetic Packaging privacy policy. Data processing policy under Turkish Personal Data Protection Law No. 6698.",
+    path: "/arge",
+    titleTr: "Ar-Ge",
+    titleEn: "R&D",
+    descTr: "Kısmet Plastik araştırma ve geliştirme merkezi. Yenilikçi kozmetik ambalaj tasarımları, malzeme geliştirme ve sürdürülebilir çözümler.",
+    descEn: "Kısmet Plastik research and development center. Innovative cosmetic packaging designs, material development and sustainable solutions.",
     locale,
   });
 }

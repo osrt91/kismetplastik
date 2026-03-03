@@ -23,22 +23,31 @@ function AnimatedNumber({
   suffix: string;
   inView: boolean;
 }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || hasAnimated.current) return;
+    hasAnimated.current = true;
+
     let frame: number;
     const duration = 2000;
-    const start = performance.now();
+    let startTime: number | null = null;
 
     const animate = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1);
+      if (startTime === null) startTime = now;
+      const progress = Math.min((now - startTime) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       setCount(Math.floor(eased * target));
       if (progress < 1) frame = requestAnimationFrame(animate);
     };
 
-    frame = requestAnimationFrame(animate);
+    // First frame resets to 0, then animates up
+    frame = requestAnimationFrame((now) => {
+      setCount(0);
+      startTime = now;
+      frame = requestAnimationFrame(animate);
+    });
     return () => cancelAnimationFrame(frame);
   }, [inView, target]);
 

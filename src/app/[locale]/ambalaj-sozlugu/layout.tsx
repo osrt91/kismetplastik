@@ -8,11 +8,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata({
-    path: "/kvkk",
-    titleTr: "KVKK Aydınlatma Metni",
-    titleEn: "Privacy Policy",
-    descTr: "Kısmet Plastik Kozmetik Ambalaj KVKK Aydınlatma Metni. 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında veri işleme politikamız.",
-    descEn: "Kısmet Plastik Cosmetic Packaging privacy policy. Data processing policy under Turkish Personal Data Protection Law No. 6698.",
+    path: "/ambalaj-sozlugu",
+    titleTr: "Ambalaj Sözlüğü",
+    titleEn: "Packaging Glossary",
+    descTr: "Kozmetik ambalaj sektöründe kullanılan terimler ve tanımları. PET, HDPE, PP, blow molding, preform ve daha fazlası.",
+    descEn: "Terms and definitions used in the cosmetic packaging industry. PET, HDPE, PP, blow molding, preform and more.",
     locale,
   });
 }
