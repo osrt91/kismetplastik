@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
 import { checkAuth } from "@/lib/auth";
 import { rateLimit } from "@/lib/rate-limit";
+import { supabaseServer } from "@/lib/supabase/server";
 
 export async function GET(request: NextRequest) {
   const authError = checkAuth(request);
@@ -61,18 +62,73 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const body = await request.json();
-    const { profile_id, items, shipping_address, billing_address, payment_method, notes } = body;
-
-    if (!profile_id) {
+    // Verify session and extract profile_id from authenticated user
+    const authClient = await supabaseServer();
+    const { data: { user }, error: authError } = await authClient.auth.getUser();
+    if (authError || !user) {
       return NextResponse.json({ success: false, error: "Giriş yapmanız gerekiyor." }, { status: 401 });
     }
+    const profile_id = user.id;
+
+    const body = await request.json();
+    const { items, shipping_address, billing_address, payment_method, notes } = body;
     if (!items?.length) {
       return NextResponse.json({ success: false, error: "En az bir ürün gerekli." }, { status: 400 });
     }
 
     const supabase = getSupabase();
 
+    // Validate each item's price and quantity bounds
+    for (const item of items) {
+      if (typeof item.unit_price !== "number" || item.unit_price <= 0 || item.unit_price > 100_000) {
+        return NextResponse.json(
+          { success: false, error: "Geçersiz birim fiyat. Fiyat 0 ile 100.000 arasında olmalıdır." },
+          { status: 400 }
+        );
+      }
+      if (typeof item.quantity !== "number" || !Number.isInteger(item.quantity) || item.quantity <= 0 || item.quantity > 1_000_000) {
+        return NextResponse.json(
+          { success: false, error: "Geçersiz miktar. Miktar 1 ile 1.000.000 arasında bir tam sayı olmalıdır." },
+          { status: 400 }
+        );
+      }
+      if (!item.product_name || typeof item.product_name !== "string") {
+        return NextResponse.json(
+          { success: false, error: "Ürün adı gereklidir." },
+          { status: 400 }
+        );
+      }
+    }
+
+    // Verify product existence for items with product_id
+    const productIds = items
+      .filter((item: { product_id?: string }) => item.product_id)
+      .map((item: { product_id: string }) => item.product_id);
+
+    if (productIds.length > 0) {
+      const { data: existingProducts, error: productError } = await supabase
+        .from("products")
+        .select("id")
+        .in("id", productIds);
+
+      if (productError) {
+        return NextResponse.json(
+          { success: false, error: "Ürün doğrulama hatası." },
+          { status: 500 }
+        );
+      }
+
+      const existingIds = new Set((existingProducts || []).map((p: { id: string }) => p.id));
+      const missingIds = productIds.filter((id: string) => !existingIds.has(id));
+      if (missingIds.length > 0) {
+        return NextResponse.json(
+          { success: false, error: `Geçersiz ürün ID: ${missingIds.join(", ")}` },
+          { status: 400 }
+        );
+      }
+    }
+
+    // Recalculate all prices server-side — never trust client totals
     let subtotal = 0;
     const orderItems = items.map((item: { product_name: string; quantity: number; unit_price: number; notes?: string; product_id?: string }) => {
       const total = item.quantity * item.unit_price;

@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { timingSafeCompare } from "@/lib/auth";
+import { timingSafeCompare, hashSecret } from "@/lib/auth";
+import { locales, defaultLocale } from "@/lib/locales";
 
-export const locales = ["tr", "en", "ar", "ru", "fr", "de", "es", "zh", "ja", "ko", "pt"] as const;
-export const defaultLocale = "tr";
+export { locales, defaultLocale };
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -11,7 +11,7 @@ export function proxy(request: NextRequest) {
     if (pathname === "/admin/login") return;
     const token = request.cookies.get("admin-token")?.value;
     const secret = process.env.ADMIN_SECRET;
-    if (!token || !secret || !timingSafeCompare(token, secret)) {
+    if (!token || !secret || !timingSafeCompare(token, hashSecret(secret))) {
       const url = request.nextUrl.clone();
       url.pathname = "/admin/login";
       return NextResponse.redirect(url);

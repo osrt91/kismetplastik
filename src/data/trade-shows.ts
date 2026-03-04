@@ -19,7 +19,7 @@ export const tradeShows: TradeShow[] = [
     name: "Beautyworld Middle East 2026",
     nameEn: "Beautyworld Middle East 2026",
     description:
-      "Orta Dogu'nun en buyuk guzellik ve kozmetik fuari. Kismet Plastik olarak en yeni PET sise ve ambalaj cozumlerimizi sergileyecegiz. Bolgedeki distributorluk firsatlari icin standimizi ziyaret edin.",
+      "Orta Doğu'nun en büyük güzellik ve kozmetik fuarı. Kısmet Plastik olarak en yeni PET şişe ve ambalaj çözümlerimizi sergileyeceğiz. Bölgedeki distribütörlük fırsatları için standımızı ziyaret edin.",
     descriptionEn:
       "The largest beauty and cosmetics trade fair in the Middle East. Kismet Plastik will showcase our latest PET bottle and packaging solutions. Visit our booth for distribution opportunities in the region.",
     location: "Dubai World Trade Centre, Dubai, BAE",
@@ -35,10 +35,10 @@ export const tradeShows: TradeShow[] = [
     name: "Cosmoprof Worldwide Bologna 2026",
     nameEn: "Cosmoprof Worldwide Bologna 2026",
     description:
-      "Dunyanin en prestijli kozmetik ambalaj fuari. Surdurulebilir ambalaj cozumlerimizi ve yeni urun serilerimizi tanitmak icin Bologna'dayiz. Avrupa pazari icin is birligi firsatlari icin bekliyoruz.",
+      "Dünyanın en prestijli kozmetik ambalaj fuarı. Sürdürülebilir ambalaj çözümlerimizi ve yeni ürün serilerimizi tanıtmak için Bologna'dayız. Avrupa pazarı için iş birliği fırsatları için bekliyoruz.",
     descriptionEn:
       "The world's most prestigious cosmetic packaging trade fair. We will be in Bologna to present our sustainable packaging solutions and new product lines. We look forward to collaboration opportunities for the European market.",
-    location: "BolognaFiere, Bologna, Italya",
+    location: "BolognaFiere, Bologna, İtalya",
     locationEn: "BolognaFiere, Bologna, Italy",
     startDate: "2026-04-23",
     endDate: "2026-04-25",
@@ -48,13 +48,13 @@ export const tradeShows: TradeShow[] = [
   },
   {
     id: "istanbul-ambalaj-fuari-2025",
-    name: "Istanbul Ambalaj Fuari 2025",
+    name: "İstanbul Ambalaj Fuarı 2025",
     nameEn: "Istanbul Packaging Fair 2025",
     description:
-      "Turkiye'nin en buyuk ambalaj ve plastik fuari. PET sise, kapak, pompa ve tetikli pusturtucu urunlerimizi sergiledik. Yurt ici ve yurt disi musterilerimizle verimli gorusmeler gerceklestirdik.",
+      "Türkiye'nin en büyük ambalaj ve plastik fuarı. PET şişe, kapak, pompa ve tetikli püskürtücü ürünlerimizi sergiledik. Yurt içi ve yurt dışı müşterilerimizle verimli görüşmeler gerçekleştirdik.",
     descriptionEn:
       "Turkey's largest packaging and plastics fair. We exhibited our PET bottles, caps, pumps, and trigger sprayer products. We held productive meetings with our domestic and international customers.",
-    location: "TUYAP Fuar ve Kongre Merkezi, Istanbul, Turkiye",
+    location: "TÜYAP Fuar ve Kongre Merkezi, İstanbul, Türkiye",
     locationEn: "TUYAP Fair and Congress Center, Istanbul, Turkey",
     startDate: "2025-09-17",
     endDate: "2025-09-20",

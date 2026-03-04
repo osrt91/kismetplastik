@@ -6,6 +6,7 @@ export interface BlogPost {
   category: string;
   date: string;
   readTime: string;
+  featured?: boolean;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -24,6 +25,7 @@ export const blogPosts: BlogPost[] = [
     category: "Üretim",
     date: "2026-02-15",
     readTime: "8 dk",
+    featured: true,
   },
   {
     slug: "kozmetik-ambalaj-trendleri-2026",
@@ -40,6 +42,7 @@ export const blogPosts: BlogPost[] = [
     category: "Sektör",
     date: "2026-02-10",
     readTime: "6 dk",
+    featured: true,
   },
   {
     slug: "pet-malzeme-avantajlari",

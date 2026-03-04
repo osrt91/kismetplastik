@@ -11,7 +11,7 @@ import {
   Clock,
 } from "lucide-react";
 import { useLocale } from "@/contexts/LocaleContext";
-import { getSupabaseBrowser } from "@/lib/supabase-browser";
+import { supabaseBrowser } from "@/lib/supabase/client";
 
 interface DashboardStats {
   activeOrders: number;
@@ -67,7 +67,7 @@ export default function BayiPanelDashboard() {
   useEffect(() => {
     async function loadDashboard() {
       try {
-        const supabase = getSupabaseBrowser();
+        const supabase = supabaseBrowser();
         const { data: { user } } = await supabase.auth.getUser();
 
         if (user) {

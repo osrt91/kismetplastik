@@ -12,75 +12,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-
-interface BlogPost {
-  slug: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  date: string;
-  readTime: string;
-  featured?: boolean;
-}
-
-const blogPosts: BlogPost[] = [
-  {
-    slug: "pet-sise-uretim-sureci",
-    title: "PET Şişe Üretim Süreci: Hammaddeden Ürüne",
-    excerpt:
-      "PET şişelerin üretim aşamalarını, kullanılan teknolojileri ve kalite kontrol süreçlerini detaylı olarak inceliyoruz.",
-    category: "Üretim",
-    date: "2026-02-15",
-    readTime: "8 dk",
-    featured: true,
-  },
-  {
-    slug: "kozmetik-ambalaj-trendleri-2026",
-    title: "2026 Yılında Kozmetik Ambalaj Trendleri",
-    excerpt:
-      "Sürdürülebilirlik, akıllı ambalaj ve minimalist tasarım gibi öne çıkan kozmetik ambalaj trendlerini keşfedin.",
-    category: "Sektör",
-    date: "2026-02-10",
-    readTime: "6 dk",
-    featured: true,
-  },
-  {
-    slug: "pet-malzeme-avantajlari",
-    title: "PET Malzemenin Avantajları Nelerdir?",
-    excerpt:
-      "PET'in hafifliği, şeffaflığı, geri dönüşülebilirliği ve kozmetik ambalaj açısından sunduğu avantajlar.",
-    category: "Bilgi",
-    date: "2026-02-05",
-    readTime: "5 dk",
-  },
-  {
-    slug: "iso-sertifika-onemi",
-    title: "Kozmetik Ambalajda ISO Sertifikalarının Önemi",
-    excerpt:
-      "ISO 9001, ISO 14001 ve FSSC 22000 sertifikalarının ambalaj sektöründeki önemi ve müşterilere sağladığı güvence.",
-    category: "Kalite",
-    date: "2026-01-28",
-    readTime: "7 dk",
-  },
-  {
-    slug: "dogru-sise-secimi",
-    title: "İşletmeniz İçin Doğru Şişe Nasıl Seçilir?",
-    excerpt:
-      "Ürününüze uygun şişe seçerken dikkat etmeniz gereken hacim, ağız çapı, malzeme ve tasarım kriterleri.",
-    category: "Rehber",
-    date: "2026-01-20",
-    readTime: "6 dk",
-  },
-  {
-    slug: "surdurulebilir-ambalaj",
-    title: "Sürdürülebilir Ambalaj: Çevreye Duyarlı Üretim",
-    excerpt:
-      "Geri dönüştürülebilir malzemeler, karbon ayak izi azaltma ve çevre dostu üretim süreçlerimiz hakkında.",
-    category: "Sürdürülebilirlik",
-    date: "2026-01-12",
-    readTime: "5 dk",
-  },
-];
+import { blogPosts } from "@/data/blog";
 
 const allCategories = [...new Set(blogPosts.map((p) => p.category))];
 
@@ -161,7 +93,7 @@ export default function BlogPage() {
   const rest = filtered.filter((p) => !p.featured);
 
   return (
-    <section className="bg-white dark:bg-neutral-0">
+    <section className="bg-background dark:bg-neutral-0">
       {/* Hero */}
       <div className="bg-gradient-to-br from-primary-900 via-primary-700 to-primary-900 py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">

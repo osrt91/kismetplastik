@@ -1,7 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
-import { timingSafeCompare } from "@/lib/auth";
+import { timingSafeCompare, hashSecret } from "@/lib/auth";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(request: NextRequest) {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  const { ok: allowed } = rateLimit(`admin-auth:${ip}`, { limit: 5, windowMs: 300_000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: "Çok fazla giriş denemesi. Lütfen 5 dakika sonra tekrar deneyin." },
+      { status: 429 }
+    );
+  }
+
   const { password } = await request.json();
   const secret = process.env.ADMIN_SECRET;
 
@@ -17,7 +27,8 @@ export async function POST(request: NextRequest) {
   }
 
   const response = NextResponse.json({ success: true });
-  response.cookies.set("admin-token", secret, {
+  const hashedToken = hashSecret(secret);
+  response.cookies.set("admin-token", hashedToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",

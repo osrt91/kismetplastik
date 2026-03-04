@@ -12,8 +12,8 @@ const categoryConfig: Record<
   CategorySlug,
   { name: string; bg: string; pattern: string; badge: string; badgeText: string }
 > = {
-  "pet-siseler": { name: "PET Şişeler", bg: "#EBF3FB", pattern: "#2E6AAF", badge: "#D6E7F7", badgeText: "#1F4A7E" },
-  "plastik-siseler": { name: "Plastik Şişeler", bg: "#FEF9E7", pattern: "#D9A000", badge: "#FEF3D1", badgeText: "#92610A" },
+  "pet-siseler": { name: "PET Şişeler", bg: "#EDF1F5", pattern: "#1E3A6E", badge: "#D6DFE8", badgeText: "#152B55" },
+  "plastik-siseler": { name: "Plastik Şişeler", bg: "#FFFBEB", pattern: "#D97706", badge: "#FEF3C7", badgeText: "#92610A" },
   "kapaklar": { name: "Kapaklar", bg: "#FEF2F2", pattern: "#EF4444", badge: "#FEE2E2", badgeText: "#991B1B" },
   "tipalar": { name: "Tıpalar", bg: "#EBF0F7", pattern: "#152B55", badge: "#E0E8F5", badgeText: "#0A1628" },
   "parmak-spreyler": { name: "Parmak Spreyler", bg: "#EBF0F7", pattern: "#152B55", badge: "#E0E8F5", badgeText: "#152B55" },

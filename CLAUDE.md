@@ -6,6 +6,14 @@ Kısmet Plastik is a **B2B cosmetic packaging** company website and dealer porta
 
 **Production URL:** `https://www.kismetplastik.com`
 
+## Codebase Overview
+
+Next.js 16 App Router application with 158+ source files across 30+ locale-scoped pages (11 locales), 16 API routes, an admin panel, and a dealer B2B portal. Data is primarily served from static TypeScript modules (`src/data/`) with Supabase PostgreSQL backing for B2B operations (orders, quotes, profiles). Two auth systems coexist: cookie-based admin auth and Supabase Auth for dealers. Locale configuration is centralized in `src/lib/locales.ts`.
+
+**Key modules:** `src/lib/` (15+ utilities incl. `locales.ts` SSOT), `src/components/` (58+ components), `src/app/api/` (16 route files), `src/data/` (7 data modules), `docs/` (8 SQL migrations + n8n workflows).
+
+For detailed architecture, module guide, data flow diagrams, and navigation guide, see [docs/CODEBASE_MAP.md](docs/CODEBASE_MAP.md).
+
 ## Tech Stack
 
 | Layer | Technology |

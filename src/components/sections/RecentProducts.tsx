@@ -12,8 +12,8 @@ const categoryBadgeStyles: Record<
   CategorySlug,
   { bg: string; text: string }
 > = {
-  "pet-siseler": { bg: "#D6E7F7", text: "#1F4A7E" },
-  "plastik-siseler": { bg: "#FEF3D1", text: "#92610A" },
+  "pet-siseler": { bg: "#D6DFE8", text: "#152B55" },
+  "plastik-siseler": { bg: "#FEF3C7", text: "#92610A" },
   "kapaklar": { bg: "#FEE2E2", text: "#991B1B" },
   "tipalar": { bg: "#E0E8F5", text: "#0A1628" },
   "parmak-spreyler": { bg: "#E0E8F5", text: "#152B55" },

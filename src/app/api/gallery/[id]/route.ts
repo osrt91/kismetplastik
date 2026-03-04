@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createSupabaseServerClient } from "@/lib/supabase-server";
+import { supabaseServer } from "@/lib/supabase/server";
 import { checkAuth } from "@/lib/auth";
 
 export async function DELETE(
@@ -11,7 +11,7 @@ export async function DELETE(
     if (authError) return authError;
 
     const { id } = await params;
-    const supabase = await createSupabaseServerClient();
+    const supabase = await supabaseServer();
 
     const { data: image, error: fetchError } = await supabase
       .from("gallery_images")
@@ -51,7 +51,7 @@ export async function PATCH(
 
     const { id } = await params;
     const body = await request.json();
-    const supabase = await createSupabaseServerClient();
+    const supabase = await supabaseServer();
 
     const updates: Record<string, unknown> = {};
     if (body.title_tr !== undefined) updates.title_tr = body.title_tr;

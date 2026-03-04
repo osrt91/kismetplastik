@@ -16,7 +16,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useLocale } from "@/contexts/LocaleContext";
-import { getSupabaseBrowser } from "@/lib/supabase-browser";
+import { supabaseBrowser } from "@/lib/supabase/client";
 
 const menuItems = [
   { key: "dashboard", icon: LayoutDashboard, href: "/bayi-panel" },
@@ -58,7 +58,7 @@ export default function BayiPanelLayout({ children }: { children: React.ReactNod
   }, [pathname]);
 
   const handleLogout = async () => {
-    const supabase = getSupabaseBrowser();
+    const supabase = supabaseBrowser();
     await supabase.auth.signOut();
     window.location.href = `/${locale}/bayi-girisi`;
   };

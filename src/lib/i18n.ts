@@ -1,39 +1,45 @@
 import tr from "@/locales/tr.json";
-import en from "@/locales/en.json";
-import ar from "@/locales/ar.json";
-import ru from "@/locales/ru.json";
-import fr from "@/locales/fr.json";
-import de from "@/locales/de.json";
-import es from "@/locales/es.json";
-import zh from "@/locales/zh.json";
-import ja from "@/locales/ja.json";
-import ko from "@/locales/ko.json";
-import pt from "@/locales/pt.json";
 
-export type Locale = "tr" | "en" | "ar" | "ru" | "fr" | "de" | "es" | "zh" | "ja" | "ko" | "pt";
+// Re-export from single source of truth
+export { locales as allLocales, localeNames, localeDirections } from "@/lib/locales";
+export type { Locale } from "@/lib/locales";
 
-export const allLocales: Locale[] = ["tr", "en", "ar", "ru", "fr", "de", "es", "zh", "ja", "ko", "pt"];
+import type { Locale } from "@/lib/locales";
 
-export const localeNames: Record<Locale, string> = {
-  tr: "Türkçe",
-  en: "English",
-  ar: "العربية",
-  ru: "Русский",
-  fr: "Français",
-  de: "Deutsch",
-  es: "Español",
-  zh: "中文",
-  ja: "日本語",
-  ko: "한국어",
-  pt: "Português",
+export type Dictionary = typeof tr;
+
+const loaders: Record<Locale, () => Promise<Dictionary>> = {
+  tr: () => Promise.resolve(tr),
+  en: () => import("@/locales/en.json").then(m => m.default),
+  ar: () => import("@/locales/ar.json").then(m => m.default),
+  ru: () => import("@/locales/ru.json").then(m => m.default),
+  fr: () => import("@/locales/fr.json").then(m => m.default),
+  de: () => import("@/locales/de.json").then(m => m.default),
+  es: () => import("@/locales/es.json").then(m => m.default),
+  zh: () => import("@/locales/zh.json").then(m => m.default),
+  ja: () => import("@/locales/ja.json").then(m => m.default),
+  ko: () => import("@/locales/ko.json").then(m => m.default),
+  pt: () => import("@/locales/pt.json").then(m => m.default),
 };
 
-export const localeDirections: Partial<Record<Locale, "rtl">> = {
-  ar: "rtl",
-};
+const cache = new Map<Locale, Dictionary>();
+cache.set("tr", tr);
 
-const dictionaries: Record<Locale, typeof tr> = { tr, en, ar, ru, fr, de, es, zh, ja, ko, pt };
+/** Returns the fallback (Turkish) dictionary synchronously. */
+export function getFallbackDictionary(): Dictionary {
+  return tr;
+}
 
-export function getDictionary(locale: Locale) {
-  return dictionaries[locale] ?? tr;
+/** Lazily loads the dictionary for the given locale. Falls back to Turkish on error. */
+export async function getDictionary(locale: Locale): Promise<Dictionary> {
+  const cached = cache.get(locale);
+  if (cached) return cached;
+
+  try {
+    const dict = await loaders[locale]();
+    cache.set(locale, dict);
+    return dict;
+  } catch {
+    return tr;
+  }
 }

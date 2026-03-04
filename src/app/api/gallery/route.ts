@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createSupabaseServerClient } from "@/lib/supabase-server";
+import { supabaseServer } from "@/lib/supabase/server";
 import { checkAuth } from "@/lib/auth";
 import { rateLimit } from "@/lib/rate-limit";
 
 export async function GET(request: NextRequest) {
   try {
-    const supabase = await createSupabaseServerClient();
+    const supabase = await supabaseServer();
     const { searchParams } = new URL(request.url);
     const category = searchParams.get("category");
 
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: "Dosya boyutu 10MB'ı aşamaz." }, { status: 400 });
     }
 
-    const supabase = await createSupabaseServerClient();
+    const supabase = await supabaseServer();
     const ext = file.name.split(".").pop() || "jpg";
     const storagePath = `${category}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
