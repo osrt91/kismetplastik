@@ -115,7 +115,7 @@ export default function BayiGirisiPage() {
         </div>
         <div
           className="pointer-events-none absolute left-8 top-12 opacity-[0.04]"
-          style={{ animation: "particle-float 8s ease-in-out infinite" }}
+          style={{ animation: "float 8s ease-in-out infinite" }}
         >
           <Lock size={100} strokeWidth={0.5} className="text-white" />
         </div>
@@ -158,14 +158,14 @@ export default function BayiGirisiPage() {
               <div
                 className="pointer-events-none absolute -right-10 top-1/3 hidden h-12 w-12 rounded-lg bg-primary-100/30 lg:block"
                 style={{
-                  animation: "particle-float 6s ease-in-out infinite 0.5s",
+                  animation: "float 6s ease-in-out infinite 0.5s",
                   transform: "rotate(-15deg)",
                 }}
               />
               <div
                 className="pointer-events-none absolute -left-4 bottom-1/4 hidden h-8 w-8 rounded-full bg-accent-400/20 lg:block"
                 style={{
-                  animation: "particle-float 8s ease-in-out infinite 2s",
+                  animation: "float 8s ease-in-out infinite 2s",
                 }}
               />
               <div

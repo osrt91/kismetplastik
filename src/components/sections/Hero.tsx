@@ -6,15 +6,6 @@ import { ArrowRight, Play, Shield, Truck, Award } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocale } from "@/contexts/LocaleContext";
 
-const PARTICLES = Array.from({ length: 18 }, (_, i) => ({
-  left: `${(i * 13 + 5) % 95}%`,
-  top: `${(i * 19 + 8) % 90}%`,
-  size: i % 3 === 0 ? 5 : i % 3 === 1 ? 4 : 3,
-  delay: `${(i * 0.6) % 5}s`,
-  duration: `${4 + (i % 5)}s`,
-  isAccent: i % 2 === 0,
-}));
-
 export default function Hero() {
   const { dict } = useLocale();
   const h = dict.home;
@@ -64,52 +55,10 @@ export default function Hero() {
         />
       </div>
 
-      {/* Animated Gradient Mesh - more vivid */}
-      <div
-        className="absolute inset-0 opacity-[0.12]"
-        style={{
-          background: `
-            radial-gradient(ellipse 70% 60% at 15% 25%, var(--accent-500), transparent 65%),
-            radial-gradient(ellipse 55% 65% at 85% 75%, var(--primary-300), transparent 65%),
-            radial-gradient(ellipse 45% 45% at 50% 50%, var(--accent-400), transparent 55%)
-          `,
-          animation: "gradient-mesh 12s ease-in-out infinite alternate",
-        }}
-      />
-      <div
-        className="absolute inset-0 opacity-[0.08]"
-        style={{
-          background: `
-            radial-gradient(ellipse 55% 55% at 75% 15%, var(--accent-300), transparent 55%),
-            radial-gradient(ellipse 65% 45% at 25% 85%, var(--primary-400), transparent 65%)
-          `,
-          animation: "gradient-mesh 15s ease-in-out infinite alternate-reverse",
-        }}
-      />
-
-      {/* Gradient Orbs - more vivid */}
-      <div className="absolute -right-32 -top-32 h-[600px] w-[600px] rounded-full bg-accent-500/[0.12] blur-[100px] animate-pulse" />
-      <div className="absolute -bottom-32 -left-32 h-[600px] w-[600px] rounded-full bg-primary-300/[0.10] blur-[100px] animate-pulse" />
+      {/* Gradient Orbs */}
+      <div className="absolute -right-32 -top-32 h-[600px] w-[600px] rounded-full bg-accent-500/[0.12] blur-[100px]" />
+      <div className="absolute -bottom-32 -left-32 h-[600px] w-[600px] rounded-full bg-primary-300/[0.10] blur-[100px]" />
       <div className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-500/[0.07] blur-[80px]" />
-
-      {/* Particle Dots */}
-      {PARTICLES.map((p, i) => (
-        <div
-          key={i}
-          className="absolute rounded-full"
-          style={{
-            left: p.left,
-            top: p.top,
-            width: p.size,
-            height: p.size,
-            backgroundColor: p.isAccent
-              ? "var(--accent-500)"
-              : "var(--primary-300)",
-            opacity: 0.2 + (i % 3) * 0.08,
-            animation: `particle-float ${p.duration} ease-in-out ${p.delay} infinite`,
-          }}
-        />
-      ))}
 
       <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 md:py-28 lg:px-8 lg:py-32">
         <div className="grid items-center gap-10 sm:gap-12 lg:grid-cols-2 lg:gap-20">
@@ -230,6 +179,7 @@ export default function Hero() {
               {/* Mascot */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative flex h-72 w-72 items-center justify-center rounded-3xl border border-white/[0.15] bg-white/[0.08] shadow-[0_8px_40px_rgba(0,0,0,0.3)] backdrop-blur-2xl transition-transform duration-500 hover:scale-105">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/images/logo2.svg"
                     alt="Kısmet Plastik"

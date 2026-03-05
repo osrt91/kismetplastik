@@ -209,28 +209,6 @@ export default function TeklifAlPage() {
                   className="relative overflow-hidden rounded-2xl border border-emerald-200 bg-emerald-50 p-12 text-center dark:border-emerald-800 dark:bg-emerald-950/30"
                   style={{ animation: "scale-in 0.4s ease-out" }}
                 >
-                  {/* Celebration particles */}
-                  {Array.from({ length: 14 }).map((_, i) => (
-                    <span
-                      key={i}
-                      className="absolute rounded-full"
-                      style={{
-                        width: `${4 + (i % 3) * 3}px`,
-                        height: `${4 + (i % 3) * 3}px`,
-                        left: `${6 + i * 6.5}%`,
-                        top: `${8 + (i % 4) * 22}%`,
-                        backgroundColor: [
-                          "#F59E0B",
-                          "#0A1628",
-                          "#3B82F6",
-                          "#10B981",
-                        ][i % 4],
-                        animation: `particle-float ${2 + (i % 3)}s ease-in-out infinite`,
-                        animationDelay: `${i * 0.12}s`,
-                        opacity: 0.4,
-                      }}
-                    />
-                  ))}
                   <div className="relative z-10">
                     <div
                       className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-emerald-100 shadow-lg shadow-emerald-500/20 dark:bg-emerald-500/20"
