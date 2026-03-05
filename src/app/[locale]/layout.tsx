@@ -33,6 +33,7 @@ const ScrollToTop = dynamic(() => import("@/components/ui/ScrollToTop"));
 const CookieBanner = dynamic(() => import("@/components/ui/CookieBanner"));
 const InstallPrompt = dynamic(() => import("@/components/ui/InstallPrompt"));
 const GoogleAnalytics = dynamic(() => import("@/components/analytics/GoogleAnalytics"));
+import { Toaster } from "sonner";
 import { LocalBusinessJsonLd, OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { locales } from "@/proxy";
 
@@ -208,6 +209,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             <ScrollToTop />
             <InstallPrompt />
             <CookieBanner />
+            <Toaster position="top-right" richColors />
           </LocaleProvider>
         </ThemeProvider>
       </body>
