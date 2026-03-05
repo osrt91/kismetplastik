@@ -76,7 +76,7 @@ export default function DashboardCards({
       {cards.map((card) => (
         <div
           key={card.label}
-          className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm transition-all hover:shadow-md"
+          className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm transition-all hover:shadow-md dark:border-neutral-700 dark:bg-neutral-800"
         >
           <div className="flex items-center gap-4">
             <div
@@ -85,10 +85,10 @@ export default function DashboardCards({
               <card.icon size={22} className={card.iconColor} />
             </div>
             <div className="min-w-0">
-              <p className="font-mono text-2xl font-bold text-[#0A1628]">
+              <p className="font-mono text-2xl font-bold text-[#0A1628] dark:text-white">
                 {formatValue(card.value, card.format)}
               </p>
-              <p className="truncate text-sm text-neutral-500">{card.label}</p>
+              <p className="truncate text-sm text-neutral-500 dark:text-neutral-400">{card.label}</p>
             </div>
           </div>
         </div>

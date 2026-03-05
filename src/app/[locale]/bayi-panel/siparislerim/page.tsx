@@ -235,7 +235,7 @@ export default function SiparislerimPage() {
       {/* Desktop table */}
       {!loading && !error && orders.length > 0 && (
         <>
-          <div className="hidden overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-sm md:block">
+          <div className="hidden overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-sm md:block dark:border-neutral-700 dark:bg-neutral-800">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-neutral-100 bg-neutral-50">
@@ -314,7 +314,7 @@ export default function SiparislerimPage() {
             {orders.map((order) => (
               <div
                 key={order.id}
-                className="rounded-lg border border-neutral-200 bg-white p-4 shadow-sm"
+                className="rounded-lg border border-neutral-200 bg-white p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-800"
               >
                 <div className="flex items-start justify-between">
                   <div>
@@ -356,7 +356,7 @@ export default function SiparislerimPage() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-between rounded-lg border border-neutral-200 bg-white px-4 py-3">
+            <div className="flex items-center justify-between rounded-lg border border-neutral-200 bg-white px-4 py-3 dark:border-neutral-700 dark:bg-neutral-800">
               <button
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={page === 1}

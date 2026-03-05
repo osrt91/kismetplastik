@@ -251,7 +251,7 @@ export default function BayiPanelDashboard() {
           </Link>
           <Link
             href="/bayi-panel/urunler"
-            className="inline-flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-5 py-3 text-sm font-semibold text-neutral-700 transition-all hover:bg-neutral-50"
+            className="inline-flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-5 py-3 text-sm font-semibold text-neutral-700 transition-all hover:bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
           >
             <Package size={16} />
             {t.viewProducts}
@@ -260,7 +260,7 @@ export default function BayiPanelDashboard() {
       </div>
 
       {/* Recent orders */}
-      <div className="rounded-xl border border-neutral-200 bg-white shadow-sm">
+      <div className="rounded-xl border border-neutral-200 bg-white shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
         <div className="flex items-center justify-between border-b border-neutral-100 px-6 py-4">
           <h3 className="text-sm font-bold uppercase tracking-wider text-neutral-400">
             {t.recentOrders}

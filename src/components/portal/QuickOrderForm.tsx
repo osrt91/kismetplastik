@@ -225,7 +225,7 @@ export default function QuickOrderForm() {
       .filter((l) => l.trim());
 
     let addedCount = 0;
-    let notFoundCodes: string[] = [];
+    const notFoundCodes: string[] = [];
     const newRows: OrderRow[] = [];
 
     for (const line of lines) {
@@ -305,15 +305,15 @@ export default function QuickOrderForm() {
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="font-display text-2xl font-bold text-[#0A1628] lg:text-3xl">
+          <h1 className="font-display text-2xl font-bold text-[#0A1628] dark:text-white lg:text-3xl">
             {t.title}
           </h1>
-          <p className="mt-1 text-sm text-neutral-500">{t.subtitle}</p>
+          <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">{t.subtitle}</p>
         </div>
         <button
           type="button"
           onClick={() => setShowExcelModal(true)}
-          className="inline-flex items-center gap-2 rounded-xl border border-[#0A1628] bg-transparent px-4 py-2.5 text-sm font-semibold text-[#0A1628] transition-colors hover:bg-[#0A1628] hover:text-white"
+          className="inline-flex items-center gap-2 rounded-xl border border-[#0A1628] bg-transparent px-4 py-2.5 text-sm font-semibold text-[#0A1628] transition-colors hover:bg-[#0A1628] hover:text-white dark:border-neutral-500 dark:text-neutral-300 dark:hover:bg-neutral-700"
         >
           <FileSpreadsheet size={16} />
           {t.excelPaste}
@@ -321,7 +321,7 @@ export default function QuickOrderForm() {
       </div>
 
       {/* Order table card */}
-      <div className="rounded-xl border border-neutral-200 bg-white shadow-sm">
+      <div className="rounded-xl border border-neutral-200 bg-white shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
         {/* Desktop table */}
         <div className="hidden lg:block">
           <table className="w-full">
@@ -536,7 +536,7 @@ export default function QuickOrderForm() {
 
       {/* Summary */}
       <div className="flex flex-col items-end">
-        <div className="w-full rounded-xl border border-neutral-200 bg-white p-6 shadow-sm sm:w-[360px]">
+        <div className="w-full rounded-xl border border-neutral-200 bg-white p-6 shadow-sm sm:w-[360px] dark:border-neutral-700 dark:bg-neutral-800">
           <div className="space-y-3">
             <div className="flex items-center justify-between text-sm">
               <span className="text-neutral-500">{t.subtotal}</span>
