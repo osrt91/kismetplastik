@@ -34,6 +34,11 @@
     "highlight1": "ISO 9001 Certified",
     "highlight2": "Nationwide Delivery",
     "highlight3": "55+ Years of Experience",
+    "heroHeading": "Shaping the Future of Packaging for 57 Years",
+    "heroSubtext": "Turkey's trusted B2B partner for PET bottles, plastic packaging and cap solutions for the cosmetics industry.",
+    "ctaDealer": "Dealer Login",
+    "viewer3DPlaceholder": "3D Product Viewer",
+    "viewer3DComingSoon": "Coming soon",
     "cardProducts": "500+",
     "cardProductsLabel": "Product Varieties",
     "cardCustomers": "1000+",
@@ -113,6 +118,12 @@
     { "name": "Hospitality & HoReCa", "description": "Mini-size and custom packaging solutions for hotels, restaurants and cafes." },
     { "name": "Custom Molding", "description": "Custom mold design and personalized cosmetic packaging production for brands." }
   ],
+  "trustBar": {
+    "experience": "Years of Experience",
+    "exports": "Export Countries",
+    "products": "Product Varieties",
+    "customers": "Happy Customers"
+  },
   "common": {
     "readMore": "Read More",
     "backToHome": "Back to Home",

@@ -27,13 +27,22 @@
     "badge": "Solutions B2B d'emballage cosmétique",
     "titleBefore": "Votre partenaire de confiance en",
     "titleAfter": "emballage cosmétique",
-    "words": ["Fiable", "Qualité", "Innovant"],
+    "words": [
+      "Fiable",
+      "Qualité",
+      "Innovant"
+    ],
     "subtitle": "Depuis 1969, flacons PET, bouteilles plastiques, emballages spray, pompes et bouchons de haute qualité pour le secteur cosmétique. Design sur mesure et solutions en gros à votre service.",
     "ctaProducts": "Découvrir les produits",
     "ctaQuote": "Demander un devis",
     "highlight1": "Certifié ISO 9001",
     "highlight2": "Livraison dans toute la Turquie",
     "highlight3": "55+ ans d'expérience",
+    "heroHeading": "Nous façonnons l'avenir de l'emballage depuis 57 ans",
+    "heroSubtext": "Partenaire B2B de confiance en Turquie pour les bouteilles PET, l'emballage plastique et les bouchons pour l'industrie cosmétique.",
+    "ctaDealer": "Connexion revendeur",
+    "viewer3DPlaceholder": "Visualiseur 3D",
+    "viewer3DComingSoon": "Bientôt disponible",
     "cardProducts": "500+",
     "cardProductsLabel": "Variétés de produits",
     "cardCustomers": "1000+",
@@ -96,23 +105,79 @@
     "Prix compétitifs et options de paiement flexibles"
   ],
   "homeCategories": [
-    { "name": "Flacons PET", "description": "Flacons PET de différents volumes et designs pour la cosmétique, la cologne et les soins personnels.", "count": "15+" },
-    { "name": "Bouteilles plastiques", "description": "Bouteilles plastiques résistantes en HDPE, PP et LDPE.", "count": "10+" },
-    { "name": "Bouchons", "description": "Bouchons à vis, flip-top et design personnalisé.", "count": "8+" },
-    { "name": "Obturateurs", "description": "Obturateurs internes, compte-gouttes et bouchons d'étanchéité.", "count": "6+" },
-    { "name": "Sprays à doigt", "description": "Mécanismes de pulvérisation à doigt pour cosmétiques et colognes.", "count": "5+" },
-    { "name": "Pompes", "description": "Pompes doseuses pour lotions, pompes à mousse et pompes pour crèmes.", "count": "7+" },
-    { "name": "Pulvérisateurs à gâchette", "description": "Systèmes de pulvérisation à gâchette pour produits d'entretien et de soin.", "count": "4+" },
-    { "name": "Entonnoirs", "description": "Entonnoirs en plastique utilisés dans les processus de remplissage.", "count": "3+" }
+    {
+      "name": "Flacons PET",
+      "description": "Flacons PET de différents volumes et designs pour la cosmétique, la cologne et les soins personnels.",
+      "count": "15+"
+    },
+    {
+      "name": "Bouteilles plastiques",
+      "description": "Bouteilles plastiques résistantes en HDPE, PP et LDPE.",
+      "count": "10+"
+    },
+    {
+      "name": "Bouchons",
+      "description": "Bouchons à vis, flip-top et design personnalisé.",
+      "count": "8+"
+    },
+    {
+      "name": "Obturateurs",
+      "description": "Obturateurs internes, compte-gouttes et bouchons d'étanchéité.",
+      "count": "6+"
+    },
+    {
+      "name": "Sprays à doigt",
+      "description": "Mécanismes de pulvérisation à doigt pour cosmétiques et colognes.",
+      "count": "5+"
+    },
+    {
+      "name": "Pompes",
+      "description": "Pompes doseuses pour lotions, pompes à mousse et pompes pour crèmes.",
+      "count": "7+"
+    },
+    {
+      "name": "Pulvérisateurs à gâchette",
+      "description": "Systèmes de pulvérisation à gâchette pour produits d'entretien et de soin.",
+      "count": "4+"
+    },
+    {
+      "name": "Entonnoirs",
+      "description": "Entonnoirs en plastique utilisés dans les processus de remplissage.",
+      "count": "3+"
+    }
   ],
   "homeSectors": [
-    { "name": "Cosmétique et beauté", "description": "Emballages au design esthétique pour shampoings, lotions, crèmes, parfums et produits de maquillage." },
-    { "name": "Cologne et parfumerie", "description": "Solutions de flaconnage sur mesure pour colognes, parfums d'ambiance et produits parfumés." },
-    { "name": "Soins personnels", "description": "Designs modernes pour les soins du corps, des cheveux, de la peau et les produits d'hygiène." },
-    { "name": "Nettoyage et hygiène", "description": "Solutions d'emballage résistantes pour savons liquides, gels hydroalcooliques et produits d'entretien." },
-    { "name": "Hôtellerie et HoReCa", "description": "Solutions d'emballage miniatures et sur mesure pour hôtels, restaurants et cafés." },
-    { "name": "Moulage sur mesure", "description": "Conception de moules personnalisés et production d'emballages cosmétiques sur mesure pour les marques." }
+    {
+      "name": "Cosmétique et beauté",
+      "description": "Emballages au design esthétique pour shampoings, lotions, crèmes, parfums et produits de maquillage."
+    },
+    {
+      "name": "Cologne et parfumerie",
+      "description": "Solutions de flaconnage sur mesure pour colognes, parfums d'ambiance et produits parfumés."
+    },
+    {
+      "name": "Soins personnels",
+      "description": "Designs modernes pour les soins du corps, des cheveux, de la peau et les produits d'hygiène."
+    },
+    {
+      "name": "Nettoyage et hygiène",
+      "description": "Solutions d'emballage résistantes pour savons liquides, gels hydroalcooliques et produits d'entretien."
+    },
+    {
+      "name": "Hôtellerie et HoReCa",
+      "description": "Solutions d'emballage miniatures et sur mesure pour hôtels, restaurants et cafés."
+    },
+    {
+      "name": "Moulage sur mesure",
+      "description": "Conception de moules personnalisés et production d'emballages cosmétiques sur mesure pour les marques."
+    }
   ],
+  "trustBar": {
+    "experience": "Années d'expérience",
+    "exports": "Pays d'exportation",
+    "products": "Variétés de produits",
+    "customers": "Clients satisfaits"
+  },
   "common": {
     "readMore": "Lire la suite",
     "backToHome": "Retour à l'accueil",

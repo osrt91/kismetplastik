@@ -27,13 +27,22 @@
     "badge": "B2B 화장품 포장 솔루션",
     "titleBefore": "화장품 포장 분야의",
     "titleAfter": "신뢰할 수 있는 파트너",
-    "words": ["신뢰", "품질", "혁신"],
+    "words": [
+      "신뢰",
+      "품질",
+      "혁신"
+    ],
     "subtitle": "1969년부터 화장품 산업을 위한 고품질 PET 병, 플라스틱 병, 스프레이 포장, 펌프 및 캡을 생산하고 있습니다. 맞춤 디자인과 도매 솔루션으로 고객을 지원합니다.",
     "ctaProducts": "제품 보기",
     "ctaQuote": "견적 요청",
     "highlight1": "ISO 9001 인증",
     "highlight2": "전국 배송",
     "highlight3": "55년 이상의 경험",
+    "heroHeading": "57년간 포장의 미래를 만들어왔습니다",
+    "heroSubtext": "화장품 산업을 위한 PET 병, 플라스틱 포장 및 캡 솔루션의 터키 신뢰할 수 있는 B2B 파트너.",
+    "ctaDealer": "딜러 로그인",
+    "viewer3DPlaceholder": "3D 제품 뷰어",
+    "viewer3DComingSoon": "곧 출시",
     "cardProducts": "500+",
     "cardProductsLabel": "제품 종류",
     "cardCustomers": "1000+",
@@ -96,23 +105,79 @@
     "경쟁력 있는 가격과 유연한 결제 조건"
   ],
   "homeCategories": [
-    { "name": "PET 병", "description": "화장품, 콜로뉴, 개인 관리 제품용 다양한 용량 및 디자인의 PET 병.", "count": "15+" },
-    { "name": "플라스틱 병", "description": "HDPE, PP, LDPE 원료로 제작된 내구성 높은 플라스틱 병 시리즈.", "count": "10+" },
-    { "name": "캡", "description": "스크류캡, 플립탑, 맞춤 디자인 캡 종류.", "count": "8+" },
-    { "name": "이너 플러그", "description": "이너 플러그, 드로퍼 플러그, 밀봉 플러그.", "count": "6+" },
-    { "name": "핑거 스프레이", "description": "화장품 및 콜로뉴 제품용 핑거 스프레이 메커니즘.", "count": "5+" },
-    { "name": "펌프", "description": "로션 펌프, 폼 펌프, 크림 디스펜싱 펌프.", "count": "7+" },
-    { "name": "트리거 스프레이어", "description": "세정 및 관리 제품용 트리거 스프레이 시스템.", "count": "4+" },
-    { "name": "깔때기", "description": "충전 공정에 사용되는 플라스틱 깔때기.", "count": "3+" }
+    {
+      "name": "PET 병",
+      "description": "화장품, 콜로뉴, 개인 관리 제품용 다양한 용량 및 디자인의 PET 병.",
+      "count": "15+"
+    },
+    {
+      "name": "플라스틱 병",
+      "description": "HDPE, PP, LDPE 원료로 제작된 내구성 높은 플라스틱 병 시리즈.",
+      "count": "10+"
+    },
+    {
+      "name": "캡",
+      "description": "스크류캡, 플립탑, 맞춤 디자인 캡 종류.",
+      "count": "8+"
+    },
+    {
+      "name": "이너 플러그",
+      "description": "이너 플러그, 드로퍼 플러그, 밀봉 플러그.",
+      "count": "6+"
+    },
+    {
+      "name": "핑거 스프레이",
+      "description": "화장품 및 콜로뉴 제품용 핑거 스프레이 메커니즘.",
+      "count": "5+"
+    },
+    {
+      "name": "펌프",
+      "description": "로션 펌프, 폼 펌프, 크림 디스펜싱 펌프.",
+      "count": "7+"
+    },
+    {
+      "name": "트리거 스프레이어",
+      "description": "세정 및 관리 제품용 트리거 스프레이 시스템.",
+      "count": "4+"
+    },
+    {
+      "name": "깔때기",
+      "description": "충전 공정에 사용되는 플라스틱 깔때기.",
+      "count": "3+"
+    }
   ],
   "homeSectors": [
-    { "name": "화장품 & 뷰티", "description": "샴푸, 로션, 크림, 향수, 메이크업 제품을 위한 미적 디자인 포장." },
-    { "name": "콜로뉴 & 향수", "description": "콜로뉴, 룸 프래그런스, 향기 제품을 위한 맞춤 디자인 병 솔루션." },
-    { "name": "개인 관리", "description": "보디 케어, 헤어 케어, 스킨 케어, 위생 제품을 위한 모던한 디자인." },
-    { "name": "세정 & 위생", "description": "핸드워시, 손 소독제, 세정 제품을 위한 내구성 포장 솔루션." },
-    { "name": "호텔 & HoReCa", "description": "호텔, 레스토랑, 카페를 위한 미니 사이즈 및 맞춤 포장 솔루션." },
-    { "name": "맞춤 금형", "description": "브랜드 맞춤 금형 설계 및 개인화된 화장품 포장 생산." }
+    {
+      "name": "화장품 & 뷰티",
+      "description": "샴푸, 로션, 크림, 향수, 메이크업 제품을 위한 미적 디자인 포장."
+    },
+    {
+      "name": "콜로뉴 & 향수",
+      "description": "콜로뉴, 룸 프래그런스, 향기 제품을 위한 맞춤 디자인 병 솔루션."
+    },
+    {
+      "name": "개인 관리",
+      "description": "보디 케어, 헤어 케어, 스킨 케어, 위생 제품을 위한 모던한 디자인."
+    },
+    {
+      "name": "세정 & 위생",
+      "description": "핸드워시, 손 소독제, 세정 제품을 위한 내구성 포장 솔루션."
+    },
+    {
+      "name": "호텔 & HoReCa",
+      "description": "호텔, 레스토랑, 카페를 위한 미니 사이즈 및 맞춤 포장 솔루션."
+    },
+    {
+      "name": "맞춤 금형",
+      "description": "브랜드 맞춤 금형 설계 및 개인화된 화장품 포장 생산."
+    }
   ],
+  "trustBar": {
+    "experience": "년 경험",
+    "exports": "개국 수출",
+    "products": "개 제품 종류",
+    "customers": "명 만족 고객"
+  },
   "common": {
     "readMore": "더 읽기",
     "backToHome": "홈으로 돌아가기",

@@ -34,6 +34,11 @@
     "highlight1": "ISO 9001 Sertifikalı",
     "highlight2": "Türkiye Geneli Teslimat",
     "highlight3": "55+ Yıllık Tecrübe",
+    "heroHeading": "57 Yıldır Ambalajın Geleceğini Şekillendiriyoruz",
+    "heroSubtext": "Kozmetik sektörüne özel PET şişe, plastik ambalaj ve kapak çözümlerinde Türkiye'nin güvenilir B2B partneri.",
+    "ctaDealer": "Bayi Girişi",
+    "viewer3DPlaceholder": "3D Ürün Görüntüleyici",
+    "viewer3DComingSoon": "Yakında aktif olacak",
     "cardProducts": "500+",
     "cardProductsLabel": "Ürün Çeşidi",
     "cardCustomers": "1000+",
@@ -113,6 +118,12 @@
     { "name": "Otelcilik & HoReCa", "description": "Otel, restoran ve kafe işletmeleri için mini boy ve özel ambalaj çözümleri." },
     { "name": "Özel Kalıplama", "description": "Markanıza özel kalıp tasarımı ve kişiselleştirilmiş kozmetik ambalaj üretimi." }
   ],
+  "trustBar": {
+    "experience": "Yıllık Deneyim",
+    "exports": "Ülkeye İhracat",
+    "products": "Ürün Çeşidi",
+    "customers": "Mutlu Müşteri"
+  },
   "common": {
     "readMore": "Devamını Oku",
     "backToHome": "Ana Sayfaya Dön",

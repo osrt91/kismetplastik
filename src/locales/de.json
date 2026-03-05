@@ -27,13 +27,22 @@
     "badge": "B2B Kosmetikverpackungslösungen",
     "titleBefore": "Ihr zuverlässiger Partner für",
     "titleAfter": "Kosmetikverpackungen",
-    "words": ["Zuverlässig", "Qualitativ", "Innovativ"],
+    "words": [
+      "Zuverlässig",
+      "Qualitativ",
+      "Innovativ"
+    ],
     "subtitle": "Seit 1969 hochwertige PET-Flaschen, Kunststoffflaschen, Spray-Verpackungen, Pumpen und Verschlüsse für die Kosmetikbranche. Individuelles Design und Großhandelslösungen zu Ihren Diensten.",
     "ctaProducts": "Produkte entdecken",
     "ctaQuote": "Angebot anfordern",
     "highlight1": "ISO 9001 zertifiziert",
     "highlight2": "Lieferung in die gesamte Türkei",
     "highlight3": "55+ Jahre Erfahrung",
+    "heroHeading": "Seit 57 Jahren gestalten wir die Zukunft der Verpackung",
+    "heroSubtext": "Ihr vertrauenswürdiger B2B-Partner in der Türkei für PET-Flaschen, Kunststoffverpackungen und Verschlüsse für die Kosmetikindustrie.",
+    "ctaDealer": "Händler-Login",
+    "viewer3DPlaceholder": "3D-Produktbetrachter",
+    "viewer3DComingSoon": "Demnächst verfügbar",
     "cardProducts": "500+",
     "cardProductsLabel": "Produktvarianten",
     "cardCustomers": "1000+",
@@ -96,23 +105,79 @@
     "Wettbewerbsfähige Preise und flexible Zahlungsoptionen"
   ],
   "homeCategories": [
-    { "name": "PET-Flaschen", "description": "PET-Flaschen in verschiedenen Volumina und Designs für Kosmetik, Kölnisch Wasser und Körperpflege.", "count": "15+" },
-    { "name": "Kunststoffflaschen", "description": "Robuste Kunststoffflaschen aus HDPE, PP und LDPE.", "count": "10+" },
-    { "name": "Verschlüsse", "description": "Schraubverschlüsse, Flip-Top und individuell gestaltete Verschlüsse.", "count": "8+" },
-    { "name": "Stopfen", "description": "Innenstopfen, Tropfstopfen und Dichtstopfen.", "count": "6+" },
-    { "name": "Fingersprays", "description": "Fingersprühmechanismen für Kosmetik und Kölnisch Wasser.", "count": "5+" },
-    { "name": "Pumpen", "description": "Lotionpumpen, Schaumpumpen und Creme-Dosierpumpen.", "count": "7+" },
-    { "name": "Triggersprüher", "description": "Triggersprühsysteme für Reinigungs- und Pflegeprodukte.", "count": "4+" },
-    { "name": "Trichter", "description": "Kunststofftrichter für den Abfüllprozess.", "count": "3+" }
+    {
+      "name": "PET-Flaschen",
+      "description": "PET-Flaschen in verschiedenen Volumina und Designs für Kosmetik, Kölnisch Wasser und Körperpflege.",
+      "count": "15+"
+    },
+    {
+      "name": "Kunststoffflaschen",
+      "description": "Robuste Kunststoffflaschen aus HDPE, PP und LDPE.",
+      "count": "10+"
+    },
+    {
+      "name": "Verschlüsse",
+      "description": "Schraubverschlüsse, Flip-Top und individuell gestaltete Verschlüsse.",
+      "count": "8+"
+    },
+    {
+      "name": "Stopfen",
+      "description": "Innenstopfen, Tropfstopfen und Dichtstopfen.",
+      "count": "6+"
+    },
+    {
+      "name": "Fingersprays",
+      "description": "Fingersprühmechanismen für Kosmetik und Kölnisch Wasser.",
+      "count": "5+"
+    },
+    {
+      "name": "Pumpen",
+      "description": "Lotionpumpen, Schaumpumpen und Creme-Dosierpumpen.",
+      "count": "7+"
+    },
+    {
+      "name": "Triggersprüher",
+      "description": "Triggersprühsysteme für Reinigungs- und Pflegeprodukte.",
+      "count": "4+"
+    },
+    {
+      "name": "Trichter",
+      "description": "Kunststofftrichter für den Abfüllprozess.",
+      "count": "3+"
+    }
   ],
   "homeSectors": [
-    { "name": "Kosmetik & Schönheit", "description": "Ästhetisch gestaltete Verpackungen für Shampoo, Lotion, Creme, Parfüm und Make-up-Produkte." },
-    { "name": "Kölnisch Wasser & Parfümerie", "description": "Individuell gestaltete Flaschenlösungen für Kölnisch Wasser, Raumdüfte und Duftprodukte." },
-    { "name": "Körperpflege", "description": "Modernes Design für Körperpflege, Haarpflege, Hautpflege und Hygieneprodukte." },
-    { "name": "Reinigung & Hygiene", "description": "Robuste Verpackungslösungen für Flüssigseife, Handdesinfektionsmittel und Reinigungsprodukte." },
-    { "name": "Hotellerie & HoReCa", "description": "Mini-Verpackungen und individuelle Lösungen für Hotels, Restaurants und Cafés." },
-    { "name": "Individuelle Formgebung", "description": "Individuelle Formengestaltung und personalisierte Kosmetikverpackungsproduktion für Marken." }
+    {
+      "name": "Kosmetik & Schönheit",
+      "description": "Ästhetisch gestaltete Verpackungen für Shampoo, Lotion, Creme, Parfüm und Make-up-Produkte."
+    },
+    {
+      "name": "Kölnisch Wasser & Parfümerie",
+      "description": "Individuell gestaltete Flaschenlösungen für Kölnisch Wasser, Raumdüfte und Duftprodukte."
+    },
+    {
+      "name": "Körperpflege",
+      "description": "Modernes Design für Körperpflege, Haarpflege, Hautpflege und Hygieneprodukte."
+    },
+    {
+      "name": "Reinigung & Hygiene",
+      "description": "Robuste Verpackungslösungen für Flüssigseife, Handdesinfektionsmittel und Reinigungsprodukte."
+    },
+    {
+      "name": "Hotellerie & HoReCa",
+      "description": "Mini-Verpackungen und individuelle Lösungen für Hotels, Restaurants und Cafés."
+    },
+    {
+      "name": "Individuelle Formgebung",
+      "description": "Individuelle Formengestaltung und personalisierte Kosmetikverpackungsproduktion für Marken."
+    }
   ],
+  "trustBar": {
+    "experience": "Jahre Erfahrung",
+    "exports": "Exportländer",
+    "products": "Produktvarianten",
+    "customers": "Zufriedene Kunden"
+  },
   "common": {
     "readMore": "Mehr lesen",
     "backToHome": "Zurück zur Startseite",

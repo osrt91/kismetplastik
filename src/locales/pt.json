@@ -27,13 +27,22 @@
     "badge": "Soluções B2B em Embalagens Cosméticas",
     "titleBefore": "Seu Parceiro Confiável em",
     "titleAfter": "Embalagens Cosméticas",
-    "words": ["Confiável", "Qualidade", "Inovador"],
+    "words": [
+      "Confiável",
+      "Qualidade",
+      "Inovador"
+    ],
     "subtitle": "Desde 1969, garrafas PET de alta qualidade, garrafas plásticas, embalagens spray, bombas e tampas para o setor de cosméticos. Design personalizado e soluções por atacado ao seu serviço.",
     "ctaProducts": "Ver Produtos",
     "ctaQuote": "Solicitar Orçamento",
     "highlight1": "Certificado ISO 9001",
     "highlight2": "Entrega em Todo o País",
     "highlight3": "55+ Anos de Experiência",
+    "heroHeading": "Moldando o futuro da embalagem há 57 anos",
+    "heroSubtext": "Parceiro B2B confiável na Turquia para garrafas PET, embalagens plásticas e tampas para a indústria cosmética.",
+    "ctaDealer": "Login revendedor",
+    "viewer3DPlaceholder": "Visualizador 3D",
+    "viewer3DComingSoon": "Em breve",
     "cardProducts": "500+",
     "cardProductsLabel": "Variedades de Produtos",
     "cardCustomers": "1000+",
@@ -96,23 +105,79 @@
     "Preços competitivos e condições de pagamento flexíveis"
   ],
   "homeCategories": [
-    { "name": "Garrafas PET", "description": "Garrafas PET em diversos volumes e designs para cosméticos, colônias e produtos de cuidados pessoais.", "count": "15+" },
-    { "name": "Garrafas Plásticas", "description": "Variedades de garrafas plásticas duráveis fabricadas em HDPE, PP e LDPE.", "count": "10+" },
-    { "name": "Tampas", "description": "Variedades de tampas rosqueáveis, flip-top e de design personalizado.", "count": "8+" },
-    { "name": "Batoques", "description": "Batoques internos, batoques conta-gotas e batoques de vedação.", "count": "6+" },
-    { "name": "Sprays de Dedo", "description": "Mecanismos de spray de dedo para cosméticos e colônias.", "count": "5+" },
-    { "name": "Bombas", "description": "Bombas para loção, bombas de espuma e bombas dosadoras de creme.", "count": "7+" },
-    { "name": "Gatilhos Pulverizadores", "description": "Sistemas de pulverização com gatilho para produtos de limpeza e cuidados.", "count": "4+" },
-    { "name": "Funis", "description": "Funis plásticos utilizados nos processos de envase.", "count": "3+" }
+    {
+      "name": "Garrafas PET",
+      "description": "Garrafas PET em diversos volumes e designs para cosméticos, colônias e produtos de cuidados pessoais.",
+      "count": "15+"
+    },
+    {
+      "name": "Garrafas Plásticas",
+      "description": "Variedades de garrafas plásticas duráveis fabricadas em HDPE, PP e LDPE.",
+      "count": "10+"
+    },
+    {
+      "name": "Tampas",
+      "description": "Variedades de tampas rosqueáveis, flip-top e de design personalizado.",
+      "count": "8+"
+    },
+    {
+      "name": "Batoques",
+      "description": "Batoques internos, batoques conta-gotas e batoques de vedação.",
+      "count": "6+"
+    },
+    {
+      "name": "Sprays de Dedo",
+      "description": "Mecanismos de spray de dedo para cosméticos e colônias.",
+      "count": "5+"
+    },
+    {
+      "name": "Bombas",
+      "description": "Bombas para loção, bombas de espuma e bombas dosadoras de creme.",
+      "count": "7+"
+    },
+    {
+      "name": "Gatilhos Pulverizadores",
+      "description": "Sistemas de pulverização com gatilho para produtos de limpeza e cuidados.",
+      "count": "4+"
+    },
+    {
+      "name": "Funis",
+      "description": "Funis plásticos utilizados nos processos de envase.",
+      "count": "3+"
+    }
   ],
   "homeSectors": [
-    { "name": "Cosméticos & Beleza", "description": "Embalagens com design estético para shampoos, loções, cremes, perfumes e produtos de maquiagem." },
-    { "name": "Colônia & Perfumaria", "description": "Soluções de frascos com design personalizado para colônias, aromatizadores e produtos de fragrância." },
-    { "name": "Cuidados Pessoais", "description": "Designs modernos para produtos de cuidados corporais, capilares, faciais e higiene." },
-    { "name": "Limpeza & Higiene", "description": "Soluções de embalagens duráveis para sabonete líquido, álcool em gel e produtos de limpeza." },
-    { "name": "Hotelaria & HoReCa", "description": "Soluções de embalagens em miniatura e personalizadas para hotéis, restaurantes e cafés." },
-    { "name": "Molde Personalizado", "description": "Design de moldes personalizados e produção de embalagens cosméticas sob medida para marcas." }
+    {
+      "name": "Cosméticos & Beleza",
+      "description": "Embalagens com design estético para shampoos, loções, cremes, perfumes e produtos de maquiagem."
+    },
+    {
+      "name": "Colônia & Perfumaria",
+      "description": "Soluções de frascos com design personalizado para colônias, aromatizadores e produtos de fragrância."
+    },
+    {
+      "name": "Cuidados Pessoais",
+      "description": "Designs modernos para produtos de cuidados corporais, capilares, faciais e higiene."
+    },
+    {
+      "name": "Limpeza & Higiene",
+      "description": "Soluções de embalagens duráveis para sabonete líquido, álcool em gel e produtos de limpeza."
+    },
+    {
+      "name": "Hotelaria & HoReCa",
+      "description": "Soluções de embalagens em miniatura e personalizadas para hotéis, restaurantes e cafés."
+    },
+    {
+      "name": "Molde Personalizado",
+      "description": "Design de moldes personalizados e produção de embalagens cosméticas sob medida para marcas."
+    }
   ],
+  "trustBar": {
+    "experience": "Anos de experiência",
+    "exports": "Países de exportação",
+    "products": "Variedades de produtos",
+    "customers": "Clientes satisfeitos"
+  },
   "common": {
     "readMore": "Leia Mais",
     "backToHome": "Voltar ao Início",
