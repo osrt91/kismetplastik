@@ -30,11 +30,11 @@ const STATUS_LABELS: Record<QuoteStatus, string> = {
 };
 
 const STATUS_COLORS: Record<QuoteStatus, string> = {
-  pending: "bg-yellow-100 text-yellow-800",
-  reviewing: "bg-blue-100 text-blue-800",
-  quoted: "bg-indigo-100 text-indigo-800",
-  accepted: "bg-green-100 text-green-800",
-  rejected: "bg-red-100 text-red-800",
+  pending: "bg-amber-500/10 text-amber-600",
+  reviewing: "bg-blue-500/10 text-blue-600",
+  quoted: "bg-indigo-500/10 text-indigo-600",
+  accepted: "bg-emerald-500/10 text-emerald-600",
+  rejected: "bg-destructive/10 text-destructive",
 };
 
 const STATUS_FILTERS: { value: string; label: string }[] = [

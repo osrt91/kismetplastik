@@ -72,10 +72,10 @@ const STATUS_LABELS: Record<WebhookEventStatus, string> = {
 };
 
 const STATUS_COLORS: Record<WebhookEventStatus, string> = {
-  pending: "bg-yellow-100 text-yellow-800",
-  processing: "bg-blue-100 text-blue-800",
-  success: "bg-green-100 text-green-800",
-  failed: "bg-red-100 text-red-800",
+  pending: "bg-amber-500/10 text-amber-600",
+  processing: "bg-blue-500/10 text-blue-600",
+  success: "bg-emerald-500/10 text-emerald-600",
+  failed: "bg-destructive/10 text-destructive",
 };
 
 const STATUS_ICONS: Record<WebhookEventStatus, React.ReactNode> = {

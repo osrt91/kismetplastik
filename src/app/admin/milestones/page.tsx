@@ -206,8 +206,8 @@ export default function AdminMilestonesPage() {
       const json = await res.json();
       if (!json.success) throw new Error(json.error ?? "Silinemedi");
       setMilestones((prev) => prev.filter((m) => m.id !== deleteId));
-    } catch {
-      // silently keep dialog closed; error would need a toast in production
+    } catch (e) {
+      alert(e instanceof Error ? e.message : "Silme sırasında bir hata oluştu");
     } finally {
       setDeleting(false);
       setDeleteId(null);

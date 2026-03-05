@@ -45,12 +45,12 @@ const STATUS_LABELS: Record<OrderStatus, string> = {
 };
 
 const STATUS_COLORS: Record<OrderStatus, string> = {
-  pending: "bg-yellow-100 text-yellow-800",
-  confirmed: "bg-blue-100 text-blue-800",
-  production: "bg-indigo-100 text-indigo-800",
-  shipping: "bg-orange-100 text-orange-800",
-  delivered: "bg-green-100 text-green-800",
-  cancelled: "bg-red-100 text-red-800",
+  pending: "bg-amber-500/10 text-amber-600",
+  confirmed: "bg-blue-500/10 text-blue-600",
+  production: "bg-indigo-500/10 text-indigo-600",
+  shipping: "bg-orange-500/10 text-orange-600",
+  delivered: "bg-emerald-500/10 text-emerald-600",
+  cancelled: "bg-destructive/10 text-destructive",
 };
 
 const ALL_STATUSES: OrderStatus[] = [
