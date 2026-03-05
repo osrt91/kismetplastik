@@ -40,7 +40,7 @@ const CATEGORY_LABELS: Record<GalleryCategory | "all", string> = {
 const CATEGORY_BADGE: Record<GalleryCategory, string> = {
   uretim: "bg-blue-500/10 text-blue-600",
   urunler: "bg-emerald-500/10 text-emerald-600",
-  etkinlikler: "bg-purple-500/10 text-purple-600",
+  etkinlikler: "bg-amber-500/10 text-amber-600",
 };
 
 const TABS: FilterTab[] = ["all", "uretim", "urunler", "etkinlikler"];

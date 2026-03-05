@@ -718,7 +718,7 @@ export default function AdminSeoPage() {
                     <h2 className="mb-3 text-sm font-semibold text-foreground">
                       Arama Sonucu Önizlemesi (TR)
                     </h2>
-                    <div className="rounded-lg border border-border bg-white p-4 dark:bg-card">
+                    <div className="rounded-lg border border-border bg-card p-4">
                       <p className="mb-0.5 text-[10px] text-green-700 dark:text-green-500">
                         kismetplastik.com/tr{selectedPath === "/" ? "" : selectedPath}
                       </p>

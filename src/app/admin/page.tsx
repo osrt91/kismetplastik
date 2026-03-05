@@ -157,7 +157,7 @@ export default function AdminDashboard() {
           badge: stats.quotesPending > 0 ? `${stats.quotesPending} onay bekliyor` : null,
           badgeColor: "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
           icon: ClipboardList,
-          iconColor: "bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400",
+          iconColor: "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400",
           href: "/admin/quotes",
         },
         {
@@ -222,7 +222,7 @@ export default function AdminDashboard() {
       label: "Siparişler",
       href: "/admin/orders",
       icon: ShoppingCart,
-      color: "hover:border-violet-500 hover:bg-violet-500/10 hover:text-violet-600",
+      color: "hover:border-indigo-500 hover:bg-indigo-500/10 hover:text-indigo-600",
     },
     {
       label: "Teklifler",

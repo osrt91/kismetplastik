@@ -43,7 +43,11 @@ function AnimatedNumber({
   }, [inView, target]);
 
   return (
-    <span>
+    <span
+      className={`inline-block transition-transform duration-300 ${
+        inView && count === target ? "scale-100" : inView ? "scale-105" : "scale-90"
+      }`}
+    >
       {count}
       {suffix}
     </span>
@@ -74,14 +78,14 @@ export default function Stats() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-primary-900 py-16 lg:py-20">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#0A1628] via-[#0E1D35] to-[#0A1628] py-20 lg:py-28">
       {/* Top gradient line */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-500/60 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F59E0B]/60 to-transparent" />
       {/* Bottom gradient line */}
-      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-accent-500/60 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#F59E0B]/60 to-transparent" />
 
       {/* Dot pattern background */}
-      <div className="absolute inset-0 opacity-[0.04]">
+      <div className="absolute inset-0 opacity-[0.03]">
         <div
           className="h-full w-full"
           style={{
@@ -92,11 +96,27 @@ export default function Stats() {
       </div>
 
       {/* Decorative blurs */}
-      <div className="absolute -left-20 top-0 h-40 w-40 rounded-full bg-accent-500/10 blur-3xl" />
-      <div className="absolute -right-20 bottom-0 h-40 w-40 rounded-full bg-primary-300/10 blur-3xl" />
+      <div className="absolute -left-32 top-1/4 h-64 w-64 rounded-full bg-[#F59E0B]/8 blur-[100px]" />
+      <div className="absolute -right-32 bottom-1/4 h-64 w-64 rounded-full bg-[#F59E0B]/5 blur-[100px]" />
+      <div className="absolute left-1/2 top-0 h-48 w-48 -translate-x-1/2 rounded-full bg-[#F59E0B]/4 blur-[80px]" />
 
       <div className="relative mx-auto max-w-7xl px-4 lg:px-6" ref={ref}>
-        <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
+        {/* Section title */}
+        <div className="mb-14 flex flex-col items-center text-center lg:mb-16">
+          <div className="mb-3 flex items-center gap-3">
+            <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#F59E0B]/70" />
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#F59E0B]">
+              {"Rakamlarla Biz"}
+            </span>
+            <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#F59E0B]/70" />
+          </div>
+          <h2 className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
+            {"Güvenilir Üretim Gücü"}
+          </h2>
+          <div className="mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-[#F59E0B] to-[#F59E0B]/30" />
+        </div>
+
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4 lg:gap-8">
           {stats.map((stat, i) => {
             const Icon = statIcons[i];
             return (
@@ -106,24 +126,27 @@ export default function Stats() {
               >
                 {/* Vertical divider between cards (desktop only) */}
                 {i > 0 && (
-                  <div className="absolute -left-4 top-1/2 hidden h-16 w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-white/15 to-transparent lg:block" />
+                  <div className="absolute -left-4 top-1/2 hidden h-20 w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent lg:block" />
                 )}
 
                 <div
-                  className={`group flex w-full flex-col items-center rounded-2xl border border-transparent px-4 py-6 text-center transition-all duration-700 hover:border-white/10 hover:bg-white/[0.04] hover:shadow-lg hover:shadow-accent-500/5 hover:backdrop-blur-sm ${
+                  className={`group relative flex w-full flex-col items-center overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] px-4 py-8 text-center backdrop-blur-sm transition-all duration-700 hover:border-[#F59E0B]/20 hover:bg-white/[0.06] hover:shadow-[0_0_30px_-5px_rgba(245,158,11,0.15)] sm:px-6 sm:py-10 ${
                     inView
                       ? "translate-y-0 opacity-100"
                       : "translate-y-8 opacity-0"
                   }`}
                   style={{ transitionDelay: `${i * 150}ms` }}
                 >
+                  {/* Card inner glow on hover */}
+                  <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(245,158,11,0.08) 0%, transparent 70%)" }} />
+
                   {/* Icon */}
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500/10 text-accent-400 transition-colors duration-300 group-hover:bg-accent-500/20">
-                    <Icon size={24} weight="duotone" />
+                  <div className="relative mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#F59E0B]/20 bg-[#F59E0B]/10 text-[#F59E0B] shadow-[0_0_20px_-5px_rgba(245,158,11,0.2)] transition-all duration-300 group-hover:border-[#F59E0B]/30 group-hover:bg-[#F59E0B]/15 group-hover:shadow-[0_0_25px_-3px_rgba(245,158,11,0.3)]">
+                    <Icon size={26} weight="duotone" />
                   </div>
 
                   {/* Number */}
-                  <div className="mb-2 text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">
+                  <div className="relative mb-3 text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
                     <AnimatedNumber
                       target={stat.value}
                       suffix={stat.suffix}
@@ -134,7 +157,7 @@ export default function Stats() {
                   {/* Label with accent underline */}
                   <div className="relative text-sm font-medium text-white/50 sm:text-base">
                     {stat.label}
-                    <span className="mx-auto mt-2 block h-0.5 w-8 rounded-full bg-accent-500/40 transition-all duration-300 group-hover:w-12 group-hover:bg-accent-500/70" />
+                    <span className="mx-auto mt-3 block h-0.5 w-8 rounded-full bg-[#F59E0B]/30 transition-all duration-300 group-hover:w-14 group-hover:bg-[#F59E0B]/60" />
                   </div>
                 </div>
               </div>

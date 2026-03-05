@@ -40,7 +40,7 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-[#0A1628] via-[#0f1e36] to-[#0A1628] px-4">
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-400 text-2xl font-black text-slate-900 shadow-lg shadow-amber-400/20">

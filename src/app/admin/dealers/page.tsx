@@ -23,9 +23,9 @@ type FilterRole = "all" | UserRole;
 type FilterApproved = "all" | "true" | "false";
 
 const ROLE_COLORS: Record<UserRole, string> = {
-  admin: "bg-purple-100 text-purple-700",
+  admin: "bg-primary/10 text-primary",
   dealer: "bg-blue-100 text-blue-700",
-  customer: "bg-gray-100 text-gray-700",
+  customer: "bg-muted text-muted-foreground",
 };
 
 export default function AdminDealersPage() {

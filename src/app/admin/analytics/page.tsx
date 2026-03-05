@@ -118,7 +118,7 @@ export default function AdminAnalyticsPage() {
           label: "Bu Ay Teklif",
           value: data.thisMonth.quotes,
           icon: ClipboardList,
-          iconColor: "bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400",
+          iconColor: "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400",
           href: "/admin/quotes",
         },
         {

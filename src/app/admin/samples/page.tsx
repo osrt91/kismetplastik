@@ -30,7 +30,7 @@ const STATUS_COLORS: Record<SampleRequestStatus, string> = {
   pending: "bg-amber-500/10 text-amber-600",
   reviewing: "bg-blue-500/10 text-blue-600",
   approved: "bg-emerald-500/10 text-emerald-600",
-  shipped: "bg-purple-500/10 text-purple-600",
+  shipped: "bg-indigo-500/10 text-indigo-600",
   rejected: "bg-destructive/10 text-destructive",
 };
 
