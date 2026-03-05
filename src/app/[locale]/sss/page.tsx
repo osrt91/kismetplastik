@@ -129,13 +129,22 @@ export default function SSSPage() {
     searchFiltered.filter((faq) => faq.category === cat).length;
 
   return (
-    <section className="bg-white dark:bg-neutral-900">
+    <section className="bg-[#FAFAF7] dark:bg-[#0A1628]">
       {/* Hero */}
-      <div className="bg-gradient-to-br from-primary-900 via-primary-700 to-primary-900 py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6">
+      <div className="relative overflow-hidden bg-gradient-to-br from-[#0A1628] via-[#0f2240] to-[#0A1628] py-16 lg:py-20">
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div
+            className="h-full w-full"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+              backgroundSize: "40px 40px",
+            }}
+          />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 lg:px-6">
           <AnimateOnScroll animation="fade-up">
             <nav className="mb-6 flex items-center gap-1.5 text-sm text-white/60">
-              <Link href="/" className="hover:text-white">
+              <Link href="/" className="hover:text-white transition-colors">
                 {nav.home}
               </Link>
               <ChevronRight size={14} />
@@ -144,6 +153,7 @@ export default function SSSPage() {
             <h1 className="mb-3 text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
               {f.heroTitle}
             </h1>
+            <div className="mt-4 mb-6 h-1 w-20 rounded-full bg-[#F59E0B]" />
             <p className="max-w-2xl text-lg text-white/70">{f.heroSubtitle}</p>
           </AnimateOnScroll>
         </div>
@@ -165,7 +175,7 @@ export default function SSSPage() {
                 setOpenIndex(0);
               }}
               placeholder="Soru veya cevaplarda ara..."
-              className="w-full rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 py-3.5 pl-11 pr-4 text-sm text-neutral-700 dark:text-neutral-300 outline-none transition-all placeholder:text-neutral-400 focus:border-primary-300 focus:bg-white dark:focus:bg-neutral-800 focus:ring-2 focus:ring-primary-100"
+              className="w-full rounded-xl border border-[#0A1628]/10 dark:border-white/10 bg-white dark:bg-white/5 py-3.5 pl-11 pr-4 text-sm text-neutral-700 dark:text-neutral-300 outline-none transition-all placeholder:text-neutral-400 focus:border-[#F59E0B]/50 focus:bg-white dark:focus:bg-white/10 focus:ring-2 focus:ring-[#F59E0B]/10"
             />
             {searchQuery && (
               <button

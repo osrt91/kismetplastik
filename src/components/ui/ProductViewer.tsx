@@ -46,14 +46,14 @@ const ProductViewer = memo(function ProductViewer({ product, onColorChange }: Pr
   return (
     <div className="flex flex-col gap-6 w-full">
       {/* SVG Display Area */}
-      <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-neutral-50 via-primary-50/30 to-primary-100/20 border border-neutral-200/60 dark:border-neutral-700 dark:from-neutral-800 dark:via-neutral-900 dark:to-neutral-800">
+      <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#FAFAF7] via-white to-neutral-50 border border-neutral-200/60 shadow-xl shadow-[#0A1628]/5 dark:border-neutral-700 dark:from-[#0A1628] dark:via-[#111827] dark:to-[#0D1117] dark:shadow-black/20">
         {/* Badges */}
         <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
           {product.featured && (
             <motion.span
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-amber-400/90 text-amber-950 shadow-sm backdrop-blur-sm"
+              className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-[#F59E0B] text-[#0A1628] shadow-sm backdrop-blur-sm"
             >
               {dict.components.starFeatured}
             </motion.span>
@@ -64,13 +64,13 @@ const ProductViewer = memo(function ProductViewer({ product, onColorChange }: Pr
             transition={{ delay: 0.1 }}
             className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold shadow-sm backdrop-blur-sm ${
               product.inStock
-                ? "bg-amber-100/90 text-amber-800"
-                : "bg-red-100/90 text-red-800"
+                ? "bg-emerald-100/90 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300"
+                : "bg-red-100/90 text-red-800 dark:bg-red-900/60 dark:text-red-300"
             }`}
           >
             <span
               className={`w-1.5 h-1.5 rounded-full ${
-                product.inStock ? "bg-amber-500" : "bg-red-500"
+                product.inStock ? "bg-emerald-500" : "bg-red-500"
               }`}
             />
             {product.inStock ? dict.components.inStock : dict.components.outOfStockShort}
@@ -83,7 +83,7 @@ const ProductViewer = memo(function ProductViewer({ product, onColorChange }: Pr
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsZoomed((z) => !z)}
-            className="p-2 rounded-xl bg-white/80 backdrop-blur-sm border border-neutral-200/60 text-foreground/70 hover:text-primary-600 hover:bg-white shadow-sm transition-colors dark:bg-neutral-800/80 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
+            className="p-2 rounded-xl bg-white/80 backdrop-blur-sm border border-neutral-200/60 text-neutral-600 hover:text-[#F59E0B] hover:border-[#F59E0B]/30 hover:bg-white shadow-sm transition-all dark:bg-[#111827]/80 dark:border-neutral-700 dark:text-neutral-300 dark:hover:text-[#F59E0B] dark:hover:border-[#F59E0B]/30"
             aria-label={dict.components.zoomIn}
           >
             <ZoomIn size={18} />
@@ -92,7 +92,7 @@ const ProductViewer = memo(function ProductViewer({ product, onColorChange }: Pr
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleReset}
-            className="p-2 rounded-xl bg-white/80 backdrop-blur-sm border border-neutral-200/60 text-foreground/70 hover:text-primary-600 hover:bg-white shadow-sm transition-colors dark:bg-neutral-800/80 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
+            className="p-2 rounded-xl bg-white/80 backdrop-blur-sm border border-neutral-200/60 text-neutral-600 hover:text-[#F59E0B] hover:border-[#F59E0B]/30 hover:bg-white shadow-sm transition-all dark:bg-[#111827]/80 dark:border-neutral-700 dark:text-neutral-300 dark:hover:text-[#F59E0B] dark:hover:border-[#F59E0B]/30"
             aria-label={dict.components.reset}
           >
             <RotateCcw size={18} />
@@ -100,7 +100,7 @@ const ProductViewer = memo(function ProductViewer({ product, onColorChange }: Pr
         </div>
 
         {/* Product SVG */}
-        <div className="flex items-center justify-center min-h-[320px] md:min-h-[420px] py-12 px-8">
+        <div className="flex items-center justify-center min-h-[320px] md:min-h-[420px] py-12 px-8 transition-transform duration-500">
           <motion.div
             animate={{
               scale: isZoomed ? 1.4 : 1,
@@ -140,10 +140,10 @@ const ProductViewer = memo(function ProductViewer({ product, onColorChange }: Pr
       {/* Color Picker */}
       {product.colors.length > 0 && (
         <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-            <Palette size={16} className="text-primary-500" />
+          <div className="flex items-center gap-2 text-sm font-medium text-[#0A1628] dark:text-neutral-200">
+            <Palette size={16} className="text-[#F59E0B]" />
             <span>{dict.components.colorSelection}</span>
-            <span className="ml-auto text-xs text-muted-foreground font-normal">
+            <span className="ml-auto text-xs text-neutral-400 font-normal dark:text-neutral-500">
               {selectedColor}
             </span>
           </div>
@@ -164,8 +164,8 @@ const ProductViewer = memo(function ProductViewer({ product, onColorChange }: Pr
                   title={color}
                   className={`relative w-9 h-9 rounded-full transition-shadow duration-200 ${
                     isSelected
-                      ? "ring-2 ring-offset-2 ring-primary-500 shadow-md dark:ring-offset-neutral-900"
-                      : "ring-1 ring-neutral-200 hover:ring-neutral-300 hover:shadow-sm dark:ring-neutral-600"
+                      ? "ring-2 ring-offset-2 ring-[#F59E0B] shadow-md shadow-[#F59E0B]/20 dark:ring-offset-[#0A1628]"
+                      : "ring-1 ring-neutral-200 hover:ring-[#F59E0B]/50 hover:shadow-sm dark:ring-neutral-600 dark:hover:ring-[#F59E0B]/50"
                   }`}
                   style={{ backgroundColor: hex }}
                   aria-label={`Renk: ${color}`}

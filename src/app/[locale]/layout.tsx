@@ -136,7 +136,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   return (
-    <html lang={locale} className={`${fraunces.variable} ${instrumentSans.variable}`}>
+    <html lang={locale} className={`${fraunces.variable} ${instrumentSans.variable}`} suppressHydrationWarning>
       <head>
         <LocalBusinessJsonLd />
         <OrganizationJsonLd />
@@ -175,7 +175,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <meta name="theme-color" content="#0A1628" />
         <link rel="apple-touch-icon" sizes="192x192" href="/images/icon-192.png" />
       </head>
-      <body className="antialiased" dir={locale === "ar" ? "rtl" : "ltr"}>
+      <body className="antialiased" dir={locale === "ar" ? "rtl" : "ltr"} suppressHydrationWarning>
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var theme=localStorage.getItem('kismetplastik-theme');if(!theme)theme=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';if(theme==='dark'){document.documentElement.classList.add('dark');document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();`,

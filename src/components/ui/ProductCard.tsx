@@ -69,10 +69,10 @@ const ProductCard = memo(function ProductCard({ product }: { product: Product })
   return (
     <Link
       href={`/urunler/${product.category}/${product.slug}`}
-      className="group relative block overflow-hidden rounded-2xl border border-neutral-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-xl hover:shadow-primary-900/5"
+      className="group relative block overflow-hidden rounded-2xl border border-neutral-100 bg-white transition-all duration-400 hover:-translate-y-2 hover:border-amber-200/60 hover:shadow-2xl hover:shadow-primary-900/10 dark:border-neutral-800 dark:bg-[#0A1628] dark:hover:border-amber-500/30 dark:hover:shadow-amber-500/5"
     >
       <div
-        className="relative aspect-square overflow-hidden"
+        className="relative aspect-square overflow-hidden shadow-[inset_0_2px_8px_rgba(0,0,0,0.06)]"
         style={{ backgroundColor: cat.bg }}
       >
         <svg
@@ -93,6 +93,12 @@ const ProductCard = memo(function ProductCard({ product }: { product: Product })
             />
           ))}
         </svg>
+
+        {/* Hover gradient overlay */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0A1628]/10 opacity-0 transition-opacity duration-400 group-hover:opacity-100" />
+
+        {/* Shimmer effect on hover */}
+        <div className="pointer-events-none absolute inset-0 -translate-x-full skew-x-[-20deg] bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-full group-hover:opacity-100" />
 
         <div className="absolute inset-0 flex items-center justify-center">
           <Package
@@ -118,7 +124,7 @@ const ProductCard = memo(function ProductCard({ product }: { product: Product })
         </div>
 
         <span
-          className="absolute bottom-3 left-3 rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-wide transition-transform duration-300 group-hover:scale-110"
+          className="absolute bottom-3 left-3 rounded-lg px-2.5 py-1 text-[10px] font-semibold tracking-wide shadow-sm shadow-black/10 transition-transform duration-400 group-hover:scale-110"
           style={{ backgroundColor: cat.badge, color: cat.badgeText }}
         >
           {cat.name}
@@ -131,34 +137,34 @@ const ProductCard = memo(function ProductCard({ product }: { product: Product })
         </div>
       </div>
 
-      <div className="p-5">
-        <h3 className="mb-1.5 text-base font-bold text-primary-900 transition-colors group-hover:text-primary-700">
+      <div className="p-5 dark:text-neutral-200">
+        <h3 className="mb-1.5 text-base font-bold text-primary-900 transition-colors group-hover:text-primary-700 dark:text-neutral-100 dark:group-hover:text-amber-400">
           {product.name}
         </h3>
-        <p className="mb-3 text-sm text-neutral-500 line-clamp-2">
+        <p className="mb-3 text-sm text-neutral-500 line-clamp-2 dark:text-neutral-400">
           {product.shortDescription}
         </p>
 
-        <div className="mb-4 flex flex-wrap gap-1.5">
+        <div className="mb-4 flex flex-wrap gap-1.5 rounded-lg bg-neutral-50/80 px-2.5 py-2 dark:bg-white/5">
           {product.volume && (
-            <span className="rounded-md bg-primary-50 px-2 py-0.5 text-xs font-medium text-primary-700">
+            <span className="rounded-md bg-primary-50 px-2 py-0.5 text-xs font-semibold text-primary-700 dark:bg-primary-900/30 dark:text-primary-300">
               {product.volume}
             </span>
           )}
           {product.weight && (
-            <span className="rounded-md bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-600">
+            <span className="rounded-md bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300">
               {product.weight}
             </span>
           )}
           {product.neckDiameter && (
-            <span className="rounded-md bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-600">
+            <span className="rounded-md bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300">
               Ø{product.neckDiameter}
             </span>
           )}
         </div>
 
         <div className="mb-4 flex items-center gap-2">
-          <span className="text-xs text-neutral-400">{dict.components.colors}</span>
+          <span className="text-xs text-neutral-400 dark:text-neutral-500">{dict.components.colors}</span>
           <div className="flex items-center gap-1">
             {product.colors.slice(0, 5).map((color) => (
               <span
@@ -176,34 +182,34 @@ const ProductCard = memo(function ProductCard({ product }: { product: Product })
           </div>
         </div>
 
-        <div className="flex items-center justify-between border-t border-neutral-50 pt-3">
-          <span className="text-xs text-neutral-400">
+        <div className="flex items-center justify-between border-t border-neutral-100 pt-3 dark:border-neutral-700/50">
+          <span className="text-xs text-neutral-400 dark:text-neutral-500">
             {dict.components.minOrderText.replace("{count}", product.minOrder.toLocaleString("tr-TR"))}
           </span>
           <div className="flex items-center gap-2">
             <button
               onClick={handleCompareToggle}
-              className={`flex items-center gap-1 rounded-md px-2 py-1 text-[10px] font-semibold transition-all ${
+              className={`flex items-center gap-1 rounded-md px-2 py-1 text-[10px] font-semibold transition-all duration-300 ${
                 inCompare
-                  ? "bg-amber-100 text-amber-700"
-                  : "bg-neutral-100 text-neutral-500 hover:bg-primary-50 hover:text-primary-700"
+                  ? "bg-amber-100 text-amber-700 shadow-sm shadow-amber-300/40 dark:bg-amber-900/40 dark:text-amber-400 dark:shadow-amber-500/20"
+                  : "bg-neutral-100 text-neutral-500 hover:bg-amber-50 hover:text-amber-700 hover:shadow-sm hover:shadow-amber-300/30 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:bg-amber-900/30 dark:hover:text-amber-400"
               }`}
               title={locale === "tr" ? "Karşılaştır" : "Compare"}
             >
               <GitCompareArrows size={12} />
             </button>
-            <span className="flex items-center gap-1 text-sm font-semibold text-primary-700 transition-colors group-hover:text-accent-600">
+            <span className="flex items-center gap-1 text-sm font-semibold text-primary-700 transition-colors group-hover:text-accent-600 dark:text-primary-300 dark:group-hover:text-amber-400">
               {dict.components.detail}
               <ArrowRight
                 size={14}
-                className="transition-transform duration-300 group-hover:translate-x-1"
+                className="transition-transform duration-400 group-hover:translate-x-1"
               />
             </span>
           </div>
         </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-primary-500 via-accent-400 to-primary-300 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="absolute inset-x-0 bottom-0 h-[3px] bg-gradient-to-r from-primary-600 via-accent-500 to-primary-400 opacity-0 transition-opacity duration-400 group-hover:opacity-100" />
     </Link>
   );
 });

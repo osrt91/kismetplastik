@@ -8,6 +8,7 @@ import {
   Calendar,
   Clock,
   ArrowLeft,
+  ArrowRight,
   Share2,
   BookOpen,
   Tag,
@@ -30,12 +31,13 @@ export default function BlogDetailClient() {
 
   if (!post) {
     return (
-      <section className="flex min-h-[60vh] items-center justify-center bg-neutral-50">
+      <section className="flex min-h-[60vh] items-center justify-center bg-[#FAFAF7] dark:bg-[#0A1628]">
         <div className="text-center">
-          <h1 className="mb-2 text-2xl font-bold text-neutral-700">
+          <h1 className="mb-3 text-2xl font-extrabold text-[#0A1628] dark:text-white">
             {dict.blog.postNotFound}
           </h1>
-          <Link href="/blog" className="text-primary-700 hover:underline">
+          <Link href="/blog" className="inline-flex items-center gap-1.5 text-sm font-bold text-accent-600 transition-colors hover:text-accent-500 dark:text-accent-400">
+            <ArrowLeft size={14} />
             {dict.blog.backToBlog}
           </Link>
         </div>
@@ -44,36 +46,39 @@ export default function BlogDetailClient() {
   }
 
   const relatedPosts = blogPosts
-    .filter((p) => p.slug !== slug)
+    .filter((p) => p.category === post.category && p.slug !== slug)
+    .concat(blogPosts.filter((p) => p.category !== post.category && p.slug !== slug))
     .slice(0, 3);
 
   return (
-    <section className="bg-white">
+    <section className="bg-[#FAFAF7] dark:bg-[#0A1628]">
       {/* Hero */}
-      <div className="bg-gradient-to-br from-primary-900 via-primary-700 to-primary-900 py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-4 lg:px-6">
+      <div className="relative overflow-hidden bg-[#0A1628] py-20 lg:py-28">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0A1628] via-primary-900 to-[#0A1628]" />
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle, #F59E0B 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+        <div className="relative mx-auto max-w-4xl px-4 lg:px-6">
           <AnimateOnScroll animation="fade-up">
-            <nav className="mb-6 flex items-center gap-1.5 text-sm text-white/60">
-              <Link href="/" className="hover:text-white">{dict.nav.home}</Link>
+            <nav className="mb-8 flex items-center gap-2 text-sm text-white/50">
+              <Link href="/" className="transition-colors hover:text-accent-400">{dict.nav.home}</Link>
               <ChevronRight size={14} />
-              <Link href="/blog" className="hover:text-white">{dict.nav.blog}</Link>
+              <Link href="/blog" className="transition-colors hover:text-accent-400">{dict.nav.blog}</Link>
               <ChevronRight size={14} />
-              <span className="text-white">{post.title}</span>
+              <span className="font-medium text-white/80 line-clamp-1">{post.title}</span>
             </nav>
-            <div className="mb-4 flex items-center gap-3 text-sm text-white/60">
-              <span className="rounded-full bg-accent-500/20 px-3 py-1 font-semibold text-accent-400">
+            <div className="mb-5 flex flex-wrap items-center gap-3 text-sm">
+              <span className="rounded-full bg-accent-500 px-3.5 py-1.5 text-xs font-bold text-[#0A1628]">
                 {post.category}
               </span>
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-1.5 text-white/50">
                 <Calendar size={14} />
                 {formatDate(post.date)}
               </span>
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-1.5 text-white/50">
                 <Clock size={14} />
                 {post.readTime}
               </span>
             </div>
-            <h1 className="text-2xl font-extrabold text-white sm:text-3xl lg:text-4xl">
+            <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
               {post.title}
             </h1>
           </AnimateOnScroll>
@@ -82,46 +87,86 @@ export default function BlogDetailClient() {
 
       {/* Content */}
       <div className="mx-auto max-w-4xl px-4 py-12 lg:px-6 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1fr_280px]">
+        <div className="grid gap-12 lg:grid-cols-[1fr_300px]">
           <AnimateOnScroll animation="fade-up">
-            <article className="prose prose-lg max-w-none">
+            <article>
               <Link
                 href="/blog"
-                className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-primary-700 no-underline transition-colors hover:text-primary-900"
+                className="group mb-10 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-[#0A1628] shadow-sm transition-all duration-200 hover:-translate-x-1 hover:shadow-md dark:bg-neutral-800 dark:text-white"
               >
-                <ArrowLeft size={16} />
+                <ArrowLeft size={14} className="transition-transform duration-200 group-hover:-translate-x-0.5" />
                 {dict.blog.backToBlog}
               </Link>
 
-              <p className="text-lg font-medium text-neutral-700">{post.excerpt}</p>
+              {/* Excerpt / Lead paragraph */}
+              <p className="mb-8 border-l-4 border-accent-500 pl-5 text-lg font-medium leading-relaxed text-[#0A1628]/80 dark:text-white/80 lg:text-xl">
+                {post.excerpt}
+              </p>
 
-              {post.content.map((paragraph, i) => (
-                <p key={i} className="leading-relaxed text-neutral-600">
-                  {paragraph}
-                </p>
-              ))}
+              {/* Content paragraphs */}
+              <div className="space-y-6">
+                {post.content.map((paragraph, i) => (
+                  <p key={i} className="text-base leading-[1.85] text-neutral-600 dark:text-neutral-300 lg:text-lg lg:leading-[1.85]">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+
+              {/* Share / CTA section */}
+              <div className="mt-12 flex flex-col gap-4 border-t border-neutral-200 pt-8 dark:border-neutral-700 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-semibold text-neutral-400 dark:text-neutral-500">Paylaş:</span>
+                  <button
+                    onClick={() => {
+                      if (navigator.share) {
+                        navigator.share({ title: post.title, url: window.location.href });
+                      } else {
+                        navigator.clipboard.writeText(window.location.href);
+                      }
+                    }}
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#0A1628]/5 text-[#0A1628] transition-all duration-200 hover:bg-accent-500 hover:text-[#0A1628] dark:bg-white/10 dark:text-white dark:hover:bg-accent-500 dark:hover:text-[#0A1628]"
+                    aria-label="Paylaş"
+                  >
+                    <Share2 size={16} />
+                  </button>
+                </div>
+                <Link
+                  href="/teklif-al"
+                  className="group inline-flex items-center gap-2 rounded-full bg-accent-500 px-6 py-2.5 text-sm font-bold text-[#0A1628] shadow-lg shadow-accent-500/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-400 hover:shadow-xl hover:shadow-accent-500/30"
+                >
+                  {dict.nav.quote}
+                  <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
+                </Link>
+              </div>
             </article>
           </AnimateOnScroll>
 
           {/* Sidebar */}
           <aside className="hidden lg:block">
             <div className="sticky top-24 space-y-6">
-              <div className="rounded-xl border border-neutral-200 p-5">
-                <h3 className="mb-4 flex items-center gap-2 font-bold text-primary-900">
-                  <BookOpen size={18} />
-                  {dict.blog.relatedPosts}
-                </h3>
-                <ul className="space-y-3">
+              {/* Related posts */}
+              <div className="overflow-hidden rounded-2xl border border-neutral-200/60 bg-white shadow-sm dark:border-neutral-700 dark:bg-neutral-800/80">
+                <div className="border-b border-neutral-100 px-6 py-4 dark:border-neutral-700">
+                  <h3 className="flex items-center gap-2 font-extrabold text-[#0A1628] dark:text-white">
+                    <BookOpen size={18} className="text-accent-500" />
+                    {dict.blog.relatedPosts}
+                  </h3>
+                </div>
+                <ul className="divide-y divide-neutral-100 dark:divide-neutral-700">
                   {relatedPosts.map((rp) => (
                     <li key={rp.slug}>
                       <Link
                         href={`/blog/${rp.slug}`}
-                        className="block text-sm text-neutral-600 transition-colors hover:text-primary-700"
+                        className="group/rp block px-6 py-4 transition-colors hover:bg-accent-50/50 dark:hover:bg-accent-500/5"
                       >
-                        <span className="font-medium">{rp.title}</span>
-                        <span className="mt-0.5 flex items-center gap-2 text-xs text-neutral-400">
-                          <Tag size={10} />
-                          {rp.category} &middot; {rp.readTime}
+                        <span className="block text-sm font-semibold text-[#0A1628] transition-colors group-hover/rp:text-accent-600 dark:text-white dark:group-hover/rp:text-accent-400">
+                          {rp.title}
+                        </span>
+                        <span className="mt-1.5 flex items-center gap-2 text-xs text-neutral-400 dark:text-neutral-500">
+                          <span className="rounded-full bg-accent-500/10 px-2 py-0.5 font-semibold text-accent-600 dark:text-accent-400">
+                            {rp.category}
+                          </span>
+                          <span>{rp.readTime}</span>
                         </span>
                       </Link>
                     </li>
@@ -129,14 +174,48 @@ export default function BlogDetailClient() {
                 </ul>
               </div>
 
+              {/* CTA card */}
               <Link
                 href="/teklif-al"
-                className="block rounded-xl bg-accent-500 p-5 text-center font-bold text-primary-900 shadow-lg transition-all hover:bg-accent-400 hover:-translate-y-0.5"
+                className="group block overflow-hidden rounded-2xl bg-gradient-to-br from-accent-500 to-accent-400 p-6 text-center shadow-lg shadow-accent-500/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-accent-500/30"
               >
-                {dict.nav.quote}
+                <p className="text-lg font-extrabold text-[#0A1628]">
+                  {dict.nav.quote}
+                </p>
+                <p className="mt-1 text-sm font-medium text-[#0A1628]/60">
+                  Hemen teklif alın
+                </p>
+                <ArrowRight size={20} className="mx-auto mt-3 text-[#0A1628]/40 transition-transform duration-300 group-hover:translate-x-2" />
               </Link>
             </div>
           </aside>
+        </div>
+
+        {/* Mobile related posts */}
+        <div className="mt-16 lg:hidden">
+          <h3 className="mb-6 flex items-center gap-2 text-lg font-extrabold text-[#0A1628] dark:text-white">
+            <BookOpen size={20} className="text-accent-500" />
+            {dict.blog.relatedPosts}
+          </h3>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {relatedPosts.slice(0, 2).map((rp) => (
+              <Link
+                key={rp.slug}
+                href={`/blog/${rp.slug}`}
+                className="group block rounded-xl border border-neutral-200/60 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg dark:border-neutral-700 dark:bg-neutral-800/80"
+              >
+                <span className="mb-2 inline-block rounded-full bg-accent-500/15 px-2.5 py-0.5 text-xs font-bold text-accent-600 dark:text-accent-400">
+                  {rp.category}
+                </span>
+                <h4 className="text-sm font-bold text-[#0A1628] transition-colors group-hover:text-accent-600 dark:text-white dark:group-hover:text-accent-400">
+                  {rp.title}
+                </h4>
+                <span className="mt-2 flex items-center gap-1 text-xs font-bold text-accent-600 dark:text-accent-400">
+                  Oku <ArrowRight size={12} className="transition-transform duration-200 group-hover:translate-x-1" />
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </section>

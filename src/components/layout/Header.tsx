@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Link from "@/components/ui/LocaleLink";
 import {
   Phone,
@@ -59,6 +60,7 @@ const categoryHrefs = [
 export default function Header() {
   const { locale, setLocale, dict } = useLocale();
   const { theme, toggleTheme } = useTheme();
+  const pathname = usePathname();
   const nav = dict.nav;
   const comp = dict.components;
   const categories = (dict.homeCategories as { name: string; description: string }[])?.slice(0, 5) ?? [];
@@ -129,6 +131,13 @@ export default function Header() {
     setMobileExpanded(prev => prev === name ? null : name);
   };
 
+  // Check if a path is active (strip locale prefix for comparison)
+  const isActive = (href: string) => {
+    const stripped = pathname.replace(/^\/(tr|en|de|fr|es|it|pt|ru|ar|zh|ja)/, "") || "/";
+    if (href === "/") return stripped === "/";
+    return stripped.startsWith(href);
+  };
+
   return (
     <>
       {/* Top Bar */}
@@ -190,10 +199,12 @@ export default function Header() {
       </div>
 
       {/* Main Header */}
-      <header className={clsx("sticky top-0 z-50 w-full border-b transition-all duration-200", scrolled ? "border-border bg-background/95 shadow-sm backdrop-blur-md" : "border-transparent bg-background")}>
+      <header className={clsx("sticky top-0 z-50 w-full transition-all duration-500 ease-in-out", scrolled ? "border-b border-amber-500/20 bg-background/80 shadow-[0_1px_12px_rgba(245,158,11,0.08)] backdrop-blur-xl" : "border-b border-transparent bg-background")}>
+        {/* Subtle amber gradient line at top */}
+        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-amber-500/70 to-transparent" />
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 lg:px-6">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center transition-transform duration-300 ease-out hover:scale-105">
             <img src="/images/logo1.svg" alt="Kısmet Plastik" className="h-8 w-auto lg:h-10 dark:brightness-0 dark:invert" />
           </Link>
 
@@ -201,16 +212,22 @@ export default function Header() {
           <NavigationMenu className="hidden lg:flex">
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                  <Link href="/">{nav.home}</Link>
+                <NavigationMenuLink asChild className={clsx(navigationMenuTriggerStyle(), "relative transition-colors duration-200 hover:bg-amber-500/10 hover:text-foreground")}>
+                  <Link href="/">
+                    {nav.home}
+                    {isActive("/") && <span className="absolute bottom-1 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-amber-500" />}
+                  </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
 
               {/* ÜRÜNLER Mega */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger>{nav.products}</NavigationMenuTrigger>
+                <NavigationMenuTrigger className={clsx("relative transition-colors duration-200 hover:bg-amber-500/10 hover:text-foreground", isActive("/urunler") && "text-foreground")}>
+                  {nav.products}
+                  {isActive("/urunler") && <span className="absolute bottom-1 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-amber-500" />}
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="grid w-[520px] grid-cols-[1fr_180px] gap-0 p-0">
+                  <div className="grid w-[520px] grid-cols-[1fr_180px] gap-0 rounded-xl border border-border/60 bg-background p-0 shadow-xl shadow-black/[0.08]">
                     <ul className="grid gap-0.5 p-3">
                       {productChildren.map((child) => {
                         const Icon = child.icon;
@@ -219,7 +236,7 @@ export default function Header() {
                             <NavigationMenuLink asChild>
                               <Link
                                 href={child.href}
-                                className="group flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-secondary"
+                                className="group flex items-start gap-3 rounded-lg px-3 py-2.5 transition-all duration-200 hover:bg-amber-500/[0.06] hover:shadow-sm"
                               >
                                 <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary-50 text-primary-600 transition-colors group-hover:bg-primary-100">
                                   <Icon size={16} strokeWidth={1.8} />
@@ -258,9 +275,12 @@ export default function Header() {
 
               {/* KURUMSAL Mega */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger>{comp.corporate}</NavigationMenuTrigger>
+                <NavigationMenuTrigger className={clsx("relative transition-colors duration-200 hover:bg-amber-500/10 hover:text-foreground", isActive("/hakkimizda") && "text-foreground")}>
+                  {comp.corporate}
+                  {(isActive("/hakkimizda") || isActive("/kalite") || isActive("/uretim") || isActive("/vizyon-misyon") || isActive("/arge") || isActive("/surdurulebilirlik") || isActive("/galeri") || isActive("/referanslar")) && <span className="absolute bottom-1 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-amber-500" />}
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[420px] p-3">
+                  <div className="w-[420px] rounded-xl border border-border/60 bg-background p-3 shadow-xl shadow-black/[0.08]">
                     <div className="mb-2 px-3">
                       <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">{comp.megaCorporateDesc}</p>
                     </div>
@@ -272,9 +292,9 @@ export default function Header() {
                             <NavigationMenuLink asChild>
                               <Link
                                 href={child.href}
-                                className="group flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                                className="group flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-all duration-200 hover:bg-amber-500/[0.06] hover:text-foreground"
                               >
-                                <Icon size={15} strokeWidth={1.8} className="shrink-0 text-primary-500 opacity-60 transition-opacity group-hover:opacity-100" />
+                                <Icon size={15} strokeWidth={1.8} className="shrink-0 text-primary-500 opacity-60 transition-all duration-200 group-hover:text-amber-500 group-hover:opacity-100" />
                                 {child.name}
                               </Link>
                             </NavigationMenuLink>
@@ -288,9 +308,12 @@ export default function Header() {
 
               {/* SEKTÖRLER Mega */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger>{nav.sectors}</NavigationMenuTrigger>
+                <NavigationMenuTrigger className={clsx("relative transition-colors duration-200 hover:bg-amber-500/10 hover:text-foreground", isActive("/sektorler") && "text-foreground")}>
+                  {nav.sectors}
+                  {isActive("/sektorler") && <span className="absolute bottom-1 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-amber-500" />}
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[480px] p-3">
+                  <div className="w-[480px] rounded-xl border border-border/60 bg-background p-3 shadow-xl shadow-black/[0.08]">
                     <div className="mb-2 px-3">
                       <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">{comp.megaSectorsDesc}</p>
                     </div>
@@ -300,7 +323,7 @@ export default function Header() {
                           <NavigationMenuLink asChild>
                             <Link
                               href={sector.href}
-                              className="group block rounded-lg px-3 py-2.5 transition-colors hover:bg-secondary"
+                              className="group block rounded-lg px-3 py-2.5 transition-all duration-200 hover:bg-amber-500/[0.06] hover:shadow-sm"
                             >
                               <div className="text-sm font-semibold text-foreground">{sector.name}</div>
                               <div className="mt-0.5 line-clamp-1 text-[11px] text-muted-foreground">{sector.desc}</div>
@@ -315,9 +338,12 @@ export default function Header() {
 
               {/* MEDYA Mega */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger>{nav.media}</NavigationMenuTrigger>
+                <NavigationMenuTrigger className={clsx("relative transition-colors duration-200 hover:bg-amber-500/10 hover:text-foreground", (isActive("/blog") || isActive("/fuarlar") || isActive("/ambalaj-sozlugu")) && "text-foreground")}>
+                  {nav.media}
+                  {(isActive("/blog") || isActive("/fuarlar") || isActive("/ambalaj-sozlugu")) && <span className="absolute bottom-1 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-amber-500" />}
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[280px] p-3">
+                  <div className="w-[280px] rounded-xl border border-border/60 bg-background p-3 shadow-xl shadow-black/[0.08]">
                     <ul className="grid gap-0.5">
                       {mediaChildren.map((child) => {
                         const Icon = child.icon;
@@ -326,9 +352,9 @@ export default function Header() {
                             <NavigationMenuLink asChild>
                               <Link
                                 href={child.href}
-                                className="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                                className="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-muted-foreground transition-all duration-200 hover:bg-amber-500/[0.06] hover:text-foreground"
                               >
-                                <Icon size={16} strokeWidth={1.8} className="shrink-0 text-primary-500 opacity-60 transition-opacity group-hover:opacity-100" />
+                                <Icon size={16} strokeWidth={1.8} className="shrink-0 text-primary-500 opacity-60 transition-all duration-200 group-hover:text-amber-500 group-hover:opacity-100" />
                                 {child.name}
                               </Link>
                             </NavigationMenuLink>
@@ -341,8 +367,11 @@ export default function Header() {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                  <Link href="/iletisim">{nav.contact}</Link>
+                <NavigationMenuLink asChild className={clsx(navigationMenuTriggerStyle(), "relative transition-colors duration-200 hover:bg-amber-500/10 hover:text-foreground")}>
+                  <Link href="/iletisim">
+                    {nav.contact}
+                    {isActive("/iletisim") && <span className="absolute bottom-1 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-amber-500" />}
+                  </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>
@@ -356,13 +385,13 @@ export default function Header() {
             <Button variant="outline" size="sm" asChild>
               <Link href="/bayi-girisi">{nav.dealer}</Link>
             </Button>
-            <Button size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+            <Button size="sm" className="bg-amber-500 text-white shadow-sm shadow-amber-500/20 transition-all duration-200 hover:bg-amber-600 hover:shadow-md hover:shadow-amber-500/25" asChild>
               <Link href="/teklif-al">{nav.quote}</Link>
             </Button>
           </div>
 
           {/* Mobile Toggle */}
-          <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setMobileOpen(true)} aria-label={comp.menuLabel}>
+          <Button variant="ghost" size="icon" className="transition-colors duration-200 hover:bg-amber-500/10 lg:hidden" onClick={() => setMobileOpen(true)} aria-label={comp.menuLabel}>
             <Menu size={22} />
           </Button>
         </div>
@@ -373,7 +402,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-        <SheetContent side="right" className="w-[85%] max-w-sm overflow-y-auto p-0">
+        <SheetContent side="right" className="w-[85%] max-w-sm overflow-y-auto p-0 [&>div]:duration-500 [&>div]:ease-out">
           <SheetHeader className="border-b border-border px-5 py-4">
             <SheetTitle className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -399,14 +428,14 @@ export default function Header() {
             </SheetTitle>
           </SheetHeader>
 
-          <nav className="px-5 py-3">
+          <nav className="px-5 py-4">
             {mobileNavItems.map((item) => (
-              <div key={item.name} className="border-b border-border/40">
+              <div key={item.name} className="border-b border-border/30">
                 {item.children ? (
                   <>
                     <button
                       onClick={() => toggleMobileSection(item.name)}
-                      className="flex w-full items-center justify-between py-3.5 text-[15px] font-medium text-foreground"
+                      className="flex w-full items-center justify-between py-4 text-[15px] font-medium text-foreground transition-colors duration-200 hover:text-amber-600"
                     >
                       {item.name}
                       <ChevronRight
@@ -416,14 +445,14 @@ export default function Header() {
                     </button>
                     <div
                       className={clsx(
-                        "overflow-hidden transition-all duration-200",
-                        mobileExpanded === item.name ? "max-h-96 pb-2" : "max-h-0"
+                        "overflow-hidden transition-all duration-300 ease-in-out",
+                        mobileExpanded === item.name ? "max-h-96 pb-3 opacity-100" : "max-h-0 opacity-0"
                       )}
                     >
-                      <div className="ml-2 space-y-0.5 border-l-2 border-primary-200 pl-4">
+                      <div className="ml-2 space-y-0.5 border-l-2 border-amber-400/50 pl-4">
                         {item.children.map((child) => (
                           <SheetClose key={child.href + child.name} asChild>
-                            <Link href={child.href} className="block rounded-md py-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                            <Link href={child.href} className={clsx("block rounded-md px-2 py-2.5 text-sm transition-colors duration-200 hover:bg-amber-500/[0.06] hover:text-foreground", isActive(child.href) ? "font-medium text-amber-600" : "text-muted-foreground")}>
                               {child.name}
                             </Link>
                           </SheetClose>
@@ -433,8 +462,9 @@ export default function Header() {
                   </>
                 ) : (
                   <SheetClose asChild>
-                    <Link href={item.href} className="block py-3.5 text-[15px] font-medium text-foreground">
+                    <Link href={item.href} className={clsx("block py-4 text-[15px] font-medium transition-colors duration-200 hover:text-amber-600", isActive(item.href) ? "text-amber-600" : "text-foreground")}>
                       {item.name}
+                      {isActive(item.href) && <span className="ml-2 inline-block h-1.5 w-1.5 rounded-full bg-amber-500" />}
                     </Link>
                   </SheetClose>
                 )}
@@ -453,7 +483,7 @@ export default function Header() {
               <Button variant="outline" className="flex-1" asChild>
                 <Link href="/bayi-girisi" onClick={() => setMobileOpen(false)}>{nav.dealer}</Link>
               </Button>
-              <Button className="flex-1 bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+              <Button className="flex-1 bg-amber-500 text-white shadow-sm shadow-amber-500/20 hover:bg-amber-600" asChild>
                 <Link href="/teklif-al" onClick={() => setMobileOpen(false)}>{nav.quote}</Link>
               </Button>
             </div>

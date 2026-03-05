@@ -122,9 +122,9 @@ export default function KalitePage() {
   const nav = dict.nav;
 
   return (
-    <section className="bg-white dark:bg-neutral-0">
+    <section className="bg-[#FAFAF7] dark:bg-[#0A1628]">
       {/* Hero */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 py-20 lg:py-28">
+      <div className="relative overflow-hidden bg-gradient-to-br from-[#0A1628] via-[#0f2240] to-[#0A1628] py-20 lg:py-28">
         <div className="absolute inset-0 opacity-[0.03]">
           <div
             className="h-full w-full"
@@ -144,9 +144,9 @@ export default function KalitePage() {
         </div>
 
         {/* Gradient orbs */}
-        <div className="absolute -left-20 -top-20 h-72 w-72 animate-pulse rounded-full bg-accent-500/10 blur-3xl" />
+        <div className="absolute -left-20 -top-20 h-72 w-72 animate-pulse rounded-full bg-[#F59E0B]/10 blur-3xl" />
         <div
-          className="absolute -bottom-16 right-10 h-64 w-64 rounded-full bg-primary-400/15 blur-3xl"
+          className="absolute -bottom-16 right-10 h-64 w-64 rounded-full bg-[#0f2240]/30 blur-3xl"
           style={{ animation: "pulse 4s ease-in-out infinite 1s" }}
         />
 
@@ -160,6 +160,7 @@ export default function KalitePage() {
             <h1 className="mb-4 text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
               {q.heroTitle}
             </h1>
+            <div className="mt-4 mb-6 h-1 w-20 rounded-full bg-[#F59E0B]" />
             <p className="max-w-2xl text-lg text-white/70">
               {q.heroSubtitle}
             </p>
@@ -168,16 +169,16 @@ export default function KalitePage() {
       </div>
 
       {/* Section divider */}
-      <div className="h-1 bg-gradient-to-r from-transparent via-primary-200 to-transparent" />
+      <div className="h-1 bg-gradient-to-r from-transparent via-[#F59E0B]/30 to-transparent" />
 
       {/* Sertifikalar */}
       <div className="mx-auto max-w-7xl px-4 py-16 lg:px-6 lg:py-24">
         <AnimateOnScroll animation="fade-up">
           <div className="mb-14 text-center">
-            <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
+            <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-[#F59E0B]">
               {q.certsOverline}
             </span>
-            <h2 className="mb-4 text-3xl font-extrabold text-primary-900 dark:text-white sm:text-4xl">
+            <h2 className="mb-4 text-3xl font-extrabold text-[#0A1628] dark:text-white sm:text-4xl">
               {q.certsTitle}
             </h2>
             <p className="mx-auto max-w-2xl text-neutral-500 dark:text-neutral-400">
@@ -189,16 +190,16 @@ export default function KalitePage() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {certificates.map((cert, i) => (
             <AnimateOnScroll key={cert.name} animation="fade-up" delay={i * 80}>
-              <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-xl dark:border-neutral-700 dark:bg-neutral-800">
+              <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#0A1628]/5 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#F59E0B]/20 hover:shadow-xl dark:border-white/10 dark:bg-white/5">
                 {/* Ribbon/seal visual */}
                 <div className="absolute -right-4 -top-4 h-20 w-20 rotate-12 opacity-[0.06]">
-                  <Award size={80} className="text-primary-900" />
+                  <Award size={80} className="text-[#0A1628]" />
                 </div>
 
                 {/* Checkmark overlay on hover */}
                 <div className="absolute right-4 top-4 scale-0 transition-transform duration-300 group-hover:scale-100">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-success/10">
-                    <CheckCircle2 size={18} className="text-success" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F59E0B]/10">
+                    <CheckCircle2 size={18} className="text-[#F59E0B]" />
                   </div>
                 </div>
 
@@ -206,7 +207,7 @@ export default function KalitePage() {
                   <cert.icon size={26} />
                 </div>
                 <div className="mb-2 flex items-center gap-2">
-                  <h3 className="text-lg font-bold text-primary-900 dark:text-white">{cert.name}</h3>
+                  <h3 className="text-lg font-bold text-[#0A1628] dark:text-white">{cert.name}</h3>
                 </div>
                 <p className="mb-1 text-sm font-semibold text-neutral-700 dark:text-neutral-300">{cert.title}</p>
                 <p className="mb-5 flex-1 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
@@ -216,14 +217,14 @@ export default function KalitePage() {
                   href={cert.file}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-700 transition-colors hover:text-accent-600"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0A1628] transition-colors hover:text-[#F59E0B] dark:text-white dark:hover:text-[#F59E0B]"
                 >
                   <Download size={14} />
                   {q.downloadCert}
                 </a>
 
                 {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-primary-500 to-accent-500 transition-all duration-500 group-hover:w-full" />
+                <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-[#0A1628] to-[#F59E0B] transition-all duration-500 group-hover:w-full" />
               </div>
             </AnimateOnScroll>
           ))}
@@ -232,18 +233,18 @@ export default function KalitePage() {
 
       {/* Section divider */}
       <div className="mx-auto max-w-5xl px-4">
-        <div className="h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
+        <div className="h-px bg-gradient-to-r from-transparent via-[#F59E0B]/20 to-transparent" />
       </div>
 
       {/* Kalite Kontrol Süreci - Visual timeline */}
-      <div className="bg-neutral-50 py-16 dark:bg-neutral-900 lg:py-24">
+      <div className="bg-white py-16 dark:bg-[#0A1628]/80 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <AnimateOnScroll animation="fade-up">
             <div className="mb-14 text-center">
-              <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
+              <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-[#F59E0B]">
                 {q.processOverline}
               </span>
-              <h2 className="mb-4 text-3xl font-extrabold text-primary-900 dark:text-white sm:text-4xl">
+              <h2 className="mb-4 text-3xl font-extrabold text-[#0A1628] dark:text-white sm:text-4xl">
                 {q.processTitle}
               </h2>
               <p className="mx-auto max-w-2xl text-neutral-500 dark:text-neutral-400">
@@ -256,29 +257,29 @@ export default function KalitePage() {
           <div className="hidden lg:block">
             <div className="relative">
               {/* Horizontal connecting line */}
-              <div className="absolute left-[12.5%] right-[12.5%] top-8 h-0.5 bg-gradient-to-r from-primary-200 via-primary-300 to-primary-200" />
+              <div className="absolute left-[12.5%] right-[12.5%] top-8 h-0.5 bg-gradient-to-r from-[#0A1628]/10 via-[#F59E0B]/30 to-[#0A1628]/10" />
 
               <div className="grid grid-cols-4 gap-6">
                 {qualitySteps.map((step, i) => (
                   <AnimateOnScroll key={step.step} animation="fade-up" delay={i * 120}>
                     <div className="group relative flex flex-col items-center text-center">
                       {/* Step circle */}
-                      <div className="relative z-10 mb-6 flex h-16 w-16 items-center justify-center rounded-full border-[3px] border-primary-200 bg-white shadow-sm transition-all duration-300 group-hover:border-accent-500 group-hover:shadow-md">
-                        <span className="text-xl font-black text-primary-700 transition-colors group-hover:text-accent-600">
+                      <div className="relative z-10 mb-6 flex h-16 w-16 items-center justify-center rounded-full border-[3px] border-[#0A1628]/15 bg-white shadow-sm transition-all duration-300 group-hover:border-[#F59E0B] group-hover:shadow-md dark:bg-[#0A1628]">
+                        <span className="text-xl font-black text-[#0A1628] transition-colors group-hover:text-[#F59E0B] dark:text-white">
                           {step.step}
                         </span>
                       </div>
 
                       {/* Arrow between steps */}
                       {i < qualitySteps.length - 1 && (
-                        <div className="absolute left-[calc(50%+40px)] top-[26px] text-primary-300">
+                        <div className="absolute left-[calc(50%+40px)] top-[26px] text-[#F59E0B]/40">
                           <ArrowRight size={20} />
                         </div>
                       )}
 
-                      <div className="rounded-2xl border border-neutral-100 bg-white p-6 transition-all duration-300 group-hover:border-primary-100 group-hover:shadow-lg">
-                        <h3 className="mb-2 font-bold text-primary-900">{step.title}</h3>
-                        <p className="text-sm leading-relaxed text-neutral-500">{step.description}</p>
+                      <div className="rounded-2xl border border-[#0A1628]/5 bg-[#FAFAF7] p-6 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-[#F59E0B]/20 group-hover:shadow-lg dark:border-white/10 dark:bg-white/5">
+                        <h3 className="mb-2 font-bold text-[#0A1628] dark:text-white">{step.title}</h3>
+                        <p className="text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">{step.description}</p>
                       </div>
                     </div>
                   </AnimateOnScroll>
@@ -289,18 +290,18 @@ export default function KalitePage() {
 
           {/* Mobile/Tablet: vertical timeline */}
           <div className="lg:hidden">
-            <div className="relative ml-4 border-l-2 border-primary-200 pl-8">
+            <div className="relative ml-4 border-l-2 border-[#F59E0B]/30 pl-8">
               {qualitySteps.map((step, i) => (
                 <AnimateOnScroll key={step.step} animation="fade-right" delay={i * 100}>
                   <div className="relative mb-8 last:mb-0">
                     {/* Dot on the line */}
-                    <div className="absolute -left-[41px] top-1 flex h-10 w-10 items-center justify-center rounded-full border-[3px] border-primary-200 bg-white">
-                      <span className="text-sm font-black text-primary-700">{step.step}</span>
+                    <div className="absolute -left-[41px] top-1 flex h-10 w-10 items-center justify-center rounded-full border-[3px] border-[#F59E0B]/30 bg-white dark:bg-[#0A1628]">
+                      <span className="text-sm font-black text-[#0A1628] dark:text-white">{step.step}</span>
                     </div>
 
-                    <div className="rounded-2xl border border-neutral-100 bg-white p-6">
-                      <h3 className="mb-2 font-bold text-primary-900">{step.title}</h3>
-                      <p className="text-sm leading-relaxed text-neutral-500">{step.description}</p>
+                    <div className="rounded-2xl border border-[#0A1628]/5 bg-[#FAFAF7] p-6 dark:border-white/10 dark:bg-white/5">
+                      <h3 className="mb-2 font-bold text-[#0A1628] dark:text-white">{step.title}</h3>
+                      <p className="text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">{step.description}</p>
                     </div>
                   </div>
                 </AnimateOnScroll>
@@ -312,7 +313,7 @@ export default function KalitePage() {
 
       {/* Section divider */}
       <div className="mx-auto max-w-5xl px-4">
-        <div className="h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
+        <div className="h-px bg-gradient-to-r from-transparent via-[#F59E0B]/20 to-transparent" />
       </div>
 
       {/* Laboratuvar Testleri */}
@@ -320,10 +321,10 @@ export default function KalitePage() {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <AnimateOnScroll animation="fade-right">
             <div>
-              <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
+              <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-[#F59E0B]">
                 {q.labOverline}
               </span>
-              <h2 className="mb-6 text-2xl font-extrabold text-primary-900 dark:text-white sm:text-3xl">
+              <h2 className="mb-6 text-2xl font-extrabold text-[#0A1628] dark:text-white sm:text-3xl">
                 {q.labTitle}
               </h2>
               <p className="mb-8 leading-relaxed text-neutral-600 dark:text-neutral-400">
@@ -331,7 +332,7 @@ export default function KalitePage() {
               </p>
               <Link
                 href="/teklif-al"
-                className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-6 py-3.5 font-bold text-primary-900 shadow-lg transition-all hover:-translate-y-0.5 hover:bg-accent-400"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#F59E0B] px-6 py-3.5 font-bold text-[#0A1628] shadow-lg shadow-[#F59E0B]/20 transition-all hover:-translate-y-0.5 hover:bg-[#F59E0B]/90 hover:shadow-xl"
               >
                 <FlaskConical size={18} />
                 {q.labCta}
@@ -339,22 +340,22 @@ export default function KalitePage() {
             </div>
           </AnimateOnScroll>
           <AnimateOnScroll animation="fade-left">
-            <div className="rounded-2xl border border-neutral-100 bg-white p-6 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
-              <h3 className="mb-5 font-bold text-primary-900 dark:text-white">{q.labTestsTitle}</h3>
+            <div className="rounded-2xl border border-[#0A1628]/5 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5">
+              <h3 className="mb-5 font-bold text-[#0A1628] dark:text-white">{q.labTestsTitle}</h3>
               <ul className="space-y-4">
                 {labTests.map((test) => (
                   <li key={test.text} className="group">
                     <div className="mb-1.5 flex items-start gap-3">
-                      <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600 transition-colors group-hover:bg-primary-100">
+                      <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] transition-colors group-hover:bg-[#F59E0B]/20">
                         <test.icon size={14} />
                       </div>
-                      <span className="flex-1 text-sm text-neutral-700">{test.text}</span>
-                      <span className="text-xs font-bold text-primary-600">{test.progress}%</span>
+                      <span className="flex-1 text-sm text-neutral-700 dark:text-neutral-300">{test.text}</span>
+                      <span className="text-xs font-bold text-[#0A1628] dark:text-[#F59E0B]">{test.progress}%</span>
                     </div>
                     {/* Progress bar */}
-                    <div className="ml-10 h-1.5 overflow-hidden rounded-full bg-neutral-100">
+                    <div className="ml-10 h-1.5 overflow-hidden rounded-full bg-[#0A1628]/5 dark:bg-white/10">
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-primary-400 to-primary-600 transition-all duration-1000"
+                        className="h-full rounded-full bg-gradient-to-r from-[#0A1628] to-[#F59E0B] transition-all duration-1000"
                         style={{ width: `${test.progress}%` }}
                       />
                     </div>

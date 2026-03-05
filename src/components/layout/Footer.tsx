@@ -66,9 +66,24 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#0a1628] text-white">
+    <footer className="relative bg-[var(--color-navy,#0a1628)] text-white overflow-hidden">
+      {/* Subtle background pattern overlay */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, rgba(245,158,11,0.4) 1px, transparent 0)",
+          backgroundSize: "40px 40px",
+        }}
+      />
+      {/* Gradient overlay for depth */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
+
+      {/* Decorative top border */}
+      <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[var(--accent-500,#F59E0B)] to-transparent" />
+
       {/* Main Footer */}
-      <div className="mx-auto max-w-7xl px-4 pb-10 pt-14 lg:px-6">
+      <div className="relative mx-auto max-w-7xl px-4 pb-10 pt-14 lg:px-6">
         <div className="grid gap-10 lg:grid-cols-12">
           {/* Brand */}
           <div className="lg:col-span-4">
@@ -128,7 +143,7 @@ export default function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-[13px] text-white/50 transition-colors hover:text-white"
+                      className="inline-block text-[13px] text-white/50 transition-all duration-200 hover:text-[var(--accent-500,#F59E0B)] hover:translate-x-1"
                     >
                       {link.name}
                     </Link>
@@ -137,7 +152,7 @@ export default function Footer() {
                 <li>
                   <Link
                     href="/urunler"
-                    className="inline-flex items-center gap-1 text-[12px] font-medium text-accent/70 transition-colors hover:text-accent"
+                    className="inline-flex items-center gap-1 text-[12px] font-medium text-accent/70 transition-all duration-200 hover:text-accent hover:translate-x-1"
                   >
                     {nav.allProducts}
                     <ExternalLink size={10} />
@@ -156,7 +171,7 @@ export default function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-[13px] text-white/50 transition-colors hover:text-white"
+                      className="inline-block text-[13px] text-white/50 transition-all duration-200 hover:text-[var(--accent-500,#F59E0B)] hover:translate-x-1"
                     >
                       {link.name}
                     </Link>
@@ -175,7 +190,7 @@ export default function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-[13px] text-white/50 transition-colors hover:text-white"
+                      className="inline-block text-[13px] text-white/50 transition-all duration-200 hover:text-[var(--accent-500,#F59E0B)] hover:translate-x-1"
                     >
                       {link.name}
                     </Link>
@@ -184,7 +199,7 @@ export default function Footer() {
                 <li>
                   <Link
                     href="/kvkk"
-                    className="text-[12px] text-white/30 transition-colors hover:text-white/60"
+                    className="inline-block text-[12px] text-white/30 transition-all duration-200 hover:text-white/60 hover:translate-x-1"
                   >
                     KVKK
                   </Link>
@@ -213,12 +228,12 @@ export default function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={f.newsletterPlaceholder}
-                  className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-xs text-white placeholder-white/25 outline-none transition-colors focus:border-accent/40 focus:bg-white/[0.06]"
+                  className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-xs text-white placeholder-white/25 outline-none transition-all duration-200 focus:border-[var(--accent-500,#F59E0B)]/50 focus:bg-white/[0.06] focus:ring-2 focus:ring-[var(--accent-500,#F59E0B)]/20 focus:ring-offset-0"
                   required
                 />
                 <button
                   type="submit"
-                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-xs font-bold text-accent-foreground transition-colors hover:bg-accent/90"
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-xs font-bold text-accent-foreground transition-all duration-200 hover:bg-accent/90 hover:shadow-[0_0_20px_rgba(245,158,11,0.3)]"
                 >
                   <Send size={12} />
                   {f.newsletterButton}
@@ -232,7 +247,7 @@ export default function Footer() {
                 <a
                   key={social.name}
                   href={social.href}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.05] text-white/40 transition-all hover:bg-accent/20 hover:text-accent"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.05] text-white/40 transition-all duration-200 hover:scale-110 hover:bg-[var(--accent-500,#F59E0B)]/20 hover:text-[var(--accent-500,#F59E0B)] hover:shadow-[0_0_12px_rgba(245,158,11,0.25)]"
                   aria-label={social.name}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -246,16 +261,18 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/[0.06]">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-4 sm:flex-row lg:px-6">
-          <span className="text-[11px] text-white/25">
+      <div className="relative">
+        {/* Gradient divider */}
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <div className="relative mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 sm:flex-row lg:px-6">
+          <span className="text-[11px] text-white/30">
             &copy; {new Date().getFullYear()} {f.copyright}
           </span>
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[11px] text-white/25 transition-colors hover:bg-white/5 hover:text-white/50"
+            className="group flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[11px] text-white/30 transition-all duration-200 hover:bg-white/5 hover:text-[var(--accent-500,#F59E0B)]"
           >
-            <ArrowUp size={12} strokeWidth={1.8} />
+            <ArrowUp size={12} strokeWidth={1.8} className="transition-transform duration-200 group-hover:-translate-y-0.5" />
             {dict.components.scrollUp}
           </button>
         </div>

@@ -12,19 +12,19 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
 
 const primaryScheme = {
-  iconBg: "bg-primary-50",
-  iconText: "text-primary-700",
-  iconHoverBg: "group-hover:bg-primary-900",
-  numberColor: "text-primary-100",
-  borderGradient: "from-primary-500 via-primary-300 to-primary-700",
+  iconBg: "bg-gradient-to-br from-amber-400 to-amber-600",
+  iconText: "text-white",
+  iconHoverBg: "group-hover:from-amber-500 group-hover:to-amber-700",
+  numberColor: "text-[#0A1628]/[0.06] dark:text-white/[0.04]",
+  borderGradient: "from-amber-500 via-amber-300 to-amber-600",
 };
 
 const accentScheme = {
-  iconBg: "bg-accent-100",
-  iconText: "text-accent-600",
-  iconHoverBg: "group-hover:bg-accent-500",
-  numberColor: "text-accent-100",
-  borderGradient: "from-accent-500 via-accent-300 to-accent-600",
+  iconBg: "bg-gradient-to-br from-amber-500 to-amber-700",
+  iconText: "text-white",
+  iconHoverBg: "group-hover:from-amber-400 group-hover:to-amber-600",
+  numberColor: "text-[#0A1628]/[0.06] dark:text-white/[0.04]",
+  borderGradient: "from-amber-500 via-amber-300 to-amber-600",
 };
 
 export default function WhyUs() {
@@ -41,25 +41,29 @@ export default function WhyUs() {
   ];
 
   return (
-    <section className="relative bg-neutral-50 py-20 dark:bg-neutral-900 lg:py-28 overflow-hidden">
+    <section className="relative py-20 lg:py-28 overflow-hidden bg-gradient-to-b from-[#FAFAF7] via-white to-[#FAFAF7] dark:from-[#0A1628] dark:via-neutral-900 dark:to-[#0A1628]">
+      {/* Subtle background pattern */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.03] dark:opacity-[0.02]" aria-hidden>
+        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, #0A1628 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+      </div>
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         {/* Section Header */}
         <AnimateOnScroll animation="fade-up">
           <div className="mb-14 text-center">
-            <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
+            <span className="mb-3 inline-block rounded-full bg-amber-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-amber-600 dark:bg-amber-500/20 dark:text-amber-400">
               {h.whyUsOverline}
             </span>
-            <h2 className="mb-4 text-3xl font-extrabold text-primary-900 dark:text-white sm:text-4xl">
+            <h2 className="mb-4 text-3xl font-extrabold text-[#0A1628] dark:text-white sm:text-4xl lg:text-5xl">
               {h.whyUsTitle}
             </h2>
-            <p className="mx-auto max-w-2xl text-neutral-500 dark:text-neutral-400">
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-muted-foreground">
               {h.whyUsSubtitle}
             </p>
           </div>
         </AnimateOnScroll>
 
         {/* Features Grid with connecting lines */}
-        <div className="relative grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="relative grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
           {/* Horizontal connecting dots (visible on lg) */}
           <div className="pointer-events-none absolute top-1/2 left-0 right-0 -translate-y-1/2 hidden lg:block" aria-hidden>
             <svg width="100%" height="4" className="overflow-visible">
@@ -107,31 +111,31 @@ export default function WhyUs() {
               <AnimateOnScroll
                 key={feature.title}
                 animation="fade-up"
-                delay={i * 100}
+                delay={i * 120}
               >
-                <div className="group relative h-full overflow-hidden rounded-2xl border border-neutral-100 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-xl hover:shadow-primary-900/5 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-primary-500/30">
+                <div className="group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card/70 p-7 backdrop-blur-md transition-all duration-500 ease-out hover:-translate-y-2 hover:border-amber-400/50 hover:shadow-2xl hover:shadow-amber-500/10 sm:p-8 dark:border-white/[0.08] dark:bg-white/[0.04] dark:backdrop-blur-xl dark:hover:border-amber-500/30 dark:hover:shadow-amber-500/5">
                   {/* Left border gradient reveal on hover */}
                   <div
-                    className={`absolute left-0 top-0 h-full w-[3px] bg-gradient-to-b ${scheme.borderGradient} opacity-0 transition-all duration-500 group-hover:opacity-100`}
+                    className={`absolute left-0 top-0 h-full w-[3px] rounded-full bg-gradient-to-b ${scheme.borderGradient} opacity-0 transition-all duration-500 group-hover:opacity-100`}
                   />
 
                   {/* Large faded step number */}
                   <span
-                    className={`absolute -top-2 right-4 select-none font-mono text-[4.5rem] font-black leading-none ${scheme.numberColor} transition-colors duration-300 group-hover:text-primary-50`}
+                    className={`absolute -top-2 right-4 select-none font-mono text-[4.5rem] font-black leading-none ${scheme.numberColor} transition-colors duration-300 group-hover:text-primary-50 dark:group-hover:text-white/[0.06]`}
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
 
                   <div className="relative z-10">
                     <div
-                      className={`mb-5 flex h-14 w-14 items-center justify-center rounded-xl ${scheme.iconBg} ${scheme.iconText} transition-all duration-300 ${scheme.iconHoverBg} group-hover:text-white group-hover:scale-110 group-hover:rotate-3`}
+                      className={`mb-5 flex h-14 w-14 items-center justify-center rounded-2xl shadow-lg shadow-amber-500/20 ${scheme.iconBg} ${scheme.iconText} transition-all duration-500 ${scheme.iconHoverBg} group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-xl group-hover:shadow-amber-500/30`}
                     >
                       <feature.icon size={26} weight="duotone" />
                     </div>
-                    <h3 className="mb-3 text-lg font-bold text-primary-900 dark:text-white">
+                    <h3 className="mb-2.5 text-lg font-bold tracking-tight text-[#0A1628] dark:text-white">
                       {feature.title}
                     </h3>
-                    <p className="text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
+                    <p className="text-sm leading-relaxed text-muted-foreground">
                       {feature.description}
                     </p>
                   </div>

@@ -6,12 +6,12 @@ import { ArrowRight, Play, Shield, Truck, Award } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocale } from "@/contexts/LocaleContext";
 
-const PARTICLES = Array.from({ length: 14 }, (_, i) => ({
-  left: `${(i * 17 + 7) % 95}%`,
-  top: `${(i * 23 + 12) % 90}%`,
-  size: i % 3 === 0 ? 4 : i % 3 === 1 ? 3 : 2,
-  delay: `${(i * 0.7) % 5}s`,
-  duration: `${3 + (i % 4)}s`,
+const PARTICLES = Array.from({ length: 18 }, (_, i) => ({
+  left: `${(i * 13 + 5) % 95}%`,
+  top: `${(i * 19 + 8) % 90}%`,
+  size: i % 3 === 0 ? 5 : i % 3 === 1 ? 4 : 3,
+  delay: `${(i * 0.6) % 5}s`,
+  duration: `${4 + (i % 5)}s`,
   isAccent: i % 2 === 0,
 }));
 
@@ -44,45 +44,53 @@ export default function Hero() {
   }, [words.length]);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-700 to-primary-900">
+    <section className="relative overflow-hidden bg-[var(--primary-900)] dark:bg-[#0A1628]">
+      {/* Base gradient overlay */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `linear-gradient(135deg, var(--primary-900) 0%, var(--primary-700) 40%, var(--primary-900) 70%, #0A1628 100%)`,
+        }}
+      />
+
       {/* Dot Pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
+      <div className="absolute inset-0 opacity-[0.05]">
         <div
           className="h-full w-full"
           style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.7) 1px, transparent 0)`,
+            backgroundSize: "36px 36px",
           }}
         />
       </div>
 
-      {/* Animated Gradient Mesh */}
+      {/* Animated Gradient Mesh - more vivid */}
       <div
-        className="absolute inset-0 opacity-[0.07]"
+        className="absolute inset-0 opacity-[0.12]"
         style={{
           background: `
-            radial-gradient(ellipse 60% 50% at 20% 30%, var(--accent-500), transparent 70%),
-            radial-gradient(ellipse 50% 60% at 80% 70%, var(--primary-300), transparent 70%),
-            radial-gradient(ellipse 40% 40% at 50% 50%, var(--accent-400), transparent 60%)
+            radial-gradient(ellipse 70% 60% at 15% 25%, var(--accent-500), transparent 65%),
+            radial-gradient(ellipse 55% 65% at 85% 75%, var(--primary-300), transparent 65%),
+            radial-gradient(ellipse 45% 45% at 50% 50%, var(--accent-400), transparent 55%)
           `,
           animation: "gradient-mesh 12s ease-in-out infinite alternate",
         }}
       />
       <div
-        className="absolute inset-0 opacity-[0.05]"
+        className="absolute inset-0 opacity-[0.08]"
         style={{
           background: `
-            radial-gradient(ellipse 50% 50% at 70% 20%, var(--accent-300), transparent 60%),
-            radial-gradient(ellipse 60% 40% at 30% 80%, var(--primary-500), transparent 70%)
+            radial-gradient(ellipse 55% 55% at 75% 15%, var(--accent-300), transparent 55%),
+            radial-gradient(ellipse 65% 45% at 25% 85%, var(--primary-400), transparent 65%)
           `,
           animation: "gradient-mesh 15s ease-in-out infinite alternate-reverse",
         }}
       />
 
-      {/* Gradient Orbs */}
-      <div className="absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-accent-500/[0.08] blur-3xl animate-pulse" />
-      <div className="absolute -bottom-32 -left-32 h-[500px] w-[500px] rounded-full bg-primary-300/[0.08] blur-3xl animate-pulse" />
-      <div className="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-500/[0.05] blur-3xl" />
+      {/* Gradient Orbs - more vivid */}
+      <div className="absolute -right-32 -top-32 h-[600px] w-[600px] rounded-full bg-accent-500/[0.12] blur-[100px] animate-pulse" />
+      <div className="absolute -bottom-32 -left-32 h-[600px] w-[600px] rounded-full bg-primary-300/[0.10] blur-[100px] animate-pulse" />
+      <div className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-500/[0.07] blur-[80px]" />
 
       {/* Particle Dots */}
       {PARTICLES.map((p, i) => (
@@ -97,24 +105,25 @@ export default function Hero() {
             backgroundColor: p.isAccent
               ? "var(--accent-500)"
               : "var(--primary-300)",
-            opacity: 0.12 + (i % 3) * 0.06,
+            opacity: 0.2 + (i % 3) * 0.08,
             animation: `particle-float ${p.duration} ease-in-out ${p.delay} infinite`,
           }}
         />
       ))}
 
-      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:py-20 lg:px-6 lg:py-28">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 md:py-28 lg:px-8 lg:py-32">
+        <div className="grid items-center gap-10 sm:gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Left Content */}
           <div
-            className="opacity-0 animate-[fade-in-up_1000ms_ease-out_forwards]"
+            className="opacity-0"
+            style={{ animation: "hero-fade-up 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards" }}
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80 backdrop-blur-sm">
               <span className="h-2 w-2 animate-pulse rounded-full bg-accent-500" />
               {h.badge}
             </div>
 
-            <h1 className="mb-6 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+            <h1 className="hero-title-shimmer mb-6 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
               {h.titleBefore}{" "}
               <span className="relative inline-block align-bottom">
                 <span className="inline-block overflow-hidden">
@@ -138,29 +147,31 @@ export default function Hero() {
             </h1>
 
             <p
-              className="mb-8 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg opacity-0 animate-[fade-in-up_1000ms_ease-out_200ms_forwards]"
+              className="mb-8 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg opacity-0"
+              style={{ animation: "hero-fade-up 800ms cubic-bezier(0.16, 1, 0.3, 1) 300ms forwards" }}
             >
               {h.subtitle}
             </p>
 
             {/* CTA Buttons */}
             <div
-              className="mb-10 flex flex-col gap-3 sm:flex-row sm:gap-4 opacity-0 animate-[fade-in-up_1000ms_ease-out_300ms_forwards]"
+              className="mb-10 flex flex-col gap-3 sm:flex-row sm:gap-4 opacity-0"
+              style={{ animation: "hero-fade-up 800ms cubic-bezier(0.16, 1, 0.3, 1) 550ms forwards" }}
             >
               <Button
                 size="lg"
-                className="group rounded-xl bg-accent text-accent-foreground px-6 py-3.5 sm:px-8 sm:py-4 hover:bg-accent/90"
+                className="group rounded-xl bg-accent text-accent-foreground px-6 py-3.5 sm:px-8 sm:py-4 transition-all duration-300 hover:bg-accent/90 hover:scale-[1.03] hover:shadow-[0_0_24px_rgba(245,158,11,0.4),0_0_48px_rgba(245,158,11,0.15)]"
                 asChild
               >
                 <Link href="/urunler">
                   {h.ctaProducts}
                   <ArrowRight
                     size={18}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
+                    className="transition-transform duration-300 group-hover:translate-x-1.5"
                   />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" className="rounded-xl border-2 border-white/20 px-6 py-3.5 text-white backdrop-blur-sm sm:px-8 sm:py-4 hover:border-white/40 hover:bg-white/10" asChild>
+              <Button variant="outline" size="lg" className="rounded-xl border-2 border-white/20 px-6 py-3.5 text-white backdrop-blur-sm sm:px-8 sm:py-4 transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(255,255,255,0.08)]" asChild>
                 <Link href="/teklif-al">
                   <Play size={16} className="fill-current" />
                   {h.ctaQuote}
@@ -170,7 +181,8 @@ export default function Hero() {
 
             {/* Highlights */}
             <div
-              className="flex flex-wrap gap-4 sm:gap-6 opacity-0 animate-[fade-in-up_1000ms_ease-out_500ms_forwards]"
+              className="flex flex-wrap gap-4 sm:gap-6 opacity-0"
+              style={{ animation: "hero-fade-up 800ms cubic-bezier(0.16, 1, 0.3, 1) 750ms forwards" }}
             >
               {highlights.map((item) => (
                 <div
@@ -185,7 +197,8 @@ export default function Hero() {
 
             {/* Trusted Strip */}
             <div
-              className="mt-8 border-t border-white/[0.06] pt-6 opacity-0 animate-[fade-in-up_1000ms_ease-out_700ms_forwards]"
+              className="mt-8 border-t border-white/[0.06] pt-6 opacity-0"
+              style={{ animation: "hero-fade-up 800ms cubic-bezier(0.16, 1, 0.3, 1) 950ms forwards" }}
             >
               <p className="mb-3 text-xs font-medium uppercase tracking-widest text-white/30">
                 {dict.components.trustedBy}
@@ -206,7 +219,8 @@ export default function Hero() {
 
           {/* Right - Mascot Visual */}
           <div
-            className="relative hidden lg:block opacity-0 animate-[fade-in_1000ms_ease-out_300ms_forwards]"
+            className="relative hidden lg:block opacity-0"
+            style={{ animation: "hero-fade-in 1000ms cubic-bezier(0.16, 1, 0.3, 1) 500ms forwards" }}
           >
             <div className="relative mx-auto aspect-square max-w-md">
               {/* Rotating Rings */}
@@ -215,7 +229,7 @@ export default function Hero() {
 
               {/* Mascot */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative flex h-72 w-72 items-center justify-center rounded-3xl border border-white/10 bg-white/[0.07] shadow-2xl backdrop-blur-md transition-transform duration-500 hover:scale-105">
+                <div className="relative flex h-72 w-72 items-center justify-center rounded-3xl border border-white/[0.15] bg-white/[0.08] shadow-[0_8px_40px_rgba(0,0,0,0.3)] backdrop-blur-2xl transition-transform duration-500 hover:scale-105">
                   <img
                     src="/images/logo2.svg"
                     alt="Kısmet Plastik"
@@ -225,7 +239,7 @@ export default function Hero() {
               </div>
 
               {/* Glassmorphism Floating Cards */}
-              <div className="absolute -left-4 top-12 rounded-xl border border-white/[0.15] bg-gradient-to-br from-white/[0.10] to-white/[0.03] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-1 ring-inset ring-white/[0.05] backdrop-blur-xl backdrop-saturate-150 animate-[float_4s_ease-in-out_infinite]">
+              <div className="absolute -left-4 top-12 rounded-2xl border border-white/[0.18] bg-gradient-to-br from-white/[0.12] to-white/[0.04] p-4 shadow-[0_8px_40px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.1)] ring-1 ring-inset ring-white/[0.08] backdrop-blur-2xl backdrop-saturate-150 animate-[hero-float_5s_cubic-bezier(0.37,0,0.63,1)_infinite]">
                 <div className="text-2xl font-bold text-white">
                   {h.cardProducts}
                 </div>
@@ -234,7 +248,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              <div className="absolute -right-4 bottom-20 rounded-xl border border-white/[0.15] bg-gradient-to-br from-white/[0.10] to-white/[0.03] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-1 ring-inset ring-white/[0.05] backdrop-blur-xl backdrop-saturate-150 animate-[float_4s_ease-in-out_infinite_1s]">
+              <div className="absolute -right-4 bottom-20 rounded-2xl border border-white/[0.18] bg-gradient-to-br from-white/[0.12] to-white/[0.04] p-4 shadow-[0_8px_40px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.1)] ring-1 ring-inset ring-white/[0.08] backdrop-blur-2xl backdrop-saturate-150 animate-[hero-float_5s_cubic-bezier(0.37,0,0.63,1)_1.5s_infinite]">
                 <div className="text-2xl font-bold text-accent-400">
                   {h.cardCustomers}
                 </div>
@@ -243,7 +257,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              <div className="absolute bottom-4 left-8 rounded-xl border border-white/[0.15] bg-gradient-to-br from-white/[0.10] to-white/[0.03] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-1 ring-inset ring-white/[0.05] backdrop-blur-xl backdrop-saturate-150 animate-[float_4s_ease-in-out_infinite_2s]">
+              <div className="absolute bottom-4 left-8 rounded-2xl border border-white/[0.18] bg-gradient-to-br from-white/[0.12] to-white/[0.04] p-4 shadow-[0_8px_40px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.1)] ring-1 ring-inset ring-white/[0.08] backdrop-blur-2xl backdrop-saturate-150 animate-[hero-float_5s_cubic-bezier(0.37,0,0.63,1)_3s_infinite]">
                 <div className="text-2xl font-bold text-white">
                   {h.cardExperience}
                 </div>
