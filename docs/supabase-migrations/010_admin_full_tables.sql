@@ -281,16 +281,26 @@ ALTER TABLE career_listings ENABLE ROW LEVEL SECURITY;
 ALTER TABLE notification_settings ENABLE ROW LEVEL SECURITY;
 ALTER TABLE order_status_history ENABLE ROW LEVEL SECURITY;
 
--- Public read for certain tables
+-- Public read for certain tables (drop first to avoid conflicts)
+DROP POLICY IF EXISTS "Public read certificates" ON certificates;
 CREATE POLICY "Public read certificates" ON certificates FOR SELECT USING (is_active = true);
+DROP POLICY IF EXISTS "Public read trade_shows" ON trade_shows;
 CREATE POLICY "Public read trade_shows" ON trade_shows FOR SELECT USING (is_active = true);
+DROP POLICY IF EXISTS "Public read references" ON "references";
 CREATE POLICY "Public read references" ON "references" FOR SELECT USING (is_active = true);
+DROP POLICY IF EXISTS "Public read milestones" ON milestones;
 CREATE POLICY "Public read milestones" ON milestones FOR SELECT USING (true);
+DROP POLICY IF EXISTS "Public read resources" ON resources;
 CREATE POLICY "Public read resources" ON resources FOR SELECT USING (is_active = true);
+DROP POLICY IF EXISTS "Public read site_settings" ON site_settings;
 CREATE POLICY "Public read site_settings" ON site_settings FOR SELECT USING (true);
+DROP POLICY IF EXISTS "Public read content_sections" ON content_sections;
 CREATE POLICY "Public read content_sections" ON content_sections FOR SELECT USING (is_active = true);
+DROP POLICY IF EXISTS "Public read faq_items" ON faq_items;
 CREATE POLICY "Public read faq_items" ON faq_items FOR SELECT USING (is_active = true);
+DROP POLICY IF EXISTS "Public read career_listings" ON career_listings;
 CREATE POLICY "Public read career_listings" ON career_listings FOR SELECT USING (is_active = true);
+DROP POLICY IF EXISTS "Public read seo_settings" ON seo_settings;
 CREATE POLICY "Public read seo_settings" ON seo_settings FOR SELECT USING (true);
 
 -- =====================================================
