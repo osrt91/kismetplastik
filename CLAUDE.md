@@ -8,9 +8,9 @@ Kısmet Plastik is a **B2B cosmetic packaging** company website and dealer porta
 
 ## Codebase Overview
 
-Next.js 16 App Router application with 158+ source files across 30+ locale-scoped pages (11 locales), 16 API routes, an admin panel, and a dealer B2B portal. Data is primarily served from static TypeScript modules (`src/data/`) with Supabase PostgreSQL backing for B2B operations (orders, quotes, profiles). Two auth systems coexist: cookie-based admin auth and Supabase Auth for dealers. Locale configuration is centralized in `src/lib/locales.ts`.
+Next.js 16 App Router application with 366 source files (~620k tokens) across 30+ locale-scoped pages (11 locales), 81 API route handlers, a 20+ module admin panel, and a dealer B2B portal. Data is served from static TypeScript modules (`src/data/`) with Supabase PostgreSQL (30+ tables with RLS) backing B2B operations. Two auth systems coexist: cookie-based admin auth (timing-safe) and Supabase Auth for dealers. DIA ERP integration provides stock/customer sync. Locale configuration is centralized in `src/lib/locales.ts`.
 
-**Key modules:** `src/lib/` (15+ utilities incl. `locales.ts` SSOT), `src/components/` (58+ components), `src/app/api/` (16 route files), `src/data/` (7 data modules), `docs/` (8 SQL migrations + n8n workflows).
+**Key modules:** `src/lib/` (15+ utilities incl. `locales.ts` SSOT, DIA client, webhook system), `src/components/` (58+ components), `src/app/api/` (81 route handlers across 8 functional areas), `src/app/admin/` (34 files, 20+ management modules), `src/data/` (7 data modules), `docs/` (11 SQL migrations).
 
 For detailed architecture, module guide, data flow diagrams, and navigation guide, see [docs/CODEBASE_MAP.md](docs/CODEBASE_MAP.md).
 

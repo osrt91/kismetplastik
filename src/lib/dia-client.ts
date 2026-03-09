@@ -18,15 +18,19 @@ export interface DiaConfig {
   username: string;
   password: string;
   apiKey: string;
-  firmaKodu: string;
-  donemKodu: string;
+  firmaKodu: number;
+  donemKodu: number;
 }
 
 /** Raw DIA v3 API response structure */
 export interface DiaV3Response {
   code: string;
   msg: string;
+  result?: unknown;
   data?: unknown;
+  warnings?: unknown[];
+  faultcode?: string;
+  faultstring?: string;
 }
 
 /** Paginated list response from DIA v3 list services */
@@ -67,8 +71,10 @@ function getConfig(): DiaConfig {
   const username = process.env.DIA_USERNAME;
   const password = process.env.DIA_PASSWORD;
   const apiKey = process.env.DIA_API_KEY;
-  const firmaKodu = process.env.DIA_FIRMA_KODU ?? process.env.DIA_COMPANY_CODE ?? "";
-  const donemKodu = process.env.DIA_DONEM_KODU ?? process.env.DIA_PERIOD_ID ?? "";
+  const firmaKoduRaw = process.env.DIA_FIRMA_KODU ?? process.env.DIA_FIRM_ID ?? "";
+  const donemKoduRaw = process.env.DIA_DONEM_KODU ?? process.env.DIA_PERIOD_ID ?? "";
+  const firmaKodu = parseInt(firmaKoduRaw, 10);
+  const donemKodu = parseInt(donemKoduRaw, 10);
 
   if (!apiUrl || !username || !password) {
     throw new DiaApiError(
@@ -86,7 +92,7 @@ function getConfig(): DiaConfig {
     );
   }
 
-  if (!firmaKodu || !donemKodu) {
+  if (isNaN(firmaKodu) || isNaN(donemKodu)) {
     throw new DiaApiError(
       "DIA firma veya donem kodu ayarlanmamis. DIA_FIRMA_KODU ve DIA_DONEM_KODU ortam degiskenlerini ayarlayin.",
       0,
@@ -258,6 +264,16 @@ export class DiaClient {
 
     const data: DiaV3Response = await response.json();
 
+    // Handle SOAP-style fault responses
+    if (data.faultcode) {
+      throw new DiaApiError(
+        `DIA servis hatasi [${serviceName}]: ${data.faultstring ?? data.faultcode}`,
+        400,
+        `/${module}/json (${serviceName})`,
+        JSON.stringify(data),
+      );
+    }
+
     // Handle session expiry — re-login once and retry
     if ((data.code === "401" || data.code === "403") && !isRetry) {
       this.sessionId = null;
@@ -274,8 +290,8 @@ export class DiaClient {
       );
     }
 
-    // Return the data field, or msg if no data
-    return (data.data ?? data.msg) as T;
+    // DIA v3 returns data in "result" field for list/get services
+    return (data.result ?? data.data ?? data.msg) as T;
   }
 
   // -----------------------------------------------------------------------
@@ -331,11 +347,11 @@ export class DiaClient {
     return this.sessionId;
   }
 
-  get firmaKodu(): string {
+  get firmaKodu(): number {
     return this.config.firmaKodu;
   }
 
-  get donemKodu(): string {
+  get donemKodu(): number {
     return this.config.donemKodu;
   }
 }
@@ -376,7 +392,7 @@ export function isDiaConfigured(): boolean {
     process.env.DIA_USERNAME &&
     process.env.DIA_PASSWORD &&
     process.env.DIA_API_KEY &&
-    (process.env.DIA_FIRMA_KODU || process.env.DIA_COMPANY_CODE) &&
+    (process.env.DIA_FIRMA_KODU || process.env.DIA_FIRM_ID) &&
     (process.env.DIA_DONEM_KODU || process.env.DIA_PERIOD_ID),
   );
 }

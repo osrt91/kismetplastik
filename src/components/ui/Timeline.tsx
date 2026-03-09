@@ -31,6 +31,7 @@ function TimelineCard({
     ).matches;
 
     if (prefersReducedMotion) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- skip animation for a11y
       setIsVisible(true);
       return;
     }

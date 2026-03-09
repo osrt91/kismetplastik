@@ -11,7 +11,6 @@ import {
   ArrowRight,
   Share2,
   BookOpen,
-  Tag,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { blogPosts } from "@/data/blog";
