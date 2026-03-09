@@ -88,7 +88,7 @@ export default function TrustBar() {
   return (
     <section
       ref={ref}
-      className="border-y border-neutral-200 bg-[#FAFAF7] py-8 dark:border-neutral-800 dark:bg-neutral-900"
+      className="border-y border-neutral-200 bg-[#FAFAF7] py-6 dark:border-neutral-800 dark:bg-neutral-900"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">

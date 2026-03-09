@@ -27,7 +27,7 @@ export default function Sectors() {
               {h.sectorsTitle}
               <span className="absolute -bottom-2 left-1/2 h-1 w-16 -translate-x-1/2 rounded-full bg-[#F59E0B]" />
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+            <p className="font-body mx-auto mt-4 max-w-2xl text-muted-foreground">
               {h.sectorsSubtitle}
             </p>
             {/* Counter badge */}
@@ -40,17 +40,20 @@ export default function Sectors() {
           </div>
         </AnimateOnScroll>
 
-        {/* Bento Grid */}
+        {/* Asymmetric Bento Grid — 2+1 / 1+2 alternating rows on lg */}
         <div className="grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {sectors.map((sector, i) => {
             const Icon = sector.icon;
+            // 2+1 / 1+2 alternating: wide cards at indices 0, 3, 5
+            const isWide = i === 0 || i === 3 || i === 5;
             return (
               <AnimateOnScroll
                 key={sector.name}
                 animation="fade-up"
                 delay={i * 120}
+                className={isWide ? "lg:col-span-2" : ""}
               >
-                <div className="group relative flex h-full items-start gap-5 overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:border-[#F59E0B]/50 hover:shadow-xl hover:shadow-[#0A1628]/8 hover:-translate-y-1.5 active:scale-[0.98] sm:p-7 dark:border-neutral-700 dark:bg-[#0A1628]/60 dark:hover:border-[#F59E0B]/40 dark:hover:shadow-[#F59E0B]/5">
+                <div className={`group relative flex h-full items-start gap-5 overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:border-[#F59E0B]/50 hover:shadow-xl hover:shadow-[#0A1628]/8 hover:-translate-y-1.5 active:scale-[0.98] sm:p-7 dark:border-neutral-700 dark:bg-[#0A1628]/60 dark:hover:border-[#F59E0B]/40 dark:hover:shadow-[#F59E0B]/5`}>
                   {/* Top amber accent line */}
                   <span className="absolute inset-x-0 top-0 mx-auto h-[3px] w-0 rounded-b-full bg-gradient-to-r from-[#F59E0B] to-amber-400 transition-all duration-500 group-hover:w-full" />
 
@@ -72,7 +75,7 @@ export default function Sectors() {
                     <h3 className="font-display mb-1.5 text-base font-bold leading-snug text-[#0A1628] transition-colors duration-200 group-hover:text-[#0A1628] sm:text-[17px] dark:text-white dark:group-hover:text-white">
                       {sector.name}
                     </h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground">
+                    <p className="font-body text-sm leading-relaxed text-muted-foreground">
                       {sector.description}
                     </p>
                   </div>

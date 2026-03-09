@@ -59,7 +59,7 @@ export default function CTA() {
         </AnimateOnScroll>
 
         <AnimateOnScroll animation="fade-up" delay={100}>
-          <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-white/65 sm:text-xl">
+          <p className="font-body mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-white/65 sm:text-xl">
             {h.ctaSubtitle}
           </p>
         </AnimateOnScroll>
@@ -95,7 +95,7 @@ export default function CTA() {
         </AnimateOnScroll>
 
         <AnimateOnScroll animation="fade" delay={400}>
-          <p className="mt-8 text-sm text-white/35">
+          <p className="font-body mt-8 text-sm text-white/35">
             {h.ctaNote}
           </p>
         </AnimateOnScroll>
@@ -109,7 +109,7 @@ export default function CTA() {
                 className="flex items-center gap-2.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-5 py-2.5 backdrop-blur-sm transition-all duration-300 hover:border-[#F59E0B]/20 hover:bg-white/[0.07] hover:scale-105"
               >
                 <Icon size={16} className="text-[#F59E0B]" />
-                <span className="text-xs font-semibold tracking-wide text-white/55">{label}</span>
+                <span className="font-mono text-xs font-semibold tracking-wide text-white/55">{label}</span>
               </div>
             ))}
           </div>

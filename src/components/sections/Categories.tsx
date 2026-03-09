@@ -56,7 +56,7 @@ export default function Categories() {
   const scroll = (direction: "left" | "right") => {
     const el = scrollRef.current;
     if (!el) return;
-    const cardWidth = 312; // min-w-[300px] + gap
+    const cardWidth = 320;
     el.scrollBy({
       left: direction === "left" ? -cardWidth : cardWidth,
       behavior: "smooth",
@@ -64,92 +64,98 @@ export default function Categories() {
   };
 
   return (
-    <section className="relative bg-[#FAFAF7] py-24 dark:bg-[#0A1628] lg:py-32">
+    <section className="relative bg-[#FAFAF7] py-20 dark:bg-[#0A1628] lg:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Section Header - left-aligned for asymmetry */}
         <AnimateOnScroll animation="fade-up">
-          <div className="relative mb-12 text-center lg:mb-16">
-            <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
+          <div className="relative mb-10 max-w-xl lg:mb-14">
+            <span className="mb-3 inline-block font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#F59E0B]">
               {h.categoriesOverline}
             </span>
-            <h2 className="font-display mb-4 text-3xl font-extrabold text-primary-900 dark:text-white sm:text-4xl lg:text-5xl">
+            <h2 className="font-display mb-4 text-3xl font-extrabold text-[#0A1628] dark:text-white sm:text-4xl lg:text-5xl">
               {h.categoriesTitle}
             </h2>
-            <div className="mx-auto mb-4 flex items-center justify-center gap-2">
-              <span className="h-[3px] w-8 rounded-full bg-[#0A1628]/20 dark:bg-white/20" />
-              <span className="h-[3px] w-16 rounded-full bg-[#F59E0B]" />
-              <span className="h-[3px] w-8 rounded-full bg-[#0A1628]/20 dark:bg-white/20" />
+            <div className="mb-4 flex items-center gap-2">
+              <span className="h-[3px] w-12 rounded-full bg-[#F59E0B]" />
+              <span className="h-[3px] w-6 rounded-full bg-[#0A1628]/15 dark:bg-white/15" />
             </div>
-            <p className="font-body mx-auto max-w-2xl text-muted-foreground">
+            <p className="font-body text-base leading-relaxed text-[#0A1628]/60 dark:text-white/60">
               {h.categoriesSubtitle}
             </p>
           </div>
         </AnimateOnScroll>
 
-        {/* Carousel Container */}
+        {/* Carousel */}
         <AnimateOnScroll animation="fade-up" delay={100}>
           <div className="relative">
-            {/* Left Arrow - desktop only */}
-            {canScrollLeft && (
-              <button
-                onClick={() => scroll("left")}
-                className="absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 items-center justify-center rounded-full border border-border bg-white/90 p-2.5 shadow-lg backdrop-blur-sm transition-all hover:border-[#F59E0B]/40 hover:shadow-xl dark:border-white/10 dark:bg-[#0A1628]/90 dark:hover:border-[#F59E0B]/30 lg:flex"
-                aria-label="Scroll left"
-              >
-                <ChevronLeft size={20} className="text-primary-900 dark:text-white" />
-              </button>
-            )}
+            {/* Desktop scroll arrows */}
+            <button
+              onClick={() => scroll("left")}
+              disabled={!canScrollLeft}
+              className={`absolute -left-5 top-1/2 z-10 hidden -translate-y-1/2 items-center justify-center rounded-full border bg-white/95 p-3 shadow-lg backdrop-blur-sm transition-all duration-200 lg:flex ${
+                canScrollLeft
+                  ? "border-[#0A1628]/10 text-[#0A1628] hover:border-[#F59E0B]/50 hover:text-[#F59E0B] hover:shadow-xl dark:border-white/10 dark:bg-[#0A1628]/95 dark:text-white dark:hover:border-[#F59E0B]/40 dark:hover:text-[#F59E0B]"
+                  : "pointer-events-none border-transparent opacity-0"
+              }`}
+              aria-label="Scroll left"
+            >
+              <ChevronLeft size={22} />
+            </button>
 
-            {/* Right Arrow - desktop only */}
-            {canScrollRight && (
-              <button
-                onClick={() => scroll("right")}
-                className="absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 items-center justify-center rounded-full border border-border bg-white/90 p-2.5 shadow-lg backdrop-blur-sm transition-all hover:border-[#F59E0B]/40 hover:shadow-xl dark:border-white/10 dark:bg-[#0A1628]/90 dark:hover:border-[#F59E0B]/30 lg:flex"
-                aria-label="Scroll right"
-              >
-                <ChevronRight size={20} className="text-primary-900 dark:text-white" />
-              </button>
-            )}
+            <button
+              onClick={() => scroll("right")}
+              disabled={!canScrollRight}
+              className={`absolute -right-5 top-1/2 z-10 hidden -translate-y-1/2 items-center justify-center rounded-full border bg-white/95 p-3 shadow-lg backdrop-blur-sm transition-all duration-200 lg:flex ${
+                canScrollRight
+                  ? "border-[#0A1628]/10 text-[#0A1628] hover:border-[#F59E0B]/50 hover:text-[#F59E0B] hover:shadow-xl dark:border-white/10 dark:bg-[#0A1628]/95 dark:text-white dark:hover:border-[#F59E0B]/40 dark:hover:text-[#F59E0B]"
+                  : "pointer-events-none border-transparent opacity-0"
+              }`}
+              aria-label="Scroll right"
+            >
+              <ChevronRight size={22} />
+            </button>
 
-            {/* Scrollable Row */}
+            {/* Scrollable container */}
             <div
               ref={scrollRef}
-              className="scrollbar-hide flex gap-5 overflow-x-auto scroll-smooth pb-4"
+              className="category-carousel flex gap-5 overflow-x-auto scroll-smooth pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               style={{ scrollSnapType: "x mandatory" }}
             >
               {cats.map((cat, i) => (
                 <Link
                   key={categorySlugs[i]}
                   href={cat.href}
-                  className="group relative block min-w-[280px] flex-shrink-0 overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#F59E0B]/40 hover:shadow-xl dark:border-[#1e293b] dark:bg-[#0f1d32] dark:hover:border-[#F59E0B]/30 sm:min-w-[300px]"
+                  className="group relative block min-w-[280px] flex-shrink-0 overflow-hidden rounded-2xl border border-[#0A1628]/8 bg-white shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg dark:border-white/8 dark:bg-[#0f1d32] dark:hover:border-[#F59E0B]/20 sm:min-w-[300px]"
                   style={{ scrollSnapAlign: "start" }}
                 >
-                  {/* Image Placeholder */}
-                  <div className="relative flex aspect-[4/3] items-center justify-center bg-neutral-100 dark:bg-[#1a2744]">
+                  {/* Image area - large with placeholder */}
+                  <div className="relative flex aspect-[5/4] items-center justify-center overflow-hidden bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-[#1a2744] dark:to-[#0f1d32]">
                     <Package
-                      size={48}
-                      className="text-neutral-300 transition-colors duration-300 group-hover:text-[#F59E0B]/50 dark:text-neutral-600"
+                      size={56}
+                      strokeWidth={1.2}
+                      className="text-[#0A1628]/10 transition-all duration-500 group-hover:scale-110 group-hover:text-[#F59E0B]/30 dark:text-white/10 dark:group-hover:text-[#F59E0B]/25"
                     />
-                    {/* Step number */}
-                    <span className="font-mono absolute right-3 top-2 text-xs font-medium tracking-wider text-neutral-300 dark:text-neutral-600">
+
+                    {/* Category number */}
+                    <span className="absolute right-3.5 top-3 font-mono text-[11px] font-semibold tracking-wider text-[#0A1628]/15 dark:text-white/12">
                       {String(i + 1).padStart(2, "0")}
+                    </span>
+
+                    {/* Product count badge overlaid */}
+                    <span className="absolute bottom-3 left-3.5 rounded-full bg-[#F59E0B]/12 px-2.5 py-1 font-mono text-[11px] font-bold text-[#F59E0B] backdrop-blur-sm">
+                      {cat.count}
                     </span>
                   </div>
 
-                  {/* Card Content */}
+                  {/* Card content */}
                   <div className="p-5">
-                    <div className="mb-3 flex items-center justify-between">
-                      <h3 className="font-display text-lg font-bold text-primary-900 dark:text-white">
-                        {cat.name}
-                      </h3>
-                      <span className="font-mono rounded-full bg-[#F59E0B]/10 px-2.5 py-1 text-xs font-bold text-[#F59E0B]">
-                        {cat.count}
-                      </span>
-                    </div>
-                    <p className="font-body mb-4 text-sm leading-relaxed text-muted-foreground line-clamp-2">
+                    <h3 className="font-display mb-2 text-lg font-bold leading-tight text-[#0A1628] dark:text-white">
+                      {cat.name}
+                    </h3>
+                    <p className="font-body mb-4 line-clamp-2 text-sm leading-relaxed text-[#0A1628]/55 dark:text-white/50">
                       {cat.description}
                     </p>
-                    <div className="font-body flex items-center gap-1.5 text-sm font-semibold text-[#0A1628]/70 transition-all duration-300 group-hover:gap-2.5 group-hover:text-[#F59E0B] dark:text-neutral-400 dark:group-hover:text-[#F59E0B]">
+                    <div className="font-body flex items-center gap-1.5 text-sm font-semibold text-[#0A1628]/50 transition-all duration-300 group-hover:gap-2.5 group-hover:text-[#F59E0B] dark:text-white/40 dark:group-hover:text-[#F59E0B]">
                       {h.viewProducts}
                       <ArrowRight
                         size={14}
@@ -158,25 +164,24 @@ export default function Categories() {
                     </div>
                   </div>
 
-                  {/* Bottom border on hover */}
-                  <div className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#F59E0B] via-[#F59E0B]/80 to-[#0A1628] transition-transform duration-500 ease-out group-hover:scale-x-100" />
+                  {/* Hover accent line */}
+                  <div className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-[#F59E0B] transition-transform duration-500 ease-out group-hover:scale-x-100" />
                 </Link>
+              ))}
+            </div>
+
+            {/* Scroll progress dots - mobile hint */}
+            <div className="mt-4 flex items-center justify-center gap-1.5 lg:hidden">
+              {cats.map((_, i) => (
+                <span
+                  key={i}
+                  className="h-1.5 w-1.5 rounded-full bg-[#0A1628]/15 dark:bg-white/15"
+                />
               ))}
             </div>
           </div>
         </AnimateOnScroll>
       </div>
-
-      {/* Scrollbar hide utility */}
-      <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </section>
   );
 }

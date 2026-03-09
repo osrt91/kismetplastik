@@ -10,7 +10,9 @@ import {
   Loader2,
   ChevronDown,
   ChevronUp,
+  CheckCircle,
 } from "lucide-react";
+import { toast } from "sonner";
 import { useLocale } from "@/contexts/LocaleContext";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import LocaleLink from "@/components/ui/LocaleLink";
@@ -57,6 +59,10 @@ const labels: Record<string, Record<string, string>> = {
     unitPrice: "Birim Fiyat",
     lineTotal: "Tutar",
     awaiting: "Fiyat bekleniyor",
+    convertToOrder: "Onayla ve Siparise Donustur",
+    converting: "Donusturuluyor...",
+    convertSuccess: "Siparis basariyla olusturuldu",
+    convertError: "Siparis olusturulurken hata olustu",
   },
   en: {
     title: "My Quotes",
@@ -93,6 +99,10 @@ const labels: Record<string, Record<string, string>> = {
     unitPrice: "Unit Price",
     lineTotal: "Total",
     awaiting: "Awaiting pricing",
+    convertToOrder: "Approve & Convert to Order",
+    converting: "Converting...",
+    convertSuccess: "Order created successfully",
+    convertError: "Error creating order",
   },
 };
 
@@ -133,6 +143,58 @@ export default function TekliflerimPage() {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [convertingId, setConvertingId] = useState<string | null>(null);
+
+  const handleConvertToOrder = async (quote: QuoteWithItems) => {
+    if (convertingId) return;
+    setConvertingId(quote.id);
+
+    try {
+      const supabase = supabaseBrowser();
+
+      // Map quote items to order format
+      const items = quote.quote_items.map((item) => ({
+        stokKodu: item.product_name,
+        stokAdi: item.product_name,
+        miktar: item.quantity,
+        birimFiyat: item.unit_price ?? 0,
+      }));
+
+      // Create order via dealer orders API
+      const res = await fetch("/api/dealer/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items,
+          aciklama: `Teklif #${quote.id.slice(0, 8).toUpperCase()} onaylanarak siparise donusturuldu`,
+        }),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok || !result.success) {
+        throw new Error(result.error || t.convertError);
+      }
+
+      // Update quote status to accepted
+      const { error: updateError } = await supabase
+        .from("quote_requests")
+        .update({ status: "accepted" })
+        .eq("id", quote.id);
+
+      if (updateError) {
+        console.error("[Convert to order] Quote status update failed:", updateError);
+      }
+
+      toast.success(t.convertSuccess);
+      fetchQuotes();
+    } catch (err) {
+      const message = err instanceof Error ? err.message : t.convertError;
+      toast.error(message);
+    } finally {
+      setConvertingId(null);
+    }
+  };
 
   const fetchQuotes = useCallback(async () => {
     setLoading(true);
@@ -422,6 +484,34 @@ export default function TekliflerimPage() {
                                 {t.validUntil}: {formatDate(quote.valid_until)}
                               </p>
                             )}
+
+                            {/* Convert to order button */}
+                            {quote.status === "quoted" && quote.total_amount && (
+                              <div className="flex justify-end pt-2">
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleConvertToOrder(quote);
+                                  }}
+                                  disabled={convertingId === quote.id}
+                                  className={cn(
+                                    "inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-colors",
+                                    convertingId === quote.id
+                                      ? "cursor-not-allowed bg-green-400"
+                                      : "bg-green-600 hover:bg-green-700"
+                                  )}
+                                >
+                                  {convertingId === quote.id ? (
+                                    <Loader2 size={16} className="animate-spin" />
+                                  ) : (
+                                    <CheckCircle size={16} />
+                                  )}
+                                  {convertingId === quote.id
+                                    ? t.converting
+                                    : t.convertToOrder}
+                                </button>
+                              </div>
+                            )}
                           </div>
                         </td>
                       </tr>
@@ -493,6 +583,34 @@ export default function TekliflerimPage() {
                     {quote.response_message && (
                       <div className="mt-3 rounded-md bg-blue-50 p-2">
                         <p className="text-xs text-blue-800">{quote.response_message}</p>
+                      </div>
+                    )}
+
+                    {/* Convert to order button (mobile) */}
+                    {quote.status === "quoted" && quote.total_amount && (
+                      <div className="mt-3">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleConvertToOrder(quote);
+                          }}
+                          disabled={convertingId === quote.id}
+                          className={cn(
+                            "inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-colors",
+                            convertingId === quote.id
+                              ? "cursor-not-allowed bg-green-400"
+                              : "bg-green-600 hover:bg-green-700"
+                          )}
+                        >
+                          {convertingId === quote.id ? (
+                            <Loader2 size={16} className="animate-spin" />
+                          ) : (
+                            <CheckCircle size={16} />
+                          )}
+                          {convertingId === quote.id
+                            ? t.converting
+                            : t.convertToOrder}
+                        </button>
                       </div>
                     )}
                   </div>

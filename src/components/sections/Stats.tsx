@@ -105,7 +105,7 @@ export default function Stats() {
         <div className="mb-14 flex flex-col items-center text-center lg:mb-16">
           <div className="mb-3 flex items-center gap-3">
             <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#F59E0B]/70" />
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#F59E0B]">
+            <span className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-[#F59E0B]">
               {"Rakamlarla Biz"}
             </span>
             <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#F59E0B]/70" />
@@ -155,7 +155,7 @@ export default function Stats() {
                   </div>
 
                   {/* Label with accent underline */}
-                  <div className="relative text-sm font-medium text-white/50 sm:text-base">
+                  <div className="font-body relative text-sm font-medium text-white/50 sm:text-base">
                     {stat.label}
                     <span className="mx-auto mt-3 block h-0.5 w-8 rounded-full bg-[#F59E0B]/30 transition-all duration-300 group-hover:w-14 group-hover:bg-[#F59E0B]/60" />
                   </div>

@@ -43,7 +43,7 @@ export default function About() {
                       alt="Kısmet Plastik"
                       className="mx-auto mb-4 h-36 w-36 drop-shadow-2xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
                     />
-                    <p className="text-sm font-semibold text-[#0A1628]/70 dark:text-white/70">
+                    <p className="font-body text-sm font-semibold text-[#0A1628]/70 dark:text-white/70">
                       {h.aboutFacility}
                     </p>
                   </div>
@@ -61,7 +61,7 @@ export default function About() {
                 <div className="font-mono text-3xl font-extrabold text-[#0A1628]">
                   55+
                 </div>
-                <div className="text-sm font-semibold text-[#0A1628]/70">
+                <div className="font-body text-sm font-semibold text-[#0A1628]/70">
                   {h.cardExperienceLabel}
                 </div>
               </div>
@@ -82,10 +82,10 @@ export default function About() {
                   <span className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-[#F59E0B]/40" />
                 </span>
               </h2>
-              <p className="mb-5 text-base leading-relaxed text-[#0A1628]/60 dark:text-white/60 lg:text-lg">
+              <p className="font-body mb-5 text-base leading-relaxed text-[#0A1628]/60 dark:text-white/60 lg:text-lg">
                 {h.aboutLead1}
               </p>
-              <p className="mb-10 text-base leading-relaxed text-[#0A1628]/60 dark:text-white/60 lg:text-lg">
+              <p className="font-body mb-10 text-base leading-relaxed text-[#0A1628]/60 dark:text-white/60 lg:text-lg">
                 {h.aboutLead2}
               </p>
 
@@ -99,7 +99,7 @@ export default function About() {
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#F59E0B] text-[#0A1628] shadow-sm shadow-[#F59E0B]/30">
                       <Check size={12} strokeWidth={3} />
                     </span>
-                    <span className="text-sm font-medium text-[#0A1628]/80 dark:text-white/80">
+                    <span className="font-body text-sm font-medium text-[#0A1628]/80 dark:text-white/80">
                       {item}
                     </span>
                   </li>
