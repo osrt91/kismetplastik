@@ -109,11 +109,11 @@ const labels: Record<string, Record<string, string>> = {
 const statusOptions: QuoteStatus[] = ["pending", "reviewing", "quoted", "accepted", "rejected"];
 
 const statusBadgeColors: Record<string, string> = {
-  pending: "bg-yellow-100 text-yellow-800 border-yellow-300",
-  reviewing: "bg-blue-100 text-blue-800 border-blue-300",
-  quoted: "bg-blue-100 text-blue-800 border-blue-300",
-  accepted: "bg-green-100 text-green-800 border-green-300",
-  rejected: "bg-red-100 text-red-800 border-red-300",
+  pending: "bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900/30 dark:text-yellow-400 dark:border-yellow-700",
+  reviewing: "bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-700",
+  quoted: "bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-700",
+  accepted: "bg-green-100 text-green-800 border-green-300 dark:bg-green-900/30 dark:text-green-400 dark:border-green-700",
+  rejected: "bg-red-100 text-red-800 border-red-300 dark:bg-red-900/30 dark:text-red-400 dark:border-red-700",
 };
 
 function QuoteStatusBadge({ status, locale = "tr" }: { status: string; locale?: string }) {
@@ -281,7 +281,7 @@ export default function TekliflerimPage() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <h1 className="font-display text-2xl font-bold text-[#0A1628]">{t.title}</h1>
+        <h1 className="font-display text-2xl font-bold text-[#0A1628] dark:text-white">{t.title}</h1>
         <LocaleLink
           href="/bayi-panel/urunler"
           className="inline-flex items-center gap-2 rounded-lg bg-amber-500 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-amber-600"
@@ -303,13 +303,13 @@ export default function TekliflerimPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={t.searchPlaceholder}
-            className="w-full rounded-lg border border-neutral-200 bg-white py-2.5 pl-10 pr-4 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
+            className="w-full rounded-lg border border-neutral-200 bg-white py-2.5 pl-10 pr-4 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:placeholder:text-neutral-500"
           />
         </div>
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="rounded-lg border border-neutral-200 bg-white px-4 py-2.5 text-sm text-neutral-700 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
+          className="rounded-lg border border-neutral-200 bg-white px-4 py-2.5 text-sm text-neutral-700 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"
         >
           <option value="all">{t.allStatuses}</option>
           {statusOptions.map((s) => (
@@ -330,27 +330,27 @@ export default function TekliflerimPage() {
 
       {/* Error */}
       {!loading && error && (
-        <div className="rounded-lg border border-red-200 bg-red-50 p-6 text-center">
-          <p className="text-sm text-red-700">{error}</p>
+        <div className="rounded-lg border border-red-200 bg-red-50 p-6 text-center dark:border-red-800 dark:bg-red-900/20">
+          <p className="text-sm text-red-700 dark:text-red-400">{error}</p>
         </div>
       )}
 
       {/* Empty state */}
       {!loading && !error && quotes.length === 0 && (
-        <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-neutral-200 bg-white py-20">
-          <FileText size={48} className="text-neutral-300" />
-          <p className="mt-4 text-lg font-medium text-neutral-600">{t.empty}</p>
-          <p className="mt-1 text-sm text-neutral-400">{t.emptyDesc}</p>
+        <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-neutral-200 bg-white py-20 dark:border-neutral-700 dark:bg-neutral-800">
+          <FileText size={48} className="text-neutral-300 dark:text-neutral-600" />
+          <p className="mt-4 text-lg font-medium text-neutral-600 dark:text-neutral-300">{t.empty}</p>
+          <p className="mt-1 text-sm text-neutral-400 dark:text-neutral-500">{t.emptyDesc}</p>
         </div>
       )}
 
       {/* Desktop table */}
       {!loading && !error && quotes.length > 0 && (
         <>
-          <div className="hidden overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-sm md:block">
+          <div className="hidden overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-sm md:block dark:border-neutral-700 dark:bg-neutral-800">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-neutral-100 bg-neutral-50">
+                <tr className="border-b border-neutral-100 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-900">
                   <th className="w-8 px-4 py-3" />
                   <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-neutral-500">
                     {t.quoteNo}
@@ -369,13 +369,13 @@ export default function TekliflerimPage() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-neutral-100">
+              <tbody className="divide-y divide-neutral-100 dark:divide-neutral-700">
                 {quotes.map((quote) => (
                   <>
                     <tr
                       key={quote.id}
                       onClick={() => toggleExpand(quote.id)}
-                      className="cursor-pointer transition-colors hover:bg-neutral-50/50"
+                      className="cursor-pointer transition-colors hover:bg-neutral-50/50 dark:hover:bg-neutral-700/50"
                     >
                       <td className="px-4 py-3.5 text-neutral-400">
                         {expandedId === quote.id ? (
@@ -385,11 +385,11 @@ export default function TekliflerimPage() {
                         )}
                       </td>
                       <td className="px-4 py-3.5">
-                        <span className="font-mono text-sm font-semibold text-[#0A1628]">
+                        <span className="font-mono text-sm font-semibold text-[#0A1628] dark:text-white">
                           #{quote.id.slice(0, 8).toUpperCase()}
                         </span>
                       </td>
-                      <td className="px-4 py-3.5 text-sm text-neutral-600">
+                      <td className="px-4 py-3.5 text-sm text-neutral-600 dark:text-neutral-400">
                         {formatDate(quote.created_at)}
                       </td>
                       <td className="px-4 py-3.5 text-center">
@@ -401,7 +401,7 @@ export default function TekliflerimPage() {
                         <QuoteStatusBadge status={quote.status} locale={locale} />
                       </td>
                       <td className="px-4 py-3.5 text-right">
-                        <span className="font-mono text-sm font-semibold text-neutral-900">
+                        <span className="font-mono text-sm font-semibold text-neutral-900 dark:text-neutral-100">
                           {quote.total_amount
                             ? formatCurrency(quote.total_amount)
                             : "-"}
@@ -411,7 +411,7 @@ export default function TekliflerimPage() {
                     {/* Expanded detail */}
                     {expandedId === quote.id && (
                       <tr key={`${quote.id}-detail`}>
-                        <td colSpan={6} className="bg-neutral-50/50 px-6 py-4">
+                        <td colSpan={6} className="bg-neutral-50/50 px-6 py-4 dark:bg-neutral-900/50">
                           <div className="space-y-3">
                             {/* Quote items */}
                             {quote.quote_items && quote.quote_items.length > 0 && (
@@ -419,10 +419,10 @@ export default function TekliflerimPage() {
                                 <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
                                   {t.requestedProducts}
                                 </h4>
-                                <div className="mt-2 overflow-hidden rounded-md border border-neutral-200 bg-white">
+                                <div className="mt-2 overflow-hidden rounded-md border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-800">
                                   <table className="w-full text-sm">
                                     <thead>
-                                      <tr className="border-b border-neutral-100 bg-neutral-50">
+                                      <tr className="border-b border-neutral-100 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-900">
                                         <th className="px-3 py-2 text-left text-xs font-medium text-neutral-500">
                                           {t.product}
                                         </th>
@@ -437,7 +437,7 @@ export default function TekliflerimPage() {
                                         </th>
                                       </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-neutral-100">
+                                    <tbody className="divide-y divide-neutral-100 dark:divide-neutral-700">
                                       {quote.quote_items.map((item) => (
                                         <tr key={item.id}>
                                           <td className="px-3 py-2 text-neutral-800">
@@ -468,11 +468,11 @@ export default function TekliflerimPage() {
 
                             {/* Response */}
                             {quote.response_message && (
-                              <div className="rounded-md border border-blue-100 bg-blue-50 p-3">
-                                <h4 className="text-xs font-semibold uppercase tracking-wider text-blue-600">
+                              <div className="rounded-md border border-blue-100 bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-900/20">
+                                <h4 className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
                                   {t.response}
                                 </h4>
-                                <p className="mt-1 text-sm text-blue-800">
+                                <p className="mt-1 text-sm text-blue-800 dark:text-blue-300">
                                   {quote.response_message}
                                 </p>
                               </div>
@@ -527,14 +527,14 @@ export default function TekliflerimPage() {
             {quotes.map((quote) => (
               <div
                 key={quote.id}
-                className="rounded-lg border border-neutral-200 bg-white shadow-sm"
+                className="rounded-lg border border-neutral-200 bg-white shadow-sm dark:border-neutral-700 dark:bg-neutral-800"
               >
                 <button
                   onClick={() => toggleExpand(quote.id)}
                   className="flex w-full items-start justify-between p-4 text-left"
                 >
                   <div>
-                    <p className="font-mono text-sm font-semibold text-[#0A1628]">
+                    <p className="font-mono text-sm font-semibold text-[#0A1628] dark:text-white">
                       #{quote.id.slice(0, 8).toUpperCase()}
                     </p>
                     <p className="mt-0.5 text-xs text-neutral-400">
@@ -556,9 +556,9 @@ export default function TekliflerimPage() {
                 </button>
 
                 {expandedId === quote.id && (
-                  <div className="border-t border-neutral-100 px-4 pb-4 pt-3">
+                  <div className="border-t border-neutral-100 px-4 pb-4 pt-3 dark:border-neutral-700">
                     {quote.total_amount && (
-                      <p className="text-sm text-neutral-700">
+                      <p className="text-sm text-neutral-700 dark:text-neutral-300">
                         {t.total}:{" "}
                         <span className="font-mono font-semibold">
                           {formatCurrency(quote.total_amount)}
@@ -581,8 +581,8 @@ export default function TekliflerimPage() {
                       </div>
                     )}
                     {quote.response_message && (
-                      <div className="mt-3 rounded-md bg-blue-50 p-2">
-                        <p className="text-xs text-blue-800">{quote.response_message}</p>
+                      <div className="mt-3 rounded-md bg-blue-50 p-2 dark:bg-blue-900/20">
+                        <p className="text-xs text-blue-800 dark:text-blue-300">{quote.response_message}</p>
                       </div>
                     )}
 
@@ -621,7 +621,7 @@ export default function TekliflerimPage() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-between rounded-lg border border-neutral-200 bg-white px-4 py-3">
+            <div className="flex items-center justify-between rounded-lg border border-neutral-200 bg-white px-4 py-3 dark:border-neutral-700 dark:bg-neutral-800">
               <button
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={page === 1}

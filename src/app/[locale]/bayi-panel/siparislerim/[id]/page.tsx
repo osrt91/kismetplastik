@@ -172,10 +172,10 @@ export default function SiparisDetayPage() {
           <ArrowLeft size={16} />
           {t.back}
         </LocaleLink>
-        <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-neutral-200 py-20">
-          <AlertTriangle size={48} className="text-neutral-300" />
-          <p className="mt-4 text-lg font-medium text-neutral-600">{error || t.notFound}</p>
-          <p className="mt-1 text-sm text-neutral-400">{t.notFoundDesc}</p>
+        <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-neutral-200 py-20 dark:border-neutral-700">
+          <AlertTriangle size={48} className="text-neutral-300 dark:text-neutral-600" />
+          <p className="mt-4 text-lg font-medium text-neutral-600 dark:text-neutral-300">{error || t.notFound}</p>
+          <p className="mt-1 text-sm text-neutral-400 dark:text-neutral-500">{t.notFoundDesc}</p>
         </div>
       </div>
     );
@@ -194,37 +194,37 @@ export default function SiparisDetayPage() {
 
       {/* Header */}
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <h1 className="text-2xl font-bold text-primary-900">{t.orderDetail}</h1>
+        <h1 className="text-2xl font-bold text-primary-900 dark:text-white">{t.orderDetail}</h1>
         <OrderStatusBadge status={order.status} locale={locale} />
       </div>
 
       {/* Info cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="rounded-lg border border-neutral-200 bg-white p-4 shadow-sm">
+        <div className="rounded-lg border border-neutral-200 bg-white p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
           <div className="flex items-center gap-2 text-neutral-500">
             <Hash size={16} />
             <span className="text-xs font-medium uppercase tracking-wider">{t.orderNo}</span>
           </div>
-          <p className="mt-2 text-lg font-bold text-primary-900">#{order.order_number}</p>
+          <p className="mt-2 text-lg font-bold text-primary-900 dark:text-white">#{order.order_number}</p>
         </div>
 
-        <div className="rounded-lg border border-neutral-200 bg-white p-4 shadow-sm">
+        <div className="rounded-lg border border-neutral-200 bg-white p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
           <div className="flex items-center gap-2 text-neutral-500">
             <Calendar size={16} />
             <span className="text-xs font-medium uppercase tracking-wider">{t.orderDate}</span>
           </div>
-          <p className="mt-2 text-lg font-bold text-primary-900">{formatDate(order.created_at)}</p>
+          <p className="mt-2 text-lg font-bold text-primary-900 dark:text-white">{formatDate(order.created_at)}</p>
         </div>
 
-        <div className="rounded-lg border border-neutral-200 bg-white p-4 shadow-sm">
+        <div className="rounded-lg border border-neutral-200 bg-white p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
           <div className="flex items-center gap-2 text-neutral-500">
             <CreditCard size={16} />
             <span className="text-xs font-medium uppercase tracking-wider">{t.total}</span>
           </div>
-          <p className="mt-2 text-lg font-bold text-primary-900">{formatCurrency(order.total_amount)}</p>
+          <p className="mt-2 text-lg font-bold text-primary-900 dark:text-white">{formatCurrency(order.total_amount)}</p>
         </div>
 
-        <div className="rounded-lg border border-neutral-200 bg-white p-4 shadow-sm">
+        <div className="rounded-lg border border-neutral-200 bg-white p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
           <div className="flex items-center gap-2 text-neutral-500">
             <CreditCard size={16} />
             <span className="text-xs font-medium uppercase tracking-wider">{t.paymentStatus}</span>
@@ -237,14 +237,14 @@ export default function SiparisDetayPage() {
 
       {/* Tracking & delivery info */}
       {(order.tracking_number || order.estimated_delivery) && (
-        <div className="rounded-lg border border-neutral-200 bg-white p-4 shadow-sm">
+        <div className="rounded-lg border border-neutral-200 bg-white p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
             {order.tracking_number && (
               <div className="flex items-center gap-3">
                 <Truck size={20} className="text-primary-600" />
                 <div>
                   <p className="text-xs font-medium uppercase tracking-wider text-neutral-500">{t.trackingNumber}</p>
-                  <p className="mt-0.5 text-sm font-semibold text-primary-900">{order.tracking_number}</p>
+                  <p className="mt-0.5 text-sm font-semibold text-primary-900 dark:text-white">{order.tracking_number}</p>
                 </div>
               </div>
             )}
@@ -253,7 +253,7 @@ export default function SiparisDetayPage() {
                 <Calendar size={20} className="text-primary-600" />
                 <div>
                   <p className="text-xs font-medium uppercase tracking-wider text-neutral-500">{t.estimatedDelivery}</p>
-                  <p className="mt-0.5 text-sm font-semibold text-primary-900">{formatDate(order.estimated_delivery)}</p>
+                  <p className="mt-0.5 text-sm font-semibold text-primary-900 dark:text-white">{formatDate(order.estimated_delivery)}</p>
                 </div>
               </div>
             )}
@@ -262,8 +262,8 @@ export default function SiparisDetayPage() {
       )}
 
       {/* Timeline */}
-      <div className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm">
-        <h2 className="mb-6 text-lg font-bold text-primary-900">{t.timeline}</h2>
+      <div className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
+        <h2 className="mb-6 text-lg font-bold text-primary-900 dark:text-white">{t.timeline}</h2>
         <OrderTimeline
           history={order.order_status_history}
           currentStatus={order.status}
@@ -272,9 +272,9 @@ export default function SiparisDetayPage() {
       </div>
 
       {/* Products table */}
-      <div className="rounded-lg border border-neutral-200 bg-white shadow-sm">
+      <div className="rounded-lg border border-neutral-200 bg-white shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
         <div className="border-b border-neutral-100 px-6 py-4">
-          <h2 className="flex items-center gap-2 text-lg font-bold text-primary-900">
+          <h2 className="flex items-center gap-2 text-lg font-bold text-primary-900 dark:text-white">
             <Package size={20} />
             {t.products}
           </h2>
@@ -284,7 +284,7 @@ export default function SiparisDetayPage() {
         <div className="hidden overflow-x-auto md:block">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-neutral-100 bg-neutral-50">
+              <tr className="border-b border-neutral-100 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-900">
                 <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-neutral-500">
                   {t.productName}
                 </th>
@@ -299,11 +299,11 @@ export default function SiparisDetayPage() {
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-100">
+            <tbody className="divide-y divide-neutral-100 dark:divide-neutral-700">
               {order.order_items.map((item) => (
                 <tr key={item.id} className="transition-colors hover:bg-neutral-50/50">
                   <td className="px-6 py-3.5">
-                    <p className="text-sm font-medium text-neutral-900">{item.product_name}</p>
+                    <p className="text-sm font-medium text-neutral-900 dark:text-white">{item.product_name}</p>
                     {item.notes && (
                       <p className="mt-0.5 text-xs text-neutral-400">{item.notes}</p>
                     )}
@@ -314,18 +314,18 @@ export default function SiparisDetayPage() {
                   <td className="px-6 py-3.5 text-right text-sm text-neutral-600">
                     {formatCurrency(item.unit_price)}
                   </td>
-                  <td className="px-6 py-3.5 text-right text-sm font-semibold text-neutral-900">
+                  <td className="px-6 py-3.5 text-right text-sm font-semibold text-neutral-900 dark:text-neutral-100">
                     {formatCurrency(item.total_price)}
                   </td>
                 </tr>
               ))}
             </tbody>
-            <tfoot className="border-t-2 border-neutral-200">
+            <tfoot className="border-t-2 border-neutral-200 dark:border-neutral-600">
               <tr>
                 <td colSpan={3} className="px-6 py-2.5 text-right text-sm text-neutral-500">
                   {t.subtotal}
                 </td>
-                <td className="px-6 py-2.5 text-right text-sm font-medium text-neutral-700">
+                <td className="px-6 py-2.5 text-right text-sm font-medium text-neutral-700 dark:text-neutral-300">
                   {formatCurrency(order.subtotal)}
                 </td>
               </tr>
@@ -333,7 +333,7 @@ export default function SiparisDetayPage() {
                 <td colSpan={3} className="px-6 py-2.5 text-right text-sm text-neutral-500">
                   {t.tax}
                 </td>
-                <td className="px-6 py-2.5 text-right text-sm font-medium text-neutral-700">
+                <td className="px-6 py-2.5 text-right text-sm font-medium text-neutral-700 dark:text-neutral-300">
                   {formatCurrency(order.tax_amount)}
                 </td>
               </tr>
@@ -342,16 +342,16 @@ export default function SiparisDetayPage() {
                   <td colSpan={3} className="px-6 py-2.5 text-right text-sm text-neutral-500">
                     {t.shipping}
                   </td>
-                  <td className="px-6 py-2.5 text-right text-sm font-medium text-neutral-700">
+                  <td className="px-6 py-2.5 text-right text-sm font-medium text-neutral-700 dark:text-neutral-300">
                     {formatCurrency(order.shipping_cost)}
                   </td>
                 </tr>
               )}
-              <tr className="border-t border-neutral-200">
+              <tr className="border-t border-neutral-200 dark:border-neutral-700">
                 <td colSpan={3} className="px-6 py-3 text-right text-sm font-bold text-primary-900">
                   {t.total}
                 </td>
-                <td className="px-6 py-3 text-right text-lg font-bold text-primary-900">
+                <td className="px-6 py-3 text-right text-lg font-bold text-primary-900 dark:text-white">
                   {formatCurrency(order.total_amount)}
                 </td>
               </tr>
@@ -360,10 +360,10 @@ export default function SiparisDetayPage() {
         </div>
 
         {/* Mobile product cards */}
-        <div className="divide-y divide-neutral-100 md:hidden">
+        <div className="divide-y divide-neutral-100 dark:divide-neutral-700 md:hidden">
           {order.order_items.map((item) => (
             <div key={item.id} className="p-4">
-              <p className="text-sm font-medium text-neutral-900">{item.product_name}</p>
+              <p className="text-sm font-medium text-neutral-900 dark:text-white">{item.product_name}</p>
               {item.notes && (
                 <p className="mt-0.5 text-xs text-neutral-400">{item.notes}</p>
               )}
@@ -375,24 +375,24 @@ export default function SiparisDetayPage() {
               </div>
             </div>
           ))}
-          <div className="space-y-2 bg-neutral-50 p-4">
+          <div className="space-y-2 bg-neutral-50 p-4 dark:bg-neutral-900">
             <div className="flex justify-between text-sm">
               <span className="text-neutral-500">{t.subtotal}</span>
-              <span className="font-medium text-neutral-700">{formatCurrency(order.subtotal)}</span>
+              <span className="font-medium text-neutral-700 dark:text-neutral-300">{formatCurrency(order.subtotal)}</span>
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-neutral-500">{t.tax}</span>
-              <span className="font-medium text-neutral-700">{formatCurrency(order.tax_amount)}</span>
+              <span className="font-medium text-neutral-700 dark:text-neutral-300">{formatCurrency(order.tax_amount)}</span>
             </div>
             {order.shipping_cost > 0 && (
               <div className="flex justify-between text-sm">
                 <span className="text-neutral-500">{t.shipping}</span>
-                <span className="font-medium text-neutral-700">{formatCurrency(order.shipping_cost)}</span>
+                <span className="font-medium text-neutral-700 dark:text-neutral-300">{formatCurrency(order.shipping_cost)}</span>
               </div>
             )}
-            <div className="flex justify-between border-t border-neutral-200 pt-2">
+            <div className="flex justify-between border-t border-neutral-200 dark:border-neutral-700 pt-2">
               <span className="text-sm font-bold text-primary-900">{t.total}</span>
-              <span className="text-lg font-bold text-primary-900">{formatCurrency(order.total_amount)}</span>
+              <span className="text-lg font-bold text-primary-900 dark:text-white">{formatCurrency(order.total_amount)}</span>
             </div>
           </div>
         </div>
@@ -400,9 +400,9 @@ export default function SiparisDetayPage() {
 
       {/* Order notes */}
       {order.notes && (
-        <div className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm">
+        <div className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
           <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-neutral-500">{t.notes}</h2>
-          <p className="text-sm text-neutral-700">{order.notes}</p>
+          <p className="text-sm text-neutral-700 dark:text-neutral-300">{order.notes}</p>
         </div>
       )}
     </div>
