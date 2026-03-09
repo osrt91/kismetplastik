@@ -14,44 +14,64 @@ import { getSupabaseAdmin } from "@/lib/supabase-admin";
 // DIA Entity Interfaces
 // ---------------------------------------------------------------------------
 
+/** DIA v3 stok kartı — gerçek API alan isimleri */
 export interface DiaStock {
-  Kodu: string;
-  Adi: string;
-  Birim: string;
-  KDVOrani: number;
-  Barkod: string | null;
-  GrupKodu: string | null;
-  OzelKod1: string | null;
-  OzelKod2: string | null;
-  Aciklama: string | null;
-  SatisFiyati1: number | null;
-  SatisFiyati2: number | null;
-  AlisFiyati: number | null;
-  Marka: string | null;
-  Model: string | null;
-  StokMiktari: number | null;
-  AsgariStok: number | null;
-  Durum: boolean;
+  stokkartkodu: string;
+  aciklama: string;
+  birimadi: string;
+  kdvsatis: string;
+  kdvalis: string;
+  barkodu: string;
+  ozelkod1: string;
+  ozelkod2: string;
+  marka: string;
+  fiyat1: string;
+  fiyat2: string;
+  fiyat3: string;
+  gercek_stok: string;
+  fiili_stok: string;
+  asgarimiktar: string;
+  durum: string;
+  durum_txt: string;
+  stokkartturu: string;
+  kodveaciklama: string;
+  firmaadi: string;
+  _key: string;
 }
 
+/** DIA v3 cari kartı — gerçek API alan isimleri */
 export interface DiaCari {
-  Kodu: string;
-  Unvan: string;
-  VergiDairesi: string | null;
-  VergiNo: string | null;
-  TCKimlikNo: string | null;
-  Adres: string | null;
-  Sehir: string | null;
-  Ilce: string | null;
-  Telefon: string | null;
-  Faks: string | null;
-  Email: string | null;
-  Web: string | null;
-  GrupKodu: string | null;
-  OzelKod1: string | null;
-  OzelKod2: string | null;
-  Bakiye: number | null;
-  Durum: boolean;
+  carikartkodu: string;
+  unvan: string;
+  vergidairesi: string;
+  verginumarasi: string;
+  tckimlikno: string;
+  adres1: string;
+  adres2: string;
+  sehir: string;
+  ilce: string;
+  il: string;
+  telefon1: string;
+  telefon2: string;
+  ceptel: string;
+  fax: string;
+  eposta: string;
+  weburl: string;
+  ozelkod1: string;
+  ozelkod2: string;
+  bakiye: string;
+  orjbakiye: string;
+  borc_fatura_bilgi?: string;
+  alacak_fatura_bilgi?: string;
+  borc_irsaliye_bilgi?: string;
+  alacak_irsaliye_bilgi?: string;
+  borctoplam?: string;
+  alacaktoplam?: string;
+  durum: string;
+  durum_txt: string;
+  kodveunvan: string;
+  firmaadi: string;
+  _key: string;
 }
 
 export interface DiaOrderItem {
@@ -79,18 +99,32 @@ export interface DiaOrder {
   Kalemler: DiaOrderItem[];
 }
 
+/** DIA v3 fatura — gerçek API alan isimleri */
 export interface DiaInvoice {
-  BelgeNo: string;
-  FaturaTarihi: string;
-  VadeTarihi: string | null;
-  CariKodu: string;
-  CariUnvan: string;
-  ToplamTutar: number;
-  KDVTutar: number;
-  GenelToplam: number;
-  Aciklama: string | null;
-  Durum: string;
-  FaturaTipi: string;
+  belgeno: string;
+  belgeno2: string;
+  belgeturu: string;
+  belgeturuack: string;
+  tarih: string;
+  vadegun: string;
+  toplam: string;
+  toplamkdv: string;
+  toplamara: string;
+  toplamaradvz: string;
+  net: string;
+  kalantutar_taksit: string;
+  kapanmadurumu: string;
+  __carikartkodu: string;
+  __cariunvan: string;
+  __cariverginumarasi: string;
+  __carieposta: string;
+  efaturatipkodu: string;
+  efatura_durum: string;
+  earsiv_durum: string;
+  ebelge: string;
+  ustislemturuack: string;
+  fisno: string;
+  _key: string;
 }
 
 export interface DiaQuote {
@@ -153,7 +187,7 @@ export async function getStockList(params?: ListParams): Promise<DiaListResponse
 export async function getStockDetail(stockCode: string): Promise<DiaStock> {
   const client = getDiaClient();
   return client.callService<DiaStock>("scf", "scf_stokkart_getir", {
-    stok_kodu: stockCode,
+    stokkartkodu: stockCode,
   });
 }
 
@@ -199,27 +233,28 @@ export async function syncStockToSupabase(): Promise<SyncResult> {
       });
 
       for (const stock of response.records) {
-        const productSlug = mappingMap.get(stock.Kodu);
+        const productSlug = mappingMap.get(stock.stokkartkodu);
         if (!productSlug) continue;
 
         try {
+          const gercekStok = parseFloat(stock.gercek_stok) || 0;
           const { error: upsertError } = await supabase
             .from("products")
             .update({
-              in_stock: stock.Durum && (stock.StokMiktari ?? 0) > 0,
-              min_order: stock.AsgariStok ?? 0,
+              in_stock: stock.durum === "A" && gercekStok > 0,
+              min_order: parseFloat(stock.asgarimiktar) || 0,
               updated_at: new Date().toISOString(),
             })
             .eq("slug", productSlug);
 
           if (upsertError) {
-            result.errors.push(`Stok guncelleme hatasi [${stock.Kodu}]: ${upsertError.message}`);
+            result.errors.push(`Stok guncelleme hatasi [${stock.stokkartkodu}]: ${upsertError.message}`);
           } else {
             result.synced++;
           }
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
-          result.errors.push(`Stok guncelleme hatasi [${stock.Kodu}]: ${message}`);
+          result.errors.push(`Stok guncelleme hatasi [${stock.stokkartkodu}]: ${message}`);
         }
       }
 
@@ -235,6 +270,60 @@ export async function syncStockToSupabase(): Promise<SyncResult> {
 }
 
 // ---------------------------------------------------------------------------
+// Product Price Services
+// ---------------------------------------------------------------------------
+
+export interface ProductPrice {
+  stokKodu: string;
+  aciklama: string;
+  fiyat: number;
+  doviz: string;
+  kdvOrani: number;
+  birim: string;
+  stokMiktari: number;
+}
+
+/** Get product price for a specific dealer */
+export async function getProductPriceForCari(
+  stokKodu: string,
+  _cariKodu: string,
+): Promise<ProductPrice> {
+  const stock = await getStockDetail(stokKodu);
+
+  // Priority: fiyat1 (peşin bayi), then fiyat2 (vadeli bayi)
+  const fiyat = parseFloat(stock.fiyat1) || parseFloat(stock.fiyat2) || 0;
+
+  return {
+    stokKodu: stock.stokkartkodu,
+    aciklama: stock.aciklama,
+    fiyat,
+    doviz: "TRY",
+    kdvOrani: parseFloat(stock.kdvsatis) || 20,
+    birim: stock.birimadi,
+    stokMiktari: parseFloat(stock.gercek_stok) || 0,
+  };
+}
+
+/** Get all product prices for catalog display */
+export async function getProductPricesForCatalog(
+  params?: ListParams,
+): Promise<DiaListResponse<ProductPrice>> {
+  const stockList = await getStockList(params);
+
+  const prices: ProductPrice[] = stockList.records.map((stock) => ({
+    stokKodu: stock.stokkartkodu,
+    aciklama: stock.aciklama,
+    fiyat: parseFloat(stock.fiyat1) || parseFloat(stock.fiyat2) || 0,
+    doviz: "TRY",
+    kdvOrani: parseFloat(stock.kdvsatis) || 20,
+    birim: stock.birimadi,
+    stokMiktari: parseFloat(stock.gercek_stok) || 0,
+  }));
+
+  return { records: prices, total_count: stockList.total_count };
+}
+
+// ---------------------------------------------------------------------------
 // Cari (Customer Account) Services — scf module
 // ---------------------------------------------------------------------------
 
@@ -246,8 +335,58 @@ export async function getCariList(params?: ListParams): Promise<DiaListResponse<
 export async function getCariDetail(cariCode: string): Promise<DiaCari> {
   const client = getDiaClient();
   return client.callService<DiaCari>("scf", "scf_carikart_getir", {
-    cari_kodu: cariCode,
+    carikartkodu: cariCode,
   });
+}
+
+// ---------------------------------------------------------------------------
+// Cari Balance Service
+// ---------------------------------------------------------------------------
+
+export interface CariBalance {
+  cariKodu: string;
+  unvan: string;
+  toplamBakiye: number;
+  egrBakiye: number;
+  ersBakiye: number;
+  borcFatura: number;
+  alacakFatura: number;
+  borcIrsaliye: number;
+  alacakIrsaliye: number;
+}
+
+/** Get cari balance with EGR/ERS breakdown */
+export async function getCariBalance(cariKodu: string): Promise<CariBalance> {
+  const cari = await getCariDetail(cariKodu);
+
+  // Parse DIA balance fields (format: "amount,count,date")
+  const parseBilgi = (bilgi: string): number => {
+    if (!bilgi) return 0;
+    const parts = bilgi.split(",");
+    return parseFloat(parts[0]) || 0;
+  };
+
+  const borcFatura = parseBilgi(cari.borc_fatura_bilgi ?? "");
+  const alacakFatura = parseBilgi(cari.alacak_fatura_bilgi ?? "");
+  const borcIrsaliye = parseBilgi(cari.borc_irsaliye_bilgi ?? "");
+  const alacakIrsaliye = parseBilgi(cari.alacak_irsaliye_bilgi ?? "");
+  const toplamBakiye = parseFloat(cari.bakiye) || 0;
+
+  // ERS = fatura bazlı borç, EGR = irsaliye bazlı borç
+  const ersBakiye = alacakFatura - borcFatura;
+  const egrBakiye = toplamBakiye - ersBakiye;
+
+  return {
+    cariKodu: cari.carikartkodu,
+    unvan: cari.unvan,
+    toplamBakiye,
+    egrBakiye,
+    ersBakiye,
+    borcFatura,
+    alacakFatura,
+    borcIrsaliye,
+    alacakIrsaliye,
+  };
 }
 
 /**
@@ -271,31 +410,31 @@ export async function syncCariToSupabase(): Promise<SyncResult> {
       });
 
       for (const cari of response.records) {
-        if (!cari.Email) continue;
+        if (!cari.eposta) continue;
 
         try {
           const { error: upsertError } = await supabase
             .from("profiles")
             .update({
-              company_name: cari.Unvan,
-              tax_number: cari.VergiNo,
-              tax_office: cari.VergiDairesi,
-              company_address: cari.Adres,
-              city: cari.Sehir,
-              district: cari.Ilce,
-              phone: cari.Telefon,
+              company_name: cari.unvan,
+              tax_number: cari.verginumarasi,
+              tax_office: cari.vergidairesi,
+              company_address: [cari.adres1, cari.adres2].filter(Boolean).join(" "),
+              city: cari.il || cari.sehir,
+              district: cari.ilce,
+              phone: cari.telefon1 || cari.ceptel,
               updated_at: new Date().toISOString(),
             })
-            .eq("email", cari.Email);
+            .eq("email", cari.eposta);
 
           if (upsertError) {
-            result.errors.push(`Cari guncelleme hatasi [${cari.Kodu}]: ${upsertError.message}`);
+            result.errors.push(`Cari guncelleme hatasi [${cari.carikartkodu}]: ${upsertError.message}`);
           } else {
             result.synced++;
           }
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
-          result.errors.push(`Cari guncelleme hatasi [${cari.Kodu}]: ${message}`);
+          result.errors.push(`Cari guncelleme hatasi [${cari.carikartkodu}]: ${message}`);
         }
       }
 
@@ -378,6 +517,34 @@ export async function createDiaOrder(orderData: CreateDiaOrderData): Promise<unk
 export async function getInvoiceList(params?: ListParams): Promise<DiaListResponse<DiaInvoice>> {
   const client = getDiaClient();
   return client.listService<DiaInvoice>("scf", "scf_fatura_listele", toDiaListParams(params));
+}
+
+/** Fetch invoices filtered by cari code */
+export async function getInvoiceListByCari(
+  cariKodu: string,
+  params?: ListParams,
+): Promise<DiaListResponse<DiaInvoice>> {
+  const client = getDiaClient();
+  return client.listService<DiaInvoice>("scf", "scf_fatura_listele", toDiaListParams(params), {
+    filters: `__carikartkodu='${cariKodu}'`,
+  });
+}
+
+/** Separate EGR and ERS invoices from a list */
+export function separateInvoicesByType(invoices: DiaInvoice[]): {
+  egr: DiaInvoice[];
+  ers: DiaInvoice[];
+} {
+  const egr: DiaInvoice[] = [];
+  const ers: DiaInvoice[] = [];
+  for (const inv of invoices) {
+    if (inv.efaturatipkodu === "SATIS" || parseFloat(inv.toplamkdv) > 0) {
+      ers.push(inv);
+    } else {
+      egr.push(inv);
+    }
+  }
+  return { egr, ers };
 }
 
 // ---------------------------------------------------------------------------
