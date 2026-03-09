@@ -91,7 +91,7 @@ export default function TranslationsPage() {
   const [selectedLocale, setSelectedLocale] = useState("tr");
   const [translations, setTranslations] = useState<FlatTranslations>({});
   const [baseTranslations, setBaseTranslations] = useState<FlatTranslations>({});
-  const [originalTranslations, setOriginalTranslations] = useState<FlatTranslations>({});
+  const [, setOriginalTranslations] = useState<FlatTranslations>({});
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saveStatus, setSaveStatus] = useState<"idle" | "success" | "error">("idle");
@@ -309,10 +309,6 @@ export default function TranslationsPage() {
             </div>
             <nav className="p-1.5">
               {LOCALES.map((loc) => {
-                const locMissing =
-                  loc.code === "tr"
-                    ? 0
-                    : Object.keys(baseTranslations).filter((k) => !Object.keys(translations).includes(k) || !translations[k]).length;
                 const isSelected = selectedLocale === loc.code;
                 return (
                   <button

@@ -28,6 +28,7 @@ import {
   Languages,
   Bell,
   BarChart3,
+  Database,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -92,6 +93,7 @@ const navGroups: NavGroup[] = [
       { name: "Çeviriler", href: "/admin/translations", icon: Languages },
       { name: "Bildirimler", href: "/admin/webhooks", icon: Bell },
       { name: "Analitik", href: "/admin/analytics", icon: BarChart3 },
+      { name: "DIA ERP", href: "/admin/dia", icon: Database },
     ],
   },
 ];

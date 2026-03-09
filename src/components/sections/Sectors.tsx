@@ -23,7 +23,7 @@ export default function Sectors() {
             <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-[#F59E0B]">
               {h.sectorsOverline}
             </span>
-            <h2 className="relative mb-4 inline-block text-3xl font-extrabold text-[#0A1628] dark:text-white sm:text-4xl">
+            <h2 className="font-display relative mb-4 inline-block text-3xl font-extrabold text-[#0A1628] dark:text-white sm:text-4xl">
               {h.sectorsTitle}
               <span className="absolute -bottom-2 left-1/2 h-1 w-16 -translate-x-1/2 rounded-full bg-[#F59E0B]" />
             </h2>
@@ -34,7 +34,7 @@ export default function Sectors() {
             <div className="mx-auto mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
               <span className="h-2 w-2 rounded-full bg-[#F59E0B]" />
               <span className="text-xs font-bold tracking-wide text-[#0A1628] dark:text-neutral-300">
-                Hizmet verdiğimiz sektörler &middot; {sectors.length} Sektör
+                Hizmet verdiğimiz sektörler &middot; <span className="font-mono">{sectors.length}</span> Sektör
               </span>
             </div>
           </div>
@@ -69,7 +69,7 @@ export default function Sectors() {
 
                   {/* Content */}
                   <div className="relative min-w-0 flex-1">
-                    <h3 className="mb-1.5 text-base font-bold leading-snug text-[#0A1628] transition-colors duration-200 group-hover:text-[#0A1628] sm:text-[17px] dark:text-white dark:group-hover:text-white">
+                    <h3 className="font-display mb-1.5 text-base font-bold leading-snug text-[#0A1628] transition-colors duration-200 group-hover:text-[#0A1628] sm:text-[17px] dark:text-white dark:group-hover:text-white">
                       {sector.name}
                     </h3>
                     <p className="text-sm leading-relaxed text-muted-foreground">

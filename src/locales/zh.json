@@ -27,13 +27,22 @@
     "badge": "B2B化妆品包装解决方案",
     "titleBefore": "化妆品包装领域",
     "titleAfter": "您的可靠合作伙伴",
-    "words": ["可靠", "优质", "创新"],
+    "words": [
+      "可靠",
+      "优质",
+      "创新"
+    ],
     "subtitle": "自1969年以来，为化妆品行业提供高品质PET瓶、塑料瓶、喷雾包装、泵头和瓶盖。定制设计和批发解决方案为您服务。",
     "ctaProducts": "浏览产品",
     "ctaQuote": "获取报价",
     "highlight1": "ISO 9001认证",
     "highlight2": "全国配送",
     "highlight3": "55+年经验",
+    "heroHeading": "57年来塑造包装的未来",
+    "heroSubtext": "土耳其值得信赖的B2B合作伙伴，为化妆品行业提供PET瓶、塑料包装和瓶盖解决方案。",
+    "ctaDealer": "经销商登录",
+    "viewer3DPlaceholder": "3D产品查看器",
+    "viewer3DComingSoon": "即将推出",
     "cardProducts": "500+",
     "cardProductsLabel": "产品种类",
     "cardCustomers": "1000+",
@@ -85,7 +94,16 @@
     "highCapacity": "高产能",
     "highCapacityDesc": "月产量达数百万件，满足大规模订单需求。",
     "support": "全天候客户支持",
-    "supportDesc": "我们的专业团队在售前售后每个环节为您提供支持。"
+    "supportDesc": "我们的专业团队在售前售后每个环节为您提供支持。",
+    "processStep1Title": "Raw Material Selection",
+    "processStep1Desc": "We carefully select the highest quality PET, HDPE, and PP raw materials.",
+    "processStep2Title": "Production",
+    "processStep2Desc": "High-capacity precision manufacturing with state-of-the-art machines.",
+    "processStep3Title": "Quality Control",
+    "processStep3Desc": "Quality guaranteed through ISO 9001, ISO 22000 and FSSC 22000 standards.",
+    "processStep4Title": "Delivery",
+    "processStep4Desc": "On-time delivery with our fast and secure logistics network.",
+    "processPhotoPlaceholder": "Photo Coming Soon"
   },
   "homeStrengths": [
     "土耳其领先的化妆品包装制造商",
@@ -96,23 +114,79 @@
     "具有竞争力的价格和灵活的付款方式"
   ],
   "homeCategories": [
-    { "name": "PET瓶", "description": "适用于化妆品、古龙水和个人护理产品的各种容量和设计的PET瓶。", "count": "15+" },
-    { "name": "塑料瓶", "description": "采用HDPE、PP和LDPE原料的耐用塑料瓶系列。", "count": "10+" },
-    { "name": "瓶盖", "description": "螺旋盖、翻盖和定制设计瓶盖系列。", "count": "8+" },
-    { "name": "内塞", "description": "内塞、滴管塞和密封塞。", "count": "6+" },
-    { "name": "指压喷雾", "description": "适用于化妆品和古龙水产品的指压喷雾机构。", "count": "5+" },
-    { "name": "泵头", "description": "乳液泵、泡沫泵和膏霜定量泵。", "count": "7+" },
-    { "name": "触发式喷雾器", "description": "适用于清洁和护理产品的触发式喷雾系统。", "count": "4+" },
-    { "name": "漏斗", "description": "灌装过程中使用的塑料漏斗。", "count": "3+" }
+    {
+      "name": "PET瓶",
+      "description": "适用于化妆品、古龙水和个人护理产品的各种容量和设计的PET瓶。",
+      "count": "15+"
+    },
+    {
+      "name": "塑料瓶",
+      "description": "采用HDPE、PP和LDPE原料的耐用塑料瓶系列。",
+      "count": "10+"
+    },
+    {
+      "name": "瓶盖",
+      "description": "螺旋盖、翻盖和定制设计瓶盖系列。",
+      "count": "8+"
+    },
+    {
+      "name": "内塞",
+      "description": "内塞、滴管塞和密封塞。",
+      "count": "6+"
+    },
+    {
+      "name": "指压喷雾",
+      "description": "适用于化妆品和古龙水产品的指压喷雾机构。",
+      "count": "5+"
+    },
+    {
+      "name": "泵头",
+      "description": "乳液泵、泡沫泵和膏霜定量泵。",
+      "count": "7+"
+    },
+    {
+      "name": "触发式喷雾器",
+      "description": "适用于清洁和护理产品的触发式喷雾系统。",
+      "count": "4+"
+    },
+    {
+      "name": "漏斗",
+      "description": "灌装过程中使用的塑料漏斗。",
+      "count": "3+"
+    }
   ],
   "homeSectors": [
-    { "name": "化妆品与美容", "description": "为洗发水、乳液、面霜、香水和化妆产品提供美观设计的包装。" },
-    { "name": "古龙水与香水", "description": "为古龙水、室内香薰和香氛产品提供定制设计的瓶装解决方案。" },
-    { "name": "个人护理", "description": "为身体护理、头发护理、皮肤护理和卫生产品提供现代化设计。" },
-    { "name": "清洁与卫生", "description": "为洗手液、免洗消毒液和清洁产品提供耐用的包装解决方案。" },
-    { "name": "酒店与餐饮", "description": "为酒店、餐厅和咖啡馆提供小包装和定制包装解决方案。" },
-    { "name": "定制模具", "description": "为品牌提供定制模具设计和个性化化妆品包装生产。" }
+    {
+      "name": "化妆品与美容",
+      "description": "为洗发水、乳液、面霜、香水和化妆产品提供美观设计的包装。"
+    },
+    {
+      "name": "古龙水与香水",
+      "description": "为古龙水、室内香薰和香氛产品提供定制设计的瓶装解决方案。"
+    },
+    {
+      "name": "个人护理",
+      "description": "为身体护理、头发护理、皮肤护理和卫生产品提供现代化设计。"
+    },
+    {
+      "name": "清洁与卫生",
+      "description": "为洗手液、免洗消毒液和清洁产品提供耐用的包装解决方案。"
+    },
+    {
+      "name": "酒店与餐饮",
+      "description": "为酒店、餐厅和咖啡馆提供小包装和定制包装解决方案。"
+    },
+    {
+      "name": "定制模具",
+      "description": "为品牌提供定制模具设计和个性化化妆品包装生产。"
+    }
   ],
+  "trustBar": {
+    "experience": "年经验",
+    "exports": "个出口国家",
+    "products": "种产品",
+    "customers": "位满意客户"
+  },
   "common": {
     "readMore": "阅读更多",
     "backToHome": "返回首页",

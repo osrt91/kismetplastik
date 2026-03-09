@@ -153,6 +153,26 @@ export interface Database {
         Insert: Omit<DbWebhookEvent, "id" | "created_at">;
         Update: Partial<Omit<DbWebhookEvent, "id">>;
       };
+      product_compatibility: {
+        Row: DbProductCompatibility;
+        Insert: Omit<DbProductCompatibility, "id" | "created_at">;
+        Update: Partial<Omit<DbProductCompatibility, "id">>;
+      };
+      dia_stock_mappings: {
+        Row: DbDiaStockMapping;
+        Insert: Omit<DbDiaStockMapping, "id" | "created_at" | "updated_at">;
+        Update: Partial<Omit<DbDiaStockMapping, "id">>;
+      };
+      dia_sync_logs: {
+        Row: DbDiaSyncLog;
+        Insert: Omit<DbDiaSyncLog, "id" | "created_at">;
+        Update: Partial<Omit<DbDiaSyncLog, "id">>;
+      };
+      invoices: {
+        Row: DbInvoice;
+        Insert: Omit<DbInvoice, "id" | "created_at" | "updated_at">;
+        Update: Partial<Omit<DbInvoice, "id">>;
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;
@@ -574,4 +594,89 @@ export interface DbWebhookEvent {
   processed_at: string | null;
   error_message: string | null;
   created_at: string;
+}
+
+// ==================== DEALER-CARI MAPPING ====================
+
+export type DealerPriceType = 'standard' | 'pesin' | 'vadeli' | 'ozel';
+
+export interface DealerCariMapping {
+  id: string;
+  profile_id: string;
+  dia_cari_kodu: string;
+  dia_cari_unvan: string | null;
+  is_approved: boolean;
+  price_type: DealerPriceType;
+  can_direct_order: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+// ==================== PRODUCT COMPATIBILITY ====================
+
+export type CompatibilityType = 'fits' | 'recommended' | 'alternative';
+
+export interface DbProductCompatibility {
+  id: string;
+  source_stock_kodu: string;
+  source_category: string;
+  compatible_stock_kodu: string;
+  compatible_category: string;
+  compatibility_type: CompatibilityType;
+  notes: string | null;
+  is_active: boolean;
+  created_at: string;
+}
+
+// ==================== DIA ERP INTEGRATION ====================
+
+export type InvoiceStatus = "draft" | "issued" | "paid" | "cancelled";
+
+export type DiaSyncStatus = "pending" | "running" | "success" | "failed";
+
+export interface DbDiaStockMapping {
+  id: string;
+  dia_stock_code: string;
+  dia_stock_id: number;
+  product_slug: string;
+  product_id: string | null;
+  is_active: boolean;
+  last_synced_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface DbDiaSyncLog {
+  id: string;
+  sync_type: string; // "stock" | "cari" | "order"
+  status: DiaSyncStatus;
+  records_synced: number;
+  records_failed: number;
+  error_details: string[] | null;
+  started_at: string;
+  completed_at: string | null;
+  created_at: string;
+}
+
+// ==================== INVOICES ====================
+
+export interface DbInvoice {
+  id: string;
+  order_id: string;
+  profile_id: string;
+  invoice_number: string;
+  company_name: string;
+  company_address: string | null;
+  tax_number: string | null;
+  tax_office: string | null;
+  subtotal: number;
+  tax_rate: number;
+  tax_amount: number;
+  total_amount: number;
+  pdf_url: string | null;
+  storage_path: string | null;
+  status: InvoiceStatus;
+  issued_at: string;
+  created_at: string;
+  updated_at: string;
 }

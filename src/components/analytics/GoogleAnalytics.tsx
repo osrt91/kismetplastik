@@ -51,6 +51,7 @@ export default function GoogleAnalytics() {
 
   useEffect(() => {
     // Check consent on mount
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- SSR: localStorage unavailable at render
     setConsentGranted(hasAnalyticsConsent());
 
     // Listen for storage changes (e.g. user updates consent in CookieBanner)
@@ -75,7 +76,7 @@ export default function GoogleAnalytics() {
       {/* Initialize dataLayer and set consent defaults before gtag.js loads */}
       <Script
         id="ga-consent-init"
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];

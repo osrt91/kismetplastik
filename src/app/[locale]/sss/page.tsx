@@ -96,13 +96,7 @@ const faqData: FAQItem[] = [
 
 const categories = [...new Set(faqData.map((f) => f.category))];
 
-const categoryAccentColors: Record<string, string> = {
-  Genel: "border-l-navy-400",
-  Sipariş: "border-l-navy-700",
-  Ürün: "border-l-amber-400",
-  Kalite: "border-l-amber-600",
-  Bayi: "border-l-navy-800",
-};
+// Category accent colors unified under the design system
 
 export default function SSSPage() {
   const { dict } = useLocale();
@@ -204,10 +198,10 @@ export default function SSSPage() {
                     setActiveCategory(cat);
                     setOpenIndex(0);
                   }}
-                  className={`relative rounded-xl px-5 py-2.5 text-sm font-semibold transition-all ${
+                  className={`relative rounded-xl px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
                     isActive
-                      ? "bg-primary-900 text-white shadow-md"
-                      : "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700"
+                      ? "bg-[#0A1628] text-white shadow-md"
+                      : "bg-white dark:bg-white/5 border border-[#0A1628]/5 dark:border-white/10 text-neutral-600 dark:text-neutral-300 hover:border-[#F59E0B]/20 hover:bg-[#F59E0B]/5"
                   }`}
                 >
                   <span className="flex items-center gap-2">
@@ -215,15 +209,15 @@ export default function SSSPage() {
                     <span
                       className={`inline-flex h-5 min-w-[20px] items-center justify-center rounded-full px-1.5 text-[10px] font-bold ${
                         isActive
-                          ? "bg-white/20 text-white"
-                          : "bg-neutral-200 dark:bg-neutral-700 text-neutral-500 dark:text-neutral-400"
+                          ? "bg-[#F59E0B]/20 text-[#F59E0B]"
+                          : "bg-[#0A1628]/5 dark:bg-white/10 text-neutral-500 dark:text-neutral-400"
                       }`}
                     >
                       {count}
                     </span>
                   </span>
                   {isActive && (
-                    <span className="absolute -bottom-1 left-1/2 h-[3px] w-8 -translate-x-1/2 rounded-full bg-accent-500" />
+                    <span className="absolute -bottom-1 left-1/2 h-[3px] w-8 -translate-x-1/2 rounded-full bg-[#F59E0B]" />
                   )}
                 </button>
               );
@@ -235,8 +229,8 @@ export default function SSSPage() {
         <div className="space-y-3">
           {filteredFAQ.length === 0 && (
             <AnimateOnScroll animation="fade-up">
-              <div className="flex flex-col items-center justify-center rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 px-6 py-12 text-center">
-                <Search size={32} className="mb-3 text-neutral-300 dark:text-neutral-500" />
+              <div className="flex flex-col items-center justify-center rounded-xl border border-[#0A1628]/5 dark:border-white/10 bg-white dark:bg-white/5 px-6 py-12 text-center">
+                <Search size={32} className="mb-3 text-[#F59E0B]/40" />
                 <p className="font-semibold text-neutral-500 dark:text-neutral-400">
                   Sonuç bulunamadı
                 </p>
@@ -250,8 +244,6 @@ export default function SSSPage() {
 
           {filteredFAQ.map((faq, i) => {
             const isOpen = openIndex === i;
-            const borderColor =
-              categoryAccentColors[faq.category] || "border-l-primary-400";
             return (
               <AnimateOnScroll
                 key={faq.question}
@@ -259,16 +251,16 @@ export default function SSSPage() {
                 delay={i * 60}
               >
                 <div
-                  className={`overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 transition-all duration-300 ${
+                  className={`overflow-hidden rounded-xl border bg-white dark:bg-white/5 transition-all duration-300 ${
                     isOpen
-                      ? "border-primary-200 dark:border-primary-600 shadow-md"
-                      : "hover:shadow-md"
+                      ? "border-[#F59E0B]/30 dark:border-[#F59E0B]/20 shadow-lg shadow-[#F59E0B]/5"
+                      : "border-[#0A1628]/5 dark:border-white/10 hover:border-[#0A1628]/10 hover:shadow-md"
                   }`}
                 >
                   <button
                     onClick={() => setOpenIndex(isOpen ? null : i)}
                     className={`flex w-full items-center justify-between px-6 py-5 text-left transition-colors duration-200 ${
-                      isOpen ? "bg-primary-50/50" : ""
+                      isOpen ? "bg-[#0A1628]/[0.02] dark:bg-white/[0.02]" : ""
                     }`}
                   >
                     <div className="flex items-center gap-3">
@@ -276,11 +268,11 @@ export default function SSSPage() {
                         size={20}
                         className={`shrink-0 transition-all duration-300 ${
                           isOpen
-                            ? "scale-110 text-accent-500"
+                            ? "scale-110 text-[#F59E0B]"
                             : "text-neutral-400"
                         }`}
                       />
-                      <span className="font-semibold text-primary-900 dark:text-white">
+                      <span className="font-semibold text-[#0A1628] dark:text-white">
                         {faq.question}
                       </span>
                     </div>
@@ -288,7 +280,7 @@ export default function SSSPage() {
                       size={20}
                       className={`shrink-0 transition-all duration-300 ease-out ${
                         isOpen
-                          ? "rotate-180 text-accent-500"
+                          ? "rotate-180 text-[#F59E0B]"
                           : "text-neutral-400"
                       }`}
                     />
@@ -301,8 +293,8 @@ export default function SSSPage() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <div className="border-t border-neutral-100 dark:border-neutral-700 px-6 py-5">
-                        <div className={`border-l-4 ${borderColor} pl-4`}>
+                      <div className="border-t border-[#0A1628]/5 dark:border-white/5 px-6 py-5">
+                        <div className="border-l-4 border-l-[#F59E0B] pl-4">
                           <p className="leading-relaxed text-neutral-600 dark:text-neutral-300">
                             {faq.answer}
                           </p>
@@ -318,30 +310,30 @@ export default function SSSPage() {
 
         {/* Contact CTA */}
         <AnimateOnScroll animation="fade-up">
-          <div className="relative mt-16 overflow-hidden rounded-2xl bg-primary-50 p-8 text-center lg:p-12">
-            <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary-200/30 blur-2xl" />
-            <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-accent-200/20 blur-2xl" />
-            <div className="absolute right-12 top-1/2 h-16 w-16 -translate-y-1/2 rounded-full bg-primary-300/15 animate-pulse" />
-            <div className="absolute bottom-8 left-16 h-10 w-10 rounded-full bg-accent-300/20 animate-pulse [animation-delay:1s]" />
-            <div className="absolute left-1/3 top-6 h-6 w-6 rotate-45 rounded-sm bg-primary-200/20 animate-pulse [animation-delay:2s]" />
+          <div className="relative mt-16 overflow-hidden rounded-2xl bg-[#0A1628]/[0.03] dark:bg-white/5 border border-[#0A1628]/5 dark:border-white/10 p-8 text-center lg:p-12">
+            <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[#0A1628]/5 blur-2xl" />
+            <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-[#F59E0B]/10 blur-2xl" />
+            <div className="absolute right-12 top-1/2 h-16 w-16 -translate-y-1/2 rounded-full bg-[#0A1628]/5 animate-pulse" />
+            <div className="absolute bottom-8 left-16 h-10 w-10 rounded-full bg-[#F59E0B]/10 animate-pulse [animation-delay:1s]" />
+            <div className="absolute left-1/3 top-6 h-6 w-6 rotate-45 rounded-sm bg-[#0A1628]/5 animate-pulse [animation-delay:2s]" />
 
             <div className="relative z-10">
-              <HelpCircle size={40} className="mx-auto mb-4 text-primary-700" />
-              <h3 className="mb-3 text-xl font-bold text-primary-900 dark:text-white">
+              <HelpCircle size={40} className="mx-auto mb-4 text-[#F59E0B]" />
+              <h3 className="mb-3 text-xl font-bold text-[#0A1628] dark:text-white">
                 {f.notFound}
               </h3>
               <p className="mb-6 text-neutral-600 dark:text-neutral-300">{f.notFoundDesc}</p>
               <div className="flex flex-col justify-center gap-3 sm:flex-row">
                 <Link
                   href="/iletisim"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary-900 px-6 py-3.5 font-bold text-white transition-all hover:bg-primary-700"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#0A1628] px-6 py-3.5 font-bold text-white transition-all duration-300 hover:bg-[#0f2240] hover:-translate-y-0.5 hover:shadow-lg"
                 >
                   <MessageCircle size={18} />
                   {f.writeUs}
                 </Link>
                 <a
                   href="tel:+902125498703"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-primary-900 px-6 py-3.5 font-semibold text-primary-900 transition-all hover:bg-primary-900 hover:text-white"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#0A1628] px-6 py-3.5 font-semibold text-[#0A1628] transition-all duration-300 hover:bg-[#0A1628] hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-[#0A1628]"
                 >
                   <Phone size={18} />
                   {f.callUs}

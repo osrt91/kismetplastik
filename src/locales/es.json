@@ -27,13 +27,22 @@
     "badge": "Soluciones B2B de envases cosméticos",
     "titleBefore": "Su socio de confianza en",
     "titleAfter": "envases cosméticos",
-    "words": ["Fiable", "Calidad", "Innovador"],
+    "words": [
+      "Fiable",
+      "Calidad",
+      "Innovador"
+    ],
     "subtitle": "Desde 1969, botellas PET, botellas de plástico, envases en spray, bombas y tapones de alta calidad para el sector cosmético. Diseño personalizado y soluciones mayoristas a su servicio.",
     "ctaProducts": "Ver productos",
     "ctaQuote": "Solicitar presupuesto",
     "highlight1": "Certificado ISO 9001",
     "highlight2": "Entrega en toda Turquía",
     "highlight3": "55+ años de experiencia",
+    "heroHeading": "Dando forma al futuro del embalaje durante 57 años",
+    "heroSubtext": "Su socio B2B de confianza en Turquía para botellas PET, embalajes plásticos y tapas para la industria cosmética.",
+    "ctaDealer": "Acceso distribuidor",
+    "viewer3DPlaceholder": "Visor de productos 3D",
+    "viewer3DComingSoon": "Próximamente",
     "cardProducts": "500+",
     "cardProductsLabel": "Variedades de productos",
     "cardCustomers": "1000+",
@@ -85,7 +94,16 @@
     "highCapacity": "Alta capacidad",
     "highCapacityDesc": "Atendemos pedidos a gran escala con una capacidad de producción mensual de millones de unidades.",
     "support": "Atención al cliente 24/7",
-    "supportDesc": "Nuestro equipo de expertos le acompaña en cada etapa, antes y después de la venta."
+    "supportDesc": "Nuestro equipo de expertos le acompaña en cada etapa, antes y después de la venta.",
+    "processStep1Title": "Raw Material Selection",
+    "processStep1Desc": "We carefully select the highest quality PET, HDPE, and PP raw materials.",
+    "processStep2Title": "Production",
+    "processStep2Desc": "High-capacity precision manufacturing with state-of-the-art machines.",
+    "processStep3Title": "Quality Control",
+    "processStep3Desc": "Quality guaranteed through ISO 9001, ISO 22000 and FSSC 22000 standards.",
+    "processStep4Title": "Delivery",
+    "processStep4Desc": "On-time delivery with our fast and secure logistics network.",
+    "processPhotoPlaceholder": "Photo Coming Soon"
   },
   "homeStrengths": [
     "Principal productor de envases cosméticos de Turquía",
@@ -96,23 +114,79 @@
     "Precios competitivos y opciones de pago flexibles"
   ],
   "homeCategories": [
-    { "name": "Botellas PET", "description": "Botellas PET en diversos volúmenes y diseños para cosmética, colonia y cuidado personal.", "count": "15+" },
-    { "name": "Botellas de plástico", "description": "Botellas de plástico resistentes fabricadas con HDPE, PP y LDPE.", "count": "10+" },
-    { "name": "Tapones", "description": "Tapones de rosca, flip-top y diseño personalizado.", "count": "8+" },
-    { "name": "Obturadores", "description": "Obturadores internos, cuentagotas y tapones de sellado.", "count": "6+" },
-    { "name": "Sprays de dedo", "description": "Mecanismos de pulverización de dedo para cosmética y colonias.", "count": "5+" },
-    { "name": "Bombas dosificadoras", "description": "Bombas para lociones, bombas de espuma y bombas dosificadoras de crema.", "count": "7+" },
-    { "name": "Pulverizadores de gatillo", "description": "Sistemas de pulverización con gatillo para productos de limpieza y cuidado.", "count": "4+" },
-    { "name": "Embudos", "description": "Embudos de plástico utilizados en procesos de llenado.", "count": "3+" }
+    {
+      "name": "Botellas PET",
+      "description": "Botellas PET en diversos volúmenes y diseños para cosmética, colonia y cuidado personal.",
+      "count": "15+"
+    },
+    {
+      "name": "Botellas de plástico",
+      "description": "Botellas de plástico resistentes fabricadas con HDPE, PP y LDPE.",
+      "count": "10+"
+    },
+    {
+      "name": "Tapones",
+      "description": "Tapones de rosca, flip-top y diseño personalizado.",
+      "count": "8+"
+    },
+    {
+      "name": "Obturadores",
+      "description": "Obturadores internos, cuentagotas y tapones de sellado.",
+      "count": "6+"
+    },
+    {
+      "name": "Sprays de dedo",
+      "description": "Mecanismos de pulverización de dedo para cosmética y colonias.",
+      "count": "5+"
+    },
+    {
+      "name": "Bombas dosificadoras",
+      "description": "Bombas para lociones, bombas de espuma y bombas dosificadoras de crema.",
+      "count": "7+"
+    },
+    {
+      "name": "Pulverizadores de gatillo",
+      "description": "Sistemas de pulverización con gatillo para productos de limpieza y cuidado.",
+      "count": "4+"
+    },
+    {
+      "name": "Embudos",
+      "description": "Embudos de plástico utilizados en procesos de llenado.",
+      "count": "3+"
+    }
   ],
   "homeSectors": [
-    { "name": "Cosmética y belleza", "description": "Envases de diseño estético para champús, lociones, cremas, perfumes y productos de maquillaje." },
-    { "name": "Colonia y perfumería", "description": "Soluciones de frascos de diseño personalizado para colonias, ambientadores y productos de fragancia." },
-    { "name": "Cuidado personal", "description": "Diseños modernos para cuidado corporal, capilar, de la piel y productos de higiene." },
-    { "name": "Limpieza e higiene", "description": "Soluciones de envase resistentes para jabón líquido, desinfectante de manos y productos de limpieza." },
-    { "name": "Hostelería y HoReCa", "description": "Envases en formato mini y soluciones personalizadas para hoteles, restaurantes y cafeterías." },
-    { "name": "Moldeo personalizado", "description": "Diseño de moldes a medida y producción personalizada de envases cosméticos para marcas." }
+    {
+      "name": "Cosmética y belleza",
+      "description": "Envases de diseño estético para champús, lociones, cremas, perfumes y productos de maquillaje."
+    },
+    {
+      "name": "Colonia y perfumería",
+      "description": "Soluciones de frascos de diseño personalizado para colonias, ambientadores y productos de fragancia."
+    },
+    {
+      "name": "Cuidado personal",
+      "description": "Diseños modernos para cuidado corporal, capilar, de la piel y productos de higiene."
+    },
+    {
+      "name": "Limpieza e higiene",
+      "description": "Soluciones de envase resistentes para jabón líquido, desinfectante de manos y productos de limpieza."
+    },
+    {
+      "name": "Hostelería y HoReCa",
+      "description": "Envases en formato mini y soluciones personalizadas para hoteles, restaurantes y cafeterías."
+    },
+    {
+      "name": "Moldeo personalizado",
+      "description": "Diseño de moldes a medida y producción personalizada de envases cosméticos para marcas."
+    }
   ],
+  "trustBar": {
+    "experience": "Años de experiencia",
+    "exports": "Países de exportación",
+    "products": "Variedades de productos",
+    "customers": "Clientes satisfechos"
+  },
   "common": {
     "readMore": "Leer más",
     "backToHome": "Volver al inicio",

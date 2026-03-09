@@ -111,10 +111,6 @@ interface Toast {
 
 // ─── Utility ──────────────────────────────────────────────────────────────────
 
-function getSettingValue(settings: DbSiteSetting[], key: string): string {
-  return settings.find((s) => s.key === key)?.value ?? "";
-}
-
 // ─── Components ───────────────────────────────────────────────────────────────
 
 function ToggleSwitch({
@@ -149,7 +145,7 @@ function ToggleSwitch({
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 export default function AdminSettingsPage() {
-  const [settings, setSettings] = useState<DbSiteSetting[]>([]);
+  const [, setSettings] = useState<DbSiteSetting[]>([]);
   const [localValues, setLocalValues] = useState<Record<string, string>>({});
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
   const [saving, setSaving] = useState<string | null>(null);

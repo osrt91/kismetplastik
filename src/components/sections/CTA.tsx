@@ -2,7 +2,7 @@
 
 import Link from "@/components/ui/LocaleLink";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, FileText, Phone, Shield, Award, BadgeCheck, Sparkles } from "lucide-react";
+import { ArrowRight, FileText, Phone, Shield, Award, BadgeCheck } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
 
@@ -21,17 +21,13 @@ export default function CTA() {
       className="relative overflow-hidden py-24 lg:py-32"
       style={{ background: "linear-gradient(135deg, #0A1628 0%, #0F1F3D 30%, #0A1628 60%, #0D1A30 80%, #0A1628 100%)" }}
     >
-      {/* Animated gradient border — top (amber accent line) */}
-      <div className="absolute inset-x-0 top-0 h-[3px] animate-[shimmer_3s_ease-in-out_infinite] bg-[length:200%_100%] bg-gradient-to-r from-transparent via-[#F59E0B] to-transparent" />
-      {/* Animated gradient border — bottom */}
-      <div className="absolute inset-x-0 bottom-0 h-[2px] animate-[shimmer_3s_ease-in-out_infinite_0.5s] bg-[length:200%_100%] bg-gradient-to-r from-transparent via-[#F59E0B]/60 to-transparent" />
-      {/* Animated gradient border — left */}
-      <div className="absolute inset-y-0 left-0 w-[2px] animate-[shimmer-v_3s_ease-in-out_infinite_1s] bg-[length:100%_200%] bg-gradient-to-b from-transparent via-[#F59E0B]/30 to-transparent" />
-      {/* Animated gradient border — right */}
-      <div className="absolute inset-y-0 right-0 w-[2px] animate-[shimmer-v_3s_ease-in-out_infinite_1.5s] bg-[length:100%_200%] bg-gradient-to-b from-transparent via-[#F59E0B]/30 to-transparent" />
+      {/* Top amber accent line */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F59E0B]/60 to-transparent" />
+      {/* Bottom amber accent line */}
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#F59E0B]/60 to-transparent" />
 
-      {/* Dot pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.04]">
+      {/* Subtle dot pattern */}
+      <div className="absolute inset-0 opacity-[0.03]">
         <div
           className="h-full w-full"
           style={{
@@ -41,68 +37,14 @@ export default function CTA() {
         />
       </div>
 
-      {/* Diagonal line pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div
-          className="h-full w-full"
-          style={{
-            backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(245,158,11,0.3) 60px, rgba(245,158,11,0.3) 61px)`,
-          }}
-        />
-      </div>
-
       {/* Decorative gradient orbs */}
-      <div className="absolute -left-32 top-1/4 h-80 w-80 rounded-full bg-[#F59E0B]/[0.07] blur-[100px]" />
-      <div className="absolute -right-32 bottom-1/4 h-96 w-96 rounded-full bg-[#F59E0B]/[0.05] blur-[120px]" />
-      <div className="absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full bg-blue-500/[0.04] blur-[80px]" />
-      <div className="absolute right-1/4 top-1/2 h-48 w-48 -translate-y-1/2 rounded-full bg-[#F59E0B]/[0.04] blur-[60px] animate-pulse" style={{ animationDuration: "6s" }} />
-
-      {/* Geometric shape decorations */}
-      <div className="pointer-events-none absolute left-[8%] top-[15%] h-24 w-24 rotate-45 rounded-lg border border-white/[0.04]" />
-      <div className="pointer-events-none absolute right-[10%] bottom-[20%] h-16 w-16 rotate-12 rounded-lg border border-[#F59E0B]/[0.06]" />
-      <div className="pointer-events-none absolute left-[5%] bottom-[30%] h-3 w-3 rounded-full bg-[#F59E0B]/20" />
-      <div className="pointer-events-none absolute right-[8%] top-[25%] h-2 w-2 rounded-full bg-white/15" />
-
-      {/* Rotating ring decoration */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div
-          className="h-[500px] w-[500px] rounded-full border border-dashed border-white/[0.04] lg:h-[750px] lg:w-[750px]"
-          style={{ animation: "spin 60s linear infinite" }}
-        />
-      </div>
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div
-          className="h-[400px] w-[400px] rounded-full border border-dashed border-[#F59E0B]/[0.05] lg:h-[580px] lg:w-[580px]"
-          style={{ animation: "spin 45s linear infinite reverse" }}
-        />
-      </div>
-
-      {/* Sparkle decorations */}
-      <Sparkles
-        size={14}
-        className="absolute left-[15%] top-[20%] text-[#F59E0B]/30 animate-pulse"
-        style={{ animationDelay: "0s", animationDuration: "3s" }}
-      />
-      <Sparkles
-        size={10}
-        className="absolute right-[20%] top-[15%] text-white/20 animate-pulse"
-        style={{ animationDelay: "1s", animationDuration: "4s" }}
-      />
-      <Sparkles
-        size={12}
-        className="absolute left-[25%] bottom-[18%] text-[#F59E0B]/25 animate-pulse"
-        style={{ animationDelay: "2s", animationDuration: "3.5s" }}
-      />
-      <Sparkles
-        size={16}
-        className="absolute right-[12%] bottom-[25%] text-white/15 animate-pulse"
-        style={{ animationDelay: "0.5s", animationDuration: "4.5s" }}
-      />
+      <div className="absolute -left-32 top-1/4 h-80 w-80 rounded-full bg-[#F59E0B]/[0.06] blur-[100px]" />
+      <div className="absolute -right-32 bottom-1/4 h-80 w-80 rounded-full bg-[#F59E0B]/[0.04] blur-[120px]" />
 
       <div className="relative mx-auto max-w-5xl px-6 text-center lg:px-8">
         <AnimateOnScroll animation="fade-up">
           <h2
-            className="mb-6 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl xl:text-[3.5rem] leading-tight"
+            className="font-display mb-6 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl xl:text-[3.5rem] leading-tight"
             style={{ textShadow: "0 2px 20px rgba(0,0,0,0.4), 0 0 40px rgba(245,158,11,0.08)" }}
           >
             {h.ctaTitle}{" "}

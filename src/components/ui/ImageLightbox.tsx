@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -51,7 +51,7 @@ export default function ImageLightbox({
   onNext,
   onPrev,
 }: ImageLightboxProps) {
-  const directionRef = useRef(0);
+  const [direction, setDirection] = useState(0);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
@@ -62,11 +62,11 @@ export default function ImageLightbox({
           onClose();
           break;
         case "ArrowRight":
-          directionRef.current = 1;
+          setDirection(1);
           onNext();
           break;
         case "ArrowLeft":
-          directionRef.current = -1;
+          setDirection(-1);
           onPrev();
           break;
       }
@@ -98,22 +98,22 @@ export default function ImageLightbox({
 
     if (Math.abs(diff) > threshold) {
       if (diff > 0) {
-        directionRef.current = 1;
+        setDirection(1);
         onNext();
       } else {
-        directionRef.current = -1;
+        setDirection(-1);
         onPrev();
       }
     }
   }, [onNext, onPrev]);
 
   const handlePrev = useCallback(() => {
-    directionRef.current = -1;
+    setDirection(-1);
     onPrev();
   }, [onPrev]);
 
   const handleNext = useCallback(() => {
-    directionRef.current = 1;
+    setDirection(1);
     onNext();
   }, [onNext]);
 
@@ -178,10 +178,10 @@ export default function ImageLightbox({
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <AnimatePresence mode="wait" custom={directionRef.current}>
+          <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentIndex}
-              custom={directionRef.current}
+              custom={direction}
               variants={imageVariants}
               initial="enter"
               animate="center"
@@ -189,6 +189,7 @@ export default function ImageLightbox({
               className="flex items-center justify-center"
             >
               {current.src ? (
+                /* eslint-disable-next-line @next/next/no-img-element */
                 <img
                   src={current.src}
                   alt={current.alt}

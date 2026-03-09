@@ -110,7 +110,7 @@ export default function Stats() {
             </span>
             <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#F59E0B]/70" />
           </div>
-          <h2 className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
+          <h2 className="font-display text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
             {"Güvenilir Üretim Gücü"}
           </h2>
           <div className="mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-[#F59E0B] to-[#F59E0B]/30" />
@@ -146,7 +146,7 @@ export default function Stats() {
                   </div>
 
                   {/* Number */}
-                  <div className="relative mb-3 text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
+                  <div className="relative mb-3 font-mono text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
                     <AnimatedNumber
                       target={stat.value}
                       suffix={stat.suffix}

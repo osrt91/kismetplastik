@@ -14,6 +14,7 @@ export default function CompareBar() {
 
   // Avoid hydration mismatch with persisted store
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration guard for persisted store
     setMounted(true);
   }, []);
 

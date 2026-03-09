@@ -37,6 +37,7 @@ export default function About() {
               <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-[#0A1628]/5 to-[#0A1628]/10 shadow-lg shadow-[#0A1628]/5 ring-1 ring-[#0A1628]/5 transition-all duration-500 hover:shadow-xl hover:shadow-[#F59E0B]/10 dark:from-[#F59E0B]/5 dark:to-[#0A1628]/40 dark:ring-white/10 sm:rounded-3xl">
                 <div className="absolute inset-0 flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
                   <div className="text-center">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="/images/logo2.svg"
                       alt="Kısmet Plastik"
@@ -57,7 +58,7 @@ export default function About() {
                 className="absolute -bottom-6 -right-4 rounded-2xl bg-[#F59E0B] px-6 py-4 shadow-xl shadow-[#F59E0B]/20 ring-1 ring-[#F59E0B]/20 transition-transform duration-300 hover:scale-105 sm:right-4"
                 style={{ animation: "pulse-glow 2.5s ease-in-out infinite" }}
               >
-                <div className="text-3xl font-extrabold text-[#0A1628]">
+                <div className="font-mono text-3xl font-extrabold text-[#0A1628]">
                   55+
                 </div>
                 <div className="text-sm font-semibold text-[#0A1628]/70">
@@ -74,7 +75,7 @@ export default function About() {
                 <span className="h-1.5 w-1.5 rounded-full bg-[#F59E0B]" />
                 {h.aboutOverline}
               </span>
-              <h2 className="mb-6 text-3xl font-extrabold leading-tight text-[#0A1628] dark:text-white sm:text-4xl lg:text-[2.75rem]">
+              <h2 className="font-display mb-6 text-3xl font-extrabold leading-tight text-[#0A1628] dark:text-white sm:text-4xl lg:text-[2.75rem]">
                 {h.aboutTitle}{" "}
                 <span className="relative text-[#F59E0B]">
                   {h.aboutTitleAccent}

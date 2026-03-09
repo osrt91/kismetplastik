@@ -110,7 +110,7 @@ export default function ReferanslarPage() {
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <AnimateOnScroll animation="fade-up">
             <div className="grid gap-8 sm:grid-cols-3">
-              {stats.map((stat, i) => (
+              {stats.map((stat) => (
                 <div
                   key={stat.value}
                   className="group flex flex-col items-center text-center"

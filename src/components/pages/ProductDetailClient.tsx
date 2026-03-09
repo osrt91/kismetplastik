@@ -253,7 +253,6 @@ export default function ProductDetailClient() {
         productName={product.name}
         volume={product.volume}
         material={product.material}
-        category={category.name}
       />
     </section>
   );

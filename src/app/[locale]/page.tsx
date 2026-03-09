@@ -1,4 +1,5 @@
 import Hero from "@/components/sections/Hero";
+import TrustBar from "@/components/public/TrustBar";
 import Categories from "@/components/sections/Categories";
 import WhyUs from "@/components/sections/WhyUs";
 import Stats from "@/components/sections/Stats";
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <TrustBar />
       <Categories />
       <WhyUs />
       <Stats />

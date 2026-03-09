@@ -7,7 +7,6 @@ import {
   Calendar,
   Clock,
   ArrowRight,
-  Tag,
   BookOpen,
   Sparkles,
 } from "lucide-react";
@@ -75,10 +74,6 @@ const defaultCatStyle = {
 
 function getCatStyle(category: string) {
   return categoryStyles[category] || defaultCatStyle;
-}
-
-function parseReadTime(rt: string): number {
-  return parseInt(rt) || 0;
 }
 
 export default function BlogPage() {

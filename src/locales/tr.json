@@ -34,6 +34,11 @@
     "highlight1": "ISO 9001 Sertifikalı",
     "highlight2": "Türkiye Geneli Teslimat",
     "highlight3": "55+ Yıllık Tecrübe",
+    "heroHeading": "57 Yıldır Ambalajın Geleceğini Şekillendiriyoruz",
+    "heroSubtext": "Kozmetik sektörüne özel PET şişe, plastik ambalaj ve kapak çözümlerinde Türkiye'nin güvenilir B2B partneri.",
+    "ctaDealer": "Bayi Girişi",
+    "viewer3DPlaceholder": "3D Ürün Görüntüleyici",
+    "viewer3DComingSoon": "Yakında aktif olacak",
     "cardProducts": "500+",
     "cardProductsLabel": "Ürün Çeşidi",
     "cardCustomers": "1000+",
@@ -85,7 +90,16 @@
     "highCapacity": "Yüksek Kapasite",
     "highCapacityDesc": "Aylık milyonlarca adet üretim kapasitesiyle büyük ölçekli siparişleri karşılıyoruz.",
     "support": "7/24 Müşteri Desteği",
-    "supportDesc": "Uzman ekibimiz satış öncesi ve sonrası her aşamada yanınızdadır."
+    "supportDesc": "Uzman ekibimiz satış öncesi ve sonrası her aşamada yanınızdadır.",
+    "processStep1Title": "Hammadde Secimi",
+    "processStep1Desc": "En kaliteli PET, HDPE ve PP hammaddeleri titizlikle seciyoruz. Uluslararasi standartlara uygun, guvenilir tedarikcilerle calisiyoruz.",
+    "processStep2Title": "Uretim",
+    "processStep2Desc": "Son teknoloji enjeksiyon ve sisme kaliplama makineleriyle yuksek kapasiteli, hassas uretim gerceklestiriyoruz.",
+    "processStep3Title": "Kalite Kontrol",
+    "processStep3Desc": "ISO 9001, ISO 22000 ve FSSC 22000 standartlarinda kapsamli test ve kontrol sureclerimizle kaliteyi garanti ediyoruz.",
+    "processStep4Title": "Teslimat",
+    "processStep4Desc": "Turkiye genelinde hizli ve guvenli lojistik agimizla siparislerinizi zamaninda teslim ediyoruz.",
+    "processPhotoPlaceholder": "Fotograf Eklenecek"
   },
   "homeStrengths": [
     "Türkiye'nin önde gelen kozmetik ambalaj üreticisi",
@@ -113,6 +127,12 @@
     { "name": "Otelcilik & HoReCa", "description": "Otel, restoran ve kafe işletmeleri için mini boy ve özel ambalaj çözümleri." },
     { "name": "Özel Kalıplama", "description": "Markanıza özel kalıp tasarımı ve kişiselleştirilmiş kozmetik ambalaj üretimi." }
   ],
+  "trustBar": {
+    "experience": "Yıllık Deneyim",
+    "exports": "Ülkeye İhracat",
+    "products": "Ürün Çeşidi",
+    "customers": "Mutlu Müşteri"
+  },
   "common": {
     "readMore": "Devamını Oku",
     "backToHome": "Ana Sayfaya Dön",

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Fraunces, Instrument_Sans } from "next/font/google";
+import { Fraunces, Instrument_Sans, JetBrains_Mono } from "next/font/google";
 import { LocaleProvider } from "@/contexts/LocaleContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Header from "@/components/layout/Header";
@@ -21,11 +21,19 @@ const instrumentSans = Instrument_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
 const WhatsAppButton = dynamic(() => import("@/components/ui/WhatsAppButton"));
 const ScrollToTop = dynamic(() => import("@/components/ui/ScrollToTop"));
 const CookieBanner = dynamic(() => import("@/components/ui/CookieBanner"));
 const InstallPrompt = dynamic(() => import("@/components/ui/InstallPrompt"));
 const GoogleAnalytics = dynamic(() => import("@/components/analytics/GoogleAnalytics"));
+import { Toaster } from "sonner";
 import { LocalBusinessJsonLd, OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { locales } from "@/proxy";
 
@@ -136,7 +144,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   return (
-    <html lang={locale} className={`${fraunces.variable} ${instrumentSans.variable}`} suppressHydrationWarning>
+    <html lang={locale} className={`${fraunces.variable} ${instrumentSans.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
         <LocalBusinessJsonLd />
         <OrganizationJsonLd />
@@ -201,6 +209,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             <ScrollToTop />
             <InstallPrompt />
             <CookieBanner />
+            <Toaster position="top-right" richColors />
           </LocaleProvider>
         </ThemeProvider>
       </body>

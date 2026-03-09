@@ -34,6 +34,11 @@
     "highlight1": "ISO 9001 Certified",
     "highlight2": "Nationwide Delivery",
     "highlight3": "55+ Years of Experience",
+    "heroHeading": "Shaping the Future of Packaging for 57 Years",
+    "heroSubtext": "Turkey's trusted B2B partner for PET bottles, plastic packaging and cap solutions for the cosmetics industry.",
+    "ctaDealer": "Dealer Login",
+    "viewer3DPlaceholder": "3D Product Viewer",
+    "viewer3DComingSoon": "Coming soon",
     "cardProducts": "500+",
     "cardProductsLabel": "Product Varieties",
     "cardCustomers": "1000+",
@@ -85,7 +90,16 @@
     "highCapacity": "High Capacity",
     "highCapacityDesc": "We meet large-scale orders with monthly production capacity in the millions.",
     "support": "24/7 Customer Support",
-    "supportDesc": "Our expert team is with you at every stage, before and after sales."
+    "supportDesc": "Our expert team is with you at every stage, before and after sales.",
+    "processStep1Title": "Raw Material Selection",
+    "processStep1Desc": "We carefully select the highest quality PET, HDPE, and PP raw materials. We work with reliable suppliers that meet international standards.",
+    "processStep2Title": "Production",
+    "processStep2Desc": "We perform high-capacity, precision manufacturing with state-of-the-art injection and blow molding machines.",
+    "processStep3Title": "Quality Control",
+    "processStep3Desc": "We guarantee quality through comprehensive testing and control processes under ISO 9001, ISO 22000 and FSSC 22000 standards.",
+    "processStep4Title": "Delivery",
+    "processStep4Desc": "We deliver your orders on time with our fast and secure logistics network across Turkey.",
+    "processPhotoPlaceholder": "Photo Coming Soon"
   },
   "homeStrengths": [
     "Turkey's leading cosmetic packaging producer",
@@ -113,6 +127,12 @@
     { "name": "Hospitality & HoReCa", "description": "Mini-size and custom packaging solutions for hotels, restaurants and cafes." },
     { "name": "Custom Molding", "description": "Custom mold design and personalized cosmetic packaging production for brands." }
   ],
+  "trustBar": {
+    "experience": "Years of Experience",
+    "exports": "Export Countries",
+    "products": "Product Varieties",
+    "customers": "Happy Customers"
+  },
   "common": {
     "readMore": "Read More",
     "backToHome": "Back to Home",

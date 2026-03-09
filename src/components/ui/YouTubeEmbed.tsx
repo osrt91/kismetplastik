@@ -89,6 +89,7 @@ export default function YouTubeEmbed({
               {!thumbnailLoaded && (
                 <div className="absolute inset-0 animate-pulse bg-neutral-800" />
               )}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={thumbnailUrl}
                 alt={title}

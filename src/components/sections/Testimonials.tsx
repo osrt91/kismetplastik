@@ -33,7 +33,7 @@ export default function Testimonials() {
             <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-[#F59E0B]">
               {overline}
             </span>
-            <h2 className="mb-4 text-3xl font-extrabold text-[#0A1628] dark:text-white sm:text-4xl">
+            <h2 className="font-display mb-4 text-3xl font-extrabold text-[#0A1628] dark:text-white sm:text-4xl">
               {title}
             </h2>
           </div>

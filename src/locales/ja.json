@@ -27,13 +27,22 @@
     "badge": "B2B化粧品パッケージソリューション",
     "titleBefore": "化粧品パッケージの",
     "titleAfter": "信頼できるパートナー",
-    "words": ["信頼", "高品質", "革新"],
+    "words": [
+      "信頼",
+      "高品質",
+      "革新"
+    ],
     "subtitle": "1969年以来、化粧品業界向けに高品質なPETボトル、プラスチックボトル、スプレーパッケージ、ポンプ、キャップを製造。カスタムデザインと卸売ソリューションでお客様をサポートします。",
     "ctaProducts": "製品を見る",
     "ctaQuote": "見積り依頼",
     "highlight1": "ISO 9001認証取得",
     "highlight2": "全国配送対応",
     "highlight3": "55年以上の実績",
+    "heroHeading": "57年間、パッケージングの未来を形作っています",
+    "heroSubtext": "トルコの信頼できるB2Bパートナーとして、化粧品業界向けのPETボトル、プラスチック包装、キャップソリューションを提供。",
+    "ctaDealer": "ディーラーログイン",
+    "viewer3DPlaceholder": "3D製品ビューア",
+    "viewer3DComingSoon": "近日公開",
     "cardProducts": "500+",
     "cardProductsLabel": "製品バリエーション",
     "cardCustomers": "1000+",
@@ -85,7 +94,16 @@
     "highCapacity": "大量生産対応",
     "highCapacityDesc": "月間数百万個の生産能力で、大規模な受注に対応します。",
     "support": "24時間カスタマーサポート",
-    "supportDesc": "専門チームが販売前から販売後まで、あらゆる段階でサポートいたします。"
+    "supportDesc": "専門チームが販売前から販売後まで、あらゆる段階でサポートいたします。",
+    "processStep1Title": "Raw Material Selection",
+    "processStep1Desc": "We carefully select the highest quality PET, HDPE, and PP raw materials.",
+    "processStep2Title": "Production",
+    "processStep2Desc": "High-capacity precision manufacturing with state-of-the-art machines.",
+    "processStep3Title": "Quality Control",
+    "processStep3Desc": "Quality guaranteed through ISO 9001, ISO 22000 and FSSC 22000 standards.",
+    "processStep4Title": "Delivery",
+    "processStep4Desc": "On-time delivery with our fast and secure logistics network.",
+    "processPhotoPlaceholder": "Photo Coming Soon"
   },
   "homeStrengths": [
     "トルコを代表する化粧品パッケージメーカー",
@@ -96,23 +114,79 @@
     "競争力のある価格設定と柔軟な支払い条件"
   ],
   "homeCategories": [
-    { "name": "PETボトル", "description": "化粧品、コロン、パーソナルケア製品向けの各種容量・デザインのPETボトル。", "count": "15+" },
-    { "name": "プラスチックボトル", "description": "HDPE、PP、LDPE素材の耐久性に優れたプラスチックボトルシリーズ。", "count": "10+" },
-    { "name": "キャップ", "description": "スクリューキャップ、フリップトップ、カスタムデザインキャップ各種。", "count": "8+" },
-    { "name": "インナープラグ", "description": "インナープラグ、ドロッパープラグ、シールプラグ。", "count": "6+" },
-    { "name": "フィンガースプレー", "description": "化粧品・コロン製品用のフィンガースプレー機構。", "count": "5+" },
-    { "name": "ポンプ", "description": "ローションポンプ、フォームポンプ、クリームディスペンサーポンプ。", "count": "7+" },
-    { "name": "トリガースプレー", "description": "洗浄・ケア製品用のトリガースプレーシステム。", "count": "4+" },
-    { "name": "ファンネル", "description": "充填工程で使用するプラスチック製ファンネル。", "count": "3+" }
+    {
+      "name": "PETボトル",
+      "description": "化粧品、コロン、パーソナルケア製品向けの各種容量・デザインのPETボトル。",
+      "count": "15+"
+    },
+    {
+      "name": "プラスチックボトル",
+      "description": "HDPE、PP、LDPE素材の耐久性に優れたプラスチックボトルシリーズ。",
+      "count": "10+"
+    },
+    {
+      "name": "キャップ",
+      "description": "スクリューキャップ、フリップトップ、カスタムデザインキャップ各種。",
+      "count": "8+"
+    },
+    {
+      "name": "インナープラグ",
+      "description": "インナープラグ、ドロッパープラグ、シールプラグ。",
+      "count": "6+"
+    },
+    {
+      "name": "フィンガースプレー",
+      "description": "化粧品・コロン製品用のフィンガースプレー機構。",
+      "count": "5+"
+    },
+    {
+      "name": "ポンプ",
+      "description": "ローションポンプ、フォームポンプ、クリームディスペンサーポンプ。",
+      "count": "7+"
+    },
+    {
+      "name": "トリガースプレー",
+      "description": "洗浄・ケア製品用のトリガースプレーシステム。",
+      "count": "4+"
+    },
+    {
+      "name": "ファンネル",
+      "description": "充填工程で使用するプラスチック製ファンネル。",
+      "count": "3+"
+    }
   ],
   "homeSectors": [
-    { "name": "化粧品＆ビューティー", "description": "シャンプー、ローション、クリーム、香水、メイクアップ製品向けの美しいデザインのパッケージ。" },
-    { "name": "コロン＆フレグランス", "description": "コロン、ルームフレグランス、香り製品向けのカスタムデザインボトル。" },
-    { "name": "パーソナルケア", "description": "ボディケア、ヘアケア、スキンケア、衛生用品向けのモダンなデザイン。" },
-    { "name": "洗浄＆衛生", "description": "ハンドソープ、手指消毒液、洗浄製品向けの耐久性パッケージソリューション。" },
-    { "name": "ホテル＆HoReCa", "description": "ホテル、レストラン、カフェ向けのミニサイズ・カスタムパッケージソリューション。" },
-    { "name": "カスタム金型", "description": "ブランド向けのカスタム金型設計とオーダーメイド化粧品パッケージ製造。" }
+    {
+      "name": "化粧品＆ビューティー",
+      "description": "シャンプー、ローション、クリーム、香水、メイクアップ製品向けの美しいデザインのパッケージ。"
+    },
+    {
+      "name": "コロン＆フレグランス",
+      "description": "コロン、ルームフレグランス、香り製品向けのカスタムデザインボトル。"
+    },
+    {
+      "name": "パーソナルケア",
+      "description": "ボディケア、ヘアケア、スキンケア、衛生用品向けのモダンなデザイン。"
+    },
+    {
+      "name": "洗浄＆衛生",
+      "description": "ハンドソープ、手指消毒液、洗浄製品向けの耐久性パッケージソリューション。"
+    },
+    {
+      "name": "ホテル＆HoReCa",
+      "description": "ホテル、レストラン、カフェ向けのミニサイズ・カスタムパッケージソリューション。"
+    },
+    {
+      "name": "カスタム金型",
+      "description": "ブランド向けのカスタム金型設計とオーダーメイド化粧品パッケージ製造。"
+    }
   ],
+  "trustBar": {
+    "experience": "年の経験",
+    "exports": "か国に輸出",
+    "products": "種類の製品",
+    "customers": "社の満足顧客"
+  },
   "common": {
     "readMore": "続きを読む",
     "backToHome": "ホームに戻る",

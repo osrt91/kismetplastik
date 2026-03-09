@@ -28,6 +28,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
       const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       const initial = stored || preferred;
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- SSR: localStorage unavailable at render
       setTheme(initial);
       applyTheme(initial);
     } catch {

@@ -84,7 +84,7 @@ export default function Header() {
     { name: nav.references, href: "/referanslar", icon: Sparkles },
   ];
 
-  const sectorChildren = sectors.slice(0, 6).map((s, i) => ({
+  const sectorChildren = sectors.slice(0, 6).map((s) => ({
     name: s.name,
     desc: s.description,
     href: "/sektorler",
@@ -205,6 +205,7 @@ export default function Header() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 lg:px-6">
           {/* Logo */}
           <Link href="/" className="flex items-center transition-transform duration-300 ease-out hover:scale-105">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/images/logo1.svg" alt="Kısmet Plastik" className="h-8 w-auto lg:h-10 dark:brightness-0 dark:invert" />
           </Link>
 
@@ -385,6 +386,9 @@ export default function Header() {
             <Button variant="outline" size="sm" asChild>
               <Link href="/bayi-girisi">{nav.dealer}</Link>
             </Button>
+            <Button variant="outline" size="sm" className="border-amber-500/30 text-amber-600 hover:bg-amber-50 hover:text-amber-700 dark:border-amber-500/30 dark:text-amber-400 dark:hover:bg-amber-900/20" asChild>
+              <Link href="/bayi-panel/odeme">{locale === "tr" ? "Bayi Odeme" : "Dealer Payment"}</Link>
+            </Button>
             <Button size="sm" className="bg-amber-500 text-white shadow-sm shadow-amber-500/20 transition-all duration-200 hover:bg-amber-600 hover:shadow-md hover:shadow-amber-500/25" asChild>
               <Link href="/teklif-al">{nav.quote}</Link>
             </Button>
@@ -406,6 +410,7 @@ export default function Header() {
           <SheetHeader className="border-b border-border px-5 py-4">
             <SheetTitle className="flex items-center justify-between">
               <div className="flex items-center gap-2">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/images/logo2.svg" alt="Kısmet Plastik" className="h-9 w-9 dark:brightness-0 dark:invert" />
                 <span className="text-sm font-bold text-foreground">Kısmet Plastik</span>
               </div>
@@ -479,12 +484,19 @@ export default function Header() {
             <a href="mailto:bilgi@kismetplastik.com" className="mb-4 flex items-center gap-2 text-sm text-muted-foreground">
               <Mail size={14} /> bilgi@kismetplastik.com
             </a>
-            <div className="flex gap-2">
-              <Button variant="outline" className="flex-1" asChild>
-                <Link href="/bayi-girisi" onClick={() => setMobileOpen(false)}>{nav.dealer}</Link>
-              </Button>
-              <Button className="flex-1 bg-amber-500 text-white shadow-sm shadow-amber-500/20 hover:bg-amber-600" asChild>
-                <Link href="/teklif-al" onClick={() => setMobileOpen(false)}>{nav.quote}</Link>
+            <div className="flex flex-col gap-2">
+              <div className="flex gap-2">
+                <Button variant="outline" className="flex-1" asChild>
+                  <Link href="/bayi-girisi" onClick={() => setMobileOpen(false)}>{nav.dealer}</Link>
+                </Button>
+                <Button className="flex-1 bg-amber-500 text-white shadow-sm shadow-amber-500/20 hover:bg-amber-600" asChild>
+                  <Link href="/teklif-al" onClick={() => setMobileOpen(false)}>{nav.quote}</Link>
+                </Button>
+              </div>
+              <Button variant="outline" className="w-full border-amber-500/30 text-amber-600 hover:bg-amber-50" asChild>
+                <Link href="/bayi-panel/odeme" onClick={() => setMobileOpen(false)}>
+                  {locale === "tr" ? "Bayi Odeme" : "Dealer Payment"}
+                </Link>
               </Button>
             </div>
           </div>
