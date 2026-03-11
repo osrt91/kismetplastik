@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Fraunces, Instrument_Sans } from "next/font/google";
+import { headers } from "next/headers";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -15,17 +16,43 @@ const instrumentSans = Instrument_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
-const popularPages = [
-  { href: "/tr/urunler", label: "Urunler" },
-  { href: "/tr/hakkimizda", label: "Hakkimizda" },
-  { href: "/tr/iletisim", label: "Iletisim" },
-  { href: "/tr/teklif-al", label: "Teklif Al" },
-  { href: "/tr/sss", label: "SSS" },
-];
+const translations = {
+  tr: {
+    title: "Sayfa Bulunamad\u0131",
+    description: "Arad\u0131\u011F\u0131n\u0131z sayfa ta\u015F\u0131nm\u0131\u015F, kald\u0131r\u0131lm\u0131\u015F veya hi\u00E7 var olmam\u0131\u015F olabilir.",
+    backToHome: "Ana Sayfaya D\u00F6n",
+    popularPages: "Pop\u00FCler Sayfalar",
+    pages: [
+      { href: "/tr/urunler", label: "\u00DCr\u00FCnler" },
+      { href: "/tr/hakkimizda", label: "Hakk\u0131m\u0131zda" },
+      { href: "/tr/iletisim", label: "\u0130leti\u015Fim" },
+      { href: "/tr/teklif-al", label: "Teklif Al" },
+      { href: "/tr/sss", label: "SSS" },
+    ],
+  },
+  en: {
+    title: "Page Not Found",
+    description: "The page you are looking for may have been moved, removed, or never existed.",
+    backToHome: "Back to Home",
+    popularPages: "Popular Pages",
+    pages: [
+      { href: "/en/urunler", label: "Products" },
+      { href: "/en/hakkimizda", label: "About Us" },
+      { href: "/en/iletisim", label: "Contact" },
+      { href: "/en/teklif-al", label: "Get Quote" },
+      { href: "/en/sss", label: "FAQ" },
+    ],
+  },
+};
 
-export default function NotFound() {
+export default async function NotFound() {
+  const headerList = await headers();
+  const pathname = headerList.get("x-pathname") || headerList.get("x-invoke-path") || "";
+  const locale = pathname.startsWith("/en") ? "en" : "tr";
+  const t = translations[locale];
+
   return (
-    <html lang="tr" className={`${fraunces.variable} ${instrumentSans.variable}`}>
+    <html lang={locale} className={`${fraunces.variable} ${instrumentSans.variable}`}>
       <body className="antialiased" style={{ margin: 0 }}>
         <div
           className="flex min-h-screen flex-col items-center justify-center px-4 py-16"
@@ -44,19 +71,19 @@ export default function NotFound() {
             className="mt-4 text-center text-2xl font-semibold sm:text-3xl md:text-4xl"
             style={{ color: "#FAFAF7", fontFamily: "var(--font-fraunces), serif" }}
           >
-            Sayfa Bulunamadi
+            {t.title}
           </h2>
 
           <p
             className="mt-4 max-w-md text-center text-base sm:text-lg"
             style={{ color: "#94A3B8" }}
           >
-            Aradiginiz sayfa tasinmis, kaldirilmis veya hic var olmamis olabilir.
+            {t.description}
           </p>
 
           {/* Back to home button */}
           <Link
-            href="/tr"
+            href={`/${locale}`}
             className="mt-10 inline-flex items-center gap-2 rounded-lg px-8 py-4 text-base font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-lg"
             style={{
               backgroundColor: "#F59E0B",
@@ -78,7 +105,7 @@ export default function NotFound() {
               <path d="m12 19-7-7 7-7" />
               <path d="M19 12H5" />
             </svg>
-            Ana Sayfaya Don
+            {t.backToHome}
           </Link>
 
           {/* Divider */}
@@ -93,10 +120,10 @@ export default function NotFound() {
               className="mb-4 text-sm font-medium uppercase tracking-widest"
               style={{ color: "#64748B" }}
             >
-              Populer Sayfalar
+              {t.popularPages}
             </p>
             <nav className="flex flex-wrap items-center justify-center gap-3">
-              {popularPages.map((page) => (
+              {t.pages.map((page) => (
                 <Link
                   key={page.href}
                   href={page.href}

@@ -236,7 +236,9 @@
     "productNotFound": "제품을 찾을 수 없습니다",
     "categoryNotFound": "카테고리를 찾을 수 없습니다",
     "backToAll": "전체 제품으로 돌아가기",
-    "searchInCategory": "이 카테고리에서 검색..."
+    "searchInCategory": "이 카테고리에서 검색...",
+    "requestSample": "샘플 요청",
+    "preOrder": "사전 주문"
   },
   "about": {
     "heroTitle": "회사 소개",
@@ -423,7 +425,12 @@
     "allCategories": "전체",
     "postNotFound": "게시물을 찾을 수 없습니다",
     "backToBlog": "블로그로 돌아가기",
-    "relatedPosts": "관련 게시물"
+    "relatedPosts": "관련 게시물",
+    "featured": "주목",
+    "allPosts": "모든 글",
+    "breadcrumbHome": "홈",
+    "moreSoon": "더 많은 글이 곧...",
+    "newContentSoon": "새로운 콘텐츠 준비 중"
   },
   "catalog": {
     "heroTitle": "카탈로그 다운로드",
@@ -659,6 +666,354 @@
     "title": "페이지를 찾을 수 없습니다",
     "subtitle": "이 페이지가 휴가를 갔나 봅니다!",
     "description": "찾으시는 페이지가 이동, 삭제되었거나 존재하지 않을 수 있습니다. 아래 링크에서 계속 진행하실 수 있습니다.",
-    "searchPlaceholder": "무엇을 찾고 계셨나요?"
+    "searchPlaceholder": "무엇을 찾고 계셨나요?",
+    "backToHome": "홈으로 돌아가기",
+    "popularPages": "인기 페이지",
+    "products": "제품",
+    "aboutUs": "회사 소개",
+    "contact": "문의",
+    "getQuote": "견적 요청",
+    "faq": "자주 묻는 질문"
+  },
+  "productData": {
+    "categories": {
+      "pet-siseler": {
+        "name": "PET 병",
+        "description": "화장품 및 개인 관리 포장을 위한 고품질 PET 병"
+      },
+      "plastik-siseler": {
+        "name": "플라스틱 병",
+        "description": "다양한 용도를 위한 내구성 있는 HDPE, PP, LDPE 플라스틱 병"
+      },
+      "kapaklar": {
+        "name": "캡",
+        "description": "다양한 크기의 스크류 캡, 플립탑 캡, 디스크탑 캡"
+      },
+      "tipalar": {
+        "name": "스토퍼",
+        "description": "제어된 분배를 위한 내부 스토퍼 및 리듀서 플러그"
+      },
+      "parmak-spreyler": {
+        "name": "핑거 스프레이",
+        "description": "화장품 및 제약용 미세 미스트 핑거 스프레이 펌프"
+      },
+      "pompalar": {
+        "name": "펌프",
+        "description": "정밀 분배를 위한 로션 펌프 및 크림 펌프"
+      },
+      "tetikli-pusturtuculer": {
+        "name": "트리거 스프레이",
+        "description": "청소 및 개인 관리 제품용 트리거 스프레이 헤드"
+      },
+      "huniler": {
+        "name": "깔때기",
+        "description": "쉬운 충전 및 이송을 위한 플라스틱 깔때기"
+      }
+    },
+    "specs": {
+      "Hacim": "용량",
+      "Ağırlık": "무게",
+      "Malzeme": "소재",
+      "Boyun Çapı": "넥 직경",
+      "Yükseklik": "높이",
+      "Genişlik": "너비",
+      "Derinlik": "깊이",
+      "Kapak Uyumu": "캡 호환성",
+      "Renk Seçenekleri": "색상 옵션",
+      "Ağız Tipi": "입구 유형",
+      "Çıkış Oranı": "출력률"
+    },
+    "colors": {
+      "Şeffaf": "투명",
+      "Mavi": "블루",
+      "Yeşil": "그린",
+      "Amber": "앰버",
+      "Beyaz": "화이트",
+      "Siyah": "블랙",
+      "Kırmızı": "레드",
+      "Sarı": "옐로우",
+      "Altın": "골드",
+      "Gümüş": "실버",
+      "Füme": "스모크",
+      "Pembe": "핑크",
+      "Mor": "퍼플",
+      "Turuncu": "오렌지",
+      "Lacivert": "네이비",
+      "Gri": "그레이",
+      "Naturel": "내추럴"
+    }
+  },
+  "productCatalog": {
+    "bySlug": {
+      "pet-sise-50ml-damla": {
+        "name": "PET 보틀 50ml 드롭",
+        "shortDescription": "50ml 드롭형 화장품 보틀",
+        "description": "50ml 드롭형 PET 보틀. 세럼, 스킨케어 오일, 아이 컨투어 케어 제품용 컴팩트 디자인. 18mm 넥 직경으로 드로퍼 또는 미니 펌프 호환."
+      },
+      "pet-sise-100ml-silindir": {
+        "name": "PET 보틀 100ml 실린더",
+        "shortDescription": "100ml 실린더형 화장품 보틀",
+        "description": "100ml 실린더형 PET 보틀. 코롱, 향수, 퍼스널 케어 제품용 우아한 원통형 디자인. 20mm 넥 직경."
+      },
+      "pet-sise-250ml-kristal": {
+        "name": "PET 보틀 250ml 크리스탈",
+        "shortDescription": "250ml 크리스탈형 보틀",
+        "description": "250ml 크리스탈형 PET 보틀. 샴푸, 샤워젤, 퍼스널 케어 제품용 스타일리시한 크리스탈 패턴. 24mm Modern 넥."
+      },
+      "pet-sise-500ml-duz": {
+        "name": "PET 보틀 500ml 플레인",
+        "shortDescription": "500ml 플레인형 화장품 보틀",
+        "description": "500ml 플레인형 PET 보틀. 샴푸, 컨디셔너, 핸드워시용 대용량 플레인 디자인. 28mm 넥 직경."
+      },
+      "hdpe-sise-200ml-silindir": {
+        "name": "HDPE 보틀 200ml 실린더",
+        "shortDescription": "200ml HDPE 실린더형 보틀",
+        "description": "200ml HDPE 실린더형 보틀. 로션, 크림, 바디밀크 패키징용 내구성 있는 불투명 구조. 24mm Classic 넥."
+      },
+      "pp-sise-300ml-oval": {
+        "name": "PP 보틀 300ml 오벌",
+        "shortDescription": "300ml PP 오벌형 보틀",
+        "description": "300ml PP 오벌형 보틀. 샴푸 및 헤어케어 제품용 유연하고 짤 수 있는 오벌 형태. 24mm Modern 넥."
+      },
+      "hdpe-sise-500ml-kare": {
+        "name": "HDPE 보틀 500ml 스퀘어",
+        "shortDescription": "500ml HDPE 스퀘어형 보틀",
+        "description": "500ml HDPE 스퀘어형 보틀. 샴푸, 샤워젤, 핸드워시 제품용 모던 스퀘어 형태. 28mm 넥 직경."
+      },
+      "kapak-18mm-vidali": {
+        "name": "스크류 캡 18mm",
+        "shortDescription": "18mm 화장품 스크류 캡",
+        "description": "18mm 스크류 캡. 세럼, 에센셜 오일, 소형 화장품 보틀용 표준 스크류 캡."
+      },
+      "kapak-24mm-flip-top": {
+        "name": "플립탑 캡 24mm",
+        "shortDescription": "24mm 화장품 플립탑 캡",
+        "description": "24mm 플립탑 캡. 샴푸, 로션, 화장품 보틀용 한 손으로 열 수 있는 실용적인 캡. Classic 및 Modern 넥 호환."
+      },
+      "kapak-24mm-disc-top": {
+        "name": "디스크탑 캡 24mm",
+        "shortDescription": "24mm 화장품 디스크탑 캡",
+        "description": "24mm 디스크탑 캡. 샴푸, 샤워젤, 로션 보틀용 푸시 오픈 시스템."
+      },
+      "ic-tipa-18mm": {
+        "name": "이너 플러그 18mm",
+        "shortDescription": "18mm PE 이너 플러그",
+        "description": "18mm 이너 플러그. 세럼, 에센셜 오일, 코롱 보틀의 누출 방지 밀봉을 제공하는 PE 이너 플러그. 스프레이 및 드로퍼 캡 아래에 사용."
+      },
+      "damlatici-tipa-20mm": {
+        "name": "드로퍼 인서트 20mm",
+        "shortDescription": "20mm 드로퍼 인서트",
+        "description": "20mm 드로퍼 인서트. 세럼, 안약, 에센셜 오일 보틀용 제어식 드롭 인서트."
+      },
+      "sizdirmazlik-tipasi-24mm": {
+        "name": "실링 플러그 24mm",
+        "shortDescription": "24mm 실링 플러그",
+        "description": "24mm 실링 플러그. 로션, 샴푸, 화장품 보틀의 플립탑 및 디스크탑 캡 아래에 사용하는 밀봉 부품."
+      },
+      "parmak-sprey-18mm-ince-sis": {
+        "name": "핑거 스프레이 18mm 파인 미스트",
+        "shortDescription": "18mm 파인 미스트 핑거 스프레이",
+        "description": "18mm 핑거 스프레이 메커니즘, 파인 미스트 타입. 향수, 코롱, 소형 화장품 보틀용 정밀 미립화 제공."
+      },
+      "parmak-sprey-20mm-standart": {
+        "name": "핑거 스프레이 20mm 스탠다드",
+        "shortDescription": "20mm 스탠다드 핑거 스프레이",
+        "description": "20mm 핑거 스프레이 메커니즘. 코롱, 바디 스프레이, 룸 프레그런스 보틀용 표준 스프레이 헤드."
+      },
+      "parmak-sprey-24mm-parfum": {
+        "name": "핑거 스프레이 24mm 퍼퓸",
+        "shortDescription": "24mm 퍼퓸 타입 핑거 스프레이",
+        "description": "24mm 핑거 스프레이 메커니즘, 퍼퓸 타입. 대용량 코롱 및 화장품 스프레이 보틀용 강력한 분사 능력."
+      },
+      "losyon-pompasi-28mm": {
+        "name": "로션 펌프 28mm",
+        "shortDescription": "28mm 로션 디스펜싱 펌프",
+        "description": "28mm 로션 펌프. 핸드워시, 로션, 샴푸 보틀용 정량 펌프 메커니즘. 롱 튜브로 500ml 보틀까지 호환."
+      },
+      "kopuk-pompasi-28mm": {
+        "name": "폼 펌프 28mm",
+        "shortDescription": "28mm 폼 생성 펌프",
+        "description": "28mm 폼 펌프. 핸드워시 및 클렌징 폼 보틀용 에어 믹싱 폼 생성 펌프 메커니즘."
+      },
+      "krem-pompasi-24mm": {
+        "name": "크림 펌프 24mm",
+        "shortDescription": "24mm 크림 디스펜싱 펌프",
+        "description": "24mm 크림 디스펜싱 펌프. 고점도 로션, 크림, 헤어케어 제품용 강력한 흡입 능력의 펌프."
+      },
+      "tetikli-puskurtucu-28mm-standart": {
+        "name": "트리거 스프레이어 28mm 스탠다드",
+        "shortDescription": "28mm 스탠다드 트리거 스프레이어",
+        "description": "28mm 스탠다드 트리거 스프레이어. 세정액, 유리 세정제, 다목적 스프레이 제품용 미스트 및 제트 모드 조절식 노즐."
+      },
+      "tetikli-puskurtucu-28mm-kopuklu": {
+        "name": "트리거 스프레이어 28mm 폼",
+        "shortDescription": "28mm 폼 트리거 스프레이어",
+        "description": "28mm 폼 트리거 스프레이어. 욕실 및 주방 세정제용 폼 모드와 강력한 분사 능력의 트리거 메커니즘."
+      },
+      "plastik-huni-30mm": {
+        "name": "플라스틱 퍼널 30mm",
+        "shortDescription": "30mm 화장품 충전 퍼널",
+        "description": "30mm 입구 플라스틱 퍼널. 소용량 화장품, 향수, 세럼 보틀 충전에 최적. PP 소재, 재사용 가능."
+      },
+      "plastik-huni-50mm": {
+        "name": "플라스틱 퍼널 50mm",
+        "shortDescription": "50mm 와이드마우스 충전 퍼널",
+        "description": "50mm 입구 플라스틱 퍼널. 중대형 보틀 충전용 와이드마우스 고속 유량 디자인."
+      }
+    },
+    "specs": {
+      "Hacim": "용량",
+      "Ağırlık": "중량",
+      "Ağız": "넥 직경",
+      "Hammadde": "소재",
+      "Yükseklik": "높이",
+      "Çap": "직경",
+      "Model": "모델",
+      "Tip": "유형",
+      "Uyumluluk": "호환성",
+      "Sprey Tipi": "스프레이 유형",
+      "Dozaj": "토출량",
+      "Boru Uzunluğu": "튜브 길이",
+      "Mesh": "필터",
+      "Mod": "모드",
+      "Delik": "오리피스",
+      "Ağız Çapı": "넥 직경"
+    },
+    "specValues": {
+      "Damla": "드롭",
+      "Silindir": "실린더",
+      "Kristal": "크리스탈",
+      "Düz": "플레인",
+      "Oval": "오벌",
+      "Kare": "스퀘어",
+      "Vidalı": "스크류",
+      "Flip-Top": "플립탑",
+      "Disc-Top": "디스크탑",
+      "İç Tıpa": "이너 플러그",
+      "Damlatıcı": "드로퍼",
+      "Sızdırmazlık": "실링",
+      "İnce sis": "파인 미스트",
+      "Standart sis": "스탠다드 미스트",
+      "Parfüm": "퍼퓸",
+      "Losyon Pompası": "로션 펌프",
+      "Köpük Pompası": "폼 펌프",
+      "Krem Pompası": "크림 펌프",
+      "Standart Tetikli": "스탠다드 트리거",
+      "Köpüklü Tetikli": "폼 트리거",
+      "Mini Huni": "미니 퍼널",
+      "Standart Huni": "스탠다드 퍼널",
+      "Çift filtreli": "더블 필터",
+      "Sis / Jet / Kapalı": "미스트 / 제트 / 오프",
+      "Köpük / Jet / Kapalı": "폼 / 제트 / 오프",
+      "1mm kontrollü akış": "1mm 제어 유량",
+      "24mm Klasik / Modern": "24mm Classic / Modern"
+    },
+    "colors": {
+      "Şeffaf": "투명",
+      "Amber": "앰버",
+      "Füme": "스모크",
+      "Beyaz": "화이트",
+      "Siyah": "블랙",
+      "Mavi": "블루",
+      "Yeşil": "그린",
+      "Pembe": "핑크",
+      "Kahverengi": "브라운",
+      "Altın Yaldız": "골드",
+      "Gümüş": "실버"
+    },
+    "materials": {
+      "PET": "PET",
+      "HDPE": "HDPE",
+      "PP": "PP",
+      "LDPE": "LDPE",
+      "PE": "PE"
+    }
+  },
+  "categoryDescriptions": {
+    "pet-siseler": {
+      "name": "PET 보틀",
+      "description": "화장품, 코롱, 퍼스널 케어 제품용 다양한 용량과 디자인의 PET 보틀."
+    },
+    "plastik-siseler": {
+      "name": "플라스틱 보틀",
+      "description": "HDPE, PP, LDPE 소재의 내구성 플라스틱 보틀 시리즈."
+    },
+    "kapaklar": {
+      "name": "캡",
+      "description": "스크류, 플립탑, 커스텀 디자인 캡 시리즈."
+    },
+    "tipalar": {
+      "name": "플러그",
+      "description": "이너 플러그, 드로퍼 인서트, 실링 플러그."
+    },
+    "parmak-spreyler": {
+      "name": "핑거 스프레이",
+      "description": "화장품 및 코롱 제품용 핑거 스프레이 메커니즘."
+    },
+    "pompalar": {
+      "name": "펌프",
+      "description": "로션 펌프, 폼 펌프, 크림 디스펜싱 펌프."
+    },
+    "tetikli-pusturtuculer": {
+      "name": "트리거 스프레이어",
+      "description": "세정 및 케어 제품용 트리거 스프레이 시스템."
+    },
+    "huniler": {
+      "name": "퍼널",
+      "description": "충전 공정에 사용되는 플라스틱 퍼널."
+    }
+  },
+  "blogPosts": {
+    "pet-sise-uretim-sureci": {
+      "title": "PET 보틀 제조 공정: 원료에서 제품까지",
+      "excerpt": "PET 보틀의 제조 단계, 사용 기술, 품질 관리 프로세스를 자세히 소개합니다.",
+      "category": "제조"
+    },
+    "kozmetik-ambalaj-trendleri-2026": {
+      "title": "2026년 화장품 패키징 트렌드",
+      "excerpt": "지속가능성, 스마트 패키징, 미니멀리스트 디자인 등 화장품 패키징의 주요 트렌드를 소개합니다.",
+      "category": "업계"
+    },
+    "pet-malzeme-avantajlari": {
+      "title": "PET 소재의 장점은?",
+      "excerpt": "경량성, 투명성, 재활용성, 화장품 패키징에서의 PET 장점.",
+      "category": "정보"
+    },
+    "iso-sertifika-onemi": {
+      "title": "화장품 패키징에서 ISO 인증의 중요성",
+      "excerpt": "패키징 업계에서 ISO 9001, ISO 14001, FSSC 22000 인증의 중요성.",
+      "category": "품질"
+    },
+    "dogru-sise-secimi": {
+      "title": "비즈니스에 적합한 보틀 선택 방법",
+      "excerpt": "제품에 맞는 보틀 선택 시 고려해야 할 기준.",
+      "category": "가이드"
+    },
+    "surdurulebilir-ambalaj": {
+      "title": "지속가능한 패키징: 환경 친화적 생산",
+      "excerpt": "재활용 가능한 소재와 친환경 제조 공정에 대해.",
+      "category": "지속가능성"
+    }
+  },
+  "compare": {
+    "title": "제품 비교",
+    "noProducts": "비교할 제품이 없습니다",
+    "noProductsDesc": "제품 페이지에서 제품을 추가하여 나란히 비교할 수 있습니다.",
+    "browseProducts": "제품 둘러보기",
+    "backToProducts": "제품으로 돌아가기",
+    "clearAll": "모두 삭제",
+    "product": "제품",
+    "remove": "제거",
+    "add": "추가",
+    "colors": "색상",
+    "addToQuote": "견적에 추가",
+    "continueBrowsing": "제품 둘러보기 계속",
+    "selectedCount": "{count}개 제품 선택됨",
+    "compare": "비교",
+    "category": "카테고리",
+    "volume": "용량",
+    "weight": "무게",
+    "neckDiameter": "넥 직경",
+    "material": "소재"
   }
 }

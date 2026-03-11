@@ -259,7 +259,7 @@ function UploadModal({ onClose, onSuccess }: UploadModalProps) {
                 type="text"
                 value={form.category_tr}
                 onChange={(e) => setForm((p) => ({ ...p, category_tr: e.target.value }))}
-                placeholder="örn. Katalog, Teknik Döküman"
+                placeholder="örn. Katalog, Teknik Doküman"
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
             </div>

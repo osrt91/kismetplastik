@@ -46,7 +46,7 @@ const imageVariants = {
 };
 
 const lightboxLabels: Record<string, { close: string; prev: string; next: string }> = {
-  tr: { close: "Kapat", prev: "Onceki", next: "Sonraki" },
+  tr: { close: "Kapat", prev: "Önceki", next: "Sonraki" },
   en: { close: "Close", prev: "Previous", next: "Next" },
 };
 

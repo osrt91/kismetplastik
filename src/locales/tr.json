@@ -178,11 +178,70 @@
     "availableColors": "Mevcut Renkler",
     "requestQuoteFor": "Bu Ürün İçin Teklif Al",
     "callNow": "Hemen Arayın",
+    "requestSample": "Numune Talep Et",
+    "preOrder": "Ön Sipariş Ver",
     "backToCategory": "kategorisine dön",
     "productNotFound": "Ürün bulunamadı",
     "categoryNotFound": "Kategori bulunamadı",
     "backToAll": "Tüm ürünlere dön",
     "searchInCategory": "Bu kategoride ara..."
+  },
+  "productData": {
+    "categories": {
+      "pet-siseler": { "name": "PET Şişeler", "description": "Kozmetik ve ilaç sektörüne yönelik yüksek kaliteli PET şişeler." },
+      "plastik-siseler": { "name": "Plastik Şişeler", "description": "HDPE, PP ve LDPE malzemelerden üretilen dayanıklı plastik şişeler." },
+      "kapaklar": { "name": "Kapaklar", "description": "Her türlü şişe için uyumlu kapak çeşitleri." },
+      "tipalar": { "name": "Tıpalar", "description": "Şişe ağız kapatma için özel tasarım tıpalar." },
+      "parmak-spreyler": { "name": "Parmak Spreyler", "description": "Kozmetik ve parfüm uygulamaları için parmak spreyler." },
+      "pompalar": { "name": "Pompalar", "description": "Losyon ve krem dispenseri pompalar." },
+      "tetikli-pusturtuculer": { "name": "Tetikli Püskürtücüler", "description": "Temizlik ve bakım ürünleri için tetikli püskürtücüler." },
+      "huniler": { "name": "Huniler", "description": "Dolum işlemleri için pratik huniler." }
+    },
+    "specs": {
+      "Hacim": "Hacim",
+      "Ağırlık": "Ağırlık",
+      "Ağız": "Ağız Çapı",
+      "Ağız Çapı": "Ağız Çapı",
+      "Hammadde": "Hammadde",
+      "Malzeme": "Malzeme",
+      "Yükseklik": "Yükseklik",
+      "Çap": "Çap",
+      "Model": "Model",
+      "Tip": "Tip",
+      "Uyumluluk": "Uyumluluk",
+      "Sprey Tipi": "Sprey Tipi",
+      "Dozaj": "Dozaj",
+      "Boru Uzunluğu": "Boru Uzunluğu",
+      "Mesh": "Mesh",
+      "Mod": "Mod",
+      "Delik": "Delik",
+      "Kapasite": "Kapasite",
+      "Renk Seçenekleri": "Renk Seçenekleri",
+      "Kaplama": "Kaplama",
+      "Boyun Tipi": "Boyun Tipi",
+      "Boyun Çapı": "Boyun Çapı"
+    },
+    "colors": {
+      "Şeffaf": "Şeffaf",
+      "Amber": "Amber",
+      "Beyaz": "Beyaz",
+      "Siyah": "Siyah",
+      "Mavi": "Mavi",
+      "Yeşil": "Yeşil",
+      "Pembe": "Pembe",
+      "Kahverengi": "Kahverengi",
+      "Kırmızı": "Kırmızı",
+      "Sarı": "Sarı",
+      "Altın": "Altın",
+      "Gümüş": "Gümüş",
+      "Füme": "Füme",
+      "Mor": "Mor",
+      "Turuncu": "Turuncu",
+      "Lacivert": "Lacivert",
+      "Gri": "Gri",
+      "Naturel": "Naturel",
+      "Altın Yaldız": "Altın Yaldız"
+    }
   },
   "about": {
     "heroTitle": "Hakkımızda",
@@ -369,7 +428,45 @@
     "allCategories": "Tümü",
     "postNotFound": "Yazı bulunamadı",
     "backToBlog": "Blog sayfasına dön",
-    "relatedPosts": "Diğer Yazılar"
+    "relatedPosts": "Diğer Yazılar",
+    "featured": "Öne Çıkan",
+    "allPosts": "Tüm Yazılar",
+    "breadcrumbHome": "Ana Sayfa",
+    "moreSoon": "Daha fazla yazı yakında...",
+    "newContentSoon": "Yeni içerikler hazırlanıyor",
+    "selectedCount": "{count} ürün seçildi"
+  },
+  "compare": {
+    "title": "Ürün Karşılaştırma",
+    "noProducts": "Karşılaştırılacak Ürün Yok",
+    "noProductsDesc": "Ürün sayfalarından ürün ekleyerek yan yana karşılaştırma yapabilirsiniz.",
+    "browseProducts": "Ürünlere Göz At",
+    "backToProducts": "Ürünlere dön",
+    "clearAll": "Tümünü Temizle",
+    "product": "Ürün",
+    "remove": "kaldır",
+    "add": "Ekle",
+    "colors": "Renkler",
+    "addToQuote": "Teklife Ekle",
+    "continueBrowsing": "Ürünlere göz atmaya devam et",
+    "selectedCount": "{count} ürün seçildi",
+    "compare": "Karşılaştır",
+    "category": "Kategori",
+    "volume": "Hacim",
+    "weight": "Ağırlık",
+    "neckDiameter": "Boyun Çapı",
+    "material": "Malzeme"
+  },
+  "notFound": {
+    "title": "Sayfa Bulunamadı",
+    "description": "Aradığınız sayfa taşınmış, kaldırılmış veya hiç var olmamış olabilir.",
+    "backToHome": "Ana Sayfaya Dön",
+    "popularPages": "Popüler Sayfalar",
+    "products": "Ürünler",
+    "aboutUs": "Hakkımızda",
+    "contact": "İletişim",
+    "getQuote": "Teklif Al",
+    "faq": "SSS"
   },
   "catalog": {
     "heroTitle": "Katalog İndir",
@@ -606,5 +703,257 @@
     "subtitle": "Bu sayfa tatile çıkmış olabilir!",
     "description": "Aradığınız sayfa taşınmış, silinmiş veya hiç var olmamış olabilir. Aşağıdaki bağlantılardan devam edebilirsiniz.",
     "searchPlaceholder": "Ne aramıştınız?"
+  },
+  "productCatalog": {
+    "bySlug": {
+      "pet-sise-50ml-damla": {
+        "name": "PET Şişe 50ml Damla",
+        "shortDescription": "50ml damla model kozmetik şişe",
+        "description": "50ml damla model PET şişe. Serum, cilt bakım yağı ve göz çevresi bakım ürünleri için kompakt tasarım. 18mm ağız çapı ile damlalık veya mini pompa uyumlu."
+      },
+      "pet-sise-100ml-silindir": {
+        "name": "PET Şişe 100ml Silindir",
+        "shortDescription": "100ml silindir kozmetik şişe",
+        "description": "100ml silindir model PET şişe. Kolonya, parfüm ve kişisel bakım ürünleri için zarif silindirik tasarım. 20mm ağız çapı."
+      },
+      "pet-sise-250ml-kristal": {
+        "name": "PET Şişe 250ml Kristal",
+        "shortDescription": "250ml kristal model şişe",
+        "description": "250ml kristal model PET şişe. Şampuan, duş jeli ve kişisel bakım ürünleri için şık kristal desen. 24mm Modern ağız."
+      },
+      "pet-sise-500ml-duz": {
+        "name": "PET Şişe 500ml Düz",
+        "shortDescription": "500ml düz model kozmetik şişe",
+        "description": "500ml düz model PET şişe. Şampuan, saç kremi ve sıvı sabun için yüksek hacimli düz tasarım. 28mm ağız çapı."
+      },
+      "hdpe-sise-200ml-silindir": {
+        "name": "HDPE Şişe 200ml Silindir",
+        "shortDescription": "200ml HDPE silindir şişe",
+        "description": "200ml HDPE silindir şişe. Losyon, krem ve vücut sütü ambalajı için dayanıklı, opak yapı. 24mm Klasik ağız."
+      },
+      "pp-sise-300ml-oval": {
+        "name": "PP Şişe 300ml Oval",
+        "shortDescription": "300ml PP oval şişe",
+        "description": "300ml PP oval şişe. Şampuan ve saç bakım ürünleri için esnek, sıkılabilir oval form. 24mm Modern ağız."
+      },
+      "hdpe-sise-500ml-kare": {
+        "name": "HDPE Şişe 500ml Kare",
+        "shortDescription": "500ml HDPE kare şişe",
+        "description": "500ml HDPE kare şişe. Şampuan, duş jeli ve sıvı sabun ürünleri için modern kare form. 28mm ağız çapı."
+      },
+      "kapak-18mm-vidali": {
+        "name": "Kapak 18mm Vidalı",
+        "shortDescription": "18mm vidalı kozmetik kapak",
+        "description": "18mm vidalı kapak. Serum, esansiyel yağ ve küçük kozmetik şişeler için standart vidalı kapak."
+      },
+      "kapak-24mm-flip-top": {
+        "name": "Kapak 24mm Flip-Top",
+        "shortDescription": "24mm flip-top kozmetik kapak",
+        "description": "24mm flip-top kapak. Şampuan, losyon ve kozmetik şişeler için tek elle açılabilen pratik kapak. Klasik ve Modern ağız uyumlu."
+      },
+      "kapak-24mm-disc-top": {
+        "name": "Kapak 24mm Disc-Top",
+        "shortDescription": "24mm disc-top kozmetik kapak",
+        "description": "24mm disc-top kapak. Şampuan, duş jeli ve losyon şişeleri için basmalı disc-top açma sistemi."
+      },
+      "ic-tipa-18mm": {
+        "name": "İç Tıpa 18mm",
+        "shortDescription": "18mm PE iç tıpa",
+        "description": "18mm iç tıpa. Serum, esansiyel yağ ve kolonya şişeleri için sızdırmazlık sağlayan PE iç tıpa. Sprey ve damlalık kapak altında kullanılır."
+      },
+      "damlatici-tipa-20mm": {
+        "name": "Damlatıcı Tıpa 20mm",
+        "shortDescription": "20mm damlatıcı tıpa",
+        "description": "20mm damlatıcı tıpa. Serum, göz damlası ve esansiyel yağ şişeleri için kontrollü damlatma sağlayan tıpa."
+      },
+      "sizdirmazlik-tipasi-24mm": {
+        "name": "Sızdırmazlık Tıpası 24mm",
+        "shortDescription": "24mm sızdırmazlık tıpası",
+        "description": "24mm sızdırmazlık tıpası. Losyon, şampuan ve kozmetik şişeler için flip-top ve disc-top kapak altında kullanılan sızdırmazlık elemanı."
+      },
+      "parmak-sprey-18mm-ince-sis": {
+        "name": "Parmak Sprey 18mm İnce Sis",
+        "shortDescription": "18mm ince sis parmak sprey",
+        "description": "18mm parmak sprey mekanizması, ince sis tipi. Parfüm, kolonya ve küçük kozmetik şişeler için hassas püskürtme sağlar."
+      },
+      "parmak-sprey-20mm-standart": {
+        "name": "Parmak Sprey 20mm Standart",
+        "shortDescription": "20mm standart parmak sprey",
+        "description": "20mm parmak sprey mekanizması. Kolonya, vücut spreyi ve oda parfümü şişeleri için standart sprey başlığı."
+      },
+      "parmak-sprey-24mm-parfum": {
+        "name": "Parmak Sprey 24mm Parfüm",
+        "shortDescription": "24mm parfüm tipi parmak sprey",
+        "description": "24mm parmak sprey mekanizması, parfüm tipi. Büyük hacimli kolonya ve kozmetik sprey şişeleri için güçlü püskürtme kapasitesi."
+      },
+      "losyon-pompasi-28mm": {
+        "name": "Losyon Pompası 28mm",
+        "shortDescription": "28mm losyon dozajlama pompası",
+        "description": "28mm losyon pompası. Sıvı sabun, losyon ve şampuan şişeleri için dozajlı pompa mekanizması. Uzun borusu ile 500ml şişeye kadar uyumlu."
+      },
+      "kopuk-pompasi-28mm": {
+        "name": "Köpük Pompası 28mm",
+        "shortDescription": "28mm köpük üretim pompası",
+        "description": "28mm köpük pompası. El yıkama sıvısı ve yüz temizleme köpüğü şişeleri için hava karışımlı köpük üreten pompa mekanizması."
+      },
+      "krem-pompasi-24mm": {
+        "name": "Krem Pompası 24mm",
+        "shortDescription": "24mm krem dozajlama pompası",
+        "description": "24mm krem dozajlama pompası. Yoğun kıvamlı losyon, krem ve saç bakım ürünleri için güçlü emme kapasiteli pompa."
+      },
+      "tetikli-puskurtucu-28mm-standart": {
+        "name": "Tetikli Püskürtücü 28mm Standart",
+        "shortDescription": "28mm standart tetikli püskürtücü",
+        "description": "28mm standart tetikli püskürtücü. Temizlik sıvıları, cam silici ve çok amaçlı sprey ürünleri için ayarlanabilir nozul ile sis ve jet modları."
+      },
+      "tetikli-puskurtucu-28mm-kopuklu": {
+        "name": "Tetikli Püskürtücü 28mm Köpüklü",
+        "shortDescription": "28mm köpüklü tetikli püskürtücü",
+        "description": "28mm köpüklü tetikli püskürtücü. Banyo ve mutfak temizleyicileri için köpük modlu, güçlü püskürtme kapasiteli tetik mekanizması."
+      },
+      "plastik-huni-30mm": {
+        "name": "Plastik Huni 30mm",
+        "shortDescription": "30mm kozmetik dolum hunisi",
+        "description": "30mm ağız çaplı plastik huni. Küçük hacimli kozmetik, parfüm ve serum şişelerine dolum işlemleri için ideal. PP hammaddeli, tekrar kullanılabilir."
+      },
+      "plastik-huni-50mm": {
+        "name": "Plastik Huni 50mm",
+        "shortDescription": "50mm geniş ağızlı dolum hunisi",
+        "description": "50mm ağız çaplı plastik huni. Orta ve büyük hacimli şişelere dolum işlemleri için geniş ağızlı, hızlı akışlı tasarım."
+      }
+    },
+    "specs": {
+      "Hacim": "Hacim",
+      "Ağırlık": "Ağırlık",
+      "Ağız": "Ağız Çapı",
+      "Hammadde": "Hammadde",
+      "Yükseklik": "Yükseklik",
+      "Çap": "Çap",
+      "Model": "Model",
+      "Tip": "Tip",
+      "Uyumluluk": "Uyumluluk",
+      "Sprey Tipi": "Sprey Tipi",
+      "Dozaj": "Dozaj",
+      "Boru Uzunluğu": "Boru Uzunluğu",
+      "Mesh": "Mesh",
+      "Mod": "Mod",
+      "Delik": "Delik",
+      "Ağız Çapı": "Ağız Çapı"
+    },
+    "specValues": {
+      "Damla": "Damla",
+      "Silindir": "Silindir",
+      "Kristal": "Kristal",
+      "Düz": "Düz",
+      "Oval": "Oval",
+      "Kare": "Kare",
+      "Vidalı": "Vidalı",
+      "Flip-Top": "Flip-Top",
+      "Disc-Top": "Disc-Top",
+      "İç Tıpa": "İç Tıpa",
+      "Damlatıcı": "Damlatıcı",
+      "Sızdırmazlık": "Sızdırmazlık",
+      "İnce sis": "İnce sis",
+      "Standart sis": "Standart sis",
+      "Parfüm": "Parfüm",
+      "Losyon Pompası": "Losyon Pompası",
+      "Köpük Pompası": "Köpük Pompası",
+      "Krem Pompası": "Krem Pompası",
+      "Standart Tetikli": "Standart Tetikli",
+      "Köpüklü Tetikli": "Köpüklü Tetikli",
+      "Mini Huni": "Mini Huni",
+      "Standart Huni": "Standart Huni",
+      "Çift filtreli": "Çift filtreli",
+      "Sis / Jet / Kapalı": "Sis / Jet / Kapalı",
+      "Köpük / Jet / Kapalı": "Köpük / Jet / Kapalı",
+      "1mm kontrollü akış": "1mm kontrollü akış",
+      "24mm Klasik / Modern": "24mm Klasik / Modern"
+    },
+    "colors": {
+      "Şeffaf": "Şeffaf",
+      "Amber": "Amber",
+      "Füme": "Füme",
+      "Beyaz": "Beyaz",
+      "Siyah": "Siyah",
+      "Mavi": "Mavi",
+      "Yeşil": "Yeşil",
+      "Pembe": "Pembe",
+      "Kahverengi": "Kahverengi",
+      "Altın Yaldız": "Altın Yaldız",
+      "Gümüş": "Gümüş"
+    },
+    "materials": {
+      "PET": "PET",
+      "HDPE": "HDPE",
+      "PP": "PP",
+      "LDPE": "LDPE",
+      "PE": "PE"
+    }
+  },
+  "categoryDescriptions": {
+    "pet-siseler": {
+      "name": "PET Şişeler",
+      "description": "Kozmetik, kolonya ve kişisel bakım ürünleri için farklı hacim ve tasarımlarda PET şişeler."
+    },
+    "plastik-siseler": {
+      "name": "Plastik Şişeler",
+      "description": "HDPE, PP ve LDPE hammaddeli dayanıklı plastik şişe çeşitleri."
+    },
+    "kapaklar": {
+      "name": "Kapaklar",
+      "description": "Vidalı, flip-top ve özel tasarım kapak çeşitleri."
+    },
+    "tipalar": {
+      "name": "Tıpalar",
+      "description": "İç tıpa, damlatıcı tıpa ve sızdırmazlık tıpaları."
+    },
+    "parmak-spreyler": {
+      "name": "Parmak Spreyler",
+      "description": "Kozmetik ve kolonya ürünleri için parmak sprey mekanizmaları."
+    },
+    "pompalar": {
+      "name": "Pompalar",
+      "description": "Losyon pompası, köpük pompası ve krem dozajlama pompaları."
+    },
+    "tetikli-pusturtuculer": {
+      "name": "Tetikli Püskürtücüler",
+      "description": "Temizlik ve bakım ürünleri için tetikli püskürtme sistemleri."
+    },
+    "huniler": {
+      "name": "Huniler",
+      "description": "Dolum sürecinde kullanılan plastik huniler."
+    }
+  },
+  "blogPosts": {
+    "pet-sise-uretim-sureci": {
+      "title": "PET Şişe Üretim Süreci: Hammaddeden Ürüne",
+      "excerpt": "PET şişelerin üretim aşamalarını, kullanılan teknolojileri ve kalite kontrol süreçlerini detaylı olarak inceliyoruz.",
+      "category": "Üretim"
+    },
+    "kozmetik-ambalaj-trendleri-2026": {
+      "title": "2026 Yılında Kozmetik Ambalaj Trendleri",
+      "excerpt": "Sürdürülebilirlik, akıllı ambalaj ve minimalist tasarım gibi öne çıkan kozmetik ambalaj trendlerini keşfedin.",
+      "category": "Sektör"
+    },
+    "pet-malzeme-avantajlari": {
+      "title": "PET Malzemenin Avantajları Nelerdir?",
+      "excerpt": "PET'in hafifliği, şeffaflığı, geri dönüşülebilirliği ve kozmetik ambalaj açısından sunduğu avantajlar.",
+      "category": "Bilgi"
+    },
+    "iso-sertifika-onemi": {
+      "title": "Kozmetik Ambalajda ISO Sertifikalarının Önemi",
+      "excerpt": "ISO 9001, ISO 14001 ve FSSC 22000 sertifikalarının ambalaj sektöründeki önemi.",
+      "category": "Kalite"
+    },
+    "dogru-sise-secimi": {
+      "title": "İşletmeniz İçin Doğru Şişe Nasıl Seçilir?",
+      "excerpt": "Ürününüze uygun şişe seçerken dikkat etmeniz gereken kriterler.",
+      "category": "Rehber"
+    },
+    "surdurulebilir-ambalaj": {
+      "title": "Sürdürülebilir Ambalaj: Çevreye Duyarlı Üretim",
+      "excerpt": "Geri dönüştürülebilir malzemeler ve çevre dostu üretim süreçlerimiz hakkında.",
+      "category": "Sürdürülebilirlik"
+    }
   }
 }

@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
     const { ok: allowed } = rateLimit(`dealer-order:${ip}`, { limit: 5, windowMs: 60_000 });
     if (!allowed) {
-      return NextResponse.json({ success: false, error: "Cok fazla istek" }, { status: 429 });
+      return NextResponse.json({ success: false, error: "Çok fazla istek" }, { status: 429 });
     }
 
     const supabase = await supabaseServer();
@@ -68,19 +68,19 @@ export async function POST(request: NextRequest) {
     const { items, aciklama } = body;
 
     if (!items || !Array.isArray(items) || items.length === 0) {
-      return NextResponse.json({ success: false, error: "Urun listesi bos" }, { status: 400 });
+      return NextResponse.json({ success: false, error: "Ürün listesi boş" }, { status: 400 });
     }
 
     // Validate each item
     for (const item of items) {
       if (!item.stokKodu || typeof item.stokKodu !== "string") {
-        return NextResponse.json({ success: false, error: "Gecersiz urun kodu" }, { status: 400 });
+        return NextResponse.json({ success: false, error: "Geçersiz ürün kodu" }, { status: 400 });
       }
       if (typeof item.miktar !== "number" || item.miktar < 1 || !Number.isInteger(item.miktar)) {
-        return NextResponse.json({ success: false, error: "Miktar pozitif tam sayi olmalidir" }, { status: 400 });
+        return NextResponse.json({ success: false, error: "Miktar pozitif tam sayı olmalıdır" }, { status: 400 });
       }
       if (typeof item.birimFiyat !== "number" || item.birimFiyat < 0) {
-        return NextResponse.json({ success: false, error: "Gecersiz birim fiyat" }, { status: 400 });
+        return NextResponse.json({ success: false, error: "Geçersiz birim fiyat" }, { status: 400 });
       }
     }
 

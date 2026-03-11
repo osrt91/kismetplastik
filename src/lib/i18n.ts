@@ -10,16 +10,16 @@ export type Dictionary = typeof tr;
 
 const loaders: Record<Locale, () => Promise<Dictionary>> = {
   tr: () => Promise.resolve(tr),
-  en: () => import("@/locales/en.json").then(m => m.default),
-  ar: () => import("@/locales/ar.json").then(m => m.default),
-  ru: () => import("@/locales/ru.json").then(m => m.default),
-  fr: () => import("@/locales/fr.json").then(m => m.default),
-  de: () => import("@/locales/de.json").then(m => m.default),
-  es: () => import("@/locales/es.json").then(m => m.default),
-  zh: () => import("@/locales/zh.json").then(m => m.default),
-  ja: () => import("@/locales/ja.json").then(m => m.default),
-  ko: () => import("@/locales/ko.json").then(m => m.default),
-  pt: () => import("@/locales/pt.json").then(m => m.default),
+  en: () => import("@/locales/en.json").then(m => m.default as unknown as Dictionary),
+  ar: () => import("@/locales/ar.json").then(m => m.default as unknown as Dictionary),
+  ru: () => import("@/locales/ru.json").then(m => m.default as unknown as Dictionary),
+  fr: () => import("@/locales/fr.json").then(m => m.default as unknown as Dictionary),
+  de: () => import("@/locales/de.json").then(m => m.default as unknown as Dictionary),
+  es: () => import("@/locales/es.json").then(m => m.default as unknown as Dictionary),
+  zh: () => import("@/locales/zh.json").then(m => m.default as unknown as Dictionary),
+  ja: () => import("@/locales/ja.json").then(m => m.default as unknown as Dictionary),
+  ko: () => import("@/locales/ko.json").then(m => m.default as unknown as Dictionary),
+  pt: () => import("@/locales/pt.json").then(m => m.default as unknown as Dictionary),
 };
 
 const cache = new Map<Locale, Dictionary>();

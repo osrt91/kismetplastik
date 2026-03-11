@@ -214,12 +214,12 @@ export async function syncStockToSupabase(): Promise<SyncResult> {
       .select("dia_stock_code, product_slug");
 
     if (mappingError) {
-      result.errors.push(`Mapping tablosu okunamadi: ${mappingError.message}`);
+      result.errors.push(`Mapping tablosu okunamadı: ${mappingError.message}`);
       return result;
     }
 
     if (!mappings || mappings.length === 0) {
-      result.errors.push("dia_stock_mappings tablosunda kayit bulunamadi.");
+      result.errors.push("dia_stock_mappings tablosunda kayıt bulunamadı.");
       return result;
     }
 
@@ -255,13 +255,13 @@ export async function syncStockToSupabase(): Promise<SyncResult> {
             .eq("slug", productSlug);
 
           if (upsertError) {
-            result.errors.push(`Stok guncelleme hatasi [${stock.stokkartkodu}]: ${upsertError.message}`);
+            result.errors.push(`Stok güncelleme hatası [${stock.stokkartkodu}]: ${upsertError.message}`);
           } else {
             result.synced++;
           }
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
-          result.errors.push(`Stok guncelleme hatasi [${stock.stokkartkodu}]: ${message}`);
+          result.errors.push(`Stok güncelleme hatası [${stock.stokkartkodu}]: ${message}`);
         }
       }
 
@@ -270,7 +270,7 @@ export async function syncStockToSupabase(): Promise<SyncResult> {
     }
   } catch (err) {
     const message = err instanceof DiaApiError ? err.message : err instanceof Error ? err.message : String(err);
-    result.errors.push(`DIA stok cekme hatasi: ${message}`);
+    result.errors.push(`DIA stok çekme hatası: ${message}`);
   }
 
   return result;
@@ -436,13 +436,13 @@ export async function syncCariToSupabase(): Promise<SyncResult> {
             .eq("email", cari.eposta);
 
           if (upsertError) {
-            result.errors.push(`Cari guncelleme hatasi [${cari.carikartkodu}]: ${upsertError.message}`);
+            result.errors.push(`Cari güncelleme hatası [${cari.carikartkodu}]: ${upsertError.message}`);
           } else {
             result.synced++;
           }
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
-          result.errors.push(`Cari guncelleme hatasi [${cari.carikartkodu}]: ${message}`);
+          result.errors.push(`Cari güncelleme hatası [${cari.carikartkodu}]: ${message}`);
         }
       }
 
@@ -451,7 +451,7 @@ export async function syncCariToSupabase(): Promise<SyncResult> {
     }
   } catch (err) {
     const message = err instanceof DiaApiError ? err.message : err instanceof Error ? err.message : String(err);
-    result.errors.push(`DIA cari cekme hatasi: ${message}`);
+    result.errors.push(`DIA cari çekme hatası: ${message}`);
   }
 
   return result;

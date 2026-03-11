@@ -18,19 +18,19 @@ import type { DbProductCompatibility, CompatibilityType } from "@/types/database
 // ─── constants ────────────────────────────────────────────────────────────────
 
 const CATEGORIES = [
-  { value: "pet-siseler", label: "PET Siseler" },
-  { value: "plastik-siseler", label: "Plastik Siseler" },
+  { value: "pet-siseler", label: "PET Şişeler" },
+  { value: "plastik-siseler", label: "Plastik Şişeler" },
   { value: "kapaklar", label: "Kapaklar" },
   { value: "tipalar", label: "Tipalar" },
   { value: "parmak-spreyler", label: "Parmak Spreyler" },
   { value: "pompalar", label: "Pompalar" },
-  { value: "tetikli-pusturtuculer", label: "Tetikli Pusturtuculer" },
+  { value: "tetikli-pusturtuculer", label: "Tetikli Püskürtücüler" },
   { value: "huniler", label: "Huniler" },
 ];
 
 const COMPAT_TYPES: { value: CompatibilityType; label: string; color: string }[] = [
   { value: "fits", label: "Uyumlu", color: "bg-emerald-500/10 text-emerald-600" },
-  { value: "recommended", label: "Onerilen", color: "bg-blue-500/10 text-blue-600" },
+  { value: "recommended", label: "Önerilen", color: "bg-blue-500/10 text-blue-600" },
   { value: "alternative", label: "Alternatif", color: "bg-amber-500/10 text-amber-600" },
 ];
 
@@ -107,13 +107,13 @@ function CompatibilityModal({ initial, onClose, onSaved }: ModalProps) {
       const json = await res.json();
 
       if (!json.success) {
-        setError(json.error ?? "Bir hata olustu.");
+        setError(json.error ?? "Bir hata oluştu.");
         return;
       }
 
       onSaved(json.data);
     } catch {
-      setError("Sunucuya baglanılamadı.");
+      setError("Sunucuya bağlanılamadı.");
     } finally {
       setSaving(false);
     }
@@ -124,7 +124,7 @@ function CompatibilityModal({ initial, onClose, onSaved }: ModalProps) {
       <div className="w-full max-w-lg rounded-2xl border border-border bg-card shadow-xl">
         <div className="flex items-center justify-between border-b border-border px-6 py-4">
           <h2 className="text-base font-semibold text-foreground">
-            {isEdit ? "Uyumluluk Kuralini Duzenle" : "Yeni Uyumluluk Kurali"}
+            {isEdit ? "Uyumluluk Kuralını Düzenle" : "Yeni Uyumluluk Kuralı"}
           </h2>
           <button onClick={onClose} className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted">
             <X size={16} />
@@ -141,7 +141,7 @@ function CompatibilityModal({ initial, onClose, onSaved }: ModalProps) {
 
           {/* Source product */}
           <div className="rounded-lg border border-border bg-muted/30 p-4 space-y-3">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Kaynak Urun</p>
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Kaynak Ürün</p>
             <div>
               <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
                 Stok Kodu <span className="text-destructive">*</span>
@@ -149,7 +149,7 @@ function CompatibilityModal({ initial, onClose, onSaved }: ModalProps) {
               <input
                 value={form.source_stock_kodu}
                 onChange={(e) => setForm((p) => ({ ...p, source_stock_kodu: e.target.value }))}
-                placeholder="Orn: KP-PET-100"
+                placeholder="Örn: KP-PET-100"
                 required
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
@@ -170,7 +170,7 @@ function CompatibilityModal({ initial, onClose, onSaved }: ModalProps) {
 
           {/* Compatible product */}
           <div className="rounded-lg border border-border bg-muted/30 p-4 space-y-3">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Uyumlu Urun</p>
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Uyumlu Ürün</p>
             <div>
               <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
                 Stok Kodu <span className="text-destructive">*</span>
@@ -178,7 +178,7 @@ function CompatibilityModal({ initial, onClose, onSaved }: ModalProps) {
               <input
                 value={form.compatible_stock_kodu}
                 onChange={(e) => setForm((p) => ({ ...p, compatible_stock_kodu: e.target.value }))}
-                placeholder="Orn: KP-KPK-28"
+                placeholder="Örn: KP-KPK-28"
                 required
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
@@ -216,7 +216,7 @@ function CompatibilityModal({ initial, onClose, onSaved }: ModalProps) {
               <input
                 value={form.notes}
                 onChange={(e) => setForm((p) => ({ ...p, notes: e.target.value }))}
-                placeholder="Opsiyonel aciklama"
+                placeholder="Opsiyonel açıklama"
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
             </div>
@@ -228,7 +228,7 @@ function CompatibilityModal({ initial, onClose, onSaved }: ModalProps) {
               onClick={onClose}
               className="rounded-lg border border-border px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-muted"
             >
-              Iptal
+              İptal
             </button>
             <button
               type="submit"
@@ -264,10 +264,10 @@ function DeleteConfirm({
         <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-destructive/10">
           <Trash2 size={18} className="text-destructive" />
         </div>
-        <h3 className="mb-1.5 text-base font-semibold text-foreground">Kurali Sil</h3>
+        <h3 className="mb-1.5 text-base font-semibold text-foreground">Kuralı Sil</h3>
         <p className="mb-5 text-sm text-muted-foreground">
           <span className="font-medium text-foreground">{label}</span> uyumluluk kuralini silmek
-          istediginize emin misiniz?
+          istediğinize emin misiniz?
         </p>
         <div className="flex items-center justify-end gap-2">
           <button
@@ -275,7 +275,7 @@ function DeleteConfirm({
             disabled={deleting}
             className="rounded-lg border border-border px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-muted disabled:opacity-60"
           >
-            Iptal
+            İptal
           </button>
           <button
             onClick={onConfirm}
@@ -315,10 +315,10 @@ export default function AdminCompatibilityPage() {
       if (json.success) {
         setRules(json.data);
       } else {
-        setFetchError(json.error ?? "Yuklenemedi.");
+        setFetchError(json.error ?? "Yüklenemedi.");
       }
     } catch {
-      setFetchError("Sunucuya baglanılamadı.");
+      setFetchError("Sunucuya bağlanılamadı.");
     } finally {
       setLoading(false);
     }
@@ -398,7 +398,7 @@ export default function AdminCompatibilityPage() {
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Urun Uyumluluk</h1>
+            <h1 className="text-2xl font-bold text-foreground">Ürün Uyumluluk</h1>
             <p className="mt-1 text-sm text-muted-foreground">
               {rules.length} kural · {activeCount} aktif
             </p>
@@ -446,7 +446,7 @@ export default function AdminCompatibilityPage() {
           <div className="flex flex-col items-center justify-center py-20 text-muted-foreground">
             <Link2 size={44} className="mb-3 opacity-20" />
             <p className="text-sm font-medium">
-              {search ? "Aramayla eslesen kural bulunamadi" : "Henuz uyumluluk kurali eklenmemis"}
+              {search ? "Aramayla eşleşen kural bulunamadı" : "Henüz uyumluluk kuralı eklenmemiş"}
             </p>
             {!search && (
               <button
@@ -457,7 +457,7 @@ export default function AdminCompatibilityPage() {
                 className="mt-4 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
               >
                 <Plus size={14} />
-                Ilk Kurali Ekle
+                İlk Kuralı Ekle
               </button>
             )}
           </div>
@@ -466,14 +466,14 @@ export default function AdminCompatibilityPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border bg-muted/50">
-                  <th className="px-4 py-3 text-left font-medium text-muted-foreground">Kaynak Urun</th>
+                  <th className="px-4 py-3 text-left font-medium text-muted-foreground">Kaynak Ürün</th>
                   <th className="px-4 py-3 text-left font-medium text-muted-foreground">Kategori</th>
                   <th className="px-4 py-3 text-center font-medium text-muted-foreground">Tip</th>
-                  <th className="px-4 py-3 text-left font-medium text-muted-foreground">Uyumlu Urun</th>
+                  <th className="px-4 py-3 text-left font-medium text-muted-foreground">Uyumlu Ürün</th>
                   <th className="px-4 py-3 text-left font-medium text-muted-foreground">Kategori</th>
                   <th className="px-4 py-3 text-left font-medium text-muted-foreground">Not</th>
                   <th className="px-4 py-3 text-center font-medium text-muted-foreground">Durum</th>
-                  <th className="px-4 py-3 text-right font-medium text-muted-foreground">Islemler</th>
+                  <th className="px-4 py-3 text-right font-medium text-muted-foreground">İşlemler</th>
                 </tr>
               </thead>
               <tbody>
@@ -530,7 +530,7 @@ export default function AdminCompatibilityPage() {
                               setEditTarget(rule);
                               setModalOpen(true);
                             }}
-                            title="Duzenle"
+                            title="Düzenle"
                             className="rounded-lg p-1.5 text-muted-foreground hover:bg-primary/10 hover:text-primary"
                           >
                             <Edit3 size={14} />

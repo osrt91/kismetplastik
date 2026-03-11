@@ -78,7 +78,7 @@ function getConfig(): DiaConfig {
 
   if (!apiUrl || !username || !password) {
     throw new DiaApiError(
-      "DIA ERP yapilandirmamis. DIA_API_URL, DIA_USERNAME ve DIA_PASSWORD ortam degiskenlerini ayarlayin.",
+      "DIA ERP yapılandırılmamış. DIA_API_URL, DIA_USERNAME ve DIA_PASSWORD ortam değişkenlerini ayarlayın.",
       0,
       "config",
     );
@@ -86,7 +86,7 @@ function getConfig(): DiaConfig {
 
   if (!apiKey) {
     throw new DiaApiError(
-      "DIA API anahtari ayarlanmamis. DIA_API_KEY ortam degiskenini ayarlayin. API anahtarini DIA'dan temin edin.",
+      "DIA API anahtarı ayarlanmamış. DIA_API_KEY ortam değişkenini ayarlayın. API anahtarını DIA'dan temin edin.",
       0,
       "config",
     );
@@ -94,7 +94,7 @@ function getConfig(): DiaConfig {
 
   if (isNaN(firmaKodu) || isNaN(donemKodu)) {
     throw new DiaApiError(
-      "DIA firma veya donem kodu ayarlanmamis. DIA_FIRMA_KODU ve DIA_DONEM_KODU ortam degiskenlerini ayarlayin.",
+      "DIA firma veya dönem kodu ayarlanmamış. DIA_FIRMA_KODU ve DIA_DONEM_KODU ortam değişkenlerini ayarlayın.",
       0,
       "config",
     );
@@ -167,7 +167,7 @@ export class DiaClient {
 
     if (data.code !== "200") {
       throw new DiaApiError(
-        `DIA login basarisiz: ${data.msg}`,
+        `DIA login başarısız: ${data.msg}`,
         parseInt(data.code, 10) || 401,
         "/sis/json (login)",
         JSON.stringify(data),
@@ -267,7 +267,7 @@ export class DiaClient {
     // Handle SOAP-style fault responses
     if (data.faultcode) {
       throw new DiaApiError(
-        `DIA servis hatasi [${serviceName}]: ${data.faultstring ?? data.faultcode}`,
+        `DIA servis hatası [${serviceName}]: ${data.faultstring ?? data.faultcode}`,
         400,
         `/${module}/json (${serviceName})`,
         JSON.stringify(data),
@@ -283,7 +283,7 @@ export class DiaClient {
 
     if (data.code !== "200") {
       throw new DiaApiError(
-        `DIA servis hatasi [${serviceName}]: ${data.msg}`,
+        `DIA servis hatası [${serviceName}]: ${data.msg}`,
         parseInt(data.code, 10) || 500,
         `/${module}/json (${serviceName})`,
         JSON.stringify(data),

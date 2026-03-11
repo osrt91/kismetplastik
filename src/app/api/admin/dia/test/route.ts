@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: "DIA ERP yapilandirmamis. Gerekli ortam degiskenlerini kontrol edin: DIA_API_URL, DIA_USERNAME, DIA_PASSWORD, DIA_API_KEY, DIA_FIRMA_KODU, DIA_DONEM_KODU",
+          error: "DIA ERP yapılandırılmamış. Gerekli ortam değişkenlerini kontrol edin: DIA_API_URL, DIA_USERNAME, DIA_PASSWORD, DIA_API_KEY, DIA_FIRMA_KODU, DIA_DONEM_KODU",
         },
         { status: 400 }
       );
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: "Baglanti basarili",
+      message: "Bağlantı başarılı",
       data: {
         stockCount: stockResult.total_count ?? stockResult.records.length,
         creditInfo,
@@ -47,12 +47,12 @@ export async function POST(request: NextRequest) {
     });
   } catch (err) {
     const message =
-      err instanceof Error ? err.message : "Bilinmeyen baglanti hatasi";
+      err instanceof Error ? err.message : "Bilinmeyen bağlantı hatası";
     console.error("[DIA Test POST]", err);
     return NextResponse.json(
       {
         success: false,
-        error: `DIA baglanti hatasi: ${message}`,
+        error: `DIA bağlantı hatası: ${message}`,
       },
       { status: 502 }
     );

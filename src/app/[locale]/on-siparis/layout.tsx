@@ -14,11 +14,11 @@ export async function generateMetadata({
   const isTr = locale === "tr";
 
   const title = isTr
-    ? "On Siparis | Kismet Plastik"
+    ? "Ön Sipariş | Kısmet Plastik"
     : "Pre-Order | Kismet Plastik";
 
   const description = isTr
-    ? "Kismet Plastik on siparis formu. Stokta olmayan veya ozel uretim kozmetik ambalaj urunleri icin on siparis verin."
+    ? "Kısmet Plastik ön sipariş formu. Stokta olmayan veya özel üretim kozmetik ambalaj ürünleri için ön sipariş verin."
     : "Kismet Plastik pre-order form. Place pre-orders for out-of-stock or custom production cosmetic packaging products.";
 
   return {
@@ -29,7 +29,7 @@ export async function generateMetadata({
       description,
       type: "website",
       url: `https://www.kismetplastik.com/${locale}/on-siparis`,
-      siteName: "Kismet Plastik",
+      siteName: "Kısmet Plastik",
     },
     alternates: {
       canonical: `https://www.kismetplastik.com/${locale}/on-siparis`,

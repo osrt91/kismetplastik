@@ -236,7 +236,9 @@
     "productNotFound": "Produkt nicht gefunden",
     "categoryNotFound": "Kategorie nicht gefunden",
     "backToAll": "Zurück zu allen Produkten",
-    "searchInCategory": "In dieser Kategorie suchen..."
+    "searchInCategory": "In dieser Kategorie suchen...",
+    "requestSample": "Muster anfordern",
+    "preOrder": "Vorbestellen"
   },
   "about": {
     "heroTitle": "Über uns",
@@ -423,7 +425,12 @@
     "allCategories": "Alle",
     "postNotFound": "Beitrag nicht gefunden",
     "backToBlog": "Zurück zum Blog",
-    "relatedPosts": "Ähnliche Beiträge"
+    "relatedPosts": "Ähnliche Beiträge",
+    "featured": "Hervorgehoben",
+    "allPosts": "Alle Beiträge",
+    "breadcrumbHome": "Startseite",
+    "moreSoon": "Weitere Artikel folgen...",
+    "newContentSoon": "Neue Inhalte werden vorbereitet"
   },
   "catalog": {
     "heroTitle": "Katalog herunterladen",
@@ -659,6 +666,354 @@
     "title": "Seite nicht gefunden",
     "subtitle": "Diese Seite ist vielleicht im Urlaub!",
     "description": "Die gesuchte Seite wurde möglicherweise verschoben, gelöscht oder hat nie existiert. Sie können über die folgenden Links fortfahren.",
-    "searchPlaceholder": "Was haben Sie gesucht?"
+    "searchPlaceholder": "Was haben Sie gesucht?",
+    "backToHome": "Zur Startseite",
+    "popularPages": "Beliebte Seiten",
+    "products": "Produkte",
+    "aboutUs": "Über uns",
+    "contact": "Kontakt",
+    "getQuote": "Angebot anfordern",
+    "faq": "FAQ"
+  },
+  "productCatalog": {
+    "bySlug": {
+      "pet-sise-50ml-damla": {
+        "name": "PET-Flasche 50ml Tropfen",
+        "shortDescription": "50ml Tropfenmodell Kosmetikflasche",
+        "description": "PET-Flasche im Tropfendesign, 50ml. Kompaktes Design für Seren, Hautpflegeöle und Augenpflegeprodukte. Kompatibel mit Tropfern oder Minipumpen dank 18mm Halsdurchmesser."
+      },
+      "pet-sise-100ml-silindir": {
+        "name": "PET-Flasche 100ml Zylinder",
+        "shortDescription": "100ml zylindrische Kosmetikflasche",
+        "description": "PET-Flasche im Zylinderdesign, 100ml. Elegantes zylindrisches Design für Cologne, Parfüm und Körperpflegeprodukte. 20mm Halsdurchmesser."
+      },
+      "pet-sise-250ml-kristal": {
+        "name": "PET-Flasche 250ml Kristall",
+        "shortDescription": "250ml Kristallmodell Flasche",
+        "description": "PET-Flasche im Kristalldesign, 250ml. Stilvolles Kristallmuster für Shampoo, Duschgel und Körperpflegeprodukte. 24mm Modern-Hals."
+      },
+      "pet-sise-500ml-duz": {
+        "name": "PET-Flasche 500ml Glatt",
+        "shortDescription": "500ml glattes Modell Kosmetikflasche",
+        "description": "PET-Flasche im glatten Design, 500ml. Großvolumiges glattes Design für Shampoo, Haarspülung und Flüssigseife. 28mm Halsdurchmesser."
+      },
+      "hdpe-sise-200ml-silindir": {
+        "name": "HDPE-Flasche 200ml Zylinder",
+        "shortDescription": "200ml HDPE Zylinderflasche",
+        "description": "HDPE-Zylinderflasche 200ml. Strapazierfähige, opake Struktur für Lotion, Creme und Körpermilch. 24mm Classic-Hals."
+      },
+      "pp-sise-300ml-oval": {
+        "name": "PP-Flasche 300ml Oval",
+        "shortDescription": "300ml PP Ovalflasche",
+        "description": "PP-Ovalflasche 300ml. Flexible, quetschbare Ovalform für Shampoo und Haarpflegeprodukte. 24mm Modern-Hals."
+      },
+      "hdpe-sise-500ml-kare": {
+        "name": "HDPE-Flasche 500ml Quadrat",
+        "shortDescription": "500ml HDPE Quadratflasche",
+        "description": "HDPE-Quadratflasche 500ml. Moderne Quadratform für Shampoo, Duschgel und Flüssigseife. 28mm Halsdurchmesser."
+      },
+      "kapak-18mm-vidali": {
+        "name": "Schraubverschluss 18mm",
+        "shortDescription": "18mm Kosmetik-Schraubverschluss",
+        "description": "18mm Schraubverschluss. Standard-Schraubverschluss für Seren, ätherische Öle und kleine Kosmetikflaschen."
+      },
+      "kapak-24mm-flip-top": {
+        "name": "Flip-Top-Verschluss 24mm",
+        "shortDescription": "24mm Kosmetik-Flip-Top-Verschluss",
+        "description": "24mm Flip-Top-Verschluss. Praktischer Einhandöffnungsverschluss für Shampoo-, Lotion- und Kosmetikflaschen. Kompatibel mit Classic- und Modern-Hälsen."
+      },
+      "kapak-24mm-disc-top": {
+        "name": "Disc-Top-Verschluss 24mm",
+        "shortDescription": "24mm Kosmetik-Disc-Top-Verschluss",
+        "description": "24mm Disc-Top-Verschluss. Drucköffnungssystem für Shampoo-, Duschgel- und Lotionsflaschen."
+      },
+      "ic-tipa-18mm": {
+        "name": "Innenstopfen 18mm",
+        "shortDescription": "18mm PE-Innenstopfen",
+        "description": "18mm Innenstopfen. PE-Innenstopfen für auslaufsichere Abdichtung von Serum-, Ätherischöl- und Kölnisch-Wasser-Flaschen. Wird unter Spray- und Tropfenverschlüssen verwendet."
+      },
+      "damlatici-tipa-20mm": {
+        "name": "Tropfeinsatz 20mm",
+        "shortDescription": "20mm Tropfeinsatz",
+        "description": "20mm Tropfeinsatz. Kontrollierter Tropfeinsatz für Serum-, Augentropfen- und Ätherischölflaschen."
+      },
+      "sizdirmazlik-tipasi-24mm": {
+        "name": "Dichtstopfen 24mm",
+        "shortDescription": "24mm Dichtstopfen",
+        "description": "24mm Dichtstopfen. Dichtelement unter Flip-Top- und Disc-Top-Verschlüssen für Lotion-, Shampoo- und Kosmetikflaschen."
+      },
+      "parmak-sprey-18mm-ince-sis": {
+        "name": "Fingersprüher 18mm Feinspray",
+        "shortDescription": "18mm Feinspray-Fingersprüher",
+        "description": "18mm Fingersprühmechanismus, Feinsprühtyp. Bietet präzise Zerstäubung für Parfüm-, Cologne- und kleine Kosmetikflaschen."
+      },
+      "parmak-sprey-20mm-standart": {
+        "name": "Fingersprüher 20mm Standard",
+        "shortDescription": "20mm Standard-Fingersprüher",
+        "description": "20mm Fingersprühmechanismus. Standard-Sprühkopf für Cologne-, Körperspray- und Raumduftflaschen."
+      },
+      "parmak-sprey-24mm-parfum": {
+        "name": "Fingersprüher 24mm Parfüm",
+        "shortDescription": "24mm Parfüm-Fingersprüher",
+        "description": "24mm Fingersprühmechanismus, Parfümtyp. Leistungsstarke Sprühkapazität für großvolumige Cologne- und Kosmetiksprühflaschen."
+      },
+      "losyon-pompasi-28mm": {
+        "name": "Lotionpumpe 28mm",
+        "shortDescription": "28mm Lotionspenderpumpe",
+        "description": "28mm Lotionpumpe. Dosierpumpmechanismus für Flüssigseife, Lotion und Shampoo. Kompatibel mit Flaschen bis 500ml dank langem Steigrohr."
+      },
+      "kopuk-pompasi-28mm": {
+        "name": "Schaumpumpe 28mm",
+        "shortDescription": "28mm Schaumerzeugungspumpe",
+        "description": "28mm Schaumpumpe. Luftgemischte Schaumerzeugungspumpe für Handwaschflüssigkeit und Gesichtsreinigungsschaum."
+      },
+      "krem-pompasi-24mm": {
+        "name": "Cremepumpe 24mm",
+        "shortDescription": "24mm Cremespenderpumpe",
+        "description": "24mm Cremespenderpumpe. Pumpe mit starker Saugkraft für dickflüssige Lotion, Creme und Haarpflegeprodukte."
+      },
+      "tetikli-puskurtucu-28mm-standart": {
+        "name": "Triggersprüher 28mm Standard",
+        "shortDescription": "28mm Standard-Triggersprüher",
+        "description": "28mm Standard-Triggersprüher. Verstellbare Düse mit Nebel- und Strahlmodus für Reinigungsflüssigkeiten, Glasreiniger und Mehrzwecksprühprodukte."
+      },
+      "tetikli-puskurtucu-28mm-kopuklu": {
+        "name": "Triggersprüher 28mm Schaum",
+        "shortDescription": "28mm Schaum-Triggersprüher",
+        "description": "28mm Schaum-Triggersprüher. Schaumodus-Triggermechanismus mit leistungsstarker Sprühkapazität für Bad- und Küchenreiniger."
+      },
+      "plastik-huni-30mm": {
+        "name": "Kunststofftrichter 30mm",
+        "shortDescription": "30mm Kosmetik-Fülltrichter",
+        "description": "Kunststofftrichter mit 30mm Öffnung. Ideal zum Befüllen kleiner Kosmetik-, Parfüm- und Serumflaschen. PP-Material, wiederverwendbar."
+      },
+      "plastik-huni-50mm": {
+        "name": "Kunststofftrichter 50mm",
+        "shortDescription": "50mm Breitöffnungs-Fülltrichter",
+        "description": "Kunststofftrichter mit 50mm Öffnung. Breitöffnungsdesign mit schnellem Durchfluss zum Befüllen mittlerer und großer Flaschen."
+      }
+    },
+    "specs": {
+      "Hacim": "Volumen",
+      "Ağırlık": "Gewicht",
+      "Ağız": "Halsdurchmesser",
+      "Hammadde": "Material",
+      "Yükseklik": "Höhe",
+      "Çap": "Durchmesser",
+      "Model": "Modell",
+      "Tip": "Typ",
+      "Uyumluluk": "Kompatibilität",
+      "Sprey Tipi": "Sprühtyp",
+      "Dozaj": "Dosierung",
+      "Boru Uzunluğu": "Rohrlänge",
+      "Mesh": "Filter",
+      "Mod": "Modus",
+      "Delik": "Öffnung",
+      "Ağız Çapı": "Halsdurchmesser"
+    },
+    "specValues": {
+      "Damla": "Tropfen",
+      "Silindir": "Zylinder",
+      "Kristal": "Kristall",
+      "Düz": "Glatt",
+      "Oval": "Oval",
+      "Kare": "Quadrat",
+      "Vidalı": "Schraub",
+      "Flip-Top": "Flip-Top",
+      "Disc-Top": "Disc-Top",
+      "İç Tıpa": "Innenstopfen",
+      "Damlatıcı": "Tropfer",
+      "Sızdırmazlık": "Dichtung",
+      "İnce sis": "Feinspray",
+      "Standart sis": "Standardspray",
+      "Parfüm": "Parfüm",
+      "Losyon Pompası": "Lotionpumpe",
+      "Köpük Pompası": "Schaumpumpe",
+      "Krem Pompası": "Cremepumpe",
+      "Standart Tetikli": "Standard-Trigger",
+      "Köpüklü Tetikli": "Schaum-Trigger",
+      "Mini Huni": "Mini-Trichter",
+      "Standart Huni": "Standard-Trichter",
+      "Çift filtreli": "Doppelt gefiltert",
+      "Sis / Jet / Kapalı": "Nebel / Strahl / Aus",
+      "Köpük / Jet / Kapalı": "Schaum / Strahl / Aus",
+      "1mm kontrollü akış": "1mm kontrollierter Fluss",
+      "24mm Klasik / Modern": "24mm Classic / Modern"
+    },
+    "colors": {
+      "Şeffaf": "Transparent",
+      "Amber": "Bernstein",
+      "Füme": "Rauch",
+      "Beyaz": "Weiß",
+      "Siyah": "Schwarz",
+      "Mavi": "Blau",
+      "Yeşil": "Grün",
+      "Pembe": "Rosa",
+      "Kahverengi": "Braun",
+      "Altın Yaldız": "Gold",
+      "Gümüş": "Silber"
+    },
+    "materials": {
+      "PET": "PET",
+      "HDPE": "HDPE",
+      "PP": "PP",
+      "LDPE": "LDPE",
+      "PE": "PE"
+    }
+  },
+  "categoryDescriptions": {
+    "pet-siseler": {
+      "name": "PET-Flaschen",
+      "description": "PET-Flaschen in verschiedenen Volumina und Designs für Kosmetik, Cologne und Körperpflegeprodukte."
+    },
+    "plastik-siseler": {
+      "name": "Kunststoffflaschen",
+      "description": "Strapazierfähige Kunststoffflaschenvielfalt aus HDPE, PP und LDPE."
+    },
+    "kapaklar": {
+      "name": "Verschlüsse",
+      "description": "Schraub-, Flip-Top- und individuell gestaltete Verschlussarten."
+    },
+    "tipalar": {
+      "name": "Stopfen",
+      "description": "Innenstopfen, Tropfeinsätze und Dichtstopfen."
+    },
+    "parmak-spreyler": {
+      "name": "Fingersprüher",
+      "description": "Fingersprühmechanismen für Kosmetik und Cologne-Produkte."
+    },
+    "pompalar": {
+      "name": "Pumpen",
+      "description": "Lotionpumpen, Schaumpumpen und Cremespenderpumpen."
+    },
+    "tetikli-pusturtuculer": {
+      "name": "Triggersprüher",
+      "description": "Triggersprühsysteme für Reinigungs- und Pflegeprodukte."
+    },
+    "huniler": {
+      "name": "Trichter",
+      "description": "Kunststofftrichter für Befüllungsprozesse."
+    }
+  },
+  "blogPosts": {
+    "pet-sise-uretim-sureci": {
+      "title": "PET-Flaschenproduktion: Vom Rohstoff zum Produkt",
+      "excerpt": "Ein detaillierter Blick auf die Produktionsphasen von PET-Flaschen, eingesetzte Technologien und Qualitätskontrollprozesse.",
+      "category": "Produktion"
+    },
+    "kozmetik-ambalaj-trendleri-2026": {
+      "title": "Kosmetikverpackungstrends 2026",
+      "excerpt": "Entdecken Sie die führenden Trends in der Kosmetikverpackung wie Nachhaltigkeit, intelligente Verpackung und minimalistisches Design.",
+      "category": "Branche"
+    },
+    "pet-malzeme-avantajlari": {
+      "title": "Welche Vorteile bietet PET-Material?",
+      "excerpt": "Die Vorteile von PET hinsichtlich Leichtigkeit, Transparenz, Recyclingfähigkeit und Kosmetikverpackung.",
+      "category": "Wissen"
+    },
+    "iso-sertifika-onemi": {
+      "title": "Die Bedeutung von ISO-Zertifikaten in der Kosmetikverpackung",
+      "excerpt": "Die Bedeutung von ISO 9001, ISO 14001 und FSSC 22000 in der Verpackungsbranche.",
+      "category": "Qualität"
+    },
+    "dogru-sise-secimi": {
+      "title": "Wie wählen Sie die richtige Flasche für Ihr Unternehmen?",
+      "excerpt": "Kriterien, die bei der Auswahl der richtigen Flasche für Ihr Produkt zu beachten sind.",
+      "category": "Ratgeber"
+    },
+    "surdurulebilir-ambalaj": {
+      "title": "Nachhaltige Verpackung: Umweltbewusste Produktion",
+      "excerpt": "Über unsere recycelbaren Materialien und umweltfreundlichen Produktionsprozesse.",
+      "category": "Nachhaltigkeit"
+    }
+  },
+  "productData": {
+    "categories": {
+      "pet-siseler": {
+        "name": "PET-Flaschen",
+        "description": "Hochwertige PET-Flaschen für Kosmetik- und Körperpflegeverpackungen"
+      },
+      "plastik-siseler": {
+        "name": "Kunststoffflaschen",
+        "description": "Langlebige HDPE-, PP- und LDPE-Kunststoffflaschen für verschiedene Anwendungen"
+      },
+      "kapaklar": {
+        "name": "Verschlüsse",
+        "description": "Schraubverschlüsse, Klappverschlüsse und Disc-Top-Verschlüsse in verschiedenen Größen"
+      },
+      "tipalar": {
+        "name": "Stopfen",
+        "description": "Innenstopfen und Reduzierstopfen für kontrollierte Dosierung"
+      },
+      "parmak-spreyler": {
+        "name": "Fingersprays",
+        "description": "Feinnebelsprühpumpen für Kosmetik und Pharmazie"
+      },
+      "pompalar": {
+        "name": "Pumpen",
+        "description": "Lotionpumpen und Cremepumpen für präzise Dosierung"
+      },
+      "tetikli-pusturtuculer": {
+        "name": "Triggersprüher",
+        "description": "Triggersprühköpfe für Reinigungs- und Pflegeprodukte"
+      },
+      "huniler": {
+        "name": "Trichter",
+        "description": "Kunststofftrichter zum einfachen Befüllen und Umfüllen"
+      }
+    },
+    "specs": {
+      "Hacim": "Volumen",
+      "Ağırlık": "Gewicht",
+      "Malzeme": "Material",
+      "Boyun Çapı": "Halsdurchmesser",
+      "Yükseklik": "Höhe",
+      "Genişlik": "Breite",
+      "Derinlik": "Tiefe",
+      "Kapak Uyumu": "Verschlusskompatibilität",
+      "Renk Seçenekleri": "Farboptionen",
+      "Ağız Tipi": "Mündungstyp",
+      "Çıkış Oranı": "Ausgaberate"
+    },
+    "colors": {
+      "Şeffaf": "Transparent",
+      "Mavi": "Blau",
+      "Yeşil": "Grün",
+      "Amber": "Bernstein",
+      "Beyaz": "Weiß",
+      "Siyah": "Schwarz",
+      "Kırmızı": "Rot",
+      "Sarı": "Gelb",
+      "Altın": "Gold",
+      "Gümüş": "Silber",
+      "Füme": "Rauch",
+      "Pembe": "Rosa",
+      "Mor": "Lila",
+      "Turuncu": "Orange",
+      "Lacivert": "Marineblau",
+      "Gri": "Grau",
+      "Naturel": "Natur"
+    }
+  },
+  "compare": {
+    "title": "Produkte vergleichen",
+    "noProducts": "Keine Produkte zum Vergleichen",
+    "noProductsDesc": "Fügen Sie Produkte von den Produktseiten hinzu, um sie nebeneinander zu vergleichen.",
+    "browseProducts": "Produkte durchsuchen",
+    "backToProducts": "Zurück zu Produkten",
+    "clearAll": "Alle löschen",
+    "product": "Produkt",
+    "remove": "entfernen",
+    "add": "Hinzufügen",
+    "colors": "Farben",
+    "addToQuote": "Zum Angebot hinzufügen",
+    "continueBrowsing": "Weiter Produkte durchsuchen",
+    "selectedCount": "{count} Produkt(e) ausgewählt",
+    "compare": "Vergleichen",
+    "category": "Kategorie",
+    "volume": "Volumen",
+    "weight": "Gewicht",
+    "neckDiameter": "Halsdurchmesser",
+    "material": "Material"
   }
 }

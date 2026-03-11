@@ -45,7 +45,7 @@ function getConfig() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://www.kismetplastik.com";
 
   if (!merchantId || !terminalId || !storeKey || !gatewayUrl) {
-    throw new Error("Halkbank POS yapilandirmasi eksik. Env degiskenlerini kontrol edin.");
+    throw new Error("Halkbank POS yapılandırması eksik. Env değişkenlerini kontrol edin.");
   }
 
   return { merchantId, terminalId, storeKey, gatewayUrl, baseUrl };
@@ -113,11 +113,11 @@ export async function initiatePayment(req: PaymentRequest): Promise<PaymentInitR
     const htmlForm = `
       <!DOCTYPE html>
       <html>
-      <head><title>Odeme Yonlendiriliyor...</title></head>
+      <head><title>Ödeme Yönlendiriliyor...</title></head>
       <body onload="document.getElementById('payform').submit();">
         <div style="text-align:center;padding:50px;font-family:sans-serif;">
-          <p>Banka sayfasina yonlendiriliyorsunuz...</p>
-          <p style="color:#888;">Lutfen bekleyiniz.</p>
+          <p>Banka sayfasına yönlendiriliyorsunuz...</p>
+          <p style="color:#888;">Lütfen bekleyiniz.</p>
         </div>
         <form id="payform" method="POST" action="${config.gatewayUrl}">
           ${hiddenInputs}
@@ -128,7 +128,7 @@ export async function initiatePayment(req: PaymentRequest): Promise<PaymentInitR
 
     return { success: true, htmlForm };
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Odeme baslatilamadi";
+    const message = err instanceof Error ? err.message : "Ödeme başlatılamadı";
     return { success: false, error: message };
   }
 }
@@ -163,7 +163,7 @@ export function verifyCallback(
         return {
           success: false,
           orderId,
-          error: "Hash dogrulama basarisiz — olasi sahte islem",
+          error: "Hash doğrulama başarısız — olası sahte işlem",
           rawResponse: formData,
         };
       }
@@ -176,7 +176,7 @@ export function verifyCallback(
       return {
         success: false,
         orderId,
-        error: `3D dogrulama basarisiz (mdStatus: ${mdStatus})`,
+        error: `3D doğrulama başarısız (mdStatus: ${mdStatus})`,
         rawResponse: formData,
       };
     }
@@ -186,7 +186,7 @@ export function verifyCallback(
       return {
         success: false,
         orderId,
-        error: `Odeme reddedildi (kod: ${procReturnCode}, yanit: ${response})`,
+        error: `Ödeme reddedildi (kod: ${procReturnCode}, yanıt: ${response})`,
         rawResponse: formData,
       };
     }
@@ -199,7 +199,7 @@ export function verifyCallback(
       rawResponse: formData,
     };
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Callback dogrulama hatasi";
+    const message = err instanceof Error ? err.message : "Callback doğrulama hatası";
     return {
       success: false,
       orderId: formData.oid ?? "",

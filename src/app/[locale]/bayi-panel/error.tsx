@@ -22,10 +22,10 @@ export default function BayiPanelError({
           <AlertTriangle size={28} className="text-red-500" />
         </div>
         <h2 className="mb-2 text-xl font-bold text-[#0A1628] dark:text-white">
-          Bir hata olustu
+          Bir hata oluştu
         </h2>
         <p className="mb-6 text-sm text-neutral-500 dark:text-neutral-400">
-          {error.message || "Beklenmeyen bir hata olustu. Lutfen tekrar deneyin."}
+          {error.message || "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin."}
         </p>
         <div className="flex justify-center gap-3">
           <button

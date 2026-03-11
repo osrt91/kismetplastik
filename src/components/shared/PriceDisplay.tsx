@@ -45,7 +45,7 @@ export default function PriceDisplay({
     if (!showLoginPrompt) return null;
     return (
       <span className={`font-mono text-sm text-neutral-500 ${className}`}>
-        Fiyat icin giris yapin
+        Fiyat için giriş yapın
       </span>
     );
   }

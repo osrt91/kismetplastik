@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
 
     console.error("[Payment Failed]", result.error);
     return NextResponse.redirect(
-      `${baseUrl}/tr/bayi-panel/odeme?status=error&message=${encodeURIComponent(result.error ?? "Odeme basarisiz")}`,
+      `${baseUrl}/tr/bayi-panel/odeme?status=error&message=${encodeURIComponent(result.error ?? "Ödeme başarısız")}`,
       { status: 303 }
     );
   } catch (err) {

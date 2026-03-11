@@ -20,7 +20,7 @@ export async function GET() {
     if (!mapping) {
       return NextResponse.json({
         success: false,
-        error: "DIA cari hesabiniz tanimli degil. Lutfen yoneticiyle iletisime gecin.",
+        error: "DIA cari hesabınız tanımlı değil. Lütfen yöneticiyle iletişime geçin.",
       }, { status: 404 });
     }
 

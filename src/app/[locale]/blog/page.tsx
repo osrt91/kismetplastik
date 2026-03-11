@@ -79,11 +79,12 @@ function getCatStyle(category: string) {
 }
 
 export default function BlogPage() {
-  const { locale } = useLocale();
-  const [activeCategory, setActiveCategory] = useState<string>("Tümü");
+  const { locale, dict } = useLocale();
+  const b = dict.blog;
+  const [activeCategory, setActiveCategory] = useState<string>("__all__");
 
   const filtered =
-    activeCategory === "Tümü"
+    activeCategory === "__all__"
       ? blogPosts
       : blogPosts.filter((p) => p.category === activeCategory);
 
@@ -100,35 +101,34 @@ export default function BlogPage() {
           <AnimateOnScroll animation="fade-up">
             <nav className="mb-8 flex items-center gap-2 text-sm text-white/50">
               <Link href="/" className="transition-colors hover:text-accent-400">
-                Ana Sayfa
+                {b.breadcrumbHome}
               </Link>
               <ChevronRight size={14} />
               <span className="font-medium text-accent-400">Blog</span>
             </nav>
             <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Blog &amp; <span className="text-accent-400">Haberler</span>
+              {b.heroTitle}
             </h1>
             <p className="max-w-2xl text-lg leading-relaxed text-white/60">
-              Kozmetik ambalaj sektöründen haberler, rehberler ve bilgilendirici
-              içerikler.
+              {b.heroSubtitle}
             </p>
           </AnimateOnScroll>
         </div>
       </div>
 
       <div className="mx-auto max-w-7xl px-4 py-12 lg:px-6 lg:py-20">
-        {/* Kategori Filtreleri */}
+        {/* Category Filters */}
         <AnimateOnScroll animation="fade-up">
           <div className="mb-12 flex flex-wrap gap-2">
             <button
-              onClick={() => setActiveCategory("Tümü")}
+              onClick={() => setActiveCategory("__all__")}
               className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
-                activeCategory === "Tümü"
+                activeCategory === "__all__"
                   ? "bg-accent-500 text-[#0A1628] shadow-lg shadow-accent-500/25"
                   : "bg-white text-neutral-600 shadow-sm hover:bg-accent-50 hover:text-accent-600 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
               }`}
             >
-              Tümü
+              {b.allCategories}
             </button>
             {allCategories.map((cat) => (
               <button
@@ -146,7 +146,7 @@ export default function BlogPage() {
           </div>
         </AnimateOnScroll>
 
-        {/* Öne Çıkan Yazılar - Featured hero cards */}
+        {/* Featured Posts */}
         {featured.length > 0 && (
           <div className="mb-16 grid gap-8 lg:grid-cols-2">
             {featured.map((post, i) => {
@@ -163,7 +163,7 @@ export default function BlogPage() {
                       <div className="absolute left-4 top-4 z-10">
                         <div className="flex items-center gap-1.5 rounded-full bg-accent-500 px-3.5 py-1.5 text-xs font-bold text-[#0A1628] shadow-lg shadow-accent-500/30">
                           <Sparkles size={12} />
-                          Öne Çıkan
+                          {b.featured}
                         </div>
                       </div>
 
@@ -196,7 +196,7 @@ export default function BlogPage() {
                         </p>
 
                         <span className="inline-flex items-center gap-2 text-sm font-bold text-accent-600 transition-colors group-hover:text-accent-500 dark:text-accent-400">
-                          Devamını Oku
+                          {b.readMore}
                           <ArrowRight
                             size={16}
                             className="transition-transform duration-300 group-hover:translate-x-2"
@@ -215,12 +215,12 @@ export default function BlogPage() {
         {featured.length > 0 && rest.length > 0 && (
           <div className="mb-12 flex items-center gap-4">
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent dark:via-neutral-700" />
-            <span className="text-sm font-semibold tracking-wide text-neutral-400 uppercase">Tüm Yazılar</span>
+            <span className="text-sm font-semibold tracking-wide text-neutral-400 uppercase">{b.allPosts}</span>
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent dark:via-neutral-700" />
           </div>
         )}
 
-        {/* Diğer Yazılar - Regular grid cards */}
+        {/* Regular grid cards */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {rest.map((post, i) => {
             const style = getCatStyle(post.category);
@@ -264,7 +264,7 @@ export default function BlogPage() {
                           {post.readTime}
                         </span>
                         <span className="inline-flex items-center gap-1 text-xs font-bold text-accent-600 transition-colors group-hover:text-accent-500 dark:text-accent-400">
-                          Devamını Oku
+                          {b.readMore}
                           <ArrowRight
                             size={12}
                             className="transition-transform duration-300 group-hover:translate-x-1.5"
@@ -287,10 +287,10 @@ export default function BlogPage() {
                 </div>
               </div>
               <p className="text-sm font-bold text-neutral-500 dark:text-neutral-400">
-                Daha fazla yazı yakında...
+                {b.moreSoon}
               </p>
               <p className="mt-1.5 text-xs text-neutral-400 dark:text-neutral-500">
-                Yeni içerikler hazırlanıyor
+                {b.newContentSoon}
               </p>
             </div>
           </AnimateOnScroll>

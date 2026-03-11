@@ -13,6 +13,7 @@ import ProductCard from "@/components/ui/ProductCard";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import CompareBar from "@/components/ui/CompareBar";
 import { useLocale } from "@/contexts/LocaleContext";
+import { getCategoryTranslation, getProductTranslation } from "@/lib/product-i18n";
 
 export default function CategoryClient() {
   const { dict } = useLocale();
@@ -31,19 +32,23 @@ export default function CategoryClient() {
 
     if (search) {
       const q = search.toLowerCase();
-      result = result.filter(
-        (pr) =>
-          pr.name.toLowerCase().includes(q) ||
-          pr.shortDescription.toLowerCase().includes(q)
-      );
+      result = result.filter((pr) => {
+        const t = getProductTranslation(pr, dict);
+        return (
+          t.name.toLowerCase().includes(q) ||
+          t.shortDescription.toLowerCase().includes(q)
+        );
+      });
     }
 
     result.sort((a, b) => {
+      const tA = getProductTranslation(a, dict);
+      const tB = getProductTranslation(b, dict);
       switch (sort) {
         case "name-asc":
-          return a.name.localeCompare(b.name, "tr");
+          return tA.name.localeCompare(tB.name);
         case "name-desc":
-          return b.name.localeCompare(a.name, "tr");
+          return tB.name.localeCompare(tA.name);
         case "volume-asc":
           return (parseInt(a.volume || "0") || 0) - (parseInt(b.volume || "0") || 0);
         case "volume-desc":
@@ -54,7 +59,9 @@ export default function CategoryClient() {
     });
 
     return result;
-  }, [search, sort, allProducts]);
+  }, [search, sort, allProducts, dict]);
+
+  const catT = category ? getCategoryTranslation(category, dict) : { name: "", description: "" };
 
   if (!category) {
     return (
@@ -77,15 +84,15 @@ export default function CategoryClient() {
           <ChevronRight size={14} />
           <Link href="/urunler" className="hover:text-primary-700">{p.breadcrumbProducts}</Link>
           <ChevronRight size={14} />
-          <span className="font-medium text-primary-900">{category.name}</span>
+          <span className="font-medium text-primary-900">{catT.name}</span>
         </nav>
 
         <AnimateOnScroll animation="fade-up">
           <div className="mb-10">
             <h1 className="mb-3 text-3xl font-extrabold text-primary-900 sm:text-4xl">
-              {category.name}
+              {catT.name}
             </h1>
-            <p className="max-w-2xl text-neutral-500">{category.description}</p>
+            <p className="max-w-2xl text-neutral-500">{catT.description}</p>
           </div>
         </AnimateOnScroll>
 

@@ -24,14 +24,14 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
     if (orderError || !order) {
       return NextResponse.json(
-        { success: false, error: "Siparis bulunamadi" },
+        { success: false, error: "Sipariş bulunamadı" },
         { status: 404 }
       );
     }
 
     if (order.status !== "pending") {
       return NextResponse.json(
-        { success: false, error: `Siparis durumu '${order.status}' — sadece 'pending' siparisler onaylanabilir` },
+        { success: false, error: `Sipariş durumu '${order.status}' — sadece 'pending' siparişler onaylanabilir` },
         { status: 400 }
       );
     }
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       .from("orders")
       .update({
         status: "confirmed",
-        admin_notes: `Onayland: ${new Date().toISOString()}${diaResult ? " — DIA'ya gonderildi" : " — DIA eslestirmesi yok"}`,
+        admin_notes: `Onaylandı: ${new Date().toISOString()}${diaResult ? " — DIA'ya gönderildi" : " — DIA eşleştirmesi yok"}`,
       })
       .eq("id", id);
 
@@ -91,8 +91,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       old_status: "pending",
       new_status: "confirmed",
       note: diaResult
-        ? "Admin tarafindan onaylandi ve DIA'ya gonderildi"
-        : "Admin tarafindan onaylandi",
+        ? "Admin tarafından onaylandı ve DIA'ya gönderildi"
+        : "Admin tarafından onaylandı",
     });
 
     return NextResponse.json({

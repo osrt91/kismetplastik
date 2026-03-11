@@ -15,11 +15,11 @@ interface QuoteRequestBody {
 
 function validateItems(items: QuoteRequestItem[]): string | null {
   if (!Array.isArray(items) || items.length === 0) {
-    return "En az bir urun eklenmelidir.";
+    return "En az bir ürün eklenmelidir.";
   }
   for (const item of items) {
-    if (!item.product_name?.trim()) return "Urun adi zorunludur.";
-    if (!item.quantity || item.quantity < 1) return "Miktar en az 1 olmalidir.";
+    if (!item.product_name?.trim()) return "Ürün adı zorunludur.";
+    if (!item.quantity || item.quantity < 1) return "Miktar en az 1 olmalıdır.";
   }
   return null;
 }
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     });
     if (!allowed) {
       return NextResponse.json(
-        { success: false, error: "Cok fazla istek. Lutfen bekleyip tekrar deneyin." },
+        { success: false, error: "Çok fazla istek. Lütfen bekleyip tekrar deneyin." },
         { status: 429 }
       );
     }
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
 
     if (!user) {
       return NextResponse.json(
-        { success: false, error: "Yetkisiz erisim." },
+        { success: false, error: "Yetkisiz erişim." },
         { status: 401 }
       );
     }
@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
 
     if (!profile) {
       return NextResponse.json(
-        { success: false, error: "Profil bulunamadi." },
+        { success: false, error: "Profil bulunamadı." },
         { status: 404 }
       );
     }
@@ -95,7 +95,7 @@ export async function POST(request: NextRequest) {
     if (quoteError || !quote) {
       console.error("[Quote Request API] Insert failed:", quoteError);
       return NextResponse.json(
-        { success: false, error: "Teklif talebi olusturulamadi." },
+        { success: false, error: "Teklif talebi oluşturulamadı." },
         { status: 500 }
       );
     }
@@ -119,7 +119,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       data: { quoteId: quote.id },
-      message: "Teklif talebiniz alindi. En kisa surede donnus yapilacaktir.",
+      message: "Teklif talebiniz alındı. En kısa sürede dönüş yapılacaktır.",
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Bilinmeyen hata";

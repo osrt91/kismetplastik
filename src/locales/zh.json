@@ -236,7 +236,9 @@
     "productNotFound": "未找到产品",
     "categoryNotFound": "未找到类别",
     "backToAll": "返回全部产品",
-    "searchInCategory": "在此类别中搜索..."
+    "searchInCategory": "在此类别中搜索...",
+    "requestSample": "申请样品",
+    "preOrder": "预订"
   },
   "about": {
     "heroTitle": "关于我们",
@@ -423,7 +425,12 @@
     "allCategories": "全部",
     "postNotFound": "未找到文章",
     "backToBlog": "返回博客",
-    "relatedPosts": "相关文章"
+    "relatedPosts": "相关文章",
+    "featured": "精选",
+    "allPosts": "所有文章",
+    "breadcrumbHome": "首页",
+    "moreSoon": "更多文章即将发布...",
+    "newContentSoon": "新内容正在准备中"
   },
   "catalog": {
     "heroTitle": "下载目录",
@@ -659,6 +666,354 @@
     "title": "页面未找到",
     "subtitle": "这个页面可能去度假了！",
     "description": "您查找的页面可能已被移动、删除或从未存在。您可以通过以下链接继续浏览。",
-    "searchPlaceholder": "您在寻找什么？"
+    "searchPlaceholder": "您在寻找什么？",
+    "backToHome": "返回首页",
+    "popularPages": "热门页面",
+    "products": "产品",
+    "aboutUs": "关于我们",
+    "contact": "联系我们",
+    "getQuote": "获取报价",
+    "faq": "常见问题"
+  },
+  "productCatalog": {
+    "bySlug": {
+      "pet-sise-50ml-damla": {
+        "name": "PET瓶 50ml 水滴型",
+        "shortDescription": "50ml水滴型化妆品瓶",
+        "description": "50ml水滴型PET瓶。适用于精华液、护肤油和眼部护理产品的紧凑设计。18mm瓶口直径，兼容滴管或迷你泵头。"
+      },
+      "pet-sise-100ml-silindir": {
+        "name": "PET瓶 100ml 圆柱型",
+        "shortDescription": "100ml圆柱型化妆品瓶",
+        "description": "100ml圆柱型PET瓶。适用于古龙水、香水和个人护理产品的优雅圆柱设计。20mm瓶口直径。"
+      },
+      "pet-sise-250ml-kristal": {
+        "name": "PET瓶 250ml 水晶型",
+        "shortDescription": "250ml水晶型瓶",
+        "description": "250ml水晶型PET瓶。适用于洗发水、沐浴露和个人护理产品的精美水晶纹理。24mm Modern瓶口。"
+      },
+      "pet-sise-500ml-duz": {
+        "name": "PET瓶 500ml 平面型",
+        "shortDescription": "500ml平面型化妆品瓶",
+        "description": "500ml平面型PET瓶。适用于洗发水、护发素和洗手液的大容量平面设计。28mm瓶口直径。"
+      },
+      "hdpe-sise-200ml-silindir": {
+        "name": "HDPE瓶 200ml 圆柱型",
+        "shortDescription": "200ml HDPE圆柱型瓶",
+        "description": "200ml HDPE圆柱型瓶。适用于乳液、面霜和身体乳包装的耐用不透明结构。24mm Classic瓶口。"
+      },
+      "pp-sise-300ml-oval": {
+        "name": "PP瓶 300ml 椭圆型",
+        "shortDescription": "300ml PP椭圆型瓶",
+        "description": "300ml PP椭圆型瓶。适用于洗发水和护发产品的柔软可挤压椭圆外形。24mm Modern瓶口。"
+      },
+      "hdpe-sise-500ml-kare": {
+        "name": "HDPE瓶 500ml 方形",
+        "shortDescription": "500ml HDPE方形瓶",
+        "description": "500ml HDPE方形瓶。适用于洗发水、沐浴露和洗手液产品的现代方形设计。28mm瓶口直径。"
+      },
+      "kapak-18mm-vidali": {
+        "name": "螺旋盖 18mm",
+        "shortDescription": "18mm化妆品螺旋盖",
+        "description": "18mm螺旋盖。适用于精华液、精油和小型化妆品瓶的标准螺旋盖。"
+      },
+      "kapak-24mm-flip-top": {
+        "name": "翻盖 24mm Flip-Top",
+        "shortDescription": "24mm化妆品翻盖",
+        "description": "24mm翻盖。适用于洗发水、乳液和化妆品瓶的单手开启实用盖。兼容Classic和Modern瓶口。"
+      },
+      "kapak-24mm-disc-top": {
+        "name": "按压盖 24mm Disc-Top",
+        "shortDescription": "24mm化妆品按压盖",
+        "description": "24mm按压盖。适用于洗发水、沐浴露和乳液瓶的按压开启系统。"
+      },
+      "ic-tipa-18mm": {
+        "name": "内塞 18mm",
+        "shortDescription": "18mm PE内塞",
+        "description": "18mm内塞。适用于精华液、精油和古龙水瓶的PE防漏密封内塞。用于喷雾和滴管盖下方。"
+      },
+      "damlatici-tipa-20mm": {
+        "name": "滴管塞 20mm",
+        "shortDescription": "20mm滴管塞",
+        "description": "20mm滴管塞。适用于精华液、眼药水和精油瓶的控制滴量塞。"
+      },
+      "sizdirmazlik-tipasi-24mm": {
+        "name": "密封塞 24mm",
+        "shortDescription": "24mm密封塞",
+        "description": "24mm密封塞。用于乳液、洗发水和化妆品瓶翻盖和按压盖下方的密封元件。"
+      },
+      "parmak-sprey-18mm-ince-sis": {
+        "name": "指压喷雾 18mm 细雾型",
+        "shortDescription": "18mm细雾指压喷雾",
+        "description": "18mm指压喷雾机构，细雾型。为香水、古龙水和小型化妆品瓶提供精确雾化。"
+      },
+      "parmak-sprey-20mm-standart": {
+        "name": "指压喷雾 20mm 标准型",
+        "shortDescription": "20mm标准指压喷雾",
+        "description": "20mm指压喷雾机构。适用于古龙水、身体喷雾和室内香氛瓶的标准喷头。"
+      },
+      "parmak-sprey-24mm-parfum": {
+        "name": "指压喷雾 24mm 香水型",
+        "shortDescription": "24mm香水型指压喷雾",
+        "description": "24mm指压喷雾机构，香水型。适用于大容量古龙水和化妆品喷雾瓶的强力喷射能力。"
+      },
+      "losyon-pompasi-28mm": {
+        "name": "乳液泵 28mm",
+        "shortDescription": "28mm乳液定量泵",
+        "description": "28mm乳液泵。适用于洗手液、乳液和洗发水瓶的定量泵机构。长吸管兼容500ml瓶。"
+      },
+      "kopuk-pompasi-28mm": {
+        "name": "泡沫泵 28mm",
+        "shortDescription": "28mm泡沫产生泵",
+        "description": "28mm泡沫泵。适用于洗手液和洁面泡沫瓶的空气混合泡沫产生泵机构。"
+      },
+      "krem-pompasi-24mm": {
+        "name": "面霜泵 24mm",
+        "shortDescription": "24mm面霜定量泵",
+        "description": "24mm面霜定量泵。适用于浓稠乳液、面霜和护发产品的强力吸取能力泵。"
+      },
+      "tetikli-puskurtucu-28mm-standart": {
+        "name": "扳机喷雾器 28mm 标准型",
+        "shortDescription": "28mm标准扳机喷雾器",
+        "description": "28mm标准扳机喷雾器。可调节喷嘴，具备雾状和射流模式，适用于清洁液、玻璃清洁剂和多用途喷雾产品。"
+      },
+      "tetikli-puskurtucu-28mm-kopuklu": {
+        "name": "扳机喷雾器 28mm 泡沫型",
+        "shortDescription": "28mm泡沫扳机喷雾器",
+        "description": "28mm泡沫扳机喷雾器。具备泡沫模式的扳机机构，强力喷射能力，适用于浴室和厨房清洁剂。"
+      },
+      "plastik-huni-30mm": {
+        "name": "塑料漏斗 30mm",
+        "shortDescription": "30mm化妆品灌装漏斗",
+        "description": "30mm口径塑料漏斗。适用于小容量化妆品、香水和精华液瓶的灌装。PP材质，可重复使用。"
+      },
+      "plastik-huni-50mm": {
+        "name": "塑料漏斗 50mm",
+        "shortDescription": "50mm宽口灌装漏斗",
+        "description": "50mm口径塑料漏斗。宽口快流设计，适用于中大容量瓶的灌装。"
+      }
+    },
+    "specs": {
+      "Hacim": "容量",
+      "Ağırlık": "重量",
+      "Ağız": "瓶口直径",
+      "Hammadde": "材质",
+      "Yükseklik": "高度",
+      "Çap": "直径",
+      "Model": "型号",
+      "Tip": "类型",
+      "Uyumluluk": "兼容性",
+      "Sprey Tipi": "喷雾类型",
+      "Dozaj": "剂量",
+      "Boru Uzunluğu": "管长",
+      "Mesh": "过滤网",
+      "Mod": "模式",
+      "Delik": "孔径",
+      "Ağız Çapı": "瓶口直径"
+    },
+    "specValues": {
+      "Damla": "水滴型",
+      "Silindir": "圆柱型",
+      "Kristal": "水晶型",
+      "Düz": "平面型",
+      "Oval": "椭圆型",
+      "Kare": "方形",
+      "Vidalı": "螺旋",
+      "Flip-Top": "翻盖",
+      "Disc-Top": "按压盖",
+      "İç Tıpa": "内塞",
+      "Damlatıcı": "滴管",
+      "Sızdırmazlık": "密封",
+      "İnce sis": "细雾",
+      "Standart sis": "标准雾",
+      "Parfüm": "香水型",
+      "Losyon Pompası": "乳液泵",
+      "Köpük Pompası": "泡沫泵",
+      "Krem Pompası": "面霜泵",
+      "Standart Tetikli": "标准扳机",
+      "Köpüklü Tetikli": "泡沫扳机",
+      "Mini Huni": "迷你漏斗",
+      "Standart Huni": "标准漏斗",
+      "Çift filtreli": "双重过滤",
+      "Sis / Jet / Kapalı": "雾状 / 射流 / 关闭",
+      "Köpük / Jet / Kapalı": "泡沫 / 射流 / 关闭",
+      "1mm kontrollü akış": "1mm控制流量",
+      "24mm Klasik / Modern": "24mm Classic / Modern"
+    },
+    "colors": {
+      "Şeffaf": "透明",
+      "Amber": "琥珀色",
+      "Füme": "烟灰色",
+      "Beyaz": "白色",
+      "Siyah": "黑色",
+      "Mavi": "蓝色",
+      "Yeşil": "绿色",
+      "Pembe": "粉色",
+      "Kahverengi": "棕色",
+      "Altın Yaldız": "金色",
+      "Gümüş": "银色"
+    },
+    "materials": {
+      "PET": "PET",
+      "HDPE": "HDPE",
+      "PP": "PP",
+      "LDPE": "LDPE",
+      "PE": "PE"
+    }
+  },
+  "categoryDescriptions": {
+    "pet-siseler": {
+      "name": "PET瓶",
+      "description": "各种容量和设计的PET瓶，适用于化妆品、古龙水和个人护理产品。"
+    },
+    "plastik-siseler": {
+      "name": "塑料瓶",
+      "description": "HDPE、PP和LDPE材质的耐用塑料瓶系列。"
+    },
+    "kapaklar": {
+      "name": "瓶盖",
+      "description": "螺旋盖、翻盖和定制设计瓶盖系列。"
+    },
+    "tipalar": {
+      "name": "瓶塞",
+      "description": "内塞、滴管塞和密封塞。"
+    },
+    "parmak-spreyler": {
+      "name": "指压喷雾",
+      "description": "适用于化妆品和古龙水产品的指压喷雾机构。"
+    },
+    "pompalar": {
+      "name": "泵头",
+      "description": "乳液泵、泡沫泵和面霜定量泵。"
+    },
+    "tetikli-pusturtuculer": {
+      "name": "扳机喷雾器",
+      "description": "适用于清洁和护理产品的扳机喷雾系统。"
+    },
+    "huniler": {
+      "name": "漏斗",
+      "description": "用于灌装过程的塑料漏斗。"
+    }
+  },
+  "blogPosts": {
+    "pet-sise-uretim-sureci": {
+      "title": "PET瓶生产工艺：从原料到成品",
+      "excerpt": "详细了解PET瓶的生产阶段、所用技术和质量控制流程。",
+      "category": "生产"
+    },
+    "kozmetik-ambalaj-trendleri-2026": {
+      "title": "2026年化妆品包装趋势",
+      "excerpt": "探索化妆品包装的领先趋势：可持续性、智能包装和极简设计。",
+      "category": "行业"
+    },
+    "pet-malzeme-avantajlari": {
+      "title": "PET材料有哪些优势？",
+      "excerpt": "PET在轻量化、透明度、可回收性和化妆品包装方面的优势。",
+      "category": "知识"
+    },
+    "iso-sertifika-onemi": {
+      "title": "ISO认证在化妆品包装中的重要性",
+      "excerpt": "ISO 9001、ISO 14001和FSSC 22000认证在包装行业的重要性。",
+      "category": "质量"
+    },
+    "dogru-sise-secimi": {
+      "title": "如何为您的企业选择合适的瓶子？",
+      "excerpt": "选择适合您产品的瓶子时需要考虑的标准。",
+      "category": "指南"
+    },
+    "surdurulebilir-ambalaj": {
+      "title": "可持续包装：环保生产",
+      "excerpt": "关于我们的可回收材料和环保生产工艺。",
+      "category": "可持续发展"
+    }
+  },
+  "productData": {
+    "categories": {
+      "pet-siseler": {
+        "name": "PET瓶",
+        "description": "用于化妆品和个人护理包装的高品质PET瓶"
+      },
+      "plastik-siseler": {
+        "name": "塑料瓶",
+        "description": "适用于各种用途的耐用HDPE、PP和LDPE塑料瓶"
+      },
+      "kapaklar": {
+        "name": "瓶盖",
+        "description": "各种尺寸的螺旋盖、翻盖和圆盘盖"
+      },
+      "tipalar": {
+        "name": "瓶塞",
+        "description": "用于控制分配的内塞和减量塞"
+      },
+      "parmak-spreyler": {
+        "name": "指压喷雾",
+        "description": "用于化妆品和医药的细雾指压喷雾泵"
+      },
+      "pompalar": {
+        "name": "泵",
+        "description": "用于精确分配的乳液泵和面霜泵"
+      },
+      "tetikli-pusturtuculer": {
+        "name": "扳机喷雾器",
+        "description": "用于清洁和个人护理产品的扳机式喷头"
+      },
+      "huniler": {
+        "name": "漏斗",
+        "description": "便于灌装和转移的塑料漏斗"
+      }
+    },
+    "specs": {
+      "Hacim": "容量",
+      "Ağırlık": "重量",
+      "Malzeme": "材质",
+      "Boyun Çapı": "瓶颈直径",
+      "Yükseklik": "高度",
+      "Genişlik": "宽度",
+      "Derinlik": "深度",
+      "Kapak Uyumu": "瓶盖兼容性",
+      "Renk Seçenekleri": "颜色选项",
+      "Ağız Tipi": "口型",
+      "Çıkış Oranı": "出量"
+    },
+    "colors": {
+      "Şeffaf": "透明",
+      "Mavi": "蓝色",
+      "Yeşil": "绿色",
+      "Amber": "琥珀色",
+      "Beyaz": "白色",
+      "Siyah": "黑色",
+      "Kırmızı": "红色",
+      "Sarı": "黄色",
+      "Altın": "金色",
+      "Gümüş": "银色",
+      "Füme": "烟色",
+      "Pembe": "粉色",
+      "Mor": "紫色",
+      "Turuncu": "橙色",
+      "Lacivert": "藏青色",
+      "Gri": "灰色",
+      "Naturel": "原色"
+    }
+  },
+  "compare": {
+    "title": "产品对比",
+    "noProducts": "没有可对比的产品",
+    "noProductsDesc": "从产品页面添加产品进行并排对比。",
+    "browseProducts": "浏览产品",
+    "backToProducts": "返回产品",
+    "clearAll": "清除全部",
+    "product": "产品",
+    "remove": "移除",
+    "add": "添加",
+    "colors": "颜色",
+    "addToQuote": "加入报价",
+    "continueBrowsing": "继续浏览产品",
+    "selectedCount": "已选择{count}个产品",
+    "compare": "对比",
+    "category": "类别",
+    "volume": "容量",
+    "weight": "重量",
+    "neckDiameter": "瓶颈直径",
+    "material": "材质"
   }
 }

@@ -18,16 +18,16 @@ export async function generateMetadata({
       ? "Kaynaklar & Rehberler"
       : "Resources & Guides",
     description: isTr
-      ? "Kozmetik ambalaj sektoru icin teknik rehberler, spesifikasyonlar ve surdurulebilirlik raporlari. Ucretsiz indirilebilir PDF kaynaklar."
+      ? "Kozmetik ambalaj sektörü için teknik rehberler, spesifikasyonlar ve sürdürülebilirlik raporları. Ücretsiz indirilebilir PDF kaynaklar."
       : "Technical guides, specifications and sustainability reports for the cosmetic packaging industry. Free downloadable PDF resources.",
     keywords: isTr
       ? [
           "kozmetik ambalaj rehberi",
-          "PET sise teknik dokuman",
-          "ambalaj secim rehberi",
-          "surdurulebilir ambalaj rapor",
-          "kalite kontrol prosedur",
-          "ambalaj kaynaklari",
+          "PET şişe teknik doküman",
+          "ambalaj seçim rehberi",
+          "sürdürülebilir ambalaj rapor",
+          "kalite kontrol prosedür",
+          "ambalaj kaynakları",
         ]
       : [
           "cosmetic packaging guide",
@@ -39,14 +39,14 @@ export async function generateMetadata({
         ],
     openGraph: {
       title: isTr
-        ? "Kaynaklar & Rehberler | Kismet Plastik"
+        ? "Kaynaklar & Rehberler | Kısmet Plastik"
         : "Resources & Guides | Kismet Plastik",
       description: isTr
-        ? "Kozmetik ambalaj sektoru icin ucretsiz teknik rehberler ve raporlar."
+        ? "Kozmetik ambalaj sektörü için ücretsiz teknik rehberler ve raporlar."
         : "Free technical guides and reports for the cosmetic packaging industry.",
       type: "website",
       locale: isTr ? "tr_TR" : "en_US",
-      siteName: "Kismet Plastik",
+      siteName: "Kısmet Plastik",
     },
     alternates: {
       canonical: `https://www.kismetplastik.com/${locale}/kaynaklar`,

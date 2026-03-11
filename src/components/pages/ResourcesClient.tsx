@@ -96,13 +96,13 @@ export default function ResourcesClient() {
     if (!form.name.trim()) {
       newErrors.name = isTr ? "Ad Soyad zorunludur." : "Full name is required.";
     } else if (form.name.trim().length < 2) {
-      newErrors.name = isTr ? "Ad Soyad en az 2 karakter olmalidir." : "Full name must be at least 2 characters.";
+      newErrors.name = isTr ? "Ad Soyad en az 2 karakter olmalıdır." : "Full name must be at least 2 characters.";
     }
 
     if (!form.email.trim()) {
       newErrors.email = isTr ? "E-posta zorunludur." : "Email is required.";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      newErrors.email = isTr ? "Gecerli bir e-posta adresi giriniz." : "Please enter a valid email address.";
+      newErrors.email = isTr ? "Geçerli bir e-posta adresi giriniz." : "Please enter a valid email address.";
     }
 
     setErrors(newErrors);
@@ -135,21 +135,21 @@ export default function ResourcesClient() {
         setSubmitResult({
           success: true,
           message: isTr
-            ? "Indirme baglantiniz hazir!"
+            ? "İndirme bağlantınız hazır!"
             : "Your download link is ready!",
           downloadUrl: data.downloadUrl,
         });
       } else {
         setSubmitResult({
           success: false,
-          message: data.error || (isTr ? "Bir hata olustu." : "An error occurred."),
+          message: data.error || (isTr ? "Bir hata oluştu." : "An error occurred."),
         });
       }
     } catch {
       setSubmitResult({
         success: false,
         message: isTr
-          ? "Bir hata olustu. Lutfen tekrar deneyin."
+          ? "Bir hata oluştu. Lütfen tekrar deneyin."
           : "An error occurred. Please try again.",
       });
     } finally {
@@ -176,7 +176,7 @@ export default function ResourcesClient() {
           </h1>
           <p className="max-w-2xl text-lg text-white/70">
             {isTr
-              ? "Kozmetik ambalaj sektoru icin hazirlanan teknik rehberler, spesifikasyonlar ve surdurulebilirlik raporlari."
+              ? "Kozmetik ambalaj sektörü için hazırlanan teknik rehberler, spesifikasyonlar ve sürdürülebilirlik raporları."
               : "Technical guides, specifications and sustainability reports prepared for the cosmetic packaging industry."}
           </p>
         </div>
@@ -408,7 +408,7 @@ export default function ResourcesClient() {
                     {submitting ? (
                       <>
                         <Loader2 size={16} className="animate-spin" />
-                        {isTr ? "Gonderiliyor..." : "Submitting..."}
+                        {isTr ? "Gönderiliyor..." : "Submitting..."}
                       </>
                     ) : (
                       <>

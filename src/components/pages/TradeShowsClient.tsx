@@ -76,7 +76,7 @@ export default function TradeShowsClient() {
               <p className="mx-auto max-w-2xl text-lg text-white/70">
                 {locale === "en"
                   ? "Meet Kismet Plastik at leading industry trade shows. Discover our latest packaging solutions and explore partnership opportunities."
-                  : "Kismet Plastik olarak sektorun onde gelen fuarlarinda yerimizi aliyoruz. En yeni ambalaj cozumlerimizi kesfetmek ve is birligi firsatlarini degerlendirmek icin bizi ziyaret edin."}
+                  : "Kısmet Plastik olarak sektörün önde gelen fuarlarında yerimizi alıyoruz. En yeni ambalaj çözümlerimizi keşfetmek ve iş birliği fırsatlarını değerlendirmek için bizi ziyaret edin."}
               </p>
             </div>
           </AnimateOnScroll>
@@ -91,11 +91,11 @@ export default function TradeShowsClient() {
               <div className="mb-2 flex items-center gap-2">
                 <span className="inline-block h-3 w-3 rounded-full bg-green-500" />
                 <span className="text-sm font-semibold uppercase tracking-wider text-green-700">
-                  {locale === "en" ? "Upcoming" : "Yaklasan"}
+                  {locale === "en" ? "Upcoming" : "Yaklaşan"}
                 </span>
               </div>
               <h2 className="text-2xl font-extrabold text-[#0A1628] sm:text-3xl">
-                {locale === "en" ? "Upcoming Trade Shows" : "Yaklasan Fuarlar"}
+                {locale === "en" ? "Upcoming Trade Shows" : "Yaklaşan Fuarlar"}
               </h2>
             </div>
           </AnimateOnScroll>
@@ -114,7 +114,7 @@ export default function TradeShowsClient() {
                   <div className="p-6 pl-8 sm:p-8 sm:pl-10">
                     {/* Status badge */}
                     <span className="mb-4 inline-block rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
-                      {locale === "en" ? "Upcoming" : "Yaklasan"}
+                      {locale === "en" ? "Upcoming" : "Yaklaşan"}
                     </span>
 
                     <h3 className="mb-3 text-xl font-bold text-[#0A1628] sm:text-2xl">
@@ -185,13 +185,13 @@ export default function TradeShowsClient() {
               <div className="mb-2 flex items-center gap-2">
                 <span className="inline-block h-3 w-3 rounded-full bg-neutral-400" />
                 <span className="text-sm font-semibold uppercase tracking-wider text-neutral-500">
-                  {locale === "en" ? "Past" : "Gecmis"}
+                  {locale === "en" ? "Past" : "Geçmiş"}
                 </span>
               </div>
               <h2 className="text-2xl font-extrabold text-[#0A1628] sm:text-3xl">
                 {locale === "en"
                   ? "Past Trade Shows"
-                  : "Gecmis Fuarlar"}
+                  : "Geçmiş Fuarlar"}
               </h2>
             </div>
           </AnimateOnScroll>
@@ -209,7 +209,7 @@ export default function TradeShowsClient() {
 
                   <div className="p-6 pl-8 sm:p-8 sm:pl-10">
                     <span className="mb-4 inline-block rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold text-neutral-500">
-                      {locale === "en" ? "Past" : "Gecmis"}
+                      {locale === "en" ? "Past" : "Geçmiş"}
                     </span>
 
                     <h3 className="mb-3 text-lg font-bold text-[#0A1628]/80 sm:text-xl">
@@ -263,7 +263,7 @@ export default function TradeShowsClient() {
         </div>
       )}
 
-      {/* CTA Section - Fuarda Goruselim */}
+      {/* CTA Section - Fuarda Görüşelim */}
       <div className="bg-gradient-to-br from-[#0A1628] via-[#0f2240] to-[#0A1628]">
         <div className="mx-auto max-w-7xl px-4 py-16 lg:px-6 lg:py-24">
           <AnimateOnScroll animation="fade-up">
@@ -271,25 +271,25 @@ export default function TradeShowsClient() {
               <h2 className="mb-4 text-2xl font-extrabold text-white sm:text-3xl lg:text-4xl">
                 {locale === "en"
                   ? "Let's Meet at the Fair"
-                  : "Fuarda Goruselim"}
+                  : "Fuarda Görüşelim"}
               </h2>
               <p className="mx-auto mb-8 max-w-2xl text-lg text-white/70">
                 {locale === "en"
                   ? "Planning to attend one of the upcoming trade shows? Contact us beforehand to schedule a meeting and learn about our latest cosmetic packaging solutions."
-                  : "Yaklasan fuarlardan birine katilmayi planliyorsaniz, onceden bizimle iletisime gecin. Gorusme planlayalim ve en yeni kozmetik ambalaj cozumlerimizi birlikte inceleyelim."}
+                  : "Yaklaşan fuarlardan birine katılmayı planlıyorsanız, önceden bizimle iletişime geçin. Görüşme planlayalım ve en yeni kozmetik ambalaj çözümlerimizi birlikte inceleyelim."}
               </p>
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <Link
                   href="/iletisim"
                   className="inline-flex items-center gap-2 rounded-xl bg-[#F59E0B] px-8 py-3.5 text-base font-bold text-[#0A1628] shadow-lg transition-all hover:bg-[#F59E0B]/90 hover:-translate-y-0.5"
                 >
-                  {locale === "en" ? "Contact Us" : "Bize Ulasin"}
+                  {locale === "en" ? "Contact Us" : "Bize Ulaşın"}
                 </Link>
                 <Link
                   href="/teklif-al"
                   className="inline-flex items-center gap-2 rounded-xl border-2 border-white/20 px-8 py-3.5 text-base font-bold text-white transition-all hover:border-white/40 hover:bg-white/5"
                 >
-                  {locale === "en" ? "Request a Quote" : "Teklif Alin"}
+                  {locale === "en" ? "Request a Quote" : "Teklif Alın"}
                 </Link>
               </div>
             </div>

@@ -332,7 +332,7 @@ export default function DiaPage() {
             DIA ERP Entegrasyonu
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            DIA ERP sistemi ile stok ve cari senkronizasyonunu yonetin.
+            DIA ERP sistemi ile stok ve cari senkronizasyonunu yönetin.
           </p>
         </div>
         {testResult && (
@@ -348,7 +348,7 @@ export default function DiaPage() {
             ) : (
               <WifiOff size={14} />
             )}
-            {testResult.success ? "Bagli" : "Baglanti Yok"}
+            {testResult.success ? "Bağlı" : "Bağlantı Yok"}
           </div>
         )}
       </div>
@@ -360,7 +360,7 @@ export default function DiaPage() {
             <Settings size={16} />
           </div>
           <span className="flex-1 text-sm font-semibold text-foreground">
-            Baglanti Ayarlari
+            Bağlantı Ayarları
           </span>
         </div>
 
@@ -383,7 +383,7 @@ export default function DiaPage() {
             />
           </div>
 
-          {/* Firma Kodu + Kullanici Adi */}
+          {/* Firma Kodu + Kullanıcı Adı */}
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <label
@@ -406,26 +406,26 @@ export default function DiaPage() {
                 htmlFor="dia_kullanici_adi"
                 className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground"
               >
-                Kullanici Adi
+                Kullanıcı Adı
               </label>
               <input
                 id="dia_kullanici_adi"
                 type="text"
                 value={settings.kullanici_adi}
                 onChange={(e) => handleChange("kullanici_adi", e.target.value)}
-                placeholder="Kullanici adi"
+                placeholder="Kullanıcı adı"
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
             </div>
           </div>
 
-          {/* Sifre */}
+          {/* Şifre */}
           <div>
             <label
               htmlFor="dia_sifre"
               className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground"
             >
-              Sifre
+              Şifre
             </label>
             <input
               id="dia_sifre"
@@ -437,7 +437,7 @@ export default function DiaPage() {
             />
           </div>
 
-          {/* Firma ID + Donem ID */}
+          {/* Firma ID + Dönem ID */}
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <label
@@ -462,7 +462,7 @@ export default function DiaPage() {
                 htmlFor="dia_donem_id"
                 className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground"
               >
-                Donem ID
+                Dönem ID
               </label>
               <input
                 id="dia_donem_id"
@@ -530,7 +530,7 @@ export default function DiaPage() {
               ) : (
                 <>
                   <Wifi size={14} />
-                  Baglantiyi Test Et
+                  Bağlantıyı Test Et
                 </>
               )}
             </button>
@@ -567,7 +567,7 @@ export default function DiaPage() {
                     Senkronize Edilen:
                   </span>
                   <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600">
-                    {stockResult.synced_count} kayit
+                    {stockResult.synced_count} kayıt
                   </span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
@@ -587,7 +587,7 @@ export default function DiaPage() {
 
             {!stockResult && (
               <p className="text-sm text-muted-foreground">
-                Henuz stok senkronizasyonu yapilmadi.
+                Henüz stok senkronizasyonu yapılmadı.
               </p>
             )}
 
@@ -605,7 +605,7 @@ export default function DiaPage() {
               ) : (
                 <>
                   <RefreshCw size={14} />
-                  Stoklari Senkronize Et
+                  Stokları Senkronize Et
                 </>
               )}
             </button>
@@ -639,7 +639,7 @@ export default function DiaPage() {
                     Senkronize Edilen:
                   </span>
                   <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600">
-                    {cariResult.synced_count} kayit
+                    {cariResult.synced_count} kayıt
                   </span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
@@ -659,7 +659,7 @@ export default function DiaPage() {
 
             {!cariResult && (
               <p className="text-sm text-muted-foreground">
-                Henuz cari senkronizasyonu yapilmadi.
+                Henüz cari senkronizasyonu yapılmadı.
               </p>
             )}
 
@@ -693,7 +693,7 @@ export default function DiaPage() {
               <Clock size={16} />
             </div>
             <span className="text-sm font-semibold text-foreground">
-              Senkron Loglari
+              Senkron Logları
             </span>
           </div>
           <button
@@ -718,7 +718,7 @@ export default function DiaPage() {
                   Tarih
                 </th>
                 <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                  Tur
+                  Tür
                 </th>
                 <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                   Durum
@@ -747,10 +747,10 @@ export default function DiaPage() {
                   >
                     <Database size={36} className="mx-auto mb-3 opacity-30" />
                     <p className="text-sm font-medium">
-                      DIA senkron logu bulunamadi
+                      DIA senkron logu bulunamadı
                     </p>
                     <p className="text-xs">
-                      Senkronizasyon islemleri burada gorunecek
+                      Senkronizasyon işlemleri burada görünecek
                     </p>
                   </td>
                 </tr>

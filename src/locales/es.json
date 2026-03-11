@@ -236,7 +236,9 @@
     "productNotFound": "Producto no encontrado",
     "categoryNotFound": "Categoría no encontrada",
     "backToAll": "Volver a todos los productos",
-    "searchInCategory": "Buscar en esta categoría..."
+    "searchInCategory": "Buscar en esta categoría...",
+    "requestSample": "Solicitar muestra",
+    "preOrder": "Pre-pedido"
   },
   "about": {
     "heroTitle": "Sobre nosotros",
@@ -423,7 +425,12 @@
     "allCategories": "Todos",
     "postNotFound": "Artículo no encontrado",
     "backToBlog": "Volver al blog",
-    "relatedPosts": "Artículos relacionados"
+    "relatedPosts": "Artículos relacionados",
+    "featured": "Destacado",
+    "allPosts": "Todos los artículos",
+    "breadcrumbHome": "Inicio",
+    "moreSoon": "Más artículos próximamente...",
+    "newContentSoon": "Se está preparando nuevo contenido"
   },
   "catalog": {
     "heroTitle": "Descargar catálogo",
@@ -659,6 +666,354 @@
     "title": "Página no encontrada",
     "subtitle": "¡Puede que esta página se haya ido de vacaciones!",
     "description": "La página que busca puede haber sido trasladada, eliminada o nunca haber existido. Puede continuar desde los enlaces a continuación.",
-    "searchPlaceholder": "¿Qué estaba buscando?"
+    "searchPlaceholder": "¿Qué estaba buscando?",
+    "backToHome": "Volver al inicio",
+    "popularPages": "Páginas populares",
+    "products": "Productos",
+    "aboutUs": "Sobre nosotros",
+    "contact": "Contacto",
+    "getQuote": "Solicitar presupuesto",
+    "faq": "Preguntas frecuentes"
+  },
+  "productCatalog": {
+    "bySlug": {
+      "pet-sise-50ml-damla": {
+        "name": "Botella PET 50ml Gota",
+        "shortDescription": "Botella cosmética modelo gota de 50ml",
+        "description": "Botella PET modelo gota de 50ml. Diseño compacto para sueros, aceites para el cuidado de la piel y productos para el contorno de ojos. Compatible con goteros o minibombas gracias al cuello de 18mm."
+      },
+      "pet-sise-100ml-silindir": {
+        "name": "Botella PET 100ml Cilindro",
+        "shortDescription": "Botella cosmética cilíndrica de 100ml",
+        "description": "Botella PET cilíndrica de 100ml. Elegante diseño cilíndrico para colonia, perfume y productos de cuidado personal. Cuello de 20mm."
+      },
+      "pet-sise-250ml-kristal": {
+        "name": "Botella PET 250ml Cristal",
+        "shortDescription": "Botella modelo cristal de 250ml",
+        "description": "Botella PET modelo cristal de 250ml. Elegante patrón cristalino para champú, gel de ducha y productos de cuidado personal. Cuello Modern de 24mm."
+      },
+      "pet-sise-500ml-duz": {
+        "name": "Botella PET 500ml Lisa",
+        "shortDescription": "Botella cosmética lisa de 500ml",
+        "description": "Botella PET lisa de 500ml. Diseño liso de gran volumen para champú, acondicionador y jabón líquido. Cuello de 28mm."
+      },
+      "hdpe-sise-200ml-silindir": {
+        "name": "Botella HDPE 200ml Cilindro",
+        "shortDescription": "Botella HDPE cilíndrica de 200ml",
+        "description": "Botella HDPE cilíndrica de 200ml. Estructura resistente y opaca para envases de loción, crema y leche corporal. Cuello Classic de 24mm."
+      },
+      "pp-sise-300ml-oval": {
+        "name": "Botella PP 300ml Oval",
+        "shortDescription": "Botella PP oval de 300ml",
+        "description": "Botella PP oval de 300ml. Forma oval flexible y comprimible para champú y productos de cuidado capilar. Cuello Modern de 24mm."
+      },
+      "hdpe-sise-500ml-kare": {
+        "name": "Botella HDPE 500ml Cuadrada",
+        "shortDescription": "Botella HDPE cuadrada de 500ml",
+        "description": "Botella HDPE cuadrada de 500ml. Forma cuadrada moderna para productos de champú, gel de ducha y jabón líquido. Cuello de 28mm."
+      },
+      "kapak-18mm-vidali": {
+        "name": "Tapa rosca 18mm",
+        "shortDescription": "Tapa cosmética rosca de 18mm",
+        "description": "Tapa rosca de 18mm. Tapa rosca estándar para sueros, aceites esenciales y botellas cosméticas pequeñas."
+      },
+      "kapak-24mm-flip-top": {
+        "name": "Tapa Flip-Top 24mm",
+        "shortDescription": "Tapa cosmética flip-top de 24mm",
+        "description": "Tapa flip-top de 24mm. Tapa práctica de apertura con una mano para botellas de champú, loción y cosméticos. Compatible con cuellos Classic y Modern."
+      },
+      "kapak-24mm-disc-top": {
+        "name": "Tapa Disc-Top 24mm",
+        "shortDescription": "Tapa cosmética disc-top de 24mm",
+        "description": "Tapa disc-top de 24mm. Sistema de apertura por presión para botellas de champú, gel de ducha y loción."
+      },
+      "ic-tipa-18mm": {
+        "name": "Tapón interno 18mm",
+        "shortDescription": "Tapón interno PE de 18mm",
+        "description": "Tapón interno de 18mm. Tapón interno de PE que proporciona sellado a prueba de fugas para botellas de suero, aceites esenciales y colonia. Se usa bajo tapas de spray y gotero."
+      },
+      "damlatici-tipa-20mm": {
+        "name": "Inserto gotero 20mm",
+        "shortDescription": "Inserto gotero de 20mm",
+        "description": "Inserto gotero de 20mm. Inserto de goteo controlado para botellas de suero, gotas oftálmicas y aceites esenciales."
+      },
+      "sizdirmazlik-tipasi-24mm": {
+        "name": "Tapón de sellado 24mm",
+        "shortDescription": "Tapón de sellado de 24mm",
+        "description": "Tapón de sellado de 24mm. Elemento de sellado utilizado bajo tapas flip-top y disc-top para botellas de loción, champú y cosméticos."
+      },
+      "parmak-sprey-18mm-ince-sis": {
+        "name": "Spray de dedo 18mm Niebla fina",
+        "shortDescription": "Spray de dedo niebla fina de 18mm",
+        "description": "Mecanismo de spray de dedo de 18mm, tipo niebla fina. Proporciona atomización precisa para botellas de perfume, colonia y cosméticos pequeños."
+      },
+      "parmak-sprey-20mm-standart": {
+        "name": "Spray de dedo 20mm Estándar",
+        "shortDescription": "Spray de dedo estándar de 20mm",
+        "description": "Mecanismo de spray de dedo de 20mm. Cabezal de spray estándar para botellas de colonia, spray corporal y ambientador."
+      },
+      "parmak-sprey-24mm-parfum": {
+        "name": "Spray de dedo 24mm Perfume",
+        "shortDescription": "Spray de dedo tipo perfume de 24mm",
+        "description": "Mecanismo de spray de dedo de 24mm, tipo perfume. Potente capacidad de pulverización para botellas de colonia y spray cosmético de gran volumen."
+      },
+      "losyon-pompasi-28mm": {
+        "name": "Bomba de loción 28mm",
+        "shortDescription": "Bomba dosificadora de loción de 28mm",
+        "description": "Bomba de loción de 28mm. Mecanismo de bomba dosificadora para botellas de jabón líquido, loción y champú. Compatible con botellas de hasta 500ml gracias al tubo largo."
+      },
+      "kopuk-pompasi-28mm": {
+        "name": "Bomba de espuma 28mm",
+        "shortDescription": "Bomba productora de espuma de 28mm",
+        "description": "Bomba de espuma de 28mm. Mecanismo de bomba que produce espuma mezclada con aire para botellas de jabón de manos y espuma de limpieza facial."
+      },
+      "krem-pompasi-24mm": {
+        "name": "Bomba de crema 24mm",
+        "shortDescription": "Bomba dosificadora de crema de 24mm",
+        "description": "Bomba dosificadora de crema de 24mm. Bomba con potente capacidad de succión para lociones, cremas y productos de cuidado capilar de alta viscosidad."
+      },
+      "tetikli-puskurtucu-28mm-standart": {
+        "name": "Pulverizador de gatillo 28mm Estándar",
+        "shortDescription": "Pulverizador de gatillo estándar de 28mm",
+        "description": "Pulverizador de gatillo estándar de 28mm. Boquilla ajustable con modos de niebla y chorro para líquidos de limpieza, limpiacristales y productos multiusos."
+      },
+      "tetikli-puskurtucu-28mm-kopuklu": {
+        "name": "Pulverizador de gatillo 28mm Espuma",
+        "shortDescription": "Pulverizador de gatillo de espuma de 28mm",
+        "description": "Pulverizador de gatillo de espuma de 28mm. Mecanismo de gatillo con modo espuma y potente capacidad de pulverización para limpiadores de baño y cocina."
+      },
+      "plastik-huni-30mm": {
+        "name": "Embudo plástico 30mm",
+        "shortDescription": "Embudo de llenado cosmético de 30mm",
+        "description": "Embudo plástico con apertura de 30mm. Ideal para llenar botellas pequeñas de cosméticos, perfume y suero. Material PP, reutilizable."
+      },
+      "plastik-huni-50mm": {
+        "name": "Embudo plástico 50mm",
+        "shortDescription": "Embudo de llenado de boca ancha de 50mm",
+        "description": "Embudo plástico con apertura de 50mm. Diseño de boca ancha y flujo rápido para llenar botellas medianas y grandes."
+      }
+    },
+    "specs": {
+      "Hacim": "Volumen",
+      "Ağırlık": "Peso",
+      "Ağız": "Diámetro del cuello",
+      "Hammadde": "Material",
+      "Yükseklik": "Altura",
+      "Çap": "Diámetro",
+      "Model": "Modelo",
+      "Tip": "Tipo",
+      "Uyumluluk": "Compatibilidad",
+      "Sprey Tipi": "Tipo de spray",
+      "Dozaj": "Dosificación",
+      "Boru Uzunluğu": "Longitud del tubo",
+      "Mesh": "Filtro",
+      "Mod": "Modo",
+      "Delik": "Orificio",
+      "Ağız Çapı": "Diámetro del cuello"
+    },
+    "specValues": {
+      "Damla": "Gota",
+      "Silindir": "Cilindro",
+      "Kristal": "Cristal",
+      "Düz": "Liso",
+      "Oval": "Oval",
+      "Kare": "Cuadrado",
+      "Vidalı": "Rosca",
+      "Flip-Top": "Flip-Top",
+      "Disc-Top": "Disc-Top",
+      "İç Tıpa": "Tapón interno",
+      "Damlatıcı": "Gotero",
+      "Sızdırmazlık": "Sellado",
+      "İnce sis": "Niebla fina",
+      "Standart sis": "Niebla estándar",
+      "Parfüm": "Perfume",
+      "Losyon Pompası": "Bomba de loción",
+      "Köpük Pompası": "Bomba de espuma",
+      "Krem Pompası": "Bomba de crema",
+      "Standart Tetikli": "Gatillo estándar",
+      "Köpüklü Tetikli": "Gatillo de espuma",
+      "Mini Huni": "Mini embudo",
+      "Standart Huni": "Embudo estándar",
+      "Çift filtreli": "Doble filtro",
+      "Sis / Jet / Kapalı": "Niebla / Chorro / Cerrado",
+      "Köpük / Jet / Kapalı": "Espuma / Chorro / Cerrado",
+      "1mm kontrollü akış": "Flujo controlado de 1mm",
+      "24mm Klasik / Modern": "24mm Classic / Modern"
+    },
+    "colors": {
+      "Şeffaf": "Transparente",
+      "Amber": "Ámbar",
+      "Füme": "Ahumado",
+      "Beyaz": "Blanco",
+      "Siyah": "Negro",
+      "Mavi": "Azul",
+      "Yeşil": "Verde",
+      "Pembe": "Rosa",
+      "Kahverengi": "Marrón",
+      "Altın Yaldız": "Dorado",
+      "Gümüş": "Plateado"
+    },
+    "materials": {
+      "PET": "PET",
+      "HDPE": "HDPE",
+      "PP": "PP",
+      "LDPE": "LDPE",
+      "PE": "PE"
+    }
+  },
+  "categoryDescriptions": {
+    "pet-siseler": {
+      "name": "Botellas PET",
+      "description": "Botellas PET en diversos volúmenes y diseños para cosméticos, colonia y productos de cuidado personal."
+    },
+    "plastik-siseler": {
+      "name": "Botellas plásticas",
+      "description": "Variedad de botellas plásticas resistentes fabricadas con materiales HDPE, PP y LDPE."
+    },
+    "kapaklar": {
+      "name": "Tapas",
+      "description": "Variedades de tapas de rosca, flip-top y diseño personalizado."
+    },
+    "tipalar": {
+      "name": "Tapones",
+      "description": "Tapones internos, insertos gotero y tapones de sellado."
+    },
+    "parmak-spreyler": {
+      "name": "Sprays de dedo",
+      "description": "Mecanismos de spray de dedo para cosméticos y productos de colonia."
+    },
+    "pompalar": {
+      "name": "Bombas",
+      "description": "Bombas de loción, bombas de espuma y bombas dosificadoras de crema."
+    },
+    "tetikli-pusturtuculer": {
+      "name": "Pulverizadores de gatillo",
+      "description": "Sistemas de pulverización de gatillo para productos de limpieza y cuidado."
+    },
+    "huniler": {
+      "name": "Embudos",
+      "description": "Embudos plásticos utilizados en procesos de llenado."
+    }
+  },
+  "blogPosts": {
+    "pet-sise-uretim-sureci": {
+      "title": "Proceso de producción de botellas PET: De la materia prima al producto",
+      "excerpt": "Una mirada detallada a las etapas de producción de botellas PET, las tecnologías utilizadas y los procesos de control de calidad.",
+      "category": "Producción"
+    },
+    "kozmetik-ambalaj-trendleri-2026": {
+      "title": "Tendencias en envases cosméticos en 2026",
+      "excerpt": "Descubra las principales tendencias en envases cosméticos como la sostenibilidad, el envase inteligente y el diseño minimalista.",
+      "category": "Sector"
+    },
+    "pet-malzeme-avantajlari": {
+      "title": "¿Cuáles son las ventajas del material PET?",
+      "excerpt": "Las ventajas del PET en términos de ligereza, transparencia, reciclabilidad y envases cosméticos.",
+      "category": "Información"
+    },
+    "iso-sertifika-onemi": {
+      "title": "La importancia de las certificaciones ISO en envases cosméticos",
+      "excerpt": "La importancia de las certificaciones ISO 9001, ISO 14001 y FSSC 22000 en la industria del envase.",
+      "category": "Calidad"
+    },
+    "dogru-sise-secimi": {
+      "title": "¿Cómo elegir la botella adecuada para su negocio?",
+      "excerpt": "Criterios a tener en cuenta al seleccionar la botella adecuada para su producto.",
+      "category": "Guía"
+    },
+    "surdurulebilir-ambalaj": {
+      "title": "Envase sostenible: Producción respetuosa con el medio ambiente",
+      "excerpt": "Sobre nuestros materiales reciclables y procesos de producción ecológicos.",
+      "category": "Sostenibilidad"
+    }
+  },
+  "productData": {
+    "categories": {
+      "pet-siseler": {
+        "name": "Botellas PET",
+        "description": "Botellas PET de alta calidad para envases de cosmética y cuidado personal"
+      },
+      "plastik-siseler": {
+        "name": "Botellas de plástico",
+        "description": "Botellas de plástico duraderas de HDPE, PP y LDPE para diversas aplicaciones"
+      },
+      "kapaklar": {
+        "name": "Tapas",
+        "description": "Tapas de rosca, tapas abatibles y tapas de disco en varios tamaños"
+      },
+      "tipalar": {
+        "name": "Tapones",
+        "description": "Tapones interiores y reductores para dosificación controlada"
+      },
+      "parmak-spreyler": {
+        "name": "Sprays de dedo",
+        "description": "Bombas de pulverización fina para uso cosmético y farmacéutico"
+      },
+      "pompalar": {
+        "name": "Bombas",
+        "description": "Bombas de loción y bombas de crema para dosificación precisa"
+      },
+      "tetikli-pusturtuculer": {
+        "name": "Pulverizadores de gatillo",
+        "description": "Cabezales de pulverización de gatillo para productos de limpieza y cuidado personal"
+      },
+      "huniler": {
+        "name": "Embudos",
+        "description": "Embudos de plástico para llenado y transferencia fácil"
+      }
+    },
+    "specs": {
+      "Hacim": "Volumen",
+      "Ağırlık": "Peso",
+      "Malzeme": "Material",
+      "Boyun Çapı": "Diámetro del cuello",
+      "Yükseklik": "Altura",
+      "Genişlik": "Anchura",
+      "Derinlik": "Profundidad",
+      "Kapak Uyumu": "Compatibilidad de tapa",
+      "Renk Seçenekleri": "Opciones de color",
+      "Ağız Tipi": "Tipo de boca",
+      "Çıkış Oranı": "Tasa de salida"
+    },
+    "colors": {
+      "Şeffaf": "Transparente",
+      "Mavi": "Azul",
+      "Yeşil": "Verde",
+      "Amber": "Ámbar",
+      "Beyaz": "Blanco",
+      "Siyah": "Negro",
+      "Kırmızı": "Rojo",
+      "Sarı": "Amarillo",
+      "Altın": "Dorado",
+      "Gümüş": "Plateado",
+      "Füme": "Ahumado",
+      "Pembe": "Rosa",
+      "Mor": "Morado",
+      "Turuncu": "Naranja",
+      "Lacivert": "Azul marino",
+      "Gri": "Gris",
+      "Naturel": "Natural"
+    }
+  },
+  "compare": {
+    "title": "Comparar productos",
+    "noProducts": "No hay productos para comparar",
+    "noProductsDesc": "Añade productos desde las páginas de productos para compararlos lado a lado.",
+    "browseProducts": "Explorar productos",
+    "backToProducts": "Volver a productos",
+    "clearAll": "Borrar todo",
+    "product": "Producto",
+    "remove": "eliminar",
+    "add": "Añadir",
+    "colors": "Colores",
+    "addToQuote": "Añadir al presupuesto",
+    "continueBrowsing": "Seguir explorando productos",
+    "selectedCount": "{count} producto(s) seleccionado(s)",
+    "compare": "Comparar",
+    "category": "Categoría",
+    "volume": "Volumen",
+    "weight": "Peso",
+    "neckDiameter": "Diámetro del cuello",
+    "material": "Material"
   }
 }

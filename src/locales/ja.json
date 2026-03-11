@@ -236,7 +236,9 @@
     "productNotFound": "製品が見つかりません",
     "categoryNotFound": "カテゴリが見つかりません",
     "backToAll": "全製品に戻る",
-    "searchInCategory": "このカテゴリで検索..."
+    "searchInCategory": "このカテゴリで検索...",
+    "requestSample": "サンプル請求",
+    "preOrder": "予約注文"
   },
   "about": {
     "heroTitle": "会社概要",
@@ -423,7 +425,12 @@
     "allCategories": "すべて",
     "postNotFound": "記事が見つかりません",
     "backToBlog": "ブログに戻る",
-    "relatedPosts": "関連記事"
+    "relatedPosts": "関連記事",
+    "featured": "注目",
+    "allPosts": "すべての記事",
+    "breadcrumbHome": "ホーム",
+    "moreSoon": "もっと記事が近日公開...",
+    "newContentSoon": "新しいコンテンツを準備中"
   },
   "catalog": {
     "heroTitle": "カタログダウンロード",
@@ -659,6 +666,354 @@
     "title": "ページが見つかりません",
     "subtitle": "このページは休暇中かもしれません！",
     "description": "お探しのページは移動、削除されたか、存在しない可能性があります。以下のリンクからお進みください。",
-    "searchPlaceholder": "何をお探しですか？"
+    "searchPlaceholder": "何をお探しですか？",
+    "backToHome": "ホームに戻る",
+    "popularPages": "人気ページ",
+    "products": "製品",
+    "aboutUs": "会社概要",
+    "contact": "お問い合わせ",
+    "getQuote": "見積もり",
+    "faq": "よくある質問"
+  },
+  "productData": {
+    "categories": {
+      "pet-siseler": {
+        "name": "PETボトル",
+        "description": "化粧品・パーソナルケア包装用の高品質PETボトル"
+      },
+      "plastik-siseler": {
+        "name": "プラスチックボトル",
+        "description": "様々な用途に対応するHDPE、PP、LDPE製の丈夫なプラスチックボトル"
+      },
+      "kapaklar": {
+        "name": "キャップ",
+        "description": "スクリューキャップ、フリップトップキャップ、ディスクトップキャップ各種サイズ"
+      },
+      "tipalar": {
+        "name": "ストッパー",
+        "description": "制御された吐出のためのインナーストッパーとレデューサープラグ"
+      },
+      "parmak-spreyler": {
+        "name": "フィンガースプレー",
+        "description": "化粧品・医薬品用のファインミストフィンガースプレーポンプ"
+      },
+      "pompalar": {
+        "name": "ポンプ",
+        "description": "精密吐出用のローションポンプとクリームポンプ"
+      },
+      "tetikli-pusturtuculer": {
+        "name": "トリガースプレー",
+        "description": "清掃用品・パーソナルケア製品用のトリガースプレーヘッド"
+      },
+      "huniler": {
+        "name": "ファンネル",
+        "description": "簡単な充填・移送用のプラスチック製ファンネル"
+      }
+    },
+    "specs": {
+      "Hacim": "容量",
+      "Ağırlık": "重量",
+      "Malzeme": "素材",
+      "Boyun Çapı": "口径",
+      "Yükseklik": "高さ",
+      "Genişlik": "幅",
+      "Derinlik": "奥行き",
+      "Kapak Uyumu": "キャップ互換性",
+      "Renk Seçenekleri": "カラーオプション",
+      "Ağız Tipi": "口の種類",
+      "Çıkış Oranı": "吐出量"
+    },
+    "colors": {
+      "Şeffaf": "透明",
+      "Mavi": "ブルー",
+      "Yeşil": "グリーン",
+      "Amber": "アンバー",
+      "Beyaz": "ホワイト",
+      "Siyah": "ブラック",
+      "Kırmızı": "レッド",
+      "Sarı": "イエロー",
+      "Altın": "ゴールド",
+      "Gümüş": "シルバー",
+      "Füme": "スモーク",
+      "Pembe": "ピンク",
+      "Mor": "パープル",
+      "Turuncu": "オレンジ",
+      "Lacivert": "ネイビー",
+      "Gri": "グレー",
+      "Naturel": "ナチュラル"
+    }
+  },
+  "productCatalog": {
+    "bySlug": {
+      "pet-sise-50ml-damla": {
+        "name": "PETボトル 50ml ドロップ",
+        "shortDescription": "50mlドロップ型化粧品ボトル",
+        "description": "50mlドロップ型PETボトル。美容液、スキンケアオイル、アイケア製品向けのコンパクトデザイン。18mm口径でドロッパーやミニポンプに対応。"
+      },
+      "pet-sise-100ml-silindir": {
+        "name": "PETボトル 100ml シリンダー",
+        "shortDescription": "100mlシリンダー型化粧品ボトル",
+        "description": "100mlシリンダー型PETボトル。コロン、香水、パーソナルケア製品向けのエレガントな円筒デザイン。20mm口径。"
+      },
+      "pet-sise-250ml-kristal": {
+        "name": "PETボトル 250ml クリスタル",
+        "shortDescription": "250mlクリスタル型ボトル",
+        "description": "250mlクリスタル型PETボトル。シャンプー、ボディソープ、パーソナルケア製品向けのスタイリッシュなクリスタルパターン。24mm Modern口。"
+      },
+      "pet-sise-500ml-duz": {
+        "name": "PETボトル 500ml プレーン",
+        "shortDescription": "500mlプレーン型化粧品ボトル",
+        "description": "500mlプレーン型PETボトル。シャンプー、コンディショナー、液体ソープ向けの大容量プレーンデザイン。28mm口径。"
+      },
+      "hdpe-sise-200ml-silindir": {
+        "name": "HDPEボトル 200ml シリンダー",
+        "shortDescription": "200ml HDPEシリンダー型ボトル",
+        "description": "200ml HDPEシリンダー型ボトル。ローション、クリーム、ボディミルクのパッケージ向け耐久性のある不透明構造。24mm Classic口。"
+      },
+      "pp-sise-300ml-oval": {
+        "name": "PPボトル 300ml オーバル",
+        "shortDescription": "300ml PPオーバル型ボトル",
+        "description": "300ml PPオーバル型ボトル。シャンプーやヘアケア製品向けの柔軟で絞れるオーバルフォルム。24mm Modern口。"
+      },
+      "hdpe-sise-500ml-kare": {
+        "name": "HDPEボトル 500ml スクエア",
+        "shortDescription": "500ml HDPEスクエア型ボトル",
+        "description": "500ml HDPEスクエア型ボトル。シャンプー、ボディソープ、液体ソープ製品向けのモダンなスクエアフォルム。28mm口径。"
+      },
+      "kapak-18mm-vidali": {
+        "name": "スクリューキャップ 18mm",
+        "shortDescription": "18mm化粧品スクリューキャップ",
+        "description": "18mmスクリューキャップ。美容液、エッセンシャルオイル、小型化粧品ボトル向けの標準スクリューキャップ。"
+      },
+      "kapak-24mm-flip-top": {
+        "name": "フリップトップキャップ 24mm",
+        "shortDescription": "24mm化粧品フリップトップキャップ",
+        "description": "24mmフリップトップキャップ。シャンプー、ローション、化粧品ボトル向けの片手で開けられる実用的なキャップ。ClassicとModern口径に対応。"
+      },
+      "kapak-24mm-disc-top": {
+        "name": "ディスクトップキャップ 24mm",
+        "shortDescription": "24mm化粧品ディスクトップキャップ",
+        "description": "24mmディスクトップキャップ。シャンプー、ボディソープ、ローションボトル向けのプッシュオープンシステム。"
+      },
+      "ic-tipa-18mm": {
+        "name": "インナープラグ 18mm",
+        "shortDescription": "18mm PEインナープラグ",
+        "description": "18mmインナープラグ。美容液、エッセンシャルオイル、コロンボトルの漏れ防止密封を提供するPEインナープラグ。スプレーやドロッパーキャップの下に使用。"
+      },
+      "damlatici-tipa-20mm": {
+        "name": "ドロッパーインサート 20mm",
+        "shortDescription": "20mmドロッパーインサート",
+        "description": "20mmドロッパーインサート。美容液、目薬、エッセンシャルオイルボトル向けの制御式ドロップインサート。"
+      },
+      "sizdirmazlik-tipasi-24mm": {
+        "name": "シーリングプラグ 24mm",
+        "shortDescription": "24mmシーリングプラグ",
+        "description": "24mmシーリングプラグ。ローション、シャンプー、化粧品ボトルのフリップトップ・ディスクトップキャップ下で使用する密封部品。"
+      },
+      "parmak-sprey-18mm-ince-sis": {
+        "name": "フィンガースプレー 18mm ファインミスト",
+        "shortDescription": "18mmファインミスト・フィンガースプレー",
+        "description": "18mmフィンガースプレー機構、ファインミストタイプ。香水、コロン、小型化粧品ボトル向けの精密な霧化を実現。"
+      },
+      "parmak-sprey-20mm-standart": {
+        "name": "フィンガースプレー 20mm スタンダード",
+        "shortDescription": "20mmスタンダード・フィンガースプレー",
+        "description": "20mmフィンガースプレー機構。コロン、ボディスプレー、ルームフレグランスボトル向けの標準スプレーヘッド。"
+      },
+      "parmak-sprey-24mm-parfum": {
+        "name": "フィンガースプレー 24mm パフューム",
+        "shortDescription": "24mmパフュームタイプ・フィンガースプレー",
+        "description": "24mmフィンガースプレー機構、パフュームタイプ。大容量コロンや化粧品スプレーボトル向けの強力な噴霧能力。"
+      },
+      "losyon-pompasi-28mm": {
+        "name": "ローションポンプ 28mm",
+        "shortDescription": "28mmローション定量ポンプ",
+        "description": "28mmローションポンプ。液体ソープ、ローション、シャンプーボトル向けの定量ポンプ機構。ロングチューブで500mlボトルまで対応。"
+      },
+      "kopuk-pompasi-28mm": {
+        "name": "フォームポンプ 28mm",
+        "shortDescription": "28mm泡生成ポンプ",
+        "description": "28mmフォームポンプ。ハンドソープや洗顔フォームボトル向けの空気混合泡生成ポンプ機構。"
+      },
+      "krem-pompasi-24mm": {
+        "name": "クリームポンプ 24mm",
+        "shortDescription": "24mmクリーム定量ポンプ",
+        "description": "24mmクリーム定量ポンプ。高粘度ローション、クリーム、ヘアケア製品向けの強力な吸引能力を持つポンプ。"
+      },
+      "tetikli-puskurtucu-28mm-standart": {
+        "name": "トリガースプレー 28mm スタンダード",
+        "shortDescription": "28mmスタンダード・トリガースプレー",
+        "description": "28mmスタンダード・トリガースプレー。クリーニング液、ガラスクリーナー、多目的スプレー製品向けのミストとジェットモード付き調整式ノズル。"
+      },
+      "tetikli-puskurtucu-28mm-kopuklu": {
+        "name": "トリガースプレー 28mm フォーム",
+        "shortDescription": "28mmフォーム・トリガースプレー",
+        "description": "28mmフォーム・トリガースプレー。バスルームやキッチン用クリーナー向けのフォームモード付き強力噴霧トリガー機構。"
+      },
+      "plastik-huni-30mm": {
+        "name": "プラスチックファンネル 30mm",
+        "shortDescription": "30mm化粧品充填ファンネル",
+        "description": "30mm口径プラスチックファンネル。小容量の化粧品、香水、美容液ボトルの充填に最適。PP素材、再利用可能。"
+      },
+      "plastik-huni-50mm": {
+        "name": "プラスチックファンネル 50mm",
+        "shortDescription": "50mmワイドマウス充填ファンネル",
+        "description": "50mm口径プラスチックファンネル。中型・大型ボトルの充填用ワイドマウス高速流量デザイン。"
+      }
+    },
+    "specs": {
+      "Hacim": "容量",
+      "Ağırlık": "重量",
+      "Ağız": "口径",
+      "Hammadde": "素材",
+      "Yükseklik": "高さ",
+      "Çap": "直径",
+      "Model": "モデル",
+      "Tip": "タイプ",
+      "Uyumluluk": "互換性",
+      "Sprey Tipi": "スプレータイプ",
+      "Dozaj": "吐出量",
+      "Boru Uzunluğu": "チューブ長",
+      "Mesh": "フィルター",
+      "Mod": "モード",
+      "Delik": "オリフィス",
+      "Ağız Çapı": "口径"
+    },
+    "specValues": {
+      "Damla": "ドロップ",
+      "Silindir": "シリンダー",
+      "Kristal": "クリスタル",
+      "Düz": "プレーン",
+      "Oval": "オーバル",
+      "Kare": "スクエア",
+      "Vidalı": "スクリュー",
+      "Flip-Top": "フリップトップ",
+      "Disc-Top": "ディスクトップ",
+      "İç Tıpa": "インナープラグ",
+      "Damlatıcı": "ドロッパー",
+      "Sızdırmazlık": "シーリング",
+      "İnce sis": "ファインミスト",
+      "Standart sis": "スタンダードミスト",
+      "Parfüm": "パフューム",
+      "Losyon Pompası": "ローションポンプ",
+      "Köpük Pompası": "フォームポンプ",
+      "Krem Pompası": "クリームポンプ",
+      "Standart Tetikli": "スタンダードトリガー",
+      "Köpüklü Tetikli": "フォームトリガー",
+      "Mini Huni": "ミニファンネル",
+      "Standart Huni": "スタンダードファンネル",
+      "Çift filtreli": "ダブルフィルター",
+      "Sis / Jet / Kapalı": "ミスト / ジェット / オフ",
+      "Köpük / Jet / Kapalı": "フォーム / ジェット / オフ",
+      "1mm kontrollü akış": "1mm制御フロー",
+      "24mm Klasik / Modern": "24mm Classic / Modern"
+    },
+    "colors": {
+      "Şeffaf": "クリア",
+      "Amber": "アンバー",
+      "Füme": "スモーク",
+      "Beyaz": "ホワイト",
+      "Siyah": "ブラック",
+      "Mavi": "ブルー",
+      "Yeşil": "グリーン",
+      "Pembe": "ピンク",
+      "Kahverengi": "ブラウン",
+      "Altın Yaldız": "ゴールド",
+      "Gümüş": "シルバー"
+    },
+    "materials": {
+      "PET": "PET",
+      "HDPE": "HDPE",
+      "PP": "PP",
+      "LDPE": "LDPE",
+      "PE": "PE"
+    }
+  },
+  "categoryDescriptions": {
+    "pet-siseler": {
+      "name": "PETボトル",
+      "description": "化粧品、コロン、パーソナルケア製品向けの各種容量・デザインのPETボトル。"
+    },
+    "plastik-siseler": {
+      "name": "プラスチックボトル",
+      "description": "HDPE、PP、LDPE素材の耐久性プラスチックボトル各種。"
+    },
+    "kapaklar": {
+      "name": "キャップ",
+      "description": "スクリュー、フリップトップ、カスタムデザインのキャップ各種。"
+    },
+    "tipalar": {
+      "name": "プラグ",
+      "description": "インナープラグ、ドロッパーインサート、シーリングプラグ。"
+    },
+    "parmak-spreyler": {
+      "name": "フィンガースプレー",
+      "description": "化粧品やコロン製品向けのフィンガースプレー機構。"
+    },
+    "pompalar": {
+      "name": "ポンプ",
+      "description": "ローションポンプ、フォームポンプ、クリーム定量ポンプ。"
+    },
+    "tetikli-pusturtuculer": {
+      "name": "トリガースプレー",
+      "description": "クリーニング・ケア製品向けのトリガースプレーシステム。"
+    },
+    "huniler": {
+      "name": "ファンネル",
+      "description": "充填工程で使用するプラスチックファンネル。"
+    }
+  },
+  "blogPosts": {
+    "pet-sise-uretim-sureci": {
+      "title": "PETボトル製造工程：原料から製品まで",
+      "excerpt": "PETボトルの製造段階、使用技術、品質管理プロセスを詳しくご紹介します。",
+      "category": "製造"
+    },
+    "kozmetik-ambalaj-trendleri-2026": {
+      "title": "2026年の化粧品パッケージトレンド",
+      "excerpt": "サステナビリティ、スマートパッケージ、ミニマリストデザインなど、化粧品パッケージの最新トレンドをご紹介。",
+      "category": "業界"
+    },
+    "pet-malzeme-avantajlari": {
+      "title": "PET素材の利点とは？",
+      "excerpt": "軽量性、透明性、リサイクル性、化粧品パッケージにおけるPETの利点。",
+      "category": "情報"
+    },
+    "iso-sertifika-onemi": {
+      "title": "化粧品パッケージにおけるISO認証の重要性",
+      "excerpt": "パッケージ業界におけるISO 9001、ISO 14001、FSSC 22000認証の重要性。",
+      "category": "品質"
+    },
+    "dogru-sise-secimi": {
+      "title": "ビジネスに適したボトルの選び方",
+      "excerpt": "製品に合ったボトル選びで考慮すべき基準。",
+      "category": "ガイド"
+    },
+    "surdurulebilir-ambalaj": {
+      "title": "サステナブルパッケージ：環境配慮型生産",
+      "excerpt": "リサイクル可能な素材と環境に優しい製造プロセスについて。",
+      "category": "サステナビリティ"
+    }
+  },
+  "compare": {
+    "title": "製品比較",
+    "noProducts": "比較する製品がありません",
+    "noProductsDesc": "製品ページから製品を追加して並べて比較できます。",
+    "browseProducts": "製品を閲覧",
+    "backToProducts": "製品に戻る",
+    "clearAll": "すべてクリア",
+    "product": "製品",
+    "remove": "削除",
+    "add": "追加",
+    "colors": "カラー",
+    "addToQuote": "見積もりに追加",
+    "continueBrowsing": "製品の閲覧を続ける",
+    "selectedCount": "{count}個の製品を選択中",
+    "compare": "比較",
+    "category": "カテゴリ",
+    "volume": "容量",
+    "weight": "重量",
+    "neckDiameter": "口径",
+    "material": "素材"
   }
 }

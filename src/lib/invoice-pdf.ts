@@ -217,8 +217,8 @@ export function generateInvoiceHTML(invoice: InvoiceData): string {
     <div class="header">
       <div class="company-info">
         <h1>KISMET PLASTIK</h1>
-        <p>Kozmetik Ambalaj Sanayi ve Ticaret A.S.</p>
-        <p>Organize Sanayi Bolgesi, Istanbul / Turkiye</p>
+        <p>Kozmetik Ambalaj Sanayi ve Ticaret A.Ş.</p>
+        <p>Organize Sanayi Bölgesi, İstanbul / Türkiye</p>
         <p>Tel: +90 212 XXX XX XX</p>
         <p>info@kismetplastik.com</p>
       </div>
@@ -243,7 +243,7 @@ export function generateInvoiceHTML(invoice: InvoiceData): string {
       <thead>
         <tr>
           <th style="width: 50px; text-align: center;">#</th>
-          <th style="text-align: left;">Urun / Hizmet</th>
+          <th style="text-align: left;">Ürün / Hizmet</th>
           <th style="width: 80px; text-align: center;">Miktar</th>
           <th style="width: 120px; text-align: right;">Birim Fiyat</th>
           <th style="width: 120px; text-align: right;">Toplam</th>
@@ -272,11 +272,11 @@ export function generateInvoiceHTML(invoice: InvoiceData): string {
     </div>
 
     <div class="footer">
-      <p>Bu fatura elektronik ortamda olusturulmustur.</p>
-      <p>Kismet Plastik Kozmetik Ambalaj San. ve Tic. A.S.</p>
+      <p>Bu fatura elektronik ortamda oluşturulmuştur.</p>
+      <p>Kısmet Plastik Kozmetik Ambalaj San. ve Tic. A.Ş.</p>
     </div>
 
-    <button class="print-btn no-print" onclick="window.print()">Yazdir / PDF Olarak Kaydet</button>
+    <button class="print-btn no-print" onclick="window.print()">Yazdır / PDF Olarak Kaydet</button>
   </div>
 </body>
 </html>`;

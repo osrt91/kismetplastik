@@ -9,16 +9,16 @@ export async function generateMetadata({
   const isTr = locale === "tr";
 
   return {
-    title: isTr ? "Tarihce | Kismet Plastik" : "History | Kismet Plastik",
+    title: isTr ? "Tarihçe | Kısmet Plastik" : "History | Kismet Plastik",
     description: isTr
-      ? "Kismet Plastik'in 1969'dan bugune uzanan yolculugu. Kozmetik ambalaj sektorunde yarim asri askin deneyim ve kilometre taslari."
+      ? "Kısmet Plastik'in 1969'dan bugüne uzanan yolculuğu. Kozmetik ambalaj sektöründe yarım asrı aşkın deneyim ve kilometre taşları."
       : "Kismet Plastik's journey from 1969 to the present. Over half a century of experience and milestones in the cosmetic packaging industry.",
     openGraph: {
       title: isTr
-        ? "Tarihce | Kismet Plastik"
+        ? "Tarihçe | Kısmet Plastik"
         : "History | Kismet Plastik",
       description: isTr
-        ? "1969'dan bugune kozmetik ambalaj sektorunde yarim asri askin deneyim."
+        ? "1969'dan bugüne kozmetik ambalaj sektöründe yarım asrı aşkın deneyim."
         : "Over half a century of experience in cosmetic packaging since 1969.",
     },
   };

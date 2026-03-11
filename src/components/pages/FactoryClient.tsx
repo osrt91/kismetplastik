@@ -37,56 +37,56 @@ interface GalleryPhoto {
 const galleryPhotos: GalleryPhoto[] = [
   {
     id: 1,
-    title: "Enjeksiyon Uretim Hatti",
+    title: "Enjeksiyon Üretim Hattı",
     titleEn: "Injection Production Line",
     gradient: "bg-gradient-to-br from-[#0A1628] via-[#1a2d4a] to-[#0A1628]",
     icon: Thermometer,
   },
   {
     id: 2,
-    title: "Sisirme Makineleri",
+    title: "Şişirme Makineleri",
     titleEn: "Blow Molding Machines",
     gradient: "bg-gradient-to-br from-[#1a2d4a] via-[#0A1628] to-[#1a3050]",
     icon: Zap,
   },
   {
     id: 3,
-    title: "Kalite Kontrol Laboratuvari",
+    title: "Kalite Kontrol Laboratuvarı",
     titleEn: "Quality Control Laboratory",
     gradient: "bg-gradient-to-br from-[#0A1628] to-[#F59E0B]/20",
     icon: Shield,
   },
   {
     id: 4,
-    title: "Hammadde Depo Alani",
+    title: "Hammadde Depo Alanı",
     titleEn: "Raw Material Storage Area",
     gradient: "bg-gradient-to-br from-[#1a3050] via-[#0A1628] to-[#0d1e36]",
     icon: Package,
   },
   {
     id: 5,
-    title: "Kalip Atolyesi",
+    title: "Kalıp Atölyesi",
     titleEn: "Mold Workshop",
     gradient: "bg-gradient-to-br from-[#0d1e36] to-[#0A1628]",
     icon: Cog,
   },
   {
     id: 6,
-    title: "Paketleme Hatti",
+    title: "Paketleme Hattı",
     titleEn: "Packaging Line",
     gradient: "bg-gradient-to-br from-[#0A1628] via-[#1a2d4a] to-[#F59E0B]/10",
     icon: Droplets,
   },
   {
     id: 7,
-    title: "Urun Showroom",
+    title: "Ürün Showroom",
     titleEn: "Product Showroom",
     gradient: "bg-gradient-to-br from-[#F59E0B]/15 via-[#0A1628] to-[#1a2d4a]",
     icon: Camera,
   },
   {
     id: 8,
-    title: "Idari Bina ve Ofisler",
+    title: "İdari Bina ve Ofisler",
     titleEn: "Administrative Building & Offices",
     gradient: "bg-gradient-to-br from-[#1a2d4a] to-[#0A1628]",
     icon: Factory,
@@ -103,7 +103,7 @@ interface FactoryStat {
 const factoryStats: FactoryStat[] = [
   {
     value: "10,000+",
-    label: "m\u00B2 Uretim Alani",
+    label: "m\u00B2 Üretim Alanı",
     labelEn: "sqm Production Area",
     icon: Ruler,
   },
@@ -115,13 +115,13 @@ const factoryStats: FactoryStat[] = [
   },
   {
     value: "1M+",
-    label: "Aylik Uretim",
+    label: "Aylık Üretim",
     labelEn: "Monthly Production",
     icon: Package,
   },
   {
     value: "200+",
-    label: "Calisan",
+    label: "Çalışan",
     labelEn: "Employees",
     icon: Users,
   },
@@ -209,11 +209,11 @@ export default function FactoryClient() {
             </nav>
 
             <h1 className="mb-4 text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
-              {isTr ? "Uretim Tesisimiz" : "Our Production Facility"}
+              {isTr ? "Üretim Tesisimiz" : "Our Production Facility"}
             </h1>
             <p className="max-w-2xl text-lg text-white/70">
               {isTr
-                ? "Modern makine parkuru ve yuksek kapasiteli uretim hatlariyla kozmetik ambalaj sektorunun guvenilir tedarikCisi."
+                ? "Modern makine parkuru ve yüksek kapasiteli üretim hatlarıyla kozmetik ambalaj sektörünün güvenilir tedarikçisi."
                 : "A reliable supplier in the cosmetic packaging sector with modern machinery and high-capacity production lines."}
             </p>
           </AnimateOnScroll>
@@ -225,14 +225,14 @@ export default function FactoryClient() {
         <AnimateOnScroll animation="fade-up">
           <div className="mb-12 text-center">
             <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-[#F59E0B]">
-              {isTr ? "Tanitim Videosu" : "Introduction Video"}
+              {isTr ? "Tanıtım Videosu" : "Introduction Video"}
             </span>
             <h2 className="mb-4 text-3xl font-extrabold text-[#0A1628] sm:text-4xl">
-              {isTr ? "Fabrikamizi Kesfet" : "Explore Our Factory"}
+              {isTr ? "Fabrikamızı Keşfet" : "Explore Our Factory"}
             </h2>
             <p className="mx-auto max-w-2xl text-neutral-500">
               {isTr
-                ? "Uretim sureclerimizi ve modern tesisimizi yakindan taniyin."
+                ? "Üretim süreçlerimizi ve modern tesisimizi yakından tanıyın."
                 : "Get to know our production processes and modern facility up close."}
             </p>
           </div>
@@ -272,7 +272,7 @@ export default function FactoryClient() {
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
                 <p className="text-sm font-medium text-white/80">
                   {isTr
-                    ? "Kismet Plastik - Fabrika Tanitim Videosu"
+                    ? "Kısmet Plastik - Fabrika Tanıtım Videosu"
                     : "Kismet Plastik - Factory Tour Video"}
                 </p>
               </div>
@@ -296,7 +296,7 @@ export default function FactoryClient() {
               </h2>
               <p className="mx-auto max-w-2xl text-neutral-500">
                 {isTr
-                  ? "Uretim hatlarimiz, laboratuvarimiz ve calisma alanlarimiz."
+                  ? "Üretim hatlarımız, laboratuvarımız ve çalışma alanlarımız."
                   : "Our production lines, laboratory and working areas."}
               </p>
             </div>
@@ -362,7 +362,7 @@ export default function FactoryClient() {
             </h2>
             <p className="mx-auto max-w-2xl text-neutral-500">
               {isTr
-                ? "Uretim tesisimizi 360 derece sanal tur ile kesfet."
+                ? "Üretim tesisimizi 360 derece sanal tur ile keşfet."
                 : "Explore our production facility with a 360-degree virtual tour."}
             </p>
           </div>
@@ -396,7 +396,7 @@ export default function FactoryClient() {
                     {isTr ? "360\u00B0 Sanal Tur" : "360\u00B0 Virtual Tour"}
                   </p>
                   <p className="mt-1 text-sm text-white/50">
-                    {isTr ? "Cok yakinda..." : "Coming soon..."}
+                    {isTr ? "Çok yakında..." : "Coming soon..."}
                   </p>
                 </div>
               </div>
@@ -430,7 +430,7 @@ export default function FactoryClient() {
               </span>
               <h2 className="mb-4 text-3xl font-extrabold text-white sm:text-4xl">
                 {isTr
-                  ? "Uretim Gucumuz"
+                  ? "Üretim Gücümüz"
                   : "Our Production Power"}
               </h2>
             </div>

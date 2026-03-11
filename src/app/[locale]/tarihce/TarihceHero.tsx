@@ -9,11 +9,11 @@ export default function TarihceHero() {
   const { locale, dict } = useLocale();
   const nav = dict.nav;
 
-  const title = locale === "en" ? "Our History" : "Tarihcemiz";
+  const title = locale === "en" ? "Our History" : "Tarihçemiz";
   const subtitle =
     locale === "en"
       ? "Since 1969, Kismet Plastik has been a trusted name in cosmetic packaging. Explore the milestones that define our journey."
-      : "1969'dan bu yana Kismet Plastik, kozmetik ambalaj sektorunun guvenilir ismi. Yolculugumuzu sekillendiren kilometre taslarini kesfedin.";
+      : "1969'dan bu yana Kısmet Plastik, kozmetik ambalaj sektörünün güvenilir ismi. Yolculuğumuzu şekillendiren kilometre taşlarını keşfedin.";
 
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-700 to-primary-900 py-20 lg:py-28">

@@ -397,7 +397,7 @@ export default function AdminQuoteDetailPage({
             <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               {respondSuccess && (
                 <p className="text-xs text-green-600">
-                  E-posta gonderildi ve durum &quot;Yanıtlandı&quot; olarak guncellendi.
+                  E-posta gönderildi ve durum &quot;Yanıtlandı&quot; olarak güncellendi.
                 </p>
               )}
               {respondError && (

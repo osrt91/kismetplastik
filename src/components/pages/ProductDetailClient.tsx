@@ -21,6 +21,8 @@ import RecentProducts from "@/components/sections/RecentProducts";
 import { useRecentProducts } from "@/hooks/useRecentProducts";
 import { useLocale } from "@/contexts/LocaleContext";
 import StockBadge from "@/components/ui/StockBadge";
+import { toIntlLocale } from "@/lib/locales";
+import { getProductTranslation, getCategoryTranslation, getSpecTranslation } from "@/lib/product-i18n";
 
 const Product3DViewer = lazy(() => import("@/components/ui/Product3DViewer"));
 
@@ -42,6 +44,9 @@ export default function ProductDetailClient() {
     if (product) addRecent(product.id);
   }, [product, addRecent]);
 
+  const translated = product ? getProductTranslation(product, dict) : { name: "", shortDescription: "", description: "" };
+  const catT = category ? getCategoryTranslation(category, dict) : { name: "", description: "" };
+
   if (!product || !category) {
     return (
       <section className="flex min-h-[60vh] items-center justify-center bg-neutral-50 dark:bg-neutral-900">
@@ -58,12 +63,12 @@ export default function ProductDetailClient() {
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: product.name,
-    description: product.description,
+    name: translated.name,
+    description: translated.description,
     brand: { "@type": "Brand", name: "Kısmet Plastik" },
     manufacturer: { "@type": "Organization", name: "Kısmet Plastik Kozmetik Ambalaj ve Kalıp San. Tic. Ltd. Şti." },
     material: product.material,
-    category: category.name,
+    category: catT.name,
     offers: {
       "@type": "Offer",
       availability: product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
@@ -86,10 +91,10 @@ export default function ProductDetailClient() {
           <Link href="/urunler" className="transition-colors hover:text-[#0A1628] dark:hover:text-neutral-200">{p.breadcrumbProducts}</Link>
           <ChevronRight size={14} />
           <Link href={`/urunler/${category.slug}`} className="font-medium text-[#F59E0B] transition-colors hover:text-[#D97706]">
-            {category.name}
+            {catT.name}
           </Link>
           <ChevronRight size={14} />
-          <span className="font-semibold text-[#0A1628] dark:text-white">{product.name}</span>
+          <span className="font-semibold text-[#0A1628] dark:text-white">{translated.name}</span>
         </nav>
 
         <Link
@@ -97,7 +102,7 @@ export default function ProductDetailClient() {
           className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-[#0A1628] transition-colors hover:text-[#F59E0B] dark:text-neutral-300 dark:hover:text-[#F59E0B]"
         >
           <ArrowLeft size={16} />
-          {category.name} {p.backToCategory}
+          {catT.name} {p.backToCategory}
         </Link>
 
         <div className="grid gap-10 lg:grid-cols-2">
@@ -156,14 +161,14 @@ export default function ProductDetailClient() {
             <div>
               {/* Category label */}
               <span className="mb-2 inline-block rounded-full bg-[#F59E0B]/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#F59E0B]">
-                {category.name}
+                {catT.name}
               </span>
               {/* Product title - navy */}
               <h1 className="mb-3 text-2xl font-extrabold tracking-tight text-[#0A1628] dark:text-white sm:text-3xl lg:text-4xl">
-                {product.name}
+                {translated.name}
               </h1>
               <p className="mb-6 text-base leading-relaxed text-neutral-500 dark:text-neutral-400">
-                {product.description}
+                {translated.description}
               </p>
 
               <div className="mb-6 flex flex-wrap gap-2">
@@ -186,7 +191,9 @@ export default function ProductDetailClient() {
                   </h3>
                 </div>
                 <div className="divide-y divide-neutral-100 dark:divide-neutral-700/50">
-                  {product.specs.map((spec, index) => (
+                  {product.specs.map((spec, index) => {
+                    const ts = getSpecTranslation(spec, dict);
+                    return (
                     <div
                       key={spec.label}
                       className={`flex items-center justify-between px-5 py-3 transition-colors hover:bg-[#F59E0B]/5 ${
@@ -195,10 +202,11 @@ export default function ProductDetailClient() {
                           : "bg-white dark:bg-[#111827]/50"
                       }`}
                     >
-                      <span className="text-sm text-neutral-500 dark:text-neutral-400">{spec.label}</span>
-                      <span className="text-sm font-semibold text-[#0A1628] dark:text-neutral-100">{spec.value}</span>
+                      <span className="text-sm text-neutral-500 dark:text-neutral-400">{ts.label}</span>
+                      <span className="text-sm font-semibold text-[#0A1628] dark:text-neutral-100">{ts.value}</span>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
@@ -206,7 +214,7 @@ export default function ProductDetailClient() {
               <div className="mb-8 rounded-xl border border-[#F59E0B]/30 bg-[#F59E0B]/5 p-4 dark:border-[#F59E0B]/20 dark:bg-[#F59E0B]/5">
                 <p className="text-sm text-[#0A1628] dark:text-neutral-200">
                   <span className="font-bold">{cm.minOrder}:</span>{" "}
-                  {product.minOrder.toLocaleString("tr-TR")} {cm.pieces}
+                  {product.minOrder.toLocaleString(toIntlLocale(locale))} {cm.pieces}
                 </p>
               </div>
 
@@ -224,14 +232,14 @@ export default function ProductDetailClient() {
                   className="group inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#F59E0B] bg-transparent px-6 py-3.5 text-base font-bold text-[#F59E0B] transition-all duration-300 hover:bg-[#F59E0B] hover:text-[#0A1628] hover:shadow-lg hover:shadow-[#F59E0B]/25 hover:-translate-y-0.5 active:scale-[0.98]"
                 >
                   <CheckCircle2 size={18} className="transition-transform group-hover:scale-110" />
-                  {locale === "tr" ? "Numune Talep Et" : "Request Sample"}
+                  {p.requestSample}
                 </Link>
                 {!product.inStock && (
                   <Link
                     href="/on-siparis"
                     className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#0A1628] px-6 py-3.5 text-base font-bold text-white shadow-lg transition-all duration-300 hover:bg-[#152B55] hover:-translate-y-0.5 active:scale-[0.98] dark:bg-white dark:text-[#0A1628] dark:hover:bg-neutral-200"
                   >
-                    {locale === "tr" ? "Ön Sipariş Ver" : "Pre-Order"}
+                    {p.preOrder}
                   </Link>
                 )}
                 <a
@@ -250,7 +258,7 @@ export default function ProductDetailClient() {
       </div>
 
       <StickyQuoteBar
-        productName={product.name}
+        productName={translated.name}
         volume={product.volume}
         material={product.material}
       />

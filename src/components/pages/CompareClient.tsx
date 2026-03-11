@@ -13,39 +13,15 @@ import {
 import { useCompareStore, type CompareProduct } from "@/store/useCompareStore";
 import { useLocale } from "@/contexts/LocaleContext";
 import { cn } from "@/lib/utils";
+import { getColorTranslation, getCategoryNameBySlug } from "@/lib/product-i18n";
 
-interface SpecRow {
-  key: keyof CompareProduct;
-  labelTr: string;
-  labelEn: string;
-}
-
-const specRows: SpecRow[] = [
-  { key: "category", labelTr: "Kategori", labelEn: "Category" },
-  { key: "volume", labelTr: "Hacim", labelEn: "Volume" },
-  { key: "weight", labelTr: "Ağırlık", labelEn: "Weight" },
-  { key: "neckDiameter", labelTr: "Boyun Çapı", labelEn: "Neck Diameter" },
-  { key: "material", labelTr: "Malzeme", labelEn: "Material" },
-];
-
-const categoryLabels: Record<string, { tr: string; en: string }> = {
-  "pet-siseler": { tr: "PET Şişeler", en: "PET Bottles" },
-  "plastik-siseler": { tr: "Plastik Şişeler", en: "Plastic Bottles" },
-  kapaklar: { tr: "Kapaklar", en: "Caps" },
-  tipalar: { tr: "Tipalar", en: "Stoppers" },
-  "parmak-spreyler": { tr: "Parmak Spreyler", en: "Finger Sprays" },
-  pompalar: { tr: "Pompalar", en: "Pumps" },
-  "tetikli-pusturtuculer": { tr: "Tetikli Püskürtücüler", en: "Trigger Sprayers" },
-  huniler: { tr: "Huniler", en: "Funnels" },
-};
-
-function getCellValue(product: CompareProduct, key: keyof CompareProduct, locale: string): string {
+function getCellValue(product: CompareProduct, key: keyof CompareProduct, dict: Record<string, unknown>): string {
   const val = product[key];
   if (key === "category" && typeof val === "string") {
-    return categoryLabels[val]?.[locale as "tr" | "en"] ?? val;
+    return getCategoryNameBySlug(val, dict as never) ?? val;
   }
   if (Array.isArray(val)) {
-    return val.join(", ");
+    return val.map((c) => getColorTranslation(c, dict as never)).join(", ");
   }
   if (val === undefined || val === null || val === "") {
     return "-";
@@ -64,7 +40,8 @@ function isDifferent(items: CompareProduct[], key: keyof CompareProduct): boolea
 }
 
 export default function CompareClient() {
-  const { locale } = useLocale();
+  const { dict } = useLocale();
+  const cmp = dict.compare;
   const { items, removeItem, clearAll } = useCompareStore();
   const [mounted, setMounted] = useState(false);
 
@@ -72,6 +49,14 @@ export default function CompareClient() {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration guard for persisted store
     setMounted(true);
   }, []);
+
+  const specRows = [
+    { key: "category" as keyof CompareProduct, label: cmp.category },
+    { key: "volume" as keyof CompareProduct, label: cmp.volume },
+    { key: "weight" as keyof CompareProduct, label: cmp.weight },
+    { key: "neckDiameter" as keyof CompareProduct, label: cmp.neckDiameter },
+    { key: "material" as keyof CompareProduct, label: cmp.material },
+  ];
 
   if (!mounted) {
     return (
@@ -95,14 +80,10 @@ export default function CompareClient() {
             <GitCompareArrows className="h-10 w-10 text-[#0A1628]/30" />
           </div>
           <h1 className="mb-3 text-2xl font-bold text-[#0A1628]">
-            {locale === "en"
-              ? "No Products to Compare"
-              : "Karşılaştırılacak Ürün Yok"}
+            {cmp.noProducts}
           </h1>
           <p className="mb-8 max-w-md text-[var(--neutral-700)]">
-            {locale === "en"
-              ? "Add products from the product pages to compare them side by side."
-              : "Ürün sayfalarından ürün ekleyerek yan yana karşılaştırma yapabilirsiniz."}
+            {cmp.noProductsDesc}
           </p>
           <Link
             href="/urunler"
@@ -113,7 +94,7 @@ export default function CompareClient() {
             )}
           >
             <Package className="h-4 w-4" />
-            {locale === "en" ? "Browse Products" : "Ürünlere Göz At"}
+            {cmp.browseProducts}
           </Link>
         </div>
       </section>
@@ -129,18 +110,16 @@ export default function CompareClient() {
             <Link
               href="/urunler"
               className="rounded-lg p-2 text-[var(--neutral-500)] transition-colors hover:bg-[var(--neutral-100)] hover:text-[#0A1628]"
-              aria-label={locale === "en" ? "Back to products" : "Ürünlere dön"}
+              aria-label={cmp.backToProducts}
             >
               <ArrowLeft className="h-5 w-5" />
             </Link>
             <div>
               <h1 className="text-xl font-bold text-[#0A1628] sm:text-2xl">
-                {locale === "en" ? "Compare Products" : "Ürün Karşılaştırma"}
+                {cmp.title}
               </h1>
               <p className="text-sm text-[var(--neutral-500)]">
-                {locale === "en"
-                  ? `${items.length} product${items.length > 1 ? "s" : ""} selected`
-                  : `${items.length} ürün seçildi`}
+                {cmp.selectedCount.replace("{count}", String(items.length))}
               </p>
             </div>
           </div>
@@ -152,7 +131,7 @@ export default function CompareClient() {
               "text-[var(--neutral-500)] transition-colors hover:bg-[var(--neutral-100)] hover:text-[#0A1628]"
             )}
           >
-            {locale === "en" ? "Clear All" : "Tümünü Temizle"}
+            {cmp.clearAll}
           </button>
         </div>
       </div>
@@ -165,7 +144,7 @@ export default function CompareClient() {
             <thead>
               <tr className="border-b border-[var(--border)]">
                 <th className="w-[160px] bg-[var(--neutral-50)] px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-[var(--neutral-500)] sm:w-[200px]">
-                  {locale === "en" ? "Product" : "Ürün"}
+                  {cmp.product}
                 </th>
                 {items.map((item) => (
                   <th
@@ -180,7 +159,7 @@ export default function CompareClient() {
                         "absolute right-2 top-2 rounded-full p-1",
                         "text-[var(--neutral-300)] transition-colors hover:bg-[var(--neutral-100)] hover:text-[var(--neutral-700)]"
                       )}
-                      aria-label={`${item.name} ${locale === "en" ? "remove" : "kaldır"}`}
+                      aria-label={`${item.name} ${cmp.remove}`}
                     >
                       <X className="h-4 w-4" />
                     </button>
@@ -223,7 +202,7 @@ export default function CompareClient() {
                     >
                       <span className="text-2xl">+</span>
                       <span className="mt-1 text-xs">
-                        {locale === "en" ? "Add" : "Ekle"}
+                        {cmp.add}
                       </span>
                     </Link>
                   </th>
@@ -244,10 +223,10 @@ export default function CompareClient() {
                     )}
                   >
                     <td className="bg-[var(--neutral-50)] px-4 py-3 text-sm font-medium text-[var(--neutral-700)]">
-                      {locale === "en" ? row.labelEn : row.labelTr}
+                      {row.label}
                     </td>
                     {items.map((item) => {
-                      const value = getCellValue(item, row.key, locale);
+                      const value = getCellValue(item, row.key, dict);
                       return (
                         <td
                           key={item.slug}
@@ -276,7 +255,7 @@ export default function CompareClient() {
               {/* Colors row (special handling) */}
               <tr className="border-b border-[var(--border)]">
                 <td className="bg-[var(--neutral-50)] px-4 py-3 text-sm font-medium text-[var(--neutral-700)]">
-                  {locale === "en" ? "Colors" : "Renkler"}
+                  {cmp.colors}
                 </td>
                 {items.map((item) => {
                   const hasDifference = isDifferent(items, "colors");
@@ -300,7 +279,7 @@ export default function CompareClient() {
                                 hasDifference && "font-semibold text-[#92400e]"
                               )}
                             >
-                              {color}
+                              {getColorTranslation(color, dict)}
                             </span>
                           ))}
                         </div>
@@ -335,7 +314,7 @@ export default function CompareClient() {
                       )}
                     >
                       <ShoppingCart className="h-4 w-4" />
-                      {locale === "en" ? "Add to Quote" : "Teklife Ekle"}
+                      {cmp.addToQuote}
                     </Link>
                   </td>
                 ))}
@@ -357,7 +336,7 @@ export default function CompareClient() {
             )}
           >
             <ArrowLeft className="h-4 w-4" />
-            {locale === "en" ? "Continue browsing products" : "Ürünlere göz atmaya devam et"}
+            {cmp.continueBrowsing}
           </Link>
         </div>
       </div>

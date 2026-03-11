@@ -29,7 +29,7 @@ export async function POST(
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
   const { ok: allowed } = rateLimit(`admin:quotes:${ip}`, { limit: 60, windowMs: 60_000 });
   if (!allowed) {
-    return NextResponse.json({ success: false, error: "Cok fazla istek" }, { status: 429 });
+    return NextResponse.json({ success: false, error: "Çok fazla istek" }, { status: 429 });
   }
 
   const sbError = requireSupabase();

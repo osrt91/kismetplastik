@@ -23,12 +23,12 @@ export default async function TarihcePage({
           <h2 className="text-2xl font-extrabold text-primary-900 dark:text-white sm:text-3xl">
             {locale === "en"
               ? "Milestones That Shape Us"
-              : "Bizi Sekillendiren Kilometre Taslari"}
+              : "Bizi Şekillendiren Kilometre Taşları"}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-neutral-600 dark:text-neutral-300">
             {locale === "en"
               ? "From a small workshop to a global brand, discover the key moments in our journey spanning over half a century."
-              : "Kucuk bir atolyeden global bir markaya, yarim asri askin yolculugumuzun onemli anlarini kesfedin."}
+              : "Küçük bir atölyeden global bir markaya, yarım asrı aşkın yolculuğumuzun önemli anlarını keşfedin."}
           </p>
         </div>
 

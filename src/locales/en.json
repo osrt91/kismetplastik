@@ -178,6 +178,8 @@
     "availableColors": "Available Colors",
     "requestQuoteFor": "Request Quote for This Product",
     "callNow": "Call Now",
+    "requestSample": "Request Sample",
+    "preOrder": "Pre-Order",
     "backToCategory": "Back to category",
     "productNotFound": "Product not found",
     "categoryNotFound": "Category not found",
@@ -369,7 +371,45 @@
     "allCategories": "All",
     "postNotFound": "Post not found",
     "backToBlog": "Back to blog",
-    "relatedPosts": "Related Posts"
+    "relatedPosts": "Related Posts",
+    "featured": "Featured",
+    "allPosts": "All Posts",
+    "breadcrumbHome": "Home",
+    "moreSoon": "More articles coming soon...",
+    "newContentSoon": "New content is being prepared",
+    "selectedCount": "{count} products selected"
+  },
+  "compare": {
+    "title": "Compare Products",
+    "noProducts": "No Products to Compare",
+    "noProductsDesc": "Add products from the product pages to compare them side by side.",
+    "browseProducts": "Browse Products",
+    "backToProducts": "Back to products",
+    "clearAll": "Clear All",
+    "product": "Product",
+    "remove": "remove",
+    "add": "Add",
+    "colors": "Colors",
+    "addToQuote": "Add to Quote",
+    "continueBrowsing": "Continue browsing products",
+    "selectedCount": "{count} product(s) selected",
+    "compare": "Compare",
+    "category": "Category",
+    "volume": "Volume",
+    "weight": "Weight",
+    "neckDiameter": "Neck Diameter",
+    "material": "Material"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for may have been moved, removed, or never existed.",
+    "backToHome": "Back to Home",
+    "popularPages": "Popular Pages",
+    "products": "Products",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "getQuote": "Get Quote",
+    "faq": "FAQ"
   },
   "catalog": {
     "heroTitle": "Download Catalog",
@@ -606,5 +646,301 @@
     "subtitle": "This page might be on vacation!",
     "description": "The page you're looking for may have been moved, deleted, or never existed. You can continue from the links below.",
     "searchPlaceholder": "What were you looking for?"
+  },
+  "productCatalog": {
+    "bySlug": {
+      "pet-sise-50ml-damla": {
+        "name": "PET Bottle 50ml Drop",
+        "shortDescription": "50ml drop model cosmetic bottle",
+        "description": "50ml drop model PET bottle. Compact design for serums, skin care oils, and eye contour care products. Compatible with droppers or mini pumps via 18mm neck diameter."
+      },
+      "pet-sise-100ml-silindir": {
+        "name": "PET Bottle 100ml Cylinder",
+        "shortDescription": "100ml cylinder cosmetic bottle",
+        "description": "100ml cylinder model PET bottle. Elegant cylindrical design for cologne, perfume, and personal care products. 20mm neck diameter."
+      },
+      "pet-sise-250ml-kristal": {
+        "name": "PET Bottle 250ml Crystal",
+        "shortDescription": "250ml crystal model bottle",
+        "description": "250ml crystal model PET bottle. Stylish crystal pattern for shampoo, shower gel, and personal care products. 24mm Modern neck."
+      },
+      "pet-sise-500ml-duz": {
+        "name": "PET Bottle 500ml Plain",
+        "shortDescription": "500ml plain model cosmetic bottle",
+        "description": "500ml plain model PET bottle. High-volume plain design for shampoo, conditioner, and liquid soap. 28mm neck diameter."
+      },
+      "hdpe-sise-200ml-silindir": {
+        "name": "HDPE Bottle 200ml Cylinder",
+        "shortDescription": "200ml HDPE cylinder bottle",
+        "description": "200ml HDPE cylinder bottle. Durable, opaque structure for lotion, cream, and body milk packaging. 24mm Classic neck."
+      },
+      "pp-sise-300ml-oval": {
+        "name": "PP Bottle 300ml Oval",
+        "shortDescription": "300ml PP oval bottle",
+        "description": "300ml PP oval bottle. Flexible, squeezable oval form for shampoo and hair care products. 24mm Modern neck."
+      },
+      "hdpe-sise-500ml-kare": {
+        "name": "HDPE Bottle 500ml Square",
+        "shortDescription": "500ml HDPE square bottle",
+        "description": "500ml HDPE square bottle. Modern square form for shampoo, shower gel, and liquid soap products. 28mm neck diameter."
+      },
+      "kapak-18mm-vidali": {
+        "name": "Cap 18mm Screw",
+        "shortDescription": "18mm screw cosmetic cap",
+        "description": "18mm screw cap. Standard screw cap for serums, essential oils, and small cosmetic bottles."
+      },
+      "kapak-24mm-flip-top": {
+        "name": "Cap 24mm Flip-Top",
+        "shortDescription": "24mm flip-top cosmetic cap",
+        "description": "24mm flip-top cap. Practical one-hand opening cap for shampoo, lotion, and cosmetic bottles. Compatible with Classic and Modern necks."
+      },
+      "kapak-24mm-disc-top": {
+        "name": "Cap 24mm Disc-Top",
+        "shortDescription": "24mm disc-top cosmetic cap",
+        "description": "24mm disc-top cap. Push-open disc-top system for shampoo, shower gel, and lotion bottles."
+      },
+      "ic-tipa-18mm": {
+        "name": "Inner Plug 18mm",
+        "shortDescription": "18mm PE inner plug",
+        "description": "18mm inner plug. PE inner plug providing leak-proof seal for serum, essential oil, and cologne bottles. Used under spray and dropper caps."
+      },
+      "damlatici-tipa-20mm": {
+        "name": "Dropper Insert 20mm",
+        "shortDescription": "20mm dropper insert",
+        "description": "20mm dropper insert. Controlled dripping insert for serum, eye drop, and essential oil bottles."
+      },
+      "sizdirmazlik-tipasi-24mm": {
+        "name": "Sealing Plug 24mm",
+        "shortDescription": "24mm sealing plug",
+        "description": "24mm sealing plug. Sealing element used under flip-top and disc-top caps for lotion, shampoo, and cosmetic bottles."
+      },
+      "parmak-sprey-18mm-ince-sis": {
+        "name": "Finger Spray 18mm Fine Mist",
+        "shortDescription": "18mm fine mist finger spray",
+        "description": "18mm finger spray mechanism, fine mist type. Provides precise atomization for perfume, cologne, and small cosmetic bottles."
+      },
+      "parmak-sprey-20mm-standart": {
+        "name": "Finger Spray 20mm Standard",
+        "shortDescription": "20mm standard finger spray",
+        "description": "20mm finger spray mechanism. Standard spray head for cologne, body spray, and room fragrance bottles."
+      },
+      "parmak-sprey-24mm-parfum": {
+        "name": "Finger Spray 24mm Perfume",
+        "shortDescription": "24mm perfume type finger spray",
+        "description": "24mm finger spray mechanism, perfume type. Powerful spray capacity for large-volume cologne and cosmetic spray bottles."
+      },
+      "losyon-pompasi-28mm": {
+        "name": "Lotion Pump 28mm",
+        "shortDescription": "28mm lotion dispensing pump",
+        "description": "28mm lotion pump. Metered pump mechanism for liquid soap, lotion, and shampoo bottles. Compatible with bottles up to 500ml via long dip tube."
+      },
+      "kopuk-pompasi-28mm": {
+        "name": "Foam Pump 28mm",
+        "shortDescription": "28mm foam producing pump",
+        "description": "28mm foam pump. Air-mixed foam producing pump mechanism for hand wash liquid and facial cleansing foam bottles."
+      },
+      "krem-pompasi-24mm": {
+        "name": "Cream Pump 24mm",
+        "shortDescription": "24mm cream dispensing pump",
+        "description": "24mm cream dispensing pump. Pump with powerful suction capacity for thick-viscosity lotion, cream, and hair care products."
+      },
+      "tetikli-puskurtucu-28mm-standart": {
+        "name": "Trigger Sprayer 28mm Standard",
+        "shortDescription": "28mm standard trigger sprayer",
+        "description": "28mm standard trigger sprayer. Adjustable nozzle with mist and jet modes for cleaning liquids, glass cleaner, and multi-purpose spray products."
+      },
+      "tetikli-puskurtucu-28mm-kopuklu": {
+        "name": "Trigger Sprayer 28mm Foam",
+        "shortDescription": "28mm foam trigger sprayer",
+        "description": "28mm foam trigger sprayer. Foam mode trigger mechanism with powerful spray capacity for bathroom and kitchen cleaners."
+      },
+      "plastik-huni-30mm": {
+        "name": "Plastic Funnel 30mm",
+        "shortDescription": "30mm cosmetic filling funnel",
+        "description": "30mm opening plastic funnel. Ideal for filling small-volume cosmetic, perfume, and serum bottles. PP material, reusable."
+      },
+      "plastik-huni-50mm": {
+        "name": "Plastic Funnel 50mm",
+        "shortDescription": "50mm wide-mouth filling funnel",
+        "description": "50mm opening plastic funnel. Wide-mouth, fast-flow design for filling medium and large volume bottles."
+      }
+    },
+    "specs": {
+      "Hacim": "Volume",
+      "Ağırlık": "Weight",
+      "Ağız": "Neck Diameter",
+      "Hammadde": "Material",
+      "Yükseklik": "Height",
+      "Çap": "Diameter",
+      "Model": "Model",
+      "Tip": "Type",
+      "Uyumluluk": "Compatibility",
+      "Sprey Tipi": "Spray Type",
+      "Dozaj": "Dosage",
+      "Boru Uzunluğu": "Tube Length",
+      "Mesh": "Mesh",
+      "Mod": "Mode",
+      "Delik": "Orifice",
+      "Ağız Çapı": "Neck Diameter"
+    },
+    "specValues": {
+      "Damla": "Drop",
+      "Silindir": "Cylinder",
+      "Kristal": "Crystal",
+      "Düz": "Plain",
+      "Oval": "Oval",
+      "Kare": "Square",
+      "Vidalı": "Screw",
+      "Flip-Top": "Flip-Top",
+      "Disc-Top": "Disc-Top",
+      "İç Tıpa": "Inner Plug",
+      "Damlatıcı": "Dropper",
+      "Sızdırmazlık": "Sealing",
+      "İnce sis": "Fine mist",
+      "Standart sis": "Standard mist",
+      "Parfüm": "Perfume",
+      "Losyon Pompası": "Lotion Pump",
+      "Köpük Pompası": "Foam Pump",
+      "Krem Pompası": "Cream Pump",
+      "Standart Tetikli": "Standard Trigger",
+      "Köpüklü Tetikli": "Foam Trigger",
+      "Mini Huni": "Mini Funnel",
+      "Standart Huni": "Standard Funnel",
+      "Çift filtreli": "Dual filtered",
+      "Sis / Jet / Kapalı": "Mist / Jet / Off",
+      "Köpük / Jet / Kapalı": "Foam / Jet / Off",
+      "1mm kontrollü akış": "1mm controlled flow",
+      "24mm Klasik / Modern": "24mm Classic / Modern"
+    },
+    "colors": {
+      "Şeffaf": "Clear",
+      "Amber": "Amber",
+      "Füme": "Smoke",
+      "Beyaz": "White",
+      "Siyah": "Black",
+      "Mavi": "Blue",
+      "Yeşil": "Green",
+      "Pembe": "Pink",
+      "Kahverengi": "Brown",
+      "Altın Yaldız": "Gold",
+      "Gümüş": "Silver"
+    },
+    "materials": {
+      "PET": "PET",
+      "HDPE": "HDPE",
+      "PP": "PP",
+      "LDPE": "LDPE",
+      "PE": "PE"
+    }
+  },
+  "categoryDescriptions": {
+    "pet-siseler": {
+      "name": "PET Bottles",
+      "description": "PET bottles in various volumes and designs for cosmetics, cologne, and personal care products."
+    },
+    "plastik-siseler": {
+      "name": "Plastic Bottles",
+      "description": "Durable plastic bottle varieties made from HDPE, PP, and LDPE materials."
+    },
+    "kapaklar": {
+      "name": "Caps",
+      "description": "Screw, flip-top, and custom design cap varieties."
+    },
+    "tipalar": {
+      "name": "Stoppers",
+      "description": "Inner stoppers, dropper inserts, and sealing plugs."
+    },
+    "parmak-spreyler": {
+      "name": "Finger Sprays",
+      "description": "Finger spray mechanisms for cosmetics and cologne products."
+    },
+    "pompalar": {
+      "name": "Pumps",
+      "description": "Lotion pumps, foam pumps, and cream dispensing pumps."
+    },
+    "tetikli-pusturtuculer": {
+      "name": "Trigger Sprayers",
+      "description": "Trigger spray systems for cleaning and care products."
+    },
+    "huniler": {
+      "name": "Funnels",
+      "description": "Plastic funnels used in filling processes."
+    }
+  },
+  "blogPosts": {
+    "pet-sise-uretim-sureci": {
+      "title": "PET Bottle Production Process: From Raw Material to Product",
+      "excerpt": "A detailed look at the production stages of PET bottles, the technologies used, and quality control processes.",
+      "category": "Production"
+    },
+    "kozmetik-ambalaj-trendleri-2026": {
+      "title": "Cosmetic Packaging Trends in 2026",
+      "excerpt": "Discover the leading cosmetic packaging trends such as sustainability, smart packaging, and minimalist design.",
+      "category": "Industry"
+    },
+    "pet-malzeme-avantajlari": {
+      "title": "What Are the Advantages of PET Material?",
+      "excerpt": "The advantages PET offers in terms of lightness, transparency, recyclability, and cosmetic packaging.",
+      "category": "Information"
+    },
+    "iso-sertifika-onemi": {
+      "title": "The Importance of ISO Certifications in Cosmetic Packaging",
+      "excerpt": "The importance of ISO 9001, ISO 14001, and FSSC 22000 certifications in the packaging industry.",
+      "category": "Quality"
+    },
+    "dogru-sise-secimi": {
+      "title": "How to Choose the Right Bottle for Your Business",
+      "excerpt": "Criteria to consider when selecting the right bottle for your product.",
+      "category": "Guide"
+    },
+    "surdurulebilir-ambalaj": {
+      "title": "Sustainable Packaging: Environmentally Conscious Production",
+      "excerpt": "About our recyclable materials and eco-friendly production processes.",
+      "category": "Sustainability"
+    }
+  },
+  "productData": {
+    "categories": {
+      "pet-siseler": { "name": "PET Bottles", "description": "High-quality PET bottles for cosmetic and personal care packaging" },
+      "plastik-siseler": { "name": "Plastic Bottles", "description": "Durable HDPE, PP and LDPE plastic bottles for various applications" },
+      "kapaklar": { "name": "Caps", "description": "Screw caps, flip-top caps and disc-top caps in various sizes" },
+      "tipalar": { "name": "Stoppers", "description": "Inner stoppers and reducer plugs for controlled dispensing" },
+      "parmak-spreyler": { "name": "Finger Sprays", "description": "Fine mist finger spray pumps for cosmetic and pharmaceutical use" },
+      "pompalar": { "name": "Pumps", "description": "Lotion pumps and cream pumps for precise dispensing" },
+      "tetikli-pusturtuculer": { "name": "Trigger Sprayers", "description": "Trigger spray heads for cleaning and personal care products" },
+      "huniler": { "name": "Funnels", "description": "Plastic funnels for easy filling and transfer" }
+    },
+    "specs": {
+      "Hacim": "Volume",
+      "Ağırlık": "Weight",
+      "Malzeme": "Material",
+      "Boyun Çapı": "Neck Diameter",
+      "Yükseklik": "Height",
+      "Genişlik": "Width",
+      "Derinlik": "Depth",
+      "Kapak Uyumu": "Cap Compatibility",
+      "Renk Seçenekleri": "Color Options",
+      "Ağız Tipi": "Mouth Type",
+      "Çıkış Oranı": "Output Rate"
+    },
+    "colors": {
+      "Şeffaf": "Transparent",
+      "Mavi": "Blue",
+      "Yeşil": "Green",
+      "Amber": "Amber",
+      "Beyaz": "White",
+      "Siyah": "Black",
+      "Kırmızı": "Red",
+      "Sarı": "Yellow",
+      "Altın": "Gold",
+      "Gümüş": "Silver",
+      "Füme": "Smoke",
+      "Pembe": "Pink",
+      "Mor": "Purple",
+      "Turuncu": "Orange",
+      "Lacivert": "Navy",
+      "Gri": "Gray",
+      "Naturel": "Natural"
+    }
   }
 }

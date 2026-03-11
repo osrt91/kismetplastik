@@ -8,19 +8,32 @@ import { useLocale } from "@/contexts/LocaleContext";
 import { toIntlLocale } from "@/lib/locales";
 import StockBadge from "@/components/ui/StockBadge";
 import { useCompareStore } from "@/store/useCompareStore";
+import { getProductTranslation, getCategoryNameBySlug, getColorTranslation } from "@/lib/product-i18n";
 
 const categoryConfig: Record<
   CategorySlug,
-  { name: string; bg: string; pattern: string; badge: string; badgeText: string }
+  { bg: string; pattern: string; badge: string; badgeText: string }
 > = {
-  "pet-siseler": { name: "PET Şişeler", bg: "#EDF1F5", pattern: "#1E3A6E", badge: "#D6DFE8", badgeText: "#152B55" },
-  "plastik-siseler": { name: "Plastik Şişeler", bg: "#FFFBEB", pattern: "#D97706", badge: "#FEF3C7", badgeText: "#92610A" },
-  "kapaklar": { name: "Kapaklar", bg: "#FEF2F2", pattern: "#EF4444", badge: "#FEE2E2", badgeText: "#991B1B" },
-  "tipalar": { name: "Tıpalar", bg: "#EBF0F7", pattern: "#152B55", badge: "#E0E8F5", badgeText: "#0A1628" },
-  "parmak-spreyler": { name: "Parmak Spreyler", bg: "#EBF0F7", pattern: "#152B55", badge: "#E0E8F5", badgeText: "#152B55" },
-  "pompalar": { name: "Pompalar", bg: "#E8EDF5", pattern: "#0F2040", badge: "#E0E8F5", badgeText: "#0F2040" },
-  "tetikli-pusturtuculer": { name: "Tetikli Püskürtücüler", bg: "#FEF9E7", pattern: "#D97706", badge: "#FEF3D1", badgeText: "#92610A" },
-  "huniler": { name: "Huniler", bg: "#EBF3FB", pattern: "#0A1628", badge: "#E0E8F5", badgeText: "#0A1628" },
+  "pet-siseler": { bg: "#EDF1F5", pattern: "#1E3A6E", badge: "#D6DFE8", badgeText: "#152B55" },
+  "plastik-siseler": { bg: "#FFFBEB", pattern: "#D97706", badge: "#FEF3C7", badgeText: "#92610A" },
+  "kapaklar": { bg: "#FEF2F2", pattern: "#EF4444", badge: "#FEE2E2", badgeText: "#991B1B" },
+  "tipalar": { bg: "#EBF0F7", pattern: "#152B55", badge: "#E0E8F5", badgeText: "#0A1628" },
+  "parmak-spreyler": { bg: "#EBF0F7", pattern: "#152B55", badge: "#E0E8F5", badgeText: "#152B55" },
+  "pompalar": { bg: "#E8EDF5", pattern: "#0F2040", badge: "#E0E8F5", badgeText: "#0F2040" },
+  "tetikli-pusturtuculer": { bg: "#FEF9E7", pattern: "#D97706", badge: "#FEF3D1", badgeText: "#92610A" },
+  "huniler": { bg: "#EBF3FB", pattern: "#0A1628", badge: "#E0E8F5", badgeText: "#0A1628" },
+};
+
+/** Fallback Turkish category names */
+const categoryNamesFallback: Record<CategorySlug, string> = {
+  "pet-siseler": "PET Şişeler",
+  "plastik-siseler": "Plastik Şişeler",
+  "kapaklar": "Kapaklar",
+  "tipalar": "Tıpalar",
+  "parmak-spreyler": "Parmak Spreyler",
+  "pompalar": "Pompalar",
+  "tetikli-pusturtuculer": "Tetikli Püskürtücüler",
+  "huniler": "Huniler",
 };
 
 const colorHexMap: Record<string, string> = {
@@ -47,6 +60,8 @@ const ProductCard = memo(function ProductCard({ product }: { product: Product })
   const cat = categoryConfig[product.category];
   const { addItem, removeItem, isInCompare } = useCompareStore();
   const inCompare = isInCompare(product.slug);
+  const translated = getProductTranslation(product, dict);
+  const catName = getCategoryNameBySlug(product.category, dict) || categoryNamesFallback[product.category];
 
   const handleCompareToggle = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -128,7 +143,7 @@ const ProductCard = memo(function ProductCard({ product }: { product: Product })
           className="absolute bottom-3 left-3 rounded-lg px-2.5 py-1 text-[10px] font-semibold tracking-wide shadow-sm shadow-black/10 transition-transform duration-400 group-hover:scale-110"
           style={{ backgroundColor: cat.badge, color: cat.badgeText }}
         >
-          {cat.name}
+          {catName}
         </span>
 
         <div className="absolute inset-0 flex items-end justify-center translate-y-full bg-gradient-to-t from-black/50 via-black/15 to-transparent p-5 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
@@ -140,10 +155,10 @@ const ProductCard = memo(function ProductCard({ product }: { product: Product })
 
       <div className="p-5 dark:text-neutral-200">
         <h3 className="mb-1.5 text-base font-bold text-primary-900 transition-colors group-hover:text-primary-700 dark:text-neutral-100 dark:group-hover:text-amber-400">
-          {product.name}
+          {translated.name}
         </h3>
         <p className="mb-3 text-sm text-neutral-500 line-clamp-2 dark:text-neutral-400">
-          {product.shortDescription}
+          {translated.shortDescription}
         </p>
 
         <div className="mb-4 flex flex-wrap gap-1.5 rounded-lg bg-neutral-50/80 px-2.5 py-2 dark:bg-white/5">
@@ -172,7 +187,7 @@ const ProductCard = memo(function ProductCard({ product }: { product: Product })
                 key={color}
                 className="inline-block h-4 w-4 rounded-full border border-neutral-200 shadow-sm"
                 style={{ backgroundColor: colorHexMap[color] || "#D1D5DB" }}
-                title={color}
+                title={getColorTranslation(color, dict)}
               />
             ))}
             {product.colors.length > 5 && (
@@ -195,8 +210,8 @@ const ProductCard = memo(function ProductCard({ product }: { product: Product })
                   ? "bg-amber-100 text-amber-700 shadow-sm shadow-amber-300/40 dark:bg-amber-900/40 dark:text-amber-400 dark:shadow-amber-500/20"
                   : "bg-neutral-100 text-neutral-500 hover:bg-amber-50 hover:text-amber-700 hover:shadow-sm hover:shadow-amber-300/30 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:bg-amber-900/30 dark:hover:text-amber-400"
               }`}
-              title={locale === "tr" ? "Karşılaştır" : "Compare"}
-              aria-label={locale === "tr" ? "Karşılaştır" : "Compare"}
+              title={dict.compare?.compare || (locale === "tr" ? "Karşılaştır" : "Compare")}
+              aria-label={dict.compare?.compare || (locale === "tr" ? "Karşılaştır" : "Compare")}
             >
               <GitCompareArrows size={16} />
             </button>

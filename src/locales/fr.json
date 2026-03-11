@@ -236,7 +236,9 @@
     "productNotFound": "Produit introuvable",
     "categoryNotFound": "Catégorie introuvable",
     "backToAll": "Retour à tous les produits",
-    "searchInCategory": "Rechercher dans cette catégorie..."
+    "searchInCategory": "Rechercher dans cette catégorie...",
+    "requestSample": "Demander un échantillon",
+    "preOrder": "Pré-commande"
   },
   "about": {
     "heroTitle": "À propos",
@@ -423,7 +425,12 @@
     "allCategories": "Tout",
     "postNotFound": "Article introuvable",
     "backToBlog": "Retour au blog",
-    "relatedPosts": "Articles associés"
+    "relatedPosts": "Articles associés",
+    "featured": "En vedette",
+    "allPosts": "Tous les articles",
+    "breadcrumbHome": "Accueil",
+    "moreSoon": "Plus d'articles bientôt...",
+    "newContentSoon": "Du nouveau contenu est en préparation"
   },
   "catalog": {
     "heroTitle": "Télécharger le catalogue",
@@ -659,6 +666,354 @@
     "title": "Page introuvable",
     "subtitle": "Cette page est peut-être en vacances !",
     "description": "La page que vous recherchez a peut-être été déplacée, supprimée ou n'a jamais existé. Vous pouvez continuer à partir des liens ci-dessous.",
-    "searchPlaceholder": "Que cherchiez-vous ?"
+    "searchPlaceholder": "Que cherchiez-vous ?",
+    "backToHome": "Retour à l'accueil",
+    "popularPages": "Pages populaires",
+    "products": "Produits",
+    "aboutUs": "À propos",
+    "contact": "Contact",
+    "getQuote": "Demander un devis",
+    "faq": "FAQ"
+  },
+  "productCatalog": {
+    "bySlug": {
+      "pet-sise-50ml-damla": {
+        "name": "Flacon PET 50ml Goutte",
+        "shortDescription": "Flacon cosmétique modèle goutte 50ml",
+        "description": "Flacon PET modèle goutte de 50ml. Design compact pour sérums, huiles de soin et produits contour des yeux. Compatible avec compte-gouttes ou mini-pompes grâce au col de 18mm."
+      },
+      "pet-sise-100ml-silindir": {
+        "name": "Flacon PET 100ml Cylindre",
+        "shortDescription": "Flacon cosmétique cylindrique 100ml",
+        "description": "Flacon PET cylindrique de 100ml. Design cylindrique élégant pour eau de Cologne, parfum et produits de soin. Col de 20mm."
+      },
+      "pet-sise-250ml-kristal": {
+        "name": "Flacon PET 250ml Cristal",
+        "shortDescription": "Flacon modèle cristal 250ml",
+        "description": "Flacon PET modèle cristal de 250ml. Motif cristal élégant pour shampooing, gel douche et produits de soin. Col Modern de 24mm."
+      },
+      "pet-sise-500ml-duz": {
+        "name": "Flacon PET 500ml Lisse",
+        "shortDescription": "Flacon cosmétique lisse 500ml",
+        "description": "Flacon PET lisse de 500ml. Design lisse grande contenance pour shampooing, après-shampooing et savon liquide. Col de 28mm."
+      },
+      "hdpe-sise-200ml-silindir": {
+        "name": "Flacon HDPE 200ml Cylindre",
+        "shortDescription": "Flacon HDPE cylindrique 200ml",
+        "description": "Flacon HDPE cylindrique de 200ml. Structure résistante et opaque pour lotion, crème et lait corporel. Col Classic de 24mm."
+      },
+      "pp-sise-300ml-oval": {
+        "name": "Flacon PP 300ml Ovale",
+        "shortDescription": "Flacon PP ovale 300ml",
+        "description": "Flacon PP ovale de 300ml. Forme ovale souple et compressible pour shampooing et produits capillaires. Col Modern de 24mm."
+      },
+      "hdpe-sise-500ml-kare": {
+        "name": "Flacon HDPE 500ml Carré",
+        "shortDescription": "Flacon HDPE carré 500ml",
+        "description": "Flacon HDPE carré de 500ml. Forme carrée moderne pour shampooing, gel douche et savon liquide. Col de 28mm."
+      },
+      "kapak-18mm-vidali": {
+        "name": "Bouchon à vis 18mm",
+        "shortDescription": "Bouchon cosmétique à vis 18mm",
+        "description": "Bouchon à vis 18mm. Bouchon à vis standard pour sérums, huiles essentielles et petits flacons cosmétiques."
+      },
+      "kapak-24mm-flip-top": {
+        "name": "Bouchon Flip-Top 24mm",
+        "shortDescription": "Bouchon cosmétique flip-top 24mm",
+        "description": "Bouchon flip-top 24mm. Bouchon pratique ouverture à une main pour flacons de shampooing, lotion et cosmétiques. Compatible avec les cols Classic et Modern."
+      },
+      "kapak-24mm-disc-top": {
+        "name": "Bouchon Disc-Top 24mm",
+        "shortDescription": "Bouchon cosmétique disc-top 24mm",
+        "description": "Bouchon disc-top 24mm. Système d'ouverture par pression pour flacons de shampooing, gel douche et lotion."
+      },
+      "ic-tipa-18mm": {
+        "name": "Opercule intérieur 18mm",
+        "shortDescription": "Opercule intérieur PE 18mm",
+        "description": "Opercule intérieur 18mm. Opercule en PE assurant l'étanchéité pour flacons de sérum, huiles essentielles et eau de Cologne. Utilisé sous les bouchons spray et compte-gouttes."
+      },
+      "damlatici-tipa-20mm": {
+        "name": "Insert compte-gouttes 20mm",
+        "shortDescription": "Insert compte-gouttes 20mm",
+        "description": "Insert compte-gouttes 20mm. Insert à débit contrôlé pour flacons de sérum, gouttes ophtalmiques et huiles essentielles."
+      },
+      "sizdirmazlik-tipasi-24mm": {
+        "name": "Bouchon d'étanchéité 24mm",
+        "shortDescription": "Bouchon d'étanchéité 24mm",
+        "description": "Bouchon d'étanchéité 24mm. Élément d'étanchéité utilisé sous les bouchons flip-top et disc-top pour flacons de lotion, shampooing et cosmétiques."
+      },
+      "parmak-sprey-18mm-ince-sis": {
+        "name": "Spray à doigt 18mm Brume fine",
+        "shortDescription": "Spray à doigt brume fine 18mm",
+        "description": "Mécanisme de spray à doigt 18mm, type brume fine. Atomisation précise pour flacons de parfum, eau de Cologne et petits cosmétiques."
+      },
+      "parmak-sprey-20mm-standart": {
+        "name": "Spray à doigt 20mm Standard",
+        "shortDescription": "Spray à doigt standard 20mm",
+        "description": "Mécanisme de spray à doigt 20mm. Tête de spray standard pour flacons d'eau de Cologne, spray corporel et parfum d'ambiance."
+      },
+      "parmak-sprey-24mm-parfum": {
+        "name": "Spray à doigt 24mm Parfum",
+        "shortDescription": "Spray à doigt type parfum 24mm",
+        "description": "Mécanisme de spray à doigt 24mm, type parfum. Puissante capacité de pulvérisation pour flacons de grand volume d'eau de Cologne et sprays cosmétiques."
+      },
+      "losyon-pompasi-28mm": {
+        "name": "Pompe à lotion 28mm",
+        "shortDescription": "Pompe doseuse de lotion 28mm",
+        "description": "Pompe à lotion 28mm. Mécanisme de pompe doseuse pour flacons de savon liquide, lotion et shampooing. Compatible avec flacons jusqu'à 500ml grâce au tube plongeur long."
+      },
+      "kopuk-pompasi-28mm": {
+        "name": "Pompe à mousse 28mm",
+        "shortDescription": "Pompe productrice de mousse 28mm",
+        "description": "Pompe à mousse 28mm. Mécanisme de pompe produisant une mousse mélangée à l'air pour flacons de savon pour les mains et mousse nettoyante visage."
+      },
+      "krem-pompasi-24mm": {
+        "name": "Pompe à crème 24mm",
+        "shortDescription": "Pompe doseuse de crème 24mm",
+        "description": "Pompe doseuse de crème 24mm. Pompe à forte capacité d'aspiration pour lotions épaisses, crèmes et produits capillaires."
+      },
+      "tetikli-puskurtucu-28mm-standart": {
+        "name": "Pulvérisateur à gâchette 28mm Standard",
+        "shortDescription": "Pulvérisateur à gâchette standard 28mm",
+        "description": "Pulvérisateur à gâchette standard 28mm. Buse réglable avec modes brume et jet pour liquides de nettoyage, nettoyant pour vitres et produits multi-usages."
+      },
+      "tetikli-puskurtucu-28mm-kopuklu": {
+        "name": "Pulvérisateur à gâchette 28mm Mousse",
+        "shortDescription": "Pulvérisateur à gâchette mousse 28mm",
+        "description": "Pulvérisateur à gâchette mousse 28mm. Mécanisme à gâchette avec mode mousse et puissante capacité de pulvérisation pour nettoyants de salle de bain et cuisine."
+      },
+      "plastik-huni-30mm": {
+        "name": "Entonnoir plastique 30mm",
+        "shortDescription": "Entonnoir de remplissage cosmétique 30mm",
+        "description": "Entonnoir plastique avec ouverture de 30mm. Idéal pour le remplissage de petits flacons cosmétiques, de parfum et de sérum. Matériau PP, réutilisable."
+      },
+      "plastik-huni-50mm": {
+        "name": "Entonnoir plastique 50mm",
+        "shortDescription": "Entonnoir de remplissage à large ouverture 50mm",
+        "description": "Entonnoir plastique avec ouverture de 50mm. Design à large ouverture et débit rapide pour le remplissage de flacons moyens et grands."
+      }
+    },
+    "specs": {
+      "Hacim": "Volume",
+      "Ağırlık": "Poids",
+      "Ağız": "Diamètre du col",
+      "Hammadde": "Matériau",
+      "Yükseklik": "Hauteur",
+      "Çap": "Diamètre",
+      "Model": "Modèle",
+      "Tip": "Type",
+      "Uyumluluk": "Compatibilité",
+      "Sprey Tipi": "Type de spray",
+      "Dozaj": "Dosage",
+      "Boru Uzunluğu": "Longueur du tube",
+      "Mesh": "Filtre",
+      "Mod": "Mode",
+      "Delik": "Orifice",
+      "Ağız Çapı": "Diamètre du col"
+    },
+    "specValues": {
+      "Damla": "Goutte",
+      "Silindir": "Cylindre",
+      "Kristal": "Cristal",
+      "Düz": "Lisse",
+      "Oval": "Ovale",
+      "Kare": "Carré",
+      "Vidalı": "À vis",
+      "Flip-Top": "Flip-Top",
+      "Disc-Top": "Disc-Top",
+      "İç Tıpa": "Opercule intérieur",
+      "Damlatıcı": "Compte-gouttes",
+      "Sızdırmazlık": "Étanchéité",
+      "İnce sis": "Brume fine",
+      "Standart sis": "Brume standard",
+      "Parfüm": "Parfum",
+      "Losyon Pompası": "Pompe à lotion",
+      "Köpük Pompası": "Pompe à mousse",
+      "Krem Pompası": "Pompe à crème",
+      "Standart Tetikli": "Gâchette standard",
+      "Köpüklü Tetikli": "Gâchette mousse",
+      "Mini Huni": "Mini entonnoir",
+      "Standart Huni": "Entonnoir standard",
+      "Çift filtreli": "Double filtre",
+      "Sis / Jet / Kapalı": "Brume / Jet / Fermé",
+      "Köpük / Jet / Kapalı": "Mousse / Jet / Fermé",
+      "1mm kontrollü akış": "Débit contrôlé 1mm",
+      "24mm Klasik / Modern": "24mm Classic / Modern"
+    },
+    "colors": {
+      "Şeffaf": "Transparent",
+      "Amber": "Ambre",
+      "Füme": "Fumé",
+      "Beyaz": "Blanc",
+      "Siyah": "Noir",
+      "Mavi": "Bleu",
+      "Yeşil": "Vert",
+      "Pembe": "Rose",
+      "Kahverengi": "Marron",
+      "Altın Yaldız": "Or",
+      "Gümüş": "Argent"
+    },
+    "materials": {
+      "PET": "PET",
+      "HDPE": "HDPE",
+      "PP": "PP",
+      "LDPE": "LDPE",
+      "PE": "PE"
+    }
+  },
+  "categoryDescriptions": {
+    "pet-siseler": {
+      "name": "Flacons PET",
+      "description": "Flacons PET de volumes et designs variés pour cosmétiques, eau de Cologne et produits de soin."
+    },
+    "plastik-siseler": {
+      "name": "Flacons plastiques",
+      "description": "Variétés de flacons plastiques résistants en HDPE, PP et LDPE."
+    },
+    "kapaklar": {
+      "name": "Bouchons",
+      "description": "Variétés de bouchons à vis, flip-top et design personnalisé."
+    },
+    "tipalar": {
+      "name": "Opercules",
+      "description": "Opercules intérieurs, inserts compte-gouttes et bouchons d'étanchéité."
+    },
+    "parmak-spreyler": {
+      "name": "Sprays à doigt",
+      "description": "Mécanismes de spray à doigt pour cosmétiques et produits de Cologne."
+    },
+    "pompalar": {
+      "name": "Pompes",
+      "description": "Pompes à lotion, pompes à mousse et pompes doseuses de crème."
+    },
+    "tetikli-pusturtuculer": {
+      "name": "Pulvérisateurs à gâchette",
+      "description": "Systèmes de pulvérisation à gâchette pour produits de nettoyage et d'entretien."
+    },
+    "huniler": {
+      "name": "Entonnoirs",
+      "description": "Entonnoirs plastiques utilisés dans les processus de remplissage."
+    }
+  },
+  "blogPosts": {
+    "pet-sise-uretim-sureci": {
+      "title": "Processus de production des flacons PET : De la matière première au produit",
+      "excerpt": "Un regard détaillé sur les étapes de production des flacons PET, les technologies utilisées et les processus de contrôle qualité.",
+      "category": "Production"
+    },
+    "kozmetik-ambalaj-trendleri-2026": {
+      "title": "Tendances des emballages cosmétiques en 2026",
+      "excerpt": "Découvrez les principales tendances des emballages cosmétiques : durabilité, emballage intelligent et design minimaliste.",
+      "category": "Secteur"
+    },
+    "pet-malzeme-avantajlari": {
+      "title": "Quels sont les avantages du matériau PET ?",
+      "excerpt": "Les avantages du PET en termes de légèreté, transparence, recyclabilité et emballage cosmétique.",
+      "category": "Information"
+    },
+    "iso-sertifika-onemi": {
+      "title": "L'importance des certifications ISO dans l'emballage cosmétique",
+      "excerpt": "L'importance des certifications ISO 9001, ISO 14001 et FSSC 22000 dans l'industrie de l'emballage.",
+      "category": "Qualité"
+    },
+    "dogru-sise-secimi": {
+      "title": "Comment choisir le bon flacon pour votre entreprise ?",
+      "excerpt": "Critères à prendre en compte lors du choix du flacon adapté à votre produit.",
+      "category": "Guide"
+    },
+    "surdurulebilir-ambalaj": {
+      "title": "Emballage durable : Production respectueuse de l'environnement",
+      "excerpt": "Nos matériaux recyclables et nos processus de production écologiques.",
+      "category": "Durabilité"
+    }
+  },
+  "productData": {
+    "categories": {
+      "pet-siseler": {
+        "name": "Bouteilles PET",
+        "description": "Bouteilles PET de haute qualité pour les emballages cosmétiques et de soins personnels"
+      },
+      "plastik-siseler": {
+        "name": "Bouteilles en plastique",
+        "description": "Bouteilles en plastique durables en HDPE, PP et LDPE pour diverses applications"
+      },
+      "kapaklar": {
+        "name": "Bouchons",
+        "description": "Bouchons à vis, bouchons à clapet et bouchons à disque de différentes tailles"
+      },
+      "tipalar": {
+        "name": "Obturateurs",
+        "description": "Obturateurs intérieurs et réducteurs pour un dosage contrôlé"
+      },
+      "parmak-spreyler": {
+        "name": "Sprays à doigt",
+        "description": "Pompes à brume fine pour usage cosmétique et pharmaceutique"
+      },
+      "pompalar": {
+        "name": "Pompes",
+        "description": "Pompes à lotion et pompes à crème pour un dosage précis"
+      },
+      "tetikli-pusturtuculer": {
+        "name": "Pulvérisateurs à gâchette",
+        "description": "Têtes de pulvérisation à gâchette pour produits de nettoyage et de soins"
+      },
+      "huniler": {
+        "name": "Entonnoirs",
+        "description": "Entonnoirs en plastique pour un remplissage et un transfert faciles"
+      }
+    },
+    "specs": {
+      "Hacim": "Volume",
+      "Ağırlık": "Poids",
+      "Malzeme": "Matériau",
+      "Boyun Çapı": "Diamètre du col",
+      "Yükseklik": "Hauteur",
+      "Genişlik": "Largeur",
+      "Derinlik": "Profondeur",
+      "Kapak Uyumu": "Compatibilité bouchon",
+      "Renk Seçenekleri": "Options de couleur",
+      "Ağız Tipi": "Type d'ouverture",
+      "Çıkış Oranı": "Débit de sortie"
+    },
+    "colors": {
+      "Şeffaf": "Transparent",
+      "Mavi": "Bleu",
+      "Yeşil": "Vert",
+      "Amber": "Ambre",
+      "Beyaz": "Blanc",
+      "Siyah": "Noir",
+      "Kırmızı": "Rouge",
+      "Sarı": "Jaune",
+      "Altın": "Or",
+      "Gümüş": "Argent",
+      "Füme": "Fumé",
+      "Pembe": "Rose",
+      "Mor": "Violet",
+      "Turuncu": "Orange",
+      "Lacivert": "Bleu marine",
+      "Gri": "Gris",
+      "Naturel": "Naturel"
+    }
+  },
+  "compare": {
+    "title": "Comparer les produits",
+    "noProducts": "Aucun produit à comparer",
+    "noProductsDesc": "Ajoutez des produits depuis les pages produits pour les comparer côte à côte.",
+    "browseProducts": "Parcourir les produits",
+    "backToProducts": "Retour aux produits",
+    "clearAll": "Tout effacer",
+    "product": "Produit",
+    "remove": "supprimer",
+    "add": "Ajouter",
+    "colors": "Couleurs",
+    "addToQuote": "Ajouter au devis",
+    "continueBrowsing": "Continuer à parcourir",
+    "selectedCount": "{count} produit(s) sélectionné(s)",
+    "compare": "Comparer",
+    "category": "Catégorie",
+    "volume": "Volume",
+    "weight": "Poids",
+    "neckDiameter": "Diamètre du col",
+    "material": "Matériau"
   }
 }

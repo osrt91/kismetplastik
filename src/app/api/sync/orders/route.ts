@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
     // Build DIA order data from site order
     const diaResult = await createDiaOrder({
       cariKodu: typedOrder.profile_id,
-      aciklama: `Site Siparis: ${typedOrder.order_number}`,
+      aciklama: `Site Sipariş: ${typedOrder.order_number}`,
       kalemler: typedItems.map((item) => ({
         stokKodu: item.product_id ?? "",
         stokAdi: item.product_name,

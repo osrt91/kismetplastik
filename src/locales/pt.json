@@ -236,7 +236,9 @@
     "productNotFound": "Produto não encontrado",
     "categoryNotFound": "Categoria não encontrada",
     "backToAll": "Voltar a todos os produtos",
-    "searchInCategory": "Buscar nesta categoria..."
+    "searchInCategory": "Buscar nesta categoria...",
+    "requestSample": "Solicitar amostra",
+    "preOrder": "Pré-encomenda"
   },
   "about": {
     "heroTitle": "Sobre Nós",
@@ -423,7 +425,12 @@
     "allCategories": "Todos",
     "postNotFound": "Publicação não encontrada",
     "backToBlog": "Voltar ao blog",
-    "relatedPosts": "Publicações Relacionadas"
+    "relatedPosts": "Publicações Relacionadas",
+    "featured": "Destaque",
+    "allPosts": "Todos os artigos",
+    "breadcrumbHome": "Início",
+    "moreSoon": "Mais artigos em breve...",
+    "newContentSoon": "Novo conteúdo está sendo preparado"
   },
   "catalog": {
     "heroTitle": "Baixar Catálogo",
@@ -659,6 +666,354 @@
     "title": "Página Não Encontrada",
     "subtitle": "Esta página pode estar de férias!",
     "description": "A página que você procura pode ter sido movida, excluída ou nunca existiu. Você pode continuar pelos links abaixo.",
-    "searchPlaceholder": "O que você estava procurando?"
+    "searchPlaceholder": "O que você estava procurando?",
+    "backToHome": "Voltar ao início",
+    "popularPages": "Páginas populares",
+    "products": "Produtos",
+    "aboutUs": "Sobre nós",
+    "contact": "Contato",
+    "getQuote": "Solicitar orçamento",
+    "faq": "Perguntas frequentes"
+  },
+  "productData": {
+    "categories": {
+      "pet-siseler": {
+        "name": "Garrafas PET",
+        "description": "Garrafas PET de alta qualidade para embalagens de cosméticos e cuidados pessoais"
+      },
+      "plastik-siseler": {
+        "name": "Garrafas de plástico",
+        "description": "Garrafas de plástico duráveis em HDPE, PP e LDPE para diversas aplicações"
+      },
+      "kapaklar": {
+        "name": "Tampas",
+        "description": "Tampas de rosca, tampas flip-top e tampas disc-top em vários tamanhos"
+      },
+      "tipalar": {
+        "name": "Batoque",
+        "description": "Batoque internos e redutores para dosagem controlada"
+      },
+      "parmak-spreyler": {
+        "name": "Sprays de dedo",
+        "description": "Bombas de spray fino para uso cosmético e farmacêutico"
+      },
+      "pompalar": {
+        "name": "Bombas",
+        "description": "Bombas de loção e bombas de creme para dosagem precisa"
+      },
+      "tetikli-pusturtuculer": {
+        "name": "Pulverizadores de gatilho",
+        "description": "Cabeças de pulverização de gatilho para produtos de limpeza e cuidados pessoais"
+      },
+      "huniler": {
+        "name": "Funis",
+        "description": "Funis de plástico para enchimento e transferência fáceis"
+      }
+    },
+    "specs": {
+      "Hacim": "Volume",
+      "Ağırlık": "Peso",
+      "Malzeme": "Material",
+      "Boyun Çapı": "Diâmetro do gargalo",
+      "Yükseklik": "Altura",
+      "Genişlik": "Largura",
+      "Derinlik": "Profundidade",
+      "Kapak Uyumu": "Compatibilidade de tampa",
+      "Renk Seçenekleri": "Opções de cor",
+      "Ağız Tipi": "Tipo de abertura",
+      "Çıkış Oranı": "Taxa de saída"
+    },
+    "colors": {
+      "Şeffaf": "Transparente",
+      "Mavi": "Azul",
+      "Yeşil": "Verde",
+      "Amber": "Âmbar",
+      "Beyaz": "Branco",
+      "Siyah": "Preto",
+      "Kırmızı": "Vermelho",
+      "Sarı": "Amarelo",
+      "Altın": "Dourado",
+      "Gümüş": "Prateado",
+      "Füme": "Fumê",
+      "Pembe": "Rosa",
+      "Mor": "Roxo",
+      "Turuncu": "Laranja",
+      "Lacivert": "Azul-marinho",
+      "Gri": "Cinza",
+      "Naturel": "Natural"
+    }
+  },
+  "productCatalog": {
+    "bySlug": {
+      "pet-sise-50ml-damla": {
+        "name": "Frasco PET 50ml Gota",
+        "shortDescription": "Frasco cosmético modelo gota de 50ml",
+        "description": "Frasco PET modelo gota de 50ml. Design compacto para séruns, óleos de cuidado da pele e produtos para contorno dos olhos. Compatível com conta-gotas ou mini bombas com boca de 18mm."
+      },
+      "pet-sise-100ml-silindir": {
+        "name": "Frasco PET 100ml Cilindro",
+        "shortDescription": "Frasco cosmético cilíndrico de 100ml",
+        "description": "Frasco PET cilíndrico de 100ml. Design cilíndrico elegante para colônia, perfume e produtos de cuidado pessoal. Boca de 20mm."
+      },
+      "pet-sise-250ml-kristal": {
+        "name": "Frasco PET 250ml Cristal",
+        "shortDescription": "Frasco modelo cristal de 250ml",
+        "description": "Frasco PET modelo cristal de 250ml. Padrão cristal elegante para shampoo, gel de banho e produtos de cuidado pessoal. Boca Modern de 24mm."
+      },
+      "pet-sise-500ml-duz": {
+        "name": "Frasco PET 500ml Liso",
+        "shortDescription": "Frasco cosmético liso de 500ml",
+        "description": "Frasco PET liso de 500ml. Design liso de grande volume para shampoo, condicionador e sabonete líquido. Boca de 28mm."
+      },
+      "hdpe-sise-200ml-silindir": {
+        "name": "Frasco HDPE 200ml Cilindro",
+        "shortDescription": "Frasco HDPE cilíndrico de 200ml",
+        "description": "Frasco HDPE cilíndrico de 200ml. Estrutura resistente e opaca para embalagem de loção, creme e leite corporal. Boca Classic de 24mm."
+      },
+      "pp-sise-300ml-oval": {
+        "name": "Frasco PP 300ml Oval",
+        "shortDescription": "Frasco PP oval de 300ml",
+        "description": "Frasco PP oval de 300ml. Forma oval flexível e compressível para shampoo e produtos capilares. Boca Modern de 24mm."
+      },
+      "hdpe-sise-500ml-kare": {
+        "name": "Frasco HDPE 500ml Quadrado",
+        "shortDescription": "Frasco HDPE quadrado de 500ml",
+        "description": "Frasco HDPE quadrado de 500ml. Forma quadrada moderna para shampoo, gel de banho e sabonete líquido. Boca de 28mm."
+      },
+      "kapak-18mm-vidali": {
+        "name": "Tampa rosca 18mm",
+        "shortDescription": "Tampa cosmética rosca de 18mm",
+        "description": "Tampa rosca de 18mm. Tampa rosca padrão para séruns, óleos essenciais e frascos cosméticos pequenos."
+      },
+      "kapak-24mm-flip-top": {
+        "name": "Tampa Flip-Top 24mm",
+        "shortDescription": "Tampa cosmética flip-top de 24mm",
+        "description": "Tampa flip-top de 24mm. Tampa prática de abertura com uma mão para frascos de shampoo, loção e cosméticos. Compatível com bocas Classic e Modern."
+      },
+      "kapak-24mm-disc-top": {
+        "name": "Tampa Disc-Top 24mm",
+        "shortDescription": "Tampa cosmética disc-top de 24mm",
+        "description": "Tampa disc-top de 24mm. Sistema de abertura por pressão para frascos de shampoo, gel de banho e loção."
+      },
+      "ic-tipa-18mm": {
+        "name": "Plug interno 18mm",
+        "shortDescription": "Plug interno PE de 18mm",
+        "description": "Plug interno de 18mm. Plug interno de PE com vedação à prova de vazamento para frascos de sérun, óleos essenciais e colônia. Usado sob tampas de spray e conta-gotas."
+      },
+      "damlatici-tipa-20mm": {
+        "name": "Inserto conta-gotas 20mm",
+        "shortDescription": "Inserto conta-gotas de 20mm",
+        "description": "Inserto conta-gotas de 20mm. Inserto de gotejamento controlado para frascos de sérun, colírio e óleos essenciais."
+      },
+      "sizdirmazlik-tipasi-24mm": {
+        "name": "Plug de vedação 24mm",
+        "shortDescription": "Plug de vedação de 24mm",
+        "description": "Plug de vedação de 24mm. Elemento de vedação usado sob tampas flip-top e disc-top para frascos de loção, shampoo e cosméticos."
+      },
+      "parmak-sprey-18mm-ince-sis": {
+        "name": "Spray de dedo 18mm Névoa fina",
+        "shortDescription": "Spray de dedo névoa fina de 18mm",
+        "description": "Mecanismo de spray de dedo 18mm, tipo névoa fina. Atomização precisa para frascos de perfume, colônia e cosméticos pequenos."
+      },
+      "parmak-sprey-20mm-standart": {
+        "name": "Spray de dedo 20mm Padrão",
+        "shortDescription": "Spray de dedo padrão de 20mm",
+        "description": "Mecanismo de spray de dedo 20mm. Cabeça de spray padrão para frascos de colônia, spray corporal e aromatizador de ambiente."
+      },
+      "parmak-sprey-24mm-parfum": {
+        "name": "Spray de dedo 24mm Perfume",
+        "shortDescription": "Spray de dedo tipo perfume de 24mm",
+        "description": "Mecanismo de spray de dedo 24mm, tipo perfume. Capacidade de pulverização potente para frascos de colônia e spray cosmético de grande volume."
+      },
+      "losyon-pompasi-28mm": {
+        "name": "Bomba de loção 28mm",
+        "shortDescription": "Bomba dosadora de loção de 28mm",
+        "description": "Bomba de loção 28mm. Mecanismo de bomba dosadora para frascos de sabonete líquido, loção e shampoo. Compatível com frascos até 500ml com tubo longo."
+      },
+      "kopuk-pompasi-28mm": {
+        "name": "Bomba de espuma 28mm",
+        "shortDescription": "Bomba produtora de espuma de 28mm",
+        "description": "Bomba de espuma 28mm. Mecanismo de bomba que produz espuma misturada com ar para frascos de sabonete de mãos e espuma de limpeza facial."
+      },
+      "krem-pompasi-24mm": {
+        "name": "Bomba de creme 24mm",
+        "shortDescription": "Bomba dosadora de creme de 24mm",
+        "description": "Bomba dosadora de creme 24mm. Bomba com forte capacidade de sucção para loções, cremes e produtos capilares de alta viscosidade."
+      },
+      "tetikli-puskurtucu-28mm-standart": {
+        "name": "Pulverizador de gatilho 28mm Padrão",
+        "shortDescription": "Pulverizador de gatilho padrão de 28mm",
+        "description": "Pulverizador de gatilho padrão 28mm. Bico ajustável com modos de névoa e jato para líquidos de limpeza, limpa-vidros e produtos multiusos."
+      },
+      "tetikli-puskurtucu-28mm-kopuklu": {
+        "name": "Pulverizador de gatilho 28mm Espuma",
+        "shortDescription": "Pulverizador de gatilho espuma de 28mm",
+        "description": "Pulverizador de gatilho espuma 28mm. Mecanismo de gatilho com modo espuma e capacidade de pulverização potente para limpadores de banheiro e cozinha."
+      },
+      "plastik-huni-30mm": {
+        "name": "Funil plástico 30mm",
+        "shortDescription": "Funil de enchimento cosmético de 30mm",
+        "description": "Funil plástico com abertura de 30mm. Ideal para enchimento de frascos pequenos de cosméticos, perfume e sérun. Material PP, reutilizável."
+      },
+      "plastik-huni-50mm": {
+        "name": "Funil plástico 50mm",
+        "shortDescription": "Funil de enchimento de boca larga de 50mm",
+        "description": "Funil plástico com abertura de 50mm. Design de boca larga e fluxo rápido para enchimento de frascos médios e grandes."
+      }
+    },
+    "specs": {
+      "Hacim": "Volume",
+      "Ağırlık": "Peso",
+      "Ağız": "Diâmetro da boca",
+      "Hammadde": "Material",
+      "Yükseklik": "Altura",
+      "Çap": "Diâmetro",
+      "Model": "Modelo",
+      "Tip": "Tipo",
+      "Uyumluluk": "Compatibilidade",
+      "Sprey Tipi": "Tipo de spray",
+      "Dozaj": "Dosagem",
+      "Boru Uzunluğu": "Comprimento do tubo",
+      "Mesh": "Filtro",
+      "Mod": "Modo",
+      "Delik": "Orifício",
+      "Ağız Çapı": "Diâmetro da boca"
+    },
+    "specValues": {
+      "Damla": "Gota",
+      "Silindir": "Cilindro",
+      "Kristal": "Cristal",
+      "Düz": "Liso",
+      "Oval": "Oval",
+      "Kare": "Quadrado",
+      "Vidalı": "Rosca",
+      "Flip-Top": "Flip-Top",
+      "Disc-Top": "Disc-Top",
+      "İç Tıpa": "Plug interno",
+      "Damlatıcı": "Conta-gotas",
+      "Sızdırmazlık": "Vedação",
+      "İnce sis": "Névoa fina",
+      "Standart sis": "Névoa padrão",
+      "Parfüm": "Perfume",
+      "Losyon Pompası": "Bomba de loção",
+      "Köpük Pompası": "Bomba de espuma",
+      "Krem Pompası": "Bomba de creme",
+      "Standart Tetikli": "Gatilho padrão",
+      "Köpüklü Tetikli": "Gatilho espuma",
+      "Mini Huni": "Mini funil",
+      "Standart Huni": "Funil padrão",
+      "Çift filtreli": "Duplo filtro",
+      "Sis / Jet / Kapalı": "Névoa / Jato / Desligado",
+      "Köpük / Jet / Kapalı": "Espuma / Jato / Desligado",
+      "1mm kontrollü akış": "Fluxo controlado de 1mm",
+      "24mm Klasik / Modern": "24mm Classic / Modern"
+    },
+    "colors": {
+      "Şeffaf": "Transparente",
+      "Amber": "Âmbar",
+      "Füme": "Fumê",
+      "Beyaz": "Branco",
+      "Siyah": "Preto",
+      "Mavi": "Azul",
+      "Yeşil": "Verde",
+      "Pembe": "Rosa",
+      "Kahverengi": "Marrom",
+      "Altın Yaldız": "Dourado",
+      "Gümüş": "Prateado"
+    },
+    "materials": {
+      "PET": "PET",
+      "HDPE": "HDPE",
+      "PP": "PP",
+      "LDPE": "LDPE",
+      "PE": "PE"
+    }
+  },
+  "categoryDescriptions": {
+    "pet-siseler": {
+      "name": "Frascos PET",
+      "description": "Frascos PET em diversos volumes e designs para cosméticos, colônia e produtos de cuidado pessoal."
+    },
+    "plastik-siseler": {
+      "name": "Frascos plásticos",
+      "description": "Variedade de frascos plásticos resistentes em HDPE, PP e LDPE."
+    },
+    "kapaklar": {
+      "name": "Tampas",
+      "description": "Variedades de tampas de rosca, flip-top e design personalizado."
+    },
+    "tipalar": {
+      "name": "Plugs",
+      "description": "Plugs internos, insertos conta-gotas e plugs de vedação."
+    },
+    "parmak-spreyler": {
+      "name": "Sprays de dedo",
+      "description": "Mecanismos de spray de dedo para cosméticos e produtos de colônia."
+    },
+    "pompalar": {
+      "name": "Bombas",
+      "description": "Bombas de loção, bombas de espuma e bombas dosadoras de creme."
+    },
+    "tetikli-pusturtuculer": {
+      "name": "Pulverizadores de gatilho",
+      "description": "Sistemas de pulverização de gatilho para produtos de limpeza e cuidado."
+    },
+    "huniler": {
+      "name": "Funis",
+      "description": "Funis plásticos utilizados em processos de enchimento."
+    }
+  },
+  "blogPosts": {
+    "pet-sise-uretim-sureci": {
+      "title": "Processo de produção de frascos PET: Da matéria-prima ao produto",
+      "excerpt": "Um olhar detalhado sobre as etapas de produção de frascos PET, tecnologias utilizadas e processos de controle de qualidade.",
+      "category": "Produção"
+    },
+    "kozmetik-ambalaj-trendleri-2026": {
+      "title": "Tendências em embalagens cosméticas em 2026",
+      "excerpt": "Descubra as principais tendências em embalagens cosméticas como sustentabilidade, embalagem inteligente e design minimalista.",
+      "category": "Setor"
+    },
+    "pet-malzeme-avantajlari": {
+      "title": "Quais são as vantagens do material PET?",
+      "excerpt": "As vantagens do PET em termos de leveza, transparência, reciclabilidade e embalagens cosméticas.",
+      "category": "Informação"
+    },
+    "iso-sertifika-onemi": {
+      "title": "A importância das certificações ISO em embalagens cosméticas",
+      "excerpt": "A importância das certificações ISO 9001, ISO 14001 e FSSC 22000 na indústria de embalagens.",
+      "category": "Qualidade"
+    },
+    "dogru-sise-secimi": {
+      "title": "Como escolher o frasco certo para o seu negócio?",
+      "excerpt": "Critérios a considerar ao selecionar o frasco adequado para o seu produto.",
+      "category": "Guia"
+    },
+    "surdurulebilir-ambalaj": {
+      "title": "Embalagem sustentável: Produção ecologicamente consciente",
+      "excerpt": "Sobre nossos materiais recicláveis e processos de produção ecológicos.",
+      "category": "Sustentabilidade"
+    }
+  },
+  "compare": {
+    "title": "Comparar produtos",
+    "noProducts": "Nenhum produto para comparar",
+    "noProductsDesc": "Adicione produtos das páginas de produtos para compará-los lado a lado.",
+    "browseProducts": "Explorar produtos",
+    "backToProducts": "Voltar aos produtos",
+    "clearAll": "Limpar tudo",
+    "product": "Produto",
+    "remove": "remover",
+    "add": "Adicionar",
+    "colors": "Cores",
+    "addToQuote": "Adicionar ao orçamento",
+    "continueBrowsing": "Continuar explorando produtos",
+    "selectedCount": "{count} produto(s) selecionado(s)",
+    "compare": "Comparar",
+    "category": "Categoria",
+    "volume": "Volume",
+    "weight": "Peso",
+    "neckDiameter": "Diâmetro do gargalo",
+    "material": "Material"
   }
 }

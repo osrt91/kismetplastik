@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           error:
-            "Cok fazla istek gonderdiniz. Lutfen biraz bekleyip tekrar deneyin.",
+            "Çok fazla istek gönderdiniz. Lütfen biraz bekleyip tekrar deneyin.",
         },
         { status: 429 }
       );
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     const parsed = preOrderSchema.safeParse(body);
 
     if (!parsed.success) {
-      const firstError = parsed.error.issues[0]?.message ?? "Gecersiz veri.";
+      const firstError = parsed.error.issues[0]?.message ?? "Geçersiz veri.";
       return NextResponse.json(
         { success: false, error: firstError },
         { status: 400 }
@@ -77,11 +77,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message:
-        "On sipaarisiniz basariyla alindi. En kisa surede sizinle iletisime gececegiz.",
+        "Ön siparişiniz başarıyla alındı. En kısa sürede sizinle iletişime geçeceğiz.",
     });
   } catch {
     return NextResponse.json(
-      { success: false, error: "Bir hata olustu. Lutfen tekrar deneyin." },
+      { success: false, error: "Bir hata oluştu. Lütfen tekrar deneyin." },
       { status: 500 }
     );
   }

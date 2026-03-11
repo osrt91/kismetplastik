@@ -10,14 +10,14 @@ export async function POST(request: NextRequest) {
     const { ok } = rateLimit(`payment:${ip}`, { limit: 3, windowMs: 60_000 });
     if (!ok) {
       return NextResponse.json(
-        { success: false, error: "Cok fazla istek. Lutfen bekleyin." },
+        { success: false, error: "Çok fazla istek. Lütfen bekleyin." },
         { status: 429 }
       );
     }
 
     if (!isHalkbankConfigured()) {
       return NextResponse.json(
-        { success: false, error: "Online odeme sistemi henuz yapilandirilmamis." },
+        { success: false, error: "Online ödeme sistemi henüz yapılandırılmamış." },
         { status: 503 }
       );
     }
@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
     const { amount } = body;
     if (!amount || amount <= 0) {
       return NextResponse.json(
-        { success: false, error: "Gecersiz tutar" },
+        { success: false, error: "Geçersiz tutar" },
         { status: 400 }
       );
     }

@@ -10,14 +10,14 @@ interface DownloadRequest {
 }
 
 function validate(data: DownloadRequest): string | null {
-  if (!data.name?.trim()) return "Ad Soyad alani zorunludur.";
-  if (data.name.trim().length < 2) return "Ad Soyad en az 2 karakter olmalidir.";
-  if (!data.email?.trim()) return "E-posta alani zorunludur.";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return "Gecerli bir e-posta adresi giriniz.";
-  if (!data.resourceId?.trim()) return "Kaynak secimi zorunludur.";
+  if (!data.name?.trim()) return "Ad Soyad alanı zorunludur.";
+  if (data.name.trim().length < 2) return "Ad Soyad en az 2 karakter olmalıdır.";
+  if (!data.email?.trim()) return "E-posta alanı zorunludur.";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return "Geçerli bir e-posta adresi giriniz.";
+  if (!data.resourceId?.trim()) return "Kaynak seçimi zorunludur.";
 
   const resource = resources.find((r) => r.id === data.resourceId);
-  if (!resource) return "Gecersiz kaynak secimi.";
+  if (!resource) return "Geçersiz kaynak seçimi.";
 
   return null;
 }
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           error:
-            "Cok fazla istek gonderdiniz. Lutfen biraz bekleyip tekrar deneyin.",
+            "Çok fazla istek gönderdiniz. Lütfen biraz bekleyip tekrar deneyin.",
         },
         { status: 429 }
       );
@@ -64,12 +64,12 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: "Indirme baglantiniz hazir.",
+      message: "İndirme bağlantınız hazır.",
       downloadUrl: resource.fileUrl,
     });
   } catch {
     return NextResponse.json(
-      { success: false, error: "Bir hata olustu. Lutfen tekrar deneyin." },
+      { success: false, error: "Bir hata oluştu. Lütfen tekrar deneyin." },
       { status: 500 }
     );
   }

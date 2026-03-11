@@ -37,9 +37,9 @@ interface MappingRow {
 
 const PRICE_TYPES: { value: DealerPriceType; label: string }[] = [
   { value: "standard", label: "Standart" },
-  { value: "pesin", label: "Pesin" },
+  { value: "pesin", label: "Peşin" },
   { value: "vadeli", label: "Vadeli" },
-  { value: "ozel", label: "Ozel" },
+  { value: "ozel", label: "Özel" },
 ];
 
 // ─── modal ─────────────────────────────────────────────────────────────────
@@ -123,13 +123,13 @@ function MappingModal({
       const json = await res.json();
 
       if (!json.success) {
-        setError(json.error ?? "Hata olustu");
+        setError(json.error ?? "Hata oluştu");
         return;
       }
 
       onSaved(json.data);
     } catch {
-      setError("Sunucuya baglanılamadı");
+      setError("Sunucuya bağlanılamadı");
     } finally {
       setSaving(false);
     }
@@ -140,7 +140,7 @@ function MappingModal({
       <div className="w-full max-w-lg rounded-2xl border border-border bg-card shadow-xl">
         <div className="flex items-center justify-between border-b border-border px-6 py-4">
           <h2 className="text-base font-semibold text-foreground">
-            {isEdit ? "Eslestirmeyi Duzenle" : "Yeni Bayi-Cari Eslestirme"}
+            {isEdit ? "Eşleştirmeyi Düzenle" : "Yeni Bayi-Cari Eşleştirme"}
           </h2>
           <button onClick={onClose} className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted">
             <X size={16} />
@@ -166,7 +166,7 @@ function MappingModal({
                 required
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               >
-                <option value="">Bayi secin...</option>
+                <option value="">Bayi seçin...</option>
                 {dealers.map((d) => (
                   <option key={d.id} value={d.id}>
                     {d.company_name ?? d.full_name} ({d.email})
@@ -183,7 +183,7 @@ function MappingModal({
             <input
               value={form.dia_cari_kodu}
               onChange={(e) => setForm((p) => ({ ...p, dia_cari_kodu: e.target.value }))}
-              placeholder="Orn: 120.01.001"
+              placeholder="Örn: 120.01.001"
               required
               className="w-full rounded-lg border border-border bg-background px-3 py-2 font-mono text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
             />
@@ -191,12 +191,12 @@ function MappingModal({
 
           <div>
             <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
-              DIA Cari Unvan
+              DIA Cari Ünvan
             </label>
             <input
               value={form.dia_cari_unvan}
               onChange={(e) => setForm((p) => ({ ...p, dia_cari_unvan: e.target.value }))}
-              placeholder="Firma unvani"
+              placeholder="Firma ünvanı"
               className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
             />
           </div>
@@ -222,7 +222,7 @@ function MappingModal({
                   onChange={(e) => setForm((p) => ({ ...p, can_direct_order: e.target.checked }))}
                   className="h-4 w-4 rounded border-border text-primary focus:ring-primary/20"
                 />
-                Direkt Siparis
+                Direkt Sipariş
               </label>
             </div>
           </div>
@@ -233,7 +233,7 @@ function MappingModal({
               onClick={onClose}
               className="rounded-lg border border-border px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-muted"
             >
-              Iptal
+              İptal
             </button>
             <button
               type="submit"
@@ -241,7 +241,7 @@ function MappingModal({
               className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-60"
             >
               {saving && <Loader2 size={14} className="animate-spin" />}
-              {isEdit ? "Kaydet" : "Eslestir"}
+              {isEdit ? "Kaydet" : "Eşleştir"}
             </button>
           </div>
         </form>
@@ -272,7 +272,7 @@ export default function AdminDealerMappingsPage() {
       if (json.success) setMappings(json.data);
       else setFetchError(json.error);
     } catch {
-      setFetchError("Sunucuya baglanılamadı");
+      setFetchError("Sunucuya bağlanılamadı");
     } finally {
       setLoading(false);
     }
@@ -346,9 +346,9 @@ export default function AdminDealerMappingsPage() {
       <div className="space-y-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Bayi-Cari Eslestirme</h1>
+            <h1 className="text-2xl font-bold text-foreground">Bayi-Cari Eşleştirme</h1>
             <p className="mt-1 text-sm text-muted-foreground">
-              {mappings.length} eslestirme · {mappings.filter((m) => m.is_approved).length} onayli
+              {mappings.length} eşleştirme · {mappings.filter((m) => m.is_approved).length} onaylı
             </p>
           </div>
           <button
@@ -359,7 +359,7 @@ export default function AdminDealerMappingsPage() {
             className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90"
           >
             <Plus size={16} />
-            Yeni Eslestirme
+            Yeni Eşleştirme
           </button>
         </div>
 
@@ -368,7 +368,7 @@ export default function AdminDealerMappingsPage() {
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Cari kodu, unvan veya email ile ara..."
+            placeholder="Cari kodu, ünvan veya email ile ara..."
             className="w-full rounded-lg border border-border bg-background py-2.5 pl-10 pr-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
           />
         </div>
@@ -389,7 +389,7 @@ export default function AdminDealerMappingsPage() {
           <div className="flex flex-col items-center py-20 text-muted-foreground">
             <Users size={44} className="mb-3 opacity-20" />
             <p className="text-sm font-medium">
-              {search ? "Aramayla eslesen kayit yok" : "Henuz eslestirme yapilmamis"}
+              {search ? "Aramayla eşleşen kayıt yok" : "Henüz eşleştirme yapılmamış"}
             </p>
           </div>
         ) : (
@@ -400,11 +400,11 @@ export default function AdminDealerMappingsPage() {
                   <th className="px-4 py-3 text-left font-medium text-muted-foreground">Bayi</th>
                   <th className="px-4 py-3 text-left font-medium text-muted-foreground">Email</th>
                   <th className="px-4 py-3 text-left font-medium text-muted-foreground">DIA Cari</th>
-                  <th className="px-4 py-3 text-left font-medium text-muted-foreground">Unvan</th>
+                  <th className="px-4 py-3 text-left font-medium text-muted-foreground">Ünvan</th>
                   <th className="px-4 py-3 text-center font-medium text-muted-foreground">Fiyat</th>
-                  <th className="px-4 py-3 text-center font-medium text-muted-foreground">Onayli</th>
+                  <th className="px-4 py-3 text-center font-medium text-muted-foreground">Onaylı</th>
                   <th className="px-4 py-3 text-center font-medium text-muted-foreground">Direkt</th>
-                  <th className="px-4 py-3 text-right font-medium text-muted-foreground">Islemler</th>
+                  <th className="px-4 py-3 text-right font-medium text-muted-foreground">İşlemler</th>
                 </tr>
               </thead>
               <tbody>
