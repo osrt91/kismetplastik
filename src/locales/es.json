@@ -430,7 +430,10 @@
     "allPosts": "Todos los artículos",
     "breadcrumbHome": "Inicio",
     "moreSoon": "Más artículos próximamente...",
-    "newContentSoon": "Se está preparando nuevo contenido"
+    "newContentSoon": "Se está preparando nuevo contenido",
+    "noCategoryPosts": "No se encontraron publicaciones en esta categoría.",
+    "noCategoryPostsDesc": "Intente seleccionar una categoría diferente o explore todas las publicaciones.",
+    "showAllPosts": "Mostrar todas las publicaciones"
   },
   "catalog": {
     "heroTitle": "Descargar catálogo",

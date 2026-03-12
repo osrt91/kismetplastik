@@ -220,6 +220,29 @@ export default function BlogPage() {
           </div>
         )}
 
+        {/* Empty category state */}
+        {filtered.length === 0 && activeCategory !== "__all__" && (
+          <AnimateOnScroll animation="fade-up">
+            <div className="mb-12 flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-neutral-200 bg-white/50 p-12 text-center dark:border-neutral-700 dark:bg-neutral-800/30">
+              <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-amber-500/10">
+                <BookOpen size={32} className="text-amber-500" />
+              </div>
+              <p className="text-lg font-bold text-[#0A1628] dark:text-white">
+                {b.noCategoryPosts}
+              </p>
+              <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
+                {b.noCategoryPostsDesc}
+              </p>
+              <button
+                onClick={() => setActiveCategory("__all__")}
+                className="mt-6 rounded-full bg-amber-500 px-6 py-2.5 text-sm font-bold text-[#0A1628] shadow-lg shadow-amber-500/25 transition-all hover:bg-amber-400"
+              >
+                {b.showAllPosts}
+              </button>
+            </div>
+          </AnimateOnScroll>
+        )}
+
         {/* Regular grid cards */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {rest.map((post, i) => {

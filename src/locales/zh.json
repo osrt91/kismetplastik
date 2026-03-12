@@ -430,7 +430,10 @@
     "allPosts": "所有文章",
     "breadcrumbHome": "首页",
     "moreSoon": "更多文章即将发布...",
-    "newContentSoon": "新内容正在准备中"
+    "newContentSoon": "新内容正在准备中",
+    "noCategoryPosts": "此分类下未找到文章。",
+    "noCategoryPostsDesc": "请尝试选择其他分类或浏览所有文章。",
+    "showAllPosts": "显示所有文章"
   },
   "catalog": {
     "heroTitle": "下载目录",

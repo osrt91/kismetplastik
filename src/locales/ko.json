@@ -430,7 +430,10 @@
     "allPosts": "모든 글",
     "breadcrumbHome": "홈",
     "moreSoon": "더 많은 글이 곧...",
-    "newContentSoon": "새로운 콘텐츠 준비 중"
+    "newContentSoon": "새로운 콘텐츠 준비 중",
+    "noCategoryPosts": "이 카테고리에 게시물이 없습니다.",
+    "noCategoryPostsDesc": "다른 카테고리를 선택하거나 모든 게시물을 찾아보세요.",
+    "showAllPosts": "모든 게시물 보기"
   },
   "catalog": {
     "heroTitle": "카탈로그 다운로드",

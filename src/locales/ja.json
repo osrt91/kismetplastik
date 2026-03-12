@@ -430,7 +430,10 @@
     "allPosts": "すべての記事",
     "breadcrumbHome": "ホーム",
     "moreSoon": "もっと記事が近日公開...",
-    "newContentSoon": "新しいコンテンツを準備中"
+    "newContentSoon": "新しいコンテンツを準備中",
+    "noCategoryPosts": "このカテゴリーには記事が見つかりませんでした。",
+    "noCategoryPostsDesc": "別のカテゴリーを選択するか、すべての記事をご覧ください。",
+    "showAllPosts": "すべての記事を表示"
   },
   "catalog": {
     "heroTitle": "カタログダウンロード",

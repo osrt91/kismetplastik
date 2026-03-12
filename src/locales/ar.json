@@ -430,7 +430,10 @@
     "allPosts": "جميع المقالات",
     "breadcrumbHome": "الرئيسية",
     "moreSoon": "المزيد من المقالات قريبًا...",
-    "newContentSoon": "يتم إعداد محتوى جديد"
+    "newContentSoon": "يتم إعداد محتوى جديد",
+    "noCategoryPosts": "لم يتم العثور على مقالات في هذه الفئة.",
+    "noCategoryPostsDesc": "حاول اختيار فئة مختلفة أو تصفح جميع المقالات.",
+    "showAllPosts": "عرض جميع المقالات"
   },
   "catalog": {
     "heroTitle": "تحميل الكتالوج",

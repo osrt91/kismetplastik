@@ -430,7 +430,10 @@
     "allPosts": "Alle Beiträge",
     "breadcrumbHome": "Startseite",
     "moreSoon": "Weitere Artikel folgen...",
-    "newContentSoon": "Neue Inhalte werden vorbereitet"
+    "newContentSoon": "Neue Inhalte werden vorbereitet",
+    "noCategoryPosts": "Keine Beiträge in dieser Kategorie gefunden.",
+    "noCategoryPostsDesc": "Versuchen Sie, eine andere Kategorie auszuwählen, oder durchsuchen Sie alle Beiträge.",
+    "showAllPosts": "Alle Beiträge anzeigen"
   },
   "catalog": {
     "heroTitle": "Katalog herunterladen",
