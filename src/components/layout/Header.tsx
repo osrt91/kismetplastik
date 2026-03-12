@@ -229,7 +229,7 @@ export default function Header() {
                   {isActive("/urunler") && <span className="absolute bottom-1 left-1/2 h-[3px] w-5 -translate-x-1/2 rounded-full bg-amber-500" />}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="grid w-[520px] grid-cols-[1fr_180px] gap-0 rounded-xl border border-border/40 bg-background/95 backdrop-blur-xl p-0 shadow-2xl shadow-black/[0.12]">
+                  <div className="grid w-[520px] grid-cols-[1fr_180px] gap-0 rounded-xl border border-border/40 bg-background/95 backdrop-blur-xl p-0 shadow-2xl shadow-black/[0.12] dark:border-white/10 dark:bg-navy-900/95 dark:shadow-black/40">
                     <ul className="grid gap-0.5 p-3">
                       {productChildren.map((child) => {
                         const Icon = child.icon;
@@ -240,8 +240,8 @@ export default function Header() {
                                 href={child.href}
                                 className="group flex items-start gap-3 rounded-lg px-3 py-2.5 transition-all duration-200 hover:bg-amber-500/[0.06] hover:shadow-sm"
                               >
-                                <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary-50 text-primary-600 transition-colors group-hover:bg-primary-100">
-                                  <Icon size={16} strokeWidth={1.8} />
+                                <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-navy-900/10 text-navy-700 transition-colors group-hover:bg-amber-500/15 group-hover:text-amber-600 dark:bg-amber-500/10 dark:text-amber-400 dark:group-hover:bg-amber-500/20">
+                                  <Icon size={18} strokeWidth={1.8} />
                                 </div>
                                 <div>
                                   <div className="text-sm font-semibold text-foreground">{child.name}</div>
@@ -253,9 +253,9 @@ export default function Header() {
                         );
                       })}
                     </ul>
-                    <div className="flex flex-col justify-between border-l border-border/60 bg-secondary/30 p-4">
+                    <div className="flex flex-col justify-between border-l border-border/50 bg-navy-900/[0.03] dark:bg-white/[0.04] p-4">
                       <div>
-                        <Link href="/urunler" className="group mb-3 flex items-center gap-1 text-sm font-bold text-primary-700 transition-colors hover:text-primary-900">
+                        <Link href="/urunler" className="group mb-3 flex items-center gap-1 text-sm font-bold text-navy-700 transition-colors hover:text-navy-900 dark:text-amber-400 dark:hover:text-amber-300">
                           {nav.allProducts}
                           <ChevronRight size={14} className="transition-transform group-hover:translate-x-0.5" />
                         </Link>
@@ -265,7 +265,7 @@ export default function Header() {
                       </div>
                       <Link
                         href="/katalog"
-                        className="mt-4 flex items-center gap-2 rounded-lg bg-primary-50 px-3 py-2 text-xs font-semibold text-primary-700 transition-colors hover:bg-primary-100"
+                        className="mt-4 flex items-center gap-2 rounded-lg bg-navy-900/10 px-3 py-2 text-xs font-semibold text-navy-700 transition-colors hover:bg-navy-900/15 dark:bg-amber-500/10 dark:text-amber-400 dark:hover:bg-amber-500/20"
                       >
                         <Download size={14} />
                         {comp.megaCatalogCta}
@@ -282,7 +282,7 @@ export default function Header() {
                   {(isActive("/hakkimizda") || isActive("/kalite") || isActive("/uretim") || isActive("/vizyon-misyon") || isActive("/arge") || isActive("/surdurulebilirlik") || isActive("/galeri") || isActive("/referanslar")) && <span className="absolute bottom-1 left-1/2 h-[3px] w-5 -translate-x-1/2 rounded-full bg-amber-500" />}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[420px] rounded-xl border border-border/40 bg-background/95 backdrop-blur-xl p-3 shadow-2xl shadow-black/[0.12]">
+                  <div className="w-[420px] rounded-xl border border-border/40 bg-background/95 backdrop-blur-xl p-3 shadow-2xl shadow-black/[0.12] dark:border-white/10 dark:bg-navy-900/95 dark:shadow-black/40">
                     <div className="mb-2 px-3">
                       <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">{comp.megaCorporateDesc}</p>
                     </div>
@@ -296,7 +296,7 @@ export default function Header() {
                                 href={child.href}
                                 className="group flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-all duration-200 hover:bg-amber-500/[0.06] hover:text-foreground"
                               >
-                                <Icon size={15} strokeWidth={1.8} className="shrink-0 text-primary-500 opacity-60 transition-all duration-200 group-hover:text-amber-500 group-hover:opacity-100" />
+                                <Icon size={17} strokeWidth={1.8} className="shrink-0 text-navy-700/70 transition-all duration-200 group-hover:text-amber-500 dark:text-cream-50/50 dark:group-hover:text-amber-400" />
                                 {child.name}
                               </Link>
                             </NavigationMenuLink>
@@ -315,7 +315,7 @@ export default function Header() {
                   {isActive("/sektorler") && <span className="absolute bottom-1 left-1/2 h-[3px] w-5 -translate-x-1/2 rounded-full bg-amber-500" />}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[480px] rounded-xl border border-border/40 bg-background/95 backdrop-blur-xl p-3 shadow-2xl shadow-black/[0.12]">
+                  <div className="w-[480px] rounded-xl border border-border/40 bg-background/95 backdrop-blur-xl p-3 shadow-2xl shadow-black/[0.12] dark:border-white/10 dark:bg-navy-900/95 dark:shadow-black/40">
                     <div className="mb-2 px-3">
                       <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">{comp.megaSectorsDesc}</p>
                     </div>
@@ -345,7 +345,7 @@ export default function Header() {
                   {(isActive("/blog") || isActive("/fuarlar") || isActive("/ambalaj-sozlugu")) && <span className="absolute bottom-1 left-1/2 h-[3px] w-5 -translate-x-1/2 rounded-full bg-amber-500" />}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[280px] rounded-xl border border-border/40 bg-background/95 backdrop-blur-xl p-3 shadow-2xl shadow-black/[0.12]">
+                  <div className="w-[280px] rounded-xl border border-border/40 bg-background/95 backdrop-blur-xl p-3 shadow-2xl shadow-black/[0.12] dark:border-white/10 dark:bg-navy-900/95 dark:shadow-black/40">
                     <ul className="grid gap-0.5">
                       {mediaChildren.map((child) => {
                         const Icon = child.icon;
@@ -356,7 +356,7 @@ export default function Header() {
                                 href={child.href}
                                 className="group flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-muted-foreground transition-all duration-200 hover:bg-amber-500/[0.06] hover:text-foreground"
                               >
-                                <Icon size={16} strokeWidth={1.8} className="shrink-0 text-primary-500 opacity-60 transition-all duration-200 group-hover:text-amber-500 group-hover:opacity-100" />
+                                <Icon size={18} strokeWidth={1.8} className="shrink-0 text-navy-700/70 transition-all duration-200 group-hover:text-amber-500 dark:text-cream-50/50 dark:group-hover:text-amber-400" />
                                 {child.name}
                               </Link>
                             </NavigationMenuLink>
