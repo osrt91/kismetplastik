@@ -12,27 +12,27 @@
   "navigationDividerColorDark": "#0A1628",
   "backgroundColor": "#FAFAF7",
   "enableNotifications": false,
-  "startUrl": "/tr",
-  "iconUrl": "https://www.kismetplastik.com/images/icon-512.png",
-  "maskableIconUrl": "https://www.kismetplastik.com/images/icon-maskable-512.png",
+  "startUrl": "/test/tr",
+  "iconUrl": "https://www.kismetplastik.com/test/images/icon-512.png",
+  "maskableIconUrl": "https://www.kismetplastik.com/test/images/icon-maskable-512.png",
   "shortcuts": [
     {
       "name": "Ürünler",
       "short_name": "Ürünler",
-      "url": "/tr/urunler",
-      "chosenIconUrl": "https://www.kismetplastik.com/images/icon-192.png"
+      "url": "/test/tr/urunler",
+      "chosenIconUrl": "https://www.kismetplastik.com/test/images/icon-192.png"
     },
     {
       "name": "Teklif Al",
       "short_name": "Teklif",
-      "url": "/tr/teklif-al",
-      "chosenIconUrl": "https://www.kismetplastik.com/images/icon-192.png"
+      "url": "/test/tr/teklif-al",
+      "chosenIconUrl": "https://www.kismetplastik.com/test/images/icon-192.png"
     },
     {
       "name": "İletişim",
       "short_name": "İletişim",
-      "url": "/tr/iletisim",
-      "chosenIconUrl": "https://www.kismetplastik.com/images/icon-192.png"
+      "url": "/test/tr/iletisim",
+      "chosenIconUrl": "https://www.kismetplastik.com/test/images/icon-192.png"
     }
   ],
   "signing": {
@@ -40,7 +40,7 @@
     "alias": "kismetplastik"
   },
   "generatorApp": "bubblewrap-cli",
-  "webManifestUrl": "https://www.kismetplastik.com/manifest.json",
+  "webManifestUrl": "https://www.kismetplastik.com/test/manifest.json",
   "fallbackType": "customtabs",
   "features": {
     "locationDelegation": {
@@ -56,7 +56,7 @@
   "enableSiteSettingsShortcut": true,
   "isChromeOSOnly": false,
   "isMetaQuest": false,
-  "fullScopeUrl": "https://www.kismetplastik.com/",
+  "fullScopeUrl": "https://www.kismetplastik.com/test/",
   "minSdkVersion": 23,
   "appVersionCode": 1,
   "appVersionName": "1.0.0",

@@ -252,7 +252,8 @@ export default function TranslationsPage() {
   // ── Export ──────────────────────────────────────────────────────────────────────
 
   const handleExport = () => {
-    window.location.href = `/api/admin/translations/export?locale=${selectedLocale}`;
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+    window.location.href = `${basePath}/api/admin/translations/export?locale=${selectedLocale}`;
   };
 
   // ── Import ──────────────────────────────────────────────────────────────────────

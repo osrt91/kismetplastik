@@ -14,9 +14,9 @@ const securityHeaders = [
       "default-src 'self'",
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-      "img-src 'self' data: blob: https://*.supabase.co https://img.youtube.com https://www.google-analytics.com",
+      "img-src 'self' data: blob: https://*.supabase.co https://supabase.kismetplastik.com https://img.youtube.com https://www.google-analytics.com",
       "font-src 'self' https://fonts.gstatic.com",
-      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://api.openai.com",
+      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://supabase.kismetplastik.com wss://supabase.kismetplastik.com https://www.google-analytics.com https://api.openai.com",
       "frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com",
       "object-src 'none'",
       "base-uri 'self'",
@@ -26,6 +26,7 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  basePath: "/test",
   turbopack: {
     root: path.resolve(__dirname),
   },

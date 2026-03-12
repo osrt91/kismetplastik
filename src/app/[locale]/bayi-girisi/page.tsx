@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import Link from "@/components/ui/LocaleLink";
 import {
   ChevronRight,
@@ -35,9 +36,10 @@ const stats = [
 ];
 
 export default function BayiGirisiPage() {
-  const { dict } = useLocale();
+  const { dict, locale } = useLocale();
   const d = dict.dealer;
   const nav = dict.nav;
+  const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -83,7 +85,8 @@ export default function BayiGirisiPage() {
       const data = await res.json();
 
       if (data.success) {
-        window.location.href = `/${dict.nav.home === "Ana Sayfa" ? "tr" : "en"}/bayi-panel`;
+        router.push(`/${locale}/bayi-panel`);
+        router.refresh();
       } else {
         setError(data.error || "Giriş başarısız.");
       }

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "@/components/ui/LocaleLink";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   Package,
@@ -80,6 +80,7 @@ interface SidebarProps {
 export default function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
   const { locale } = useLocale();
   const pathname = usePathname();
+  const router = useRouter();
   const t = labels[locale] || labels.en || labels.tr;
   const [collapsed, setCollapsed] = useState(false);
 
@@ -91,7 +92,8 @@ export default function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
   const handleLogout = async () => {
     const supabase = supabaseBrowser();
     await supabase.auth.signOut();
-    window.location.href = `/${locale}/bayi-girisi`;
+    router.push(`/${locale}/bayi-girisi`);
+    router.refresh();
   };
 
   const isActive = (href: string) => {
