@@ -23,6 +23,8 @@ import { motion } from "framer-motion";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import ImageLightbox from "@/components/ui/ImageLightbox";
 import { useLocale } from "@/contexts/LocaleContext";
+import { getLocalizedFieldSync } from "@/lib/content";
+import type { DbContentSection } from "@/types/database";
 
 /* ---------- data ---------- */
 
@@ -129,9 +131,21 @@ const factoryStats: FactoryStat[] = [
 
 /* ---------- component ---------- */
 
-export default function FactoryClient() {
+interface FactoryClientProps {
+  content?: Record<string, DbContentSection>;
+}
+
+export default function FactoryClient({ content }: FactoryClientProps) {
   const { locale } = useLocale();
   const isTr = locale === "tr";
+
+  const heroSection = content?.factory_hero;
+  const heroTitle = heroSection
+    ? getLocalizedFieldSync(heroSection, "title", locale)
+    : "";
+  const heroSubtitle = heroSection
+    ? getLocalizedFieldSync(heroSection, "subtitle", locale)
+    : "";
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -209,12 +223,13 @@ export default function FactoryClient() {
             </nav>
 
             <h1 className="mb-4 text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
-              {isTr ? "Üretim Tesisimiz" : "Our Production Facility"}
+              {heroTitle || (isTr ? "Üretim Tesisimiz" : "Our Production Facility")}
             </h1>
             <p className="max-w-2xl text-lg text-white/70">
-              {isTr
-                ? "Modern makine parkuru ve yüksek kapasiteli üretim hatlarıyla kozmetik ambalaj sektörünün güvenilir tedarikçisi."
-                : "A reliable supplier in the cosmetic packaging sector with modern machinery and high-capacity production lines."}
+              {heroSubtitle ||
+                (isTr
+                  ? "Modern makine parkuru ve yüksek kapasiteli üretim hatlarıyla kozmetik ambalaj sektörünün güvenilir tedarikçisi."
+                  : "A reliable supplier in the cosmetic packaging sector with modern machinery and high-capacity production lines.")}
             </p>
           </AnimateOnScroll>
         </div>

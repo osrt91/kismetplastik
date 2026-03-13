@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import type { Milestone } from "@/data/milestones";
+import { getLocalizedFieldSync } from "@/lib/content";
+import type { DbMilestone } from "@/types/database";
 
 interface TimelineProps {
-  milestones: Milestone[];
+  milestones: DbMilestone[];
   locale: string;
 }
 
@@ -14,7 +15,7 @@ function TimelineCard({
   locale,
   index,
 }: {
-  milestone: Milestone;
+  milestone: DbMilestone;
   locale: string;
   index: number;
 }) {
@@ -51,9 +52,9 @@ function TimelineCard({
   }, []);
 
   const isLeft = index % 2 === 0;
-  const title = locale === "en" ? milestone.titleEn : milestone.title;
-  const description =
-    locale === "en" ? milestone.descriptionEn : milestone.description;
+  const m = milestone as unknown as Record<string, unknown>;
+  const title = getLocalizedFieldSync(m, "title", locale);
+  const description = getLocalizedFieldSync(m, "description", locale);
 
   return (
     <div

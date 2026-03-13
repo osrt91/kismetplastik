@@ -23,6 +23,8 @@ import {
   StickyNote,
   Hash,
 } from "lucide-react";
+import { getLocalizedFieldSync } from "@/lib/content";
+import type { DbContentSection } from "@/types/database";
 
 /* ------------------------------------------------------------------ */
 /*  Category keys matching the 8 product categories                   */
@@ -106,9 +108,21 @@ const initialState: FormState = {
 /* ================================================================== */
 /*  Component                                                         */
 /* ================================================================== */
-export default function SampleRequestClient() {
-  const { dict } = useLocale();
+interface SampleRequestClientProps {
+  content?: Record<string, DbContentSection>;
+}
+
+export default function SampleRequestClient({ content }: SampleRequestClientProps) {
+  const { locale, dict } = useLocale();
   const t = dict.sampleRequest;
+
+  const heroSection = content?.sample_hero;
+  const dbHeroTitle = heroSection
+    ? getLocalizedFieldSync(heroSection, "title", locale)
+    : "";
+  const dbHeroSubtitle = heroSection
+    ? getLocalizedFieldSync(heroSection, "subtitle", locale)
+    : "";
 
   const [step, setStep] = useState(1);
   const [form, setForm] = useState<FormState>(initialState);
@@ -286,10 +300,10 @@ export default function SampleRequestClient() {
         {/* Hero */}
         <div className="mb-10 text-center">
           <h1 className="mb-3 text-3xl font-extrabold text-[#0A1628] sm:text-4xl lg:text-5xl">
-            {t.heroTitle}
+            {dbHeroTitle || t.heroTitle}
           </h1>
           <p className="mx-auto max-w-2xl text-neutral-600">
-            {t.heroSubtitle}
+            {dbHeroSubtitle || t.heroSubtitle}
           </p>
         </div>
 

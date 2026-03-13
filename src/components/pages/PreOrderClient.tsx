@@ -27,6 +27,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/contexts/LocaleContext";
 import { cn } from "@/lib/utils";
+import { getLocalizedFieldSync } from "@/lib/content";
+import type { DbContentSection } from "@/types/database";
 
 const preOrderSchema = z.object({
   name: z.string().min(2, "Ad Soyad en az 2 karakter olmalıdır."),
@@ -131,9 +133,21 @@ const texts = {
 const iconWrap =
   "pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400 transition-colors duration-200 peer-focus:text-primary-500";
 
-export default function PreOrderClient() {
+interface PreOrderClientProps {
+  content?: Record<string, DbContentSection>;
+}
+
+export default function PreOrderClient({ content }: PreOrderClientProps) {
   const { locale } = useLocale();
   const t = texts[locale === "en" ? "en" : "tr"];
+
+  const heroSection = content?.preorder_hero;
+  const dbHeroTitle = heroSection
+    ? getLocalizedFieldSync(heroSection, "title", locale)
+    : "";
+  const dbHeroSubtitle = heroSection
+    ? getLocalizedFieldSync(heroSection, "subtitle", locale)
+    : "";
 
   const [formState, setFormState] = useState({
     name: "",
@@ -257,9 +271,9 @@ export default function PreOrderClient() {
               <span className="text-white">{t.breadcrumbPreOrder}</span>
             </nav>
             <h1 className="mb-3 text-3xl font-extrabold text-white sm:text-4xl">
-              {t.heroTitle}
+              {dbHeroTitle || t.heroTitle}
             </h1>
-            <p className="max-w-2xl text-white/70">{t.heroSubtitle}</p>
+            <p className="max-w-2xl text-white/70">{dbHeroSubtitle || t.heroSubtitle}</p>
 
             {/* Steps Pipeline */}
             <div className="mt-8 flex flex-wrap items-center gap-2 sm:gap-3">
