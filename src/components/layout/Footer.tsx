@@ -17,7 +17,11 @@ import {
 } from "lucide-react";
 import { useLocale } from "@/contexts/LocaleContext";
 
-export default function Footer() {
+interface FooterProps {
+  settings?: Record<string, string>;
+}
+
+export default function Footer({ settings }: FooterProps) {
   const { dict } = useLocale();
   const f = dict.footer;
   const nav = dict.nav;
@@ -51,9 +55,9 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/kismetplastik" },
-    { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/kismetplastik" },
-    { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/company/kismetplastik" },
+    { name: "Facebook", icon: Facebook, href: settings?.social_facebook ?? "https://www.facebook.com/kismetplastik" },
+    { name: "Instagram", icon: Instagram, href: settings?.social_instagram ?? "https://www.instagram.com/kismetplastik" },
+    { name: "LinkedIn", icon: Linkedin, href: settings?.social_linkedin ?? "https://www.linkedin.com/company/kismetplastik" },
   ];
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
@@ -108,28 +112,28 @@ export default function Footer() {
             {/* Contact */}
             <div className="space-y-2.5">
               <a
-                href="tel:+902125498703"
+                href={`tel:${settings?.company_phone ? settings.company_phone.replace(/\s/g, '') : '+902125498703'}`}
                 className="group flex items-center gap-2.5 text-[13px] text-white/60 transition-colors hover:text-white"
               >
                 <span className="flex h-7 w-7 items-center justify-center rounded-md bg-white/[0.06] transition-colors group-hover:bg-accent/20">
                   <Phone size={12} strokeWidth={1.8} />
                 </span>
-                0212 549 87 03
+                {settings?.company_phone ?? "0212 549 87 03"}
               </a>
               <a
-                href="mailto:bilgi@kismetplastik.com"
+                href={`mailto:${settings?.company_email ?? 'bilgi@kismetplastik.com'}`}
                 className="group flex items-center gap-2.5 text-[13px] text-white/60 transition-colors hover:text-white"
               >
                 <span className="flex h-7 w-7 items-center justify-center rounded-md bg-white/[0.06] transition-colors group-hover:bg-accent/20">
                   <Mail size={12} strokeWidth={1.8} />
                 </span>
-                bilgi@kismetplastik.com
+                {settings?.company_email ?? "bilgi@kismetplastik.com"}
               </a>
               <div className="flex items-center gap-2.5 text-[13px] text-white/40">
                 <span className="flex h-7 w-7 items-center justify-center rounded-md bg-white/[0.06]">
                   <MapPin size={12} strokeWidth={1.8} />
                 </span>
-                İkitelli OSB, Başakşehir / İstanbul
+                {settings?.company_address ?? "İkitelli OSB, Başakşehir / İstanbul"}
               </div>
             </div>
           </div>

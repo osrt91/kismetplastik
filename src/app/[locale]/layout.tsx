@@ -39,6 +39,7 @@ const GoogleAnalytics = dynamic(() => import("@/components/analytics/GoogleAnaly
 import { Toaster } from "sonner";
 import { LocalBusinessJsonLd, OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { locales } from "@/proxy";
+import { getSettings } from "@/lib/content";
 
 type Props = {
   children: React.ReactNode;
@@ -146,6 +147,8 @@ export default async function LocaleLayout({ children, params }: Props) {
     notFound();
   }
 
+  const settings = await getSettings();
+
   return (
     <html lang={locale} className={`${fraunces.variable} ${instrumentSans.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
@@ -207,7 +210,7 @@ export default async function LocaleLayout({ children, params }: Props) {
               <main id="main-content" tabIndex={-1}>
                 {children}
               </main>
-              <Footer />
+              <Footer settings={settings} />
               <WhatsAppButton />
               {/* <AIChatbot /> */}
               <ScrollToTop />

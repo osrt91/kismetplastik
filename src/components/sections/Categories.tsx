@@ -6,6 +6,8 @@ import { ArrowRight, ChevronLeft, ChevronRight, Package } from "lucide-react";
 import { categoryIconList } from "@/components/ui/CategoryIcons";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
+import type { DbContentSection } from "@/types/database";
+import { getLocalizedFieldSync } from "@/lib/content";
 
 const categorySlugs = [
   "pet-siseler",
@@ -19,9 +21,17 @@ const categorySlugs = [
 ];
 const icons = categoryIconList;
 
-export default function Categories() {
-  const { dict } = useLocale();
+interface CategoriesProps {
+  content?: Record<string, DbContentSection>;
+}
+
+export default function Categories({ content }: CategoriesProps) {
+  const { dict, locale } = useLocale();
   const h = dict.home;
+
+  const catSection = content?.home_categories;
+  const catTitle = catSection ? getLocalizedFieldSync(catSection, "title", locale) : "";
+  const catSubtitle = catSection ? getLocalizedFieldSync(catSection, "subtitle", locale) : "";
   const cats = (
     dict.homeCategories as { name: string; description: string; count: string }[]
   ).map((c, i) => ({
@@ -73,14 +83,14 @@ export default function Categories() {
               {h.categoriesOverline}
             </span>
             <h2 className="font-display mb-4 text-2xl font-bold text-[#0A1628] dark:text-white sm:text-3xl lg:text-4xl">
-              {h.categoriesTitle}
+              {catTitle || h.categoriesTitle}
             </h2>
             <div className="mb-4 flex items-center gap-2">
               <span className="h-[3px] w-12 rounded-full bg-[#F59E0B]" />
               <span className="h-[3px] w-6 rounded-full bg-[#0A1628]/15 dark:bg-white/15" />
             </div>
             <p className="font-body text-base leading-relaxed text-[#0A1628]/60 dark:text-white/60">
-              {h.categoriesSubtitle}
+              {catSubtitle || h.categoriesSubtitle}
             </p>
           </div>
         </AnimateOnScroll>

@@ -57,17 +57,21 @@ function StatBlock({ item, isVisible, index }: { item: StatItem; isVisible: bool
   );
 }
 
-export default function TrustBar() {
+interface TrustBarProps {
+  settings?: Record<string, string>;
+}
+
+export default function TrustBar({ settings }: TrustBarProps) {
   const { dict } = useLocale();
   const t = dict.trustBar;
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.3 });
 
   const stats: StatItem[] = [
-    { value: 57, suffix: "", label: t.experience },
+    { value: parseInt(settings?.stats_experience_years ?? "57"), suffix: "", label: t.experience },
     { value: 8, suffix: "", label: t.exports },
-    { value: 2000, suffix: "+", label: t.products },
-    { value: 500, suffix: "+", label: t.customers },
+    { value: parseInt(settings?.stats_products ?? "2000"), suffix: "+", label: t.products },
+    { value: parseInt(settings?.stats_customers ?? "500"), suffix: "+", label: t.customers },
   ];
 
   return (

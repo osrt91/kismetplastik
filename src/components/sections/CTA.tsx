@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, Phone, Shield, Award, BadgeCheck } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
+import type { DbContentSection } from "@/types/database";
+import { getLocalizedFieldSync } from "@/lib/content";
 
 const trustBadges = [
   { label: "ISO 9001", icon: Shield },
@@ -12,9 +14,18 @@ const trustBadges = [
   { label: "CE", icon: BadgeCheck },
 ];
 
-export default function CTA() {
-  const { dict } = useLocale();
+interface CTAProps {
+  content?: Record<string, DbContentSection>;
+}
+
+export default function CTA({ content }: CTAProps) {
+  const { dict, locale } = useLocale();
   const h = dict.home;
+
+  const ctaSection = content?.home_cta;
+  const ctaTitle = ctaSection ? getLocalizedFieldSync(ctaSection, "title", locale) : "";
+  const ctaSubtitle = ctaSection ? getLocalizedFieldSync(ctaSection, "subtitle", locale) : "";
+  const ctaContent = ctaSection ? getLocalizedFieldSync(ctaSection, "content", locale) : "";
 
   return (
     <section
@@ -47,20 +58,26 @@ export default function CTA() {
             className="font-display mb-6 text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl leading-tight"
             style={{ textShadow: "0 2px 20px rgba(0,0,0,0.4), 0 0 40px rgba(245,158,11,0.08)" }}
           >
-            {h.ctaTitle}{" "}
-            <span
-              className="text-[#F59E0B]"
-              style={{ textShadow: "0 0 30px rgba(245,158,11,0.4), 0 0 60px rgba(245,158,11,0.2)" }}
-            >
-              {h.ctaTitleAccent}
-            </span>{" "}
-            {h.ctaTitleSuffix}
+            {ctaTitle ? (
+              <span>{ctaTitle}</span>
+            ) : (
+              <>
+                {h.ctaTitle}{" "}
+                <span
+                  className="text-[#F59E0B]"
+                  style={{ textShadow: "0 0 30px rgba(245,158,11,0.4), 0 0 60px rgba(245,158,11,0.2)" }}
+                >
+                  {h.ctaTitleAccent}
+                </span>{" "}
+                {h.ctaTitleSuffix}
+              </>
+            )}
           </h2>
         </AnimateOnScroll>
 
         <AnimateOnScroll animation="fade-up" delay={100}>
           <p className="font-body mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-white/65 sm:text-xl">
-            {h.ctaSubtitle}
+            {ctaSubtitle || ctaContent || h.ctaSubtitle}
           </p>
         </AnimateOnScroll>
 

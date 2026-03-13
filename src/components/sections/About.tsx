@@ -4,11 +4,23 @@ import Link from "@/components/ui/LocaleLink";
 import { ArrowRight, Check } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
+import type { DbContentSection } from "@/types/database";
+import { getLocalizedFieldSync } from "@/lib/content";
 
-export default function About() {
-  const { dict } = useLocale();
+interface AboutProps {
+  settings?: Record<string, string>;
+  content?: Record<string, DbContentSection>;
+}
+
+export default function About({ settings, content }: AboutProps) {
+  const { dict, locale } = useLocale();
   const h = dict.home;
   const strengths = dict.homeStrengths as string[];
+
+  const aboutSection = content?.home_about;
+  const aboutTitle = aboutSection ? getLocalizedFieldSync(aboutSection, "title", locale) : "";
+  const aboutSubtitle = aboutSection ? getLocalizedFieldSync(aboutSection, "subtitle", locale) : "";
+  const aboutContent = aboutSection ? getLocalizedFieldSync(aboutSection, "content", locale) : "";
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[#FAFAF7] via-white to-[#FAFAF7] py-20 dark:from-[#0A1628] dark:via-[#0f1d33] dark:to-[#0A1628] lg:py-28">
@@ -59,7 +71,7 @@ export default function About() {
                 style={{ animation: "pulse-glow 2.5s ease-in-out infinite" }}
               >
                 <div className="font-mono text-3xl font-extrabold text-[#0A1628]">
-                  60+
+                  {settings?.experience_badge ?? "60+"}
                 </div>
                 <div className="font-body text-sm font-semibold text-[#0A1628]/70">
                   {h.cardExperienceLabel}
@@ -76,17 +88,23 @@ export default function About() {
                 {h.aboutOverline}
               </span>
               <h2 className="font-display mb-6 text-2xl font-bold leading-tight text-[#0A1628] dark:text-white sm:text-3xl lg:text-[2.25rem]">
-                {h.aboutTitle}{" "}
-                <span className="relative text-[#F59E0B]">
-                  {h.aboutTitleAccent}
-                  <span className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-[#F59E0B]/40" />
-                </span>
+                {aboutTitle ? (
+                  <span>{aboutTitle}</span>
+                ) : (
+                  <>
+                    {h.aboutTitle}{" "}
+                    <span className="relative text-[#F59E0B]">
+                      {h.aboutTitleAccent}
+                      <span className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-[#F59E0B]/40" />
+                    </span>
+                  </>
+                )}
               </h2>
               <p className="font-body mb-5 text-base leading-relaxed text-[#0A1628]/60 dark:text-white/60 lg:text-lg">
-                {h.aboutLead1}
+                {aboutContent || h.aboutLead1}
               </p>
               <p className="font-body mb-10 text-base leading-relaxed text-[#0A1628]/60 dark:text-white/60 lg:text-lg">
-                {h.aboutLead2}
+                {aboutSubtitle || h.aboutLead2}
               </p>
 
               {/* Strengths */}

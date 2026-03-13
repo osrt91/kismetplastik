@@ -50,14 +50,15 @@ export async function getPageContent(
  * Use this in "use client" components.
  */
 export function getLocalizedFieldSync(
-  item: Record<string, unknown> | null | undefined,
+  item: Record<string, unknown> | DbContentSection | null | undefined,
   field: string,
   locale: string
 ): string {
   if (!item) return "";
-  if (locale === "tr") return (item[`${field}_tr`] as string) ?? "";
-  if (locale === "en") return (item[`${field}_en`] as string) ?? "";
-  return (item[`${field}_en`] as string) ?? (item[`${field}_tr`] as string) ?? "";
+  const obj = item as Record<string, unknown>;
+  if (locale === "tr") return (obj[`${field}_tr`] as string) ?? "";
+  if (locale === "en") return (obj[`${field}_en`] as string) ?? "";
+  return (obj[`${field}_en`] as string) ?? (obj[`${field}_tr`] as string) ?? "";
 }
 
 /**

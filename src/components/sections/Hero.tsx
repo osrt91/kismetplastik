@@ -6,10 +6,22 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, LogIn, Box, Sparkles } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useLocale } from "@/contexts/LocaleContext";
+import type { DbContentSection } from "@/types/database";
+import { getLocalizedFieldSync } from "@/lib/content";
 
-export default function Hero() {
-  const { dict } = useLocale();
+interface HeroProps {
+  settings?: Record<string, string>;
+  content?: Record<string, DbContentSection>;
+}
+
+export default function Hero({ settings, content }: HeroProps) {
+  const { dict, locale } = useLocale();
   const h = dict.home;
+
+  const heroSection = content?.home_hero;
+  const heroTitle = heroSection ? getLocalizedFieldSync(heroSection, "title", locale) : "";
+  const heroBadge = heroSection ? getLocalizedFieldSync(heroSection, "subtitle", locale) : "";
+  const heroSubtext = heroSection ? getLocalizedFieldSync(heroSection, "content", locale) : "";
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -49,7 +61,7 @@ export default function Hero() {
               className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.06] px-5 py-2.5 backdrop-blur-md"
             >
               <Sparkles size={14} className="text-amber-400" />
-              <span className="font-body text-sm font-medium text-white/80">{h.badge}</span>
+              <span className="font-body text-sm font-medium text-white/80">{heroBadge || h.badge}</span>
             </motion.div>
 
             {/* Main heading */}
@@ -59,7 +71,7 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="hero-title-shimmer font-display mb-8 text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl md:text-[2.75rem] lg:text-[3.25rem]"
             >
-              {h.heroHeading}
+              {heroTitle || h.heroHeading}
             </motion.h1>
 
             {/* Subtitle */}
@@ -69,7 +81,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="font-body mb-10 max-w-xl text-base leading-relaxed text-white/55 sm:text-lg"
             >
-              {h.heroSubtext}
+              {heroSubtext || h.heroSubtext}
             </motion.p>
 
             {/* CTA Buttons */}
@@ -133,7 +145,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="absolute -bottom-4 -left-6 rounded-2xl bg-amber-500 px-5 py-3 shadow-[0_8px_30px_rgba(245,158,11,0.4)]"
             >
-              <div className="font-mono text-2xl font-extrabold text-navy-950">60+</div>
+              <div className="font-mono text-2xl font-extrabold text-navy-950">{settings?.experience_badge ?? "60+"}</div>
               <div className="font-body text-xs font-semibold text-navy-950/70">{h.cardExperienceLabel}</div>
             </motion.div>
           </motion.div>

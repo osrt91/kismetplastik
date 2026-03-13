@@ -3,16 +3,28 @@
 import { FlaskConical, SprayCan, Sparkles, Droplets, Hotel, Settings2 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
+import type { DbContentSection } from "@/types/database";
+import { getLocalizedFieldSync } from "@/lib/content";
 
 const sectorIcons = [FlaskConical, SprayCan, Sparkles, Droplets, Hotel, Settings2];
 
-export default function Sectors() {
-  const { dict } = useLocale();
+interface SectorsProps {
+  content?: Record<string, DbContentSection>;
+}
+
+export default function Sectors({ content }: SectorsProps) {
+  const { dict, locale } = useLocale();
   const h = dict.home;
-  const sectors = (dict.homeSectors as { name: string; description: string }[]).map((s, i) => ({
-    ...s,
-    icon: sectorIcons[i],
-  }));
+  const dictSectors = dict.homeSectors as { name: string; description: string }[];
+  const sectors = dictSectors.map((s, i) => {
+    const key = `home_sector_${i + 1}`;
+    const section = content?.[key];
+    return {
+      name: (section ? getLocalizedFieldSync(section, "title", locale) : "") || s.name,
+      description: (section ? getLocalizedFieldSync(section, "content", locale) : "") || s.description,
+      icon: sectorIcons[i],
+    };
+  });
 
   return (
     <section className="relative bg-[#FAFAF7] py-20 dark:bg-[#0A1628] lg:py-28">

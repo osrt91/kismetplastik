@@ -3,18 +3,26 @@
 import { Camera, ChevronRight } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useLocale } from "@/contexts/LocaleContext";
+import type { DbContentSection } from "@/types/database";
+import { getLocalizedFieldSync } from "@/lib/content";
 
-export default function WhyUs() {
-  const { dict } = useLocale();
+interface WhyUsProps {
+  content?: Record<string, DbContentSection>;
+}
+
+export default function WhyUs({ content }: WhyUsProps) {
+  const { dict, locale } = useLocale();
   const h = dict.home;
   const f = dict.homeFeatures as Record<string, string>;
 
-  const steps = [
-    { title: f.processStep1Title, description: f.processStep1Desc },
-    { title: f.processStep2Title, description: f.processStep2Desc },
-    { title: f.processStep3Title, description: f.processStep3Desc },
-    { title: f.processStep4Title, description: f.processStep4Desc },
-  ];
+  const steps = [1, 2, 3, 4].map((i) => {
+    const key = `home_feature_${i}`;
+    const section = content?.[key];
+    return {
+      title: (section ? getLocalizedFieldSync(section, "title", locale) : "") || f[`processStep${i}Title`],
+      description: (section ? getLocalizedFieldSync(section, "content", locale) : "") || f[`processStep${i}Desc`],
+    };
+  });
 
   return (
     <section className="relative overflow-hidden bg-[#FAFAF7] py-24 dark:bg-[#0A1628] lg:py-32">

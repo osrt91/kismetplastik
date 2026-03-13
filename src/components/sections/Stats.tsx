@@ -6,7 +6,8 @@ import { useLocale } from "@/contexts/LocaleContext";
 import { Trophy, Package, Users, Factory } from "lucide-react";
 
 const statKeys = ["statsExperience", "statsProducts", "statsCustomers", "statsCapacity"] as const;
-const statValues = [
+
+const defaultStatValues = [
   { value: 55, suffix: "+" },
   { value: 500, suffix: "+" },
   { value: 1000, suffix: "+" },
@@ -57,9 +58,19 @@ function AnimatedNumber({
   );
 }
 
-export default function Stats() {
+interface StatsProps {
+  settings?: Record<string, string>;
+}
+
+export default function Stats({ settings }: StatsProps) {
   const { dict } = useLocale();
   const h = dict.home;
+  const statValues = [
+    { value: parseInt(settings?.stats_experience_years ?? String(defaultStatValues[0].value)), suffix: "+" },
+    { value: parseInt(settings?.stats_products ?? String(defaultStatValues[1].value)), suffix: "+" },
+    { value: parseInt(settings?.stats_customers ?? String(defaultStatValues[2].value)), suffix: "+" },
+    { value: parseInt(settings?.stats_capacity ?? String(defaultStatValues[3].value)), suffix: "M+" },
+  ];
   const stats = statValues.map((s, i) => ({ ...s, label: h[statKeys[i]] }));
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.3 });
