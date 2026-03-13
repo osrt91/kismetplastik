@@ -122,7 +122,7 @@ export default function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
           {!collapsed && (
             <Link href="/" className="flex items-center gap-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/logo2.svg" alt="Kismet Plastik" className="h-8 w-8 brightness-0 invert" />
+              <img src="/test/images/logo2.svg" alt="Kismet Plastik" className="h-8 w-8 brightness-0 invert" />
               <div className="flex flex-col leading-none">
                 <span className="font-display text-sm font-bold tracking-wide text-white">KISMET</span>
                 <span className="text-[9px] font-medium tracking-[0.12em] text-neutral-400">{t.panel}</span>
@@ -132,7 +132,7 @@ export default function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
           {collapsed && (
             <Link href="/">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/logo2.svg" alt="Kismet Plastik" className="h-7 w-7 brightness-0 invert" />
+              <img src="/test/images/logo2.svg" alt="Kismet Plastik" className="h-7 w-7 brightness-0 invert" />
             </Link>
           )}
           <button

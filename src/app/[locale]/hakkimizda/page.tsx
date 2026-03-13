@@ -86,7 +86,7 @@ export default function HakkimizdaPage() {
               <div className="absolute inset-0 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/logo2.svg"
+                  src="/test/images/logo2.svg"
                   alt="Kısmet Plastik"
                   className="h-40 w-40 drop-shadow-2xl"
                 />

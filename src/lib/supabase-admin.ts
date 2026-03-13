@@ -15,8 +15,15 @@ export function getSupabaseAdmin(): SupabaseClient {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  if (!serviceKey && anonKey) {
-    console.warn("[supabase-admin] SUPABASE_SERVICE_ROLE_KEY is missing, falling back to anon key. Admin operations may be restricted by RLS.");
+  if (!serviceKey) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error(
+        "[supabase-admin] SUPABASE_SERVICE_ROLE_KEY is missing in production. Admin operations must not use anon key. Set SUPABASE_SERVICE_ROLE_KEY in environment variables."
+      );
+    }
+    if (anonKey) {
+      console.warn("[supabase-admin] SUPABASE_SERVICE_ROLE_KEY is missing, falling back to anon key. Admin operations may be restricted by RLS.");
+    }
   }
   const key = serviceKey || anonKey;
 

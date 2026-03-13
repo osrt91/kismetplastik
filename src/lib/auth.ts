@@ -26,6 +26,15 @@ export function checkAuth(request: NextRequest): NextResponse | null {
   return null;
 }
 
+/**
+ * Sanitize search input to prevent SQL/filter injection.
+ * Uses an allowlist approach: only permits alphanumeric characters (including
+ * Turkish: ğüşıöçĞÜŞİÖÇ), spaces, hyphens, dots, and forward slashes.
+ * Everything else is stripped. The result is also truncated to 100 characters
+ * to prevent excessively long filter strings.
+ */
 export function sanitizeSearchInput(input: string): string {
-  return input.replace(/[%_\\'"()]/g, "");
+  // Allowlist: letters (incl. Turkish), digits, spaces, hyphens, dots, forward slashes
+  const sanitized = input.replace(/[^a-zA-Z0-9\s\-./ğüşıöçĞÜŞİÖÇ]/g, "");
+  return sanitized.slice(0, 100);
 }

@@ -153,19 +153,19 @@ export default async function LocaleLayout({ children, params }: Props) {
         <OrganizationJsonLd />
         <script
           dangerouslySetInnerHTML={{
-            __html: `if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{})})}`,
+            __html: `if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/test/sw.js').catch(()=>{})})}`,
           }}
         />
         <link
           rel="preload"
-          href="/fonts/MyriadPro-Regular.woff2"
+          href="/test/fonts/MyriadPro-Regular.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
         />
         <link
           rel="preload"
-          href="/fonts/MyriadPro-Semibold.woff2"
+          href="/test/fonts/MyriadPro-Semibold.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
@@ -182,9 +182,9 @@ export default async function LocaleLayout({ children, params }: Props) {
         <link rel="dns-prefetch" href="https://wa.me" />
         <link rel="preconnect" href="https://maps.googleapis.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://maps.googleapis.com" />
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="/test/manifest.json" />
         <meta name="theme-color" content="#0A1628" />
-        <link rel="apple-touch-icon" sizes="192x192" href="/images/icon-192.png" />
+        <link rel="apple-touch-icon" sizes="192x192" href="/test/images/icon-192.png" />
       </head>
       <body className="antialiased" dir={locale === "ar" ? "rtl" : "ltr"} suppressHydrationWarning>
         <script

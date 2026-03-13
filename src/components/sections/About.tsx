@@ -39,7 +39,7 @@ export default function About() {
                   <div className="text-center">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src="/images/logo2.svg"
+                      src="/test/images/logo2.svg"
                       alt="Kısmet Plastik"
                       className="mx-auto mb-4 h-36 w-36 drop-shadow-2xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
                     />
