@@ -74,15 +74,15 @@ function unflattenObject(flat: FlatTranslations): NestedTranslations {
 const LOCALES = [
   { code: "tr", label: "Türkçe", flag: "🇹🇷" },
   { code: "en", label: "English", flag: "🇬🇧" },
-  { code: "de", label: "Deutsch", flag: "🇩🇪" },
-  { code: "fr", label: "Français", flag: "🇫🇷" },
-  { code: "es", label: "Español", flag: "🇪🇸" },
-  { code: "it", label: "Italiano", flag: "🇮🇹" },
-  { code: "pt", label: "Português", flag: "🇵🇹" },
-  { code: "ru", label: "Русский", flag: "🇷🇺" },
   { code: "ar", label: "العربية", flag: "🇸🇦" },
-  { code: "ja", label: "日本語", flag: "🇯🇵" },
+  { code: "ru", label: "Русский", flag: "🇷🇺" },
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "de", label: "Deutsch", flag: "🇩🇪" },
+  { code: "es", label: "Español", flag: "🇪🇸" },
   { code: "zh", label: "中文", flag: "🇨🇳" },
+  { code: "ja", label: "日本語", flag: "🇯🇵" },
+  { code: "ko", label: "한국어", flag: "🇰🇷" },
+  { code: "pt", label: "Português", flag: "🇵🇹" },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────

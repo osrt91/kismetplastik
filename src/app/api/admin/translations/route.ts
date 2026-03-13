@@ -3,7 +3,7 @@ import { readFile, writeFile } from "fs/promises";
 import path from "path";
 import { checkAuth } from "@/lib/auth";
 
-const SUPPORTED_LOCALES = ["tr", "en", "de", "fr", "es", "it", "pt", "ru", "ar", "ja", "zh"];
+const SUPPORTED_LOCALES = ["tr", "en", "ar", "ru", "fr", "de", "es", "zh", "ja", "ko", "pt"];
 
 function getLocalePath(locale: string): string {
   return path.join(process.cwd(), "src", "locales", `${locale}.json`);
