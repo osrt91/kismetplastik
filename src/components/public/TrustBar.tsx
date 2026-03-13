@@ -69,7 +69,7 @@ export default function TrustBar({ settings }: TrustBarProps) {
 
   const stats: StatItem[] = [
     { value: parseInt(settings?.stats_experience_years ?? "57"), suffix: "", label: t.experience },
-    { value: 8, suffix: "", label: t.exports },
+    { value: parseInt(settings?.stats_exports ?? "8"), suffix: "", label: t.exports },
     { value: parseInt(settings?.stats_products ?? "2000"), suffix: "+", label: t.products },
     { value: parseInt(settings?.stats_customers ?? "500"), suffix: "+", label: t.customers },
   ];
