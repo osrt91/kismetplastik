@@ -36,6 +36,7 @@ const ScrollToTop = dynamic(() => import("@/components/ui/ScrollToTop"));
 const CookieBanner = dynamic(() => import("@/components/ui/CookieBanner"));
 const InstallPrompt = dynamic(() => import("@/components/ui/InstallPrompt"));
 const GoogleAnalytics = dynamic(() => import("@/components/analytics/GoogleAnalytics"));
+const WebVitals = dynamic(() => import("@/components/analytics/WebVitals"));
 import { Toaster } from "sonner";
 import { LocalBusinessJsonLd, OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { locales } from "@/proxy";
@@ -196,6 +197,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           }}
         />
         <GoogleAnalytics />
+        <WebVitals />
         <a
           href="#main-content"
           className="fixed left-4 top-4 z-[100] -translate-y-20 rounded-lg bg-primary-900 px-4 py-2 text-sm font-bold text-white shadow-lg transition-transform focus:translate-y-0"

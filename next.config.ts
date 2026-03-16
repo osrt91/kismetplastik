@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import path from "path";
+import withBundleAnalyzer from "@next/bundle-analyzer";
 
 const securityHeaders = [
   { key: "X-Frame-Options", value: "DENY" },
@@ -71,4 +72,8 @@ const nextConfig: NextConfig = {
   ],
 };
 
-export default nextConfig;
+const analyzedConfig = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+})(nextConfig);
+
+export default analyzedConfig;
