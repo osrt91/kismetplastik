@@ -3,8 +3,6 @@ import { notFound } from "next/navigation";
 import { Fraunces, Instrument_Sans, JetBrains_Mono } from "next/font/google";
 import { LocaleProvider } from "@/contexts/LocaleContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import dynamic from "next/dynamic";
 
 const fraunces = Fraunces({
@@ -31,16 +29,12 @@ const jetbrainsMono = JetBrains_Mono({
 const MotionConfigProvider = dynamic(
   () => import("framer-motion").then((mod) => ({ default: mod.MotionConfig })),
 );
-const WhatsAppButton = dynamic(() => import("@/components/ui/WhatsAppButton"));
-const ScrollToTop = dynamic(() => import("@/components/ui/ScrollToTop"));
 const CookieBanner = dynamic(() => import("@/components/ui/CookieBanner"));
 const InstallPrompt = dynamic(() => import("@/components/ui/InstallPrompt"));
 const GoogleAnalytics = dynamic(() => import("@/components/analytics/GoogleAnalytics"));
 const WebVitals = dynamic(() => import("@/components/analytics/WebVitals"));
 import { Toaster } from "sonner";
-import { LocalBusinessJsonLd, OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { locales } from "@/proxy";
-import { getSettings } from "@/lib/content";
 
 type Props = {
   children: React.ReactNode;
@@ -148,13 +142,9 @@ export default async function LocaleLayout({ children, params }: Props) {
     notFound();
   }
 
-  const settings = await getSettings();
-
   return (
     <html lang={locale} className={`${fraunces.variable} ${instrumentSans.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
-        <LocalBusinessJsonLd />
-        <OrganizationJsonLd />
         <script
           dangerouslySetInnerHTML={{
             __html: `if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/test/sw.js').catch(()=>{})})}`,
@@ -198,24 +188,10 @@ export default async function LocaleLayout({ children, params }: Props) {
         />
         <GoogleAnalytics />
         <WebVitals />
-        <a
-          href="#main-content"
-          className="fixed left-4 top-4 z-[100] -translate-y-20 rounded-lg bg-primary-900 px-4 py-2 text-sm font-bold text-white shadow-lg transition-transform focus:translate-y-0"
-        >
-          {locale === "tr" ? "İçeriğe atla" : "Skip to content"}
-        </a>
-        <div className="scroll-progress-bar" />
         <MotionConfigProvider reducedMotion="user">
           <ThemeProvider>
             <LocaleProvider>
-              <Header />
-              <main id="main-content" tabIndex={-1}>
-                {children}
-              </main>
-              <Footer settings={settings} />
-              <WhatsAppButton />
-              {/* <AIChatbot /> */}
-              <ScrollToTop />
+              {children}
               <InstallPrompt />
               <CookieBanner />
               <Toaster position="top-right" richColors />
