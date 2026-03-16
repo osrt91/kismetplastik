@@ -19,7 +19,6 @@ const SUPPORTED_EVENTS = [
 
 type WebhookEvent = (typeof SUPPORTED_EVENTS)[number];
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function handleEvent(_event: WebhookEvent, _data: Record<string, unknown>, _timestamp: string): void {
   // TODO: Implement event handling (e.g., database insert, notification dispatch)
 }

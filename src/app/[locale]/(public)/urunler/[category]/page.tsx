@@ -32,10 +32,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     alternates: {
       canonical: `https://www.kismetplastik.com/${locale}/urunler/${category}`,
-      languages: {
-        tr: `https://www.kismetplastik.com/tr/urunler/${category}`,
-        en: `https://www.kismetplastik.com/en/urunler/${category}`,
-      },
+      languages: Object.fromEntries([
+        ...["tr", "en", "ar", "ru", "fr", "de", "es", "zh", "ja", "ko", "pt"].map(
+          (l) => [l, `https://www.kismetplastik.com/${l}/urunler/${category}`]
+        ),
+        ["x-default", `https://www.kismetplastik.com/tr/urunler/${category}`],
+      ]),
     },
   };
 }

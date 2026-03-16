@@ -4,6 +4,7 @@
  */
 
 import { toIntlLocale } from "@/lib/locales";
+import { escapeHtml } from "@/lib/utils";
 
 export interface InvoiceLineItem {
   productName: string;
@@ -42,15 +43,6 @@ function formatDate(dateStr: string, locale = "tr"): string {
     month: "long",
     day: "numeric",
   }).format(date);
-}
-
-function escapeHtml(text: string): string {
-  return text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
 }
 
 export function generateInvoiceHTML(invoice: InvoiceData): string {

@@ -122,10 +122,9 @@ export async function POST(request: NextRequest) {
       message: "Teklif talebiniz alındı. En kısa sürede dönüş yapılacaktır.",
     });
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Bilinmeyen hata";
     console.error("[Quote Request API]", err);
     return NextResponse.json(
-      { success: false, error: message },
+      { success: false, error: "Bir hata oluştu. Lütfen tekrar deneyin." },
       { status: 500 }
     );
   }

@@ -3,21 +3,13 @@ import { getSupabaseAdmin, requireSupabase } from "@/lib/supabase-admin";
 import { checkAuth } from "@/lib/auth";
 import { rateLimit } from "@/lib/rate-limit";
 import { Resend } from "resend";
+import { escapeHtml } from "@/lib/utils";
 
 const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null;
 
 const FROM = process.env.EMAIL_FROM ?? "noreply@onboarding.resend.dev";
-
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
 
 export async function POST(
   request: NextRequest,
@@ -107,7 +99,7 @@ export async function POST(
       );
     }
   } else {
-    console.log("[Admin Quotes Respond - no RESEND_API_KEY] Would send to:", quote.email, message);
+    console.warn("[Admin Quotes Respond - no RESEND_API_KEY] Would send to:", quote.email, message);
   }
 
   // Update quote status to "quoted" and store response_message

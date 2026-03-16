@@ -18,7 +18,7 @@ export default function WebVitals() {
 
       // Console log in development
       if (process.env.NODE_ENV === "development") {
-        console.log(`[Web Vitals] ${metric.name}: ${metric.value}`);
+        console.warn(`[Web Vitals] ${metric.name}: ${metric.value}`);
       }
     };
 

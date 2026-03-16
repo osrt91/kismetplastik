@@ -10,6 +10,7 @@
  */
 
 import { createHash } from "crypto";
+import { escapeHtml } from "@/lib/utils";
 
 export interface PaymentRequest {
   orderId: string;
@@ -207,15 +208,6 @@ export function verifyCallback(
       rawResponse: formData,
     };
   }
-}
-
-function escapeHtml(str: string): string {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
 }
 
 /**

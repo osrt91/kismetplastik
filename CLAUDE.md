@@ -2,15 +2,15 @@
 
 ## Project Overview
 
-Kısmet Plastik is a **B2B cosmetic packaging** company website and dealer portal built with **Next.js 16** (App Router). The site is bilingual (Turkish primary, English secondary), self-hosted on a **Hostinger VPS** (Ubuntu 24.04) with **self-hosted Supabase**, and also packaged as an Android TWA for the Google Play Store.
+Kısmet Plastik is a **B2B cosmetic packaging** company website and dealer portal built with **Next.js 16** (App Router). The site supports **11 locales** (Turkish primary, English secondary, + ar, ru, fr, de, es, zh, ja, ko, pt via Google Translate API). Self-hosted on a **Hostinger VPS** (Ubuntu 24.04) with **self-hosted Supabase** (Docker), and also packaged as an Android TWA for the Google Play Store. **Vercel is not used.**
 
 **Production URL:** `https://www.kismetplastik.com`
 
 ## Codebase Overview
 
-Next.js 16 App Router application with 366 source files (~620k tokens) across 30+ locale-scoped pages (11 locales), 81 API route handlers, a 20+ module admin panel, and a dealer B2B portal. Data is served from static TypeScript modules (`src/data/`) with Supabase PostgreSQL (30+ tables with RLS) backing B2B operations. Two auth systems coexist: cookie-based admin auth (timing-safe) and Supabase Auth for dealers. DIA ERP integration provides stock/customer sync. Locale configuration is centralized in `src/lib/locales.ts`.
+Next.js 16 App Router application with ~334 source files across 30+ locale-scoped pages (11 locales), 81 API route handlers, a 20+ module admin panel, and a dealer B2B portal. Data is served from Supabase PostgreSQL (30+ tables with RLS) — all content is admin-managed via CMS. Two auth systems coexist: cookie-based admin auth (timing-safe) and Supabase Auth for dealers. DIA ERP integration provides stock/customer sync. Locale configuration is centralized in `src/lib/locales.ts`.
 
-**Key modules:** `src/lib/` (15+ utilities incl. `locales.ts` SSOT, DIA client, webhook system), `src/components/` (58+ components), `src/app/api/` (81 route handlers across 8 functional areas), `src/app/admin/` (34 files, 20+ management modules), `src/data/` (7 data modules), `docs/` (11 SQL migrations).
+**Key modules:** `src/lib/` (20+ utilities incl. `locales.ts` SSOT, DIA client, Halkbank POS, invoice PDF), `src/components/` (73+ components), `src/app/api/` (81 route handlers across 8 functional areas), `src/app/admin/` (34 files, 20+ management modules), `src/data/` (2 data modules — products, blog).
 
 For detailed architecture, module guide, data flow diagrams, and navigation guide, see [docs/CODEBASE_MAP.md](docs/CODEBASE_MAP.md).
 
@@ -18,29 +18,34 @@ For detailed architecture, module guide, data flow diagrams, and navigation guid
 
 | Layer | Technology |
 |-------|-----------|
-| Framework | Next.js 16.1.6 (App Router, React 19, Turbopack) |
+| Framework | Next.js 16.1.6 (App Router, React 19, Webpack dev) |
 | Language | TypeScript 5 (strict mode) |
 | Styling | Tailwind CSS 4, CSS custom properties, `tw-animate-css` |
 | Components | shadcn/ui (new-york style, Radix UI primitives) |
-| Database | Supabase (PostgreSQL with RLS) |
+| State | Zustand 5 (client state), Zod 3 (validation) |
+| Database | Self-hosted Supabase (PostgreSQL with RLS, Docker on VPS) |
 | Auth | Supabase Auth (dealers) + cookie-based admin token |
 | Email | Resend |
+| Notifications | Sonner (toast notifications) |
 | AI | OpenAI (chatbot, currently disabled) |
 | 3D | Three.js / React Three Fiber + Drei |
 | Animations | Framer Motion, CSS scroll-driven animations |
 | Icons | Lucide React, Phosphor Icons, React Icons |
+| Testing | Playwright (E2E), ESLint (linting) |
 | Deployment | Hostinger VPS (PM2 + Docker + Traefik) + Android TWA (Bubblewrap) |
 
 ## Quick Commands
 
 ```bash
-npm run dev      # Start development server (Turbopack)
-npm run build    # Production build
-npm run start    # Start production server
-npm run lint     # Run ESLint (next lint)
+npm run dev          # Start development server (Webpack)
+npm run build        # Production build
+npm run start        # Start production server
+npm run lint         # Run ESLint (eslint src/)
+npm run test:e2e     # Run Playwright E2E tests
+npm run test:e2e:ui  # Playwright E2E with UI mode
 ```
 
-There are no test scripts configured. Linting is the only verification step.
+E2E tests via Playwright (4 specs: homepage, admin-login, navigation, seo). No unit/integration tests.
 
 ## Project Structure
 
@@ -63,25 +68,42 @@ There are no test scripts configured. Linting is the only verification step.
 │   │   ├── globals.css      # Global styles, CSS variables, animations
 │   │   ├── sitemap.ts       # Dynamic sitemap generation
 │   │   ├── robots.ts        # Robots.txt generation
-│   │   ├── [locale]/        # Locale-scoped pages (tr/en)
-│   │   ├── admin/           # Admin panel (products, blog, gallery)
-│   │   └── api/             # API routes
+│   │   ├── [locale]/        # Locale-scoped pages (11 locales)
+│   │   │   ├── (public)/    # Public pages (Header+Footer layout)
+│   │   │   ├── (portal)/    # B2B portal pages (Sidebar layout, auth required)
+│   │   │   └── (auth)/      # Auth pages (minimal centered layout)
+│   │   ├── admin/           # Admin panel (Turkish-only, 20+ modules)
+│   │   └── api/             # API routes (81 handlers)
 │   ├── components/
 │   │   ├── layout/          # Header, Footer
 │   │   ├── sections/        # Homepage sections (Hero, Categories, Stats, etc.)
 │   │   ├── pages/           # Client-side page components (BlogDetail, Category, ProductDetail)
+│   │   ├── portal/          # B2B portal-specific components
+│   │   ├── public/          # Public page components
+│   │   ├── shared/          # Shared components (used by both public and portal)
+│   │   ├── analytics/       # Analytics components (WebVitals)
 │   │   ├── seo/             # JSON-LD structured data
 │   │   └── ui/              # Reusable UI components (shadcn/ui + custom)
 │   ├── contexts/            # React Context providers (Locale, Theme)
 │   ├── data/                # Static/seed data (products, blog)
 │   ├── hooks/               # Custom hooks (useRecentProducts, useScrollAnimation)
-│   ├── lib/                 # Utility modules
+│   ├── lib/                 # Utility modules (20+ files)
 │   │   ├── supabase.ts          # Singleton Supabase client (general)
 │   │   ├── supabase-browser.ts  # Browser-side SSR client
 │   │   ├── supabase-server.ts   # Server-side SSR client (async cookies)
+│   │   ├── supabase-admin.ts    # Admin client variant
 │   │   ├── auth.ts              # Admin auth helpers, timing-safe compare
 │   │   ├── email.ts             # Resend email service
 │   │   ├── i18n.ts              # Dictionary-based i18n
+│   │   ├── locales.ts           # SSOT: 11 locales, names, directions
+│   │   ├── content.ts           # CMS content fetchers (getSettings, getPageContent)
+│   │   ├── translate.ts         # Google Translate API wrapper
+│   │   ├── dia-client.ts        # DIA ERP API client
+│   │   ├── dia-services.ts      # DIA business logic (stock/customer sync)
+│   │   ├── dia-cache.ts         # DIA caching layer
+│   │   ├── halkbank-pos.ts      # Halkbank payment integration
+│   │   ├── invoice-pdf.ts       # Invoice PDF generation
+│   │   ├── product-i18n.ts      # Product translation helpers
 │   │   ├── rate-limit.ts        # In-memory rate limiting
 │   │   └── utils.ts             # cn() class merge utility
 │   ├── locales/             # Translation JSON files (tr.json, en.json)
@@ -98,7 +120,7 @@ There are no test scripts configured. Linting is the only verification step.
 ### Routing & i18n
 
 - Uses **Next.js App Router** with a `[locale]` dynamic segment: `/[locale]/urunler`, `/[locale]/blog`, etc.
-- Supported locales: `tr` (default), `en` — defined in `src/proxy.ts`
+- Supported locales: 11 total (`tr`, `en`, `ar`, `ru`, `fr`, `de`, `es`, `zh`, `ja`, `ko`, `pt`) — SSOT in `src/lib/locales.ts`
 - Middleware in `src/proxy.ts` redirects bare URLs to `/tr/...` and protects `/admin/*` routes
 - i18n uses a **dictionary-based approach** (no i18next): `src/lib/i18n.ts` loads `src/locales/tr.json` or `en.json`
 - Access translations via the `useLocale()` hook which returns `{ locale, dict, setLocale }`
@@ -138,6 +160,7 @@ There are no test scripts configured. Linting is the only verification step.
 - Core tables: `categories`, `products`, `blog_posts`, `profiles`, `orders`, `quote_requests`, `gallery_images`
 - All public data uses RLS policies for read-only access
 - Remote image patterns: `**.supabase.co/storage/v1/object/public/**`
+- **Self-hosted**: Supabase runs as 8 Docker containers on Hostinger VPS (not Supabase Cloud)
 
 ### Authentication
 
@@ -215,14 +238,26 @@ Copy `.env.example` to `.env.local`:
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `NEXT_PUBLIC_SUPABASE_URL` | Yes | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_URL` | Yes | Self-hosted Supabase URL |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Yes | Supabase anonymous key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Yes | Supabase service role key (server-side admin ops) |
 | `ADMIN_SECRET` | Yes | Admin password (min 32 chars) |
+| `NEXT_PUBLIC_BASE_URL` | Yes | Site URL (e.g. `https://www.kismetplastik.com`) |
 | `RESEND_API_KEY` | No | Resend email API key (forms log to console without it) |
 | `EMAIL_FROM` | No | Sender email address |
 | `EMAIL_TO` | No | Recipient email (default: bilgi@kismetplastik.com) |
 | `OPENAI_API_KEY` | No | OpenAI API key for chatbot |
 | `NEXT_PUBLIC_GA_ID` | No | Google Analytics ID |
+| `GOOGLE_TRANSLATE_API_KEY` | No | Google Translate API v2 (auto-translate 9 locales) |
+| `DIA_API_URL` | No | DIA ERP API endpoint |
+| `DIA_USERNAME` | No | DIA ERP username |
+| `DIA_PASSWORD` | No | DIA ERP password |
+| `DIA_FIRMA_KODU` | No | DIA company code |
+| `DIA_DONEM_KODU` | No | DIA period code |
+| `HALKBANK_MERCHANT_ID` | No | Halkbank POS merchant ID |
+| `HALKBANK_STORE_KEY` | No | Halkbank POS store key |
+| `HALKBANK_TERMINAL_ID` | No | Halkbank POS terminal ID |
+| `CRON_SECRET` | No | Secret for scheduled cron endpoints |
 
 ## Security
 
@@ -243,19 +278,19 @@ Copy `.env.example` to `.env.local`:
 - Preconnect/dns-prefetch for Supabase, Google, WhatsApp, Maps
 - PWA service worker with cache-first for static assets, network-first for pages
 - Static assets cached with `max-age=31536000, immutable`
-- Turbopack enabled for development
+- Webpack used for development (`next dev --webpack`)
 
 ## Conventions for AI Assistants
 
 1. **Language**: Code and comments are in English. UI-facing text and error messages are primarily in Turkish. Translation keys go in `src/locales/tr.json` and `src/locales/en.json`.
 2. **File naming**: Pages use kebab-case Turkish names matching URL slugs. Components use PascalCase. Lib files use kebab-case.
 3. **New pages**: Add under `src/app/[locale]/your-page/page.tsx`. Add a layout.tsx with metadata if SEO is needed. Update `src/app/sitemap.ts` to include the new route.
-4. **New components**: Place in the appropriate `src/components/` subdirectory (ui, sections, pages, layout, seo).
+4. **New components**: Place in the appropriate `src/components/` subdirectory (ui, sections, pages, layout, seo, portal, public, shared).
 5. **Translations**: Always add keys to both `tr.json` and `en.json`.
 6. **Database changes**: Write SQL migrations in `docs/` following the existing naming pattern (`supabase-migration-NNN.sql`).
 7. **API routes**: Follow existing patterns — validate input, rate-limit public endpoints, return `{ success, error/message }`.
 8. **Styling**: Use Tailwind utility classes. Reference brand CSS variables (e.g., `text-primary-900`, `bg-accent-500`). Use `cn()` for conditional class merging.
-9. **No test suite**: There are no tests currently. Do not add test files unless explicitly requested.
+9. **E2E tests**: Playwright tests in `e2e/` (homepage, admin-login, navigation, seo). Run with `npm run test:e2e`. No unit tests — do not add unless explicitly requested.
 10. **ESLint**: Uses `eslint-config-next` with core-web-vitals and TypeScript rules. Run `npm run lint` to verify.
 
 ## B2B DÖNÜŞÜM HEDEFİ
@@ -267,12 +302,12 @@ Mevcut B2C bilgi sitesi tam entegre B2B platforma dönüşecek:
 - 2D/3D ürün görselleştirici (Three.js)
 - Hacim bazlı fiyatlandırma
 
-## YENİ ROUTE YAPISI (Planlanan)
+## ROUTE YAPISI (Uygulanmış)
 
-- `app/(public)/` — herkese açık sayfalar
-- `app/(portal)/` — B2B portal (auth zorunlu)
-- `app/(admin)/` — admin panel (role: admin)
-- `app/auth/` — login, register, callback
+- `app/[locale]/(public)/` — herkese açık sayfalar (Header+Footer layout)
+- `app/[locale]/(portal)/` — B2B portal (Sidebar layout, auth zorunlu)
+- `app/[locale]/(auth)/` — login, register (minimal centered layout)
+- `app/admin/` — admin panel (root level, locale dışı, Turkish-only)
 
 ## TASARIM SİSTEMİ (Hedef)
 

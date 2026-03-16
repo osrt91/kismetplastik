@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { rateLimit } from "@/lib/rate-limit";
+import { escapeHtml } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
 /*  Zod schema                                                        */
@@ -18,18 +19,6 @@ const sampleRequestSchema = z.object({
   urgency: z.enum(["normal", "urgent", "planned"]).default("normal"),
   preferredDate: z.string().optional().default(""),
 });
-
-/* ------------------------------------------------------------------ */
-/*  HTML escape                                                       */
-/* ------------------------------------------------------------------ */
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
 
 /* ------------------------------------------------------------------ */
 /*  Email sender                                                      */
@@ -76,7 +65,7 @@ async function sendSampleRequestEmail(
   `;
 
   if (!resend) {
-    console.log("[Sample Request - no RESEND_API_KEY]", data);
+    console.warn("[Sample Request - no RESEND_API_KEY]", data);
     return { ok: true };
   }
 

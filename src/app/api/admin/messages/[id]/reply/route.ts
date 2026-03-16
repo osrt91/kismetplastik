@@ -2,15 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { getSupabaseAdmin, requireSupabase } from "@/lib/supabase-admin";
 import { checkAuth } from "@/lib/auth";
-
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
+import { escapeHtml } from "@/lib/utils";
 
 export async function POST(
   request: NextRequest,
@@ -66,7 +58,7 @@ export async function POST(
     const FROM = process.env.EMAIL_FROM ?? "noreply@onboarding.resend.dev";
 
     if (!resend) {
-      console.log("[Admin Messages Reply - no RESEND_API_KEY]", {
+      console.warn("[Admin Messages Reply - no RESEND_API_KEY]", {
         to: message.email,
         subject: `Re: ${message.subject}`,
         message: replyMessage,

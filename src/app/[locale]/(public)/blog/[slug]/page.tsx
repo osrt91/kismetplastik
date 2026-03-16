@@ -30,10 +30,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     alternates: {
       canonical: `https://www.kismetplastik.com/${locale}/blog/${slug}`,
-      languages: {
-        tr: `https://www.kismetplastik.com/tr/blog/${slug}`,
-        en: `https://www.kismetplastik.com/en/blog/${slug}`,
-      },
+      languages: Object.fromEntries([
+        ...["tr", "en", "ar", "ru", "fr", "de", "es", "zh", "ja", "ko", "pt"].map(
+          (l) => [l, `https://www.kismetplastik.com/${l}/blog/${slug}`]
+        ),
+        ["x-default", `https://www.kismetplastik.com/tr/blog/${slug}`],
+      ]),
     },
   };
 }

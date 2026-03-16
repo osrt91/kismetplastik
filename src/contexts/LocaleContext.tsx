@@ -8,9 +8,7 @@ import {
   useCallback,
 } from "react";
 import { useParams, usePathname, useRouter } from "next/navigation";
-import type { Locale } from "@/lib/i18n";
-import type { Dictionary } from "@/lib/i18n";
-import { getDictionary, getFallbackDictionary, allLocales } from "@/lib/i18n";
+import { getDictionary, getFallbackDictionary, allLocales, type Locale, type Dictionary } from "@/lib/i18n";
 
 const LocaleContext = createContext<{
   locale: Locale;

@@ -28,8 +28,7 @@ import {
 import clsx from "clsx";
 import { useLocale } from "@/contexts/LocaleContext";
 import { useTheme } from "@/contexts/ThemeContext";
-import { allLocales, localeNames } from "@/lib/i18n";
-import type { Locale } from "@/lib/i18n";
+import { allLocales, localeNames, type Locale } from "@/lib/i18n";
 import dynamic from "next/dynamic";
 const SearchModal = dynamic(() => import("@/components/ui/SearchModal"), { ssr: false });
 import {

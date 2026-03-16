@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const _data = parsed.data; // eslint-disable-line @typescript-eslint/no-unused-vars
+    const _data = parsed.data;
 
     // TODO: Insert into Supabase pre_orders table when migration is applied
     // const supabase = getSupabase();

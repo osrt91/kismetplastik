@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { escapeHtml } from "@/lib/utils";
 
 const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
@@ -31,7 +32,7 @@ export interface QuotePayload {
 
 export async function sendContactEmail(data: ContactPayload): Promise<{ ok: boolean; error?: string }> {
   if (!resend) {
-    console.log("[Contact Form - no RESEND_API_KEY]", data);
+    console.warn("[Contact Form - no RESEND_API_KEY]", data);
     return { ok: true };
   }
   try {
@@ -61,7 +62,7 @@ export async function sendContactEmail(data: ContactPayload): Promise<{ ok: bool
 
 export async function sendQuoteEmail(data: QuotePayload): Promise<{ ok: boolean; error?: string }> {
   if (!resend) {
-    console.log("[Quote Request - no RESEND_API_KEY]", data);
+    console.warn("[Quote Request - no RESEND_API_KEY]", data);
     return { ok: true };
   }
   try {
@@ -90,13 +91,4 @@ export async function sendQuoteEmail(data: QuotePayload): Promise<{ ok: boolean;
     const err = e instanceof Error ? e.message : String(e);
     return { ok: false, error: err };
   }
-}
-
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
 }

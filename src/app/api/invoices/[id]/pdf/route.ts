@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabase/server";
-import { generateInvoiceHTML } from "@/lib/invoice-pdf";
-import type { InvoiceLineItem } from "@/lib/invoice-pdf";
+import { generateInvoiceHTML, type InvoiceLineItem } from "@/lib/invoice-pdf";
 
 export async function GET(
   request: NextRequest,

@@ -1,14 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
+import { sanitizeSearchInput } from "@/lib/auth";
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const stockKodu = searchParams.get("stock_kodu");
+    const rawStockKodu = searchParams.get("stock_kodu");
 
-    if (!stockKodu) {
+    if (!rawStockKodu) {
       return NextResponse.json(
         { success: false, error: "stock_kodu parametresi gerekli" },
+        { status: 400 }
+      );
+    }
+
+    const stockKodu = sanitizeSearchInput(rawStockKodu);
+    if (!stockKodu) {
+      return NextResponse.json(
+        { success: false, error: "Geçersiz stok kodu." },
         { status: 400 }
       );
     }
@@ -27,7 +36,7 @@ export async function GET(request: NextRequest) {
     if (error) {
       console.error("[Compatible Products GET]", error);
       return NextResponse.json(
-        { success: false, error: error.message },
+        { success: false, error: "Uyumlu ürünler yüklenemedi." },
         { status: 500 }
       );
     }
@@ -49,10 +58,9 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ success: true, data: compatible });
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Bilinmeyen hata";
     console.error("[Compatible Products GET]", err);
     return NextResponse.json(
-      { success: false, error: message },
+      { success: false, error: "Bir hata oluştu." },
       { status: 500 }
     );
   }

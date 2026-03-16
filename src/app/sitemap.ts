@@ -1,8 +1,20 @@
 import type { MetadataRoute } from "next";
 import { categories, products } from "@/data/products";
+import { blogPosts } from "@/data/blog";
 
 const BASE_URL = "https://www.kismetplastik.com";
 const locales = ["tr", "en", "ar", "ru", "fr", "de", "es", "zh", "ja", "ko", "pt"] as const;
+
+function makeAlternates(path: string) {
+  return {
+    languages: {
+      ...Object.fromEntries(
+        locales.map((l) => [l, `${BASE_URL}/${l}${path}`])
+      ),
+      "x-default": `${BASE_URL}/tr${path}`,
+    },
+  };
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
@@ -31,6 +43,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/sertifikalar", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/kaynaklar", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/fabrika", changeFrequency: "monthly" as const, priority: 0.5 },
+    { path: "/urun-olustur", changeFrequency: "monthly" as const, priority: 0.5 },
+    { path: "/on-siparis", changeFrequency: "monthly" as const, priority: 0.5 },
   ];
 
   const staticPages = staticPaths.flatMap(({ path, changeFrequency, priority }) =>
@@ -39,11 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency,
       priority,
-      alternates: {
-        languages: Object.fromEntries(
-          locales.map((l) => [l, `${BASE_URL}/${l}${path}`])
-        ),
-      },
+      alternates: makeAlternates(path),
     }))
   );
 
@@ -53,11 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,
-      alternates: {
-        languages: Object.fromEntries(
-          locales.map((l) => [l, `${BASE_URL}/${l}/urunler/${cat.slug}`])
-        ),
-      },
+      alternates: makeAlternates(`/urunler/${cat.slug}`),
     }))
   );
 
@@ -67,16 +73,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.7,
-      alternates: {
-        languages: Object.fromEntries(
-          locales.map((l) => [
-            l,
-            `${BASE_URL}/${l}/urunler/${product.category}/${product.slug}`,
-          ])
-        ),
-      },
+      alternates: makeAlternates(`/urunler/${product.category}/${product.slug}`),
     }))
   );
 
-  return [...staticPages, ...categoryPages, ...productPages];
+  const blogPages = blogPosts.flatMap((post) =>
+    locales.map((locale) => ({
+      url: `${BASE_URL}/${locale}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+      alternates: makeAlternates(`/blog/${post.slug}`),
+    }))
+  );
+
+  return [...staticPages, ...categoryPages, ...productPages, ...blogPages];
 }

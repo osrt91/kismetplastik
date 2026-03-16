@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin, requireSupabase } from "@/lib/supabase-admin";
-import { checkAuth } from "@/lib/auth";
-import { sanitizeSearchInput } from "@/lib/auth";
+import { checkAuth, sanitizeSearchInput } from "@/lib/auth";
 import { rateLimit } from "@/lib/rate-limit";
 
 const PAGE_SIZE = 12;

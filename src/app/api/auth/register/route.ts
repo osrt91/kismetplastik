@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
         );
       }
       return NextResponse.json(
-        { success: false, error: error.message },
+        { success: false, error: "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin." },
         { status: 400 }
       );
     }

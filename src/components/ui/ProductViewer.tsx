@@ -4,8 +4,7 @@ import { useState, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Palette, RotateCcw, ZoomIn, Check } from "lucide-react";
 import ProductSVG, { colorMap } from "@/components/ui/ProductSVG";
-import type { Product } from "@/types/product";
-import type { CategorySlug } from "@/types/product";
+import type { Product, CategorySlug } from "@/types/product";
 import { useLocale } from "@/contexts/LocaleContext";
 
 interface Props {

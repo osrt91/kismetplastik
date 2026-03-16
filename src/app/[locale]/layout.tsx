@@ -130,6 +130,7 @@ export async function generateMetadata({
         ja: "https://www.kismetplastik.com/ja",
         ko: "https://www.kismetplastik.com/ko",
         pt: "https://www.kismetplastik.com/pt",
+        "x-default": "https://www.kismetplastik.com/tr",
       },
     },
   };
