@@ -28,7 +28,8 @@ export default function ProductsPage() {
     let cancelled = false;
     async function load() {
       try {
-        const res = await fetch("/api/products?limit=200");
+        const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
+        const res = await fetch(`${base}/api/products?limit=200`);
         const json = await res.json();
         if (!cancelled && json.success && json.data) {
           setProducts(json.data.products ?? []);
