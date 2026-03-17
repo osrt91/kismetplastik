@@ -1,4 +1,5 @@
 import { getPageContent, getSettings, getReferences } from "@/lib/content";
+import type { Locale } from "@/lib/locales";
 import ReferanslarClient from "@/components/pages/ReferanslarClient";
 
 export default async function ReferanslarPage({
@@ -6,7 +7,7 @@ export default async function ReferanslarPage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  await params;
+  const { locale } = await params;
   const [content, settings, references] = await Promise.all([
     getPageContent("references"),
     getSettings(),
@@ -17,6 +18,7 @@ export default async function ReferanslarPage({
       content={content}
       settings={settings}
       references={references}
+      locale={locale as Locale}
     />
   );
 }

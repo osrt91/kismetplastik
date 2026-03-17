@@ -1,20 +1,20 @@
-"use client";
-
 import Image from "next/image";
 import Link from "@/components/ui/LocaleLink";
 import { ArrowRight, Check } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-import { useLocale } from "@/contexts/LocaleContext";
 import type { DbContentSection } from "@/types/database";
 import { getLocalizedFieldSync } from "@/lib/content";
+import type { Dictionary } from "@/lib/i18n";
+import type { Locale } from "@/lib/locales";
 
 interface AboutProps {
   settings?: Record<string, string>;
   content?: Record<string, DbContentSection>;
+  locale: Locale;
+  dict: Dictionary;
 }
 
-export default function About({ settings, content }: AboutProps) {
-  const { dict, locale } = useLocale();
+export default function About({ settings, content, locale, dict }: AboutProps) {
   const h = dict.home;
   const strengths = dict.homeStrengths as string[];
 

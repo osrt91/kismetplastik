@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "@/components/ui/LocaleLink";
 import {
   ChevronRight,
@@ -15,9 +13,10 @@ import {
   CalendarCheck,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-import { useLocale } from "@/contexts/LocaleContext";
 import { getLocalizedFieldSync } from "@/lib/content";
 import type { DbContentSection } from "@/types/database";
+import type { Dictionary } from "@/lib/i18n";
+import type { Locale } from "@/lib/locales";
 
 const facilityStats = [
   { value: "15.000 m\u00B2", label: "Kapali Uretim Alani" },
@@ -80,10 +79,11 @@ const maxQty = Math.max(...machines.map((m) => m.qty));
 interface UretimClientProps {
   content?: Record<string, DbContentSection>;
   settings?: Record<string, string>;
+  locale: Locale;
+  dict: Dictionary;
 }
 
-export default function UretimClient({ content }: UretimClientProps) {
-  const { dict, locale } = useLocale();
+export default function UretimClient({ content, locale, dict }: UretimClientProps) {
   const p = dict.production;
   const nav = dict.nav;
 

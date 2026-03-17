@@ -1,8 +1,6 @@
-"use client";
-
 import { Star, Quote } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-import { useLocale } from "@/contexts/LocaleContext";
+import type { Dictionary } from "@/lib/i18n";
 
 const referenceCompanies = [
   "Atelier Kozmetik",
@@ -15,8 +13,11 @@ const referenceCompanies = [
   "Natura Kozmetik",
 ];
 
-export default function Testimonials() {
-  const { dict } = useLocale();
+interface TestimonialsProps {
+  dict: Dictionary;
+}
+
+export default function Testimonials({ dict }: TestimonialsProps) {
   const h = dict.home as Record<string, unknown>;
   const overline = (h.testimonialsOverline as string) ?? "MÜŞTERİ REFERANSLARI";
   const title = (h.testimonialsTitle as string) ?? "Müşterilerimiz Ne Diyor?";

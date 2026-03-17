@@ -1,12 +1,11 @@
-"use client";
-
 import Link from "@/components/ui/LocaleLink";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, Phone, Shield, Award, BadgeCheck } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-import { useLocale } from "@/contexts/LocaleContext";
 import type { DbContentSection } from "@/types/database";
 import { getLocalizedFieldSync } from "@/lib/content";
+import type { Dictionary } from "@/lib/i18n";
+import type { Locale } from "@/lib/locales";
 
 const trustBadges = [
   { label: "ISO 9001", icon: Shield },
@@ -16,10 +15,11 @@ const trustBadges = [
 
 interface CTAProps {
   content?: Record<string, DbContentSection>;
+  locale: Locale;
+  dict: Dictionary;
 }
 
-export default function CTA({ content }: CTAProps) {
-  const { dict, locale } = useLocale();
+export default function CTA({ content, locale, dict }: CTAProps) {
   const h = dict.home;
 
   const ctaSection = content?.home_cta;

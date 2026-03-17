@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Shield,
   Award,
@@ -23,9 +21,10 @@ import {
 } from "lucide-react";
 import Link from "@/components/ui/LocaleLink";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-import { useLocale } from "@/contexts/LocaleContext";
 import { getLocalizedFieldSync } from "@/lib/content";
 import type { DbContentSection } from "@/types/database";
+import type { Dictionary } from "@/lib/i18n";
+import type { Locale } from "@/lib/locales";
 
 const certificates = [
   {
@@ -121,10 +120,11 @@ const labTests = [
 interface KaliteClientProps {
   content?: Record<string, DbContentSection>;
   settings?: Record<string, string>;
+  locale: Locale;
+  dict: Dictionary;
 }
 
-export default function KaliteClient({ content }: KaliteClientProps) {
-  const { dict, locale } = useLocale();
+export default function KaliteClient({ content, locale, dict }: KaliteClientProps) {
   const q = dict.quality;
   const nav = dict.nav;
 

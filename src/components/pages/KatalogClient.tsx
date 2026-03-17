@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "@/components/ui/LocaleLink";
 import {
   ChevronRight,
@@ -11,13 +9,17 @@ import {
   Mail,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-import { useLocale } from "@/contexts/LocaleContext";
+import CatalogDownloadButton from "@/components/ui/CatalogDownloadButton";
 import { getLocalizedFieldSync } from "@/lib/content";
 import type { DbContentSection, DbResource } from "@/types/database";
+import type { Dictionary } from "@/lib/i18n";
+import type { Locale } from "@/lib/locales";
 
 interface KatalogClientProps {
   content?: Record<string, DbContentSection>;
   resources?: DbResource[];
+  locale: Locale;
+  dict: Dictionary;
 }
 
 interface CatalogItem {
@@ -80,8 +82,7 @@ const iconMap: Record<string, typeof BookOpen> = {
   FileText,
 };
 
-export default function KatalogClient({ content, resources }: KatalogClientProps) {
-  const { dict, locale } = useLocale();
+export default function KatalogClient({ content, resources, locale, dict }: KatalogClientProps) {
   const cat = dict.catalog;
   const nav = dict.nav;
 
@@ -201,17 +202,7 @@ export default function KatalogClient({ content, resources }: KatalogClientProps
                       {cat.downloadButton}
                     </a>
                   ) : (
-                    <button
-                      onClick={() =>
-                        alert(
-                          "Katalog indirme ozelligi yakinda aktif olacaktir. Lutfen bizimle iletisime gecin."
-                        )
-                      }
-                      className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-primary-900 px-5 py-3 text-sm font-semibold text-primary-900 transition-all hover:bg-primary-900 hover:text-white"
-                    >
-                      <Download size={18} className="bounce-on-hover" />
-                      {cat.downloadButton}
-                    </button>
+                    <CatalogDownloadButton label={cat.downloadButton} />
                   )}
                 </div>
               </div>

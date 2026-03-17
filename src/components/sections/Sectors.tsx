@@ -1,19 +1,19 @@
-"use client";
-
 import { FlaskConical, SprayCan, Sparkles, Droplets, Hotel, Settings2 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-import { useLocale } from "@/contexts/LocaleContext";
 import type { DbContentSection } from "@/types/database";
 import { getLocalizedFieldSync } from "@/lib/content";
+import type { Dictionary } from "@/lib/i18n";
+import type { Locale } from "@/lib/locales";
 
 const sectorIcons = [FlaskConical, SprayCan, Sparkles, Droplets, Hotel, Settings2];
 
 interface SectorsProps {
   content?: Record<string, DbContentSection>;
+  locale: Locale;
+  dict: Dictionary;
 }
 
-export default function Sectors({ content }: SectorsProps) {
-  const { dict, locale } = useLocale();
+export default function Sectors({ content, locale, dict }: SectorsProps) {
   const h = dict.home;
   const dictSectors = dict.homeSectors as { name: string; description: string }[];
   const sectors = dictSectors.map((s, i) => {

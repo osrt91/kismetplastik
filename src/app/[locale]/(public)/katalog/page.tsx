@@ -1,4 +1,6 @@
 import { getPageContent, getResources } from "@/lib/content";
+import { getDictionary } from "@/lib/i18n";
+import type { Locale } from "@/lib/locales";
 import KatalogClient from "@/components/pages/KatalogClient";
 
 export default async function KatalogPage({
@@ -6,10 +8,11 @@ export default async function KatalogPage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  await params;
-  const [content, resources] = await Promise.all([
+  const { locale } = await params;
+  const [content, resources, dict] = await Promise.all([
     getPageContent("catalog"),
     getResources(),
+    getDictionary(locale as Locale),
   ]);
-  return <KatalogClient content={content} resources={resources} />;
+  return <KatalogClient content={content} resources={resources} locale={locale as Locale} dict={dict} />;
 }

@@ -1,17 +1,17 @@
-"use client";
-
 import { Camera, ChevronRight } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-import { useLocale } from "@/contexts/LocaleContext";
 import type { DbContentSection } from "@/types/database";
 import { getLocalizedFieldSync } from "@/lib/content";
+import type { Dictionary } from "@/lib/i18n";
+import type { Locale } from "@/lib/locales";
 
 interface WhyUsProps {
   content?: Record<string, DbContentSection>;
+  locale: Locale;
+  dict: Dictionary;
 }
 
-export default function WhyUs({ content }: WhyUsProps) {
-  const { dict, locale } = useLocale();
+export default function WhyUs({ content, locale, dict }: WhyUsProps) {
   const h = dict.home;
   const f = dict.homeFeatures as Record<string, string>;
 

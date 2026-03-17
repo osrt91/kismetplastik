@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "@/components/ui/LocaleLink";
 import {
   ChevronRight,
@@ -10,18 +8,18 @@ import {
 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import ReferenceLogos from "@/components/ui/ReferenceLogos";
-import { useLocale } from "@/contexts/LocaleContext";
 import { getLocalizedFieldSync } from "@/lib/content";
 import type { DbContentSection, DbReference } from "@/types/database";
+import type { Locale } from "@/lib/locales";
 
 interface ReferanslarClientProps {
   content?: Record<string, DbContentSection>;
   settings?: Record<string, string>;
   references?: DbReference[];
+  locale: Locale;
 }
 
-export default function ReferanslarClient({ content, settings, references }: ReferanslarClientProps) {
-  const { locale } = useLocale();
+export default function ReferanslarClient({ content, settings, references, locale }: ReferanslarClientProps) {
   const isTr = locale === "tr";
 
   /* Helper: read from DB content with dict fallback */

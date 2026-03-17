@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "@/components/ui/LocaleLink";
 import {
   Target,
@@ -12,17 +10,19 @@ import {
   ChevronRight,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-import { useLocale } from "@/contexts/LocaleContext";
 import { getLocalizedFieldSync } from "@/lib/content";
 import type { DbContentSection } from "@/types/database";
+import type { Dictionary } from "@/lib/i18n";
+import type { Locale } from "@/lib/locales";
 
 interface HakkimizdaClientProps {
   content?: Record<string, DbContentSection>;
   settings?: Record<string, string>;
+  locale: Locale;
+  dict: Dictionary;
 }
 
-export default function HakkimizdaClient({ content }: HakkimizdaClientProps) {
-  const { dict, locale } = useLocale();
+export default function HakkimizdaClient({ content, locale, dict }: HakkimizdaClientProps) {
   const a = dict.about;
   const nav = dict.nav;
 
