@@ -97,7 +97,19 @@ export async function generateMetadata({
         ? "Türkiye'nin lider kozmetik ambalaj üreticisi. Toptan satış ve B2B hizmetler."
         : "Turkey's leading cosmetic packaging manufacturer. Wholesale and B2B services.",
       type: "website",
-      locale: isTr ? "tr_TR" : "en_US",
+      locale: ({
+        tr: "tr_TR",
+        en: "en_US",
+        ar: "ar_SA",
+        ru: "ru_RU",
+        fr: "fr_FR",
+        de: "de_DE",
+        es: "es_ES",
+        zh: "zh_CN",
+        ja: "ja_JP",
+        ko: "ko_KR",
+        pt: "pt_PT",
+      } as Record<string, string>)[locale] || "tr_TR",
       siteName: "Kısmet Plastik",
       images: [
         {
@@ -173,8 +185,6 @@ export default async function LocaleLayout({ children, params }: Props) {
         )}
         <link rel="preconnect" href="https://www.google.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.google.com" />
-        <link rel="preconnect" href="https://wa.me" />
-        <link rel="dns-prefetch" href="https://wa.me" />
         <link rel="preconnect" href="https://maps.googleapis.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://maps.googleapis.com" />
         <link rel="manifest" href="/test/manifest.json" />

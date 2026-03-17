@@ -31,9 +31,9 @@ export default function Hero({ settings, content }: HeroProps) {
       <div className="absolute inset-0 bg-gradient-mesh" />
 
       {/* Animated ambient orbs */}
-      <div className="ambient-orb absolute -left-20 top-1/4 h-[400px] w-[400px] bg-amber-500/[0.07]" />
-      <div className="ambient-orb absolute -right-32 top-1/3 h-[350px] w-[350px] bg-blue-500/[0.05]" style={{ animationDelay: "-4s" }} />
-      <div className="ambient-orb absolute bottom-0 left-1/3 h-[300px] w-[300px] bg-amber-500/[0.04]" style={{ animationDelay: "-8s" }} />
+      <div aria-hidden="true" className="ambient-orb absolute -left-20 top-1/4 h-[400px] w-[400px] bg-amber-500/[0.07]" />
+      <div aria-hidden="true" className="ambient-orb absolute -right-32 top-1/3 h-[350px] w-[350px] bg-blue-500/[0.05]" style={{ animationDelay: "-4s" }} />
+      <div aria-hidden="true" className="ambient-orb absolute bottom-0 left-1/3 h-[300px] w-[300px] bg-amber-500/[0.04]" style={{ animationDelay: "-8s" }} />
 
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
@@ -55,7 +55,7 @@ export default function Hero({ settings, content }: HeroProps) {
           <div>
             {/* Badge */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.06] px-5 py-2.5 backdrop-blur-md"
@@ -66,7 +66,7 @@ export default function Hero({ settings, content }: HeroProps) {
 
             {/* Main heading */}
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 1, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="hero-title-shimmer font-display mb-8 text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl md:text-[2.75rem] lg:text-[3.25rem]"

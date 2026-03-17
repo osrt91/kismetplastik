@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "@/components/ui/LocaleLink";
 import { ArrowRight, Check } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
@@ -49,11 +50,13 @@ export default function About({ settings, content }: AboutProps) {
               <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-[#0A1628]/8 to-[#F59E0B]/5 shadow-lg shadow-[#0A1628]/5 ring-1 ring-[#0A1628]/5 transition-all duration-500 hover:shadow-xl hover:shadow-[#F59E0B]/10 dark:from-[#F59E0B]/5 dark:to-[#0A1628]/40 dark:ring-white/10 sm:rounded-3xl">
                 <div className="absolute inset-0 flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
                   <div className="text-center">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src="/test/images/logo2.svg"
                       alt="Kısmet Plastik"
+                      width={144}
+                      height={144}
                       className="mx-auto mb-4 h-36 w-36 drop-shadow-2xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
+                      priority
                     />
                     <p className="font-body text-sm font-semibold text-[#0A1628]/70 dark:text-white/70">
                       {h.aboutFacility}

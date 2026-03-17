@@ -28,7 +28,11 @@ export function LocalBusinessJsonLd() {
     },
     foundingDate: "1969",
     numberOfEmployees: { "@type": "QuantitativeValue", minValue: 200 },
-    sameAs: [],
+    sameAs: [
+      "https://www.instagram.com/kismetplastik",
+      "https://www.linkedin.com/company/kismetplastik",
+      "https://www.facebook.com/kismetplastik",
+    ],
     priceRange: "$$",
     image: "https://www.kismetplastik.com/images/logo.jpg",
     "@id": "https://www.kismetplastik.com",
@@ -55,7 +59,11 @@ export function OrganizationJsonLd() {
       contactType: "sales",
       availableLanguage: ["Turkish", "English", "Arabic", "Russian", "French", "German", "Spanish", "Chinese", "Japanese", "Korean", "Portuguese"],
     },
-    sameAs: [],
+    sameAs: [
+      "https://www.instagram.com/kismetplastik",
+      "https://www.linkedin.com/company/kismetplastik",
+      "https://www.facebook.com/kismetplastik",
+    ],
   };
 
   return (

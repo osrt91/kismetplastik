@@ -41,6 +41,11 @@ const nextConfig: NextConfig = {
         hostname: "**.supabase.co",
         pathname: "/storage/v1/object/public/**",
       },
+      {
+        protocol: "https",
+        hostname: "supabase.kismetplastik.com",
+        pathname: "/storage/v1/object/public/**",
+      },
     ],
   },
   compress: true,
