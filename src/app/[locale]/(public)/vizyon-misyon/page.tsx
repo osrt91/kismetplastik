@@ -53,7 +53,7 @@ export default async function VizyonMisyonPage({
             {hero
               ? getLocalizedFieldSync(hero, "subtitle", locale)
               : (isTr
-                ? "Ambalaj sektorunde liderlik hedefimiz ve topluma karsi sorumlulugumuz."
+                ? "Ambalaj sektöründe liderlik hedefimiz ve topluma karşı sorumluluğumuz."
                 : "Our leadership goal in the packaging industry and our responsibility to society.")}
           </p>
         </div>
@@ -77,7 +77,7 @@ export default async function VizyonMisyonPage({
               </h2>
               <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
                 {vision ? getLocalizedFieldSync(vision, "content", locale) : (isTr
-                  ? "Kozmetik ambalaj sektorunde uluslararasi standartlarda uretim yapan, surdurulebilir ve yenilikci cozumler sunan lider bir marka olmak."
+                  ? "Kozmetik ambalaj sektöründe uluslararası standartlarda üretim yapan, sürdürülebilir ve yenilikçi çözümler sunan lider bir marka olmak."
                   : "To be a leading brand in the cosmetic packaging industry, producing at international standards and offering sustainable, innovative solutions.")}
               </p>
             </div>
@@ -98,7 +98,7 @@ export default async function VizyonMisyonPage({
               </h2>
               <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
                 {mission ? getLocalizedFieldSync(mission, "content", locale) : (isTr
-                  ? "Musterilerimize en yuksek kalitede ambalaj cozumleri sunmak, surdurulebilir uretim pratikleri ile cevreye duyarli bir yaklasim benimsemek ve calisanlarimizin gelisimine yatirim yapmak."
+                  ? "Müşterilerimize en yüksek kalitede ambalaj çözümleri sunmak, sürdürülebilir üretim pratikleri ile çevreye duyarlı bir yaklaşım benimsemek ve çalışanlarımızın gelişimine yatırım yapmak."
                   : "To provide our customers with the highest quality packaging solutions, adopt an environmentally conscious approach with sustainable production practices, and invest in the development of our employees.")}
               </p>
             </div>
@@ -109,10 +109,10 @@ export default async function VizyonMisyonPage({
         <div className="mt-16 lg:mt-24">
           <div className="mb-12 text-center">
             <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-[#F59E0B]">
-              {values ? getLocalizedFieldSync(values, "title", locale) : (isTr ? "Degerlerimiz" : "Our Values")}
+              {values ? getLocalizedFieldSync(values, "title", locale) : (isTr ? "Değerlerimiz" : "Our Values")}
             </span>
             <h2 className="text-2xl font-extrabold text-[#0A1628] dark:text-white sm:text-3xl">
-              {values ? getLocalizedFieldSync(values, "subtitle", locale) : (isTr ? "Bize Rehberlik Eden Ilkeler" : "Principles That Guide Us")}
+              {values ? getLocalizedFieldSync(values, "subtitle", locale) : (isTr ? "Bize Rehberlik Eden İlkeler" : "Principles That Guide Us")}
             </h2>
           </div>
 
@@ -120,23 +120,23 @@ export default async function VizyonMisyonPage({
             {[
               {
                 icon: Lightbulb,
-                title: isTr ? "Yenilikcilik" : "Innovation",
+                title: isTr ? "Yenilikçilik" : "Innovation",
                 desc: isTr
-                  ? "Surekli arastirma ve gelistirme ile sektorun ihtiyaclarina yenilikci cozumler uretiyoruz."
+                  ? "Sürekli araştırma ve geliştirme ile sektörün ihtiyaçlarına yenilikçi çözümler üretiyoruz."
                   : "We produce innovative solutions to industry needs through continuous research and development.",
               },
               {
                 icon: Heart,
-                title: isTr ? "Musteri Odaklilik" : "Customer Focus",
+                title: isTr ? "Müşteri Odaklılık" : "Customer Focus",
                 desc: isTr
-                  ? "Musterilerimizin ihtiyaclarini onceliklendirerek uzun vadeli is ortakliklari kuruyoruz."
+                  ? "Müşterilerimizin ihtiyaçlarını önceliklendirerek uzun vadeli iş ortaklıkları kuruyoruz."
                   : "We build long-term business partnerships by prioritizing our customers' needs.",
               },
               {
                 icon: Target,
-                title: isTr ? "Mukemmellik" : "Excellence",
+                title: isTr ? "Mükemmellik" : "Excellence",
                 desc: isTr
-                  ? "Her asamada en yuksek kalite standartlarini hedefleyerek surdurulebilir buyume sagliyoruz."
+                  ? "Her aşamada en yüksek kalite standartlarını hedefleyerek sürdürülebilir büyüme sağlıyoruz."
                   : "We achieve sustainable growth by targeting the highest quality standards at every stage.",
               },
             ].map((item, i) => (

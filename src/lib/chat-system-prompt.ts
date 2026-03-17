@@ -70,7 +70,7 @@ const SYSTEM_PROMPT_EN = `You are the AI assistant of Kismet Plastik. Kismet Pla
 
 **Company Information:**
 - Founded: 1969 (55+ years of experience)
-- Location: Ikitelli OSB Mah. IPKAS 4A Blok Sok. No:5, Basaksehir/Istanbul, Turkey
+- Location: İkitelli OSB Mah. İPKAS 4A Blok Sok. No:5, Başakşehir/İstanbul, Turkey
 - Phone: +90 212 549 87 03
 - Email: bilgi@kismetplastik.com
 - WhatsApp: +90 530 741 75 99

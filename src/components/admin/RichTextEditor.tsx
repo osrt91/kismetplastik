@@ -117,7 +117,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
   const addImage = useCallback(() => {
     if (!editor) return;
 
-    const url = window.prompt("Gorsel URL:", "https://");
+    const url = window.prompt("Görsel URL:", "https://");
     if (!url) return;
 
     editor.chain().focus().setImage({ src: url }).run();
@@ -139,14 +139,14 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
           isActive={editor.isActive("heading", { level: 2 })}
-          title="Baslik 2 (H2)"
+          title="Başlık 2 (H2)"
         >
           <Heading2 size={16} />
         </ToolbarButton>
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
           isActive={editor.isActive("heading", { level: 3 })}
-          title="Baslik 3 (H3)"
+          title="Başlık 3 (H3)"
         >
           <Heading3 size={16} />
         </ToolbarButton>
@@ -157,28 +157,28 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleBold().run()}
           isActive={editor.isActive("bold")}
-          title="Kalin (Ctrl+B)"
+          title="Kalın (Ctrl+B)"
         >
           <Bold size={16} />
         </ToolbarButton>
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleItalic().run()}
           isActive={editor.isActive("italic")}
-          title="Italik (Ctrl+I)"
+          title="İtalik (Ctrl+I)"
         >
           <Italic size={16} />
         </ToolbarButton>
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleUnderline().run()}
           isActive={editor.isActive("underline")}
-          title="Alti Cizili (Ctrl+U)"
+          title="Altı Çizili (Ctrl+U)"
         >
           <UnderlineIcon size={16} />
         </ToolbarButton>
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleStrike().run()}
           isActive={editor.isActive("strike")}
-          title="Ustu Cizili"
+          title="Üstü Çizili"
         >
           <Strikethrough size={16} />
         </ToolbarButton>
@@ -196,7 +196,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
           isActive={editor.isActive("orderedList")}
-          title="Numarali Liste"
+          title="Numaralı Liste"
         >
           <ListOrdered size={16} />
         </ToolbarButton>
@@ -213,7 +213,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
         </ToolbarButton>
         <ToolbarButton
           onClick={addImage}
-          title="Gorsel Ekle (URL)"
+          title="Görsel Ekle (URL)"
         >
           <ImageIcon size={16} />
         </ToolbarButton>
@@ -224,7 +224,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
           isActive={editor.isActive("blockquote")}
-          title="Alinti"
+          title="Alıntı"
         >
           <Quote size={16} />
         </ToolbarButton>
@@ -237,7 +237,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
         </ToolbarButton>
         <ToolbarButton
           onClick={() => editor.chain().focus().setHorizontalRule().run()}
-          title="Yatay Cizgi"
+          title="Yatay Çizgi"
         >
           <Minus size={16} />
         </ToolbarButton>

@@ -19,58 +19,58 @@ import type { Dictionary } from "@/lib/i18n";
 import type { Locale } from "@/lib/locales";
 
 const facilityStats = [
-  { value: "15.000 m\u00B2", label: "Kapali Uretim Alani" },
-  { value: "24/7", label: "Kesintisiz Uretim" },
-  { value: "50+", label: "Uretim Makinesi" },
+  { value: "15.000 m\u00B2", label: "Kapalı Üretim Alanı" },
+  { value: "24/7", label: "Kesintisiz Üretim" },
+  { value: "50+", label: "Üretim Makinesi" },
   { value: "200+", label: "Uzman Personel" },
 ];
 
 const productionStages = [
   {
     icon: Droplets,
-    title: "Hammadde Hazirlama",
+    title: "Hammadde Hazırlama",
     description:
-      "Virgin PET granuller kurutma firinlarinda nem orani optimum seviyeye getirilir. Renk masterbatch'leri hassas dozajlama ile karistirilir.",
+      "Virgin PET granüller kurutma fırınlarında nem oranı optimum seviyeye getirilir. Renk masterbatch'leri hassas dozajlama ile karıştırılır.",
   },
   {
     icon: Thermometer,
-    title: "Enjeksiyon Kaliplama",
+    title: "Enjeksiyon Kalıplama",
     description:
-      "Yuksek hassasiyetli enjeksiyon makinelerinde PET preformlar uretilir. Agiz kismi kristalizasyon islemiyle guclendirilir.",
+      "Yüksek hassasiyetli enjeksiyon makinelerinde PET preformlar üretilir. Ağız kısmı kristalizasyon işlemiyle güçlendirilir.",
   },
   {
     icon: Zap,
-    title: "Sisirme (Blow Molding)",
+    title: "Şişirme (Blow Molding)",
     description:
-      "Preformlar yuksek basinc altinda kaliplara sisirilir. Isitma ve sisirme parametreleri otomatik olarak kontrol edilir.",
+      "Preformlar yüksek basınç altında kalıplara şişirilir. Isıtma ve şişirme parametreleri otomatik olarak kontrol edilir.",
   },
   {
     icon: Gauge,
     title: "Kalite Kontrol",
     description:
-      "Her parti urun boyutsal olcum, sizdimazlik testi, basinc dayanim testi ve gorsel kontrolden gecirilir.",
+      "Her parti ürün boyutsal ölçüm, sızdırmazlık testi, basınç dayanım testi ve görsel kontrolden geçirilir.",
   },
   {
     icon: Package,
     title: "Paketleme",
     description:
-      "Onaylanan urunler hijyenik kosullarda polietilen torbalara paketlenir ve paletlenir.",
+      "Onaylanan ürünler hijyenik koşullarda polietilen torbalara paketlenir ve paletlenir.",
   },
   {
     icon: Truck,
     title: "Depolama & Sevkiyat",
     description:
-      "Klimali depolarda muhafaza edilen urunler, musteri talebine gore zamaninda sevk edilir.",
+      "Klimalı depolarda muhafaza edilen ürünler, müşteri talebine göre zamanında sevk edilir.",
   },
 ];
 
 const machines = [
   { name: "PET Enjeksiyon Makineleri", count: "12 Adet", detail: "Husky, Netstal", qty: 12 },
-  { name: "Sisirme Makineleri", count: "18 Adet", detail: "Sidel, SMF", qty: 18 },
-  { name: "Lineer Sisirme Hatlari", count: "8 Adet", detail: "Otomatik", qty: 8 },
-  { name: "Kalip CNC Isleme", count: "4 Adet", detail: "5 eksenli", qty: 4 },
-  { name: "Kalite Kontrol Cihazlari", count: "15+ Adet", detail: "AGR, CMC", qty: 15 },
-  { name: "Paketleme Hatlari", count: "6 Adet", detail: "Tam otomatik", qty: 6 },
+  { name: "Şişirme Makineleri", count: "18 Adet", detail: "Sidel, SMF", qty: 18 },
+  { name: "Lineer Şişirme Hatları", count: "8 Adet", detail: "Otomatik", qty: 8 },
+  { name: "Kalıp CNC İşleme", count: "4 Adet", detail: "5 eksenli", qty: 4 },
+  { name: "Kalite Kontrol Cihazları", count: "15+ Adet", detail: "AGR, CMC", qty: 15 },
+  { name: "Paketleme Hatları", count: "6 Adet", detail: "Tam otomatik", qty: 6 },
 ];
 
 const machineIcons = [Thermometer, Zap, Zap, Cog, Gauge, Package];
@@ -123,7 +123,7 @@ export default function UretimClient({ content, locale, dict }: UretimClientProp
               <Link href="/" className="hover:text-white">{nav.home}</Link>
               <ChevronRight size={14} />
               <span className="text-white">
-                {t("production_hero", "title", locale === "tr" ? "Uretim Tesisi" : "Production Facility")}
+                {t("production_hero", "title", locale === "tr" ? "Üretim Tesisi" : "Production Facility")}
               </span>
             </nav>
             <h1 className="mb-4 text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
@@ -173,12 +173,12 @@ export default function UretimClient({ content, locale, dict }: UretimClientProp
               </h2>
               <p className="mb-4 leading-relaxed text-neutral-600 dark:text-neutral-300">
                 {t("production_facility", "content",
-                  "Ikitelli OSB Basaksehir'de yer alan 15.000 m\u00B2 kapali alana sahip uretim tesisimiz, Avrupa standartlarinda donatilmis modern makinelerle hizmet vermektedir."
+                  "İkitelli OSB Başakşehir'de yer alan 15.000 m\u00B2 kapalı alana sahip üretim tesisimiz, Avrupa standartlarında donatılmış modern makinelerle hizmet vermektedir."
                 )}
               </p>
               <p className="mb-6 leading-relaxed text-neutral-600 dark:text-neutral-300">
-                Enjeksiyondan sisirmeye, kalip uretiminden paketlemeye kadar tum surecler
-                tek cati altinda gerceklestirilmekte olup aylik milyonlarca adet uretim kapasitesine sahibiz.
+                Enjeksiyondan şişirmeye, kalıp üretiminden paketlemeye kadar tüm süreçler
+                tek çatı altında gerçekleştirilmekte olup aylık milyonlarca adet üretim kapasitesine sahibiz.
               </p>
               <Link
                 href="/teklif-al"
@@ -341,13 +341,13 @@ export default function UretimClient({ content, locale, dict }: UretimClientProp
               </div>
               <h2 className="mb-4 text-2xl font-extrabold text-white sm:text-3xl">
                 {t("production_cta", "title",
-                  locale === "tr" ? "Uretim Tesisimizi Yerinde Gorun" : "Visit Our Production Facility"
+                  locale === "tr" ? "Üretim Tesisimizi Yerinde Görün" : "Visit Our Production Facility"
                 )}
               </h2>
               <p className="mx-auto mb-8 max-w-xl text-white/60">
                 {t("production_cta", "subtitle",
                   locale === "tr"
-                    ? "Modern uretim hatlarimizi, kalite kontrol sureclerimizi ve makine parkurumuzu yerinde incelemek icin fabrika turu randevusu alin."
+                    ? "Modern üretim hatlarımızı, kalite kontrol süreçlerimizi ve makine parkurumuzu yerinde incelemek için fabrika turu randevusu alın."
                     : "Schedule a factory tour to see our modern production lines, quality control processes, and machinery fleet."
                 )}
               </p>
