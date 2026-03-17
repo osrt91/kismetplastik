@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin, requireSupabase } from "@/lib/supabase-admin";
 import { checkAuth } from "@/lib/auth";
+import { isR2Configured, uploadToR2 } from "@/lib/r2";
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
 const MAX_SIZE = 5 * 1024 * 1024; // 5 MB
@@ -40,8 +41,6 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const supabase = getSupabaseAdmin();
-
     // Derive extension from validated MIME type, not user-supplied filename
     const MIME_TO_EXT: Record<string, string> = {
       "image/jpeg": "jpg",
@@ -50,27 +49,38 @@ export async function POST(request: NextRequest) {
       "image/gif": "gif",
     };
     const ext = MIME_TO_EXT[file.type] || "jpg";
-    const storagePath = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+    const fileName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
     const buffer = Buffer.from(await file.arrayBuffer());
 
-    const { error: uploadError } = await supabase.storage
-      .from("blog")
-      .upload(storagePath, buffer, {
-        contentType: file.type,
-        upsert: false,
-      });
+    let url: string;
+    let storagePath: string;
 
-    if (uploadError) {
-      console.error("[Blog Upload]", uploadError);
-      return NextResponse.json({ success: false, error: "Dosya yüklenemedi" }, { status: 500 });
+    if (isR2Configured()) {
+      url = await uploadToR2("blog", fileName, buffer, file.type);
+      storagePath = `blog/${fileName}`;
+    } else {
+      const supabase = getSupabaseAdmin();
+      const { error: uploadError } = await supabase.storage
+        .from("blog")
+        .upload(fileName, buffer, {
+          contentType: file.type,
+          upsert: false,
+        });
+
+      if (uploadError) {
+        console.error("[Blog Upload]", uploadError);
+        return NextResponse.json({ success: false, error: "Dosya yüklenemedi" }, { status: 500 });
+      }
+
+      const { data: urlData } = supabase.storage.from("blog").getPublicUrl(fileName);
+      url = urlData.publicUrl;
+      storagePath = fileName;
     }
-
-    const { data: urlData } = supabase.storage.from("blog").getPublicUrl(storagePath);
 
     return NextResponse.json({
       success: true,
-      data: { url: urlData.publicUrl, path: storagePath },
+      data: { url, path: storagePath },
     });
   } catch (err) {
     console.error("[Blog Upload]", err);

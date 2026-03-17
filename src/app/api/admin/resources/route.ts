@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin, requireSupabase } from "@/lib/supabase-admin";
 import { checkAuth } from "@/lib/auth";
+import { isR2Configured, uploadToR2, deleteFromR2 } from "@/lib/r2";
 
 const PAGE_SIZE = 20;
 
@@ -105,23 +106,39 @@ export async function POST(request: NextRequest) {
     const supabase = getSupabaseAdmin();
 
     const ext = file.name.split(".").pop() ?? "pdf";
-    const storagePath = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+    const fileName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
     const buffer = Buffer.from(await file.arrayBuffer());
-    const { error: uploadError } = await supabase.storage
-      .from("resources")
-      .upload(storagePath, buffer, {
-        contentType: file.type || "application/pdf",
-        upsert: false,
-      });
 
-    if (uploadError) {
-      console.error("[Admin Resources Upload]", uploadError);
-      return NextResponse.json({ success: false, error: "Dosya yüklenemedi" }, { status: 500 });
+    let fileUrl: string;
+    let storagePath: string;
+    const usedR2 = isR2Configured();
+
+    if (usedR2) {
+      try {
+        fileUrl = await uploadToR2("resources", fileName, buffer, file.type || "application/pdf");
+        storagePath = `resources/${fileName}`;
+      } catch (r2Err) {
+        console.error("[Admin Resources R2 Upload]", r2Err);
+        return NextResponse.json({ success: false, error: "Dosya yüklenemedi" }, { status: 500 });
+      }
+    } else {
+      storagePath = fileName;
+      const { error: uploadError } = await supabase.storage
+        .from("resources")
+        .upload(storagePath, buffer, {
+          contentType: file.type || "application/pdf",
+          upsert: false,
+        });
+
+      if (uploadError) {
+        console.error("[Admin Resources Upload]", uploadError);
+        return NextResponse.json({ success: false, error: "Dosya yüklenemedi" }, { status: 500 });
+      }
+
+      const { data: urlData } = supabase.storage.from("resources").getPublicUrl(storagePath);
+      fileUrl = urlData.publicUrl;
     }
-
-    const { data: urlData } = supabase.storage.from("resources").getPublicUrl(storagePath);
-    const fileUrl = urlData.publicUrl;
 
     const { data, error: insertError } = await supabase
       .from("resources")
@@ -146,7 +163,11 @@ export async function POST(request: NextRequest) {
     if (insertError) {
       console.error("[Admin Resources Insert]", insertError);
       // Rollback storage upload
-      await supabase.storage.from("resources").remove([storagePath]);
+      if (usedR2) {
+        try { await deleteFromR2(storagePath); } catch { /* best-effort */ }
+      } else {
+        await supabase.storage.from("resources").remove([storagePath]);
+      }
       return NextResponse.json({ success: false, error: insertError.message }, { status: 500 });
     }
 

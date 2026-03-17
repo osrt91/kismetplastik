@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin, isSupabaseAdminConfigured, requireSupabase } from "@/lib/supabase-admin";
 import { checkAuth } from "@/lib/auth";
 import { rateLimit } from "@/lib/rate-limit";
+import { isR2Configured, uploadToR2, deleteFromR2 } from "@/lib/r2";
 
 export async function GET(request: NextRequest) {
   const authError = checkAuth(request);
@@ -128,17 +129,32 @@ export async function POST(request: NextRequest) {
   const storagePath = `${category}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
   const buffer = Buffer.from(await file.arrayBuffer());
 
-  const { error: uploadError } = await supabase.storage
-    .from("gallery")
-    .upload(storagePath, buffer, { contentType: file.type, upsert: false });
+  let imageUrl: string;
+  const usedR2 = isR2Configured();
 
-  if (uploadError) {
-    console.error("[Admin Gallery Upload]", uploadError);
-    return NextResponse.json({ success: false, error: "Dosya yüklenemedi." }, { status: 500 });
+  if (usedR2) {
+    try {
+      imageUrl = await uploadToR2("gallery", storagePath, buffer, file.type);
+    } catch (r2Err) {
+      console.error("[Admin Gallery R2 Upload]", r2Err);
+      return NextResponse.json({ success: false, error: "Dosya yüklenemedi." }, { status: 500 });
+    }
+  } else {
+    const { error: uploadError } = await supabase.storage
+      .from("gallery")
+      .upload(storagePath, buffer, { contentType: file.type, upsert: false });
+
+    if (uploadError) {
+      console.error("[Admin Gallery Upload]", uploadError);
+      return NextResponse.json({ success: false, error: "Dosya yüklenemedi." }, { status: 500 });
+    }
+
+    const { data: urlData } = supabase.storage.from("gallery").getPublicUrl(storagePath);
+    imageUrl = urlData.publicUrl;
   }
 
-  const { data: urlData } = supabase.storage.from("gallery").getPublicUrl(storagePath);
-  const imageUrl = urlData.publicUrl;
+  // The R2 key is "gallery/{storagePath}" — store it so DELETE can find it
+  const r2Key = usedR2 ? `gallery/${storagePath}` : storagePath;
 
   const { data, error: insertError } = await supabase
     .from("gallery_images")
@@ -149,7 +165,7 @@ export async function POST(request: NextRequest) {
       description_tr: descTr?.trim() || null,
       description_en: descEn?.trim() || null,
       image_url: imageUrl,
-      storage_path: storagePath,
+      storage_path: r2Key,
       display_order: displayOrder,
       is_active: true,
     })
@@ -158,7 +174,12 @@ export async function POST(request: NextRequest) {
 
   if (insertError) {
     console.error("[Admin Gallery Insert]", insertError);
-    await supabase.storage.from("gallery").remove([storagePath]);
+    // Rollback: remove the uploaded file
+    if (usedR2) {
+      try { await deleteFromR2(r2Key); } catch { /* best-effort */ }
+    } else {
+      await supabase.storage.from("gallery").remove([storagePath]);
+    }
     return NextResponse.json(
       { success: false, error: "Veritabanı kaydı oluşturulamadı." },
       { status: 500 }

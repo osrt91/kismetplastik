@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin, isSupabaseAdminConfigured, requireSupabase } from "@/lib/supabase-admin";
 import { checkAuth } from "@/lib/auth";
+import { isR2Configured, deleteFromR2 } from "@/lib/r2";
 
 export async function GET(
   request: NextRequest,
@@ -118,7 +119,12 @@ export async function DELETE(
     return NextResponse.json({ success: false, error: "Görsel bulunamadı." }, { status: 404 });
   }
 
-  await supabase.storage.from("gallery").remove([image.storage_path]);
+  // Remove file from storage — R2 keys start with "gallery/", Supabase keys don't
+  if (isR2Configured() && image.storage_path.startsWith("gallery/")) {
+    try { await deleteFromR2(image.storage_path); } catch { /* best-effort */ }
+  } else {
+    await supabase.storage.from("gallery").remove([image.storage_path]);
+  }
 
   const { error: deleteError } = await supabase
     .from("gallery_images")

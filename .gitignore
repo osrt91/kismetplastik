@@ -58,4 +58,5 @@ next-env.d.ts
 # supabase temp
 supabase/.temp/
 .mcp.json
+.mcp.local.json
 testsprite_tests/

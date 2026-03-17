@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin, requireSupabase } from "@/lib/supabase-admin";
 import { checkAuth } from "@/lib/auth";
+import { isR2Configured, deleteFromR2 } from "@/lib/r2";
 
 export async function GET(
   request: NextRequest,
@@ -116,7 +117,11 @@ export async function DELETE(
     }
 
     if (cert.storage_path) {
-      await supabase.storage.from("certificates").remove([cert.storage_path]);
+      if (isR2Configured() && cert.storage_path.startsWith("certificates/")) {
+        try { await deleteFromR2(cert.storage_path); } catch { /* best-effort */ }
+      } else {
+        await supabase.storage.from("certificates").remove([cert.storage_path]);
+      }
     }
 
     const { error: deleteError } = await supabase

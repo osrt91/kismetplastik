@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin, requireSupabase } from "@/lib/supabase-admin";
 import { checkAuth } from "@/lib/auth";
+import { isR2Configured, uploadToR2, deleteFromR2 } from "@/lib/r2";
 
 export async function GET(request: NextRequest) {
   const authError = checkAuth(request);
@@ -61,6 +62,7 @@ export async function POST(request: NextRequest) {
 
     let pdf_url = pdf_url_direct;
     let storage_path: string | null = null;
+    let usedR2 = false;
 
     if (file && file.size > 0) {
       const allowedTypes = ["application/pdf"];
@@ -73,23 +75,35 @@ export async function POST(request: NextRequest) {
       }
 
       const ext = "pdf";
-      storage_path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+      const fileName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
       const buffer = Buffer.from(await file.arrayBuffer());
 
-      const { error: uploadError } = await supabase.storage
-        .from("certificates")
-        .upload(storage_path, buffer, {
-          contentType: file.type,
-          upsert: false,
-        });
+      if (isR2Configured()) {
+        usedR2 = true;
+        try {
+          pdf_url = await uploadToR2("certificates", fileName, buffer, file.type);
+          storage_path = `certificates/${fileName}`;
+        } catch (r2Err) {
+          console.error("[Admin Certificates R2 Upload]", r2Err);
+          return NextResponse.json({ success: false, error: "PDF yüklenemedi." }, { status: 500 });
+        }
+      } else {
+        storage_path = fileName;
+        const { error: uploadError } = await supabase.storage
+          .from("certificates")
+          .upload(storage_path, buffer, {
+            contentType: file.type,
+            upsert: false,
+          });
 
-      if (uploadError) {
-        console.error("[Admin Certificates Upload]", uploadError);
-        return NextResponse.json({ success: false, error: "PDF yüklenemedi." }, { status: 500 });
+        if (uploadError) {
+          console.error("[Admin Certificates Upload]", uploadError);
+          return NextResponse.json({ success: false, error: "PDF yüklenemedi." }, { status: 500 });
+        }
+
+        const { data: urlData } = supabase.storage.from("certificates").getPublicUrl(storage_path);
+        pdf_url = urlData.publicUrl;
       }
-
-      const { data: urlData } = supabase.storage.from("certificates").getPublicUrl(storage_path);
-      pdf_url = urlData.publicUrl;
     }
 
     const { data, error } = await supabase
@@ -113,7 +127,11 @@ export async function POST(request: NextRequest) {
     if (error) {
       console.error("[Admin Certificates POST]", error);
       if (storage_path) {
-        await supabase.storage.from("certificates").remove([storage_path]);
+        if (usedR2) {
+          try { await deleteFromR2(storage_path); } catch { /* best-effort */ }
+        } else {
+          await supabase.storage.from("certificates").remove([storage_path]);
+        }
       }
       return NextResponse.json({ success: false, error: error.message }, { status: 500 });
     }

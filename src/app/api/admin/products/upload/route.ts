@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin, requireSupabase } from "@/lib/supabase-admin";
 import { checkAuth } from "@/lib/auth";
+import { isR2Configured, uploadToR2 } from "@/lib/r2";
 
 export async function POST(request: NextRequest) {
   const authError = checkAuth(request);
@@ -43,22 +44,37 @@ export async function POST(request: NextRequest) {
   const ext = MIME_TO_EXT[file.type] || "jpg";
   const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
 
-  const supabase = getSupabaseAdmin();
   const arrayBuffer = await file.arrayBuffer();
-  const buffer = new Uint8Array(arrayBuffer);
+  const buffer = Buffer.from(arrayBuffer);
 
-  const { error } = await supabase.storage
-    .from("products")
-    .upload(path, buffer, { contentType: file.type, upsert: false });
+  let url: string;
+  let storagePath: string;
 
-  if (error) {
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+  if (isR2Configured()) {
+    try {
+      url = await uploadToR2("products", path, buffer, file.type);
+      storagePath = `products/${path}`;
+    } catch (r2Err) {
+      console.error("[Products R2 Upload]", r2Err);
+      return NextResponse.json({ success: false, error: "Dosya yüklenemedi" }, { status: 500 });
+    }
+  } else {
+    const supabase = getSupabaseAdmin();
+    const { error } = await supabase.storage
+      .from("products")
+      .upload(path, buffer, { contentType: file.type, upsert: false });
+
+    if (error) {
+      return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    }
+
+    const { data: publicData } = supabase.storage.from("products").getPublicUrl(path);
+    url = publicData.publicUrl;
+    storagePath = path;
   }
-
-  const { data: publicData } = supabase.storage.from("products").getPublicUrl(path);
 
   return NextResponse.json({
     success: true,
-    data: { url: publicData.publicUrl, path },
+    data: { url, path: storagePath },
   });
 }

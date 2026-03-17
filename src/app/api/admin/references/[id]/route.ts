@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin, requireSupabase } from "@/lib/supabase-admin";
 import { checkAuth } from "@/lib/auth";
+import { isR2Configured, uploadToR2, deleteFromR2 } from "@/lib/r2";
 
 export async function GET(
   request: NextRequest,
@@ -108,25 +109,41 @@ export async function PUT(
         }
 
         const ext = logoFile.name.split(".").pop() || "png";
-        newStoragePath = `logos/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+        const fileName = `logos/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
         const buffer = Buffer.from(await logoFile.arrayBuffer());
 
-        const { error: uploadError } = await supabase.storage
-          .from("references")
-          .upload(newStoragePath, buffer, { contentType: logoFile.type, upsert: false });
+        if (isR2Configured()) {
+          try {
+            const logoUrl = await uploadToR2("references", fileName, buffer, logoFile.type);
+            newStoragePath = `references/${fileName}`;
+            updates.logo_url = logoUrl;
+            updates.storage_path = newStoragePath;
+          } catch (r2Err) {
+            console.error("[References R2 Logo Upload PUT]", r2Err);
+            return NextResponse.json(
+              { success: false, error: "Logo yüklenemedi." },
+              { status: 500 }
+            );
+          }
+        } else {
+          newStoragePath = fileName;
+          const { error: uploadError } = await supabase.storage
+            .from("references")
+            .upload(newStoragePath, buffer, { contentType: logoFile.type, upsert: false });
 
-        if (uploadError) {
-          console.error("[References Logo Upload PUT]", uploadError);
-          return NextResponse.json(
-            { success: false, error: "Logo yüklenemedi." },
-            { status: 500 }
-          );
+          if (uploadError) {
+            console.error("[References Logo Upload PUT]", uploadError);
+            return NextResponse.json(
+              { success: false, error: "Logo yüklenemedi." },
+              { status: 500 }
+            );
+          }
+
+          updates.logo_url = supabase.storage
+            .from("references")
+            .getPublicUrl(newStoragePath).data.publicUrl;
+          updates.storage_path = newStoragePath;
         }
-
-        updates.logo_url = supabase.storage
-          .from("references")
-          .getPublicUrl(newStoragePath).data.publicUrl;
-        updates.storage_path = newStoragePath;
 
         // Schedule old logo for deletion if it exists
         if (existing.storage_path) {
@@ -160,7 +177,11 @@ export async function PUT(
       console.error("[References PUT]", updateError);
       // Rollback: remove newly uploaded logo if DB update failed
       if (newStoragePath) {
-        await supabase.storage.from("references").remove([newStoragePath]);
+        if (isR2Configured() && newStoragePath.startsWith("references/")) {
+          try { await deleteFromR2(newStoragePath); } catch { /* best-effort */ }
+        } else {
+          await supabase.storage.from("references").remove([newStoragePath]);
+        }
       }
       return NextResponse.json(
         { success: false, error: "Güncelleme başarısız." },
@@ -171,7 +192,11 @@ export async function PUT(
     // Clean up old logo after successful DB update
     if (oldStoragePathToDelete) {
       try {
-        await supabase.storage.from("references").remove([oldStoragePathToDelete]);
+        if (isR2Configured() && oldStoragePathToDelete.startsWith("references/")) {
+          await deleteFromR2(oldStoragePathToDelete);
+        } else {
+          await supabase.storage.from("references").remove([oldStoragePathToDelete]);
+        }
       } catch {
         // Non-fatal — old logo cleanup failure does not block response
       }
@@ -231,7 +256,11 @@ export async function DELETE(
     // Remove logo from storage (best-effort)
     if (existing.storage_path) {
       try {
-        await supabase.storage.from("references").remove([existing.storage_path]);
+        if (isR2Configured() && existing.storage_path.startsWith("references/")) {
+          await deleteFromR2(existing.storage_path);
+        } else {
+          await supabase.storage.from("references").remove([existing.storage_path]);
+        }
       } catch {
         // Non-fatal
       }

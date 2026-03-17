@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin, requireSupabase } from "@/lib/supabase-admin";
 import { checkAuth } from "@/lib/auth";
+import { isR2Configured, uploadToR2, deleteFromR2 } from "@/lib/r2";
 
 export async function GET(request: NextRequest) {
   const authError = checkAuth(request);
@@ -76,6 +77,7 @@ export async function POST(request: NextRequest) {
 
     let logoUrl = "";
     let storagePath: string | null = null;
+    let usedR2 = false;
 
     if (logoFile && logoFile.size > 0) {
       const allowedTypes = ["image/jpeg", "image/png", "image/webp", "image/svg+xml", "image/gif"];
@@ -94,22 +96,37 @@ export async function POST(request: NextRequest) {
       }
 
       const ext = logoFile.name.split(".").pop() || "png";
-      storagePath = `logos/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+      const fileName = `logos/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
       const buffer = Buffer.from(await logoFile.arrayBuffer());
 
-      const { error: uploadError } = await supabase.storage
-        .from("references")
-        .upload(storagePath, buffer, { contentType: logoFile.type, upsert: false });
+      if (isR2Configured()) {
+        usedR2 = true;
+        try {
+          logoUrl = await uploadToR2("references", fileName, buffer, logoFile.type);
+          storagePath = `references/${fileName}`;
+        } catch (r2Err) {
+          console.error("[References R2 Logo Upload]", r2Err);
+          return NextResponse.json(
+            { success: false, error: "Logo yüklenemedi." },
+            { status: 500 }
+          );
+        }
+      } else {
+        storagePath = fileName;
+        const { error: uploadError } = await supabase.storage
+          .from("references")
+          .upload(storagePath, buffer, { contentType: logoFile.type, upsert: false });
 
-      if (uploadError) {
-        console.error("[References Logo Upload]", uploadError);
-        return NextResponse.json(
-          { success: false, error: "Logo yüklenemedi." },
-          { status: 500 }
-        );
+        if (uploadError) {
+          console.error("[References Logo Upload]", uploadError);
+          return NextResponse.json(
+            { success: false, error: "Logo yüklenemedi." },
+            { status: 500 }
+          );
+        }
+
+        logoUrl = supabase.storage.from("references").getPublicUrl(storagePath).data.publicUrl;
       }
-
-      logoUrl = supabase.storage.from("references").getPublicUrl(storagePath).data.publicUrl;
     }
 
     const { data, error: insertError } = await supabase
@@ -130,7 +147,11 @@ export async function POST(request: NextRequest) {
     if (insertError) {
       console.error("[References INSERT]", insertError);
       if (storagePath) {
-        await supabase.storage.from("references").remove([storagePath]);
+        if (usedR2) {
+          try { await deleteFromR2(storagePath); } catch { /* best-effort */ }
+        } else {
+          await supabase.storage.from("references").remove([storagePath]);
+        }
       }
       return NextResponse.json(
         { success: false, error: "Referans kaydedilemedi." },

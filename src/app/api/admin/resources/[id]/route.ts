@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin, requireSupabase } from "@/lib/supabase-admin";
 import { checkAuth } from "@/lib/auth";
+import { isR2Configured, deleteFromR2 } from "@/lib/r2";
 
 export async function GET(
   request: NextRequest,
@@ -148,7 +149,11 @@ export async function DELETE(
     // Remove file from storage (best-effort; non-fatal)
     if (resource.storage_path) {
       try {
-        await supabase.storage.from("resources").remove([resource.storage_path]);
+        if (isR2Configured() && resource.storage_path.startsWith("resources/")) {
+          await deleteFromR2(resource.storage_path);
+        } else {
+          await supabase.storage.from("resources").remove([resource.storage_path]);
+        }
       } catch (storageErr) {
         console.warn("[Admin Resources DELETE] Storage cleanup failed:", storageErr);
       }
