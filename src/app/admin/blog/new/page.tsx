@@ -3,7 +3,10 @@
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { ArrowLeft, Save, Upload, X, Eye, EyeOff, Loader2 } from "lucide-react";
+
+const RichTextEditor = dynamic(() => import("@/components/admin/RichTextEditor"), { ssr: false });
 
 const CATEGORIES = [
   "Üretim",
@@ -117,6 +120,7 @@ export default function NewBlogPage() {
           slug: form.slug,
           excerpt: form.excerpt,
           content: form.content,
+          content_html: form.content,
           category: form.category,
           tags: form.tags,
           image_url: form.image_url || null,
@@ -256,31 +260,17 @@ export default function NewBlogPage() {
                 </button>
               </div>
               {showPreview ? (
-                <div className="min-h-[200px] rounded-lg border border-border bg-background px-4 py-3 text-sm leading-relaxed text-foreground">
-                  {form.content ? (
-                    form.content.split("\n\n").map((para, i) => (
-                      <p key={i} className="mb-4 last:mb-0">
-                        {para}
-                      </p>
-                    ))
-                  ) : (
-                    <span className="text-muted-foreground">İçerik yok</span>
-                  )}
-                </div>
+                <div
+                  className="prose prose-invert prose-sm min-h-[200px] max-w-none rounded-lg border border-border bg-background px-4 py-3 text-sm leading-relaxed text-foreground"
+                  dangerouslySetInnerHTML={{ __html: form.content || "<p>İçerik yok</p>" }}
+                />
               ) : (
-                <textarea
-                  name="content"
-                  value={form.content}
-                  onChange={handleChange}
-                  rows={14}
-                  required
-                  className={`${inputClass} leading-relaxed`}
-                  placeholder={"Yazı içeriğini buraya yazın.\n\nHer paragraf arasında bir boş satır bırakın.\n\nMarkdown desteklenmez; düz metin kullanın."}
+                <RichTextEditor
+                  content={form.content}
+                  onChange={(html) => setForm((prev) => ({ ...prev, content: html }))}
+                  placeholder="Yazı içeriğini buraya yazın..."
                 />
               )}
-              <p className="mt-1 text-xs text-muted-foreground">
-                Paragrafları ayırmak için iki Enter kullanın (boş satır)
-              </p>
             </div>
 
             {/* Tags */}

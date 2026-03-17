@@ -242,6 +242,7 @@ export interface DbBlogPost {
   title: string;
   excerpt: string;
   content: string[];
+  content_html: string | null;
   image_url: string | null;
   category: string;
   tags: string[];

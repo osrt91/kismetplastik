@@ -15,6 +15,27 @@ import {
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { blogPosts } from "@/data/blog";
 
+const ALLOWED_TAGS = new Set([
+  "p", "h2", "h3", "h4", "strong", "em", "u", "s", "a", "img",
+  "ul", "ol", "li", "blockquote", "code", "pre", "hr", "br",
+]);
+
+function sanitizeHtml(html: string): string {
+  // Remove script/style tags and their contents
+  let clean = html.replace(/<(script|style|iframe|object|embed|form)[^>]*>[\s\S]*?<\/\1>/gi, "");
+  // Remove event handlers (on*)
+  clean = clean.replace(/\s+on\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]*)/gi, "");
+  // Remove javascript: URLs
+  clean = clean.replace(/href\s*=\s*["']javascript:[^"']*["']/gi, 'href="#"');
+  // Remove tags not in allowlist (keep their content)
+  clean = clean.replace(/<\/?([a-zA-Z][a-zA-Z0-9]*)\b[^>]*\/?>/g, (match, tagName) => {
+    const tag = tagName.toLowerCase();
+    if (ALLOWED_TAGS.has(tag)) return match;
+    return "";
+  });
+  return clean;
+}
+
 export default function BlogDetailClient() {
   const { locale, dict } = useLocale();
   const params = useParams();
@@ -125,13 +146,22 @@ export default function BlogDetailClient() {
               </p>
 
               {/* Content paragraphs */}
-              <div className="space-y-6">
-                {post.content.map((paragraph, i) => (
-                  <p key={i} className="text-base leading-[1.85] text-neutral-600 dark:text-neutral-300 lg:text-lg lg:leading-[1.85]">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
+              {post.content_html ? (
+                <div
+                  className="prose prose-lg max-w-none text-neutral-600 prose-headings:text-[#0A1628] prose-p:leading-[1.85] prose-a:text-amber-600 prose-a:underline prose-blockquote:border-amber-500 prose-blockquote:text-neutral-500 prose-strong:text-[#0A1628] prose-code:bg-neutral-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-amber-700 prose-img:rounded-lg prose-li:leading-[1.85] dark:text-neutral-300 dark:prose-headings:text-white dark:prose-strong:text-white dark:prose-a:text-amber-400 dark:prose-blockquote:text-neutral-400 dark:prose-code:bg-neutral-800 dark:prose-code:text-amber-300"
+                  dangerouslySetInnerHTML={{
+                    __html: sanitizeHtml(post.content_html),
+                  }}
+                />
+              ) : (
+                <div className="space-y-6">
+                  {post.content.map((paragraph, i) => (
+                    <p key={i} className="text-base leading-[1.85] text-neutral-600 dark:text-neutral-300 lg:text-lg lg:leading-[1.85]">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              )}
 
               {/* Share / CTA section */}
               <div className="mt-12 flex flex-col gap-4 border-t border-neutral-200 pt-8 dark:border-neutral-700 sm:flex-row sm:items-center sm:justify-between">

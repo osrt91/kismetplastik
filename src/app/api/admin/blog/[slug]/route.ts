@@ -52,10 +52,11 @@ export async function PUT(
     return NextResponse.json({ success: false, error: "Geçersiz JSON" }, { status: 400 });
   }
 
-  const { title, excerpt, content, category, tags, image_url, featured, status, date, read_time } = body as {
+  const { title, excerpt, content, content_html, category, tags, image_url, featured, status, date, read_time } = body as {
     title?: string;
     excerpt?: string;
     content?: string | string[];
+    content_html?: string;
     category?: string;
     tags?: string | string[];
     image_url?: string | null;
@@ -86,6 +87,7 @@ export async function PUT(
   if (title !== undefined) updatePayload.title = title.trim();
   if (excerpt !== undefined) updatePayload.excerpt = excerpt.trim();
   if (content !== undefined) updatePayload.content = contentArray;
+  if (content_html !== undefined) updatePayload.content_html = content_html;
   if (category !== undefined) updatePayload.category = category.trim();
   if (tags !== undefined) updatePayload.tags = tagsArray;
   if (image_url !== undefined) updatePayload.image_url = image_url;

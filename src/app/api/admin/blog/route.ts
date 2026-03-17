@@ -83,11 +83,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false, error: "Geçersiz JSON" }, { status: 400 });
   }
 
-  const { title, slug, excerpt, content, category, tags, image_url, featured, status, date, read_time } = body as {
+  const { title, slug, excerpt, content, content_html, category, tags, image_url, featured, status, date, read_time } = body as {
     title?: string;
     slug?: string;
     excerpt?: string;
     content?: string | string[];
+    content_html?: string;
     category?: string;
     tags?: string | string[];
     image_url?: string;
@@ -123,21 +124,27 @@ export async function POST(request: NextRequest) {
   try {
     const supabase = getSupabaseAdmin();
 
+    const insertPayload: Record<string, unknown> = {
+      slug: slug.trim(),
+      title: title.trim(),
+      excerpt: (excerpt ?? "").trim(),
+      content: contentArray,
+      image_url: image_url ?? null,
+      category: (category ?? "Bilgi").trim(),
+      tags: tagsArray,
+      date: (date as string) || new Date().toISOString().split("T")[0],
+      read_time: (read_time ?? "5 dk").trim(),
+      status: postStatus,
+      featured: featured ?? false,
+    };
+
+    if (content_html !== undefined) {
+      insertPayload.content_html = content_html;
+    }
+
     const { data, error } = await supabase
       .from("blog_posts")
-      .insert({
-        slug: slug.trim(),
-        title: title.trim(),
-        excerpt: (excerpt ?? "").trim(),
-        content: contentArray,
-        image_url: image_url ?? null,
-        category: (category ?? "Bilgi").trim(),
-        tags: tagsArray,
-        date: (date as string) || new Date().toISOString().split("T")[0],
-        read_time: (read_time ?? "5 dk").trim(),
-        status: postStatus,
-        featured: featured ?? false,
-      })
+      .insert(insertPayload)
       .select()
       .single();
 
