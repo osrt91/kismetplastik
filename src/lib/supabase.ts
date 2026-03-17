@@ -24,6 +24,31 @@ export function getSupabase(): SupabaseClient {
   return _supabase;
 }
 
+/**
+ * Returns a Supabase client or null if not configured.
+ * Use this in build-time / static-generation contexts where
+ * Supabase may be unavailable (e.g. CI builds).
+ */
+export function getSupabaseSafe(): SupabaseClient | null {
+  if (_supabase) return _supabase;
+
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!url || !key) return null;
+
+  try {
+    new URL(url);
+  } catch {
+    return null;
+  }
+
+  _supabase = createClient(url, key, {
+    auth: { persistSession: false },
+  });
+  return _supabase;
+}
+
 export function isSupabaseConfigured(): boolean {
   return Boolean(
     process.env.NEXT_PUBLIC_SUPABASE_URL &&

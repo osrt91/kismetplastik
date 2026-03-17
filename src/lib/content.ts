@@ -1,13 +1,16 @@
-import { getSupabase } from "@/lib/supabase";
+import { getSupabaseSafe } from "@/lib/supabase";
 import type { DbContentSection, DbSiteSetting, DbCertificate, DbTradeShow, DbResource, DbFaqItem, DbCareerListing, DbReference, DbMilestone, GlossaryTerm } from "@/types/database";
 
 // ─── Site Settings ─────────────────────────────────────────────
 
 /**
  * Fetch all site_settings as a key-value map.
+ * Returns empty map if Supabase is not configured (e.g. CI builds).
  */
 export async function getSettings(): Promise<Record<string, string>> {
-  const supabase = getSupabase();
+  const supabase = getSupabaseSafe();
+  if (!supabase) return {};
+
   const { data } = await supabase
     .from("site_settings")
     .select("key, value");
@@ -24,11 +27,14 @@ export async function getSettings(): Promise<Record<string, string>> {
 /**
  * Fetch all content_sections for a page prefix.
  * E.g. getPageContent("home") returns all rows where section_key LIKE 'home_%'
+ * Returns empty map if Supabase is not configured (e.g. CI builds).
  */
 export async function getPageContent(
   pagePrefix: string
 ): Promise<Record<string, DbContentSection>> {
-  const supabase = getSupabase();
+  const supabase = getSupabaseSafe();
+  if (!supabase) return {};
+
   const { data } = await supabase
     .from("content_sections")
     .select("*")
@@ -78,17 +84,19 @@ export async function getLocalizedField(
 
   // Check translations table for other locales
   if (sourceTable && item.id) {
-    const supabase = getSupabase();
-    const { data } = await supabase
-      .from("translations")
-      .select("translated_text")
-      .eq("source_table", sourceTable)
-      .eq("source_id", item.id as string)
-      .eq("field_name", field)
-      .eq("locale", locale)
-      .single();
+    const supabase = getSupabaseSafe();
+    if (supabase) {
+      const { data } = await supabase
+        .from("translations")
+        .select("translated_text")
+        .eq("source_table", sourceTable)
+        .eq("source_id", item.id as string)
+        .eq("field_name", field)
+        .eq("locale", locale)
+        .single();
 
-    if (data?.translated_text) return data.translated_text;
+      if (data?.translated_text) return data.translated_text;
+    }
   }
 
   // Fallback to EN
@@ -98,7 +106,9 @@ export async function getLocalizedField(
 // ─── Static Data Fetchers ──────────────────────────────────────
 
 export async function getCertificates(): Promise<DbCertificate[]> {
-  const supabase = getSupabase();
+  const supabase = getSupabaseSafe();
+  if (!supabase) return [];
+
   const { data } = await supabase
     .from("certificates")
     .select("*")
@@ -108,7 +118,9 @@ export async function getCertificates(): Promise<DbCertificate[]> {
 }
 
 export async function getTradeShows(): Promise<DbTradeShow[]> {
-  const supabase = getSupabase();
+  const supabase = getSupabaseSafe();
+  if (!supabase) return [];
+
   const { data } = await supabase
     .from("trade_shows")
     .select("*")
@@ -118,7 +130,9 @@ export async function getTradeShows(): Promise<DbTradeShow[]> {
 }
 
 export async function getResources(): Promise<DbResource[]> {
-  const supabase = getSupabase();
+  const supabase = getSupabaseSafe();
+  if (!supabase) return [];
+
   const { data } = await supabase
     .from("resources")
     .select("*")
@@ -128,7 +142,9 @@ export async function getResources(): Promise<DbResource[]> {
 }
 
 export async function getFaqItems(): Promise<DbFaqItem[]> {
-  const supabase = getSupabase();
+  const supabase = getSupabaseSafe();
+  if (!supabase) return [];
+
   const { data } = await supabase
     .from("faq_items")
     .select("*")
@@ -138,7 +154,9 @@ export async function getFaqItems(): Promise<DbFaqItem[]> {
 }
 
 export async function getCareerListings(): Promise<DbCareerListing[]> {
-  const supabase = getSupabase();
+  const supabase = getSupabaseSafe();
+  if (!supabase) return [];
+
   const { data } = await supabase
     .from("career_listings")
     .select("*")
@@ -148,7 +166,9 @@ export async function getCareerListings(): Promise<DbCareerListing[]> {
 }
 
 export async function getReferences(): Promise<DbReference[]> {
-  const supabase = getSupabase();
+  const supabase = getSupabaseSafe();
+  if (!supabase) return [];
+
   const { data } = await supabase
     .from("references")
     .select("*")
@@ -158,7 +178,9 @@ export async function getReferences(): Promise<DbReference[]> {
 }
 
 export async function getMilestones(): Promise<DbMilestone[]> {
-  const supabase = getSupabase();
+  const supabase = getSupabaseSafe();
+  if (!supabase) return [];
+
   const { data } = await supabase
     .from("milestones")
     .select("*")
@@ -167,7 +189,9 @@ export async function getMilestones(): Promise<DbMilestone[]> {
 }
 
 export async function getGlossaryTerms(): Promise<GlossaryTerm[]> {
-  const supabase = getSupabase();
+  const supabase = getSupabaseSafe();
+  if (!supabase) return [];
+
   const { data } = await supabase
     .from("glossary_terms")
     .select("*")

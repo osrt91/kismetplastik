@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [master]
 
+# CI-safe defaults: content.ts uses getSupabaseSafe() which returns null
+# when env vars are empty, so pages render with empty CMS data during build.
+# Set GitHub Secrets to override with real values if needed.
+
 jobs:
   lint:
     name: Lint
@@ -48,6 +52,7 @@ jobs:
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          ADMIN_SECRET: ${{ secrets.ADMIN_SECRET || 'ci-placeholder-admin-secret-32chars!' }}
 
   e2e:
     name: E2E Tests
@@ -69,13 +74,20 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
+      - name: Build for E2E
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          ADMIN_SECRET: ${{ secrets.ADMIN_SECRET || 'ci-placeholder-admin-secret-32chars!' }}
+
       - name: Run E2E tests
         run: npx playwright test
         env:
           CI: true
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-          ADMIN_SECRET: ${{ secrets.ADMIN_SECRET }}
+          ADMIN_SECRET: ${{ secrets.ADMIN_SECRET || 'ci-placeholder-admin-secret-32chars!' }}
 
       - name: Upload test report
         uses: actions/upload-artifact@v4
