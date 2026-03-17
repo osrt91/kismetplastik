@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { Search, ChevronLeft, ChevronRight, ShoppingCart, Eye, Loader2, RotateCcw } from "lucide-react";
-import { useLocale } from "@/contexts/LocaleContext";
+import { usePortalLocale } from "@/hooks/usePortalLocale";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import { OrderStatusBadge } from "@/components/ui/OrderTimeline";
 import LocaleLink from "@/components/ui/LocaleLink";
@@ -13,70 +13,11 @@ type OrderWithItems = DbOrder & { order_items: DbOrderItem[] };
 
 const PAGE_SIZE = 20;
 
-const labels: Record<string, Record<string, string>> = {
-  tr: {
-    title: "Siparişlerim",
-    searchPlaceholder: "Sipariş no veya ürün adı ara...",
-    allStatuses: "Tüm Durumlar",
-    orderNo: "Sipariş No",
-    date: "Tarih",
-    productCount: "Ürün Sayısı",
-    status: "Durum",
-    total: "Toplam",
-    action: "İşlem",
-    detail: "Detay",
-    reorder: "Tekrar Sipariş Ver",
-    empty: "Henüz siparişiniz bulunmuyor.",
-    emptyDesc: "Sipariş verdiğinizde burada görüntülenecektir.",
-    loading: "Yükleniyor...",
-    prev: "Önceki",
-    next: "Sonraki",
-    page: "Sayfa",
-    of: "/",
-    items: "ürün",
-    pending: "Beklemede",
-    confirmed: "Onaylandı",
-    production: "Üretimde",
-    shipping: "Kargoda",
-    delivered: "Teslim Edildi",
-    cancelled: "İptal",
-    error: "Siparişler yüklenirken bir hata oluştu.",
-  },
-  en: {
-    title: "My Orders",
-    searchPlaceholder: "Search by order number or product name...",
-    allStatuses: "All Statuses",
-    orderNo: "Order No",
-    date: "Date",
-    productCount: "Products",
-    status: "Status",
-    total: "Total",
-    action: "Action",
-    detail: "Detail",
-    reorder: "Reorder",
-    empty: "You don't have any orders yet.",
-    emptyDesc: "Your orders will appear here once you place them.",
-    loading: "Loading...",
-    prev: "Previous",
-    next: "Next",
-    page: "Page",
-    of: "/",
-    items: "items",
-    pending: "Pending",
-    confirmed: "Confirmed",
-    production: "In Production",
-    shipping: "Shipping",
-    delivered: "Delivered",
-    cancelled: "Cancelled",
-    error: "An error occurred while loading orders.",
-  },
-};
-
 const statusOptions: OrderStatus[] = ["pending", "confirmed", "production", "shipping", "delivered", "cancelled"];
 
 export default function SiparislerimPage() {
-  const { locale } = useLocale();
-  const t = labels[locale] || labels.en || labels.tr;
+  const { locale, dict: portalDict } = usePortalLocale();
+  const t: Record<string, string> = portalDict.orders;
 
   const [orders, setOrders] = useState<OrderWithItems[]>([]);
   const [loading, setLoading] = useState(true);

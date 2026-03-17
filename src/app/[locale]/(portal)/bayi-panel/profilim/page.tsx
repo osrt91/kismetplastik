@@ -13,7 +13,7 @@ import {
   CheckCircle,
   AlertTriangle,
 } from "lucide-react";
-import { useLocale } from "@/contexts/LocaleContext";
+import { usePortalLocale } from "@/hooks/usePortalLocale";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 
@@ -29,78 +29,9 @@ interface ProfileForm {
   district: string;
 }
 
-const labels: Record<string, Record<string, string>> = {
-  tr: {
-    title: "Profilim",
-    subtitle: "Hesap bilgilerinizi görüntüleyin ve düzenleyin.",
-    personalInfo: "Kişisel Bilgiler",
-    companyInfo: "Firma Bilgileri",
-    addressInfo: "Adres Bilgileri",
-    fullName: "Ad Soyad",
-    email: "E-posta",
-    phone: "Telefon",
-    companyName: "Firma Adı",
-    taxNumber: "Vergi Numarası",
-    taxOffice: "Vergi Dairesi",
-    companyAddress: "Firma Adresi",
-    city: "İl",
-    district: "İlçe",
-    save: "Değişiklikleri Kaydet",
-    saving: "Kaydediliyor...",
-    saveSuccess: "Bilgileriniz başarıyla güncellendi.",
-    saveError: "Bilgiler güncellenirken bir hata oluştu.",
-    loading: "Yükleniyor...",
-    emailHint: "E-posta adresi değiştirilemez.",
-    phonePlaceholder: "05XX XXX XX XX",
-    cityPlaceholder: "Örneğin: İstanbul",
-    districtPlaceholder: "Örneğin: Beylikdüzü",
-    role: "Hesap Tipi",
-    dealer: "Bayi",
-    customer: "Müşteri",
-    admin: "Yönetici",
-    memberSince: "Üyelik Tarihi",
-    approvalStatus: "Onay Durumu",
-    approved: "Onaylanmış",
-    pendingApproval: "Onay Bekliyor",
-  },
-  en: {
-    title: "My Profile",
-    subtitle: "View and edit your account information.",
-    personalInfo: "Personal Information",
-    companyInfo: "Company Information",
-    addressInfo: "Address Information",
-    fullName: "Full Name",
-    email: "Email",
-    phone: "Phone",
-    companyName: "Company Name",
-    taxNumber: "Tax Number",
-    taxOffice: "Tax Office",
-    companyAddress: "Company Address",
-    city: "City",
-    district: "District",
-    save: "Save Changes",
-    saving: "Saving...",
-    saveSuccess: "Your information has been updated successfully.",
-    saveError: "An error occurred while updating your information.",
-    loading: "Loading...",
-    emailHint: "Email address cannot be changed.",
-    phonePlaceholder: "05XX XXX XX XX",
-    cityPlaceholder: "e.g. Istanbul",
-    districtPlaceholder: "e.g. Beylikduzu",
-    role: "Account Type",
-    dealer: "Dealer",
-    customer: "Customer",
-    admin: "Admin",
-    memberSince: "Member Since",
-    approvalStatus: "Approval Status",
-    approved: "Approved",
-    pendingApproval: "Pending Approval",
-  },
-};
-
 export default function ProfilimPage() {
-  const { locale } = useLocale();
-  const t = labels[locale] || labels.en || labels.tr;
+  const { locale, dict: portalDict } = usePortalLocale();
+  const t = portalDict.profile;
 
   const [form, setForm] = useState<ProfileForm>({
     full_name: "",

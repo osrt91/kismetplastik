@@ -20,58 +20,21 @@ import {
   ChevronsRight,
   CreditCard,
 } from "lucide-react";
-import { useLocale } from "@/contexts/LocaleContext";
+import { usePortalLocale } from "@/hooks/usePortalLocale";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
 const menuItems = [
-  { key: "dashboard", icon: LayoutDashboard, href: "/bayi-panel" },
-  { key: "products", icon: Package, href: "/bayi-panel/urunler" },
-  { key: "quickOrder", icon: Zap, href: "/bayi-panel/hizli-siparis" },
-  { key: "cart", icon: ShoppingCart, href: "/bayi-panel/sepetim", disabled: true },
-  { key: "orders", icon: ClipboardList, href: "/bayi-panel/siparislerim" },
-  { key: "quotes", icon: FileText, href: "/bayi-panel/tekliflerim" },
-  { key: "invoices", icon: Receipt, href: "/bayi-panel/faturalarim" },
-  { key: "payment", icon: CreditCard, href: "/bayi-panel/odeme" },
-  { key: "profile", icon: User, href: "/bayi-panel/profilim" },
-  { key: "support", icon: HelpCircle, href: "/iletisim" },
+  { key: "dashboard" as const, icon: LayoutDashboard, href: "/bayi-panel" },
+  { key: "products" as const, icon: Package, href: "/bayi-panel/urunler" },
+  { key: "quickOrder" as const, icon: Zap, href: "/bayi-panel/hizli-siparis" },
+  { key: "cart" as const, icon: ShoppingCart, href: "/bayi-panel/sepetim", disabled: true },
+  { key: "orders" as const, icon: ClipboardList, href: "/bayi-panel/siparislerim" },
+  { key: "quotes" as const, icon: FileText, href: "/bayi-panel/tekliflerim" },
+  { key: "invoices" as const, icon: Receipt, href: "/bayi-panel/faturalarim" },
+  { key: "payment" as const, icon: CreditCard, href: "/bayi-panel/odeme" },
+  { key: "profile" as const, icon: User, href: "/bayi-panel/profilim" },
+  { key: "support" as const, icon: HelpCircle, href: "/iletisim" },
 ];
-
-const labels: Record<string, Record<string, string>> = {
-  tr: {
-    dashboard: "Dashboard",
-    products: "Ürünler",
-    quickOrder: "Hızlı Sipariş",
-    cart: "Sepetim",
-    orders: "Siparişlerim",
-    quotes: "Tekliflerim",
-    invoices: "Faturalarım",
-    payment: "Ödeme",
-    profile: "Profilim",
-    support: "Destek",
-    logout: "Çıkış Yap",
-    panel: "Bayi Paneli",
-    collapse: "Daralt",
-    expand: "Genişlet",
-    comingSoon: "Yakında",
-  },
-  en: {
-    dashboard: "Dashboard",
-    products: "Products",
-    quickOrder: "Quick Order",
-    cart: "My Cart",
-    orders: "My Orders",
-    quotes: "My Quotes",
-    invoices: "My Invoices",
-    payment: "Payment",
-    profile: "My Profile",
-    support: "Support",
-    logout: "Sign Out",
-    panel: "Dealer Panel",
-    collapse: "Collapse",
-    expand: "Expand",
-    comingSoon: "Coming Soon",
-  },
-};
 
 interface SidebarProps {
   mobileOpen: boolean;
@@ -79,10 +42,10 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
-  const { locale } = useLocale();
+  const { locale, dict: portalDict } = usePortalLocale();
   const pathname = usePathname();
   const router = useRouter();
-  const t = labels[locale] || labels.en || labels.tr;
+  const t: Record<string, string> = portalDict.sidebar;
   const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {

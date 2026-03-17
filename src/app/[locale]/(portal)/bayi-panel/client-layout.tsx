@@ -2,18 +2,13 @@
 
 import { useState } from "react";
 import { Menu } from "lucide-react";
-import { useLocale } from "@/contexts/LocaleContext";
+import { usePortalLocale } from "@/hooks/usePortalLocale";
 import { useRequireAuth } from "@/hooks/useRequireAuth";
 import Sidebar from "@/components/portal/Sidebar";
 
-const labels: Record<string, Record<string, string>> = {
-  tr: { panel: "Bayi Paneli", authLoading: "Oturum doğrulanıyor..." },
-  en: { panel: "Dealer Panel", authLoading: "Verifying session..." },
-};
-
 export default function BayiPanelClientLayout({ children }: { children: React.ReactNode }) {
-  const { locale } = useLocale();
-  const t = labels[locale] || labels.tr;
+  const { locale, dict: portalDict } = usePortalLocale();
+  const t = portalDict.layout;
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { loading: authLoading } = useRequireAuth();
 

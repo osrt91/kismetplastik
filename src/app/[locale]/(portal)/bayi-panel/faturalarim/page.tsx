@@ -13,7 +13,7 @@ import {
   MessageCircle,
   CreditCard,
 } from "lucide-react";
-import { useLocale } from "@/contexts/LocaleContext";
+import { usePortalLocale } from "@/hooks/usePortalLocale";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 
@@ -30,69 +30,6 @@ interface Invoice {
   status: InvoiceStatus;
   profile_id: string;
 }
-
-const labels: Record<string, Record<string, string>> = {
-  tr: {
-    title: "Faturalarım",
-    invoiceNo: "Fatura No",
-    date: "Tarih",
-    dueDate: "Vade Tarihi",
-    orderNo: "Sipariş No",
-    amount: "Tutar",
-    status: "Durum",
-    actions: "İşlemler",
-    download: "PDF İndir",
-    empty: "Henüz faturanız bulunmuyor.",
-    loading: "Yükleniyor...",
-    filter: "Filtrele",
-    allStatuses: "Tüm Durumlar",
-    from: "Başlangıç",
-    to: "Bitiş",
-    clearFilters: "Filtreleri Temizle",
-    draft: "Taslak",
-    issued: "Kesildi",
-    paid: "Ödendi",
-    cancelled: "İptal",
-    totalDebt: "Toplam Borç",
-    overdueAmount: "Gecikmiş Tutar",
-    paidAmount: "Ödenen Tutar",
-    totalInvoices: "Toplam Fatura",
-    prev: "Önceki",
-    next: "Sonraki",
-    page: "Sayfa",
-    of: "/",
-  },
-  en: {
-    title: "My Invoices",
-    invoiceNo: "Invoice No",
-    date: "Date",
-    dueDate: "Due Date",
-    orderNo: "Order No",
-    amount: "Amount",
-    status: "Status",
-    actions: "Actions",
-    download: "Download PDF",
-    empty: "You have no invoices yet.",
-    loading: "Loading...",
-    filter: "Filter",
-    allStatuses: "All Statuses",
-    from: "From",
-    to: "To",
-    clearFilters: "Clear Filters",
-    draft: "Draft",
-    issued: "Issued",
-    paid: "Paid",
-    cancelled: "Cancelled",
-    totalDebt: "Total Debt",
-    overdueAmount: "Overdue Amount",
-    paidAmount: "Paid Amount",
-    totalInvoices: "Total Invoices",
-    prev: "Previous",
-    next: "Next",
-    page: "Page",
-    of: "/",
-  },
-};
 
 const statusConfig: Record<
   InvoiceStatus,
@@ -125,8 +62,8 @@ function isOverdue(invoice: Invoice): boolean {
 }
 
 export default function FaturalarimPage() {
-  const { locale } = useLocale();
-  const t = labels[locale] || labels.en || labels.tr;
+  const { locale, dict: portalDict } = usePortalLocale();
+  const t: Record<string, string> = portalDict.invoices;
 
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [loading, setLoading] = useState(true);
@@ -359,7 +296,7 @@ export default function FaturalarimPage() {
             className="inline-flex items-center gap-2 rounded-xl border border-primary-200 bg-primary-50 px-5 py-3 text-sm font-semibold text-primary-900 transition-colors hover:bg-primary-100 dark:border-primary-800 dark:bg-primary-900/20 dark:text-primary-300 dark:hover:bg-primary-900/30"
           >
             <CreditCard size={18} />
-            {locale === "tr" ? "Online Ödeme Yap (ERS)" : "Pay Online (ERS)"}
+            {t.onlinePayment}
           </a>
 
           {/* EGR WhatsApp Payment Request */}
@@ -372,7 +309,7 @@ export default function FaturalarimPage() {
             className="inline-flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 py-3 text-sm font-semibold text-emerald-800 transition-colors hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-900/20 dark:text-emerald-300 dark:hover:bg-emerald-900/30"
           >
             <MessageCircle size={18} />
-            {locale === "tr" ? "EGR Ödeme Talebi (WhatsApp)" : "EGR Payment Request (WhatsApp)"}
+            {t.whatsappPayment}
           </a>
         </div>
       )}

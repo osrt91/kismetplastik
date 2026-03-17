@@ -12,7 +12,7 @@ import {
   Lock,
   AlertTriangle,
 } from "lucide-react";
-import { useLocale } from "@/contexts/LocaleContext";
+import { usePortalLocale } from "@/hooks/usePortalLocale";
 
 interface ErsInvoice {
   belgeno: string;
@@ -23,76 +23,9 @@ interface ErsInvoice {
   _key: string;
 }
 
-const labels: Record<string, Record<string, string>> = {
-  tr: {
-    title: "ERS Fatura Ödeme",
-    subtitle: "Resmi faturalarınızı kredi kartı ile online ödeyebilirsiniz.",
-    paymentSuccess: "Ödeme Başarılı",
-    paymentSuccessDesc: "Ödemeniz başarıyla alındı.",
-    transactionNo: "İşlem no",
-    backToPanel: "Panele Dön",
-    paymentFailed: "Ödeme Başarısız",
-    paymentFailedDefault: "Ödeme işlenirken bir hata oluştu.",
-    retry: "Tekrar Dene",
-    configWarningTitle: "Online ödeme sistemi yapılandırma aşamasındadır.",
-    configWarningDesc:
-      "Halkbank sanal POS entegrasyonu tamamlandıktan sonra bu sayfa aktif olacaktır.",
-    invoiceSelection: "Fatura Seçimi",
-    noInvoices: "Ödenmemiş ERS faturanız bulunmuyor.",
-    invoicesSelected: "fatura seçili",
-    cardInfo: "Kart Bilgileri",
-    cardHolderName: "Kart Üzerindeki İsim",
-    cardHolderPlaceholder: "AD SOYAD",
-    cardNumber: "Kart Numarası",
-    cardNumberPlaceholder: "0000 0000 0000 0000",
-    month: "Ay",
-    year: "Yıl",
-    cvv: "CVV",
-    payAmount: "Öde",
-    selectInvoice: "Fatura Seçin",
-    securePayment: "3D Secure ile güvenli ödeme. Kart bilgileriniz sunucularımızda saklanmaz.",
-    errorSelectInvoice: "Lütfen en az bir fatura seçin.",
-    errorInvalidCard: "Geçersiz kart numarası.",
-    errorPaymentInit: "Ödeme başlatılamadı.",
-    errorConnection: "Sunucuya bağlanılamadı.",
-  },
-  en: {
-    title: "ERS Invoice Payment",
-    subtitle: "Pay your official invoices online by credit card.",
-    paymentSuccess: "Payment Successful",
-    paymentSuccessDesc: "Your payment has been received successfully.",
-    transactionNo: "Transaction no",
-    backToPanel: "Back to Panel",
-    paymentFailed: "Payment Failed",
-    paymentFailedDefault: "An error occurred while processing the payment.",
-    retry: "Try Again",
-    configWarningTitle: "Online payment system is being configured.",
-    configWarningDesc:
-      "This page will be active after Halkbank virtual POS integration is completed.",
-    invoiceSelection: "Invoice Selection",
-    noInvoices: "You have no unpaid ERS invoices.",
-    invoicesSelected: "invoices selected",
-    cardInfo: "Card Information",
-    cardHolderName: "Cardholder Name",
-    cardHolderPlaceholder: "FULL NAME",
-    cardNumber: "Card Number",
-    cardNumberPlaceholder: "0000 0000 0000 0000",
-    month: "Month",
-    year: "Year",
-    cvv: "CVV",
-    payAmount: "Pay",
-    selectInvoice: "Select Invoice",
-    securePayment: "Secure payment with 3D Secure. Your card information is not stored on our servers.",
-    errorSelectInvoice: "Please select at least one invoice.",
-    errorInvalidCard: "Invalid card number.",
-    errorPaymentInit: "Could not initiate payment.",
-    errorConnection: "Could not connect to server.",
-  },
-};
-
 export default function PaymentPage() {
-  const { locale } = useLocale();
-  const t = labels[locale] || labels.en || labels.tr;
+  const { locale, dict: portalDict } = usePortalLocale();
+  const t = portalDict.payment;
 
   const searchParams = useSearchParams();
   const status = searchParams.get("status");

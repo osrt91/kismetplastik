@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { Search, ShoppingCart, Plus, Minus, ArrowUpDown, Package, X } from "lucide-react";
-import { useLocale } from "@/contexts/LocaleContext";
+import { usePortalLocale } from "@/hooks/usePortalLocale";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import LocaleLink from "@/components/ui/LocaleLink";
@@ -46,78 +46,11 @@ function getUnitPrice(p: Product): number {
   return 1.5;
 }
 
-// -- Labels --
-
-const labels: Record<string, Record<string, string>> = {
-  tr: {
-    title: "Urun Katalogu",
-    search: "Urun adi veya kodu ara...",
-    allCategories: "Tum Kategoriler",
-    sortLabel: "Siralama",
-    sortAZ: "A-Z",
-    sortZA: "Z-A",
-    addToCart: "Sepete Ekle",
-    minOrder: "Min. Siparis",
-    pcs: "adet",
-    cart: "Sepet",
-    cartItems: "urun",
-    total: "Toplam",
-    viewCart: "Sepeti Gor",
-    clearCart: "Temizle",
-    added: "Sepete eklendi",
-    removed: "Urun sepetten cikarildi",
-    emptyState: "Aradiginiz kriterlere uygun urun bulunamadi.",
-    unitPrice: "Birim Fiyat",
-    quantity: "Adet",
-    material: "Hammadde",
-    volume: "Hacim",
-    cartEmpty: "Sepetiniz bos",
-    cartSummary: "Sepet Ozeti",
-    productName: "Urun",
-    subtotal: "Ara Toplam",
-    goToQuote: "Teklif Iste",
-    close: "Kapat",
-    clearFilters: "Filtreleri Temizle",
-    loading: "Yuklenyor...",
-  },
-  en: {
-    title: "Product Catalog",
-    search: "Search by product name or code...",
-    allCategories: "All Categories",
-    sortLabel: "Sort",
-    sortAZ: "A-Z",
-    sortZA: "Z-A",
-    addToCart: "Add to Cart",
-    minOrder: "Min. Order",
-    pcs: "pcs",
-    cart: "Cart",
-    cartItems: "items",
-    total: "Total",
-    viewCart: "View Cart",
-    clearCart: "Clear",
-    added: "Added to cart",
-    removed: "Removed from cart",
-    emptyState: "No products found matching your criteria.",
-    unitPrice: "Unit Price",
-    quantity: "Qty",
-    material: "Material",
-    volume: "Volume",
-    cartEmpty: "Your cart is empty",
-    cartSummary: "Cart Summary",
-    productName: "Product",
-    subtotal: "Subtotal",
-    goToQuote: "Request Quote",
-    close: "Close",
-    clearFilters: "Clear Filters",
-    loading: "Loading...",
-  },
-};
-
 type SortMode = "az" | "za";
 
 export default function UrunlerPage() {
-  const { locale } = useLocale();
-  const t = labels[locale] || labels.en || labels.tr;
+  const { locale, dict: portalDict } = usePortalLocale();
+  const t = portalDict.products;
 
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);

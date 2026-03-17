@@ -13,7 +13,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { toast } from "sonner";
-import { useLocale } from "@/contexts/LocaleContext";
+import { usePortalLocale } from "@/hooks/usePortalLocale";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import LocaleLink from "@/components/ui/LocaleLink";
 import { cn } from "@/lib/utils";
@@ -22,89 +22,6 @@ import type { DbQuoteRequest, DbQuoteItem, QuoteStatus } from "@/types/database"
 type QuoteWithItems = DbQuoteRequest & { quote_items: DbQuoteItem[] };
 
 const PAGE_SIZE = 20;
-
-const labels: Record<string, Record<string, string>> = {
-  tr: {
-    title: "Tekliflerim",
-    searchPlaceholder: "Teklif no veya firma adı ara...",
-    allStatuses: "Tüm Durumlar",
-    quoteNo: "Teklif No",
-    date: "Tarih",
-    productCount: "Ürün Sayısı",
-    status: "Durum",
-    total: "Toplam",
-    action: "İşlem",
-    detail: "Detay",
-    newQuote: "Yeni Teklif İste",
-    empty: "Henüz teklif talebiniz bulunmuyor.",
-    emptyDesc: "Teklif istediğinizde burada görüntülenecektir.",
-    loading: "Yükleniyor...",
-    prev: "Önceki",
-    next: "Sonraki",
-    page: "Sayfa",
-    of: "/",
-    items: "ürün",
-    pending: "Beklemede",
-    reviewing: "İnceleniyor",
-    quoted: "Fiyatlandırıldı",
-    accepted: "Onaylandı",
-    rejected: "Reddedildi",
-    error: "Teklifler yüklenirken bir hata oluştu.",
-    validUntil: "Geçerlilik",
-    response: "Yanıt",
-    noResponse: "Henüz yanıtlanmadı",
-    requestedProducts: "Talep Edilen Ürünler",
-    product: "Ürün",
-    qty: "Adet",
-    unitPrice: "Birim Fiyat",
-    lineTotal: "Tutar",
-    awaiting: "Fiyat bekleniyor",
-    convertToOrder: "Onayla ve Siparişe Dönüştür",
-    converting: "Dönüştürülüyor...",
-    convertSuccess: "Sipariş başarıyla oluşturuldu",
-    convertError: "Sipariş oluşturulurken hata oluştu",
-  },
-  en: {
-    title: "My Quotes",
-    searchPlaceholder: "Search by quote number or company...",
-    allStatuses: "All Statuses",
-    quoteNo: "Quote No",
-    date: "Date",
-    productCount: "Products",
-    status: "Status",
-    total: "Total",
-    action: "Action",
-    detail: "Detail",
-    newQuote: "Request New Quote",
-    empty: "You don't have any quote requests yet.",
-    emptyDesc: "Your quote requests will appear here.",
-    loading: "Loading...",
-    prev: "Previous",
-    next: "Next",
-    page: "Page",
-    of: "/",
-    items: "items",
-    pending: "Pending",
-    reviewing: "Reviewing",
-    quoted: "Quoted",
-    accepted: "Accepted",
-    rejected: "Rejected",
-    error: "An error occurred while loading quotes.",
-    validUntil: "Valid Until",
-    response: "Response",
-    noResponse: "Not yet responded",
-    requestedProducts: "Requested Products",
-    product: "Product",
-    qty: "Qty",
-    unitPrice: "Unit Price",
-    lineTotal: "Total",
-    awaiting: "Awaiting pricing",
-    convertToOrder: "Approve & Convert to Order",
-    converting: "Converting...",
-    convertSuccess: "Order created successfully",
-    convertError: "Error creating order",
-  },
-};
 
 const statusOptions: QuoteStatus[] = ["pending", "reviewing", "quoted", "accepted", "rejected"];
 
@@ -116,8 +33,7 @@ const statusBadgeColors: Record<string, string> = {
   rejected: "bg-red-100 text-red-800 border-red-300 dark:bg-red-900/30 dark:text-red-400 dark:border-red-700",
 };
 
-function QuoteStatusBadge({ status, locale = "tr" }: { status: string; locale?: string }) {
-  const t = labels[locale] || labels.en || labels.tr;
+function QuoteStatusBadge({ status, t }: { status: string; t: Record<string, string> }) {
   const color = statusBadgeColors[status] || "bg-neutral-100 text-neutral-800 border-neutral-300";
   return (
     <span
@@ -132,8 +48,8 @@ function QuoteStatusBadge({ status, locale = "tr" }: { status: string; locale?: 
 }
 
 export default function TekliflerimPage() {
-  const { locale } = useLocale();
-  const t = labels[locale] || labels.en || labels.tr;
+  const { locale, dict: portalDict } = usePortalLocale();
+  const t: Record<string, string> = portalDict.quotes;
 
   const [quotes, setQuotes] = useState<QuoteWithItems[]>([]);
   const [loading, setLoading] = useState(true);
@@ -399,7 +315,7 @@ export default function TekliflerimPage() {
                         </span>
                       </td>
                       <td className="px-4 py-3.5">
-                        <QuoteStatusBadge status={quote.status} locale={locale} />
+                        <QuoteStatusBadge status={quote.status} t={t} />
                       </td>
                       <td className="px-4 py-3.5 text-right">
                         <span className="font-mono text-sm font-semibold text-neutral-900 dark:text-neutral-100">
@@ -550,7 +466,7 @@ export default function TekliflerimPage() {
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <QuoteStatusBadge status={quote.status} locale={locale} />
+                    <QuoteStatusBadge status={quote.status} t={t} />
                     {expandedId === quote.id ? (
                       <ChevronUp size={16} className="text-neutral-400" />
                     ) : (

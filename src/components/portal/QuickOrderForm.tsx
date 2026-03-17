@@ -3,75 +3,8 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { Plus, X, FileSpreadsheet, ClipboardPaste, ShoppingCart, FileText } from "lucide-react";
 import { toast } from "sonner";
-import { useLocale } from "@/contexts/LocaleContext";
+import { usePortalLocale } from "@/hooks/usePortalLocale";
 import type { Product } from "@/types/product";
-
-/* -- Labels ----------------------------------------------------------- */
-
-const labels: Record<string, Record<string, string>> = {
-  tr: {
-    title: "Hizli Siparis",
-    subtitle: "Urun kodu veya adini girerek hizlica siparis olusturun",
-    productCode: "Urun Kodu",
-    productName: "Urun Adi",
-    quantity: "Miktar",
-    unitPrice: "Birim Fiyat",
-    total: "Toplam",
-    addRow: "Satir Ekle",
-    subtotal: "Ara Toplam",
-    vat: "KDV (%20)",
-    grandTotal: "Genel Toplam",
-    createOrder: "Siparise Donustur",
-    requestQuote: "Teklif Iste",
-    excelPaste: "Excel'den Yapistir",
-    excelModalTitle: "Excel Verisi Yapistir",
-    excelModalDesc: "Her satira bir urun kodu ve miktar (Tab ile ayrilmis) yapistirin.",
-    excelPlaceholder: "pet-001\t100\npls-001\t200\nkpk-002\t500",
-    excelApply: "Uygula",
-    excelCancel: "Iptal",
-    productsAdded: "urun eklendi",
-    productsNotFound: "urun kodu bulunamadi",
-    noProducts: "Lutfen en az bir urun ekleyin",
-    orderSuccess: "Siparis olusturuldu",
-    quoteSuccess: "Teklif talebi gonderildi",
-    removeRow: "Satiri kaldir",
-    currency: "TL",
-    minOrder: "Min. siparis",
-    belowMinOrder: "Miktar minimum siparis adedinin altinda",
-    submitting: "Gonderiliyor...",
-  },
-  en: {
-    title: "Quick Order",
-    subtitle: "Quickly create an order by entering product code or name",
-    productCode: "Product Code",
-    productName: "Product Name",
-    quantity: "Quantity",
-    unitPrice: "Unit Price",
-    total: "Total",
-    addRow: "Add Row",
-    subtotal: "Subtotal",
-    vat: "VAT (20%)",
-    grandTotal: "Grand Total",
-    createOrder: "Create Order",
-    requestQuote: "Request Quote",
-    excelPaste: "Paste from Excel",
-    excelModalTitle: "Paste Excel Data",
-    excelModalDesc: "Paste one product code and quantity per line (Tab-separated).",
-    excelPlaceholder: "pet-001\t100\npls-001\t200\nkpk-002\t500",
-    excelApply: "Apply",
-    excelCancel: "Cancel",
-    productsAdded: "products added",
-    productsNotFound: "product codes not found",
-    noProducts: "Please add at least one product",
-    orderSuccess: "Order created",
-    quoteSuccess: "Quote request sent",
-    removeRow: "Remove row",
-    currency: "TL",
-    minOrder: "Min. order",
-    belowMinOrder: "Quantity is below minimum order",
-    submitting: "Submitting...",
-  },
-};
 
 /* -- Types ------------------------------------------------------------ */
 
@@ -110,8 +43,8 @@ function getProductUnitPrice(product: Product): number {
 /* -- Component -------------------------------------------------------- */
 
 export default function QuickOrderForm() {
-  const { locale } = useLocale();
-  const t = labels[locale] || labels.en || labels.tr;
+  const { locale, dict: portalDict } = usePortalLocale();
+  const t = portalDict.quickOrder;
 
   const [rows, setRows] = useState<OrderRow[]>([
     createEmptyRow(),

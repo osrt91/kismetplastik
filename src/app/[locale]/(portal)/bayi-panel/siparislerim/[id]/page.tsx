@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { ArrowLeft, Package, Calendar, CreditCard, Hash, Truck, Loader2, AlertTriangle } from "lucide-react";
-import { useLocale } from "@/contexts/LocaleContext";
+import { usePortalLocale } from "@/hooks/usePortalLocale";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import OrderTimeline, { OrderStatusBadge, PaymentStatusBadge } from "@/components/ui/OrderTimeline";
 import LocaleLink from "@/components/ui/LocaleLink";
@@ -14,67 +14,10 @@ type OrderDetail = DbOrder & {
   order_status_history: DbOrderStatusHistory[];
 };
 
-const labels: Record<string, Record<string, string>> = {
-  tr: {
-    back: "Siparişlerime Dön",
-    orderDetail: "Sipariş Detayı",
-    orderNo: "Sipariş No",
-    orderDate: "Sipariş Tarihi",
-    status: "Durum",
-    total: "Toplam Tutar",
-    subtotal: "Ara Toplam",
-    tax: "KDV",
-    shipping: "Kargo",
-    paymentStatus: "Ödeme Durumu",
-    paymentMethod: "Ödeme Yöntemi",
-    trackingNumber: "Takip Numarası",
-    estimatedDelivery: "Tahmini Teslimat",
-    notes: "Notlar",
-    products: "Ürünler",
-    productName: "Ürün Adı",
-    quantity: "Miktar",
-    unitPrice: "Birim Fiyat",
-    lineTotal: "Toplam",
-    timeline: "Sipariş Durumu",
-    notFound: "Sipariş bulunamadı.",
-    notFoundDesc: "Bu sipariş bulunamadı veya erişim yetkiniz yok.",
-    loading: "Yükleniyor...",
-    error: "Sipariş yüklenirken bir hata oluştu.",
-    noTracking: "-",
-  },
-  en: {
-    back: "Back to My Orders",
-    orderDetail: "Order Detail",
-    orderNo: "Order No",
-    orderDate: "Order Date",
-    status: "Status",
-    total: "Total Amount",
-    subtotal: "Subtotal",
-    tax: "Tax",
-    shipping: "Shipping",
-    paymentStatus: "Payment Status",
-    paymentMethod: "Payment Method",
-    trackingNumber: "Tracking Number",
-    estimatedDelivery: "Estimated Delivery",
-    notes: "Notes",
-    products: "Products",
-    productName: "Product Name",
-    quantity: "Quantity",
-    unitPrice: "Unit Price",
-    lineTotal: "Total",
-    timeline: "Order Status",
-    notFound: "Order not found.",
-    notFoundDesc: "This order was not found or you don't have access.",
-    loading: "Loading...",
-    error: "An error occurred while loading the order.",
-    noTracking: "-",
-  },
-};
-
 export default function SiparisDetayPage() {
   const params = useParams();
-  const { locale } = useLocale();
-  const t = labels[locale] || labels.en || labels.tr;
+  const { locale, dict: portalDict } = usePortalLocale();
+  const t = portalDict.orderDetail;
   const orderId = params?.id as string;
 
   const [order, setOrder] = useState<OrderDetail | null>(null);

@@ -8,7 +8,7 @@ import {
   ArrowRight,
   Clock,
 } from "lucide-react";
-import { useLocale } from "@/contexts/LocaleContext";
+import { usePortalLocale } from "@/hooks/usePortalLocale";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import DashboardCards from "@/components/portal/DashboardCards";
 
@@ -26,59 +26,6 @@ interface DashboardStats {
   unpaidInvoices: number;
   last30DaysRevenue: number;
 }
-
-const labels: Record<string, Record<string, string>> = {
-  tr: {
-    welcome: "Hoş Geldiniz",
-    activeOrders: "Aktif Siparişler",
-    pendingQuotes: "Bekleyen Teklifler",
-    unpaidInvoices: "Ödenmemiş Faturalar",
-    last30Revenue: "Son 30 Gün Ciro",
-    quickActions: "Hızlı İşlemler",
-    newOrder: "Yeni Sipariş Ver",
-    requestQuote: "Teklif İste",
-    viewProducts: "Ürünleri İncele",
-    recentOrders: "Son Siparişler",
-    noOrders: "Henüz sipariş bulunmuyor.",
-    loading: "Yükleniyor...",
-    orderNo: "Sipariş No",
-    date: "Tarih",
-    status: "Durum",
-    amount: "Tutar",
-    viewAll: "Tümünü Gör",
-    pending: "Beklemede",
-    confirmed: "Onaylandı",
-    production: "Üretimde",
-    shipping: "Kargoda",
-    delivered: "Teslim Edildi",
-    cancelled: "İptal",
-  },
-  en: {
-    welcome: "Welcome",
-    activeOrders: "Active Orders",
-    pendingQuotes: "Pending Quotes",
-    unpaidInvoices: "Unpaid Invoices",
-    last30Revenue: "Last 30 Days Revenue",
-    quickActions: "Quick Actions",
-    newOrder: "Place New Order",
-    requestQuote: "Request Quote",
-    viewProducts: "Browse Products",
-    recentOrders: "Recent Orders",
-    noOrders: "No orders yet.",
-    loading: "Loading...",
-    orderNo: "Order No",
-    date: "Date",
-    status: "Status",
-    amount: "Amount",
-    viewAll: "View All",
-    pending: "Pending",
-    confirmed: "Confirmed",
-    production: "In Production",
-    shipping: "Shipping",
-    delivered: "Delivered",
-    cancelled: "Cancelled",
-  },
-};
 
 function OrderStatusBadge({ status, t }: { status: string; t: Record<string, string> }) {
   const config: Record<string, { bg: string; label: string }> = {
@@ -98,8 +45,8 @@ function OrderStatusBadge({ status, t }: { status: string; t: Record<string, str
 }
 
 export default function BayiPanelDashboard() {
-  const { locale } = useLocale();
-  const t = labels[locale] || labels.en || labels.tr;
+  const { locale, dict: portalDict } = usePortalLocale();
+  const t: Record<string, string> = portalDict.dashboard;
 
   const [stats, setStats] = useState<DashboardStats>({
     activeOrders: 0,
