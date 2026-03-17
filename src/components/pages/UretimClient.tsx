@@ -137,7 +137,7 @@ export default function UretimClient({ content, locale, dict }: UretimClientProp
         </div>
       </div>
 
-      {/* Tesis Istatistikleri */}
+      {/* Tesis İstatistikleri */}
       <div className="relative -mt-10 mx-auto max-w-5xl px-4 lg:px-6">
         <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           {facilityStats.map((stat, i) => (
@@ -153,7 +153,7 @@ export default function UretimClient({ content, locale, dict }: UretimClientProp
         </div>
       </div>
 
-      {/* Tesis Tanitimi */}
+      {/* Tesis Tanıtımı */}
       <div className="mx-auto max-w-7xl px-4 py-16 lg:px-6 lg:py-24">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <AnimateOnScroll animation="fade-right">
@@ -192,7 +192,7 @@ export default function UretimClient({ content, locale, dict }: UretimClientProp
         </div>
       </div>
 
-      {/* Uretim Asamalari -- Pipeline */}
+      {/* Üretim Aşamaları -- Pipeline */}
       <div className="bg-white py-16 dark:bg-[#0A1628]/80 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <AnimateOnScroll animation="fade-up">

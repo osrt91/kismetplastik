@@ -14,28 +14,28 @@ const defaultAreas = {
   tr: [
     {
       icon: FlaskConical,
-      title: "Malzeme Arastirmasi",
-      desc: "Yeni polimer formulasyonlari ve biyobozunur malzemeler uzerine calisiyoruz.",
+      title: "Malzeme Araştırması",
+      desc: "Yeni polimer formülasyonları ve biyobozunur malzemeler üzerine çalışıyoruz.",
     },
     {
       icon: Microscope,
       title: "Test & Analiz",
-      desc: "Ileri duzeyde laboratuvar ekipmanlariyla urun performans testleri gerceklestiriyoruz.",
+      desc: "İleri düzeyde laboratuvar ekipmanlarıyla ürün performans testleri gerçekleştiriyoruz.",
     },
     {
       icon: Lightbulb,
-      title: "Urun Tasarimi",
-      desc: "Ergonomik ve estetik ambalaj tasarimlari ile markalarinizi one cikariyoruz.",
+      title: "Ürün Tasarımı",
+      desc: "Ergonomik ve estetik ambalaj tasarımları ile markalarınızı öne çıkarıyoruz.",
     },
     {
       icon: Cpu,
       title: "Proses Optimizasyonu",
-      desc: "Uretim sureclerini surekli iyilestirerek verimlilik ve kaliteyi artiriyoruz.",
+      desc: "Üretim süreçlerini sürekli iyileştirerek verimlilik ve kaliteyi artırıyoruz.",
     },
     {
       icon: Recycle,
-      title: "Surdurulebilirlik",
-      desc: "Geri donusturulmus malzeme kullanimini artirmak icin yenilikci cozumler gelistiriyoruz.",
+      title: "Sürdürülebilirlik",
+      desc: "Geri dönüştürülmüş malzeme kullanımını artırmak için yenilikçi çözümler geliştiriyoruz.",
     },
   ],
   en: [
@@ -109,14 +109,14 @@ export default async function ArgePage({
             </span>
           </nav>
           <h1 className="mb-4 text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
-            {hero ? getLocalizedFieldSync(hero, "title", locale) : (isTr ? "Arastirma & Gelistirme" : "Research & Development")}
+            {hero ? getLocalizedFieldSync(hero, "title", locale) : (isTr ? "Araştırma & Geliştirme" : "Research & Development")}
           </h1>
           <div className="mt-4 mb-6 h-1 w-20 rounded-full bg-[#F59E0B]" />
           <p className="max-w-2xl text-lg text-white/70">
             {hero
               ? getLocalizedFieldSync(hero, "subtitle", locale)
               : (isTr
-                ? "Inovasyona dayali uretim anlayisimiz ile gelecege yatirim yapiyoruz."
+                ? "İnovasyona dayalı üretim anlayışımız ile geleceğe yatırım yapıyoruz."
                 : "We invest in the future with our innovation-driven production approach.")}
           </p>
         </div>
@@ -126,16 +126,16 @@ export default async function ArgePage({
       <div className="mx-auto max-w-7xl px-4 py-16 lg:px-6 lg:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-[#F59E0B]">
-            {intro ? getLocalizedFieldSync(intro, "title", locale) : (isTr ? "Inovasyon Merkezi" : "Innovation Hub")}
+            {intro ? getLocalizedFieldSync(intro, "title", locale) : (isTr ? "İnovasyon Merkezi" : "Innovation Hub")}
           </span>
           <h2 className="mb-6 text-2xl font-extrabold text-[#0A1628] dark:text-white sm:text-3xl">
-            {intro ? getLocalizedFieldSync(intro, "subtitle", locale) : (isTr ? "Surekli Gelistirme ve Yenilik" : "Continuous Development and Innovation")}
+            {intro ? getLocalizedFieldSync(intro, "subtitle", locale) : (isTr ? "Sürekli Geliştirme ve Yenilik" : "Continuous Development and Innovation")}
           </h2>
           <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
             {intro
               ? getLocalizedFieldSync(intro, "content", locale)
               : (isTr
-                ? "AR-GE merkezimizde uzman muhendis kadromuz ile malzeme bilimi, urun tasarimi ve surec optimizasyonu alanlarinda calisiyoruz. Amacimiz, musterilerimize en yenilikci ve surdurulebilir ambalaj cozumlerini sunmaktir."
+                ? "AR-GE merkezimizde uzman mühendis kadromuz ile malzeme bilimi, ürün tasarımı ve süreç optimizasyonu alanlarında çalışıyoruz. Amacımız, müşterilerimize en yenilikçi ve sürdürülebilir ambalaj çözümlerini sunmaktır."
                 : "At our R&D center, we work with our expert engineering team in the fields of material science, product design, and process optimization. Our goal is to offer our customers the most innovative and sustainable packaging solutions.")}
           </p>
         </div>
@@ -146,7 +146,7 @@ export default async function ArgePage({
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <div className="mb-12 text-center">
             <h2 className="text-2xl font-extrabold text-[#0A1628] dark:text-white sm:text-3xl">
-              {isTr ? "Calisma Alanlarimiz" : "Our Focus Areas"}
+              {isTr ? "Çalışma Alanlarımız" : "Our Focus Areas"}
             </h2>
           </div>
 
@@ -206,18 +206,18 @@ export default async function ArgePage({
               <FlaskConical size={32} className="text-[#F59E0B]" />
             </div>
             <h2 className="mb-4 text-2xl font-extrabold text-white sm:text-3xl">
-              {isTr ? "Projeniz Icin AR-GE Destegi" : "R&D Support for Your Project"}
+              {isTr ? "Projeniz İçin AR-GE Desteği" : "R&D Support for Your Project"}
             </h2>
             <p className="mx-auto mb-8 max-w-xl text-white/60">
               {isTr
-                ? "Ozel ambalaj ihtiyaclariniz icin AR-GE ekibimizle birlikte cozum uretelim."
+                ? "Özel ambalaj ihtiyaçlarınız için AR-GE ekibimizle birlikte çözüm üretelim."
                 : "Let our R&D team develop solutions for your custom packaging needs."}
             </p>
             <Link
               href="/iletisim"
               className="inline-flex items-center gap-2 rounded-xl bg-[#F59E0B] px-8 py-4 font-bold text-[#0A1628] shadow-lg shadow-[#F59E0B]/20 transition-all hover:bg-[#F59E0B]/90 hover:-translate-y-0.5 hover:shadow-xl"
             >
-              {isTr ? "Iletisime Gecin" : "Contact Us"}
+              {isTr ? "İletişime Geçin" : "Contact Us"}
               <ArrowRight size={16} />
             </Link>
           </div>

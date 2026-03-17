@@ -37,70 +37,70 @@ interface JobPosition {
 }
 
 const departmentColors: Record<string, { bg: string; border: string; text: string }> = {
-  "Uretim": { bg: "bg-primary-50", border: "border-navy-400", text: "text-primary-700" },
+  "Üretim": { bg: "bg-primary-50", border: "border-navy-400", text: "text-primary-700" },
   "Kalite": { bg: "bg-amber-500/10", border: "border-amber-400", text: "text-amber-700" },
-  "Satis": { bg: "bg-accent-100", border: "border-amber-500", text: "text-accent-600" },
+  "Satış": { bg: "bg-accent-100", border: "border-amber-500", text: "text-accent-600" },
 };
 
 const defaultPositions: JobPosition[] = [
   {
     id: "uretim-muhendisi",
-    title: "Uretim Muhendisi",
-    department: "Uretim",
-    location: "Istanbul (Fabrika)",
-    type: "Tam Zamanli",
+    title: "Üretim Mühendisi",
+    department: "Üretim",
+    location: "İstanbul (Fabrika)",
+    type: "Tam Zamanlı",
     description:
-      "PET sise uretim hatlarinin yonetimi, surec optimizasyonu ve kalite kontrol faaliyetlerinin koordinasyonu.",
+      "PET şişe üretim hatlarının yönetimi, süreç optimizasyonu ve kalite kontrol faaliyetlerinin koordinasyonu.",
     requirements: [
-      "Makine, Endustri veya Kimya Muhendisligi mezunu",
-      "Plastik enjeksiyon / sisirme tecrubesi (min. 3 yil)",
-      "Kalite yonetim sistemleri bilgisi",
-      "Takim yonetimi becerisi",
+      "Makine, Endüstri veya Kimya Mühendisliği mezunu",
+      "Plastik enjeksiyon / şişirme tecrübesi (min. 3 yıl)",
+      "Kalite yönetim sistemleri bilgisi",
+      "Takım yönetimi becerisi",
     ],
   },
   {
     id: "kalite-kontrol-uzmani",
-    title: "Kalite Kontrol Uzmani",
+    title: "Kalite Kontrol Uzmanı",
     department: "Kalite",
-    location: "Istanbul (Fabrika)",
-    type: "Tam Zamanli",
+    location: "İstanbul (Fabrika)",
+    type: "Tam Zamanlı",
     description:
-      "Uretim surecinde ve bitmis urunlerde kalite kontrol testlerinin yapilmasi, raporlanmasi ve iyilestirme onerilerinin sunulmasi.",
+      "Üretim sürecinde ve bitmiş ürünlerde kalite kontrol testlerinin yapılması, raporlanması ve iyileştirme önerilerinin sunulması.",
     requirements: [
-      "Kimya, Gida veya Malzeme Muhendisligi mezunu",
+      "Kimya, Gıda veya Malzeme Mühendisliği mezunu",
       "ISO 9001, FSSC 22000 bilgisi",
-      "Laboratuvar test cihazlari kullanim tecrubesi",
-      "Detay odakli ve analitik dusunce",
+      "Laboratuvar test cihazları kullanım tecrübesi",
+      "Detay odaklı ve analitik düşünce",
     ],
   },
   {
     id: "b2b-satis-uzmani",
-    title: "B2B Satis Uzmani",
-    department: "Satis",
-    location: "Istanbul (Ofis)",
-    type: "Tam Zamanli",
+    title: "B2B Satış Uzmanı",
+    department: "Satış",
+    location: "İstanbul (Ofis)",
+    type: "Tam Zamanlı",
     description:
-      "Kurumsal musteri portfoyu yonetimi, yeni musteri kazanimi ve mevcut musteri iliskilerinin gelistirilmesi.",
+      "Kurumsal müşteri portföyü yönetimi, yeni müşteri kazanımı ve mevcut müşteri ilişkilerinin geliştirilmesi.",
     requirements: [
-      "Isletme, Pazarlama veya ilgili bolum mezunu",
-      "B2B satis tecrubesi (min. 2 yil)",
-      "Ambalaj veya plastik sektoru bilgisi tercih sebebi",
+      "İşletme, Pazarlama veya ilgili bölüm mezunu",
+      "B2B satış tecrübesi (min. 2 yıl)",
+      "Ambalaj veya plastik sektörü bilgisi tercih sebebi",
       "Seyahat engeli olmayan",
     ],
   },
   {
     id: "kalip-teknisyeni",
-    title: "Kalip Teknisyeni",
-    department: "Uretim",
-    location: "Istanbul (Fabrika)",
-    type: "Tam Zamanli",
+    title: "Kalıp Teknisyeni",
+    department: "Üretim",
+    location: "İstanbul (Fabrika)",
+    type: "Tam Zamanlı",
     description:
-      "Sise ve kapak kaliplarinin bakim, onarim ve ayar islemlerinin yapilmasi.",
+      "Şişe ve kapak kalıplarının bakım, onarım ve ayar işlemlerinin yapılması.",
     requirements: [
-      "Makine veya Kalip bolumu mezunu",
-      "CNC ve konvansiyonel tezgah kullanim tecrubesi",
-      "PET kalip bilgisi tercih sebebi",
-      "Vardiyali calismaya uygun",
+      "Makine veya Kalıp bölümü mezunu",
+      "CNC ve konvansiyonel tezgah kullanım tecrübesi",
+      "PET kalıp bilgisi tercih sebebi",
+      "Vardiyalı çalışmaya uygun",
     ],
   },
 ];
@@ -113,10 +113,10 @@ const perkAccentColors = [
 ];
 
 const defaultPerks = [
-  { icon: Heart, title: "Saglik Sigortasi", description: "Ozel saglik sigortasi" },
-  { icon: Coffee, title: "Yemek & Servis", description: "Ucretsiz yemek ve personel servisi" },
-  { icon: GraduationCap, title: "Egitim", description: "Surekli mesleki gelisim programlari" },
-  { icon: Users, title: "Takim Ruhu", description: "Sosyal etkinlikler ve takim aktiviteleri" },
+  { icon: Heart, title: "Sağlık Sigortası", description: "Özel sağlık sigortası" },
+  { icon: Coffee, title: "Yemek & Servis", description: "Ücretsiz yemek ve personel servisi" },
+  { icon: GraduationCap, title: "Eğitim", description: "Sürekli mesleki gelişim programları" },
+  { icon: Users, title: "Takım Ruhu", description: "Sosyal etkinlikler ve takım aktiviteleri" },
 ];
 
 const perkIcons = [Heart, Coffee, GraduationCap, Users];
@@ -237,7 +237,7 @@ export default function KariyerClient({ content, settings, listings }: KariyerCl
         </div>
       </div>
 
-      {/* Acik Pozisyonlar */}
+      {/* Açık Pozisyonlar */}
       <div className="mx-auto max-w-4xl px-4 py-16 lg:px-6 lg:py-24">
         <AnimateOnScroll animation="fade-up">
           <div className="mb-10 text-center">
@@ -332,7 +332,7 @@ export default function KariyerClient({ content, settings, listings }: KariyerCl
                           ))}
                         </ul>
                         <a
-                          href={`mailto:${applyEmail}?subject=Basvuru: ${pos.title}`}
+                          href={`mailto:${applyEmail}?subject=Başvuru: ${pos.title}`}
                           className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-5 py-2.5 text-sm font-bold text-primary-900 shadow-md transition-all hover:bg-accent-400 hover:-translate-y-0.5"
                         >
                           <Send size={14} />
@@ -347,7 +347,7 @@ export default function KariyerClient({ content, settings, listings }: KariyerCl
           })}
         </div>
 
-        {/* Spontane Basvuru */}
+        {/* Spontane Başvuru */}
         <AnimateOnScroll animation="fade-up">
           <div className="group relative mt-12 overflow-hidden rounded-2xl bg-primary-50 p-8 text-center transition-all hover:shadow-lg dark:bg-primary-900/20">
             {/* Decorative corner shapes */}
@@ -380,7 +380,7 @@ export default function KariyerClient({ content, settings, listings }: KariyerCl
                 {c.spontaneDesc}
               </p>
               <a
-                href={`mailto:${applyEmail}?subject=Spontane Basvuru`}
+                href={`mailto:${applyEmail}?subject=Spontane Başvuru`}
                 className="inline-flex items-center gap-2 rounded-xl bg-primary-900 px-6 py-3.5 font-bold text-white transition-all hover:bg-primary-700 hover:-translate-y-0.5 hover:shadow-lg"
               >
                 <Send size={18} />

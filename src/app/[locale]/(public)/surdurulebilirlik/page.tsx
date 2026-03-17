@@ -15,31 +15,31 @@ const defaultPillars = {
   tr: [
     {
       icon: Recycle,
-      title: "Geri Donusum",
-      desc: "Uretim atiklari %100 geri donusturulerek hammadde olarak yeniden kullanilmaktadir.",
+      title: "Geri Dönüşüm",
+      desc: "Üretim atıkları %100 geri dönüştürülerek hammadde olarak yeniden kullanılmaktadır.",
       stat: "%100",
-      statLabel: "Atik Geri Donusum",
+      statLabel: "Atık Geri Dönüşüm",
     },
     {
       icon: Droplets,
-      title: "Su Yonetimi",
-      desc: "Kapali devre sogutma sistemi ile su tuketimi minimuma indirilmistir.",
+      title: "Su Yönetimi",
+      desc: "Kapalı devre soğutma sistemi ile su tüketimi minimuma indirilmiştir.",
       stat: "%40",
       statLabel: "Su Tasarrufu",
     },
     {
       icon: Sun,
-      title: "Enerji Verimliligi",
-      desc: "Enerji verimli makineler ve LED aydinlatma ile karbon ayak izimizi azaltiyoruz.",
+      title: "Enerji Verimliliği",
+      desc: "Enerji verimli makineler ve LED aydınlatma ile karbon ayak izimizi azaltıyoruz.",
       stat: "%30",
       statLabel: "Enerji Tasarrufu",
     },
     {
       icon: TreePine,
-      title: "Karbon Azaltimi",
-      desc: "Surdurulebilir uretim pratikleri ile sera gazi emisyonlarimizi surekli azaltiyoruz.",
+      title: "Karbon Azaltımı",
+      desc: "Sürdürülebilir üretim pratikleri ile sera gazı emisyonlarımızı sürekli azaltıyoruz.",
       stat: "ISO 14001",
-      statLabel: "Cevre Sertifikasi",
+      statLabel: "Çevre Sertifikası",
     },
   ],
   en: [
@@ -116,18 +116,18 @@ export default async function SurdurulebilirlikPage({
             </Link>
             <ChevronRight size={14} />
             <span className="text-white">
-              {hero ? getLocalizedFieldSync(hero, "title", locale) : (isTr ? "Surdurulebilirlik" : "Sustainability")}
+              {hero ? getLocalizedFieldSync(hero, "title", locale) : (isTr ? "Sürdürülebilirlik" : "Sustainability")}
             </span>
           </nav>
           <h1 className="mb-4 text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
-            {hero ? getLocalizedFieldSync(hero, "title", locale) : (isTr ? "Surdurulebilirlik" : "Sustainability")}
+            {hero ? getLocalizedFieldSync(hero, "title", locale) : (isTr ? "Sürdürülebilirlik" : "Sustainability")}
           </h1>
           <div className="mt-4 mb-6 h-1 w-20 rounded-full bg-green-500" />
           <p className="max-w-2xl text-lg text-white/70">
             {hero
               ? getLocalizedFieldSync(hero, "subtitle", locale)
               : (isTr
-                ? "Cevre dostu uretim anlayisimiz ile gelecek nesillere yasanabilir bir dunya birakiyoruz."
+                ? "Çevre dostu üretim anlayışımız ile gelecek nesillere yaşanabilir bir dünya bırakıyoruz."
                 : "We leave a livable world for future generations with our environmentally friendly production approach.")}
           </p>
         </div>
@@ -137,16 +137,16 @@ export default async function SurdurulebilirlikPage({
       <div className="mx-auto max-w-7xl px-4 py-16 lg:px-6 lg:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-green-600 dark:text-green-400">
-            {intro ? getLocalizedFieldSync(intro, "title", locale) : (isTr ? "Cevre Sorumlulugu" : "Environmental Responsibility")}
+            {intro ? getLocalizedFieldSync(intro, "title", locale) : (isTr ? "Çevre Sorumluluğu" : "Environmental Responsibility")}
           </span>
           <h2 className="mb-6 text-2xl font-extrabold text-[#0A1628] dark:text-white sm:text-3xl">
-            {intro ? getLocalizedFieldSync(intro, "subtitle", locale) : (isTr ? "Yesil Uretim, Temiz Gelecek" : "Green Production, Clean Future")}
+            {intro ? getLocalizedFieldSync(intro, "subtitle", locale) : (isTr ? "Yeşil Üretim, Temiz Gelecek" : "Green Production, Clean Future")}
           </h2>
           <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
             {intro
               ? getLocalizedFieldSync(intro, "content", locale)
               : (isTr
-                ? "Kismet Plastik olarak surdurulebilirlik stratejimizi uretimin her asamasina entegre ediyoruz. Hammadde seciminden paketlemeye, enerji yonetiminden atik azaltmaya kadar tum sureclerimizde cevre dostu uygulamalari benimsiyoruz."
+                ? "Kısmet Plastik olarak sürdürülebilirlik stratejimizi üretimin her aşamasına entegre ediyoruz. Hammadde seçiminden paketlemeye, enerji yönetiminden atık azaltmaya kadar tüm süreçlerimizde çevre dostu uygulamaları benimsiyoruz."
                 : "At Kismet Plastik, we integrate our sustainability strategy into every stage of production. From raw material selection to packaging, from energy management to waste reduction, we adopt environmentally friendly practices in all our processes.")}
           </p>
         </div>
@@ -157,7 +157,7 @@ export default async function SurdurulebilirlikPage({
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <div className="mb-12 text-center">
             <h2 className="text-2xl font-extrabold text-[#0A1628] dark:text-white sm:text-3xl">
-              {isTr ? "Surdurulebilirlik Stratejimiz" : "Our Sustainability Strategy"}
+              {isTr ? "Sürdürülebilirlik Stratejimiz" : "Our Sustainability Strategy"}
             </h2>
           </div>
 
@@ -216,18 +216,18 @@ export default async function SurdurulebilirlikPage({
               <Globe size={32} className="text-green-400" />
             </div>
             <h2 className="mb-4 text-2xl font-extrabold text-white sm:text-3xl">
-              {isTr ? "Birlikte Surdurulebilir Bir Gelecek" : "A Sustainable Future Together"}
+              {isTr ? "Birlikte Sürdürülebilir Bir Gelecek" : "A Sustainable Future Together"}
             </h2>
             <p className="mx-auto mb-8 max-w-xl text-white/60">
               {isTr
-                ? "Surdurulebilir ambalaj cozumlerimiz hakkinda daha fazla bilgi almak icin bizimle iletisime gecin."
+                ? "Sürdürülebilir ambalaj çözümlerimiz hakkında daha fazla bilgi almak için bizimle iletişime geçin."
                 : "Contact us to learn more about our sustainable packaging solutions."}
             </p>
             <Link
               href="/iletisim"
               className="inline-flex items-center gap-2 rounded-xl bg-green-500 px-8 py-4 font-bold text-white shadow-lg shadow-green-500/20 transition-all hover:bg-green-600 hover:-translate-y-0.5 hover:shadow-xl"
             >
-              {isTr ? "Iletisime Gecin" : "Contact Us"}
+              {isTr ? "İletişime Geçin" : "Contact Us"}
               <ArrowRight size={16} />
             </Link>
           </div>

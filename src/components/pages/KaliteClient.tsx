@@ -29,54 +29,54 @@ import type { Locale } from "@/lib/locales";
 const certificates = [
   {
     name: "ISO 9001:2015",
-    title: "Kalite Yonetim Sistemi",
+    title: "Kalite Yönetim Sistemi",
     description:
-      "Urun ve hizmetlerin musteri beklentilerini karsilamasini saglayan uluslararasi kalite yonetim standardi.",
+      "Ürün ve hizmetlerin müşteri beklentilerini karşılamasını sağlayan uluslararası kalite yönetim standardı.",
     icon: Shield,
     color: "bg-primary-50 text-primary-700",
     file: "/sertifikalar/ISO-9001.pdf",
   },
   {
     name: "ISO 14001:2015",
-    title: "Cevre Yonetim Sistemi",
+    title: "Çevre Yönetim Sistemi",
     description:
-      "Cevresel performansin surekli iyilestirilmesini saglayan yonetim sistemi standardi.",
+      "Çevresel performansın sürekli iyileştirilmesini sağlayan yönetim sistemi standardı.",
     icon: Leaf,
     color: "bg-success/10 text-success",
     file: "/sertifikalar/ISO-14001.pdf",
   },
   {
     name: "ISO 45001:2018",
-    title: "Is Sagligi ve Guvenligi",
+    title: "İş Sağlığı ve Güvenliği",
     description:
-      "Calisanlarin saglik ve guvenligini korumaya yonelik sistematik yaklasim standardi.",
+      "Çalışanların sağlık ve güvenliğini korumaya yönelik sistematik yaklaşım standardı.",
     icon: BadgeCheck,
     color: "bg-accent-100 text-accent-600",
     file: "/sertifikalar/ISO-45001.pdf",
   },
   {
     name: "ISO 10002:2018",
-    title: "Musteri Memnuniyeti",
+    title: "Müşteri Memnuniyeti",
     description:
-      "Musteri sikayetlerinin etkin yonetimi ve memnuniyetin surekli artirilmasi standardi.",
+      "Müşteri şikayetlerinin etkin yönetimi ve memnuniyetin sürekli artırılması standardı.",
     icon: FileCheck,
     color: "bg-navy-700/10 text-navy-700",
     file: "/sertifikalar/ISO-10002.pdf",
   },
   {
     name: "ISO/IEC 27001",
-    title: "Bilgi Guvenligi Yonetimi",
+    title: "Bilgi Güvenliği Yönetimi",
     description:
-      "Bilgi varliklarinin korunmasi ve bilgi guvenligi risklerinin yonetilmesi standardi.",
+      "Bilgi varlıklarının korunması ve bilgi güvenliği risklerinin yönetilmesi standardı.",
     icon: Microscope,
     color: "bg-primary-50 text-primary-700",
     file: "/sertifikalar/ISO-IEC-27001.pdf",
   },
   {
-    name: "CE Isareti",
+    name: "CE İşareti",
     title: "Avrupa Uygunluk Belgesi",
     description:
-      "Urunlerin Avrupa Birligi saglik, guvenlik ve cevre standartlarina uygunlugunu gosteren belge.",
+      "Ürünlerin Avrupa Birliği sağlık, güvenlik ve çevre standartlarına uygunluğunu gösteren belge.",
     icon: Award,
     color: "bg-destructive/10 text-destructive",
     file: "/sertifikalar/CE.pdf",
@@ -86,35 +86,35 @@ const certificates = [
 const qualitySteps = [
   {
     step: "01",
-    title: "Hammadde Kontrolu",
-    description: "Tedarikçilerden gelen tum hammaddeler laboratuvar testlerinden gecirilir.",
+    title: "Hammadde Kontrolü",
+    description: "Tedarikçilerden gelen tüm hammaddeler laboratuvar testlerinden geçirilir.",
   },
   {
     step: "02",
-    title: "Uretim Surec Kontrolu",
-    description: "Her uretim asamasinda kalite parametreleri surekli izlenir ve kayit altina alinir.",
+    title: "Üretim Süreç Kontrolü",
+    description: "Her üretim aşamasında kalite parametreleri sürekli izlenir ve kayıt altına alınır.",
   },
   {
     step: "03",
-    title: "Urun Testleri",
-    description: "Bitmis urunler basinc, sizdimazlik, boyut ve gorsel testlerden gecirilir.",
+    title: "Ürün Testleri",
+    description: "Bitmiş ürünler basınç, sızdırmazlık, boyut ve görsel testlerden geçirilir.",
   },
   {
     step: "04",
     title: "Son Kontrol & Sevkiyat",
-    description: "Paketleme oncesi son kalite kontrolu yapilir ve uygun kosullarda sevk edilir.",
+    description: "Paketleme öncesi son kalite kontrolü yapılır ve uygun koşullarda sevk edilir.",
   },
 ];
 
 const labTests = [
-  { text: "Boyutsal olcum ve tolerans kontrolu", icon: Ruler, progress: 95 },
-  { text: "Basinc dayanim testi", icon: Gauge, progress: 98 },
-  { text: "Sizdimazlik testi", icon: Droplets, progress: 99 },
-  { text: "Dusme dayanim testi", icon: ShieldCheck, progress: 92 },
-  { text: "Renk ve seffaflik olcumu", icon: Palette, progress: 97 },
-  { text: "Yuzey kalite kontrolu", icon: Scan, progress: 96 },
+  { text: "Boyutsal ölçüm ve tolerans kontrolü", icon: Ruler, progress: 95 },
+  { text: "Basınç dayanım testi", icon: Gauge, progress: 98 },
+  { text: "Sızdırmazlık testi", icon: Droplets, progress: 99 },
+  { text: "Düşme dayanım testi", icon: ShieldCheck, progress: 92 },
+  { text: "Renk ve şeffaflık ölçümü", icon: Palette, progress: 97 },
+  { text: "Yüzey kalite kontrolü", icon: Scan, progress: 96 },
   { text: "Kozmetik uygunluk (migrasyon) testleri", icon: Apple, progress: 100 },
-  { text: "UV dayanim testi", icon: Sun, progress: 94 },
+  { text: "UV dayanım testi", icon: Sun, progress: 94 },
 ];
 
 interface KaliteClientProps {
@@ -253,7 +253,7 @@ export default function KaliteClient({ content, locale, dict }: KaliteClientProp
         <div className="h-px bg-gradient-to-r from-transparent via-[#F59E0B]/20 to-transparent" />
       </div>
 
-      {/* Kalite Kontrol Sureci - Visual timeline */}
+      {/* Kalite Kontrol Süreci - Visual timeline */}
       <div className="bg-white py-16 dark:bg-[#0A1628]/80 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <AnimateOnScroll animation="fade-up">

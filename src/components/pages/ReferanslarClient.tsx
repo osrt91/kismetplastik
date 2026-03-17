@@ -46,12 +46,12 @@ export default function ReferanslarClient({ content, settings, references, local
     {
       icon: Handshake,
       value: settings?.years_of_collaboration || "30+",
-      label: isTr ? "Yillik Is Birligi" : "Years of Collaboration",
+      label: isTr ? "Yıllık İş Birliği" : "Years of Collaboration",
     },
     {
       icon: Globe,
       value: settings?.sector_count || "8+",
-      label: isTr ? "Sektor" : "Sectors",
+      label: isTr ? "Sektör" : "Sectors",
     },
   ];
 
@@ -86,18 +86,18 @@ export default function ReferanslarClient({ content, settings, references, local
               </Link>
               <ChevronRight size={14} />
               <span className="text-white">
-                {isTr ? "Referanslarimiz" : "Our References"}
+                {isTr ? "Referanslarımız" : "Our References"}
               </span>
             </nav>
             <h1 className="mb-4 text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
-              {t("references_hero", "title", isTr ? "Referanslarimiz" : "Our References")}
+              {t("references_hero", "title", isTr ? "Referanslarımız" : "Our References")}
             </h1>
             <p className="max-w-2xl text-lg text-white/70">
               {t(
                 "references_hero",
                 "subtitle",
                 isTr
-                  ? "Kozmetik, parfumeri, temizlik ve kisisel bakim sektorlerinde guvenilir ambalaj cozum ortaginiz. 500'den fazla firma ile uzun soluklu is birlikleri."
+                  ? "Kozmetik, parfümeri, temizlik ve kişisel bakım sektörlerinde güvenilir ambalaj çözüm ortağınız. 500'den fazla firma ile uzun soluklu iş birlikleri."
                   : "Your trusted packaging partner in cosmetics, perfumery, cleaning, and personal care. Long-term collaborations with over 500 companies."
               )}
             </p>
@@ -110,16 +110,16 @@ export default function ReferanslarClient({ content, settings, references, local
         <AnimateOnScroll animation="fade-up">
           <div className="mb-12 text-center">
             <span className="mb-3 inline-block text-sm font-bold uppercase tracking-widest text-accent-500">
-              {isTr ? "Guvenilir Is Ortakliklari" : "Trusted Partnerships"}
+              {isTr ? "Güvenilir İş Ortaklıkları" : "Trusted Partnerships"}
             </span>
             <h2 className="text-2xl font-extrabold text-primary-900 dark:text-white sm:text-3xl">
               {isTr
-                ? "Birlikte Calistigimiz Markalar"
+                ? "Birlikte Çalıştığımız Markalar"
                 : "Brands We Work With"}
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-neutral-600 dark:text-neutral-300">
               {isTr
-                ? "Farkli sektorlerden lider markalar, ambalaj ihtiyaclari icin bizi tercih ediyor."
+                ? "Farklı sektörlerden lider markalar, ambalaj ihtiyaçları için bizi tercih ediyor."
                 : "Leading brands from various sectors choose us for their packaging needs."}
             </p>
           </div>
@@ -175,19 +175,19 @@ export default function ReferanslarClient({ content, settings, references, local
             <div className="relative">
               <h2 className="mb-4 text-2xl font-extrabold text-primary-900 dark:text-white sm:text-3xl">
                 {isTr
-                  ? "Referanslarimiz Arasinda Yerinizi Alin"
+                  ? "Referanslarımız Arasında Yerinizi Alın"
                   : "Join Our References"}
               </h2>
               <p className="mx-auto mb-8 max-w-xl text-neutral-600 dark:text-neutral-300">
                 {isTr
-                  ? "Kozmetik ambalaj ihtiyaclariniz icin uzman ekibimizle tanisin. Size ozel cozumler sunalim."
+                  ? "Kozmetik ambalaj ihtiyaçlarınız için uzman ekibimizle tanışın. Size özel çözümler sunalım."
                   : "Meet our expert team for your cosmetic packaging needs. Let us offer you custom solutions."}
               </p>
               <Link
                 href="/teklif-al"
                 className="inline-flex items-center gap-2 rounded-xl bg-primary-900 px-8 py-4 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary-700 hover:shadow-xl dark:bg-primary-500 dark:hover:bg-primary-400"
               >
-                {isTr ? "Teklif Alin" : "Get a Quote"}
+                {isTr ? "Teklif Alın" : "Get a Quote"}
                 <ArrowRight size={18} />
               </Link>
             </div>

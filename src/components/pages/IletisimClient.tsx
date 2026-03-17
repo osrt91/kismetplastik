@@ -267,11 +267,11 @@ export default function IletisimClient({ content, settings }: IletisimClientProp
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Kismet Plastik Konum - Ikitelli OSB, Basaksehir"
+              title="Kısmet Plastik Konum - İkitelli OSB, Başakşehir"
             />
             <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-lg border border-white/40 bg-white/90 px-3.5 py-2.5 text-sm font-bold text-navy-900 shadow-lg backdrop-blur-md dark:border-navy-700 dark:bg-navy-900/90 dark:text-cream-50">
               <MapPin size={16} className="text-amber-500" />
-              Kismet Plastik - Ikitelli OSB
+              Kısmet Plastik - İkitelli OSB
             </div>
           </div>
         </AnimateOnScroll>

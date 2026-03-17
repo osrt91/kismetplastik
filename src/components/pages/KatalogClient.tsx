@@ -35,9 +35,9 @@ interface CatalogItem {
 
 const defaultCatalogs: CatalogItem[] = [
   {
-    title: "Genel Urun Katalogu 2026",
+    title: "Genel Ürün Kataloğu 2026",
     description:
-      "Tum PET sise, sprey, kapak ve pompa urunlerimizi iceren kapsamli katalog.",
+      "Tüm PET şişe, sprey, kapak ve pompa ürünlerimizi içeren kapsamlı katalog.",
     pages: "48 sayfa",
     size: "12 MB",
     icon: BookOpen,
@@ -45,9 +45,9 @@ const defaultCatalogs: CatalogItem[] = [
     accentColor: "bg-primary-700",
   },
   {
-    title: "PET Sise Katalogu",
+    title: "PET Şişe Kataloğu",
     description:
-      "Farkli hacim ve tasarimlardaki tum PET sise urunlerimizin teknik detaylari.",
+      "Farklı hacim ve tasarımlardaki tüm PET şişe ürünlerimizin teknik detayları.",
     pages: "24 sayfa",
     size: "8 MB",
     icon: Package,
@@ -55,9 +55,9 @@ const defaultCatalogs: CatalogItem[] = [
     accentColor: "bg-primary-500",
   },
   {
-    title: "Kapak & Aksesuar Katalogu",
+    title: "Kapak & Aksesuar Kataloğu",
     description:
-      "Vidali, flip-top, pompa, sprey ve ozel tasarim kapak cesitlerimizin detayli tanitimi.",
+      "Vidalı, flip-top, pompa, sprey ve özel tasarım kapak çeşitlerimizin detaylı tanıtımı.",
     pages: "16 sayfa",
     size: "6 MB",
     icon: Package,
@@ -65,9 +65,9 @@ const defaultCatalogs: CatalogItem[] = [
     accentColor: "bg-accent-500",
   },
   {
-    title: "Teknik Sartname Dokumani",
+    title: "Teknik Şartname Dokümanı",
     description:
-      "Urun boyutlari, agirliklar, malzeme ozellikleri ve uyumluluk bilgileri.",
+      "Ürün boyutları, ağırlıklar, malzeme özellikleri ve uyumluluk bilgileri.",
     pages: "32 sayfa",
     size: "4 MB",
     icon: FileText,
@@ -210,7 +210,7 @@ export default function KatalogClient({ content, resources, locale, dict }: Kata
           ))}
         </div>
 
-        {/* Basili Katalog Talebi */}
+        {/* Basılı Katalog Talebi */}
         <AnimateOnScroll animation="fade-up">
           <div className="animated-border-gradient mt-16 rounded-2xl bg-gradient-to-br from-primary-900 to-primary-700 p-8 text-center lg:p-12">
             <BookOpen size={40} className="mx-auto mb-4 text-accent-400" />

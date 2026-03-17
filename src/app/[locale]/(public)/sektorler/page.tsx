@@ -15,28 +15,28 @@ const sectorIcons = [Sparkles, Pill, Droplet, Utensils, Factory, FlaskConical];
 const defaultSectors = {
   tr: [
     {
-      title: "Kozmetik & Kisisel Bakim",
-      desc: "Parfum, losyon, krem, sampuan ve cilt bakim urunleri icin ozel tasarim siseler ve kapaklar.",
+      title: "Kozmetik & Kişisel Bakım",
+      desc: "Parfüm, losyon, krem, şampuan ve cilt bakım ürünleri için özel tasarım şişeler ve kapaklar.",
     },
     {
-      title: "Eczacilik & Saglik",
-      desc: "Ilac, takviye gida ve medikal urunler icin GMP uyumlu ambalaj cozumleri.",
+      title: "Eczacılık & Sağlık",
+      desc: "İlaç, takviye gıda ve medikal ürünler için GMP uyumlu ambalaj çözümleri.",
     },
     {
       title: "Temizlik & Deterjan",
-      desc: "Ev ve endustriyel temizlik urunleri icin dayanikli ve ergonomik ambalajlar.",
+      desc: "Ev ve endüstriyel temizlik ürünleri için dayanıklı ve ergonomik ambalajlar.",
     },
     {
-      title: "Gida & Icecek",
-      desc: "Gida temaslı ambalajlar icin ISO 22000 sertifikali uretim hatti.",
+      title: "Gıda & İçecek",
+      desc: "Gıda temaslı ambalajlar için ISO 22000 sertifikalı üretim hattı.",
     },
     {
-      title: "Endustriyel Kimya",
-      desc: "Kimyasal urunler icin yuksek dayanim ve sizdimazlik ozellikli ambalajlar.",
+      title: "Endüstriyel Kimya",
+      desc: "Kimyasal ürünler için yüksek dayanım ve sızdırmazlık özellikli ambalajlar.",
     },
     {
-      title: "Arastirma & Laboratuvar",
-      desc: "Laboratuvar ve arastirma amaçli ozel uretim sise ve kapak cozumleri.",
+      title: "Araştırma & Laboratuvar",
+      desc: "Laboratuvar ve araştırma amaçlı özel üretim şişe ve kapak çözümleri.",
     },
   ],
   en: [
@@ -101,18 +101,18 @@ export default async function SektorlerPage({
             </Link>
             <ChevronRight size={14} />
             <span className="text-white">
-              {hero ? getLocalizedFieldSync(hero, "title", locale) : (isTr ? "Sektorler" : "Sectors")}
+              {hero ? getLocalizedFieldSync(hero, "title", locale) : (isTr ? "Sektörler" : "Sectors")}
             </span>
           </nav>
           <h1 className="mb-4 text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
-            {hero ? getLocalizedFieldSync(hero, "title", locale) : (isTr ? "Hizmet Verdiklerimiz Sektorler" : "Industries We Serve")}
+            {hero ? getLocalizedFieldSync(hero, "title", locale) : (isTr ? "Hizmet Verdiğimiz Sektörler" : "Industries We Serve")}
           </h1>
           <div className="mt-4 mb-6 h-1 w-20 rounded-full bg-[#F59E0B]" />
           <p className="max-w-2xl text-lg text-white/70">
             {hero
               ? getLocalizedFieldSync(hero, "subtitle", locale)
               : (isTr
-                ? "Farkli sektorlerin ambalaj ihtiyaclarini karsilayan genis urun yelpazemiz."
+                ? "Farklı sektörlerin ambalaj ihtiyaçlarını karşılayan geniş ürün yelpazemiz."
                 : "Our wide product range meeting the packaging needs of various industries.")}
           </p>
         </div>
@@ -170,18 +170,18 @@ export default async function SektorlerPage({
       <div className="bg-[#0A1628] py-16 lg:py-20">
         <div className="mx-auto max-w-4xl px-4 text-center lg:px-6">
           <h2 className="mb-4 text-2xl font-extrabold text-white sm:text-3xl">
-            {isTr ? "Sektorunuze Ozel Cozumler" : "Solutions Tailored to Your Industry"}
+            {isTr ? "Sektörünüze Özel Çözümler" : "Solutions Tailored to Your Industry"}
           </h2>
           <p className="mx-auto mb-8 max-w-xl text-white/60">
             {isTr
-              ? "Sektorunuzun ozel ihtiyaclarina uygun ambalaj cozumleri icin bizimle iletisime gecin."
+              ? "Sektörünüzün özel ihtiyaçlarına uygun ambalaj çözümleri için bizimle iletişime geçin."
               : "Contact us for packaging solutions tailored to your industry's specific needs."}
           </p>
           <Link
             href="/teklif-al"
             className="inline-flex items-center gap-2 rounded-xl bg-[#F59E0B] px-8 py-4 font-bold text-[#0A1628] shadow-lg shadow-[#F59E0B]/20 transition-all hover:bg-[#F59E0B]/90 hover:-translate-y-0.5 hover:shadow-xl"
           >
-            {isTr ? "Teklif Alin" : "Get a Quote"}
+            {isTr ? "Teklif Alın" : "Get a Quote"}
           </Link>
         </div>
       </div>

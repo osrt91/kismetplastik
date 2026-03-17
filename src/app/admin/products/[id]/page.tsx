@@ -96,12 +96,12 @@ export default function EditProductPage() {
   if (!product || !form) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-muted-foreground">
-        <p className="text-lg font-medium">Urun bulunamadi</p>
+        <p className="text-lg font-medium">Ürün bulunamadı</p>
         <Link
           href="/admin/products"
           className="mt-3 text-sm text-primary hover:underline"
         >
-          Urun listesine don
+          Ürün listesine dön
         </Link>
       </div>
     );
