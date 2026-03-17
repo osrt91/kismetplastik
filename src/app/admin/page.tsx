@@ -122,7 +122,7 @@ export default function AdminDashboard() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/admin/dashboard");
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/dashboard");
       const json = await res.json();
       if (!json.success) throw new Error(json.error ?? "Veri alınamadı");
       setData(json.data as DashboardData);

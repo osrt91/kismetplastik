@@ -247,7 +247,7 @@ export default function AdminGalleryPage() {
 
     // Persist new order — revert on failure
     try {
-      const res = await fetch("/api/admin/gallery/reorder", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/gallery/reorder", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -306,7 +306,7 @@ export default function AdminGalleryPage() {
         fd.append("description_en", uploadForm.description_en.trim());
         fd.append("display_order", String(images.length + i));
 
-        const res = await fetch("/api/admin/gallery", { method: "POST", body: fd });
+        const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/gallery", { method: "POST", body: fd });
         const json = await res.json();
         if (!json.success) throw new Error(json.error || "Yükleme başarısız.");
       }

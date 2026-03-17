@@ -158,7 +158,7 @@ export default function AdminPagesPage() {
         image_url: s.image_url,
       }));
 
-      const res = await fetch("/api/admin/content/sections", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/content/sections", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sections: payload }),

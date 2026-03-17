@@ -343,7 +343,7 @@ export default function AdminMessagesPage() {
 
     setBulkDeleting(true);
     try {
-      const res = await fetch("/api/admin/messages", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/messages", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ids: Array.from(selected) }),

@@ -110,7 +110,7 @@ export default function TranslationsPage() {
   // ── Load base (tr) translations ──────────────────────────────────────────────
   const loadBaseTranslations = useCallback(async () => {
     try {
-      const res = await fetch("/api/admin/translations?locale=tr");
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/translations?locale=tr");
       const json = await res.json();
       if (json.success) {
         setBaseTranslations(flattenObject(json.data as NestedTranslations));
@@ -225,7 +225,7 @@ export default function TranslationsPage() {
     setSaveStatus("idle");
     try {
       const nested = unflattenObject(translations);
-      const res = await fetch("/api/admin/translations", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/translations", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ locale: selectedLocale, translations: nested }),
@@ -265,7 +265,7 @@ export default function TranslationsPage() {
     formData.append("locale", selectedLocale);
     formData.append("file", file);
     try {
-      const res = await fetch("/api/admin/translations/import", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/translations/import", {
         method: "POST",
         body: formData,
       });

@@ -42,7 +42,7 @@ export default function EditProductPage() {
       try {
         const [prodRes, catRes] = await Promise.all([
           fetch(`/api/products?ids=${encodeURIComponent(id)}&limit=1`),
-          fetch("/api/products/categories"),
+          fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/products/categories"),
         ]);
         const prodJson = await prodRes.json();
         const catJson = await catRes.json();

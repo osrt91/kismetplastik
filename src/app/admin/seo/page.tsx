@@ -96,7 +96,7 @@ export default function AdminSeoPage() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/admin/seo");
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/seo");
       const json = await res.json();
       if (!res.ok || !json.success) {
         setError(json.error ?? "SEO ayarları yüklenemedi.");
@@ -196,7 +196,7 @@ export default function AdminSeoPage() {
         json_ld: parsedJsonLd,
       };
 
-      const res = await fetch("/api/admin/seo", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/seo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

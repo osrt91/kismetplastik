@@ -310,7 +310,7 @@ export default function AdminCompatibilityPage() {
     setLoading(true);
     setFetchError(null);
     try {
-      const res = await fetch("/api/admin/compatibility");
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/compatibility");
       const json = await res.json();
       if (json.success) {
         setRules(json.data);

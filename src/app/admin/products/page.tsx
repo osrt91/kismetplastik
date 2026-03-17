@@ -242,7 +242,7 @@ export default function AdminProductsPage() {
       const fd = new FormData();
       fd.append("file", file);
 
-      const uploadRes = await fetch("/api/admin/products/upload", {
+      const uploadRes = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/products/upload", {
         method: "POST",
         body: fd,
       });

@@ -61,7 +61,7 @@ export default function AdminGlossaryPage() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/admin/glossary");
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/glossary");
       const json = await res.json();
       if (!json.success) throw new Error(json.error ?? "Yüklenemedi");
       setTerms(json.data ?? []);
@@ -139,7 +139,7 @@ export default function AdminGlossaryPage() {
 
     try {
       if (modal.mode === "add") {
-        const res = await fetch("/api/admin/glossary", {
+        const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/glossary", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

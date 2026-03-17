@@ -190,7 +190,7 @@ export default function PreOrderClient({ content }: PreOrderClientProps) {
     }
 
     try {
-      const res = await fetch("/api/orders/pre-order", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/orders/pre-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(parsed.data),

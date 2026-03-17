@@ -66,7 +66,7 @@ export default function TeklifAlClient({ content, settings }: TeklifAlClientProp
   const [categories, setCategories] = useState<Category[]>([]);
   useEffect(() => {
     let cancelled = false;
-    fetch("/api/products/categories")
+    fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/products/categories")
       .then((res) => res.json())
       .then((json) => {
         if (!cancelled && json.success && json.data) {
@@ -109,7 +109,7 @@ export default function TeklifAlClient({ content, settings }: TeklifAlClientProp
     setError("");
 
     try {
-      const res = await fetch("/api/quote", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),

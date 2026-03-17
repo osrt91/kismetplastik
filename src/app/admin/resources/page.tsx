@@ -139,7 +139,7 @@ function UploadModal({ onClose, onSuccess }: UploadModalProps) {
     fd.append("is_active", String(form.is_active));
 
     try {
-      const res = await fetch("/api/admin/resources", { method: "POST", body: fd });
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/resources", { method: "POST", body: fd });
       const json = await res.json();
       if (!res.ok || !json.success) {
         setError(json.error ?? "Yükleme başarısız");

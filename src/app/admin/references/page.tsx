@@ -307,7 +307,7 @@ export default function AdminReferencesPage() {
     setLoading(true);
     setFetchError(null);
     try {
-      const res = await fetch("/api/admin/references");
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/references");
       const json = await res.json();
       if (json.success) {
         setReferences(json.data);

@@ -177,7 +177,7 @@ function SectionsTab() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/admin/content/sections");
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/content/sections");
       const json = await res.json();
       if (!res.ok || !json.success) {
         setError(json.error ?? "Bölümler yüklenemedi");
@@ -251,7 +251,7 @@ function SectionsTab() {
     setSavingError(null);
     try {
       const payload = buildPayload(form);
-      const res = await fetch("/api/admin/content/sections", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/content/sections", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -686,7 +686,7 @@ function FaqTab() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/admin/content/faq");
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/content/faq");
       const json = await res.json();
       if (!res.ok || !json.success) {
         setError(json.error ?? "SSS öğeleri yüklenemedi");
@@ -744,7 +744,7 @@ function FaqTab() {
     setSaving(true);
     setSavingError(null);
     try {
-      const res = await fetch("/api/admin/content/faq", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/content/faq", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(buildPayload(form)),
@@ -1158,7 +1158,7 @@ function CareersTab() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/admin/content/careers");
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/content/careers");
       const json = await res.json();
       if (!res.ok || !json.success) {
         setError(json.error ?? "İlanlar yüklenemedi");
@@ -1225,7 +1225,7 @@ function CareersTab() {
     setSaving(true);
     setSavingError(null);
     try {
-      const res = await fetch("/api/admin/content/careers", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/content/careers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(buildPayload(form)),

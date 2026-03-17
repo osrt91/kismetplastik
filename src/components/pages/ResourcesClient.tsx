@@ -167,7 +167,7 @@ export default function ResourcesClient({ resources }: ResourcesClientProps) {
     setSubmitResult(null);
 
     try {
-      const res = await fetch("/api/resources/download", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/resources/download", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

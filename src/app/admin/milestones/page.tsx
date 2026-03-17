@@ -90,7 +90,7 @@ export default function AdminMilestonesPage() {
     setLoading(true);
     setFetchError(null);
     try {
-      const res = await fetch("/api/admin/milestones");
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/milestones");
       const json = await res.json();
       if (!json.success) throw new Error(json.error ?? "Yüklenemedi");
       setMilestones(json.data ?? []);

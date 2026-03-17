@@ -146,7 +146,7 @@ export default function DiaPage() {
   const fetchSettings = useCallback(async () => {
     setSettingsLoading(true);
     try {
-      const res = await fetch("/api/admin/dia/settings", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/dia/settings", {
         credentials: "include",
       });
       const json = await res.json();
@@ -172,7 +172,7 @@ export default function DiaPage() {
   const saveSettings = async () => {
     setSettingsSaving(true);
     try {
-      const res = await fetch("/api/admin/dia/settings", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/dia/settings", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -197,7 +197,7 @@ export default function DiaPage() {
     setTestLoading(true);
     setTestResult(null);
     try {
-      const res = await fetch("/api/admin/dia/test", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/dia/test", {
         method: "POST",
         credentials: "include",
       });
@@ -221,7 +221,7 @@ export default function DiaPage() {
   const syncStock = async () => {
     setStockSyncing(true);
     try {
-      const res = await fetch("/api/admin/dia/sync/stock", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/dia/sync/stock", {
         method: "POST",
         credentials: "include",
       });
@@ -249,7 +249,7 @@ export default function DiaPage() {
   const syncCari = async () => {
     setCariSyncing(true);
     try {
-      const res = await fetch("/api/admin/dia/sync/cari", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/dia/sync/cari", {
         method: "POST",
         credentials: "include",
       });
@@ -277,7 +277,7 @@ export default function DiaPage() {
   const fetchLogs = useCallback(async () => {
     setLogsLoading(true);
     try {
-      const res = await fetch("/api/admin/webhooks?limit=50", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/webhooks?limit=50", {
         credentials: "include",
       });
       const json = await res.json();

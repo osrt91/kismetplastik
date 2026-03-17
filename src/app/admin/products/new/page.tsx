@@ -14,7 +14,7 @@ export default function NewProductPage() {
 
   // Fetch categories from API
   useEffect(() => {
-    fetch("/api/products/categories")
+    fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/products/categories")
       .then((res) => res.json())
       .then((json) => {
         if (json.success && json.data) setCategories(json.data);
@@ -100,7 +100,7 @@ export default function NewProductPage() {
 
     setFormError(null);
     try {
-      const res = await fetch("/api/admin/products", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/products", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

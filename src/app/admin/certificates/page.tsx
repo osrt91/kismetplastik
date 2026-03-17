@@ -77,7 +77,7 @@ export default function AdminCertificatesPage() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/admin/certificates");
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/certificates");
       const json = await res.json();
       if (!json.success) throw new Error(json.error ?? "Yüklenemedi");
       setCertificates(json.data ?? []);
@@ -153,7 +153,7 @@ export default function AdminCertificatesPage() {
         );
         if (pdfFile) fd.append("file", pdfFile);
 
-        const res = await fetch("/api/admin/certificates", { method: "POST", body: fd });
+        const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/certificates", { method: "POST", body: fd });
         const json = await res.json();
         if (!json.success) throw new Error(json.error ?? "Oluşturulamadı");
       } else if (modal.cert) {

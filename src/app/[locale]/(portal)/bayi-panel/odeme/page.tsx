@@ -48,7 +48,7 @@ export default function PaymentPage() {
   useEffect(() => {
     async function fetchInvoices() {
       try {
-        const res = await fetch("/api/dealer/invoices");
+        const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/dealer/invoices");
         const json = await res.json();
         if (json.success) {
           setInvoices(json.data.ers?.records ?? []);
@@ -141,7 +141,7 @@ export default function PaymentPage() {
     setSubmitting(true);
 
     try {
-      const res = await fetch("/api/payment/initiate", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/payment/initiate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

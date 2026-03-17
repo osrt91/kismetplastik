@@ -124,7 +124,7 @@ function NotificationSettingsTab() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/admin/notifications");
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/notifications");
       const json = await res.json();
       if (!json.success) throw new Error(json.error || "Veri alınamadı");
 
@@ -210,7 +210,7 @@ function NotificationSettingsTab() {
     setError(null);
     setSuccessMsg(null);
     try {
-      const res = await fetch("/api/admin/notifications", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/notifications", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ settings }),

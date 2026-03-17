@@ -179,7 +179,7 @@ export default function AdminSettingsPage() {
     setLoading(true);
     setLoadError(null);
     try {
-      const res = await fetch("/api/admin/settings");
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/settings");
       const json = await res.json();
       if (!res.ok || !json.success) {
         setLoadError(json.error ?? "Ayarlar yüklenemedi");
@@ -244,7 +244,7 @@ export default function AdminSettingsPage() {
         group: group.id,
       }));
 
-      const res = await fetch("/api/admin/settings", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/settings", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ settings: settingsPayload }),
@@ -284,7 +284,7 @@ export default function AdminSettingsPage() {
       const formData = new FormData();
       formData.append("file", file);
 
-      const res = await fetch("/api/admin/settings/upload", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/settings/upload", {
         method: "POST",
         body: formData,
       });

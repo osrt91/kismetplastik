@@ -77,7 +77,7 @@ export default function BayiGirisiPage() {
     setError("");
 
     try {
-      const res = await fetch("/api/auth/login", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

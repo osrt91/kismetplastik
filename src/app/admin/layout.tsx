@@ -126,7 +126,7 @@ export default function AdminLayout({
   }
 
   const handleLogout = async () => {
-    await fetch("/api/admin/auth", { method: "DELETE" });
+    await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/auth", { method: "DELETE" });
     router.push("/admin/login");
   };
 

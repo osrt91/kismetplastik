@@ -94,7 +94,7 @@ function MappingModal({
 
   useEffect(() => {
     if (!isEdit) {
-      fetch("/api/admin/dealers")
+      fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/dealers")
         .then((r) => r.json())
         .then((json) => {
           if (json.success) setDealers(json.data ?? []);
@@ -112,7 +112,7 @@ function MappingModal({
       const method = isEdit ? "PUT" : "POST";
       const body = isEdit ? { id: initial!.id, ...form } : form;
 
-      const res = await fetch("/api/admin/dealer-mappings", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/dealer-mappings", {
         method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -267,7 +267,7 @@ export default function AdminDealerMappingsPage() {
     setLoading(true);
     setFetchError(null);
     try {
-      const res = await fetch("/api/admin/dealer-mappings");
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/dealer-mappings");
       const json = await res.json();
       if (json.success) setMappings(json.data);
       else setFetchError(json.error);
@@ -299,7 +299,7 @@ export default function AdminDealerMappingsPage() {
   const handleToggle = async (mapping: MappingRow, field: "is_approved" | "can_direct_order") => {
     setTogglingId(mapping.id);
     try {
-      const res = await fetch("/api/admin/dealer-mappings", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/dealer-mappings", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: mapping.id, [field]: !mapping[field] }),

@@ -225,7 +225,7 @@ export default function SampleRequestClient({ content }: SampleRequestClientProp
     };
 
     try {
-      const res = await fetch("/api/sample-request", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/sample-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

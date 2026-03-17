@@ -82,7 +82,7 @@ export default function AdminAnalyticsPage() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/admin/analytics");
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/analytics");
       const json = await res.json();
       if (!json.success) throw new Error(json.error ?? "Veri alınamadı");
       setData(json.data as AnalyticsData);

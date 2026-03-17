@@ -114,7 +114,7 @@ export default function EditBlogPage() {
       const fd = new FormData();
       fd.append("file", file);
 
-      const res = await fetch("/api/admin/blog/upload", { method: "POST", body: fd });
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/admin/blog/upload", { method: "POST", body: fd });
       const json = await res.json();
 
       if (res.ok && json.success) {

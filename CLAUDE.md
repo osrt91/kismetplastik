@@ -335,7 +335,7 @@ Bu projede aşağıdaki araçlar aktif kullanılmalıdır. Doğru zamanda doğru
 - **chrome-devtools** → Frontend bug'larda "Chrome DevTools ile inceleyelim mi?" öner
 - **gsc** → SEO çalışmasında "GSC'den performans kontrol edelim mi?" öner
 - **ui-expert** → Yeni sayfa/bileşen tasarlarken "UI Expert ile kontrol yapalım mı?" öner
-- **ui-screenshot-to-prompt** → Görsel/mockup paylaşıldığında "Koda çevirelim mi?" öner
+- **chrome-devtools** → Görsel/mockup paylaşıldığında screenshot + DOM analizi ile "Koda çevirelim mi?" öner
 - **hostinger-mcp** → Deploy ve sunucu işlemleri
 - **context7** → Kütüphane API'si hakkında şüphe olduğunda güncel doküman kontrol et
 

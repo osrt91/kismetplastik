@@ -77,7 +77,7 @@ export default function TekliflerimPage() {
       }));
 
       // Create order via dealer orders API
-      const res = await fetch("/api/dealer/orders", {
+      const res = await fetch((process.env.NEXT_PUBLIC_BASE_PATH || "") + "/api/dealer/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
