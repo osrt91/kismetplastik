@@ -54,8 +54,11 @@ AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22:33:44
 
 ## Adım 3: Digital Asset Links Güncelleme
 
-`public/.well-known/assetlinks.json` dosyasındaki `BURAYA_SHA256_FINGERPRINT_YAZILACAK` yerine
-Adım 2'deki SHA256 fingerprint'i yapıştırın:
+`public/.well-known/assetlinks.json` dosyasında **iki** SHA256 fingerprint gerekir:
+
+1. **Upload Key** — Adım 2'de aldığınız yerel keystore fingerprint'i
+2. **Play App Signing Key** — Google Play Console > Setup > App signing sayfasından alınır
+   (Google Play App Signing'e kaydolduktan sonra gösterilir)
 
 ```json
 [
@@ -65,12 +68,17 @@ Adım 2'deki SHA256 fingerprint'i yapıştırın:
       "namespace": "android_app",
       "package_name": "com.kismetplastik.app",
       "sha256_cert_fingerprints": [
-        "AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99"
+        "AA:BB:CC:DD:...:99",
+        "11:22:33:44:...:FF"
       ]
     }
   }
 ]
 ```
+
+> **Neden iki fingerprint?** Google Play, yüklenen AAB'yi kendi anahtarıyla yeniden imzalar.
+> Test APK'sı yerel anahtarla, Play Store sürümü Google'ın anahtarıyla çalışır.
+> Her ikisini de eklemezseniz adres çubuğu görünür.
 
 Sonra siteyi tekrar deploy edin:
 ```bash
@@ -168,4 +176,23 @@ Uygulama güncellemesi için:
 
 ---
 
-*Son güncelleme: 2026-02-27*
+## Otomatik Build
+
+`build-apps.sh` script'ini kullanarak otomatik build yapabilirsiniz:
+
+```bash
+cd twa
+
+# Tum kontroller + build
+bash build-apps.sh
+
+# Sadece Android build
+bash build-apps.sh --android
+
+# Sadece gereksinim kontrolu
+bash build-apps.sh --check
+```
+
+---
+
+*Son güncelleme: 2026-03-17*

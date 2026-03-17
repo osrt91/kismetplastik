@@ -52,12 +52,39 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Calculate total from selected ERS invoices
-    // In production this would validate against DIA invoice data
-    const { amount } = body;
-    if (!amount || amount <= 0) {
+    // Server-side amount validation: recalculate from invoice data in DB
+    // to prevent client-side tampering with payment amounts
+    const { data: invoices, error: invoiceError } = await supabase
+      .from("invoices")
+      .select("id, total_amount, status")
+      .in("id", invoiceIds)
+      .eq("profile_id", user.id);
+
+    if (invoiceError || !invoices || invoices.length !== invoiceIds.length) {
       return NextResponse.json(
-        { success: false, error: "Geçersiz tutar" },
+        { success: false, error: "Fatura(lar) bulunamadı veya erişim yetkiniz yok." },
+        { status: 404 }
+      );
+    }
+
+    // Ensure none of the invoices are already paid
+    const alreadyPaid = invoices.filter((inv) => inv.status === "paid");
+    if (alreadyPaid.length > 0) {
+      return NextResponse.json(
+        { success: false, error: "Seçilen faturalardan bazıları zaten ödenmiş." },
+        { status: 400 }
+      );
+    }
+
+    // Calculate server-side total from invoice records
+    const serverAmount = invoices.reduce((sum, inv) => sum + (inv.total_amount ?? 0), 0);
+    const roundedServerAmount = Math.round(serverAmount * 100) / 100;
+
+    // Reject if client-sent amount doesn't match server-calculated total
+    const { amount } = body;
+    if (!amount || amount <= 0 || Math.abs(amount - roundedServerAmount) > 0.01) {
+      return NextResponse.json(
+        { success: false, error: "Tutar, fatura toplamıyla eşleşmiyor." },
         { status: 400 }
       );
     }

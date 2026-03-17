@@ -6,6 +6,8 @@ import {
   Download,
   Filter,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   X,
   AlertTriangle,
   MessageCircle,
@@ -13,6 +15,7 @@ import {
 } from "lucide-react";
 import { useLocale } from "@/contexts/LocaleContext";
 import { supabaseBrowser } from "@/lib/supabase/client";
+import { cn } from "@/lib/utils";
 
 type InvoiceStatus = "draft" | "issued" | "paid" | "cancelled";
 
@@ -54,6 +57,10 @@ const labels: Record<string, Record<string, string>> = {
     overdueAmount: "Gecikmiş Tutar",
     paidAmount: "Ödenen Tutar",
     totalInvoices: "Toplam Fatura",
+    prev: "Önceki",
+    next: "Sonraki",
+    page: "Sayfa",
+    of: "/",
   },
   en: {
     title: "My Invoices",
@@ -80,6 +87,10 @@ const labels: Record<string, Record<string, string>> = {
     overdueAmount: "Overdue Amount",
     paidAmount: "Paid Amount",
     totalInvoices: "Total Invoices",
+    prev: "Previous",
+    next: "Next",
+    page: "Page",
+    of: "/",
   },
 };
 
@@ -105,6 +116,8 @@ const statusConfig: Record<
   },
 };
 
+const PAGE_SIZE = 20;
+
 function isOverdue(invoice: Invoice): boolean {
   if (invoice.status === "paid" || invoice.status === "cancelled") return false;
   if (!invoice.due_date) return false;
@@ -121,6 +134,7 @@ export default function FaturalarimPage() {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const [showFilters, setShowFilters] = useState(false);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     async function loadInvoices() {
@@ -171,6 +185,19 @@ export default function FaturalarimPage() {
 
     return result;
   }, [invoices, statusFilter, dateFrom, dateTo]);
+
+  // Reset page when filters change
+  const filterKey = `${statusFilter}-${dateFrom}-${dateTo}`;
+  useEffect(() => {
+    setPage(1);
+  }, [filterKey]);
+
+  // Pagination
+  const totalPages = Math.max(1, Math.ceil(filteredInvoices.length / PAGE_SIZE));
+  const paginatedInvoices = useMemo(() => {
+    const start = (page - 1) * PAGE_SIZE;
+    return filteredInvoices.slice(start, start + PAGE_SIZE);
+  }, [filteredInvoices, page]);
 
   // Summary calculations
   const summary = useMemo(() => {
@@ -437,7 +464,7 @@ export default function FaturalarimPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-neutral-50 dark:divide-neutral-700">
-                {filteredInvoices.map((invoice) => {
+                {paginatedInvoices.map((invoice) => {
                   const overdue = isOverdue(invoice);
                   return (
                     <tr
@@ -493,7 +520,7 @@ export default function FaturalarimPage() {
 
           {/* Mobile Cards */}
           <div className="space-y-3 md:hidden">
-            {filteredInvoices.map((invoice) => {
+            {paginatedInvoices.map((invoice) => {
               const overdue = isOverdue(invoice);
               return (
                 <div
@@ -573,6 +600,41 @@ export default function FaturalarimPage() {
               );
             })}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-between rounded-lg border border-neutral-200 bg-white px-4 py-3 dark:border-neutral-700 dark:bg-neutral-800">
+              <button
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={page === 1}
+                className={cn(
+                  "flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors",
+                  page === 1
+                    ? "cursor-not-allowed text-neutral-300"
+                    : "text-neutral-600 hover:bg-neutral-100"
+                )}
+              >
+                <ChevronLeft size={16} />
+                {t.prev}
+              </button>
+              <span className="text-sm text-neutral-500">
+                {t.page} {page} {t.of} {totalPages}
+              </span>
+              <button
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                disabled={page === totalPages}
+                className={cn(
+                  "flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors",
+                  page === totalPages
+                    ? "cursor-not-allowed text-neutral-300"
+                    : "text-neutral-600 hover:bg-neutral-100"
+                )}
+              >
+                {t.next}
+                <ChevronRight size={16} />
+              </button>
+            </div>
+          )}
         </>
       )}
     </div>

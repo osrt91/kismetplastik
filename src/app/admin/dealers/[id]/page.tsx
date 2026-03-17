@@ -74,6 +74,7 @@ export default function DealerDetailPage({
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
 
   const [form, setForm] = useState<EditableProfile>({
     full_name: "",
@@ -139,6 +140,7 @@ export default function DealerDetailPage({
   const handleSave = async () => {
     setSaving(true);
     setSaveSuccess(false);
+    setSaveError(null);
     try {
       const res = await fetch(`/api/admin/dealers/${id}`, {
         method: "PUT",
@@ -151,7 +153,8 @@ export default function DealerDetailPage({
       setSaveSuccess(true);
       setTimeout(() => setSaveSuccess(false), 3000);
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Kaydetme hatası.");
+      setSaveError(err instanceof Error ? err.message : "Kaydetme hatası.");
+      setTimeout(() => setSaveError(null), 5000);
     } finally {
       setSaving(false);
     }
@@ -163,8 +166,47 @@ export default function DealerDetailPage({
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-24">
-        <Loader2 size={28} className="animate-spin text-primary" />
+      <div className="space-y-6">
+        {/* Header skeleton */}
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-16 animate-pulse rounded-lg bg-muted" />
+            <div className="space-y-2">
+              <div className="h-6 w-48 animate-pulse rounded bg-muted" />
+              <div className="h-4 w-32 animate-pulse rounded bg-muted" />
+            </div>
+          </div>
+          <div className="h-10 w-24 animate-pulse rounded-lg bg-muted" />
+        </div>
+        <div className="grid gap-6 lg:grid-cols-3">
+          <div className="space-y-5 lg:col-span-2">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="rounded-xl border border-border bg-card p-5 shadow-sm">
+                <div className="mb-4 h-5 w-32 animate-pulse rounded bg-muted" />
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {[1, 2, 3, 4].map((j) => (
+                    <div key={j} className="space-y-2">
+                      <div className="h-3 w-16 animate-pulse rounded bg-muted" />
+                      <div className="h-9 w-full animate-pulse rounded-lg bg-muted" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="space-y-5">
+            {[1, 2].map((i) => (
+              <div key={i} className="rounded-xl border border-border bg-card p-5 shadow-sm">
+                <div className="mb-3 h-5 w-24 animate-pulse rounded bg-muted" />
+                <div className="space-y-3">
+                  {[1, 2, 3].map((j) => (
+                    <div key={j} className="h-4 w-full animate-pulse rounded bg-muted" />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
@@ -225,6 +267,17 @@ export default function DealerDetailPage({
           </button>
         </div>
       </div>
+
+      {/* Save error banner */}
+      {saveError && (
+        <div className="flex items-center gap-2 rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+          <AlertTriangle size={16} />
+          {saveError}
+          <button onClick={() => setSaveError(null)} className="ml-auto text-destructive/60 hover:text-destructive">
+            &times;
+          </button>
+        </div>
+      )}
 
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Left column: form */}

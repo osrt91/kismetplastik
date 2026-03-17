@@ -150,24 +150,32 @@ export function verifyCallback(
     const response = formData.Response ?? "";
     const amount = parseFloat(formData.amount ?? "0");
 
-    // Verify hash
+    // Verify hash — mandatory check, reject callbacks without HASH data
+    // A missing HASH could indicate a forged callback bypassing bank verification
     const hashParams = formData.HASHPARAMS ?? "";
     const hashParamsVal = formData.HASHPARAMSVAL ?? "";
     const bankHash = formData.HASH ?? "";
 
-    if (hashParams && hashParamsVal) {
-      const calculatedHash = createHash("sha512")
-        .update(hashParamsVal + config.storeKey)
-        .digest("base64");
+    if (!hashParams || !hashParamsVal || !bankHash) {
+      return {
+        success: false,
+        orderId,
+        error: "Hash parametreleri eksik — güvenlik doğrulaması yapılamadı",
+        rawResponse: formData,
+      };
+    }
 
-      if (calculatedHash !== bankHash) {
-        return {
-          success: false,
-          orderId,
-          error: "Hash doğrulama başarısız — olası sahte işlem",
-          rawResponse: formData,
-        };
-      }
+    const calculatedHash = createHash("sha512")
+      .update(hashParamsVal + config.storeKey)
+      .digest("base64");
+
+    if (calculatedHash !== bankHash) {
+      return {
+        success: false,
+        orderId,
+        error: "Hash doğrulama başarısız — olası sahte işlem",
+        rawResponse: formData,
+      };
     }
 
     // Check 3D authentication status

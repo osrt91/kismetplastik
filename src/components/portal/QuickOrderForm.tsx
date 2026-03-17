@@ -38,6 +38,8 @@ const labels: Record<string, Record<string, string>> = {
     removeRow: "Satırı kaldır",
     currency: "TL",
     minOrder: "Min. sipariş",
+    belowMinOrder: "Miktar minimum sipariş adedinin altında",
+    submitting: "Gönderiliyor...",
   },
   en: {
     title: "Quick Order",
@@ -67,6 +69,8 @@ const labels: Record<string, Record<string, string>> = {
     removeRow: "Remove row",
     currency: "TL",
     minOrder: "Min. order",
+    belowMinOrder: "Quantity is below minimum order",
+    submitting: "Submitting...",
   },
 };
 
@@ -117,6 +121,7 @@ export default function QuickOrderForm() {
   ]);
   const [showExcelModal, setShowExcelModal] = useState(false);
   const [excelText, setExcelText] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   /* ── Autocomplete state ──────────────────────────────────────── */
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -216,6 +221,11 @@ export default function QuickOrderForm() {
 
   const validRows = rows.filter((r) => r.product && r.quantity > 0);
 
+  // Check if any valid row has quantity below product minOrder
+  const rowsBelowMinOrder = validRows.filter(
+    (r) => r.product && r.quantity < r.product.minOrder
+  );
+
   /* ── Excel paste ─────────────────────────────────────────────── */
 
   const handleExcelApply = useCallback(() => {
@@ -275,22 +285,43 @@ export default function QuickOrderForm() {
 
   /* ── Submit handlers ─────────────────────────────────────────── */
 
-  const handleCreateOrder = useCallback(() => {
+  const handleCreateOrder = useCallback(async () => {
+    if (submitting) return;
     if (validRows.length === 0) {
       toast.error(t.noProducts);
       return;
     }
-    // In a real app, this would call an API
-    toast.success(t.orderSuccess);
-  }, [validRows, t]);
+    if (rowsBelowMinOrder.length > 0) {
+      toast.error(t.belowMinOrder);
+      return;
+    }
+    setSubmitting(true);
+    try {
+      // In a real app, this would call an API
+      toast.success(t.orderSuccess);
+    } finally {
+      setSubmitting(false);
+    }
+  }, [submitting, validRows, rowsBelowMinOrder, t]);
 
-  const handleRequestQuote = useCallback(() => {
+  const handleRequestQuote = useCallback(async () => {
+    if (submitting) return;
     if (validRows.length === 0) {
       toast.error(t.noProducts);
       return;
     }
-    toast.success(t.quoteSuccess);
-  }, [validRows, t]);
+    if (rowsBelowMinOrder.length > 0) {
+      toast.error(t.belowMinOrder);
+      return;
+    }
+    setSubmitting(true);
+    try {
+      // In a real app, this would call an API
+      toast.success(t.quoteSuccess);
+    } finally {
+      setSubmitting(false);
+    }
+  }, [submitting, validRows, rowsBelowMinOrder, t]);
 
   /* ── Format helpers ──────────────────────────────────────────── */
 
@@ -394,8 +425,17 @@ export default function QuickOrderForm() {
                         updateRow(row.id, { quantity: parseInt(e.target.value, 10) || 0 })
                       }
                       placeholder="0"
-                      className="w-full rounded-lg border border-neutral-200 px-3 py-2 font-mono text-sm text-[#0A1628] placeholder:text-neutral-300 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
+                      className={`w-full rounded-lg border px-3 py-2 font-mono text-sm text-[#0A1628] placeholder:text-neutral-300 focus:outline-none focus:ring-1 ${
+                        row.product && row.quantity > 0 && row.quantity < row.product.minOrder
+                          ? "border-red-300 focus:border-red-400 focus:ring-red-400"
+                          : "border-neutral-200 focus:border-amber-400 focus:ring-amber-400"
+                      }`}
                     />
+                    {row.product && row.quantity > 0 && row.quantity < row.product.minOrder && (
+                      <p className="mt-0.5 text-[10px] text-red-500">
+                        {t.minOrder}: {row.product.minOrder.toLocaleString()}
+                      </p>
+                    )}
                   </td>
                   {/* Unit Price */}
                   <td className="px-4 py-2 text-right">
@@ -501,8 +541,17 @@ export default function QuickOrderForm() {
                       updateRow(row.id, { quantity: parseInt(e.target.value, 10) || 0 })
                     }
                     placeholder="0"
-                    className="mt-1 h-11 w-full rounded-lg border border-neutral-200 px-3 font-mono text-sm text-[#0A1628] placeholder:text-neutral-300 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
+                    className={`mt-1 h-11 w-full rounded-lg border px-3 font-mono text-sm text-[#0A1628] placeholder:text-neutral-300 focus:outline-none focus:ring-1 ${
+                      row.product && row.quantity > 0 && row.quantity < row.product.minOrder
+                        ? "border-red-300 focus:border-red-400 focus:ring-red-400"
+                        : "border-neutral-200 focus:border-amber-400 focus:ring-amber-400"
+                    }`}
                   />
+                  {row.product && row.quantity > 0 && row.quantity < row.product.minOrder && (
+                    <p className="mt-0.5 text-[10px] text-red-500">
+                      Min: {row.product.minOrder.toLocaleString()}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label className="text-xs font-medium text-neutral-500">{t.unitPrice}</label>
@@ -564,18 +613,20 @@ export default function QuickOrderForm() {
             <button
               type="button"
               onClick={handleCreateOrder}
-              className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-amber-500 px-5 text-sm font-semibold text-[#0A1628] shadow-sm transition-all hover:bg-amber-400"
+              disabled={submitting}
+              className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-amber-500 px-5 text-sm font-semibold text-[#0A1628] shadow-sm transition-all hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <ShoppingCart size={16} />
-              {t.createOrder}
+              {submitting ? t.submitting : t.createOrder}
             </button>
             <button
               type="button"
               onClick={handleRequestQuote}
-              className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-xl border border-[#0A1628] bg-transparent px-5 text-sm font-semibold text-[#0A1628] transition-all hover:bg-[#0A1628] hover:text-white"
+              disabled={submitting}
+              className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-xl border border-[#0A1628] bg-transparent px-5 text-sm font-semibold text-[#0A1628] transition-all hover:bg-[#0A1628] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
             >
               <FileText size={16} />
-              {t.requestQuote}
+              {submitting ? t.submitting : t.requestQuote}
             </button>
           </div>
         </div>

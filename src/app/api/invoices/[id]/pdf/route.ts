@@ -36,8 +36,25 @@ export async function GET(
     }
 
     // If a pre-generated PDF exists in storage, redirect to it
+    // Validate URL domain to prevent open redirect attacks
     if (invoice.pdf_url) {
-      return NextResponse.redirect(invoice.pdf_url);
+      try {
+        const pdfUrl = new URL(invoice.pdf_url);
+        const allowedHosts = ["supabase.kismetplastik.com", "kismetplastik.com", "www.kismetplastik.com"];
+        if (!allowedHosts.includes(pdfUrl.hostname)) {
+          console.error("[Invoice PDF] Blocked redirect to untrusted host:", pdfUrl.hostname);
+          return NextResponse.json(
+            { success: false, error: "Geçersiz PDF URL'i." },
+            { status: 400 }
+          );
+        }
+        return NextResponse.redirect(invoice.pdf_url);
+      } catch {
+        return NextResponse.json(
+          { success: false, error: "Geçersiz PDF URL'i." },
+          { status: 400 }
+        );
+      }
     }
 
     // Fetch related order and order items for PDF generation

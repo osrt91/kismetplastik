@@ -18,13 +18,19 @@ export async function GET(request: NextRequest) {
     const rawSearch = searchParams.get("search") ?? "";
     const search = sanitizeSearchInput(rawSearch);
 
+    // Escape SQL LIKE wildcards and single quotes to prevent injection
+    const escapedSearch = search
+      .replace(/'/g, "''")
+      .replace(/%/g, "\\%")
+      .replace(/_/g, "\\_");
+
     const catalog = await cached(
       cacheKey.priceCatalog(page, limit) + (search ? `:${search}` : ""),
       TTL.PRICE_CATALOG,
       () => getProductPricesForCatalog({
         page,
         limit,
-        filter: search ? `stokkartkodu like '%${search}%' or aciklama like '%${search}%'` : undefined,
+        filter: escapedSearch ? `stokkartkodu like '%${escapedSearch}%' or aciklama like '%${escapedSearch}%'` : undefined,
       })
     );
 

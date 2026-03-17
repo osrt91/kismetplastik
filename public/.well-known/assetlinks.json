@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.kismetplastik.app",
       "sha256_cert_fingerprints": [
-        "BURAYA_SHA256_FINGERPRINT_YAZILACAK"
+        "UPLOAD_KEY_SHA256_BURAYA_YAZILACAK",
+        "PLAY_APP_SIGNING_SHA256_BURAYA_YAZILACAK"
       ]
     }
   }

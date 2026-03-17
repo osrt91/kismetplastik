@@ -16,6 +16,8 @@ import {
   Shield,
   ToggleLeft,
   ToggleRight,
+  AlertCircle,
+  X,
 } from "lucide-react";
 import { DbProfile, UserRole } from "@/types/database";
 
@@ -44,6 +46,7 @@ export default function AdminDealersPage() {
   const [total, setTotal] = useState(0);
 
   const [togglingId, setTogglingId] = useState<string | null>(null);
+  const [actionError, setActionError] = useState<string | null>(null);
 
   const fetchDealers = useCallback(async () => {
     setLoading(true);
@@ -94,7 +97,8 @@ export default function AdminDealersPage() {
         )
       );
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Hata oluştu.");
+      setActionError(err instanceof Error ? err.message : "Hata oluştu.");
+      setTimeout(() => setActionError(null), 5000);
     } finally {
       setTogglingId(null);
     }
@@ -113,7 +117,8 @@ export default function AdminDealersPage() {
         prev.map((d) => (d.id === dealer.id ? { ...d, role } : d))
       );
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Hata oluştu.");
+      setActionError(err instanceof Error ? err.message : "Hata oluştu.");
+      setTimeout(() => setActionError(null), 5000);
     }
   };
 
@@ -196,6 +201,17 @@ export default function AdminDealersPage() {
       {error && (
         <div className="rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
           {error}
+        </div>
+      )}
+
+      {/* Action error banner */}
+      {actionError && (
+        <div className="flex items-center gap-2 rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+          <AlertCircle size={16} />
+          {actionError}
+          <button onClick={() => setActionError(null)} className="ml-auto text-destructive/60 hover:text-destructive">
+            <X size={14} />
+          </button>
         </div>
       )}
 

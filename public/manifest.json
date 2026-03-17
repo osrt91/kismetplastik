@@ -16,8 +16,50 @@
   "prefer_related_applications": false,
   "icons": [
     {
+      "src": "/test/images/icon-48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/test/images/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/test/images/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/test/images/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/test/images/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
       "src": "/test/images/icon-192.png",
       "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/test/images/icon-256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/test/images/icon-384.png",
+      "sizes": "384x384",
       "type": "image/png",
       "purpose": "any"
     },
@@ -38,6 +80,12 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    },
+    {
+      "src": "/test/images/icon-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
   "shortcuts": [
@@ -58,9 +106,67 @@
       "short_name": "İletişim",
       "url": "/test/tr/iletisim",
       "icons": [{ "src": "/test/images/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Bayi Portalı",
+      "short_name": "Portal",
+      "url": "/test/tr/bayi-panel",
+      "icons": [{ "src": "/test/images/icon-192.png", "sizes": "192x192" }]
     }
   ],
-  "screenshots": [],
-  "related_applications": [],
-  "handle_links": "preferred"
+  "screenshots": [
+    {
+      "src": "/test/images/screenshots/screenshot-mobile-home.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Ana Sayfa - Kısmet Plastik"
+    },
+    {
+      "src": "/test/images/screenshots/screenshot-mobile-products.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Ürünler - PET Şişe ve Ambalaj"
+    },
+    {
+      "src": "/test/images/screenshots/screenshot-mobile-portal.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "B2B Bayi Portalı"
+    },
+    {
+      "src": "/test/images/screenshots/screenshot-desktop-home.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Ana Sayfa - Masaüstü Görünüm"
+    },
+    {
+      "src": "/test/images/screenshots/screenshot-desktop-products.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Ürünler - Masaüstü Görünüm"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.kismetplastik.app",
+      "id": "com.kismetplastik.app"
+    },
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/app/kismet-plastik/id000000000"
+    }
+  ],
+  "handle_links": "preferred",
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  }
 }

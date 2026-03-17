@@ -278,22 +278,6 @@ export default function BayiGirisiPage() {
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between">
-                      <label className="flex items-center gap-2 text-sm text-neutral-600">
-                        <input
-                          type="checkbox"
-                          className="rounded border-neutral-300"
-                        />
-                        {d.rememberMe}
-                      </label>
-                      <a
-                        href="#"
-                        className="text-sm font-medium text-primary-700 transition-colors hover:text-primary-900"
-                      >
-                        {d.forgotPassword}
-                      </a>
-                    </div>
-
                     <button
                       type="submit"
                       disabled={loading}

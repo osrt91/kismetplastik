@@ -289,8 +289,67 @@ export default function AdminOrderDetailPage({
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-24 text-muted-foreground">
-        <RefreshCw size={24} className="animate-spin" />
+      <div className="space-y-6">
+        {/* Header skeleton */}
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <div className="mb-3 h-5 w-32 animate-pulse rounded bg-muted" />
+            <div className="flex items-center gap-3">
+              <div className="h-8 w-48 animate-pulse rounded bg-muted" />
+              <div className="h-6 w-20 animate-pulse rounded-full bg-muted" />
+            </div>
+            <div className="mt-2 h-4 w-40 animate-pulse rounded bg-muted" />
+          </div>
+        </div>
+        <div className="grid gap-6 lg:grid-cols-3">
+          {/* Left column skeleton */}
+          <div className="space-y-6 lg:col-span-2">
+            {/* Order items skeleton */}
+            <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+              <div className="flex items-center gap-2 border-b border-border px-4 py-3">
+                <div className="h-5 w-36 animate-pulse rounded bg-muted" />
+              </div>
+              <div className="p-4 space-y-3">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="flex items-center justify-between gap-4">
+                    <div className="h-4 w-40 animate-pulse rounded bg-muted" />
+                    <div className="h-4 w-16 animate-pulse rounded bg-muted" />
+                    <div className="h-4 w-20 animate-pulse rounded bg-muted" />
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Timeline skeleton */}
+            <div className="rounded-xl border border-border bg-card shadow-sm">
+              <div className="flex items-center gap-2 border-b border-border px-4 py-3">
+                <div className="h-5 w-32 animate-pulse rounded bg-muted" />
+              </div>
+              <div className="p-4 space-y-4">
+                {[1, 2].map((i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="h-4 w-4 animate-pulse rounded-full bg-muted" />
+                    <div className="h-4 w-48 animate-pulse rounded bg-muted" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          {/* Right column skeleton */}
+          <div className="space-y-6">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="rounded-xl border border-border bg-card shadow-sm">
+                <div className="flex items-center gap-2 border-b border-border px-4 py-3">
+                  <div className="h-5 w-32 animate-pulse rounded bg-muted" />
+                </div>
+                <div className="p-4 space-y-3">
+                  {[1, 2, 3].map((j) => (
+                    <div key={j} className="h-4 w-full animate-pulse rounded bg-muted" />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }

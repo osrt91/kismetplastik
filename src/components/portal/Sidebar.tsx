@@ -93,6 +93,14 @@ export default function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
   const handleLogout = async () => {
     const supabase = supabaseBrowser();
     await supabase.auth.signOut();
+    // Clean up portal-specific localStorage data
+    try {
+      localStorage.removeItem("kismet_cart");
+      localStorage.removeItem("kismet_recent_products");
+      localStorage.removeItem("kismet_portal_prefs");
+    } catch {
+      // localStorage may be unavailable
+    }
     router.push(`/${locale}/bayi-girisi`);
     router.refresh();
   };

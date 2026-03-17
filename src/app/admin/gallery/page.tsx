@@ -14,6 +14,8 @@ import {
   Eye,
   EyeOff,
   Loader2,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import type { DbGalleryImage, GalleryCategory } from "@/types/database";
 
@@ -45,6 +47,8 @@ const CATEGORY_BADGE: Record<GalleryCategory, string> = {
 
 const TABS: FilterTab[] = ["all", "uretim", "urunler", "etkinlikler"];
 
+const PAGE_SIZE = 20;
+
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function AdminGalleryPage() {
@@ -55,6 +59,11 @@ export default function AdminGalleryPage() {
   const [activeTab, setActiveTab] = useState<FilterTab>("all");
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [showUploadPanel, setShowUploadPanel] = useState(false);
+
+  // Pagination
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
 
   const [uploadForm, setUploadForm] = useState<UploadForm>({
     files: [],
@@ -81,28 +90,32 @@ export default function AdminGalleryPage() {
     setLoading(true);
     setError(null);
     try {
-      const url =
-        activeTab === "all"
-          ? "/api/admin/gallery"
-          : `/api/admin/gallery?category=${activeTab}`;
-      const res = await fetch(url);
+      const params = new URLSearchParams({
+        page: String(page),
+        limit: String(PAGE_SIZE),
+      });
+      if (activeTab !== "all") params.set("category", activeTab);
+      const res = await fetch(`/api/admin/gallery?${params}`);
       const json = await res.json();
       if (!json.success) throw new Error(json.error || "Yüklenemedi.");
       setImages(json.data ?? []);
+      setTotal(json.pagination?.total ?? 0);
+      setTotalPages(json.pagination?.totalPages ?? 1);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Bir hata oluştu.");
     } finally {
       setLoading(false);
     }
-  }, [activeTab]);
+  }, [activeTab, page]);
 
   useEffect(() => {
     fetchImages();
   }, [fetchImages]);
 
-  // Clear selection when tab changes
+  // Clear selection and reset page when tab changes
   useEffect(() => {
     setSelectedIds(new Set());
+    setPage(1);
   }, [activeTab]);
 
   // ─── Selection ──────────────────────────────────────────────────────────────
@@ -171,7 +184,8 @@ export default function AdminGalleryPage() {
         return next;
       });
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Silme başarısız.");
+      setError(err instanceof Error ? err.message : "Silme başarısız.");
+      setTimeout(() => setError(null), 5000);
     }
   };
 
@@ -190,7 +204,8 @@ export default function AdminGalleryPage() {
       setImages((prev) => prev.filter((img) => !selectedIds.has(img.id)));
       setSelectedIds(new Set());
     } catch {
-      alert("Bazı görseller silinemedi.");
+      setError("Bazı görseller silinemedi.");
+      setTimeout(() => setError(null), 5000);
     } finally {
       setBulkDeleting(false);
     }
@@ -217,6 +232,9 @@ export default function AdminGalleryPage() {
     const toIndex = images.findIndex((img) => img.id === toId);
     if (fromIndex === -1 || toIndex === -1) return;
 
+    // Store previous order for rollback
+    const previousImages = [...images];
+
     const reordered = [...images];
     const [moved] = reordered.splice(fromIndex, 1);
     reordered.splice(toIndex, 0, moved);
@@ -227,17 +245,25 @@ export default function AdminGalleryPage() {
     dragItemId.current = null;
     dragOverItemId.current = null;
 
-    // Persist new order
+    // Persist new order — revert on failure
     try {
-      await fetch("/api/admin/gallery/reorder", {
+      const res = await fetch("/api/admin/gallery/reorder", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           items: withOrder.map((img) => ({ id: img.id, display_order: img.display_order })),
         }),
       });
+      const json = await res.json();
+      if (!res.ok || !json.success) {
+        setImages(previousImages);
+        setError("Sıralama kaydedilemedi. Eski sıra geri yüklendi.");
+        setTimeout(() => setError(null), 4000);
+      }
     } catch {
-      // Silent fail — UI already updated
+      setImages(previousImages);
+      setError("Sıralama kaydedilemedi. Eski sıra geri yüklendi.");
+      setTimeout(() => setError(null), 4000);
     }
   };
 
@@ -315,7 +341,7 @@ export default function AdminGalleryPage() {
         <div>
           <h1 className="text-2xl font-bold text-foreground">Galeri</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            {images.length} görsel
+            {loading ? "Yükleniyor..." : `${total} görsel`}
             {someSelected && (
               <span className="ml-2 text-primary font-medium">
                 ({selectedIds.size} seçili)
@@ -598,6 +624,13 @@ export default function AdminGalleryPage() {
             </span>
           </div>
 
+          {/* Results count */}
+          {!loading && total > 0 && (
+            <p className="text-xs text-muted-foreground">
+              {total} sonuçtan {Math.min((page - 1) * PAGE_SIZE + 1, total)}–{Math.min(page * PAGE_SIZE, total)} gösteriliyor
+            </p>
+          )}
+
           {/* Image Cards Grid */}
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {images.map((image) => (
@@ -704,6 +737,58 @@ export default function AdminGalleryPage() {
               </div>
             ))}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <button
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={page === 1 || loading}
+                className="flex h-10 items-center gap-1 rounded-lg border border-border px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted disabled:opacity-40"
+              >
+                <ChevronLeft size={14} />
+                <span className="hidden sm:inline">Önceki</span>
+              </button>
+
+              <div className="flex items-center gap-1">
+                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                  let p: number;
+                  if (totalPages <= 5) {
+                    p = i + 1;
+                  } else if (page <= 3) {
+                    p = i + 1;
+                  } else if (page >= totalPages - 2) {
+                    p = totalPages - 4 + i;
+                  } else {
+                    p = page - 2 + i;
+                  }
+                  return (
+                    <button
+                      key={p}
+                      onClick={() => setPage(p)}
+                      disabled={loading}
+                      className={`h-10 w-10 rounded-lg text-sm font-medium transition-colors ${
+                        p === page
+                          ? "bg-primary text-primary-foreground"
+                          : "border border-border text-muted-foreground hover:bg-muted"
+                      }`}
+                    >
+                      {p}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <button
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                disabled={page === totalPages || loading}
+                className="flex h-10 items-center gap-1 rounded-lg border border-border px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted disabled:opacity-40"
+              >
+                <span className="hidden sm:inline">Sonraki</span>
+                <ChevronRight size={14} />
+              </button>
+            </div>
+          )}
         </>
       )}
     </div>

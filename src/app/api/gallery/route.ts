@@ -75,7 +75,13 @@ export async function POST(request: NextRequest) {
     }
 
     const supabase = await supabaseServer();
-    const ext = file.name.split(".").pop() || "jpg";
+    // Derive extension from validated MIME type, not user-supplied filename
+    const MIME_TO_EXT: Record<string, string> = {
+      "image/jpeg": "jpg",
+      "image/png": "png",
+      "image/webp": "webp",
+    };
+    const ext = MIME_TO_EXT[file.type] || "jpg";
     const storagePath = `${category}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
     const buffer = Buffer.from(await file.arrayBuffer());

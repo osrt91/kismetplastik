@@ -28,6 +28,8 @@ export async function POST(request: NextRequest) {
 
   const response = NextResponse.json({ success: true });
   const hashedToken = hashSecret(secret);
+  // path: "/" is intentional — admin API routes at /api/admin/* also require
+  // this cookie, so scoping to /admin alone would break API auth checks.
   response.cookies.set("admin-token", hashedToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",

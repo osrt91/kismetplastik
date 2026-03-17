@@ -10,6 +10,7 @@ import type { CategorySlug } from "@/types/product";
 export default function NewProductPage() {
   const router = useRouter();
   const [saving, setSaving] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
   const [form, setForm] = useState({
     name: "",
     slug: "",
@@ -86,6 +87,7 @@ export default function NewProductPage() {
     e.preventDefault();
     setSaving(true);
 
+    setFormError(null);
     try {
       const res = await fetch("/api/admin/products", {
         method: "POST",
@@ -96,10 +98,10 @@ export default function NewProductPage() {
       if (res.ok) {
         router.push("/admin/products");
       } else {
-        alert(data.error || "Kaydetme başarısız");
+        setFormError(data.error || "Kaydetme başarısız");
       }
     } catch {
-      alert("Bağlantı hatası");
+      setFormError("Bağlantı hatası");
     } finally {
       setSaving(false);
     }
@@ -371,6 +373,13 @@ export default function NewProductPage() {
           </div>
         </div>
 
+        {/* Form error */}
+        {formError && (
+          <div className="rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+            {formError}
+          </div>
+        )}
+
         {/* Actions */}
         <div className="flex items-center justify-end gap-3">
           <Link
@@ -381,7 +390,7 @@ export default function NewProductPage() {
           </Link>
           <button
             type="submit"
-            disabled={saving || !form.name}
+            disabled={saving || !form.name || !form.slug || !form.category}
             className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90 disabled:opacity-50"
           >
             <Save size={16} />

@@ -56,6 +56,8 @@ export default function AdminProductsPage() {
   const [bulkDeleting, setBulkDeleting] = useState(false);
   const [togglingId, setTogglingId] = useState<string | null>(null);
   const [uploadingId, setUploadingId] = useState<string | null>(null);
+  const [actionError, setActionError] = useState<string | null>(null);
+  const [actionSuccess, setActionSuccess] = useState<string | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const uploadTargetRef = useRef<string | null>(null);
@@ -148,6 +150,16 @@ export default function AdminProductsPage() {
     });
   }
 
+  function showActionError(msg: string) {
+    setActionError(msg);
+    setTimeout(() => setActionError(null), 5000);
+  }
+
+  function showActionSuccess(msg: string) {
+    setActionSuccess(msg);
+    setTimeout(() => setActionSuccess(null), 3000);
+  }
+
   // --- Delete single ---
   async function deleteProduct(id: string) {
     if (!confirm("Bu ürünü silmek istediğinize emin misiniz?")) return;
@@ -156,12 +168,13 @@ export default function AdminProductsPage() {
       const res = await fetch(`/api/admin/products/${id}`, { method: "DELETE" });
       const json = await res.json();
       if (!res.ok || !json.success) {
-        alert(json.error ?? "Silme başarısız");
+        showActionError(json.error ?? "Silme başarısız");
         return;
       }
+      showActionSuccess("Ürün başarıyla silindi.");
       await fetchProducts();
     } catch {
-      alert("Bağlantı hatası");
+      showActionError("Bağlantı hatası");
     } finally {
       setDeletingId(null);
     }
@@ -178,9 +191,10 @@ export default function AdminProductsPage() {
           fetch(`/api/admin/products/${id}`, { method: "DELETE" })
         )
       );
+      showActionSuccess(`${selected.size} ürün başarıyla silindi.`);
       await fetchProducts();
     } catch {
-      alert("Toplu silme sırasında hata oluştu");
+      showActionError("Toplu silme sırasında hata oluştu");
     } finally {
       setBulkDeleting(false);
     }
@@ -197,14 +211,14 @@ export default function AdminProductsPage() {
       });
       const json = await res.json();
       if (!res.ok || !json.success) {
-        alert(json.error ?? "Güncelleme başarısız");
+        showActionError(json.error ?? "Güncelleme başarısız");
         return;
       }
       setProducts((prev) =>
         prev.map((p) => (p.id === product.id ? { ...p, in_stock: !p.in_stock } : p))
       );
     } catch {
-      alert("Bağlantı hatası");
+      showActionError("Bağlantı hatası");
     } finally {
       setTogglingId(null);
     }
@@ -234,7 +248,7 @@ export default function AdminProductsPage() {
       });
       const uploadJson = await uploadRes.json();
       if (!uploadRes.ok || !uploadJson.success) {
-        alert(uploadJson.error ?? "Yükleme başarısız");
+        showActionError(uploadJson.error ?? "Yükleme başarısız");
         return;
       }
 
@@ -245,7 +259,7 @@ export default function AdminProductsPage() {
       });
       const updateJson = await updateRes.json();
       if (!updateRes.ok || !updateJson.success) {
-        alert(updateJson.error ?? "Görsel kaydedilemedi");
+        showActionError(updateJson.error ?? "Görsel kaydedilemedi");
         return;
       }
 
@@ -255,7 +269,7 @@ export default function AdminProductsPage() {
         )
       );
     } catch {
-      alert("Yükleme sırasında hata oluştu");
+      showActionError("Yükleme sırasında hata oluştu");
     } finally {
       setUploadingId(null);
       uploadTargetRef.current = null;
@@ -405,6 +419,25 @@ export default function AdminProductsPage() {
           <button onClick={fetchProducts} className="ml-auto underline hover:no-underline">
             Tekrar dene
           </button>
+        </div>
+      )}
+
+      {/* Action error banner */}
+      {actionError && (
+        <div className="flex items-center gap-2 rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+          <AlertCircle size={16} />
+          {actionError}
+          <button onClick={() => setActionError(null)} className="ml-auto text-destructive/60 hover:text-destructive">
+            <X size={14} />
+          </button>
+        </div>
+      )}
+
+      {/* Action success banner */}
+      {actionSuccess && (
+        <div className="flex items-center gap-2 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          <CheckSquare size={16} />
+          {actionSuccess}
         </div>
       )}
 

@@ -19,13 +19,31 @@ export async function GET(request: NextRequest) {
 
   const { searchParams } = new URL(request.url);
   const category = searchParams.get("category");
+  const page = Math.max(1, parseInt(searchParams.get("page") || "1"));
+  const limit = Math.min(100, Math.max(1, parseInt(searchParams.get("limit") || "20")));
+  const from = (page - 1) * limit;
+  const to = from + limit - 1;
 
   const supabase = getSupabaseAdmin();
+
+  // Count query
+  let countQuery = supabase
+    .from("gallery_images")
+    .select("*", { count: "exact", head: true });
+
+  if (category && ["uretim", "urunler", "etkinlikler"].includes(category)) {
+    countQuery = countQuery.eq("category", category);
+  }
+
+  const { count } = await countQuery;
+
+  // Data query with pagination
   let query = supabase
     .from("gallery_images")
     .select("*")
     .order("display_order", { ascending: true })
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: false })
+    .range(from, to);
 
   if (category && ["uretim", "urunler", "etkinlikler"].includes(category)) {
     query = query.eq("category", category);
@@ -37,7 +55,16 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
 
-  return NextResponse.json({ success: true, data });
+  return NextResponse.json({
+    success: true,
+    data,
+    pagination: {
+      page,
+      limit,
+      total: count ?? 0,
+      totalPages: Math.max(1, Math.ceil((count ?? 0) / limit)),
+    },
+  });
 }
 
 export async function POST(request: NextRequest) {

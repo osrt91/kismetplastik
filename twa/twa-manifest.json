@@ -1,20 +1,21 @@
 {
   "packageId": "com.kismetplastik.app",
   "host": "www.kismetplastik.com",
-  "name": "Kısmet Plastik",
+  "name": "Kısmet Plastik - B2B Kozmetik Ambalaj",
   "launcherName": "Kısmet Plastik",
   "display": "standalone",
   "themeColor": "#0A1628",
-  "themeColorDark": "#0A1628",
+  "themeColorDark": "#0D0D0D",
   "navigationColor": "#0A1628",
-  "navigationColorDark": "#0A1628",
+  "navigationColorDark": "#0D0D0D",
   "navigationDividerColor": "#0A1628",
-  "navigationDividerColorDark": "#0A1628",
+  "navigationDividerColorDark": "#0D0D0D",
   "backgroundColor": "#FAFAF7",
-  "enableNotifications": false,
+  "enableNotifications": true,
   "startUrl": "/test/tr",
   "iconUrl": "https://www.kismetplastik.com/test/images/icon-512.png",
   "maskableIconUrl": "https://www.kismetplastik.com/test/images/icon-maskable-512.png",
+  "monochromeIconUrl": "https://www.kismetplastik.com/test/images/icon-192.png",
   "shortcuts": [
     {
       "name": "Ürünler",
@@ -32,6 +33,12 @@
       "name": "İletişim",
       "short_name": "İletişim",
       "url": "/test/tr/iletisim",
+      "chosenIconUrl": "https://www.kismetplastik.com/test/images/icon-192.png"
+    },
+    {
+      "name": "Bayi Portalı",
+      "short_name": "Portal",
+      "url": "/test/tr/bayi-panel",
       "chosenIconUrl": "https://www.kismetplastik.com/test/images/icon-192.png"
     }
   ],
@@ -57,10 +64,17 @@
   "isChromeOSOnly": false,
   "isMetaQuest": false,
   "fullScopeUrl": "https://www.kismetplastik.com/test/",
-  "minSdkVersion": 23,
-  "appVersionCode": 1,
-  "appVersionName": "1.0.0",
+  "minSdkVersion": 24,
+  "targetSdkVersion": 34,
+  "appVersionCode": 2,
+  "appVersionName": "1.1.0",
   "splashScreenFadeOutDuration": 300,
   "signingMode": "new",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "fingerprints": [
+    {
+      "type": "play-app-signing",
+      "value": "GOOGLE_PLAY_APP_SIGNING_SHA256_BURAYA"
+    }
+  ]
 }
