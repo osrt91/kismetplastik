@@ -1,4 +1,9 @@
 import type { Metadata } from "next";
+import { locales, defaultLocale } from "@/lib/locales";
+
+const BASE =
+  process.env.NEXT_PUBLIC_BASE_URL || "https://www.kismetplastik.com";
+const PATH = "on-siparis";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -28,15 +33,15 @@ export async function generateMetadata({
       title,
       description,
       type: "website",
-      url: `https://www.kismetplastik.com/${locale}/on-siparis`,
+      url: `${BASE}/${locale}/${PATH}`,
       siteName: "Kısmet Plastik",
     },
     alternates: {
-      canonical: `https://www.kismetplastik.com/${locale}/on-siparis`,
-      languages: {
-        tr: "https://www.kismetplastik.com/tr/on-siparis",
-        en: "https://www.kismetplastik.com/en/on-siparis",
-      },
+      canonical: `${BASE}/${defaultLocale}/${PATH}`,
+      languages: Object.fromEntries([
+        ...locales.map((l) => [l, `${BASE}/${l}/${PATH}`]),
+        ["x-default", `${BASE}/${defaultLocale}/${PATH}`],
+      ]),
     },
   };
 }

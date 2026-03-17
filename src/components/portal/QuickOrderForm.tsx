@@ -1,45 +1,44 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect, useMemo } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { Plus, X, FileSpreadsheet, ClipboardPaste, ShoppingCart, FileText } from "lucide-react";
 import { toast } from "sonner";
 import { useLocale } from "@/contexts/LocaleContext";
-import { products } from "@/data/products";
 import type { Product } from "@/types/product";
 
-/* ── Labels ─────────────────────────────────────────────────────── */
+/* -- Labels ----------------------------------------------------------- */
 
 const labels: Record<string, Record<string, string>> = {
   tr: {
-    title: "Hızlı Sipariş",
-    subtitle: "Ürün kodu veya adını girerek hızlıca sipariş oluşturun",
-    productCode: "Ürün Kodu",
-    productName: "Ürün Adı",
+    title: "Hizli Siparis",
+    subtitle: "Urun kodu veya adini girerek hizlica siparis olusturun",
+    productCode: "Urun Kodu",
+    productName: "Urun Adi",
     quantity: "Miktar",
     unitPrice: "Birim Fiyat",
     total: "Toplam",
-    addRow: "Satır Ekle",
+    addRow: "Satir Ekle",
     subtotal: "Ara Toplam",
     vat: "KDV (%20)",
     grandTotal: "Genel Toplam",
-    createOrder: "Siparişe Dönüştür",
-    requestQuote: "Teklif İste",
-    excelPaste: "Excel'den Yapıştır",
-    excelModalTitle: "Excel Verisi Yapıştır",
-    excelModalDesc: "Her satıra bir ürün kodu ve miktar (Tab ile ayrılmış) yapıştırın.",
+    createOrder: "Siparise Donustur",
+    requestQuote: "Teklif Iste",
+    excelPaste: "Excel'den Yapistir",
+    excelModalTitle: "Excel Verisi Yapistir",
+    excelModalDesc: "Her satira bir urun kodu ve miktar (Tab ile ayrilmis) yapistirin.",
     excelPlaceholder: "pet-001\t100\npls-001\t200\nkpk-002\t500",
     excelApply: "Uygula",
-    excelCancel: "İptal",
-    productsAdded: "ürün eklendi",
-    productsNotFound: "ürün kodu bulunamadı",
-    noProducts: "Lütfen en az bir ürün ekleyin",
-    orderSuccess: "Sipariş oluşturuldu",
-    quoteSuccess: "Teklif talebi gönderildi",
-    removeRow: "Satırı kaldır",
+    excelCancel: "Iptal",
+    productsAdded: "urun eklendi",
+    productsNotFound: "urun kodu bulunamadi",
+    noProducts: "Lutfen en az bir urun ekleyin",
+    orderSuccess: "Siparis olusturuldu",
+    quoteSuccess: "Teklif talebi gonderildi",
+    removeRow: "Satiri kaldir",
     currency: "TL",
-    minOrder: "Min. sipariş",
-    belowMinOrder: "Miktar minimum sipariş adedinin altında",
-    submitting: "Gönderiliyor...",
+    minOrder: "Min. siparis",
+    belowMinOrder: "Miktar minimum siparis adedinin altinda",
+    submitting: "Gonderiliyor...",
   },
   en: {
     title: "Quick Order",
@@ -74,7 +73,7 @@ const labels: Record<string, Record<string, string>> = {
   },
 };
 
-/* ── Types ──────────────────────────────────────────────────────── */
+/* -- Types ------------------------------------------------------------ */
 
 interface OrderRow {
   id: string;
@@ -108,7 +107,7 @@ function getProductUnitPrice(product: Product): number {
   return 2.5;
 }
 
-/* ── Component ──────────────────────────────────────────────────── */
+/* -- Component -------------------------------------------------------- */
 
 export default function QuickOrderForm() {
   const { locale } = useLocale();
@@ -123,10 +122,12 @@ export default function QuickOrderForm() {
   const [excelText, setExcelText] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  /* ── Autocomplete state ──────────────────────────────────────── */
+  /* -- Autocomplete state --------------------------------------------- */
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   // Close dropdown when clicking outside
@@ -140,20 +141,32 @@ export default function QuickOrderForm() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const filteredProducts = useMemo(() => {
-    if (!searchQuery || searchQuery.length < 1) return [];
-    const q = searchQuery.toLowerCase();
-    return products
-      .filter(
-        (p) =>
-          p.id.toLowerCase().includes(q) ||
-          p.name.toLowerCase().includes(q) ||
-          p.slug.toLowerCase().includes(q)
-      )
-      .slice(0, 8);
+  // Debounced API search for autocomplete
+  useEffect(() => {
+    if (!searchQuery || searchQuery.length < 1) {
+      setFilteredProducts([]);
+      return;
+    }
+
+    if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current);
+    searchDebounceRef.current = setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/products/search?q=${encodeURIComponent(searchQuery)}&limit=8`);
+        const json = await res.json();
+        if (json.success && json.data?.products) {
+          setFilteredProducts(json.data.products);
+        }
+      } catch {
+        // Silently fail
+      }
+    }, 200);
+
+    return () => {
+      if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current);
+    };
   }, [searchQuery]);
 
-  /* ── Row helpers ─────────────────────────────────────────────── */
+  /* -- Row helpers ----------------------------------------------------- */
 
   const updateRow = useCallback((rowId: string, updates: Partial<OrderRow>) => {
     setRows((prev) =>
@@ -186,14 +199,24 @@ export default function QuickOrderForm() {
       updateRow(rowId, { productCode: value, productName: "", unitPrice: 0, product: null });
 
       if (debounceRef.current) clearTimeout(debounceRef.current);
-      debounceRef.current = setTimeout(() => {
-        // Check for exact match
-        const exactMatch = products.find(
-          (p) => p.id.toLowerCase() === value.toLowerCase() || p.slug.toLowerCase() === value.toLowerCase()
-        );
-        if (exactMatch) {
-          selectProduct(rowId, exactMatch);
-        } else {
+      debounceRef.current = setTimeout(async () => {
+        // Check for exact match via API
+        try {
+          const res = await fetch(`/api/products/search?q=${encodeURIComponent(value)}&limit=1`);
+          const json = await res.json();
+          const products = json.data?.products ?? [];
+          const exactMatch = products.find(
+            (p: Product) =>
+              p.id.toLowerCase() === value.toLowerCase() ||
+              p.slug.toLowerCase() === value.toLowerCase()
+          );
+          if (exactMatch) {
+            selectProduct(rowId, exactMatch);
+          } else {
+            setSearchQuery(value);
+            setActiveDropdown(rowId);
+          }
+        } catch {
           setSearchQuery(value);
           setActiveDropdown(rowId);
         }
@@ -213,7 +236,7 @@ export default function QuickOrderForm() {
     });
   }, []);
 
-  /* ── Totals ──────────────────────────────────────────────────── */
+  /* -- Totals --------------------------------------------------------- */
 
   const subtotal = rows.reduce((sum, row) => sum + row.total, 0);
   const vat = subtotal * 0.2;
@@ -226,9 +249,9 @@ export default function QuickOrderForm() {
     (r) => r.product && r.quantity < r.product.minOrder
   );
 
-  /* ── Excel paste ─────────────────────────────────────────────── */
+  /* -- Excel paste ---------------------------------------------------- */
 
-  const handleExcelApply = useCallback(() => {
+  const handleExcelApply = useCallback(async () => {
     const lines = excelText
       .trim()
       .split("\n")
@@ -238,6 +261,32 @@ export default function QuickOrderForm() {
     const notFoundCodes: string[] = [];
     const newRows: OrderRow[] = [];
 
+    // Collect all codes and fetch them in batch
+    const codes = lines
+      .map((line) => {
+        const parts = line.split("\t");
+        return (parts[0] || "").trim();
+      })
+      .filter(Boolean);
+
+    // Fetch products by search to resolve codes
+    const productMap = new Map<string, Product>();
+    for (const code of codes) {
+      try {
+        const res = await fetch(`/api/products/search?q=${encodeURIComponent(code)}&limit=1`);
+        const json = await res.json();
+        const products = json.data?.products ?? [];
+        const match = products.find(
+          (p: Product) =>
+            p.id.toLowerCase() === code.toLowerCase() ||
+            p.slug.toLowerCase() === code.toLowerCase()
+        );
+        if (match) productMap.set(code.toLowerCase(), match);
+      } catch {
+        // Skip
+      }
+    }
+
     for (const line of lines) {
       const parts = line.split("\t");
       const code = (parts[0] || "").trim();
@@ -245,9 +294,7 @@ export default function QuickOrderForm() {
 
       if (!code) continue;
 
-      const product = products.find(
-        (p) => p.id.toLowerCase() === code.toLowerCase() || p.slug.toLowerCase() === code.toLowerCase()
-      );
+      const product = productMap.get(code.toLowerCase());
 
       if (product) {
         const unitPrice = getProductUnitPrice(product);
@@ -283,7 +330,7 @@ export default function QuickOrderForm() {
     setExcelText("");
   }, [excelText, t]);
 
-  /* ── Submit handlers ─────────────────────────────────────────── */
+  /* -- Submit handlers ------------------------------------------------ */
 
   const handleCreateOrder = useCallback(async () => {
     if (submitting) return;
@@ -323,7 +370,7 @@ export default function QuickOrderForm() {
     }
   }, [submitting, validRows, rowsBelowMinOrder, t]);
 
-  /* ── Format helpers ──────────────────────────────────────────── */
+  /* -- Format helpers ------------------------------------------------- */
 
   const formatPrice = (value: number) =>
     value.toLocaleString(locale === "tr" ? "tr-TR" : "en-US", {

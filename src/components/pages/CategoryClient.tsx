@@ -1,14 +1,10 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "@/components/ui/LocaleLink";
 import { ChevronRight } from "lucide-react";
-import {
-  getProductsByCategory,
-  getCategoryBySlug,
-} from "@/data/products";
-import { CategorySlug, SortOption } from "@/types/product";
+import type { Product, Category, SortOption } from "@/types/product";
 import ProductCard from "@/components/ui/ProductCard";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import CompareBar from "@/components/ui/CompareBar";
@@ -21,11 +17,37 @@ export default function CategoryClient() {
 
   const params = useParams();
   const categorySlug = params.category as string;
-  const category = getCategoryBySlug(categorySlug);
-  const allProducts = getProductsByCategory(categorySlug as CategorySlug);
+
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [category, setCategory] = useState<Category | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState<SortOption>("name-asc");
+
+  // Fetch products for this category from API
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      try {
+        const res = await fetch(`/api/products?category=${encodeURIComponent(categorySlug)}&limit=200`);
+        const json = await res.json();
+        if (!cancelled && json.success && json.data) {
+          setAllProducts(json.data.products ?? []);
+          const cat = (json.data.categories ?? []).find(
+            (c: Category) => c.slug === categorySlug
+          );
+          setCategory(cat ?? null);
+        }
+      } catch {
+        // Failed to load
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+    load();
+    return () => { cancelled = true; };
+  }, [categorySlug]);
 
   const filtered = useMemo(() => {
     let result = [...allProducts];
@@ -62,6 +84,14 @@ export default function CategoryClient() {
   }, [search, sort, allProducts, dict]);
 
   const catT = category ? getCategoryTranslation(category, dict) : { name: "", description: "" };
+
+  if (loading) {
+    return (
+      <section className="flex min-h-[60vh] items-center justify-center bg-neutral-50 dark:bg-neutral-900">
+        <span className="h-8 w-8 animate-spin rounded-full border-3 border-neutral-200 border-t-[#F59E0B]" />
+      </section>
+    );
+  }
 
   if (!category) {
     return (

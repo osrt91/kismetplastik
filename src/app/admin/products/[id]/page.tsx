@@ -1,51 +1,107 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, Save, Trash2, Plus, X } from "lucide-react";
-import { products, categories } from "@/data/products";
-import type { CategorySlug } from "@/types/product";
+import type { Product, Category, CategorySlug } from "@/types/product";
 
 export default function EditProductPage() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
-  const product = products.find((p) => p.id === id);
+
+  const [product, setProduct] = useState<Product | null>(null);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const [saving, setSaving] = useState(false);
-  const [form, setForm] = useState(
-    product
-      ? {
-          name: product.name,
-          slug: product.slug,
-          category: product.category as CategorySlug,
-          description: product.description,
-          shortDescription: product.shortDescription,
-          volume: product.volume || "",
-          weight: product.weight || "",
-          neckDiameter: product.neckDiameter || "",
-          height: product.height || "",
-          diameter: product.diameter || "",
-          material: product.material,
-          colors: [...product.colors],
-          model: product.model || "",
-          minOrder: product.minOrder,
-          inStock: product.inStock,
-          featured: product.featured,
-        }
-      : null
-  );
+  const [form, setForm] = useState<{
+    name: string;
+    slug: string;
+    category: CategorySlug;
+    description: string;
+    shortDescription: string;
+    volume: string;
+    weight: string;
+    neckDiameter: string;
+    height: string;
+    diameter: string;
+    material: string;
+    colors: string[];
+    model: string;
+    minOrder: number;
+    inStock: boolean;
+    featured: boolean;
+  } | null>(null);
   const [newColor, setNewColor] = useState("");
+
+  // Fetch product and categories from API
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      try {
+        const [prodRes, catRes] = await Promise.all([
+          fetch(`/api/products?ids=${encodeURIComponent(id)}&limit=1`),
+          fetch("/api/products/categories"),
+        ]);
+        const prodJson = await prodRes.json();
+        const catJson = await catRes.json();
+
+        if (!cancelled) {
+          const products = prodJson.data?.products ?? [];
+          const p = products[0] ?? null;
+          setProduct(p);
+          if (p) {
+            setForm({
+              name: p.name,
+              slug: p.slug,
+              category: p.category as CategorySlug,
+              description: p.description,
+              shortDescription: p.shortDescription || p.short_description || "",
+              volume: p.volume || "",
+              weight: p.weight || "",
+              neckDiameter: p.neckDiameter || p.neck_diameter || "",
+              height: p.height || "",
+              diameter: p.diameter || "",
+              material: p.material,
+              colors: [...(p.colors || [])],
+              model: p.model || "",
+              minOrder: p.minOrder || p.min_order || 10000,
+              inStock: p.inStock ?? p.in_stock ?? true,
+              featured: p.featured ?? false,
+            });
+          }
+          if (catJson.success && catJson.data) {
+            setCategories(catJson.data);
+          }
+        }
+      } catch {
+        // Failed to load
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+    load();
+    return () => { cancelled = true; };
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <span className="h-8 w-8 animate-spin rounded-full border-3 border-neutral-200 border-t-primary" />
+      </div>
+    );
+  }
 
   if (!product || !form) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-muted-foreground">
-        <p className="text-lg font-medium">Ürün bulunamadı</p>
+        <p className="text-lg font-medium">Urun bulunamadi</p>
         <Link
           href="/admin/products"
           className="mt-3 text-sm text-primary hover:underline"
         >
-          Ürün listesine dön
+          Urun listesine don
         </Link>
       </div>
     );

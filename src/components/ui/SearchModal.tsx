@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import Link from "@/components/ui/LocaleLink";
 import { Search, Package, FileText, ArrowRight } from "lucide-react";
-import { products, categories } from "@/data/products";
 import { useLocale } from "@/contexts/LocaleContext";
 
 interface SearchResult {
@@ -21,7 +20,10 @@ interface Props {
 export default function SearchModal({ open, onClose }: Props) {
   const { dict } = useLocale();
   const [query, setQuery] = useState("");
+  const [apiResults, setApiResults] = useState<SearchResult[]>([]);
+  const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (open) {
@@ -29,8 +31,8 @@ export default function SearchModal({ open, onClose }: Props) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- reset query when modal closes
       setQuery("");
+      setApiResults([]);
     }
     return () => {
       document.body.style.overflow = "";
@@ -63,45 +65,75 @@ export default function SearchModal({ open, onClose }: Props) {
     { type: "page", title: dict.nav.dealer, description: dict.searchDescriptions.dealer, href: "/bayi-girisi" },
   ], [dict]);
 
+  // Debounced API search for products & categories
+  const searchApi = useCallback((q: string) => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+
+    if (!q.trim()) {
+      setApiResults([]);
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    debounceRef.current = setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/products/search?q=${encodeURIComponent(q.trim())}&limit=6`);
+        const json = await res.json();
+        if (json.success && json.data) {
+          const results: SearchResult[] = [];
+
+          // Categories
+          for (const cat of json.data.categories ?? []) {
+            results.push({
+              type: "category",
+              title: cat.name,
+              description: cat.description || "",
+              href: `/urunler/${cat.slug}`,
+            });
+          }
+
+          // Products
+          for (const p of json.data.products ?? []) {
+            results.push({
+              type: "product",
+              title: p.name,
+              description: p.short_description || "",
+              href: `/urunler/${p.category_slug || p.category}/${p.slug}`,
+            });
+          }
+
+          setApiResults(results);
+        }
+      } catch {
+        // Silently fail — results stay empty
+      } finally {
+        setLoading(false);
+      }
+    }, 250);
+  }, []);
+
+  // Trigger search when query changes
+  useEffect(() => {
+    searchApi(query);
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, [query, searchApi]);
+
+  // Combine API results with static page matches
   const results = useMemo(() => {
     if (!query.trim()) return [];
     const q = query.toLowerCase();
-    const out: SearchResult[] = [];
 
-    categories.forEach((cat) => {
-      if (cat.name.toLowerCase().includes(q) || cat.description.toLowerCase().includes(q)) {
-        out.push({
-          type: "category",
-          title: cat.name,
-          description: cat.description,
-          href: `/urunler/${cat.slug}`,
-        });
-      }
-    });
+    const pageMatches = staticPages.filter(
+      (page) =>
+        page.title.toLowerCase().includes(q) ||
+        page.description.toLowerCase().includes(q)
+    );
 
-    products.forEach((p) => {
-      if (
-        p.name.toLowerCase().includes(q) ||
-        p.shortDescription.toLowerCase().includes(q) ||
-        p.description.toLowerCase().includes(q)
-      ) {
-        out.push({
-          type: "product",
-          title: p.name,
-          description: p.shortDescription,
-          href: `/urunler/${p.category}/${p.slug}`,
-        });
-      }
-    });
-
-    staticPages.forEach((page) => {
-      if (page.title.toLowerCase().includes(q) || page.description.toLowerCase().includes(q)) {
-        out.push(page);
-      }
-    });
-
-    return out.slice(0, 8);
-  }, [query, staticPages]);
+    return [...apiResults, ...pageMatches].slice(0, 8);
+  }, [query, apiResults, staticPages]);
 
   if (!open) return null;
 
@@ -132,6 +164,9 @@ export default function SearchModal({ open, onClose }: Props) {
               placeholder={dict.components.searchPlaceholder}
               className="w-full text-base outline-none placeholder:text-neutral-400"
             />
+            {loading && (
+              <span className="shrink-0 h-4 w-4 animate-spin rounded-full border-2 border-neutral-300 border-t-primary-500" />
+            )}
             <button
               onClick={onClose}
               className="shrink-0 rounded-lg bg-neutral-100 px-2 py-1 text-xs font-medium text-neutral-500 hover:bg-neutral-200"
@@ -163,11 +198,11 @@ export default function SearchModal({ open, onClose }: Props) {
                     <ArrowRight size={14} className="shrink-0 text-neutral-300" />
                   </Link>
                 ))
-              ) : (
+              ) : !loading ? (
                 <div className="px-5 py-8 text-center text-sm text-neutral-500">
                   {dict.components.noResults}
                 </div>
-              )}
+              ) : null}
             </div>
           )}
 

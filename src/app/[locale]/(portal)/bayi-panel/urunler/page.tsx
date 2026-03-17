@@ -3,11 +3,10 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { Search, ShoppingCart, Plus, Minus, ArrowUpDown, Package, X } from "lucide-react";
 import { useLocale } from "@/contexts/LocaleContext";
-import { products, categories } from "@/data/products";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import LocaleLink from "@/components/ui/LocaleLink";
-import type { Product, CategorySlug } from "@/types/product";
+import type { Product, Category, CategorySlug } from "@/types/product";
 
 // -- Cart types & helpers --
 
@@ -51,33 +50,35 @@ function getUnitPrice(p: Product): number {
 
 const labels: Record<string, Record<string, string>> = {
   tr: {
-    title: "Ürün Kataloğu",
-    search: "Ürün adı veya kodu ara...",
-    allCategories: "Tüm Kategoriler",
-    sortLabel: "Sıralama",
+    title: "Urun Katalogu",
+    search: "Urun adi veya kodu ara...",
+    allCategories: "Tum Kategoriler",
+    sortLabel: "Siralama",
     sortAZ: "A-Z",
     sortZA: "Z-A",
     addToCart: "Sepete Ekle",
-    minOrder: "Min. Sipariş",
+    minOrder: "Min. Siparis",
     pcs: "adet",
     cart: "Sepet",
-    cartItems: "ürün",
+    cartItems: "urun",
     total: "Toplam",
-    viewCart: "Sepeti Gör",
+    viewCart: "Sepeti Gor",
     clearCart: "Temizle",
     added: "Sepete eklendi",
-    removed: "Ürün sepetten çıkarıldı",
-    emptyState: "Aradığınız kriterlere uygun ürün bulunamadı.",
+    removed: "Urun sepetten cikarildi",
+    emptyState: "Aradiginiz kriterlere uygun urun bulunamadi.",
     unitPrice: "Birim Fiyat",
     quantity: "Adet",
     material: "Hammadde",
     volume: "Hacim",
-    cartEmpty: "Sepetiniz boş",
-    cartSummary: "Sepet Özeti",
-    productName: "Ürün",
+    cartEmpty: "Sepetiniz bos",
+    cartSummary: "Sepet Ozeti",
+    productName: "Urun",
     subtotal: "Ara Toplam",
-    goToQuote: "Teklif İste",
+    goToQuote: "Teklif Iste",
     close: "Kapat",
+    clearFilters: "Filtreleri Temizle",
+    loading: "Yuklenyor...",
   },
   en: {
     title: "Product Catalog",
@@ -107,6 +108,8 @@ const labels: Record<string, Record<string, string>> = {
     subtotal: "Subtotal",
     goToQuote: "Request Quote",
     close: "Close",
+    clearFilters: "Clear Filters",
+    loading: "Loading...",
   },
 };
 
@@ -116,12 +119,37 @@ export default function UrunlerPage() {
   const { locale } = useLocale();
   const t = labels[locale] || labels.en || labels.tr;
 
+  const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+
   const [search, setSearch] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<Set<CategorySlug>>(new Set());
   const [sort, setSort] = useState<SortMode>("az");
   const [cart, setCart] = useState<CartItem[]>([]);
   const [quantities, setQuantities] = useState<Record<string, number>>({});
   const [showCartModal, setShowCartModal] = useState(false);
+
+  // Fetch products and categories from API
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      try {
+        const res = await fetch("/api/products?limit=200");
+        const json = await res.json();
+        if (!cancelled && json.success && json.data) {
+          setProducts(json.data.products ?? []);
+          setCategories(json.data.categories ?? []);
+        }
+      } catch {
+        // Failed to load
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+    load();
+    return () => { cancelled = true; };
+  }, []);
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -170,7 +198,7 @@ export default function UrunlerPage() {
     );
 
     return result;
-  }, [search, selectedCategories, sort]);
+  }, [products, search, selectedCategories, sort]);
 
   const getQuantity = (productId: string) => quantities[productId] || 1;
 
@@ -221,6 +249,14 @@ export default function UrunlerPage() {
       currency: "TRY",
       minimumFractionDigits: 2,
     }).format(val);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-24">
+        <span className="h-8 w-8 animate-spin rounded-full border-3 border-neutral-200 border-t-amber-500" />
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -286,7 +322,7 @@ export default function UrunlerPage() {
                 onClick={() => setSelectedCategories(new Set())}
                 className="mt-3 text-xs font-medium text-amber-600 hover:text-amber-700"
               >
-                {t.clearCart === "Temizle" ? "Filtreleri Temizle" : "Clear Filters"}
+                {t.clearFilters}
               </button>
             )}
           </div>

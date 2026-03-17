@@ -1,4 +1,9 @@
 import type { Metadata } from "next";
+import { locales, defaultLocale } from "@/lib/locales";
+
+const BASE =
+  process.env.NEXT_PUBLIC_BASE_URL || "https://www.kismetplastik.com";
+const PATH = "kaynaklar";
 
 type Props = {
   children: React.ReactNode;
@@ -14,9 +19,7 @@ export async function generateMetadata({
   const isTr = locale === "tr";
 
   return {
-    title: isTr
-      ? "Kaynaklar & Rehberler"
-      : "Resources & Guides",
+    title: isTr ? "Kaynaklar & Rehberler" : "Resources & Guides",
     description: isTr
       ? "Kozmetik ambalaj sektörü için teknik rehberler, spesifikasyonlar ve sürdürülebilirlik raporları. Ücretsiz indirilebilir PDF kaynaklar."
       : "Technical guides, specifications and sustainability reports for the cosmetic packaging industry. Free downloadable PDF resources.",
@@ -49,11 +52,11 @@ export async function generateMetadata({
       siteName: "Kısmet Plastik",
     },
     alternates: {
-      canonical: `https://www.kismetplastik.com/${locale}/kaynaklar`,
-      languages: {
-        tr: "https://www.kismetplastik.com/tr/kaynaklar",
-        en: "https://www.kismetplastik.com/en/kaynaklar",
-      },
+      canonical: `${BASE}/${defaultLocale}/${PATH}`,
+      languages: Object.fromEntries([
+        ...locales.map((l) => [l, `${BASE}/${l}/${PATH}`]),
+        ["x-default", `${BASE}/${defaultLocale}/${PATH}`],
+      ]),
     },
   };
 }

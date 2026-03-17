@@ -2,8 +2,7 @@
 
 import { memo, useState } from "react";
 import { Search, SlidersHorizontal, X, ChevronDown } from "lucide-react";
-import { categories } from "@/data/products";
-import { CategorySlug, SortOption } from "@/types/product";
+import type { Category, CategorySlug, SortOption } from "@/types/product";
 import { useLocale } from "@/contexts/LocaleContext";
 
 interface ProductFilterProps {
@@ -18,6 +17,7 @@ interface ProductFilterProps {
   materials: string[];
   resultCount: number;
   layout?: "sidebar" | "top";
+  categories?: Category[];
 }
 
 const ProductFilter = memo(function ProductFilter({
@@ -32,6 +32,7 @@ const ProductFilter = memo(function ProductFilter({
   materials,
   resultCount,
   layout = "sidebar",
+  categories = [],
 }: ProductFilterProps) {
   const { dict } = useLocale();
   const [catOpen, setCatOpen] = useState(true);

@@ -3,9 +3,8 @@
 import Link from "@/components/ui/LocaleLink";
 import { Clock, X, ArrowRight, Package, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRecentProducts } from "@/hooks/useRecentProducts";
-import { products, getCategoryBySlug } from "@/data/products";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-import { CategorySlug } from "@/types/product";
+import type { Product, Category, CategorySlug } from "@/types/product";
 import { useLocale } from "@/contexts/LocaleContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useRef, useState, useCallback, useEffect } from "react";
@@ -33,9 +32,47 @@ export default function RecentProducts() {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
 
-  const recentProducts = recentIds
-    .map((id) => products.find((p) => p.id === id))
-    .filter((p): p is NonNullable<typeof p> => p != null);
+  // Fetch recent products from API by IDs
+  const [recentProducts, setRecentProducts] = useState<Product[]>([]);
+  const [categoriesMap, setCategoriesMap] = useState<Record<string, Category>>({});
+
+  useEffect(() => {
+    if (recentIds.length === 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- clear when no recent IDs
+      setRecentProducts([]);
+      return;
+    }
+
+    let cancelled = false;
+    async function load() {
+      try {
+        const res = await fetch(`/api/products?ids=${encodeURIComponent(recentIds.join(","))}&limit=8`);
+        const json = await res.json();
+        if (!cancelled && json.success && json.data) {
+          // Maintain the order from recentIds
+          const productsById = new Map<string, Product>();
+          for (const p of json.data.products ?? []) {
+            productsById.set(p.id, p);
+          }
+          const ordered = recentIds
+            .map((id) => productsById.get(id))
+            .filter((p): p is Product => p != null);
+          setRecentProducts(ordered);
+
+          // Build categories map
+          const catMap: Record<string, Category> = {};
+          for (const cat of json.data.categories ?? []) {
+            catMap[cat.slug] = cat;
+          }
+          setCategoriesMap(catMap);
+        }
+      } catch {
+        // Silently fail
+      }
+    }
+    load();
+    return () => { cancelled = true; };
+  }, [recentIds]);
 
   const checkScroll = useCallback(() => {
     const el = scrollRef.current;
@@ -135,7 +172,7 @@ export default function RecentProducts() {
           >
             <div className="flex gap-5 snap-x snap-mandatory">
               {recentProducts.map((product, index) => {
-                const category = getCategoryBySlug(product.category);
+                const category = categoriesMap[product.category];
                 const badgeStyle = categoryBadgeStyles[product.category];
 
                 return (
@@ -164,8 +201,8 @@ export default function RecentProducts() {
                           <span
                             className="mb-2 inline-block w-fit rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wide uppercase"
                             style={{
-                              backgroundColor: isDark ? badgeStyle.darkBg : badgeStyle.bg,
-                              color: isDark ? badgeStyle.darkText : badgeStyle.text,
+                              backgroundColor: isDark ? badgeStyle?.darkBg : badgeStyle?.bg,
+                              color: isDark ? badgeStyle?.darkText : badgeStyle?.text,
                             }}
                           >
                             {category?.name ?? product.category}

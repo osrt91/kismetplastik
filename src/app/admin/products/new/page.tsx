@@ -1,16 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Save, Plus, X } from "lucide-react";
-import { categories } from "@/data/products";
-import type { CategorySlug } from "@/types/product";
+import type { Category, CategorySlug } from "@/types/product";
 
 export default function NewProductPage() {
   const router = useRouter();
+  const [categories, setCategories] = useState<Category[]>([]);
   const [saving, setSaving] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
+
+  // Fetch categories from API
+  useEffect(() => {
+    fetch("/api/products/categories")
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.success && json.data) setCategories(json.data);
+      })
+      .catch(() => {});
+  }, []);
+
   const [form, setForm] = useState({
     name: "",
     slug: "",

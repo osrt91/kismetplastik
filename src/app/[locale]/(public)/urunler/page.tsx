@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { products, getAllMaterials } from "@/data/products";
-import { CategorySlug, SortOption } from "@/types/product";
+import { useState, useMemo, useEffect } from "react";
+import type { Product, Category, CategorySlug, SortOption } from "@/types/product";
 import ProductCard from "@/components/ui/ProductCard";
 import ProductFilter from "@/components/ui/ProductFilter";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
@@ -14,13 +13,41 @@ export default function ProductsPage() {
   const { dict } = useLocale();
   const p = dict.products;
 
+  const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState<CategorySlug | "all">("all");
   const [material, setMaterial] = useState("");
   const [sort, setSort] = useState<SortOption>("name-asc");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const materials = useMemo(() => getAllMaterials(), []);
+  // Fetch products and categories from API on mount
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      try {
+        const res = await fetch("/api/products?limit=200");
+        const json = await res.json();
+        if (!cancelled && json.success && json.data) {
+          setProducts(json.data.products ?? []);
+          setCategories(json.data.categories ?? []);
+        }
+      } catch {
+        // Failed to load — products stay empty
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+    load();
+    return () => { cancelled = true; };
+  }, []);
+
+  const materials = useMemo(
+    () => [...new Set(products.map((pr) => pr.material))],
+    [products]
+  );
 
   const filtered = useMemo(() => {
     let result = [...products];
@@ -58,7 +85,7 @@ export default function ProductsPage() {
     });
 
     return result;
-  }, [search, category, material, sort]);
+  }, [products, search, category, material, sort]);
 
   return (
     <section className="min-h-screen bg-[#FAFAF7] dark:bg-[#0A1628]">
@@ -120,98 +147,107 @@ export default function ProductsPage() {
 
       {/* Main Content */}
       <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6 lg:py-12">
-        {/* Mobile filter toggle */}
-        <button
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="mb-6 flex w-full items-center justify-center gap-2 rounded-xl border border-[#0A1628]/10 bg-white px-4 py-3 text-sm font-semibold text-[#0A1628] shadow-sm transition-all hover:border-[#F59E0B]/40 hover:shadow-md active:scale-[0.98] dark:border-[#F59E0B]/20 dark:bg-[#0A1628] dark:text-neutral-200 dark:hover:border-[#F59E0B]/40 lg:hidden"
-        >
-          {sidebarOpen ? (
-            <>
-              <X size={16} className="text-[#F59E0B]" />
-              {dict.components.clearFilters}
-            </>
-          ) : (
-            <>
-              <SlidersHorizontal size={16} className="text-[#F59E0B]" />
-              {dict.components.filters}
-              {(search || category !== "all" || material) && (
-                <span className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#F59E0B] text-[10px] font-bold text-[#0A1628]">
-                  {[search !== "", category !== "all", material !== ""].filter(Boolean).length}
-                </span>
-              )}
-            </>
-          )}
-        </button>
-
-        <div className="flex gap-8">
-          {/* Sidebar — desktop always visible, mobile toggleable */}
-          <div
-            className={`${
-              sidebarOpen
-                ? "fixed inset-0 z-50 block overflow-y-auto bg-[#FAFAF7]/95 p-4 backdrop-blur-sm dark:bg-[#0A1628]/95 lg:static lg:z-auto lg:overflow-visible lg:bg-transparent lg:p-0 lg:backdrop-blur-none"
-                : "hidden"
-            } lg:block`}
-          >
-            {/* Mobile close button inside overlay */}
-            <div className="mb-4 flex justify-end lg:hidden">
-              <button
-                onClick={() => setSidebarOpen(false)}
-                className="rounded-full bg-white p-2 shadow-md dark:bg-neutral-800"
-              >
-                <X size={20} className="text-neutral-600 dark:text-neutral-300" />
-              </button>
-            </div>
-            <ProductFilter
-              search={search}
-              onSearchChange={setSearch}
-              selectedCategory={category}
-              onCategoryChange={setCategory}
-              selectedMaterial={material}
-              onMaterialChange={setMaterial}
-              sort={sort}
-              onSortChange={setSort}
-              materials={materials}
-              resultCount={filtered.length}
-              layout="sidebar"
-            />
+        {loading ? (
+          <div className="flex items-center justify-center py-24">
+            <span className="h-8 w-8 animate-spin rounded-full border-3 border-neutral-200 border-t-[#F59E0B]" />
           </div>
-
-          {/* Product Grid */}
-          <div className="flex-1">
-            {filtered.length > 0 ? (
-              <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                {filtered.map((product, i) => (
-                  <AnimateOnScroll
-                    key={product.id}
-                    animation="fade-up"
-                    delay={Math.min(i * 60, 300)}
-                  >
-                    <ProductCard product={product} />
-                  </AnimateOnScroll>
-                ))}
-              </div>
-            ) : (
-              <div className="flex flex-col items-center justify-center rounded-2xl border border-[#0A1628]/5 bg-white py-24 text-center shadow-sm dark:border-[#F59E0B]/10 dark:bg-[#0A1628]/50">
-                <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F59E0B]/10">
-                  <PackageSearch size={32} className="text-[#F59E0B]" />
-                </div>
-                <p className="mb-2 text-lg font-bold text-[#0A1628] dark:text-white">{p.noResults}</p>
-                <p className="mb-6 max-w-sm text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">{p.noResultsHint}</p>
-                <button
-                  onClick={() => {
-                    setSearch("");
-                    setCategory("all");
-                    setMaterial("");
-                  }}
-                  className="inline-flex items-center gap-2 rounded-lg border border-[#F59E0B]/30 bg-[#F59E0B]/5 px-5 py-2.5 text-sm font-semibold text-[#F59E0B] transition-all hover:bg-[#F59E0B]/10 hover:border-[#F59E0B]/50"
-                >
-                  <X size={14} />
+        ) : (
+          <>
+            {/* Mobile filter toggle */}
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="mb-6 flex w-full items-center justify-center gap-2 rounded-xl border border-[#0A1628]/10 bg-white px-4 py-3 text-sm font-semibold text-[#0A1628] shadow-sm transition-all hover:border-[#F59E0B]/40 hover:shadow-md active:scale-[0.98] dark:border-[#F59E0B]/20 dark:bg-[#0A1628] dark:text-neutral-200 dark:hover:border-[#F59E0B]/40 lg:hidden"
+            >
+              {sidebarOpen ? (
+                <>
+                  <X size={16} className="text-[#F59E0B]" />
                   {dict.components.clearFilters}
-                </button>
+                </>
+              ) : (
+                <>
+                  <SlidersHorizontal size={16} className="text-[#F59E0B]" />
+                  {dict.components.filters}
+                  {(search || category !== "all" || material) && (
+                    <span className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#F59E0B] text-[10px] font-bold text-[#0A1628]">
+                      {[search !== "", category !== "all", material !== ""].filter(Boolean).length}
+                    </span>
+                  )}
+                </>
+              )}
+            </button>
+
+            <div className="flex gap-8">
+              {/* Sidebar -- desktop always visible, mobile toggleable */}
+              <div
+                className={`${
+                  sidebarOpen
+                    ? "fixed inset-0 z-50 block overflow-y-auto bg-[#FAFAF7]/95 p-4 backdrop-blur-sm dark:bg-[#0A1628]/95 lg:static lg:z-auto lg:overflow-visible lg:bg-transparent lg:p-0 lg:backdrop-blur-none"
+                    : "hidden"
+                } lg:block`}
+              >
+                {/* Mobile close button inside overlay */}
+                <div className="mb-4 flex justify-end lg:hidden">
+                  <button
+                    onClick={() => setSidebarOpen(false)}
+                    className="rounded-full bg-white p-2 shadow-md dark:bg-neutral-800"
+                  >
+                    <X size={20} className="text-neutral-600 dark:text-neutral-300" />
+                  </button>
+                </div>
+                <ProductFilter
+                  search={search}
+                  onSearchChange={setSearch}
+                  selectedCategory={category}
+                  onCategoryChange={setCategory}
+                  selectedMaterial={material}
+                  onMaterialChange={setMaterial}
+                  sort={sort}
+                  onSortChange={setSort}
+                  materials={materials}
+                  resultCount={filtered.length}
+                  layout="sidebar"
+                  categories={categories}
+                />
               </div>
-            )}
-          </div>
-        </div>
+
+              {/* Product Grid */}
+              <div className="flex-1">
+                {filtered.length > 0 ? (
+                  <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                    {filtered.map((product, i) => (
+                      <AnimateOnScroll
+                        key={product.id}
+                        animation="fade-up"
+                        delay={Math.min(i * 60, 300)}
+                      >
+                        <ProductCard product={product} />
+                      </AnimateOnScroll>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center justify-center rounded-2xl border border-[#0A1628]/5 bg-white py-24 text-center shadow-sm dark:border-[#F59E0B]/10 dark:bg-[#0A1628]/50">
+                    <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F59E0B]/10">
+                      <PackageSearch size={32} className="text-[#F59E0B]" />
+                    </div>
+                    <p className="mb-2 text-lg font-bold text-[#0A1628] dark:text-white">{p.noResults}</p>
+                    <p className="mb-6 max-w-sm text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">{p.noResultsHint}</p>
+                    <button
+                      onClick={() => {
+                        setSearch("");
+                        setCategory("all");
+                        setMaterial("");
+                      }}
+                      className="inline-flex items-center gap-2 rounded-lg border border-[#F59E0B]/30 bg-[#F59E0B]/5 px-5 py-2.5 text-sm font-semibold text-[#F59E0B] transition-all hover:bg-[#F59E0B]/10 hover:border-[#F59E0B]/50"
+                    >
+                      <X size={14} />
+                      {dict.components.clearFilters}
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

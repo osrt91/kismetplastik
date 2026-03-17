@@ -26,9 +26,6 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500", "600", "700"],
 });
 
-const MotionConfigProvider = dynamic(
-  () => import("framer-motion").then((mod) => ({ default: mod.MotionConfig })),
-);
 const CookieBanner = dynamic(() => import("@/components/ui/CookieBanner"));
 const InstallPrompt = dynamic(() => import("@/components/ui/InstallPrompt"));
 const GoogleAnalytics = dynamic(() => import("@/components/analytics/GoogleAnalytics"));
@@ -199,16 +196,14 @@ export default async function LocaleLayout({ children, params }: Props) {
         />
         <GoogleAnalytics />
         <WebVitals />
-        <MotionConfigProvider reducedMotion="user">
-          <ThemeProvider>
-            <LocaleProvider>
-              {children}
-              <InstallPrompt />
-              <CookieBanner />
-              <Toaster position="top-right" richColors />
-            </LocaleProvider>
-          </ThemeProvider>
-        </MotionConfigProvider>
+        <ThemeProvider>
+          <LocaleProvider>
+            {children}
+            <InstallPrompt />
+            <CookieBanner />
+            <Toaster position="top-right" richColors />
+          </LocaleProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

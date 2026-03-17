@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "@/components/ui/LocaleLink";
 import {
   FileText,
@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { Input } from "@/components/ui/input";
-import { categories } from "@/data/products";
+import type { Category } from "@/types/product";
 import { useLocale } from "@/contexts/LocaleContext";
 import { getLocalizedFieldSync } from "@/lib/content";
 import type { DbContentSection } from "@/types/database";
@@ -61,6 +61,21 @@ export default function TeklifAlClient({ content, settings }: TeklifAlClientProp
   const { dict, locale } = useLocale();
   const q = dict.quote;
   const nav = dict.nav;
+
+  // Fetch categories from API instead of static import
+  const [categories, setCategories] = useState<Category[]>([]);
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/products/categories")
+      .then((res) => res.json())
+      .then((json) => {
+        if (!cancelled && json.success && json.data) {
+          setCategories(json.data);
+        }
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
 
   /* Helper: read from DB content with dict fallback */
   const t = (sectionKey: string, field: string, fallback: string): string => {

@@ -14,7 +14,7 @@ import {
   Box,
   Layers,
 } from "lucide-react";
-import { getProductBySlug, getCategoryBySlug } from "@/data/products";
+import type { Product, Category } from "@/types/product";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import ProductViewer from "@/components/ui/ProductViewer";
 import StickyQuoteBar from "@/components/ui/StickyQuoteBar";
@@ -34,12 +34,43 @@ export default function ProductDetailClient() {
   const { addRecent } = useRecentProducts();
   const [viewMode, setViewMode] = useState<"2d" | "3d">("2d");
   const [selectedColor, setSelectedColor] = useState<string | undefined>();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [category, setCategory] = useState<Category | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const params = useParams();
   const slug = params.slug as string;
   const categorySlug = params.category as string;
-  const product = getProductBySlug(slug);
-  const category = getCategoryBySlug(categorySlug);
+
+  // Fetch product and category data from API
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      try {
+        const res = await fetch(`/api/products?search=${encodeURIComponent(slug)}&category=${encodeURIComponent(categorySlug)}&limit=10`);
+        const json = await res.json();
+        if (!cancelled && json.success && json.data) {
+          // Find exact match by slug
+          const found = (json.data.products ?? []).find(
+            (pr: Product) => pr.slug === slug
+          );
+          setProduct(found ?? null);
+
+          // Find category
+          const cat = (json.data.categories ?? []).find(
+            (c: Category) => c.slug === categorySlug
+          );
+          setCategory(cat ?? null);
+        }
+      } catch {
+        // Failed to load
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+    load();
+    return () => { cancelled = true; };
+  }, [slug, categorySlug]);
 
   useEffect(() => {
     if (product) addRecent(product.id);
@@ -47,6 +78,14 @@ export default function ProductDetailClient() {
 
   const translated = product ? getProductTranslation(product, dict) : { name: "", shortDescription: "", description: "" };
   const catT = category ? getCategoryTranslation(category, dict) : { name: "", description: "" };
+
+  if (loading) {
+    return (
+      <section className="flex min-h-[60vh] items-center justify-center bg-neutral-50 dark:bg-neutral-900">
+        <span className="h-8 w-8 animate-spin rounded-full border-3 border-neutral-200 border-t-[#F59E0B]" />
+      </section>
+    );
+  }
 
   if (!product || !category) {
     return (
